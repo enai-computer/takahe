@@ -1,9 +1,4 @@
-//
-//  ViewController.swift
-//  takahe
-//
-//  Created by enai on 11.09.23.
-//
+//Created on 11.09.23
 
 import Cocoa
 
