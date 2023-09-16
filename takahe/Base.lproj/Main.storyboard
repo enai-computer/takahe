@@ -708,9 +708,28 @@
                     <view key="view" id="m2S-Jp-Qdl">
                         <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <searchField wantsLayer="YES" verticalHuggingPriority="750" fixedFrame="YES" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KmC-Rs-ADO">
+                                <rect key="frame" x="163" y="154" width="200" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <searchFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" borderStyle="bezel" usesSingleLineMode="YES" bezelStyle="round" id="KyA-Gq-EmC">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </searchFieldCell>
+                                <connections>
+                                    <action selector="mainSearch:" target="XfG-lQ-9wD" id="bd0-fn-WhJ"/>
+                                    <binding destination="gbn-8m-RIx" name="value" keyPath="values" id="Qs4-LP-QFu"/>
+                                </connections>
+                            </searchField>
+                        </subviews>
                     </view>
+                    <connections>
+                        <outlet property="search" destination="KmC-Rs-ADO" id="bT8-7y-RPf"/>
+                    </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <userDefaultsController representsSharedInstance="YES" id="gbn-8m-RIx"/>
             </objects>
             <point key="canvasLocation" x="75" y="655"/>
         </scene>
