@@ -5,11 +5,27 @@ import Cocoa
 @main
 class AppDelegate: NSObject, NSApplicationDelegate {
 
-    
-
-
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        // Insert code here to initialize your application
+//        // Insert code here to initialize your application
+        let window = DefaultWindow(
+            contentRect: NSRect(x: 0, y: 0, width: 480, height: 300),
+            styleMask: [.titled, .closable, .miniaturizable, .resizable, .fullSizeContentView],
+            backing: .buffered, defer: false)
+        window.contentViewController = ViewController()
+        window.contentViewController?.loadView()
+        
+//        window.makeKeyAndOrderFront(self)
+        
+//        let window = DefaultWindow()
+//        let view = ViewController()
+//        view.loadView()
+//        window.isReleasedWhenClosed = false
+//        window.center()
+//        window.setFrameAutosaveName("Main Window")
+//
+//        let mainScreen: NSScreen = NSScreen.screens[0]
+//        
+//        window.contentView?.enterFullScreenMode(mainScreen)
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
