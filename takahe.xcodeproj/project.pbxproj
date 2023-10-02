@@ -12,8 +12,10 @@
 		A1B8E6AB2AAFB5EC00AC6566 /* takahe.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A1B8E6A92AAFB5EC00AC6566 /* takahe.xcdatamodeld */; };
 		A1B8E6AD2AAFB5EF00AC6566 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A1B8E6AC2AAFB5EF00AC6566 /* Assets.xcassets */; };
 		A1B8E6B02AAFB5EF00AC6566 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A1B8E6AE2AAFB5EF00AC6566 /* Main.storyboard */; };
-		A1E41BF22ACB4EF100338417 /* EnaiColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E41BF12ACB4EF100338417 /* EnaiColors.swift */; };
 		A1E41BF42ACB4F3200338417 /* tmpBaselineWV.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E41BF32ACB4F3200338417 /* tmpBaselineWV.swift */; };
+		A1E41BF62ACB533400338417 /* ContentFrame.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1E41BF52ACB533400338417 /* ContentFrame.xib */; };
+		A1E41BFA2ACB57EF00338417 /* ContentFrameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E41BF92ACB57EF00338417 /* ContentFrameView.swift */; };
+		A1E41BFF2ACB6B1300338417 /* FrameGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E41BFE2ACB6B1300338417 /* FrameGenerator.swift */; };
 		A1F33E2E2AB7299500E2E7CD /* DefaultWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F33E2D2AB7299500E2E7CD /* DefaultWindow.swift */; };
 		A1F33E302AB7316300E2E7CD /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F33E2F2AB7316300E2E7CD /* HomeView.swift */; };
 /* End PBXBuildFile section */
@@ -26,8 +28,10 @@
 		A1B8E6AC2AAFB5EF00AC6566 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A1B8E6AF2AAFB5EF00AC6566 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A1B8E6B12AAFB5EF00AC6566 /* takahe.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = takahe.entitlements; sourceTree = "<group>"; };
-		A1E41BF12ACB4EF100338417 /* EnaiColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnaiColors.swift; sourceTree = "<group>"; };
 		A1E41BF32ACB4F3200338417 /* tmpBaselineWV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tmpBaselineWV.swift; sourceTree = "<group>"; };
+		A1E41BF52ACB533400338417 /* ContentFrame.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContentFrame.xib; sourceTree = "<group>"; };
+		A1E41BF92ACB57EF00338417 /* ContentFrameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentFrameView.swift; sourceTree = "<group>"; };
+		A1E41BFE2ACB6B1300338417 /* FrameGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrameGenerator.swift; sourceTree = "<group>"; };
 		A1F33E2D2AB7299500E2E7CD /* DefaultWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultWindow.swift; sourceTree = "<group>"; };
 		A1F33E2F2AB7316300E2E7CD /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -62,6 +66,7 @@
 		A1B8E6A42AAFB5EC00AC6566 /* takahe */ = {
 			isa = PBXGroup;
 			children = (
+				A1E41BFD2ACB684F00338417 /* canvas */,
 				A1B8E6A52AAFB5EC00AC6566 /* AppDelegate.swift */,
 				A1B8E6A72AAFB5EC00AC6566 /* ViewController.swift */,
 				A1B8E6AC2AAFB5EF00AC6566 /* Assets.xcassets */,
@@ -70,10 +75,19 @@
 				A1B8E6B12AAFB5EF00AC6566 /* takahe.entitlements */,
 				A1B8E6A92AAFB5EC00AC6566 /* takahe.xcdatamodeld */,
 				A1F33E2D2AB7299500E2E7CD /* DefaultWindow.swift */,
-				A1E41BF12ACB4EF100338417 /* EnaiColors.swift */,
 				A1E41BF32ACB4F3200338417 /* tmpBaselineWV.swift */,
 			);
 			path = takahe;
+			sourceTree = "<group>";
+		};
+		A1E41BFD2ACB684F00338417 /* canvas */ = {
+			isa = PBXGroup;
+			children = (
+				A1E41BF52ACB533400338417 /* ContentFrame.xib */,
+				A1E41BF92ACB57EF00338417 /* ContentFrameView.swift */,
+				A1E41BFE2ACB6B1300338417 /* FrameGenerator.swift */,
+			);
+			path = canvas;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -104,7 +118,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1430;
-				LastUpgradeCheck = 1430;
+				LastUpgradeCheck = 1500;
 				TargetAttributes = {
 					A1B8E6A12AAFB5EC00AC6566 = {
 						CreatedOnToolsVersion = 14.3.1;
@@ -136,6 +150,7 @@
 			files = (
 				A1B8E6AD2AAFB5EF00AC6566 /* Assets.xcassets in Resources */,
 				A1B8E6B02AAFB5EF00AC6566 /* Main.storyboard in Resources */,
+				A1E41BF62ACB533400338417 /* ContentFrame.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -146,10 +161,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A1E41BF22ACB4EF100338417 /* EnaiColors.swift in Sources */,
+				A1E41BFA2ACB57EF00338417 /* ContentFrameView.swift in Sources */,
 				A1B8E6A82AAFB5EC00AC6566 /* ViewController.swift in Sources */,
 				A1E41BF42ACB4F3200338417 /* tmpBaselineWV.swift in Sources */,
 				A1B8E6A62AAFB5EC00AC6566 /* AppDelegate.swift in Sources */,
+				A1E41BFF2ACB6B1300338417 /* FrameGenerator.swift in Sources */,
 				A1B8E6AB2AAFB5EC00AC6566 /* takahe.xcdatamodeld in Sources */,
 				A1F33E302AB7316300E2E7CD /* HomeView.swift in Sources */,
 				A1F33E2E2AB7299500E2E7CD /* DefaultWindow.swift in Sources */,
@@ -174,6 +190,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -203,9 +220,11 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -234,6 +253,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -263,9 +283,11 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -292,6 +314,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_NSMainStoryboardFile = Main;
@@ -317,6 +340,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_NSMainStoryboardFile = Main;
