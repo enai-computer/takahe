@@ -7,6 +7,7 @@ import WebKit
 class ViewController: NSViewController {
 
     var wkView: WKWebView? = nil
+    var webView: EnaiWebView3? = nil
     
     @IBAction func mainSearch(_ searchField: NSSearchField) {
         
@@ -17,17 +18,23 @@ class ViewController: NSViewController {
         let searchTerm = searchField.stringValue.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
         
         let urlReq = URLRequest(url: URL(string: "https://www.google.com/search?q=" + searchTerm!)!)
+
         print(searchTerm!)
         wkView!.load(urlReq)
+
+//        webView = EnaiWebView(searchTerm!)
         
         let window = NSApplication.shared.keyWindow
         window?.contentView?.addSubview(wkView!)
+        window?.contentView?.addSubview((webView?.contentBox!)!)
         
     }
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        super.view.wantsLayer = true
+        super.view.layer?.backgroundColor = EnaiColors.DefaultBackground // colorNamed("DefaultBackgroundColor")
         // Do any additional setup after loading the view.
     }
     
