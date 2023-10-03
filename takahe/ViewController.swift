@@ -8,17 +8,17 @@ class ViewController: NSViewController {
 
     
     @IBAction func mainSearch(_ searchField: NSSearchField) {
-        
-        let searchView = runGoogleSearch(searchField.stringValue)
+        let searchView = runGoogleSearch(searchField.stringValue, owner: self)
         let window = NSApplication.shared.keyWindow
         window?.contentView?.addSubview(searchView)
+//        window?.contentView?.
     }
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         super.view.wantsLayer = true
-        super.view.layer?.backgroundColor = EnaiColors.DefaultBackground // colorNamed("DefaultBackgroundColor")
+        super.view.layer?.backgroundColor = NSColor(.sandLight3).cgColor
         // Do any additional setup after loading the view.
     }
     

@@ -13,9 +13,10 @@
 		A1B8E6AD2AAFB5EF00AC6566 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A1B8E6AC2AAFB5EF00AC6566 /* Assets.xcassets */; };
 		A1B8E6B02AAFB5EF00AC6566 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A1B8E6AE2AAFB5EF00AC6566 /* Main.storyboard */; };
 		A1E41BF42ACB4F3200338417 /* tmpBaselineWV.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E41BF32ACB4F3200338417 /* tmpBaselineWV.swift */; };
-		A1E41BF62ACB533400338417 /* ContentFrame.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1E41BF52ACB533400338417 /* ContentFrame.xib */; };
+		A1E41BF62ACB533400338417 /* ContentFrameView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1E41BF52ACB533400338417 /* ContentFrameView.xib */; };
 		A1E41BFA2ACB57EF00338417 /* ContentFrameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E41BF92ACB57EF00338417 /* ContentFrameView.swift */; };
 		A1E41BFF2ACB6B1300338417 /* FrameGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E41BFE2ACB6B1300338417 /* FrameGenerator.swift */; };
+		A1E41C022ACC1DF600338417 /* ContentFrameHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E41C012ACC1DF600338417 /* ContentFrameHeader.swift */; };
 		A1F33E2E2AB7299500E2E7CD /* DefaultWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F33E2D2AB7299500E2E7CD /* DefaultWindow.swift */; };
 		A1F33E302AB7316300E2E7CD /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F33E2F2AB7316300E2E7CD /* HomeView.swift */; };
 /* End PBXBuildFile section */
@@ -29,9 +30,10 @@
 		A1B8E6AF2AAFB5EF00AC6566 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A1B8E6B12AAFB5EF00AC6566 /* takahe.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = takahe.entitlements; sourceTree = "<group>"; };
 		A1E41BF32ACB4F3200338417 /* tmpBaselineWV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tmpBaselineWV.swift; sourceTree = "<group>"; };
-		A1E41BF52ACB533400338417 /* ContentFrame.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContentFrame.xib; sourceTree = "<group>"; };
+		A1E41BF52ACB533400338417 /* ContentFrameView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContentFrameView.xib; sourceTree = "<group>"; };
 		A1E41BF92ACB57EF00338417 /* ContentFrameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentFrameView.swift; sourceTree = "<group>"; };
 		A1E41BFE2ACB6B1300338417 /* FrameGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrameGenerator.swift; sourceTree = "<group>"; };
+		A1E41C012ACC1DF600338417 /* ContentFrameHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentFrameHeader.swift; sourceTree = "<group>"; };
 		A1F33E2D2AB7299500E2E7CD /* DefaultWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultWindow.swift; sourceTree = "<group>"; };
 		A1F33E2F2AB7316300E2E7CD /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -83,11 +85,20 @@
 		A1E41BFD2ACB684F00338417 /* canvas */ = {
 			isa = PBXGroup;
 			children = (
-				A1E41BF52ACB533400338417 /* ContentFrame.xib */,
+				A1E41C002ACC1DDF00338417 /* elements */,
+				A1E41BF52ACB533400338417 /* ContentFrameView.xib */,
 				A1E41BF92ACB57EF00338417 /* ContentFrameView.swift */,
 				A1E41BFE2ACB6B1300338417 /* FrameGenerator.swift */,
 			);
 			path = canvas;
+			sourceTree = "<group>";
+		};
+		A1E41C002ACC1DDF00338417 /* elements */ = {
+			isa = PBXGroup;
+			children = (
+				A1E41C012ACC1DF600338417 /* ContentFrameHeader.swift */,
+			);
+			path = elements;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -150,7 +161,7 @@
 			files = (
 				A1B8E6AD2AAFB5EF00AC6566 /* Assets.xcassets in Resources */,
 				A1B8E6B02AAFB5EF00AC6566 /* Main.storyboard in Resources */,
-				A1E41BF62ACB533400338417 /* ContentFrame.xib in Resources */,
+				A1E41BF62ACB533400338417 /* ContentFrameView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -169,6 +180,7 @@
 				A1B8E6AB2AAFB5EC00AC6566 /* takahe.xcdatamodeld in Sources */,
 				A1F33E302AB7316300E2E7CD /* HomeView.swift in Sources */,
 				A1F33E2E2AB7299500E2E7CD /* DefaultWindow.swift in Sources */,
+				A1E41C022ACC1DF600338417 /* ContentFrameHeader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

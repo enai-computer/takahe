@@ -10,8 +10,8 @@ struct EnaiWebViewConstants {
     static let wvBoarderHeight: CGFloat = 10.0
     static let viewWidth: CGFloat = wvWidth + wvBoarderWidth * 2
     static let viewHeight: CGFloat = wvHeight + wvBoarderHeight * 2
-    static let boarderColor = EnaiColors.SandLight3
-    static let boarderColorSelected = EnaiColors.SandLight12
+//    static let boarderColor = Color(.SandLight3)
+//    static let boarderColorSelected = EnaiColors.SandLight12
  }
 
 class EnaiWebView3{
@@ -21,7 +21,7 @@ class EnaiWebView3{
     init(_ searchTerm: String){
         contentBox = NSBox(frame: NSRect(x: 30, y: 30, width: EnaiWebViewConstants.viewWidth, height: EnaiWebViewConstants.viewHeight))
         contentBox!.title = searchTerm
-        contentBox!.borderColor = EnaiWebViewConstants.boarderColor
+//        contentBox!.borderColor = EnaiWebViewConstants.boarderColor
         
         let wkView = WKWebView(frame: NSRect(x: 0, y: 0, width: EnaiWebViewConstants.wvWidth, height: EnaiWebViewConstants.wvHeight), configuration: WKWebViewConfiguration())
         let urlReq = URLRequest(url: URL(string: "https://www.google.com/search?q=" + searchTerm)!)
