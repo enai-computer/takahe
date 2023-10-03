@@ -36,7 +36,7 @@
                     </customView>
                 </subviews>
             </view>
-            <color key="borderColor" name="SandLight3"/>
+            <color key="borderColor" name="SandLight9"/>
             <color key="fillColor" name="SandLight1"/>
             <connections>
                 <outlet property="boundContent" destination="IXM-GT-a1N" id="UAM-In-6zu"/>
@@ -49,8 +49,8 @@
         <namedColor name="SandLight1">
             <color red="0.99215686274509807" green="0.99215686274509807" blue="0.9882352941176471" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <namedColor name="SandLight3">
-            <color red="0.95294117647058818" green="0.95294117647058818" blue="0.94901960784313721" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <namedColor name="SandLight9">
+            <color red="0.56470588235294117" green="0.56470588235294117" blue="0.5490196078431373" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

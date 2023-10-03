@@ -13,14 +13,19 @@ struct CFConstants {
     static let wvBoarderHeight: CGFloat = 10.0
     static let width: CGFloat = wvWidth + wvBoarderWidth * 2
     static let height: CGFloat = wvHeight + wvBoarderHeight * 2
-    static let boarderColor = NSColor(.sandLight3)
+    static let boarderColor = NSColor(.sandLight9)
     static let boarderColorSelected = NSColor(.sandLight12)
 
+    // const needed for resizing:
+    static let actionArea: CGFloat = 6
+    static let cornerActionArea: CGFloat = 32
  }
 
 
 class ContentFrameView: NSBox{
     
+    private var cursorDownPoint: CGPoint  = .zero
+    private var cursorOnBorder: OnBorder = .no
     
     @IBOutlet var contentHeader: ContentFrameHeader!
     
@@ -31,14 +36,6 @@ class ContentFrameView: NSBox{
         super.init(coder: coder)
     }
     
-//    init(contentHeader: String, content: NSView!) {
-//        super.init(frame: CGRect(x: CFConstants.x, y: CFConstants.y, width: CFConstants.width, height: CFConstants.height))
-//        self.contentHeader = NSTextField(string: contentHeader)
-//        self.content = content
-//        self.setupView()
-////        subviews.append(self.contentHeader)
-////        subviews.append(self.content)
-//    }
     
     @IBAction func updateContent(_ newURL: ContentFrameHeader) {
 
@@ -50,7 +47,88 @@ class ContentFrameView: NSBox{
     }
     
     func setContent(_ newContentView: WKWebView!){
+        newContentView.frame.size = boundContent.frame.size
+        newContentView.frame.origin = boundContent.frame.origin
         self.replaceSubview(boundContent, with: newContentView)
         self.wkContent = newContentView
+    }
+    
+    
+    /*
+     * window like functions (moving and resizing) here:
+     */
+    override func mouseDown(with event: NSEvent) {
+        super.mouseDown(with: event)
+        cursorDownPoint = event.locationInWindow
+        cursorOnBorder = isOnBoarder(cursorDownPoint)
+    }
+    
+    override func mouseUp(with event: NSEvent) {
+        super.mouseUp(with: event)
+        cursorDownPoint = .zero
+        cursorOnBorder = .no
+    }
+    
+    override func mouseDragged(with event: NSEvent) {
+        super.mouseDragged(with: event)
+
+        if cursorOnBorder == OnBorder.no{
+            return
+        }
+        
+        let currCursorPoint = event.locationInWindow
+        let horizontalDistanceDragged = currCursorPoint.x - cursorDownPoint.x
+        let verticalDistanceDragged = currCursorPoint.y - cursorDownPoint.y
+        
+        //Update here, so we don't have a frame running quicker then the cursor
+        cursorDownPoint = currCursorPoint
+        
+        switch cursorOnBorder {
+            case .top:
+                repositionView(horizontalDistanceDragged, verticalDistanceDragged)
+            case .bottomRight:
+                enaiResize(horizontalDistanceDragged, verticalDistanceDragged)
+        default: return
+        }
+    }
+    
+    enum OnBorder{
+        case no, top, bottomRight
+    }
+    
+    func isOnBoarder(_ cursorLocation: CGPoint) -> OnBorder{
+        
+        let aa = CFConstants.actionArea
+        let cAA = CFConstants.cornerActionArea
+        
+        if (((frame.maxY - aa) < cursorLocation.y && cursorLocation.y < frame.maxY) && (frame.minX < cursorLocation.x && cursorLocation.x < frame.maxX)){
+            return .top
+        }
+        
+        if ((frame.minY < cursorLocation.y && cursorLocation.y < frame.minY + cAA) && 
+            (frame.maxX - cAA < cursorLocation.x && cursorLocation.x < frame.maxX)){
+            return .bottomRight
+        }
+        return .no
+    }
+    
+    private func repositionView(_ xDiff: Double, _ yDiff: Double) {
+        frame.origin.x += xDiff
+        frame.origin.y += yDiff
+    }
+    
+    private func enaiResize(_ xDiff: Double, _ yDiff: Double){
+        let frameSize = frame.size
+        var nsize = frameSize
+        nsize.height += (yDiff * -1)
+        nsize.width += xDiff
+        self.setFrameSize(nsize)
+        frame.origin.y += yDiff
+        
+        let wkFrameSize = wkContent!.frame.size
+        var newWKFS = wkFrameSize
+        newWKFS.height += (yDiff * -1)
+        newWKFS.width += xDiff
+        wkContent!.setFrameSize(newWKFS)
     }
 }

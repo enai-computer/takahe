@@ -5,7 +5,7 @@ import WebKit
 
 func runGoogleSearch(_ searchTerm: String, owner: Any?) -> NSView {
     
-    let wkView = WKWebView(frame: NSRect(x: 30, y: 30, width: 600, height: 300), configuration: WKWebViewConfiguration())
+    let wkView = WKWebView(frame: NSRect(x: 30, y: 30, width: 900, height: 360), configuration: WKWebViewConfiguration())
     
     let encodedSearchTerm = searchTerm.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
     
@@ -19,7 +19,7 @@ func runGoogleSearch(_ searchTerm: String, owner: Any?) -> NSView {
     let frame: ContentFrameView = NSView.loadFromNib(nibName: "ContentFrameView", owner: owner)! as! ContentFrameView
     frame.contentHeader.stringValue = urlStr
     frame.setContent(wkView)
-//    frame.content.
+
     return frame
 }
 

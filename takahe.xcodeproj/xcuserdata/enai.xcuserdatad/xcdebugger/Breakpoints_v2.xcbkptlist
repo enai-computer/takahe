@@ -3,4 +3,117 @@
    uuid = "7C348C05-FE64-47F3-A2F6-9BA02B493326"
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E130DC91-5ECF-4380-B6F0-AA5937C7E35C"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "takahe/canvas/ContentFrameView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "87"
+            endingLineNumber = "87"
+            landmarkName = "mouseDragged(with:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "70569953-65D0-4FDB-AD0A-58710240C1DC"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "takahe/canvas/ContentFrameView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "86"
+            endingLineNumber = "86"
+            landmarkName = "mouseDragged(with:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "70569953-65D0-4FDB-AD0A-58710240C1DC - 49cdda71c9519d92"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "takahe.ContentFrameView.mouseDragged(with: __C.NSEvent) -&gt; ()"
+                  moduleName = "takahe"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/enai/Workbench/enai/takahe/takahe/canvas/ContentFrameView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "82"
+                  endingLineNumber = "82"
+                  offsetFromSymbolStart = "324">
+               </Location>
+               <Location
+                  uuid = "70569953-65D0-4FDB-AD0A-58710240C1DC - 49cdda71c9519d50"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "takahe.ContentFrameView.mouseDragged(with: __C.NSEvent) -&gt; ()"
+                  moduleName = "takahe"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/enai/Workbench/enai/takahe/takahe/canvas/ContentFrameView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "80"
+                  endingLineNumber = "80"
+                  offsetFromSymbolStart = "328">
+               </Location>
+               <Location
+                  uuid = "70569953-65D0-4FDB-AD0A-58710240C1DC - 49cdda71c9519d71"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "takahe.ContentFrameView.mouseDragged(with: __C.NSEvent) -&gt; ()"
+                  moduleName = "takahe"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/enai/Workbench/enai/takahe/takahe/canvas/ContentFrameView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "81"
+                  endingLineNumber = "81"
+                  offsetFromSymbolStart = "308">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C81C62D2-3F0F-4CE1-A6F5-812A7CBBA3EF"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "takahe/canvas/ContentFrameView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "69"
+            endingLineNumber = "69"
+            landmarkName = "mouseUp(with:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "656FF6C6-3674-4DCF-A839-457283A0AA13"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "takahe/canvas/ContentFrameView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "63"
+            endingLineNumber = "63"
+            landmarkName = "mouseDown(with:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>
