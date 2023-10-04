@@ -3,7 +3,7 @@
 import Cocoa
 import WebKit
 
-func runGoogleSearch(_ searchTerm: String, owner: Any?) -> NSView {
+func runGoogleSearch(_ searchTerm: String, owner: Any?) -> ContentFrameView {
     
     let wkView = WKWebView(frame: NSRect(x: 30, y: 30, width: 900, height: 360), configuration: WKWebViewConfiguration())
     

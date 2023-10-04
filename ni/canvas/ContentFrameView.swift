@@ -26,6 +26,8 @@ class ContentFrameView: NSBox{
     
     private var cursorDownPoint: CGPoint  = .zero
     private var cursorOnBorder: OnBorder = .no
+    private var frameIsActive: Bool = false
+    private var positionInViewStack: Int = 0     // 0 = up top
     
     @IBOutlet var contentHeader: ContentFrameHeader!
     
@@ -58,18 +60,30 @@ class ContentFrameView: NSBox{
      * window like functions (moving and resizing) here:
      */
     override func mouseDown(with event: NSEvent) {
+        if !frameIsActive{
+            return
+        }
+        
         super.mouseDown(with: event)
         cursorDownPoint = event.locationInWindow
         cursorOnBorder = isOnBoarder(cursorDownPoint)
     }
     
     override func mouseUp(with event: NSEvent) {
+        if !frameIsActive{
+            return
+        }
+        
         super.mouseUp(with: event)
         cursorDownPoint = .zero
         cursorOnBorder = .no
     }
     
     override func mouseDragged(with event: NSEvent) {
+        if !frameIsActive{
+            return
+        }
+        
         super.mouseDragged(with: event)
 
         if cursorOnBorder == OnBorder.no{
@@ -130,5 +144,26 @@ class ContentFrameView: NSBox{
         newWKFS.height += (yDiff * -1)
         newWKFS.width += xDiff
         wkContent!.setFrameSize(newWKFS)
+    }
+    
+    func toggleActive(){
+
+        frameIsActive = !frameIsActive
+    
+        if frameIsActive{
+            borderColor = .sandLight12
+            positionInViewStack = 0
+        }else{
+            borderColor = .sandLight9
+            positionInViewStack += 1
+        }
+    }
+    
+    func droppedInViewStack(){
+        positionInViewStack += 1
+    }
+    
+    func getPositionInViewStack() -> Int{
+        return positionInViewStack
     }
 }

@@ -4,4 +4,5 @@ import Cocoa
 
 class HomeView: NSView{
     
+    
 }

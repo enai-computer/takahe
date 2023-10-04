@@ -20,6 +20,14 @@
          contextName = "ContentFrameView.init(contentHeader:content:):ContentFrameView.swift">
       </ContextState>
       <ContextState
+         contextName = "ContentFrameView.setActive(_:):ContentFrameView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "trackingAreas.count">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "runGoogleSearch(_:owner:):FrameGenerator.swift">
       </ContextState>
    </ContextStates>
