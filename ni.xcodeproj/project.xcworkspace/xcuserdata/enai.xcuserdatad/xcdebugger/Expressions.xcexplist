@@ -3,6 +3,36 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "ContentFrameView.setActive(_:):ContentFrameView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "trackingAreas.count">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ViewController.inFrame(_:):ViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "niFrame.frame">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ContentFrameView.mouseDragged(with:):ContentFrameView.swift">
+      </ContextState>
+      <ContextState
+         contextName = "ViewController.mainSearch(_:):ViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "NSApplication.shared.keyWindow?.windowController">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ContentFrameView.init(contentHeader:content:):ContentFrameView.swift">
+      </ContextState>
+      <ContextState
          contextName = "ContentFrameView.isOnBoarder(_:):ContentFrameView.swift">
          <PersistentStrings>
             <PersistentString
@@ -14,21 +44,15 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "ContentFrameView.mouseDragged(with:):ContentFrameView.swift">
+         contextName = "runGoogleSearch(_:owner:):FrameGenerator.swift">
       </ContextState>
       <ContextState
-         contextName = "ContentFrameView.init(contentHeader:content:):ContentFrameView.swift">
-      </ContextState>
-      <ContextState
-         contextName = "ContentFrameView.setActive(_:):ContentFrameView.swift">
+         contextName = "ViewController.mouseDown(with:):ViewController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "trackingAreas.count">
+               value = "event.locationInWindow">
             </PersistentString>
          </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "runGoogleSearch(_:owner:):FrameGenerator.swift">
       </ContextState>
    </ContextStates>
 </VariablesViewState>

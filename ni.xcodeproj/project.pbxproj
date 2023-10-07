@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A14E8F212AD20A2600409DDF /* DefaultWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14E8F202AD20A2600409DDF /* DefaultWindowController.swift */; };
 		A1B8E6A62AAFB5EC00AC6566 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B8E6A52AAFB5EC00AC6566 /* AppDelegate.swift */; };
 		A1B8E6A82AAFB5EC00AC6566 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B8E6A72AAFB5EC00AC6566 /* ViewController.swift */; };
 		A1B8E6AB2AAFB5EC00AC6566 /* ni.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A1B8E6A92AAFB5EC00AC6566 /* ni.xcdatamodeld */; };
@@ -22,6 +23,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A14E8F202AD20A2600409DDF /* DefaultWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultWindowController.swift; sourceTree = "<group>"; };
 		A1B8E6A22AAFB5EC00AC6566 /* ni.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ni.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1B8E6A52AAFB5EC00AC6566 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A1B8E6A72AAFB5EC00AC6566 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -77,6 +79,7 @@
 				A1B8E6B12AAFB5EF00AC6566 /* ni.entitlements */,
 				A1B8E6A92AAFB5EC00AC6566 /* ni.xcdatamodeld */,
 				A1F33E2D2AB7299500E2E7CD /* DefaultWindow.swift */,
+				A14E8F202AD20A2600409DDF /* DefaultWindowController.swift */,
 				A1E41BF32ACB4F3200338417 /* tmpBaselineWV.swift */,
 			);
 			path = ni;
@@ -173,6 +176,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A1E41BFA2ACB57EF00338417 /* ContentFrameView.swift in Sources */,
+				A14E8F212AD20A2600409DDF /* DefaultWindowController.swift in Sources */,
 				A1B8E6A82AAFB5EC00AC6566 /* ViewController.swift in Sources */,
 				A1E41BF42ACB4F3200338417 /* tmpBaselineWV.swift in Sources */,
 				A1B8E6A62AAFB5EC00AC6566 /* AppDelegate.swift in Sources */,
