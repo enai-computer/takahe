@@ -18,6 +18,11 @@
                 <rect key="frame" x="5" y="5" width="910" height="410"/>
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
+                    <imageView autoresizesSubviews="NO" id="Utx-ML-7oY">
+                        <rect key="frame" x="892" y="396.5" width="15.5" height="13"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                        <imageCell key="cell" alignment="left" imageAlignment="topRight" image="xmark" catalog="system" id="1Vu-cP-tyr"/>
+                    </imageView>
                     <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QFH-so-HLv" customClass="ContentFrameHeader" customModule="ni" customModuleProvider="target">
                         <rect key="frame" x="10" y="387" width="400" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -40,12 +45,14 @@
             <color key="fillColor" name="SandLight1"/>
             <connections>
                 <outlet property="boundContent" destination="IXM-GT-a1N" id="UAM-In-6zu"/>
+                <outlet property="closeButton" destination="Utx-ML-7oY" id="kU3-Bd-2G3"/>
                 <outlet property="contentHeader" destination="QFH-so-HLv" id="ocX-7o-rOC"/>
             </connections>
             <point key="canvasLocation" x="-652" y="-653"/>
         </box>
     </objects>
     <resources>
+        <image name="xmark" catalog="system" width="14" height="13"/>
         <namedColor name="SandLight1">
             <color red="0.99215686274509807" green="0.99215686274509807" blue="0.9882352941176471" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

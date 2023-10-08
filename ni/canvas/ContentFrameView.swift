@@ -31,6 +31,7 @@ class ContentFrameView: NSBox{
     
     @IBOutlet var contentHeader: ContentFrameHeader!
     
+    @IBOutlet var closeButton: NSImageView!
     @IBOutlet var boundContent: NSView!
     var wkContent: WKWebView? = nil
     
@@ -47,6 +48,7 @@ class ContentFrameView: NSBox{
         contentHeader.stringValue = newURL.stringValue
         contentHeader.isEditable = false
     }
+
     
     func setContent(_ newContentView: WKWebView!){
         newContentView.frame.size = boundContent.frame.size
@@ -65,8 +67,18 @@ class ContentFrameView: NSBox{
         }
         
         super.mouseDown(with: event)
-        cursorDownPoint = event.locationInWindow
-        cursorOnBorder = isOnBoarder(cursorDownPoint)
+        
+        //enable drag and drop niFrame to new postion and resizing
+        cursorOnBorder = isOnBoarder(event.locationInWindow)
+        if cursorOnBorder != .no{
+            cursorDownPoint = event.locationInWindow
+        }
+        
+        //clicked on close button
+        let posInFrame = convert(event.locationInWindow, to: self)
+        if NSPointInRect(posInFrame, closeButton.frame){
+            removeFromSuperview()
+        }
     }
     
     override func mouseUp(with event: NSEvent) {

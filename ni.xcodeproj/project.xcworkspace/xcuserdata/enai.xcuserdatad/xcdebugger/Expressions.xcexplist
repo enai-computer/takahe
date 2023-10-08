@@ -30,6 +30,20 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "DefaultWindowController.mouseDown(with:):DefaultWindowController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "ContentFrameView.mouseDown(with:):ContentFrameView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "nextResponder">
+            </PersistentString>
+            <PersistentString
+               value = "closeButton.frame">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "ContentFrameView.init(contentHeader:content:):ContentFrameView.swift">
       </ContextState>
       <ContextState

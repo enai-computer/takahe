@@ -51,6 +51,11 @@ class ViewController: NSViewController {
         setTopNiFrame(window, subView)
     }
     
+//    func removeNiFrame(_ subView: ContentFrameView){
+//        let window = NSApplication.shared.keyWindow
+//        window?.contentView?.willRemoveSubview(subView)
+//    }
+    
     override func mouseDown(with event: NSEvent) {
         super.mouseDown(with: event)
         
@@ -98,7 +103,7 @@ class ViewController: NSViewController {
         if zVal != nil {
             topNiFrame?.layer?.zPosition = zVal! + 1     //TODO: fix at some point. May cause stack-overflow
         }
-        window?.makeFirstResponder(topNiFrame)
+        window?.makeFirstResponder(topNiFrame)          //TODO: check if needed. May be a source for future bugs
        
         topNiFrame?.toggleActive()
     }
