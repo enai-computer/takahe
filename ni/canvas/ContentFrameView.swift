@@ -61,7 +61,7 @@ class ContentFrameView: NSBox{
      */
     override func mouseDown(with event: NSEvent) {
         if !frameIsActive{
-            return
+            nextResponder?.mouseDown(with: event)
         }
         
         super.mouseDown(with: event)
@@ -71,7 +71,7 @@ class ContentFrameView: NSBox{
     
     override func mouseUp(with event: NSEvent) {
         if !frameIsActive{
-            return
+            nextResponder?.mouseUp(with: event)
         }
         
         super.mouseUp(with: event)
@@ -81,7 +81,7 @@ class ContentFrameView: NSBox{
     
     override func mouseDragged(with event: NSEvent) {
         if !frameIsActive{
-            return
+            nextResponder?.mouseDragged(with: event)
         }
         
         super.mouseDragged(with: event)
@@ -155,7 +155,7 @@ class ContentFrameView: NSBox{
             positionInViewStack = 0
         }else{
             borderColor = .sandLight9
-            positionInViewStack += 1
+            
         }
     }
     

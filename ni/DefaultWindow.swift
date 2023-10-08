@@ -8,5 +8,4 @@ class DefaultWindow: NSWindow{
         super.init(contentRect: contentRect, styleMask: style, backing: backingStoreType, defer: flag)
         self.center()
     }
-    
 }
