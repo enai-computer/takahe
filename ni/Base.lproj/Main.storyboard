@@ -733,6 +733,17 @@
                                     <action selector="mainSearch:" target="XfG-lQ-9wD" id="R8w-Av-sw7"/>
                                 </connections>
                             </searchField>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sVM-wa-sct">
+                                <rect key="frame" x="442" y="358" width="137" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="Open new Space" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="avP-8O-RdZ">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="openNewSpace:" target="XfG-lQ-9wD" id="gOz-r1-9UX"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="IbD-Qz-aT8"/>
                         <viewLayoutGuide key="layoutMargins" id="Vak-ke-FoP"/>
