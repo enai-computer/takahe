@@ -21,7 +21,7 @@ class ViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         super.view.wantsLayer = true
-        super.view.layer?.backgroundColor = NSColor(.sandLight3).cgColor
+        super.view.layer?.backgroundColor = NSColor(red: 243.0, green: 243.0, blue: 242.0, alpha: 0.99).cgColor //NSColor(.sandLight3).cgColor
     }
     
     override func viewDidAppear() {

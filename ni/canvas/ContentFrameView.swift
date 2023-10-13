@@ -13,8 +13,8 @@ struct CFConstants {
     static let wvBoarderHeight: CGFloat = 10.0
     static let width: CGFloat = wvWidth + wvBoarderWidth * 2
     static let height: CGFloat = wvHeight + wvBoarderHeight * 2
-    static let boarderColor = NSColor(.sandLight9)
-    static let boarderColorSelected = NSColor(.sandLight12)
+    static let boarderColor = NSColor(red: 144.0, green: 144.0, blue: 140.0, alpha: 0.99)  //NSColor(.sandLight9)
+    static let boarderColorSelected = NSColor(red: 27.0, green: 27.0, blue: 24.0, alpha: 0.99)     //NSColor(.sandLight12)
 
     // const needed for resizing:
     static let actionArea: CGFloat = 6
@@ -163,11 +163,10 @@ class ContentFrameView: NSBox{
         frameIsActive = !frameIsActive
     
         if frameIsActive{
-            borderColor = .sandLight12
+            borderColor = CFConstants.boarderColorSelected
             positionInViewStack = 0
         }else{
-            borderColor = .sandLight9
-            
+            borderColor = CFConstants.boarderColor
         }
     }
     
