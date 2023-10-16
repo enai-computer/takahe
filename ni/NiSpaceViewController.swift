@@ -10,7 +10,7 @@ class NiSpaceViewController: NSViewController{
         super.view.layer?.backgroundColor = NSColor(.sandLight3).cgColor
     }
     
-    static func getNewView(_ owner: Any?) -> NiSpaceView{
+    func getNewView(_ owner: Any?) -> NiSpaceView{
         let niSpaceView: NiSpaceView = NSView.loadFromNib(nibName: "NiSpaceView", owner: owner)! as! NiSpaceView
         return niSpaceView
     }
@@ -19,6 +19,10 @@ class NiSpaceViewController: NSViewController{
         let searchView = runGoogleSearch(searchField.stringValue, owner: self)
 
         addNiFrame(searchView)
+    }
+    
+    override func loadView() {
+        self.view = NSView.loadFromNib(nibName: "NiSpaceView", owner: self)! as! NiSpaceView
     }
     
     /*
@@ -50,7 +54,7 @@ class NiSpaceViewController: NSViewController{
         
         let newTopFrame = inFrame(event.locationInWindow)
         
-        if newTopFrame == nil{
+        if (newTopFrame == nil || self.topNiFrame == newTopFrame){
             return
         }
 

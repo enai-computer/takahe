@@ -13,9 +13,15 @@ class ViewController: NSViewController {
     
     @IBAction func openNewSpace(_ sender: NSButton) {
         let window = NSApplication.shared.keyWindow!
-        let newSpace = NiSpaceViewController.getNewView(window)
-        
-        window.contentView = newSpace
+//        let newSpaceController = NiSpaceViewController()
+//        let newSpace = newSpaceController.getNewView(window)
+//        
+//        window.contentView = newSpace
+//        window.contentViewController = newSpaceController
+//        
+        let niSpaceController = NiSpaceViewController()
+        window.contentViewController = niSpaceController
+        niSpaceController.loadView()
     }
     
     override func viewDidLoad() {
