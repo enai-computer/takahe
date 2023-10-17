@@ -25,6 +25,9 @@ class HomeViewController: NSViewController {
     }
     
     override func viewDidAppear() {
+        if (NSApplication.shared.presentationOptions.contains(.fullScreen)){
+            return
+        }
         (NSClassFromString("NSApplication")?.value(forKeyPath: "sharedApplication.windows") as? [AnyObject])?.first?.perform(#selector(NSWindow.toggleFullScreen(_:)))
     }
 

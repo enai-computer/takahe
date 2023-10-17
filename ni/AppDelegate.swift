@@ -34,10 +34,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     func switchToHome(){
-//        window = NSApplication.shared.keyWindow!
-//        window.contentViewController = ViewController()
-//        window.contentViewController!.loadView()
-//        performSegue(withIdentifier: .HomerViewController, sender: <#T##Any?#>)
+        window = NSApplication.shared.keyWindow!
+        window.contentViewController = HomeViewController()
+        window.contentViewController!.loadView()
     }
 
     // MARK: - Core Data stack
