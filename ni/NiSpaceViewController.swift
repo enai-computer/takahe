@@ -4,16 +4,37 @@ import Cocoa
 
 class NiSpaceViewController: NSViewController{
     
+    private var niSpaceID: UUID? = nil
+    private var niSpaceName: String? = nil
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         super.view.wantsLayer = true
-        super.view.layer?.backgroundColor = NSColor(.sandLight3).cgColor
+        super.view.layer?.backgroundColor = NSColor(.sandLight1).cgColor
     }
     
     func getNewView(_ owner: Any?) -> NiSpaceView{
         let niSpaceView: NiSpaceView = NSView.loadFromNib(nibName: "NiSpaceView", owner: owner)! as! NiSpaceView
         return niSpaceView
     }
+    
+    
+    @IBAction func updateSpaceName(_ sender: NSTextField) {
+        
+        if(niSpaceID == nil){
+            niSpaceID = UUID()
+        }
+        niSpaceName = sender.stringValue
+        
+        sender.isEditable = false
+    }
+    
+    @IBAction func returnToHome(_ sender: NSButton) {
+        //TODO: save
+        let appDelegate = NSApp.delegate as! AppDelegate
+        appDelegate.switchToHome()
+    }
+    
     
     @IBAction func runWebSearch(_ searchField: NSSearchField) {
         let searchView = runGoogleSearch(searchField.stringValue, owner: self)

@@ -1,33 +1,27 @@
-//Created on 11.09.23
+//Created on 12.10.23
 
 import Cocoa
-import WebKit
 
-
-class ViewController: NSViewController {
+class HomeViewController: NSViewController {
 
     
     @IBAction func mainSearch(_ searchField: NSSearchField) {
 
     }
-    
+  
     @IBAction func openNewSpace(_ sender: NSButton) {
-        let window = NSApplication.shared.keyWindow!
-//        let newSpaceController = NiSpaceViewController()
-//        let newSpace = newSpaceController.getNewView(window)
-//        
-//        window.contentView = newSpace
-//        window.contentViewController = newSpaceController
-//        
-        let niSpaceController = NiSpaceViewController()
-        window.contentViewController = niSpaceController
-        niSpaceController.loadView()
+        let appDelegate = NSApp.delegate as! AppDelegate
+        appDelegate.switchToNewSpace()
+    }
+    
+    override func loadView() {
+        self.view = NSView.loadFromNib(nibName: "HomeView", owner: self)!
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         super.view.wantsLayer = true
-        super.view.layer?.backgroundColor = NSColor(.sandLight3).cgColor
+        super.view.layer?.backgroundColor = NSColor(.sandLight1).cgColor
     }
     
     override func viewDidAppear() {
@@ -43,4 +37,3 @@ class ViewController: NSViewController {
     
    
 }
-

@@ -5,27 +5,18 @@ import Cocoa
 @main
 class AppDelegate: NSObject, NSApplicationDelegate {
 
+    var window: NSWindow!
+    var homeViewController: NSViewController!
+    
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-//        // Insert code here to initialize your application
-        let window = DefaultWindow(
+        window = DefaultWindow(
             contentRect: NSRect(x: 0, y: 0, width: 480, height: 300),
             styleMask: [.titled, .closable, .miniaturizable, .resizable, .fullSizeContentView],
             backing: .buffered, defer: false)
-        window.contentViewController = ViewController()
+        
+        homeViewController = HomeViewController()
+        window.contentViewController = homeViewController
         window.contentViewController?.loadView()
-        
-//        window.makeKeyAndOrderFront(self)
-        
-//        let window = DefaultWindow()
-//        let view = ViewController()
-//        view.loadView()
-//        window.isReleasedWhenClosed = false
-//        window.center()
-//        window.setFrameAutosaveName("Main Window")
-//
-//        let mainScreen: NSScreen = NSScreen.screens[0]
-//        
-//        window.contentView?.enterFullScreenMode(mainScreen)
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
@@ -34,6 +25,20 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationSupportsSecureRestorableState(_ app: NSApplication) -> Bool {
         return true
+    }
+    
+    func switchToNewSpace(){
+        window = NSApplication.shared.keyWindow!
+        let niSpaceController = NiSpaceViewController()
+        window.contentViewController = niSpaceController
+        niSpaceController.loadView()
+    }
+    
+    func switchToHome(){
+//        window = NSApplication.shared.keyWindow!
+//        window.contentViewController = ViewController()
+//        window.contentViewController!.loadView()
+//        performSegue(withIdentifier: .HomerViewController, sender: <#T##Any?#>)
     }
 
     // MARK: - Core Data stack
