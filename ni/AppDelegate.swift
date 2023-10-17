@@ -6,17 +6,16 @@ import Cocoa
 class AppDelegate: NSObject, NSApplicationDelegate {
 
     var window: NSWindow!
-    var homeViewController: NSViewController!
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        window = DefaultWindow(
-            contentRect: NSRect(x: 0, y: 0, width: 480, height: 300),
-            styleMask: [.titled, .closable, .miniaturizable, .resizable, .fullSizeContentView],
-            backing: .buffered, defer: false)
+//        window = DefaultWindow(
+//            contentRect: NSRect(x: 0, y: 0, width: 480, height: 300),
+//            styleMask: [.titled, .closable, .miniaturizable, .resizable, .fullSizeContentView],
+//            backing: .buffered, defer: false)
         
-        homeViewController = HomeViewController()
-        window.contentViewController = homeViewController
-        window.contentViewController?.loadView()
+//        homeViewController = HomeViewController()
+//        window.contentViewController = homeViewController
+//        window.contentViewController?.loadView()
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
