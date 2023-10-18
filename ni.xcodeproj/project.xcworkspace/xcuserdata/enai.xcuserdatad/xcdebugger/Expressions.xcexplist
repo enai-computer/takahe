@@ -3,20 +3,15 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "ContentFrameView.setActive(_:):ContentFrameView.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "trackingAreas.count">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
          contextName = "ViewController.inFrame(_:):ViewController.swift">
          <PersistentStrings>
             <PersistentString
                value = "niFrame.frame">
             </PersistentString>
          </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "DefaultWindowController.mouseDown(with:):DefaultWindowController.swift">
       </ContextState>
       <ContextState
          contextName = "ContentFrameView.mouseDragged(with:):ContentFrameView.swift">
@@ -30,16 +25,10 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "DefaultWindowController.mouseDown(with:):DefaultWindowController.swift">
-      </ContextState>
-      <ContextState
-         contextName = "ContentFrameView.mouseDown(with:):ContentFrameView.swift">
+         contextName = "ViewController.mouseDown(with:):ViewController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "nextResponder">
-            </PersistentString>
-            <PersistentString
-               value = "closeButton.frame">
+               value = "event.locationInWindow">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -61,10 +50,10 @@
          contextName = "runGoogleSearch(_:owner:):FrameGenerator.swift">
       </ContextState>
       <ContextState
-         contextName = "ViewController.mouseDown(with:):ViewController.swift">
+         contextName = "ContentFrameView.setActive(_:):ContentFrameView.swift">
          <PersistentStrings>
             <PersistentString
-               value = "event.locationInWindow">
+               value = "trackingAreas.count">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

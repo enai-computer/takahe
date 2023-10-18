@@ -56,7 +56,7 @@ class ContentFrameView: NSBox{
         self.replaceSubview(boundContent, with: newContentView)
         self.wkContent = newContentView
     }
-    
+
     
     /*
      * window like functions (moving and resizing) here:
@@ -75,7 +75,7 @@ class ContentFrameView: NSBox{
         }
         
         //clicked on close button
-        let posInFrame = convert(event.locationInWindow, to: self)
+        let posInFrame = self.contentView!.convert(event.locationInWindow, from: nil)
         if NSPointInRect(posInFrame, closeButton.frame){
             removeFromSuperview()
         }

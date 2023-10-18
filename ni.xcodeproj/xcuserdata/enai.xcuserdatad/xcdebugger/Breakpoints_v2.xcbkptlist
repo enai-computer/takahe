@@ -243,5 +243,99 @@
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "4664C7BB-F0C0-42DE-94D0-6FA7A7233F2D"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ni/canvas/ContentFrameView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "78"
+            endingLineNumber = "78"
+            landmarkName = "mouseDown(with:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F38B7100-2342-4D72-B628-5B4B31288E46"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ni/canvas/ContentFrameView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "79"
+            endingLineNumber = "79"
+            landmarkName = "mouseDown(with:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "F38B7100-2342-4D72-B628-5B4B31288E46 - 35dc01d6df1bc8eb"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ni.ContentFrameView.mouseDown(with: __C.NSEvent) -&gt; ()"
+                  moduleName = "ni"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/enai/Workbench/enai/takahe/ni/canvas/ContentFrameView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "81"
+                  endingLineNumber = "81"
+                  offsetFromSymbolStart = "920">
+               </Location>
+               <Location
+                  uuid = "F38B7100-2342-4D72-B628-5B4B31288E46 - 35dc01d6df1bc729"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ni.ContentFrameView.mouseDown(with: __C.NSEvent) -&gt; ()"
+                  moduleName = "ni"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/enai/Workbench/enai/takahe/ni/canvas/ContentFrameView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "79"
+                  endingLineNumber = "79"
+                  offsetFromSymbolStart = "680">
+               </Location>
+               <Location
+                  uuid = "F38B7100-2342-4D72-B628-5B4B31288E46 - 35dc01d6df1bc729"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ni.ContentFrameView.mouseDown(with: __C.NSEvent) -&gt; ()"
+                  moduleName = "ni"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/enai/Workbench/enai/takahe/ni/canvas/ContentFrameView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "79"
+                  endingLineNumber = "79"
+                  offsetFromSymbolStart = "560">
+               </Location>
+               <Location
+                  uuid = "F38B7100-2342-4D72-B628-5B4B31288E46 - 35dc01d6df1bc729"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ni.ContentFrameView.mouseDown(with: __C.NSEvent) -&gt; ()"
+                  moduleName = "ni"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/enai/Workbench/enai/takahe/ni/canvas/ContentFrameView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "79"
+                  endingLineNumber = "79"
+                  offsetFromSymbolStart = "756">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>
