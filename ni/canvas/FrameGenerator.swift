@@ -14,8 +14,21 @@ func runGoogleSearch(_ searchTerm: String, owner: Any?) -> ContentFrameView {
     print(searchTerm)
     wkView.load(urlReq)
     
-//    let frame = ContentFrameView(contentHeader: searchTerm, content: wkView)
-//    let frame = ContentFrameView()
+    let frame: ContentFrameView = NSView.loadFromNib(nibName: "ContentFrameView", owner: owner)! as! ContentFrameView
+    frame.contentHeader.stringValue = urlStr
+    frame.setContent(wkView)
+
+    return frame
+}
+
+func openWebsite(_ urlStr: String, owner: Any?) -> ContentFrameView {
+    
+    let wkView = WKWebView(frame: NSRect(x: 30, y: 30, width: 900, height: 400), configuration: WKWebViewConfiguration())
+    
+    let urlReq = URLRequest(url: URL(string: urlStr)!)
+
+    wkView.load(urlReq)
+    
     let frame: ContentFrameView = NSView.loadFromNib(nibName: "ContentFrameView", owner: owner)! as! ContentFrameView
     frame.contentHeader.stringValue = urlStr
     frame.setContent(wkView)

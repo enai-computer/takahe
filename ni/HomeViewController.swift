@@ -10,18 +10,20 @@ class HomeViewController: NSViewController {
     }
   
     @IBAction func openNewSpace(_ sender: NSButton) {
-        let appDelegate = NSApp.delegate as! AppDelegate
-        appDelegate.switchToNewSpace()
+//        let appDelegate = NSApp.delegate as! AppDelegate
+//        appDelegate.switchToNewSpace()
+//        generateKoreaView()
+        generateFigmaView()
     }
     
     override func loadView() {
         self.view = NSView.loadFromNib(nibName: "HomeView", owner: self)!
+        super.view.wantsLayer = true
+        super.view.layer?.backgroundColor = NSColor(.sandLight1).cgColor
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        super.view.wantsLayer = true
-        super.view.layer?.backgroundColor = NSColor(.sandLight1).cgColor
     }
     
     override func viewDidAppear() {

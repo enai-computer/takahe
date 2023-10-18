@@ -143,7 +143,7 @@ class ContentFrameView: NSBox{
         frame.origin.y += yDiff
     }
     
-    private func enaiResize(_ xDiff: Double, _ yDiff: Double){
+    func enaiResize(_ xDiff: Double, _ yDiff: Double){
         let frameSize = frame.size
         var nsize = frameSize
         nsize.height += (yDiff * -1)
