@@ -1,0 +1,42 @@
+//Created on 12.10.23
+
+import Cocoa
+
+class HomeViewController: NSViewController {
+
+    
+    @IBAction func mainSearch(_ searchField: NSSearchField) {
+
+    }
+  
+    @IBAction func openNewSpace(_ sender: NSButton) {
+        let appDelegate = NSApp.delegate as! AppDelegate
+        appDelegate.switchToNewSpace()
+    }
+    
+    override func loadView() {
+        self.view = NSView.loadFromNib(nibName: "HomeView", owner: self)!
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        super.view.wantsLayer = true
+        super.view.layer?.backgroundColor = NSColor(.sandLight1).cgColor
+    }
+    
+    override func viewDidAppear() {
+        if (NSApplication.shared.presentationOptions.contains(.fullScreen)){
+            return
+        }
+        (NSClassFromString("NSApplication")?.value(forKeyPath: "sharedApplication.windows") as? [AnyObject])?.first?.perform(#selector(NSWindow.toggleFullScreen(_:)))
+    }
+
+    override var representedObject: Any? {
+        didSet {
+        // Update the view, if already loaded.
+        }
+    }
+
+    
+   
+}

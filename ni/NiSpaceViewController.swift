@@ -1,36 +1,50 @@
-//Created on 11.09.23
+//Created on 9.10.23
 
 import Cocoa
-import WebKit
 
-
-class ViewController: NSViewController {
-
+class NiSpaceViewController: NSViewController{
     
-    @IBAction func mainSearch(_ searchField: NSSearchField) {
-        let searchView = runGoogleSearch(searchField.stringValue, owner: self)
-        let windowController = NSApplication.shared.keyWindow?.windowController as! DefaultWindowController
-        
-        addNiFrame(searchView)
-    }
-    
+    private var niSpaceID: UUID? = nil
+    private var niSpaceName: String? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
         super.view.wantsLayer = true
-        super.view.layer?.backgroundColor = NSColor(.sandLight3).cgColor
+        super.view.layer?.backgroundColor = NSColor(.sandLight1).cgColor
     }
     
-    override func viewDidAppear() {
-        (NSClassFromString("NSApplication")?.value(forKeyPath: "sharedApplication.windows") as? [AnyObject])?.first?.perform(#selector(NSWindow.toggleFullScreen(_:)))
+    func getNewView(_ owner: Any?) -> NiSpaceView{
+        let niSpaceView: NiSpaceView = NSView.loadFromNib(nibName: "NiSpaceView", owner: owner)! as! NiSpaceView
+        return niSpaceView
     }
-
-    override var representedObject: Any? {
-        didSet {
-        // Update the view, if already loaded.
+    
+    
+    @IBAction func updateSpaceName(_ sender: NSTextField) {
+        
+        if(niSpaceID == nil){
+            niSpaceID = UUID()
         }
+        niSpaceName = sender.stringValue
+        
+        sender.isEditable = false
     }
+    
+    @IBAction func returnToHome(_ sender: NSButton) {
+        //TODO: save
+        let appDelegate = NSApp.delegate as! AppDelegate
+        appDelegate.switchToHome()
+    }
+    
+    
+    @IBAction func runWebSearch(_ searchField: NSSearchField) {
+        let searchView = runGoogleSearch(searchField.stringValue, owner: self)
 
+        addNiFrame(searchView)
+    }
+    
+    override func loadView() {
+        self.view = NSView.loadFromNib(nibName: "NiSpaceView", owner: self)! as! NiSpaceView
+    }
     
     /*
      * Window like functions for niFrames below:
@@ -51,10 +65,6 @@ class ViewController: NSViewController {
         setTopNiFrame(window, subView)
     }
     
-//    func removeNiFrame(_ subView: ContentFrameView){
-//        let window = NSApplication.shared.keyWindow
-//        window?.contentView?.willRemoveSubview(subView)
-//    }
     
     override func mouseDown(with event: NSEvent) {
         super.mouseDown(with: event)
@@ -65,7 +75,7 @@ class ViewController: NSViewController {
         
         let newTopFrame = inFrame(event.locationInWindow)
         
-        if newTopFrame == nil{
+        if (newTopFrame == nil || self.topNiFrame == newTopFrame){
             return
         }
 
@@ -109,4 +119,3 @@ class ViewController: NSViewController {
     }
     
 }
-
