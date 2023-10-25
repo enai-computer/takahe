@@ -36,42 +36,44 @@
                         <rect key="frame" x="0.0" y="0.0" width="171" height="192"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UjD-WS-xYr">
-                                <rect key="frame" x="0.0" y="142" width="82" height="16"/>
+                            <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6mx-Tx-N6g">
+                                <rect key="frame" x="-4" y="166" width="180" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" title="Enai Designs" id="s5o-AK-7uW">
+                                <buttonCell key="cell" type="roundTextured" title="Korea Trip" bezelStyle="texturedRounded" alignment="center" imageScaling="proportionallyDown" inset="2" id="RRN-fr-zY0">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
-                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BbM-3g-tVv">
-                                <rect key="frame" x="0.0" y="166" width="125" height="16"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="korea:" target="-1" id="AP2-bs-F0v"/>
+                                </connections>
+                            </button>
+                            <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Wcr-Yf-b5R">
+                                <rect key="frame" x="-7" y="129" width="185" height="23"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" title="Korea Trip" id="xS0-a2-9UD">
+                                <buttonCell key="cell" type="roundTextured" title="Enai Design" bezelStyle="texturedRounded" alignment="center" imageScaling="proportionallyDown" inset="2" id="swE-79-5Hy">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
-                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DLL-as-n1I">
-                                <rect key="frame" x="0.0" y="118" width="142" height="16"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="enai:" target="-1" id="gFy-JO-5uQ"/>
+                                </connections>
+                            </button>
+                            <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5C3-aq-b0x">
+                                <rect key="frame" x="-7" y="97" width="185" height="23"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" title="Finances and investing" id="R5c-tO-YPJ">
+                                <buttonCell key="cell" type="roundTextured" title="Finances and Investing" bezelStyle="texturedRounded" alignment="center" imageScaling="proportionallyDown" inset="2" id="YIp-aA-tF4">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
-                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3UN-YL-669">
-                                <rect key="frame" x="0.0" y="94" width="62" height="16"/>
+                                </buttonCell>
+                            </button>
+                            <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4tX-7Q-eCI">
+                                <rect key="frame" x="-7" y="65" width="185" height="23"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" title="Art Camp" id="w2R-XW-o4z">
+                                <buttonCell key="cell" type="roundTextured" title="Thoughts on OS interfaces" bezelStyle="texturedRounded" alignment="center" imageScaling="proportionallyDown" inset="2" id="hRA-VG-xcx">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
+                                </buttonCell>
+                            </button>
                         </subviews>
                     </view>
                     <color key="borderColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>

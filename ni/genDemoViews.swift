@@ -26,7 +26,7 @@ func generateKoreaView(){
     koreaSpace.addNiFrame(airBnB)
     airBnB.frame.origin.x = 100
     airBnB.frame.origin.y = 800
-    airBnB.enaiResize(-50, -300)
+    airBnB.enaiResize(0, -300)
 }
 
 func generateFigmaView(){
@@ -34,16 +34,29 @@ func generateFigmaView(){
     let figmaSpace = appDelegate.switchToNewSpace()
     figmaSpace.setSpaceName("Enai Designs")
     
-    let figmaWebsite = openWebsite("https://www.figma.com/file/MbmX98L7dz6fLaF2q3i5kg/MVP?type=design&node-id=0-1&mode=design&t=3l7XQAVFFrtWzmQx-0", owner: figmaSpace)
+   
+    let notion = openWebsite("https://www.notion.so/All-things-Swift-aab4cae60dc047bebb6654c1968068e8", owner: figmaSpace)
+    
+    figmaSpace.addNiFrame(notion)
+    notion.enaiResize(50, -400)
+    notion.frame.origin.x = 1000
+    notion.frame.origin.y = 60
+    
+    let mvpDoc = openWebsite("https://docs.google.com/document/d/1klZLJjLEuTlAwWjUnbZaR_HwGDxgMYfjUlYYqRdBPSQ/edit", owner: figmaSpace)
+    figmaSpace.addNiFrame(mvpDoc)
+    mvpDoc.frame.origin.x = 1500
+    mvpDoc.frame.origin.y = 800
+    mvpDoc.enaiResize(50, -400)
+    
+    let figmaWebsite = openWebsite("https://www.figma.com/file/MbmX98L7dz6fLaF2q3i5kg/MVP?type=design&node-id=247-11&mode=design&t=gy2RuQwTIbGvMszg-0", owner: figmaSpace)
     
     figmaSpace.addNiFrame(figmaWebsite)
     
-    
-    //3840x2160 --> 3780x2100
-    let targetSize = CGSize(width: 3740, height: 2060)
-//    let y = targetSize.height - figmaWebsite.frame.height
-    let x = targetSize.width - figmaWebsite.frame.width
-    figmaWebsite.enaiResize(x, 0)
-//    figmaWebsite.frame.origin.x = 0
-//    figmaWebsite.frame.origin.y = 0
+//    let width = NSApplication.shared.keyWindow!.frame.width
+//    let height = NSApplication.shared.keyWindow!.frame.height
+//    let y = height - figmaWebsite.frame.height
+//    let x = width - figmaWebsite.frame.width
+    figmaWebsite.enaiResize(200, -700)
+    figmaWebsite.frame.origin.x = 100
+    figmaWebsite.frame.origin.y = 80
 }
