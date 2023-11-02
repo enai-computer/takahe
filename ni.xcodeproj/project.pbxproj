@@ -17,6 +17,7 @@
 		A1B8E6AB2AAFB5EC00AC6566 /* ni.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A1B8E6A92AAFB5EC00AC6566 /* ni.xcdatamodeld */; };
 		A1B8E6AD2AAFB5EF00AC6566 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A1B8E6AC2AAFB5EF00AC6566 /* Assets.xcassets */; };
 		A1B8E6B02AAFB5EF00AC6566 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A1B8E6AE2AAFB5EF00AC6566 /* Main.storyboard */; };
+		A1C2260E2AE02AD000B9323B /* genDemoViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C2260D2AE02AD000B9323B /* genDemoViews.swift */; };
 		A1E41BF42ACB4F3200338417 /* tmpBaselineWV.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E41BF32ACB4F3200338417 /* tmpBaselineWV.swift */; };
 		A1E41BF62ACB533400338417 /* ContentFrameView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1E41BF52ACB533400338417 /* ContentFrameView.xib */; };
 		A1E41BFA2ACB57EF00338417 /* ContentFrameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E41BF92ACB57EF00338417 /* ContentFrameView.swift */; };
@@ -39,6 +40,7 @@
 		A1B8E6AC2AAFB5EF00AC6566 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A1B8E6AF2AAFB5EF00AC6566 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A1B8E6B12AAFB5EF00AC6566 /* ni.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ni.entitlements; sourceTree = "<group>"; };
+		A1C2260D2AE02AD000B9323B /* genDemoViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = genDemoViews.swift; sourceTree = "<group>"; };
 		A1E41BF32ACB4F3200338417 /* tmpBaselineWV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tmpBaselineWV.swift; sourceTree = "<group>"; };
 		A1E41BF52ACB533400338417 /* ContentFrameView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContentFrameView.xib; sourceTree = "<group>"; };
 		A1E41BF92ACB57EF00338417 /* ContentFrameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentFrameView.swift; sourceTree = "<group>"; };
@@ -83,6 +85,7 @@
 				A14E8F242AD5EADF00409DDF /* NiSpaceView.xib */,
 				A14E8F262AD5EAF800409DDF /* NiSpaceView.swift */,
 				A14E8F282AD5EB1600409DDF /* NiSpaceViewController.swift */,
+				A1C2260D2AE02AD000B9323B /* genDemoViews.swift */,
 				A1B8E6AC2AAFB5EF00AC6566 /* Assets.xcassets */,
 				A1B8E6AE2AAFB5EF00AC6566 /* Main.storyboard */,
 				A1603A6F2ADF21B4007A7FA0 /* HomeView.xib */,
@@ -193,6 +196,7 @@
 				A14E8F212AD20A2600409DDF /* DefaultWindowController.swift in Sources */,
 				A1E41BF42ACB4F3200338417 /* tmpBaselineWV.swift in Sources */,
 				A1B8E6A62AAFB5EC00AC6566 /* AppDelegate.swift in Sources */,
+				A1C2260E2AE02AD000B9323B /* genDemoViews.swift in Sources */,
 				A1E41BFF2ACB6B1300338417 /* FrameGenerator.swift in Sources */,
 				A1B8E6AB2AAFB5EC00AC6566 /* ni.xcdatamodeld in Sources */,
 				A1F33E302AB7316300E2E7CD /* HomeView.swift in Sources */,

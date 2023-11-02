@@ -47,6 +47,14 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "generateFigmaView():genDemoViews.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "targetSize.width - figmaWebsite.frame.width">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "runGoogleSearch(_:owner:):FrameGenerator.swift">
       </ContextState>
       <ContextState

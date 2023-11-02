@@ -26,11 +26,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         return true
     }
     
-    func switchToNewSpace(){
+    func switchToNewSpace() -> NiSpaceViewController{
         window = NSApplication.shared.keyWindow!
         let niSpaceController = NiSpaceViewController()
         window.contentViewController = niSpaceController
         niSpaceController.loadView()
+        return niSpaceController
     }
     
     func switchToHome(){

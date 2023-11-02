@@ -9,8 +9,12 @@ class NiSpaceViewController: NSViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        super.view.wantsLayer = true
-        super.view.layer?.backgroundColor = NSColor(.sandLight1).cgColor
+    }
+ 
+    override func loadView() {
+        self.view = NSView.loadFromNib(nibName: "NiSpaceView", owner: self)! as! NiSpaceView
+        self.view.wantsLayer = true
+        self.view.layer?.backgroundColor = NSColor(.sandLight1).cgColor
     }
     
     func getNewView(_ owner: Any?) -> NiSpaceView{
@@ -29,6 +33,13 @@ class NiSpaceViewController: NSViewController{
         sender.isEditable = false
     }
     
+    func setSpaceName(_ name: String){
+        let niView = view as! NiSpaceView
+        niView.setSpaceName(name)
+    }
+    
+    
+    
     @IBAction func returnToHome(_ sender: NSButton) {
         //TODO: save
         let appDelegate = NSApp.delegate as! AppDelegate
@@ -36,15 +47,16 @@ class NiSpaceViewController: NSViewController{
     }
     
     
+    @IBAction func avatarClick(_ sender: NSImageView) {
+        
+    }
+    
     @IBAction func runWebSearch(_ searchField: NSSearchField) {
         let searchView = runGoogleSearch(searchField.stringValue, owner: self)
 
         addNiFrame(searchView)
     }
     
-    override func loadView() {
-        self.view = NSView.loadFromNib(nibName: "NiSpaceView", owner: self)! as! NiSpaceView
-    }
     
     /*
      * Window like functions for niFrames below:

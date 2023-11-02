@@ -15,7 +15,7 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XWR-XG-Ajy">
-                    <rect key="frame" x="-1" y="410" width="119" height="32"/>
+                    <rect key="frame" x="7" y="463" width="119" height="32"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="push" title="Back to Home" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="GYb-vh-lig">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
@@ -25,36 +25,20 @@
                         <action selector="returnToHome:" target="-1" id="Dws-nd-e2e"/>
                     </connections>
                 </button>
-                <box boxType="custom" borderType="none" titlePosition="noTitle" id="vHc-Sy-iUp">
-                    <rect key="frame" x="0.0" y="441" width="800" height="59"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                    <view key="contentView" id="x3U-8t-T5E">
-                        <rect key="frame" x="0.0" y="0.0" width="800" height="59"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JGW-CL-j8d">
-                                <rect key="frame" x="338" y="19" width="143" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" borderStyle="bezel" alignment="center" placeholderString="your new space" drawsBackground="YES" id="FUW-He-GMD">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="SandLight3"/>
-                                </textFieldCell>
-                                <connections>
-                                    <action selector="updateSpaceName:" target="-1" id="xKi-Vi-XXy"/>
-                                </connections>
-                            </textField>
-                            <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jQM-sd-GJS">
-                                <rect key="frame" x="13" y="19" width="46" height="31"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="EnaiAppName" id="vgA-51-dLA"/>
-                            </imageView>
-                        </subviews>
-                    </view>
-                    <color key="fillColor" name="SandLight12"/>
-                </box>
+                <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JGW-CL-j8d">
+                    <rect key="frame" x="329" y="469" width="143" height="21"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" borderStyle="bezel" alignment="center" placeholderString="your new space" drawsBackground="YES" id="FUW-He-GMD">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="SandLight3"/>
+                    </textFieldCell>
+                    <connections>
+                        <action selector="updateSpaceName:" target="-1" id="xKi-Vi-XXy"/>
+                    </connections>
+                </textField>
                 <searchField wantsLayer="YES" focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MRs-tE-yVb">
-                    <rect key="frame" x="324" y="406" width="177" height="22"/>
+                    <rect key="frame" x="312" y="421" width="177" height="22"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <searchFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" borderStyle="bezel" placeholderString="search" usesSingleLineMode="YES" bezelStyle="round" sendsWholeSearchString="YES" id="LGj-Ph-s5R">
                         <font key="font" metaFont="system"/>
@@ -65,15 +49,23 @@
                         <action selector="runWebSearch:" target="-1" id="4mQ-rd-Xui"/>
                     </connections>
                 </searchField>
+                <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="W9O-fB-V3u">
+                    <rect key="frame" x="761" y="464" width="32" height="32"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="Avatar" id="WXx-Kv-oK5"/>
+                    <connections>
+                        <action selector="avatarClick:" target="-1" id="sVx-31-gMW"/>
+                    </connections>
+                </imageView>
             </subviews>
+            <connections>
+                <outlet property="spaceName" destination="JGW-CL-j8d" id="VZO-MW-XKF"/>
+            </connections>
             <point key="canvasLocation" x="29" y="154"/>
         </customView>
     </objects>
     <resources>
-        <image name="EnaiAppName" width="108" height="58"/>
-        <namedColor name="SandLight12">
-            <color red="0.10588235294117647" green="0.10588235294117647" blue="0.094117647058823528" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
+        <image name="Avatar" width="32" height="32"/>
         <namedColor name="SandLight3">
             <color red="0.95294117647058818" green="0.95294117647058818" blue="0.94901960784313721" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
