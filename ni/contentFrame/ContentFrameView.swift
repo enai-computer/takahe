@@ -33,6 +33,11 @@ class ContentFrameView: NSBox{
     
     @IBOutlet var closeButton: NSImageView!
     @IBOutlet var boundContent: NSView!
+    
+    @IBOutlet var niContentTabView: NSTabView!
+    
+    
+    
     var wkContent: WKWebView? = nil
     
     required init?(coder: NSCoder) {
@@ -51,9 +56,10 @@ class ContentFrameView: NSBox{
 
     
     func setContent(_ newContentView: WKWebView!){
+
         newContentView.frame.size = boundContent.frame.size
         newContentView.frame.origin = boundContent.frame.origin
-        self.replaceSubview(boundContent, with: newContentView)
+        niContentTabView.tabViewItem(at: 0).view = newContentView
         self.wkContent = newContentView
     }
 

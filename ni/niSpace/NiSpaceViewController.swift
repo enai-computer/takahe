@@ -6,6 +6,7 @@ class NiSpaceViewController: NSViewController{
     
     private var niSpaceID: UUID? = nil
     private var niSpaceName: String? = nil
+    private var niSpaceDocument: NiSpaceDocument? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -15,6 +16,14 @@ class NiSpaceViewController: NSViewController{
         self.view = NSView.loadFromNib(nibName: "NiSpaceView", owner: self)! as! NiSpaceView
         self.view.wantsLayer = true
         self.view.layer?.backgroundColor = NSColor(.sandLight1).cgColor
+        
+        let view = self.view as! NiSpaceView
+        
+        if(niSpaceDocument == nil){
+            niSpaceDocument = NiSpaceDocument()
+            niSpaceDocument?.isHidden = false
+            view.niScrollView!.documentView = niSpaceDocument
+        }
     }
     
     func getNewView(_ owner: Any?) -> NiSpaceView{
@@ -66,15 +75,17 @@ class NiSpaceViewController: NSViewController{
     var activeNiFrames: [ContentFrameView] = []
     
     func addNiFrame(_ subView: ContentFrameView){
-        let window = NSApplication.shared.keyWindow
-        window?.contentView?.addSubview(subView)
+////        let window = NSApplication.shared.keyWindow
+////        window?.contentView?.addSubview(subView)
+//        let view = self.view as! NiSpaceView
         
+        self.niSpaceDocument!.addSubview(subView)
         
         for niFrame in activeNiFrames{
             niFrame.droppedInViewStack()
         }
         activeNiFrames.insert(subView, at: 0)
-        setTopNiFrame(window, subView)
+//        setTopNiFrame(window, subView)
     }
     
     

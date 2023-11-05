@@ -9,20 +9,9 @@ class HomeViewController: NSViewController {
 
     }
   
-    //        generateKoreaView()
-    //
-    
     @IBAction func openNewSpace(_ sender: NSButton) {
         let appDelegate = NSApp.delegate as! AppDelegate
         appDelegate.switchToNewSpace()
-    }
-
-    @IBAction func korea(_ sender: NSButton) {
-        generateKoreaView()
-    }
-    
-    @IBAction func enai(_ sender: NSButton) {
-        generateFigmaView()
     }
     
     override func loadView() {
