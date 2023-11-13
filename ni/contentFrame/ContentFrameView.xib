@@ -23,21 +23,9 @@
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                         <imageCell key="cell" alignment="left" imageAlignment="topRight" image="xmark" catalog="system" id="1Vu-cP-tyr"/>
                     </imageView>
-                    <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" contentType="url" translatesAutoresizingMaskIntoConstraints="NO" id="QFH-so-HLv" customClass="ContentFrameHeader" customModule="ni" customModuleProvider="target">
-                        <rect key="frame" x="10" y="387" width="400" height="21"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" borderStyle="bezel" usesSingleLineMode="YES" bezelStyle="round" id="2ic-Ap-kJE">
-                            <font key="font" metaFont="system"/>
-                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="SandLight1"/>
-                        </textFieldCell>
-                        <connections>
-                            <action selector="updateContent:" target="kXm-wH-PdA" id="hJg-oQ-XKW"/>
-                        </connections>
-                    </textField>
                     <tabView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="d8b-7o-70b">
                         <rect key="frame" x="3" y="-8" width="911" height="404"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES"/>
                         <font key="font" metaFont="system"/>
                         <tabViewItems>
                             <tabViewItem label="Tab1" identifier="" id="ahz-ho-tcZ">
@@ -60,6 +48,28 @@
                             </tabViewItem>
                         </tabViewItems>
                     </tabView>
+                    <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" contentType="url" translatesAutoresizingMaskIntoConstraints="NO" id="QFH-so-HLv" customClass="ContentFrameHeader" customModule="ni" customModuleProvider="target">
+                        <rect key="frame" x="45" y="386" width="357" height="21"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" borderStyle="bezel" usesSingleLineMode="YES" bezelStyle="round" id="2ic-Ap-kJE">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="SandLight1"/>
+                        </textFieldCell>
+                        <connections>
+                            <action selector="updateContent:" target="kXm-wH-PdA" id="hJg-oQ-XKW"/>
+                        </connections>
+                    </textField>
+                    <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rcT-6J-b1L" userLabel="back-button">
+                        <rect key="frame" x="10" y="388" width="12" height="17"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="NSGoBackTemplate" id="T7D-RU-6Pz"/>
+                    </imageView>
+                    <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eFl-A6-f9y" userLabel="forward-button">
+                        <rect key="frame" x="25" y="388" width="12" height="17"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="NSGoForwardTemplate" id="i8b-xK-NTA"/>
+                    </imageView>
                 </subviews>
             </view>
             <color key="borderColor" name="SandLight12"/>
@@ -67,6 +77,8 @@
             <connections>
                 <outlet property="boundContent" destination="IXM-GT-a1N" id="UAM-In-6zu"/>
                 <outlet property="closeButton" destination="Utx-ML-7oY" id="kU3-Bd-2G3"/>
+                <outlet property="contentBackButton" destination="rcT-6J-b1L" id="RYT-Vl-p2w"/>
+                <outlet property="contentForwardButton" destination="eFl-A6-f9y" id="rOd-Bb-2cH"/>
                 <outlet property="contentHeader" destination="QFH-so-HLv" id="ocX-7o-rOC"/>
                 <outlet property="niContentTabView" destination="d8b-7o-70b" id="rDA-Fc-OHT"/>
             </connections>
@@ -74,6 +86,8 @@
         </box>
     </objects>
     <resources>
+        <image name="NSGoBackTemplate" width="12" height="17"/>
+        <image name="NSGoForwardTemplate" width="12" height="17"/>
         <image name="xmark" catalog="system" width="14" height="13"/>
         <namedColor name="SandLight1">
             <color red="0.99215686274509807" green="0.99215686274509807" blue="0.9882352941176471" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

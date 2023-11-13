@@ -54,9 +54,11 @@ class NiSpaceViewController: NSViewController{
     }
     
     @IBAction func runWebSearch(_ searchField: NSSearchField) {
+        //TODO: refactor
         let searchView = runGoogleSearch(searchField.stringValue, owner: self)
 
         self.niDocument.addNiFrame(searchView)
+        searchView.setFrameOwner(self.niDocument)
     }
     
     

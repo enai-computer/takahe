@@ -26,12 +26,19 @@ class ContentFrameView: NSBox{
     
     private var cursorDownPoint: CGPoint  = .zero
     private var cursorOnBorder: OnBorder = .no
+    private var deactivateDocumentResize: Bool = false
     private var frameIsActive: Bool = false
     private var positionInViewStack: Int = 0     // 0 = up top
     
+    private var niParentDoc: NiSpaceDocument? = nil
+    
     @IBOutlet var contentHeader: ContentFrameHeader!
     
+    //Buttons
     @IBOutlet var closeButton: NSImageView!
+    @IBOutlet var contentBackButton: NSImageView!
+    @IBOutlet var contentForwardButton: NSImageView!
+    
     @IBOutlet var boundContent: NSView!
     
     @IBOutlet var niContentTabView: NSTabView!
@@ -42,6 +49,10 @@ class ContentFrameView: NSBox{
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
+    }
+    
+    func setFrameOwner(_ owner: NiSpaceDocument!){
+        self.niParentDoc = owner
     }
     
     
@@ -64,26 +75,45 @@ class ContentFrameView: NSBox{
     }
 
     
-    /*
+    /**
      * window like functions (moving and resizing) here:
+     */
+    
+    /*
+     * catching mouse down events here:
      */
     override func mouseDown(with event: NSEvent) {
         if !frameIsActive{
             nextResponder?.mouseDown(with: event)
         }
-        
+
         super.mouseDown(with: event)
         
+//        event.locationInWindow.toView(self)
+        let cursorPos = self.convert(event.locationInWindow, from: nil)
+        
         //enable drag and drop niFrame to new postion and resizing
-        cursorOnBorder = isOnBoarder(event.locationInWindow)
+        cursorOnBorder = isOnBoarder(cursorPos)
         if cursorOnBorder != .no{
             cursorDownPoint = event.locationInWindow
         }
         
+        
+        let posInFrame = self.contentView!.convert(cursorPos, from: nil)
+        
         //clicked on close button
-        let posInFrame = self.contentView!.convert(event.locationInWindow, from: nil)
         if NSPointInRect(posInFrame, closeButton.frame){
             removeFromSuperview()
+        }
+        
+        //clicked on back button
+        if NSPointInRect(posInFrame, contentBackButton.frame){
+            self.wkContent?.goBack()
+        }
+        
+        //clicked on forward button
+        if NSPointInRect(posInFrame, contentForwardButton.frame){
+            self.wkContent?.goForward()
         }
     }
     
@@ -95,6 +125,7 @@ class ContentFrameView: NSBox{
         super.mouseUp(with: event)
         cursorDownPoint = .zero
         cursorOnBorder = .no
+        deactivateDocumentResize = false
     }
     
     override func mouseDragged(with event: NSEvent) {
@@ -133,20 +164,43 @@ class ContentFrameView: NSBox{
         let aa = CFConstants.actionArea
         let cAA = CFConstants.cornerActionArea
         
-        if (((frame.maxY - aa) < cursorLocation.y && cursorLocation.y < frame.maxY) && (frame.minX < cursorLocation.x && cursorLocation.x < frame.maxX)){
+        if (((frame.size.height - aa) < cursorLocation.y && cursorLocation.y < frame.size.height) && (0 < cursorLocation.x && cursorLocation.x < frame.size.width)){
             return .top
         }
         
-        if ((frame.minY < cursorLocation.y && cursorLocation.y < frame.minY + cAA) && 
-            (frame.maxX - cAA < cursorLocation.x && cursorLocation.x < frame.maxX)){
+        if ((0 < cursorLocation.y && cursorLocation.y < cAA) &&
+            (frame.size.width - cAA < cursorLocation.x && cursorLocation.x < frame.size.width)){
             return .bottomRight
         }
         return .no
     }
     
     private func repositionView(_ xDiff: Double, _ yDiff: Double) {
-        frame.origin.x += xDiff
-        frame.origin.y += yDiff
+        
+        let docW = self.niParentDoc!.frame.size.width
+        let docHeight = self.niParentDoc!.frame.size.height
+        
+        //checks for out of bounds
+        if(frame.origin.x + xDiff < 0){
+            frame.origin.x = 0
+        }else if (frame.origin.x + xDiff + (frame.width/2.0) < docW){
+            frame.origin.x += xDiff
+        }
+            // do nothing when trying to move to far to the right
+        
+        if (frame.origin.y - yDiff < 0){
+            frame.origin.y = 0
+        }else if(frame.origin.y - yDiff + frame.height > docHeight){
+            frame.origin.y -= yDiff
+            
+            if(!deactivateDocumentResize && yDiff < 0){ //mouse moving downwards, not upwards
+                self.niParentDoc!.extendDocumentDownwards()
+                deactivateDocumentResize = true     //get's activated again when mouse lifted
+            }
+
+        }else{
+            frame.origin.y -= yDiff
+        }
     }
     
     func enaiResize(_ xDiff: Double, _ yDiff: Double){
@@ -155,7 +209,7 @@ class ContentFrameView: NSBox{
         nsize.height += (yDiff * -1)
         nsize.width += xDiff
         self.setFrameSize(nsize)
-        frame.origin.y += yDiff
+//        frame.origin.y += yDiff
         
         let wkFrameSize = wkContent!.frame.size
         var newWKFS = wkFrameSize

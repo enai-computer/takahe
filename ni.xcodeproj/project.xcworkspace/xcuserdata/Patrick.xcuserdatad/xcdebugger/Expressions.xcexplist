@@ -3,6 +3,47 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "ContentFrameView.isOnBoarder(_:):ContentFrameView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "frame.maxY">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "NiSpaceDocument.extendDocumentDownwards():NiSpaceDocument.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "window.frame.height * EMPTYSPACEFACTOR">
+            </PersistentString>
+            <PersistentString
+               value = "window.frame.height">
+            </PersistentString>
+            <PersistentString
+               value = "self.frame.size.height">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ContentFrameView.mouseDown(with:):ContentFrameView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "frame">
+            </PersistentString>
+            <PersistentString
+               value = "event.locationInWindow">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ContentFrameView.repositionView(_:_:):ContentFrameView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "frame">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "NiSpaceViewController.viewDidLoad():NiSpaceViewController.swift">
          <PersistentStrings>
             <PersistentString
