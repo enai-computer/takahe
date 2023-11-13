@@ -14,11 +14,11 @@ func runGoogleSearch(_ searchTerm: String, owner: Any?) -> ContentFrameView {
     print(searchTerm)
     wkView.load(urlReq)
     
-    let frame: ContentFrameView = NSView.loadFromNib(nibName: "ContentFrameView", owner: owner)! as! ContentFrameView
-    frame.contentHeader.stringValue = urlStr
-    frame.setContent(wkView)
+    let niFrame: ContentFrameView = NSView.loadFromNib(nibName: "ContentFrameView", owner: owner)! as! ContentFrameView
+    niFrame.contentHeader.stringValue = urlStr
+    niFrame.setContent(wkView)
 
-    return frame
+    return niFrame
 }
 
 func openWebsite(_ urlStr: String, owner: Any?) -> ContentFrameView {

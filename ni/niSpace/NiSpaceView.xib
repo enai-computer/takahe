@@ -7,7 +7,12 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner"/>
+        <customObject id="-2" userLabel="File's Owner" customClass="NiSpaceViewController" customModule="ni" customModuleProvider="target">
+            <connections>
+                <outlet property="clippy" destination="yNc-sE-qT2" id="CY1-EK-B1h"/>
+                <outlet property="niDocument" destination="93b-vm-ObV" id="Kc2-nd-EJH"/>
+            </connections>
+        </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customView id="c22-O7-iKe" customClass="NiSpaceView" customModule="ni" customModuleProvider="target">
@@ -45,26 +50,26 @@
                         <action selector="avatarClick:" target="-1" id="sVx-31-gMW"/>
                     </connections>
                 </imageView>
-                <scrollView fixedFrame="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eEh-KB-aea" customClass="NiScroll" customModule="ni" customModuleProvider="target">
+                <scrollView fixedFrame="YES" borderType="line" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eEh-KB-aea" customClass="NiScroll" customModule="ni" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="0.0" width="809" height="431"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
                     <clipView key="contentView" id="yNc-sE-qT2">
-                        <rect key="frame" x="1" y="1" width="792" height="414"/>
+                        <rect key="frame" x="1" y="1" width="792" height="429"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view id="93b-vm-ObV">
-                                <rect key="frame" x="0.0" y="0.0" width="777" height="399"/>
+                            <view id="93b-vm-ObV" customClass="NiSpaceDocument" customModule="ni" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="777" height="414"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" name="SandLight1"/>
                     </clipView>
-                    <scroller key="horizontalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="9PI-SI-Oxx">
-                        <rect key="frame" x="1" y="415" width="792" height="15"/>
+                    <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="9PI-SI-Oxx">
+                        <rect key="frame" x="-100" y="-100" width="792" height="15"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
                     <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="LWS-iL-QKc">
-                        <rect key="frame" x="793" y="1" width="15" height="414"/>
+                        <rect key="frame" x="793" y="1" width="15" height="429"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
                 </scrollView>
@@ -82,7 +87,7 @@
                 </searchField>
             </subviews>
             <connections>
-                <outlet property="niScrollView" destination="eEh-KB-aea" id="8Ym-fg-UX5"/>
+                <outlet property="niScrollView" destination="eEh-KB-aea" id="nuB-d9-f1I"/>
                 <outlet property="spaceName" destination="JGW-CL-j8d" id="VZO-MW-XKF"/>
             </connections>
             <point key="canvasLocation" x="29" y="154"/>
