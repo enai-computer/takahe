@@ -98,8 +98,7 @@ class ContentFrameView: NSBox{
             cursorDownPoint = event.locationInWindow
         }
         
-        
-        let posInFrame = self.contentView!.convert(cursorPos, from: nil)
+        let posInFrame = self.contentView!.convert(cursorPos, from: self)
         
         //clicked on close button
         if NSPointInRect(posInFrame, closeButton.frame){
@@ -209,7 +208,6 @@ class ContentFrameView: NSBox{
         nsize.height += (yDiff * -1)
         nsize.width += xDiff
         self.setFrameSize(nsize)
-//        frame.origin.y += yDiff
         
         let wkFrameSize = wkContent!.frame.size
         var newWKFS = wkFrameSize

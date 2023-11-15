@@ -7,54 +7,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "B6E25EE3-2ACA-4721-9FC9-F31085A230DE"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ni/contentFrame/ContentFrameView.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "86"
-            endingLineNumber = "86"
-            landmarkName = "mouseDown(with:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "B6E25EE3-2ACA-4721-9FC9-F31085A230DE - f1448e6fbd94df5c"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "ni.ContentFrameView.mouseDown(with: __C.NSEvent) -&gt; ()"
-                  moduleName = "ni"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Patrick/Workbench/takahe/ni/contentFrame/ContentFrameView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "73"
-                  endingLineNumber = "73"
-                  offsetFromSymbolStart = "100">
-               </Location>
-               <Location
-                  uuid = "B6E25EE3-2ACA-4721-9FC9-F31085A230DE - f1448e6fbd94dfa2"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "ni.ContentFrameView.mouseDown(with: __C.NSEvent) -&gt; ()"
-                  moduleName = "ni"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Patrick/Workbench/takahe/ni/contentFrame/ContentFrameView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "71"
-                  endingLineNumber = "71"
-                  offsetFromSymbolStart = "100">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "FF6C9767-5C63-4C1B-B0CC-A7927749C4BA"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -62,8 +14,8 @@
             filePath = "ni/contentFrame/ContentFrameView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "214"
-            endingLineNumber = "214"
+            startingLineNumber = "212"
+            endingLineNumber = "212"
             landmarkName = "enaiResize(_:_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -78,8 +30,8 @@
             filePath = "ni/contentFrame/ContentFrameView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "213"
-            endingLineNumber = "213"
+            startingLineNumber = "211"
+            endingLineNumber = "211"
             landmarkName = "enaiResize(_:_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -94,8 +46,8 @@
             filePath = "ni/contentFrame/ContentFrameView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "167"
-            endingLineNumber = "167"
+            startingLineNumber = "166"
+            endingLineNumber = "166"
             landmarkName = "isOnBoarder(_:)"
             landmarkType = "7">
             <Locations>
@@ -135,101 +87,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "EB9D0B48-294C-4548-B86A-3E6FC6C322FE"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ni/contentFrame/ContentFrameView.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "93"
-            endingLineNumber = "93"
-            landmarkName = "mouseDown(with:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "F9CB8ECA-3DC0-4977-86F8-AB89B02FDE08"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ni/contentFrame/ContentFrameView.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "95"
-            endingLineNumber = "95"
-            landmarkName = "mouseDown(with:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "EDAED9E3-9E52-4C0B-A38B-E6910E125A68"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ni/contentFrame/ContentFrameView.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "96"
-            endingLineNumber = "96"
-            landmarkName = "mouseDown(with:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "EDAED9E3-9E52-4C0B-A38B-E6910E125A68 - f1448e6fbd94c28a"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "ni.ContentFrameView.mouseDown(with: __C.NSEvent) -&gt; ()"
-                  moduleName = "ni"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Patrick/Workbench/takahe/ni/contentFrame/ContentFrameView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "95"
-                  endingLineNumber = "95"
-                  offsetFromSymbolStart = "608">
-               </Location>
-               <Location
-                  uuid = "EDAED9E3-9E52-4C0B-A38B-E6910E125A68 - f1448e6fbd94c28a"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "ni.ContentFrameView.mouseDown(with: __C.NSEvent) -&gt; ()"
-                  moduleName = "ni"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Patrick/Workbench/takahe/ni/contentFrame/ContentFrameView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "95"
-                  endingLineNumber = "95"
-                  offsetFromSymbolStart = "452">
-               </Location>
-               <Location
-                  uuid = "EDAED9E3-9E52-4C0B-A38B-E6910E125A68 - f1448e6fbd94c28a"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "ni.ContentFrameView.mouseDown(with: __C.NSEvent) -&gt; ()"
-                  moduleName = "ni"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Patrick/Workbench/takahe/ni/contentFrame/ContentFrameView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "95"
-                  endingLineNumber = "95"
-                  offsetFromSymbolStart = "596">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "9D8ABF8F-39A8-4E54-B100-8750928440D7"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -253,8 +110,8 @@
             filePath = "ni/contentFrame/ContentFrameView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "191"
-            endingLineNumber = "191"
+            startingLineNumber = "190"
+            endingLineNumber = "190"
             landmarkName = "repositionView(_:_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -285,8 +142,8 @@
             filePath = "ni/contentFrame/ContentFrameView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "193"
-            endingLineNumber = "193"
+            startingLineNumber = "192"
+            endingLineNumber = "192"
             landmarkName = "repositionView(_:_:)"
             landmarkType = "7">
             <Locations>
@@ -327,14 +184,14 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "5BBAD625-13C3-4E34-9CE3-4A7E8996BB6A"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ni/contentFrame/ContentFrameView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "194"
-            endingLineNumber = "194"
+            startingLineNumber = "193"
+            endingLineNumber = "193"
             landmarkName = "repositionView(_:_:)"
             landmarkType = "7">
          </BreakpointContent>

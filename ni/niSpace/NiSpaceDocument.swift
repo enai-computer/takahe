@@ -29,6 +29,8 @@ class NiSpaceDocument: NSView{
     
     /*
      * Window like functions for niFrames below:
+     *
+     * TODO: fix activation and deactivation 
      */
     
     var topNiFrame: ContentFrameView? = nil
