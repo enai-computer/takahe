@@ -43,6 +43,8 @@ class NiSpaceDocument: NSView{
             niFrame.droppedInViewStack()
         }
         activeNiFrames.insert(subView, at: 0)
+        
+        setTopNiFrame(NSApplication.shared.keyWindow, subView)
     }
     
     
@@ -53,7 +55,8 @@ class NiSpaceDocument: NSView{
             return
         }
         
-        let newTopFrame = inFrame(event.locationInWindow)
+        let cursorPos = self.convert(event.locationInWindow, from: nil)
+        let newTopFrame = inFrame(cursorPos)
         
         if (newTopFrame == nil || self.topNiFrame == newTopFrame){
             return

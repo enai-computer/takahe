@@ -3,10 +3,32 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "ContentFrameView.isOnBoarder(_:):ContentFrameView.swift">
+         contextName = "ContentFrameView.mouseDown(with:):ContentFrameView.swift">
          <PersistentStrings>
             <PersistentString
-               value = "frame.maxY">
+               value = "frame">
+            </PersistentString>
+            <PersistentString
+               value = "event.locationInWindow">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "NiSpaceDocument.mouseDown(with:):NiSpaceDocument.swift">
+      </ContextState>
+      <ContextState
+         contextName = "ContentFrameView.repositionView(_:_:):ContentFrameView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "frame">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "NiSpaceViewController.viewDidLoad():NiSpaceViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "scrollView.documentView?.frame">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -25,29 +47,18 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "ContentFrameView.mouseDown(with:):ContentFrameView.swift">
+         contextName = "ContentFrameView.isOnBoarder(_:):ContentFrameView.swift">
          <PersistentStrings>
             <PersistentString
-               value = "frame">
-            </PersistentString>
-            <PersistentString
-               value = "event.locationInWindow">
+               value = "frame.maxY">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "ContentFrameView.repositionView(_:_:):ContentFrameView.swift">
+         contextName = "NiSpaceDocument.inFrame(_:):NiSpaceDocument.swift">
          <PersistentStrings>
             <PersistentString
-               value = "frame">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "NiSpaceViewController.viewDidLoad():NiSpaceViewController.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "scrollView.documentView?.frame">
+               value = "niFrame.frame">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

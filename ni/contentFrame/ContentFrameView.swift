@@ -89,7 +89,6 @@ class ContentFrameView: NSBox{
 
         super.mouseDown(with: event)
         
-//        event.locationInWindow.toView(self)
         let cursorPos = self.convert(event.locationInWindow, from: nil)
         
         //enable drag and drop niFrame to new postion and resizing
