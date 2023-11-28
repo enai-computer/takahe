@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 60;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -27,6 +27,9 @@
 		CDB06B5F2AF81F91008DB8FF /* NiScrollController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB06B5E2AF81F91008DB8FF /* NiScrollController.swift */; };
 		CDB06B612AF84E1F008DB8FF /* NiSpaceDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB06B602AF84E1F008DB8FF /* NiSpaceDocument.swift */; };
 		CDB06B652AF9723F008DB8FF /* TabHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDB06B642AF9723F008DB8FF /* TabHeaderView.xib */; };
+		CDD6B9332B13C57300C6144D /* ContentFrameTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD6B9322B13C57300C6144D /* ContentFrameTabView.swift */; };
+		CDD6B9392B152A8000C6144D /* DBStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD6B9382B152A8000C6144D /* DBStorage.swift */; };
+		CDD6B93E2B152D3F00C6144D /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = CDD6B93D2B152D3F00C6144D /* SQLite */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +55,8 @@
 		CDB06B5E2AF81F91008DB8FF /* NiScrollController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiScrollController.swift; sourceTree = "<group>"; };
 		CDB06B602AF84E1F008DB8FF /* NiSpaceDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiSpaceDocument.swift; sourceTree = "<group>"; };
 		CDB06B642AF9723F008DB8FF /* TabHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TabHeaderView.xib; sourceTree = "<group>"; };
+		CDD6B9322B13C57300C6144D /* ContentFrameTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentFrameTabView.swift; sourceTree = "<group>"; };
+		CDD6B9382B152A8000C6144D /* DBStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBStorage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +64,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CDD6B93E2B152D3F00C6144D /* SQLite in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -84,6 +90,7 @@
 		A1B8E6A42AAFB5EC00AC6566 /* ni */ = {
 			isa = PBXGroup;
 			children = (
+				CDD6B9342B1527B700C6144D /* dal */,
 				CDB06B5B2AF81CB6008DB8FF /* niSpace */,
 				A1E41BFD2ACB684F00338417 /* contentFrame */,
 				A1B8E6A52AAFB5EC00AC6566 /* AppDelegate.swift */,
@@ -108,6 +115,7 @@
 				A1E41BF92ACB57EF00338417 /* ContentFrameView.swift */,
 				A1E41BFE2ACB6B1300338417 /* FrameGenerator.swift */,
 				CDB06B642AF9723F008DB8FF /* TabHeaderView.xib */,
+				CDD6B9322B13C57300C6144D /* ContentFrameTabView.swift */,
 			);
 			path = contentFrame;
 			sourceTree = "<group>";
@@ -123,6 +131,14 @@
 				CDB06B602AF84E1F008DB8FF /* NiSpaceDocument.swift */,
 			);
 			path = niSpace;
+			sourceTree = "<group>";
+		};
+		CDD6B9342B1527B700C6144D /* dal */ = {
+			isa = PBXGroup;
+			children = (
+				CDD6B9382B152A8000C6144D /* DBStorage.swift */,
+			);
+			path = dal;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -141,6 +157,9 @@
 			dependencies = (
 			);
 			name = ni;
+			packageProductDependencies = (
+				CDD6B93D2B152D3F00C6144D /* SQLite */,
+			);
 			productName = ni;
 			productReference = A1B8E6A22AAFB5EC00AC6566 /* ni.app */;
 			productType = "com.apple.product-type.application";
@@ -169,6 +188,9 @@
 				Base,
 			);
 			mainGroup = A1B8E6992AAFB5EC00AC6566;
+			packageReferences = (
+				CDD6B93C2B152D3F00C6144D /* XCLocalSwiftPackageReference "../takahe-dependencies/SQLite.swift" */,
+			);
 			productRefGroup = A1B8E6A32AAFB5EC00AC6566 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -204,6 +226,7 @@
 				A14E8F212AD20A2600409DDF /* DefaultWindowController.swift in Sources */,
 				A1B8E6A62AAFB5EC00AC6566 /* AppDelegate.swift in Sources */,
 				CDB06B5D2AF81D54008DB8FF /* NiScroll.swift in Sources */,
+				CDD6B9332B13C57300C6144D /* ContentFrameTabView.swift in Sources */,
 				A1E41BFF2ACB6B1300338417 /* FrameGenerator.swift in Sources */,
 				A1B8E6AB2AAFB5EC00AC6566 /* ni.xcdatamodeld in Sources */,
 				A1F33E302AB7316300E2E7CD /* HomeView.swift in Sources */,
@@ -211,6 +234,7 @@
 				A1F33E2E2AB7299500E2E7CD /* DefaultWindow.swift in Sources */,
 				CDB06B612AF84E1F008DB8FF /* NiSpaceDocument.swift in Sources */,
 				A1E41C022ACC1DF600338417 /* ContentFrameHeader.swift in Sources */,
+				CDD6B9392B152A8000C6144D /* DBStorage.swift in Sources */,
 				A1603A722ADF21C3007A7FA0 /* HomeViewController.swift in Sources */,
 				A14E8F272AD5EAF800409DDF /* NiSpaceView.swift in Sources */,
 			);
@@ -427,6 +451,20 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		CDD6B93C2B152D3F00C6144D /* XCLocalSwiftPackageReference "../takahe-dependencies/SQLite.swift" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = "../takahe-dependencies/SQLite.swift";
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		CDD6B93D2B152D3F00C6144D /* SQLite */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = SQLite;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		A1B8E6A92AAFB5EC00AC6566 /* ni.xcdatamodeld */ = {

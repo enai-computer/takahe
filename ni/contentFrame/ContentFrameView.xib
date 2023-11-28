@@ -48,7 +48,7 @@
                             </tabViewItem>
                         </tabViewItems>
                     </tabView>
-                    <textField verticalHuggingPriority="750" fixedFrame="YES" contentType="url" translatesAutoresizingMaskIntoConstraints="NO" id="QFH-so-HLv" customClass="ContentFrameHeader" customModule="ni" customModuleProvider="target">
+                    <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" contentType="url" translatesAutoresizingMaskIntoConstraints="NO" id="QFH-so-HLv" customClass="ContentFrameHeader" customModule="ni" customModuleProvider="target">
                         <rect key="frame" x="45" y="386" width="357" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" borderStyle="bezel" usesSingleLineMode="YES" bezelStyle="round" id="2ic-Ap-kJE">

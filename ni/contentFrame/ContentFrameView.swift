@@ -22,7 +22,52 @@ struct CFConstants {
  }
 
 
-class ContentFrameView: NSBox{
+class ContentFrameView: NSBox, Codable{
+    
+    enum ContentFrameKeys: String, CodingKey {
+        case type, state, height, width, position, children
+    }
+    
+    private enum NiConentFrameState: String, Codable {
+        case minimised, expanded, fullscreen
+    }
+    
+    private struct NiCFTab: Codable{
+        var type: String = "CFTab"
+        var contentType: String = "web"
+        
+    }
+    
+    private struct NiCFPosition: Codable{
+        let viewStack: Int
+        let x: NiCoordinate
+        let y: NiCoordinate
+    }
+    
+    private struct NiCoordinate: Codable{
+        let px: CGFloat
+    }
+    
+    func encode(to encoder: Encoder) throws {
+        let pos = NiCFPosition(viewStack: self.getPositionInViewStack(), x: NiCoordinate(px: self.frame.origin.x), y: NiCoordinate(px: self.frame.origin.y))
+
+        
+        var container = encoder.container(keyedBy: ContentFrameKeys.self)
+        try container.encode("contentFrame", forKey: ContentFrameKeys.type)
+        try container.encode(NiConentFrameState.expanded, forKey: ContentFrameKeys.type)
+        try container.encode(pos, forKey: ContentFrameKeys.position)
+    }
+    
+    
+    required init(from decoder: Decoder) throws {
+
+        
+        let container = try decoder.container(keyedBy: ContentFrameKeys.self)
+        let state = try container.decode(NiConentFrameState.self, forKey: .state)
+        
+        super.init(frame: NSRect())
+    }
+    
     
     private var cursorDownPoint: CGPoint  = .zero
     private var cursorOnBorder: OnBorder = .no
@@ -235,4 +280,5 @@ class ContentFrameView: NSBox{
     func getPositionInViewStack() -> Int{
         return positionInViewStack
     }
+    
 }

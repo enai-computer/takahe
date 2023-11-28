@@ -54,11 +54,11 @@
                     <rect key="frame" x="0.0" y="0.0" width="800" height="431"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
                     <clipView key="contentView" id="yNc-sE-qT2">
-                        <rect key="frame" x="1" y="1" width="783" height="429"/>
+                        <rect key="frame" x="1" y="1" width="798" height="429"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view id="93b-vm-ObV" customClass="NiSpaceDocument" customModule="ni" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="768" height="414"/>
+                                <rect key="frame" x="0.0" y="0.0" width="783" height="414"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </view>
                         </subviews>
@@ -69,7 +69,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
                     <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="LWS-iL-QKc">
-                        <rect key="frame" x="784" y="1" width="15" height="429"/>
+                        <rect key="frame" x="783" y="1" width="16" height="429"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
                 </scrollView>
