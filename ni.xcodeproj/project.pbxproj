@@ -28,7 +28,7 @@
 		CDB06B612AF84E1F008DB8FF /* NiSpaceDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB06B602AF84E1F008DB8FF /* NiSpaceDocument.swift */; };
 		CDB06B652AF9723F008DB8FF /* TabHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDB06B642AF9723F008DB8FF /* TabHeaderView.xib */; };
 		CDD6B9332B13C57300C6144D /* ContentFrameTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD6B9322B13C57300C6144D /* ContentFrameTabView.swift */; };
-		CDD6B9392B152A8000C6144D /* DBStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD6B9382B152A8000C6144D /* DBStorage.swift */; };
+		CDD6B9392B152A8000C6144D /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD6B9382B152A8000C6144D /* Storage.swift */; };
 		CDD6B93E2B152D3F00C6144D /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = CDD6B93D2B152D3F00C6144D /* SQLite */; };
 		CDD6B9402B169F7700C6144D /* DocumentTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD6B93F2B169F7700C6144D /* DocumentTable.swift */; };
 		CDD6B9432B16A14300C6144D /* ContentTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD6B9422B16A14300C6144D /* ContentTable.swift */; };
@@ -60,7 +60,7 @@
 		CDB06B602AF84E1F008DB8FF /* NiSpaceDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiSpaceDocument.swift; sourceTree = "<group>"; };
 		CDB06B642AF9723F008DB8FF /* TabHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TabHeaderView.xib; sourceTree = "<group>"; };
 		CDD6B9322B13C57300C6144D /* ContentFrameTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentFrameTabView.swift; sourceTree = "<group>"; };
-		CDD6B9382B152A8000C6144D /* DBStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBStorage.swift; sourceTree = "<group>"; };
+		CDD6B9382B152A8000C6144D /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		CDD6B93F2B169F7700C6144D /* DocumentTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentTable.swift; sourceTree = "<group>"; };
 		CDD6B9422B16A14300C6144D /* ContentTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentTable.swift; sourceTree = "<group>"; };
 		CDD6B9442B16A1A200C6144D /* CachedWebTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachedWebTable.swift; sourceTree = "<group>"; };
@@ -100,7 +100,6 @@
 			children = (
 				CDD6B9342B1527B700C6144D /* dal */,
 				CDB06B5B2AF81CB6008DB8FF /* niSpace */,
-				A1E41BFD2ACB684F00338417 /* contentFrame */,
 				A1B8E6A52AAFB5EC00AC6566 /* AppDelegate.swift */,
 				A1B8E6AC2AAFB5EF00AC6566 /* Assets.xcassets */,
 				A1B8E6AE2AAFB5EF00AC6566 /* Main.storyboard */,
@@ -131,6 +130,7 @@
 		CDB06B5B2AF81CB6008DB8FF /* niSpace */ = {
 			isa = PBXGroup;
 			children = (
+				A1E41BFD2ACB684F00338417 /* contentFrame */,
 				A14E8F242AD5EADF00409DDF /* NiSpaceView.xib */,
 				A14E8F262AD5EAF800409DDF /* NiSpaceView.swift */,
 				A14E8F282AD5EB1600409DDF /* NiSpaceViewController.swift */,
@@ -145,7 +145,7 @@
 			isa = PBXGroup;
 			children = (
 				CDD6B9412B169FC300C6144D /* tables */,
-				CDD6B9382B152A8000C6144D /* DBStorage.swift */,
+				CDD6B9382B152A8000C6144D /* Storage.swift */,
 			);
 			path = dal;
 			sourceTree = "<group>";
@@ -257,7 +257,7 @@
 				CDD6B9402B169F7700C6144D /* DocumentTable.swift in Sources */,
 				CDD6B9452B16A1A200C6144D /* CachedWebTable.swift in Sources */,
 				A1E41C022ACC1DF600338417 /* ContentFrameHeader.swift in Sources */,
-				CDD6B9392B152A8000C6144D /* DBStorage.swift in Sources */,
+				CDD6B9392B152A8000C6144D /* Storage.swift in Sources */,
 				CDD6B9472B16A29100C6144D /* DocumentIdContentIdTable.swift in Sources */,
 				A1603A722ADF21C3007A7FA0 /* HomeViewController.swift in Sources */,
 				A14E8F272AD5EAF800409DDF /* NiSpaceView.swift in Sources */,

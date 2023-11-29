@@ -61,7 +61,6 @@ class ContentFrameView: NSBox, Codable{
     
     required init(from decoder: Decoder) throws {
 
-        
         let container = try decoder.container(keyedBy: ContentFrameKeys.self)
         let state = try container.decode(NiConentFrameState.self, forKey: .state)
         
@@ -91,6 +90,8 @@ class ContentFrameView: NSBox, Codable{
     
     
     var wkContent: WKWebView? = nil
+    private var niContentId: UUID? = nil
+    
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
@@ -119,6 +120,12 @@ class ContentFrameView: NSBox, Codable{
         self.wkContent = newContentView
     }
 
+    func storeContent(){
+        if(niContentId == nil){
+            niContentId = UUID()
+        }
+        CachedWebTable.insert(id: niContentId!, title: wkContent?.title, url: wkContent!.url!.absoluteString)
+    }
     
     /**
      * window like functions (moving and resizing) here:

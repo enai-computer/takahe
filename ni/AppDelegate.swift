@@ -6,13 +6,10 @@ import Cocoa
 class AppDelegate: NSObject, NSApplicationDelegate {
 
     var window: NSWindow!
+    var storage: Storage?
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        do {
-            try DBStorage()
-        }catch{
-            print("Failed to init SQLight.")
-        }
+        Storage.db
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {

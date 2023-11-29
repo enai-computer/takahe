@@ -27,11 +27,7 @@ class NiSpaceViewController: NSViewController{
     
     @IBAction func updateSpaceName(_ sender: NSTextField) {
         
-        if(niSpaceID == nil){
-            niSpaceID = UUID()
-        }
         niSpaceName = sender.stringValue
-        
         sender.isEditable = false
     }
     
@@ -43,7 +39,9 @@ class NiSpaceViewController: NSViewController{
     
     
     @IBAction func returnToHome(_ sender: NSButton) {
-        //TODO: save
+        
+        storeSpace()
+        
         let appDelegate = NSApp.delegate as! AppDelegate
         appDelegate.switchToHome()
     }
@@ -61,7 +59,20 @@ class NiSpaceViewController: NSViewController{
         searchView.setFrameOwner(self.niDocument)
     }
     
-    
-    
+    func storeSpace(){
+        if(niSpaceID == nil){
+            niSpaceID = UUID()
+        }
+        
+        if(niSpaceName == nil){
+            let displayFormatter = DateFormatter()
+            displayFormatter.dateFormat = "yyyy-MM-dd"
+            niSpaceName = "Space from " + displayFormatter.string(from: Date())
+        }
+
+        DocumentTable.insertDoc(id: niSpaceID!, name: niSpaceName!, document: nil)
+        
+        niDocument.activeNiFrames.first?.storeContent()
+    }
     
 }

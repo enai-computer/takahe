@@ -11,7 +11,8 @@ import Cocoa
 class ContentTable{
     
     static let table = Table("content")
-    static let id = Expression<String>("id")
+    static let id = Expression<UUID>("id")
+    static let title = Expression<String?>("title")
     static let type = Expression<String>("type")
     static let updatedAt = Expression<Double>("updated_at")
     static let localStorageLocation = Expression<String?>("local_storage_location")
@@ -20,10 +21,26 @@ class ContentTable{
     static func create(db: Connection) throws {
         try db.run(table.create(ifNotExists: true){ t in
             t.column(id, primaryKey: true)
+            t.column(title)
             t.column(type)
-            t.column(updatedAt, defaultValue: NSDate().timeIntervalSince1970)
+            t.column(updatedAt)
             t.column(localStorageLocation)
             t.column(refCounter, defaultValue: 1)
         })
+    }
+    
+    static func insert(id: UUID, type: String, title: String?){
+        do{
+            try Storage.db.spacesDB.run(
+                table.insert(
+                    self.id <- id,
+                    self.title <- title,
+                    self.type <- type,
+                    self.updatedAt <- Date().timeIntervalSince1970
+                )
+            )
+        }catch{
+            print("Failed insert")
+        }
     }
 }

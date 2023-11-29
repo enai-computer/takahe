@@ -7,26 +7,43 @@
 
 import Cocoa
 import SQLite
+import WebKit
 
 class CachedWebTable{
     
     static let table = Table("cached_Web")
-    static let contentId = Expression<String>("content_id")
+    static let contentId = Expression<UUID>("content_id")
     static let url = Expression<String>("url")
     static let updatedAt = Expression<Double>("updated_at")
-    static let cookies = Expression<String?>("cookies")
+    static let cache = Expression<SQLite.Blob?>("cache")
     static let htmlWebsite = Expression<String?>("html_website")
-    static let history = Expression<String?>("history")
+//    static let history = Expression<String?>("history")
     
     static func create(db: Connection) throws {
         try db.run(table.create(ifNotExists: true){ t in
             t.column(contentId, primaryKey: true)
             t.column(url)
-            t.column(updatedAt, defaultValue: NSDate().timeIntervalSince1970)
-            t.column(cookies)
+            t.column(updatedAt)
+            t.column(cache)
             t.column(htmlWebsite)
-            t.column(history)
+//            t.column(history)
             t.foreignKey(contentId, references: ContentTable.table, ContentTable.id, delete: .cascade)
         })
+    }
+    
+    static func insert(id: UUID, title: String?, url: String){
+        ContentTable.insert(id: id, type: "web", title: title)
+        
+        do{
+            try Storage.db.spacesDB.run(
+                table.insert(
+                    self.contentId <- id,
+                    self.url <- url,
+                    self.updatedAt <- Date().timeIntervalSince1970
+                )
+            )
+        }catch{
+            print("Failed insert")
+        }
     }
 }
