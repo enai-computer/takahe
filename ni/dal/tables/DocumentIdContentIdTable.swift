@@ -19,6 +19,8 @@ class DocumentIdContentIdTable{
             t.column(documentId)
             t.column(contentId)
             t.primaryKey(documentId, contentId)
+            t.foreignKey(contentId, references: ContentTable.table, ContentTable.id, delete: .cascade)
+            t.foreignKey(documentId, references: DocumentTable.table, DocumentTable.id, delete: .cascade)
         })
     }
 }
