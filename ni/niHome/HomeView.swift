@@ -5,4 +5,5 @@ import Cocoa
 class HomeView: NSView{
     
     
+    @IBOutlet var ListOfSpaces: NSView!
 }

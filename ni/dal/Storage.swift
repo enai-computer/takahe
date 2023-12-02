@@ -37,6 +37,7 @@ class Storage{
     }
     
     private func createSpacesTablesIfNotExist(db: Connection) throws{
+        try SchemaHistoryTable.create(db: db)
         try DocumentTable.create(db: db)
         try ContentTable.create(db: db)
         try CachedWebTable.create(db: db)

@@ -40,7 +40,7 @@ class ContentTable{
                 )
             )
         }catch{
-            print("Failed insert")
+            print("Failed to insert into ContentTable")
         }
     }
 }

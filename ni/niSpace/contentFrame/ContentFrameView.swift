@@ -120,11 +120,11 @@ class ContentFrameView: NSBox, Codable{
         self.wkContent = newContentView
     }
 
-    func storeContent(){
+    func storeContent(documentId: UUID){
         if(niContentId == nil){
             niContentId = UUID()
         }
-        CachedWebTable.insert(id: niContentId!, title: wkContent?.title, url: wkContent!.url!.absoluteString)
+        CachedWebTable.insert(documentId: documentId, id: niContentId!, title: wkContent?.title, url: wkContent!.url!.absoluteString)
     }
     
     /**

@@ -23,4 +23,17 @@ class DocumentIdContentIdTable{
             t.foreignKey(documentId, references: DocumentTable.table, DocumentTable.id, delete: .cascade)
         })
     }
+    
+    static func insert(documentId: UUID, contentId: UUID){
+        do{
+            try Storage.db.spacesDB.run(
+                table.insert(
+                    self.documentId <- documentId,
+                    self.contentId <- contentId
+                )
+            )
+        }catch{
+            print("Failed insert into DocumentIdContentIdTable")
+        }
+    }
 }

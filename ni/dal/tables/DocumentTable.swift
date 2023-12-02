@@ -8,6 +8,12 @@
 import SQLite
 import Cocoa
 
+struct NiDocument{
+    let id: UUID
+    var name: String?
+    var updatedAt: Date
+}
+
 class DocumentTable{
         
     static let table = Table("document")
@@ -19,6 +25,7 @@ class DocumentTable{
     static let updatedAt = Expression<Double>("updated_at")
     static let updatedBy = Expression<UUID?>("updated_by")
     static let document = Expression<String?>("document")
+    //TODO: bool if top level document or has a parent
     
     static func create(db: Connection) throws{
         try db.run(table.create(ifNotExists: true){ t in
@@ -45,11 +52,22 @@ class DocumentTable{
                 )
             )
         }catch{
-            print("Failed insert")
+            print("Failed to insert into DocumentTable")
         }
     }
     
-//    static func fetchListofDocs(limit: Int = 10){
-//        return table.limit(limit).order(updatedAt.desc)
-//    }
+    static func fetchListofDocs(limit: Int = 10) -> [NiDocument]{
+        var res: [NiDocument] = []
+        
+        do{
+            for record in try Storage.db.spacesDB.prepare(table.select(id, name, updatedAt).limit(limit).order(updatedAt.desc)){
+                res.append(NiDocument(id: try record.get(id), name: try record.get(name), updatedAt: Date(timeIntervalSince1970: try record.get(updatedAt))))
+            }
+        }catch{
+            print("Failed to fetch List of last used Docs or a column: \(error)")
+        }
+        return res
+    }
 }
+
+

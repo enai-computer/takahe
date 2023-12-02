@@ -3,6 +3,17 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "NiSpaceViewController.viewDidLoad():NiSpaceViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "scrollView.documentView?.frame">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "NiSpaceDocument.mouseDown(with:):NiSpaceDocument.swift">
+      </ContextState>
+      <ContextState
          contextName = "ContentFrameView.mouseDown(with:):ContentFrameView.swift">
          <PersistentStrings>
             <PersistentString
@@ -14,9 +25,6 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "NiSpaceDocument.mouseDown(with:):NiSpaceDocument.swift">
-      </ContextState>
-      <ContextState
          contextName = "ContentFrameView.repositionView(_:_:):ContentFrameView.swift">
          <PersistentStrings>
             <PersistentString
@@ -25,10 +33,10 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "NiSpaceViewController.viewDidLoad():NiSpaceViewController.swift">
+         contextName = "ContentFrameView.isOnBoarder(_:):ContentFrameView.swift">
          <PersistentStrings>
             <PersistentString
-               value = "scrollView.documentView?.frame">
+               value = "frame.maxY">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -47,12 +55,26 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "ContentFrameView.isOnBoarder(_:):ContentFrameView.swift">
+         contextName = "NiTableCellView.mouseDown(with:):HomeViewController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "frame.maxY">
+               value = "event.clickCount">
             </PersistentString>
          </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "HomeViewController.tableView(_:objectValueFor:row:):HomeViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "vw.acceptsFirstResponder">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "HomeViewController.tableView(_:viewFor:row:):HomeViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "DBStorage.init():DBStorage.swift">
       </ContextState>
       <ContextState
          contextName = "NiSpaceDocument.inFrame(_:):NiSpaceDocument.swift">
@@ -61,6 +83,9 @@
                value = "niFrame.frame">
             </PersistentString>
          </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in Expressible.asSQL():Expression.swift">
       </ContextState>
    </ContextStates>
 </VariablesViewState>

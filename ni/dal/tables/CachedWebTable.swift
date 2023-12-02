@@ -31,7 +31,7 @@ class CachedWebTable{
         })
     }
     
-    static func insert(id: UUID, title: String?, url: String){
+    static func insert(documentId: UUID, id: UUID, title: String?, url: String){
         ContentTable.insert(id: id, type: "web", title: title)
         
         do{
@@ -43,7 +43,9 @@ class CachedWebTable{
                 )
             )
         }catch{
-            print("Failed insert")
+            print("Failed to insert into CachedWebTable")
         }
+        
+        DocumentIdContentIdTable.insert(documentId: documentId, contentId: id)
     }
 }

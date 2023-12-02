@@ -72,7 +72,7 @@ class NiSpaceViewController: NSViewController{
 
         DocumentTable.insertDoc(id: niSpaceID!, name: niSpaceName!, document: nil)
         
-        niDocument.activeNiFrames.first?.storeContent()
+        niDocument.activeNiFrames.first?.storeContent(documentId: niSpaceID!)
     }
     
 }
