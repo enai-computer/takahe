@@ -80,7 +80,7 @@ class ContentFrameView: NSBox{
         if(niContentId == nil){
             niContentId = UUID()
         }
-        CachedWebTable.insert(documentId: documentId, id: niContentId!, title: wkContent?.title, url: wkContent!.url!.absoluteString)
+        CachedWebTable.upsert(documentId: documentId, id: niContentId!, title: wkContent?.title, url: wkContent!.url!.absoluteString)
     }
     
     /**

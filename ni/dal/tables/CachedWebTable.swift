@@ -31,15 +31,16 @@ class CachedWebTable{
         })
     }
     
-    static func insert(documentId: UUID, id: UUID, title: String?, url: String){
+    static func upsert(documentId: UUID, id: UUID, title: String?, url: String){
         ContentTable.insert(id: id, type: "web", title: title)
         
         do{
             try Storage.db.spacesDB.run(
-                table.insert(
+                table.upsert(
                     self.contentId <- id,
                     self.url <- url,
-                    self.updatedAt <- Date().timeIntervalSince1970
+                    self.updatedAt <- Date().timeIntervalSince1970,
+                    onConflictOf: self.contentId
                 )
             )
         }catch{

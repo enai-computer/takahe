@@ -35,6 +35,7 @@
 		CDD6B9452B16A1A200C6144D /* CachedWebTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD6B9442B16A1A200C6144D /* CachedWebTable.swift */; };
 		CDD6B9472B16A29100C6144D /* DocumentIdContentIdTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD6B9462B16A29100C6144D /* DocumentIdContentIdTable.swift */; };
 		CDD6B9522B1BFE8B00C6144D /* NiDocumentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD6B9512B1BFE8B00C6144D /* NiDocumentModel.swift */; };
+		CDD6B9562B1C326A00C6144D /* ContentFrameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD6B9552B1C326A00C6144D /* ContentFrameController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -67,6 +68,7 @@
 		CDD6B9442B16A1A200C6144D /* CachedWebTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachedWebTable.swift; sourceTree = "<group>"; };
 		CDD6B9462B16A29100C6144D /* DocumentIdContentIdTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentIdContentIdTable.swift; sourceTree = "<group>"; };
 		CDD6B9512B1BFE8B00C6144D /* NiDocumentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiDocumentModel.swift; sourceTree = "<group>"; };
+		CDD6B9552B1C326A00C6144D /* ContentFrameController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentFrameController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +126,7 @@
 				A1E41BFE2ACB6B1300338417 /* FrameGenerator.swift */,
 				CDB06B642AF9723F008DB8FF /* TabHeaderView.xib */,
 				CDD6B9322B13C57300C6144D /* ContentFrameTabView.swift */,
+				CDD6B9552B1C326A00C6144D /* ContentFrameController.swift */,
 			);
 			path = contentFrame;
 			sourceTree = "<group>";
@@ -266,6 +269,7 @@
 				A1B8E6A62AAFB5EC00AC6566 /* AppDelegate.swift in Sources */,
 				CDB06B5D2AF81D54008DB8FF /* NiScroll.swift in Sources */,
 				CDD6B9332B13C57300C6144D /* ContentFrameTabView.swift in Sources */,
+				CDD6B9562B1C326A00C6144D /* ContentFrameController.swift in Sources */,
 				A1E41BFF2ACB6B1300338417 /* FrameGenerator.swift in Sources */,
 				A1B8E6AB2AAFB5EC00AC6566 /* ni.xcdatamodeld in Sources */,
 				A1F33E302AB7316300E2E7CD /* HomeView.swift in Sources */,
