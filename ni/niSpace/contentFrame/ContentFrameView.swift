@@ -244,4 +244,29 @@ class ContentFrameView: NSBox{
         return positionInViewStack
     }
     
+    func toNiContentFrameModel() -> NiDocumentObjectModel{
+        if(niContentId == nil){
+            niContentId = UUID()
+        }
+        
+        return NiDocumentObjectModel(
+            type: NiDocumentObjectTypes.contentFrame,
+            data: NiContentFrameModel(
+                state: NiConentFrameState.expanded,
+                height: NiCoordinate(px: self.frame.height),
+                width: NiCoordinate(px: self.frame.width),
+                position: NiViewPosition(
+                    posInViewStack: self.positionInViewStack,
+                    x: NiCoordinate(px: self.frame.origin.x),
+                    y: NiCoordinate(px: self.frame.origin.y)
+                ),
+                children: [
+                    NiCFTabModel(
+                        id: self.niContentId!,
+                        contentType: NiCFTabContentType.web,
+                        active: true,
+                        position: 0)
+                ])
+            )
+    }
 }

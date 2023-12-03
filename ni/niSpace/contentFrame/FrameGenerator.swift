@@ -36,6 +36,19 @@ func openWebsite(_ urlStr: String, owner: Any?) -> ContentFrameView {
     return frame
 }
 
+func openWebsite(urlStr: String, owner: Any?, width: NiCoordinate, height: NiCoordinate, position: NiViewPosition) -> ContentFrameView{
+    
+    let wkView = WKWebView(frame: NSRect(x: position.x.px, y: position.y.px, width: width.px, height: height.px), configuration: WKWebViewConfiguration())
+    
+    let urlReq = URLRequest(url: URL(string: urlStr)!)
+    wkView.load(urlReq)
+    
+    let frame: ContentFrameView = NSView.loadFromNib(nibName: "ContentFrameView", owner: owner)! as! ContentFrameView
+    frame.contentHeader.stringValue = urlStr
+    frame.setContent(wkView)
+
+    return frame
+}
 
 extension NSView {
 

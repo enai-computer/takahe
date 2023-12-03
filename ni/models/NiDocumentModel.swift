@@ -39,11 +39,11 @@ class NiDocumentObjectModel: Codable{
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: NiDocumentObjectModelKeys.self)
         self.type = try container.decode(NiDocumentObjectTypes.self, forKey: NiDocumentObjectModelKeys.type)
-        self.data = switch self.type {
+        switch self.type {
             case .document:
-                try container.decode(NiDocumentModel.self, forKey: NiDocumentObjectModelKeys.data)
+                self.data = try container.decode(NiDocumentModel.self, forKey: NiDocumentObjectModelKeys.data)
             case .contentFrame:
-                try container.decode(NiContentFrameModel.self, forKey: NiDocumentObjectModelKeys.data)
+                self.data = try container.decode(NiContentFrameModel.self, forKey: NiDocumentObjectModelKeys.data)
         }
     }
     

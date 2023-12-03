@@ -579,5 +579,436 @@
             landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "6036BD4B-DDD5-4D02-9356-E3F330E96FD0"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ni/niSpace/NiSpaceViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "104"
+            endingLineNumber = "104"
+            landmarkName = "genJson()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "6036BD4B-DDD5-4D02-9356-E3F330E96FD0 - 35fd9f94cdf9211e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ni.NiSpaceViewController.genJson() -&gt; Swift.String"
+                  moduleName = "ni"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Patrick/Workbench/takahe/ni/niSpace/NiSpaceViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "84"
+                  endingLineNumber = "84"
+                  offsetFromSymbolStart = "836">
+               </Location>
+               <Location
+                  uuid = "6036BD4B-DDD5-4D02-9356-E3F330E96FD0 - 35fd9f94cdf9213d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ni.NiSpaceViewController.genJson() -&gt; Swift.String"
+                  moduleName = "ni"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Patrick/Workbench/takahe/ni/niSpace/NiSpaceViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "83"
+                  endingLineNumber = "83"
+                  offsetFromSymbolStart = "372">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "EBF8D61F-61CA-4933-8032-DE81D43900B5"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ni/niHome/HomeViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "71"
+            endingLineNumber = "71"
+            landmarkName = "mouseDown(with:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5E31C615-E9C4-4E8A-B723-AB98D4EE711D"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ni/niSpace/NiSpaceViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "58"
+            endingLineNumber = "58"
+            landmarkName = "loadStoredSpace(niSpaceID:name:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F0951AF0-E466-40D7-B536-70F0E8F09B33"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ni/niSpace/NiSpaceViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "57"
+            endingLineNumber = "57"
+            landmarkName = "loadStoredSpace(niSpaceID:name:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "DE1E656D-8A4A-4C6E-BC03-B129143FEC53"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ni/AppDelegate.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "33"
+            endingLineNumber = "33"
+            landmarkName = "loadExistingSpace(niSpaceID:name:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "908282E4-FD9E-4715-BE16-24BCF1260038"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ni/niSpace/NiSpaceViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "62"
+            endingLineNumber = "62"
+            landmarkName = "loadStoredSpace(niSpaceID:name:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "908282E4-FD9E-4715-BE16-24BCF1260038 - 90e576a329297ccd"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ni.NiSpaceViewController.storeSpace() -&gt; ()"
+                  moduleName = "ni"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Patrick/Workbench/takahe/ni/niSpace/NiSpaceViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "64"
+                  endingLineNumber = "64"
+                  offsetFromSymbolStart = "452">
+               </Location>
+               <Location
+                  uuid = "908282E4-FD9E-4715-BE16-24BCF1260038 - 52abf67d5c7d45f5"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ni.NiSpaceViewController.loadStoredSpace(niSpaceID: Foundation.UUID, name: Swift.String) -&gt; ()"
+                  moduleName = "ni"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Patrick/Workbench/takahe/ni/niSpace/NiSpaceViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "62"
+                  endingLineNumber = "62"
+                  offsetFromSymbolStart = "1168">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "0E1A7893-711D-482D-8ADB-5CB30A75EA49"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ni/niSpace/NiSpaceViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "59"
+            endingLineNumber = "59"
+            landmarkName = "loadStoredSpace(niSpaceID:name:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "0E1A7893-711D-482D-8ADB-5CB30A75EA49 - 321e9cf0ea149143"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ni.NiSpaceViewController.loadStoredSpace(niSpaceID: Foundation.UUID) -&gt; ()"
+                  moduleName = "ni"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Patrick/Workbench/takahe/ni/niSpace/NiSpaceViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "59"
+                  endingLineNumber = "59"
+                  offsetFromSymbolStart = "1304">
+               </Location>
+               <Location
+                  uuid = "0E1A7893-711D-482D-8ADB-5CB30A75EA49 - 52abf67d5c7d4550"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ni.NiSpaceViewController.loadStoredSpace(niSpaceID: Foundation.UUID, name: Swift.String) -&gt; ()"
+                  moduleName = "ni"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Patrick/Workbench/takahe/ni/niSpace/NiSpaceViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "59"
+                  endingLineNumber = "59"
+                  offsetFromSymbolStart = "920">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "90765138-331B-4581-B633-FC61C2B7A089"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ni/niSpace/NiSpaceViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "56"
+            endingLineNumber = "56"
+            landmarkName = "loadStoredSpace(niSpaceID:name:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "90765138-331B-4581-B633-FC61C2B7A089 - 321e9cf0ea1492bc"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ni.NiSpaceViewController.loadStoredSpace(niSpaceID: Foundation.UUID) -&gt; ()"
+                  moduleName = "ni"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Patrick/Workbench/takahe/ni/niSpace/NiSpaceViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "56"
+                  endingLineNumber = "56"
+                  offsetFromSymbolStart = "824">
+               </Location>
+               <Location
+                  uuid = "90765138-331B-4581-B633-FC61C2B7A089 - 52abf67d5c7d46af"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ni.NiSpaceViewController.loadStoredSpace(niSpaceID: Foundation.UUID, name: Swift.String) -&gt; ()"
+                  moduleName = "ni"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Patrick/Workbench/takahe/ni/niSpace/NiSpaceViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "56"
+                  endingLineNumber = "56"
+                  offsetFromSymbolStart = "448">
+               </Location>
+               <Location
+                  uuid = "90765138-331B-4581-B633-FC61C2B7A089 - 52abf67d5c7d46af"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ni.NiSpaceViewController.loadStoredSpace(niSpaceID: Foundation.UUID, name: Swift.String) -&gt; ()"
+                  moduleName = "ni"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Patrick/Workbench/takahe/ni/niSpace/NiSpaceViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "56"
+                  endingLineNumber = "56"
+                  offsetFromSymbolStart = "452">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "FC2E8997-D58C-470B-B700-E25A4D063155"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ni/models/NiDocumentModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "43"
+            endingLineNumber = "43"
+            landmarkName = "init(from:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C0887DAA-5EAC-4D69-B13B-5F48FA1CAA77"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ni/models/NiDocumentModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "44"
+            endingLineNumber = "44"
+            landmarkName = "init(from:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "C0887DAA-5EAC-4D69-B13B-5F48FA1CAA77 - 9ebc7266d3739bc3"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ni.NiDocumentObjectModel.init(from: Swift.Decoder) throws -&gt; ni.NiDocumentObjectModel"
+                  moduleName = "ni"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Patrick/Workbench/takahe/ni/models/NiDocumentModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "44"
+                  endingLineNumber = "44"
+                  offsetFromSymbolStart = "632">
+               </Location>
+               <Location
+                  uuid = "C0887DAA-5EAC-4D69-B13B-5F48FA1CAA77 - 9ebc7266d3739bc3"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ni.NiDocumentObjectModel.init(from: Swift.Decoder) throws -&gt; ni.NiDocumentObjectModel"
+                  moduleName = "ni"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Patrick/Workbench/takahe/ni/models/NiDocumentModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "44"
+                  endingLineNumber = "44"
+                  offsetFromSymbolStart = "680">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "57E5B716-92CE-44E5-8BB4-43281A810406"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ni/models/NiDocumentModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "46"
+            endingLineNumber = "46"
+            landmarkName = "init(from:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "57E5B716-92CE-44E5-8BB4-43281A810406 - 9ebc7266d3739b81"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ni.NiDocumentObjectModel.init(from: Swift.Decoder) throws -&gt; ni.NiDocumentObjectModel"
+                  moduleName = "ni"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Patrick/Workbench/takahe/ni/models/NiDocumentModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "46"
+                  endingLineNumber = "46"
+                  offsetFromSymbolStart = "840">
+               </Location>
+               <Location
+                  uuid = "57E5B716-92CE-44E5-8BB4-43281A810406 - 9ebc7266d3739b81"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ni.NiDocumentObjectModel.init(from: Swift.Decoder) throws -&gt; ni.NiDocumentObjectModel"
+                  moduleName = "ni"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Patrick/Workbench/takahe/ni/models/NiDocumentModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "46"
+                  endingLineNumber = "46"
+                  offsetFromSymbolStart = "976">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "BE12C28E-5438-4509-BBC1-373908382E5A"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ni/niSpace/NiSpaceViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "68"
+            endingLineNumber = "68"
+            landmarkName = "loadStoredSpace(niSpaceID:name:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "BE12C28E-5438-4509-BBC1-373908382E5A - 52abf67d5c7d441a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ni.NiSpaceViewController.loadStoredSpace(niSpaceID: Foundation.UUID, name: Swift.String) -&gt; ()"
+                  moduleName = "ni"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Patrick/Workbench/takahe/ni/niSpace/NiSpaceViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "69"
+                  endingLineNumber = "69"
+                  offsetFromSymbolStart = "1552">
+               </Location>
+               <Location
+                  uuid = "BE12C28E-5438-4509-BBC1-373908382E5A - 52abf67d5c7d443b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ni.NiSpaceViewController.loadStoredSpace(niSpaceID: Foundation.UUID, name: Swift.String) -&gt; ()"
+                  moduleName = "ni"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Patrick/Workbench/takahe/ni/niSpace/NiSpaceViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "68"
+                  endingLineNumber = "68"
+                  offsetFromSymbolStart = "1680">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

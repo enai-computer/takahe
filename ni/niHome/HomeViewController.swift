@@ -67,7 +67,8 @@ class NiTableCellView: NSView{
     
     override func mouseDown(with event: NSEvent) {
         if (event.clickCount == 2){
-            print("Works!")
+            let appDelegate = NSApp.delegate as! AppDelegate
+            appDelegate.loadExistingSpace(niSpaceID: data!.id, name: data!.name!)
         }
     }
 }

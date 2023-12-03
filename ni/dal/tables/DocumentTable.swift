@@ -69,14 +69,16 @@ class DocumentTable{
         return res
     }
     
-//    static func fetchDocument(id: UUID)->JSON{
-//        
-//        let res: NiDocumentMetaData
-//        
-//        Storage.db.spacesDB.prepare(table.select(name, ))
-//        
-//        return res
-//    }
+    static func fetchDocumentModel(id: UUID) -> String?{
+        do{
+            for record in try Storage.db.spacesDB.prepare(table.select(document).filter(self.id == id)){
+                return try record.get(document)
+            }
+        }catch{
+            print("Failed to fetch JSON document for id: \(id) with error: \(error)")
+        }
+        return nil
+    }
 }
 
 

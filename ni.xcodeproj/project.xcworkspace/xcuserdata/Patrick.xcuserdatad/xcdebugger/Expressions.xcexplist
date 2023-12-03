@@ -58,6 +58,9 @@
          contextName = "NiTableCellView.mouseDown(with:):HomeViewController.swift">
          <PersistentStrings>
             <PersistentString
+               value = "data!.id">
+            </PersistentString>
+            <PersistentString
                value = "event.clickCount">
             </PersistentString>
          </PersistentStrings>
@@ -74,13 +77,32 @@
          contextName = "HomeViewController.tableView(_:viewFor:row:):HomeViewController.swift">
       </ContextState>
       <ContextState
+         contextName = "NiSpaceViewController.genJson():NiSpaceViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "niDocument.activeNiFrames">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "DBStorage.init():DBStorage.swift">
+      </ContextState>
+      <ContextState
+         contextName = "NiTableCellView.data.getter:HomeViewController.swift">
       </ContextState>
       <ContextState
          contextName = "NiSpaceDocument.inFrame(_:):NiSpaceDocument.swift">
          <PersistentStrings>
             <PersistentString
                value = "niFrame.frame">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "NiSpaceViewController.loadStoredSpace(niSpaceID:):NiSpaceViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "docModel">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

@@ -49,9 +49,36 @@ class NiSpaceViewController: NSViewController{
         searchView.setFrameOwner(self.niDocument)
     }
     
-    func loadStoredSpace(niSpaceID: UUID){
+    func loadStoredSpace(niSpaceID: UUID, name: String){
+        self.setSpaceName(name)
         self.niSpaceID = niSpaceID
-//        DocumentTable.fetchDocument(id: niSpaceID)
+        do{
+            let docJson = (DocumentTable.fetchDocumentModel(id: niSpaceID)?.data(using: .utf8))!
+            let jsonDecoder = JSONDecoder()
+            let docModel = try jsonDecoder.decode(NiDocumentObjectModel.self, from: docJson)
+            if (docModel.type == NiDocumentObjectTypes.document){
+                let data = docModel.data as! NiDocumentModel
+                let children = data.children as! [NiDocumentObjectModel]
+                for child in children{
+                    let childData = child.data as! NiContentFrameModel
+                    recreateContentFrame(data: childData)
+                }
+            }
+        }catch{
+            print(error)
+        }
+    }
+    
+    private func recreateContentFrame(data: NiContentFrameModel){
+        
+        let url = CachedWebTable.fetchURL(contentId: data.children[0].id)
+        let storedWebsite = openWebsite(urlStr: url, owner: self.niDocument, width: data.width, height: data.height, position: data.position)
+        self.niDocument.addNiFrame(storedWebsite)
+        storedWebsite.setFrameOwner(self.niDocument)
+        storedWebsite.frame.size.width = data.width.px
+        storedWebsite.frame.size.height = data.height.px
+        storedWebsite.frame.origin.x = data.position.x.px
+        storedWebsite.frame.origin.y = data.position.y.px
     }
     
     func storeSpace(){
@@ -73,13 +100,19 @@ class NiSpaceViewController: NSViewController{
     }
     
     func genJson() -> String{
+        
+        var children: [NiDocumentObjectModel] = []
+        for frame in niDocument.activeNiFrames {
+            children.append(frame.toNiContentFrameModel())
+        }
+            
         let toEncode = NiDocumentObjectModel(
             type: NiDocumentObjectTypes.document,
             data: NiDocumentModel(
                 id: niSpaceID!,
                 height: self.niDocument.frame.height,
                 width: self.niDocument.frame.width,
-                children: []
+                children: children
             )
         )
         let jsonEncoder = JSONEncoder()
@@ -87,11 +120,11 @@ class NiSpaceViewController: NSViewController{
         
         do{
             let jsonData = try jsonEncoder.encode(toEncode)
-            return String(data: jsonData, encoding: .utf8) ?? "FAILED"
+            return String(data: jsonData, encoding: .utf8) ?? "FAILED GENERATING JSON"
         }catch{
             print(error)
         }
-        return "FAILED"
+        return "FAILED GENERATING JSON"
     }
     
 }

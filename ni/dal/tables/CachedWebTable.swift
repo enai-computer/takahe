@@ -48,4 +48,15 @@ class CachedWebTable{
         
         DocumentIdContentIdTable.insert(documentId: documentId, contentId: id)
     }
+    
+    static func fetchURL(contentId: UUID) -> String{
+        do{
+            for record in try Storage.db.spacesDB.prepare(table.select(url).filter(self.contentId == contentId)){
+                return try record.get(url)
+            }
+        }catch{
+            print("failed to fetch url for content \(contentId) with error: \(error)")
+        }
+        return "https://enai.io"
+    }
 }
