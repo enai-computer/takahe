@@ -14,11 +14,14 @@ func runGoogleSearch(_ searchTerm: String, owner: Any?) -> ContentFrameView {
     print(searchTerm)
     wkView.load(urlReq)
     
-    let niFrame: ContentFrameView = NSView.loadFromNib(nibName: "ContentFrameView", owner: owner)! as! ContentFrameView
-    niFrame.contentHeader.stringValue = urlStr
-    niFrame.setContent(wkView)
+//    let niFrame: ContentFrameView = NSView.loadFromNib(nibName: "ContentFrameView", owner: owner)! as! ContentFrameView
+    let frameController = ContentFrameController()
+    frameController.loadView()
+    let frame = frameController.view as! ContentFrameView
+    frame.contentHeader.stringValue = urlStr
+    frame.setContent(wkView)
 
-    return niFrame
+    return frame
 }
 
 func openWebsite(_ urlStr: String, owner: Any?) -> ContentFrameView {
@@ -29,7 +32,10 @@ func openWebsite(_ urlStr: String, owner: Any?) -> ContentFrameView {
 
     wkView.load(urlReq)
     
-    let frame: ContentFrameView = NSView.loadFromNib(nibName: "ContentFrameView", owner: owner)! as! ContentFrameView
+//    let frame: ContentFrameView = NSView.loadFromNib(nibName: "ContentFrameView", owner: owner)! as! ContentFrameView
+    let frameController = ContentFrameController()
+    frameController.loadView()
+    let frame = frameController.view as! ContentFrameView
     frame.contentHeader.stringValue = urlStr
     frame.setContent(wkView)
 
@@ -43,10 +49,13 @@ func openWebsite(urlStr: String, owner: Any?, width: NiCoordinate, height: NiCoo
     let urlReq = URLRequest(url: URL(string: urlStr)!)
     wkView.load(urlReq)
     
-    let frame: ContentFrameView = NSView.loadFromNib(nibName: "ContentFrameView", owner: owner)! as! ContentFrameView
+//    let frame: ContentFrameView = NSView.loadFromNib(nibName: "ContentFrameView", owner: owner)! as! ContentFrameView
+    let frameController = ContentFrameController()
+    frameController.loadView()
+    let frame = frameController.view as! ContentFrameView
     frame.contentHeader.stringValue = urlStr
     frame.setContent(wkView)
-
+    
     return frame
 }
 

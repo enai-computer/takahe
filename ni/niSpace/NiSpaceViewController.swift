@@ -25,6 +25,7 @@ class NiSpaceViewController: NSViewController{
     }
     
     func setSpaceName(_ name: String){
+        self.niSpaceName = name
         let niView = view as! NiSpaceView
         niView.setSpaceName(name)
     }

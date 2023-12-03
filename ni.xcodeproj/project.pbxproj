@@ -123,10 +123,10 @@
 				A1E41C012ACC1DF600338417 /* ContentFrameHeader.swift */,
 				A1E41BF52ACB533400338417 /* ContentFrameView.xib */,
 				A1E41BF92ACB57EF00338417 /* ContentFrameView.swift */,
+				CDD6B9552B1C326A00C6144D /* ContentFrameController.swift */,
 				A1E41BFE2ACB6B1300338417 /* FrameGenerator.swift */,
 				CDB06B642AF9723F008DB8FF /* TabHeaderView.xib */,
 				CDD6B9322B13C57300C6144D /* ContentFrameTabView.swift */,
-				CDD6B9552B1C326A00C6144D /* ContentFrameController.swift */,
 			);
 			path = contentFrame;
 			sourceTree = "<group>";
@@ -442,7 +442,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 0.1.1;
+				MARKETING_VERSION = 0.1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = io.enai.ni;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -469,7 +469,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 0.1.1;
+				MARKETING_VERSION = 0.1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = io.enai.ni;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
