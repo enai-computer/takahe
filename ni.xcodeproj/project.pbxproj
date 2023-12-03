@@ -34,7 +34,7 @@
 		CDD6B9432B16A14300C6144D /* ContentTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD6B9422B16A14300C6144D /* ContentTable.swift */; };
 		CDD6B9452B16A1A200C6144D /* CachedWebTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD6B9442B16A1A200C6144D /* CachedWebTable.swift */; };
 		CDD6B9472B16A29100C6144D /* DocumentIdContentIdTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD6B9462B16A29100C6144D /* DocumentIdContentIdTable.swift */; };
-		CDD6B9492B193C1700C6144D /* SchemaHistoryTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD6B9482B193C1700C6144D /* SchemaHistoryTable.swift */; };
+		CDD6B9522B1BFE8B00C6144D /* NiDocumentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD6B9512B1BFE8B00C6144D /* NiDocumentModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,7 +66,7 @@
 		CDD6B9422B16A14300C6144D /* ContentTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentTable.swift; sourceTree = "<group>"; };
 		CDD6B9442B16A1A200C6144D /* CachedWebTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachedWebTable.swift; sourceTree = "<group>"; };
 		CDD6B9462B16A29100C6144D /* DocumentIdContentIdTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentIdContentIdTable.swift; sourceTree = "<group>"; };
-		CDD6B9482B193C1700C6144D /* SchemaHistoryTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchemaHistoryTable.swift; sourceTree = "<group>"; };
+		CDD6B9512B1BFE8B00C6144D /* NiDocumentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiDocumentModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +100,7 @@
 		A1B8E6A42AAFB5EC00AC6566 /* ni */ = {
 			isa = PBXGroup;
 			children = (
+				CDD6B94F2B1BFE6500C6144D /* models */,
 				CDD6B94A2B19469000C6144D /* niHome */,
 				CDD6B9342B1527B700C6144D /* dal */,
 				CDB06B5B2AF81CB6008DB8FF /* niSpace */,
@@ -157,7 +158,6 @@
 				CDD6B9422B16A14300C6144D /* ContentTable.swift */,
 				CDD6B9442B16A1A200C6144D /* CachedWebTable.swift */,
 				CDD6B9462B16A29100C6144D /* DocumentIdContentIdTable.swift */,
-				CDD6B9482B193C1700C6144D /* SchemaHistoryTable.swift */,
 			);
 			path = tables;
 			sourceTree = "<group>";
@@ -170,6 +170,14 @@
 				A1F33E2F2AB7316300E2E7CD /* HomeView.swift */,
 			);
 			path = niHome;
+			sourceTree = "<group>";
+		};
+		CDD6B94F2B1BFE6500C6144D /* models */ = {
+			isa = PBXGroup;
+			children = (
+				CDD6B9512B1BFE8B00C6144D /* NiDocumentModel.swift */,
+			);
+			path = models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -262,8 +270,8 @@
 				A1B8E6AB2AAFB5EC00AC6566 /* ni.xcdatamodeld in Sources */,
 				A1F33E302AB7316300E2E7CD /* HomeView.swift in Sources */,
 				A14E8F292AD5EB1600409DDF /* NiSpaceViewController.swift in Sources */,
+				CDD6B9522B1BFE8B00C6144D /* NiDocumentModel.swift in Sources */,
 				A1F33E2E2AB7299500E2E7CD /* DefaultWindow.swift in Sources */,
-				CDD6B9492B193C1700C6144D /* SchemaHistoryTable.swift in Sources */,
 				CDB06B612AF84E1F008DB8FF /* NiSpaceDocument.swift in Sources */,
 				CDD6B9432B16A14300C6144D /* ContentTable.swift in Sources */,
 				CDD6B9402B169F7700C6144D /* DocumentTable.swift in Sources */,

@@ -18,15 +18,8 @@ class NiSpaceViewController: NSViewController{
         self.view.wantsLayer = true
         self.view.layer?.backgroundColor = NSColor(.sandLight1).cgColor
     }
-    
-    func getNewView(_ owner: Any?) -> NiSpaceView{
-        let niSpaceView: NiSpaceView = NSView.loadFromNib(nibName: "NiSpaceView", owner: owner)! as! NiSpaceView
-        return niSpaceView
-    }
-    
-    
-    @IBAction func updateSpaceName(_ sender: NSTextField) {
         
+    @IBAction func updateSpaceName(_ sender: NSTextField) {
         niSpaceName = sender.stringValue
         sender.isEditable = false
     }
@@ -37,11 +30,8 @@ class NiSpaceViewController: NSViewController{
     }
     
     
-    
     @IBAction func returnToHome(_ sender: NSButton) {
-        
         storeSpace()
-        
         let appDelegate = NSApp.delegate as! AppDelegate
         appDelegate.switchToHome()
     }
@@ -59,6 +49,11 @@ class NiSpaceViewController: NSViewController{
         searchView.setFrameOwner(self.niDocument)
     }
     
+    func loadStoredSpace(niSpaceID: UUID){
+        self.niSpaceID = niSpaceID
+//        DocumentTable.fetchDocument(id: niSpaceID)
+    }
+    
     func storeSpace(){
         if(niSpaceID == nil){
             niSpaceID = UUID()
@@ -70,9 +65,33 @@ class NiSpaceViewController: NSViewController{
             niSpaceName = "Space from " + displayFormatter.string(from: Date())
         }
 
-        DocumentTable.insertDoc(id: niSpaceID!, name: niSpaceName!, document: nil)
+        let documentJson = genJson()
+        
+        DocumentTable.insertDoc(id: niSpaceID!, name: niSpaceName!, document: documentJson)
         
         niDocument.activeNiFrames.first?.storeContent(documentId: niSpaceID!)
+    }
+    
+    func genJson() -> String{
+        let toEncode = NiDocumentObjectModel(
+            type: NiDocumentObjectTypes.document,
+            data: NiDocumentModel(
+                id: niSpaceID!,
+                height: self.niDocument.frame.height,
+                width: self.niDocument.frame.width,
+                children: []
+            )
+        )
+        let jsonEncoder = JSONEncoder()
+        jsonEncoder.outputFormatting = .prettyPrinted
+        
+        do{
+            let jsonData = try jsonEncoder.encode(toEncode)
+            return String(data: jsonData, encoding: .utf8) ?? "FAILED"
+        }catch{
+            print(error)
+        }
+        return "FAILED"
     }
     
 }

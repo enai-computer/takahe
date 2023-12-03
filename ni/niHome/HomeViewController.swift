@@ -5,13 +5,12 @@ import Cocoa
 class HomeViewController: NSViewController, NSTableViewDataSource, NSTableViewDelegate{
 
     
-    private var lstOfDocuments: [NiDocument] = [NiDocument]()
+    private var lstOfDocuments: [NiDocumentMetaData] = [NiDocumentMetaData]()
     @IBAction func mainSearch(_ searchField: NSSearchField) {
 
     }
   
     @IBAction func openNewSpace(_ sender: NSButton) {
-        print("!WORKS!")
         let appDelegate = NSApp.delegate as! AppDelegate
         appDelegate.switchToNewSpace()
     }
@@ -57,9 +56,9 @@ class HomeViewController: NSViewController, NSTableViewDataSource, NSTableViewDe
 
 class NiTableCellView: NSView{
     
-    private var data: NiDocument? = nil
+    private var data: NiDocumentMetaData? = nil
     
-    func setData(data: NiDocument){
+    func setData(data: NiDocumentMetaData){
         self.data = data
         let label = NSTextField(labelWithString: (data.name ?? "nameless"))
         self.addSubview(label)

@@ -8,7 +8,7 @@
 import SQLite
 import Cocoa
 
-struct NiDocument{
+struct NiDocumentMetaData{
     let id: UUID
     var name: String?
     var updatedAt: Date
@@ -56,18 +56,27 @@ class DocumentTable{
         }
     }
     
-    static func fetchListofDocs(limit: Int = 10) -> [NiDocument]{
-        var res: [NiDocument] = []
+    static func fetchListofDocs(limit: Int = 10) -> [NiDocumentMetaData]{
+        var res: [NiDocumentMetaData] = []
         
         do{
             for record in try Storage.db.spacesDB.prepare(table.select(id, name, updatedAt).limit(limit).order(updatedAt.desc)){
-                res.append(NiDocument(id: try record.get(id), name: try record.get(name), updatedAt: Date(timeIntervalSince1970: try record.get(updatedAt))))
+                res.append(NiDocumentMetaData(id: try record.get(id), name: try record.get(name), updatedAt: Date(timeIntervalSince1970: try record.get(updatedAt))))
             }
         }catch{
             print("Failed to fetch List of last used Docs or a column: \(error)")
         }
         return res
     }
+    
+//    static func fetchDocument(id: UUID)->JSON{
+//        
+//        let res: NiDocumentMetaData
+//        
+//        Storage.db.spacesDB.prepare(table.select(name, ))
+//        
+//        return res
+//    }
 }
 
 

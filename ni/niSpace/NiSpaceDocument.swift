@@ -17,7 +17,6 @@ class NiSpaceDocument: NSView{
         super.init(coder: coder)!
         let window = NSApplication.shared.keyWindow!
         self.frame.size.height = window.frame.height * (1+EMPTYSPACEFACTOR)
-//        self.data = Data()
     }
     
     override var isFlipped: Bool{
@@ -103,7 +102,4 @@ class NiSpaceDocument: NSView{
         topNiFrame?.toggleActive()
     }
     
-    func storeToJSON(){
-        
-    }
 }
