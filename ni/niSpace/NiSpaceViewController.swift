@@ -94,7 +94,7 @@ class NiSpaceViewController: NSViewController{
 
         let documentJson = genJson()
         
-        DocumentTable.insertDoc(id: niSpaceID!, name: niSpaceName!, document: documentJson)
+        DocumentTable.upsertDoc(id: niSpaceID!, name: niSpaceName!, document: documentJson)
         
         niDocument.activeNiFrames.first?.storeContent(documentId: niSpaceID!)
     }

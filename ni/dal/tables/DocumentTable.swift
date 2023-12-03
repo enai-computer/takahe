@@ -40,15 +40,16 @@ class DocumentTable{
         })
     }
     
-    static func insertDoc(id: UUID, name: String, document: String?){
+    static func upsertDoc(id: UUID, name: String, document: String?){
         do{
             try Storage.db.spacesDB.run(
-                table.insert(
+                table.upsert(
                     self.id <- id,
                     self.name <- name,
                     self.createdAt <- Date().timeIntervalSince1970,
                     self.updatedAt <- Date().timeIntervalSince1970,
-                    self.document <- document
+                    self.document <- document,
+                    onConflictOf: self.id
                 )
             )
         }catch{
