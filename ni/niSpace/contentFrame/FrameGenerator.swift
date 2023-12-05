@@ -10,8 +10,8 @@ func runGoogleSearch(_ searchTerm: String, owner: Any?) -> ContentFrameView {
 
     let frameController = ContentFrameController()
     frameController.loadView()
+    frameController.openWebsiteInNewTab(urlStr)
     let frame = frameController.view as! ContentFrameView
-    frame.openWebsiteInNewTab(urlStr)
 
     return frame
 }
@@ -20,8 +20,9 @@ func openWebsiteInNewContentFrame(urlStr: String, initPosition: NSRect) -> Conte
     
     let frameController = ContentFrameController()
     frameController.loadView()
+    frameController.openWebsiteInNewTab(urlStr)
+    
     let frame = frameController.view as! ContentFrameView
-    frame.openWebsiteInNewTab(urlStr)
     frame.frame = initPosition
     return frame
 }

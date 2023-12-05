@@ -33,6 +33,9 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "NiWebViewController.init(owner:urlReq:frame:):NiWebViewController.swift">
+      </ContextState>
+      <ContextState
          contextName = "ContentFrameView.mouseDown(with:):ContentFrameView.swift">
          <PersistentStrings>
             <PersistentString
@@ -114,6 +117,14 @@
          <PersistentStrings>
             <PersistentString
                value = "niFrame.frame">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ContentFrameView.openWebsiteInNewTab(_:):ContentFrameView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "niWebViewController.view.navigationDelegate">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
