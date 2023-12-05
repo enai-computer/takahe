@@ -589,8 +589,8 @@
             filePath = "ni/niSpace/NiSpaceViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "106"
-            endingLineNumber = "106"
+            startingLineNumber = "109"
+            endingLineNumber = "109"
             landmarkName = "genJson()"
             landmarkType = "7">
             <Locations>
@@ -1020,8 +1020,8 @@
             filePath = "ni/niSpace/contentFrame/ContentFrameView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "70"
-            endingLineNumber = "70"
+            startingLineNumber = "68"
+            endingLineNumber = "68"
             landmarkName = "createNewTab(tabView:label:urlStr:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1036,8 +1036,8 @@
             filePath = "ni/niSpace/contentFrame/NiWebViewElements/NiWebView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "65"
-            endingLineNumber = "65"
+            startingLineNumber = "68"
+            endingLineNumber = "68"
             landmarkName = "WHOLE_PAGE_SCRIPT"
             landmarkType = "24">
          </BreakpointContent>
@@ -1052,8 +1052,8 @@
             filePath = "ni/niSpace/contentFrame/NiWebViewElements/NiWebView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "53"
-            endingLineNumber = "53"
+            startingLineNumber = "56"
+            endingLineNumber = "56"
             landmarkName = "GlobalScriptMessageHandler"
             landmarkType = "3">
          </BreakpointContent>
@@ -1068,8 +1068,8 @@
             filePath = "ni/niSpace/contentFrame/ContentFrameView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "74"
-            endingLineNumber = "74"
+            startingLineNumber = "72"
+            endingLineNumber = "72"
             landmarkName = "createNewTab(tabView:label:urlStr:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1173,16 +1173,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "C9F4B8D8-234D-4C27-BA8B-2625ED8393D6"
-            shouldBeEnabled = "No"
+            uuid = "23D92E30-AA38-4CD2-9B9F-60E61AFDD293"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "ni/niSpace/contentFrame/ContentFrameView.swift"
+            filePath = "ni/dal/tables/ContentTable.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "79"
-            endingLineNumber = "79"
-            landmarkName = "createNewTab(tabView:label:urlStr:)"
+            startingLineNumber = "34"
+            endingLineNumber = "34"
+            landmarkName = "insert(id:type:title:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

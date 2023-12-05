@@ -41,10 +41,6 @@ class ContentFrameView: NSBox{
     
     @IBOutlet var niContentTabView: NSTabView!
     
-    var wkContent: WKWebView? = nil
-    private var niContentId: UUID? = nil
-    
-    
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
@@ -57,7 +53,9 @@ class ContentFrameView: NSBox{
     @IBAction func updateContent(_ newURL: ContentFrameHeader) {
 
         let urlReq = URLRequest(url: URL(string: newURL.stringValue)!)
-        wkContent!.load(urlReq)
+        
+        let activeTabView = niContentTabView.selectedTabViewItem?.view as! WKWebView
+        activeTabView.load(urlReq)
         
         contentHeader.stringValue = newURL.stringValue
         contentHeader.isEditable = false
@@ -76,19 +74,10 @@ class ContentFrameView: NSBox{
         niContentTabView.addTabViewItem(tabViewItem)
         
         niContentTabView.selectTabViewItem(at: tabViewPos)
-        self.wkContent = tabView
         
         self.contentHeader.stringValue = urlStr
         
         return tabViewPos
-    }
-    
-
-    func storeContent(documentId: UUID){
-        if(niContentId == nil){
-            niContentId = UUID()
-        }
-        CachedWebTable.upsert(documentId: documentId, id: niContentId!, title: wkContent?.title, url: wkContent!.url!.absoluteString)
     }
     
     /**
@@ -122,12 +111,14 @@ class ContentFrameView: NSBox{
         
         //clicked on back button
         if NSPointInRect(posInFrame, contentBackButton.frame){
-            self.wkContent?.goBack()
+            let activeTabView = niContentTabView.selectedTabViewItem?.view as! WKWebView
+            activeTabView.goBack()
         }
         
         //clicked on forward button
         if NSPointInRect(posInFrame, contentForwardButton.frame){
-            self.wkContent?.goForward()
+            let activeTabView = niContentTabView.selectedTabViewItem?.view as! WKWebView
+            activeTabView.goForward()
         }
     }
     
@@ -223,12 +214,6 @@ class ContentFrameView: NSBox{
         nsize.height += (yDiff * -1)
         nsize.width += xDiff
         self.setFrameSize(nsize)
-        
-        let wkFrameSize = wkContent!.frame.size
-        var newWKFS = wkFrameSize
-        newWKFS.height += (yDiff * -1)
-        newWKFS.width += xDiff
-        wkContent!.setFrameSize(newWKFS)
     }
     
     func toggleActive(){
@@ -251,9 +236,31 @@ class ContentFrameView: NSBox{
         return positionInViewStack
     }
     
+    
+     //MARK :- store and load here
+     
+    func persistContent(documentId: UUID){
+        for tab in niContentTabView.tabViewItems{
+            let tabView = tab.view as! NiWebView
+            CachedWebTable.upsert(documentId: documentId, id: tabView.contentId, title: tabView.title, url: tabView.url!.absoluteString)
+        }
+    }
+    
+    
     func toNiContentFrameModel() -> NiDocumentObjectModel{
-        if(niContentId == nil){
-            niContentId = UUID()
+        
+        var children: [NiCFTabModel] = []
+        
+        for (i, tab) in niContentTabView.tabViewItems.enumerated(){
+            let tabView = tab.view as! NiWebView
+            children.append(
+                NiCFTabModel(
+                    id: tabView.contentId,
+                    contentType: NiCFTabContentType.web,
+                    active: true,
+                    position: i
+                )
+            )
         }
         
         return NiDocumentObjectModel(
@@ -267,13 +274,8 @@ class ContentFrameView: NSBox{
                     x: NiCoordinate(px: self.frame.origin.x),
                     y: NiCoordinate(px: self.frame.origin.y)
                 ),
-                children: [
-                    NiCFTabModel(
-                        id: self.niContentId!,
-                        contentType: NiCFTabContentType.web,
-                        active: true,
-                        position: 0)
-                ])
+                children: children
             )
+        )
     }
 }

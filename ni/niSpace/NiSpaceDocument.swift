@@ -102,4 +102,9 @@ class NiSpaceDocument: NSView{
         topNiFrame?.toggleActive()
     }
     
+    func persistContent(documentId: UUID){
+        for contentFrame in activeNiFrames{
+            contentFrame.persistContent(documentId: documentId)
+        }
+    }
 }

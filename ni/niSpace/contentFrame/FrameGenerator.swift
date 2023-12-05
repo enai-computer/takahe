@@ -16,11 +16,11 @@ func runGoogleSearch(_ searchTerm: String, owner: Any?) -> ContentFrameView {
     return frame
 }
 
-func openWebsiteInNewContentFrame(urlStr: String, initPosition: NSRect) -> ContentFrameView {
+func reopenWebsiteInContentFrame(contentId: UUID, urlStr: String, initPosition: NSRect) -> ContentFrameView {
     
     let frameController = ContentFrameController()
     frameController.loadView()
-    frameController.openWebsiteInNewTab(urlStr)
+    frameController.openWebsiteInNewTab(urlStr: urlStr, contentId: contentId)
     
     let frame = frameController.view as! ContentFrameView
     frame.frame = initPosition

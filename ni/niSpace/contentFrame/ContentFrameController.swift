@@ -22,28 +22,28 @@ class ContentFrameController: NSViewController, WKNavigationDelegate{
     }
     
 
-    private func getNewWebView(urlReq: URLRequest, frame: NSRect) -> NiWebView {
+    private func getNewWebView(contentId: UUID, urlReq: URLRequest, frame: NSRect) -> NiWebView {
 
-        let wkView = NiWebView(owner: self, frame: frame, configuration: WKWebViewConfiguration())
+        let wkView = NiWebView(contentId: contentId, owner: self, frame: frame, configuration: WKWebViewConfiguration())
         wkView.load(urlReq)
         wkView.navigationDelegate = self
         return wkView
     }
     
-    func openWebsiteInNewTab(_ urlStr: String){
+    func openWebsiteInNewTab(urlStr: String, contentId: UUID){
         let urlReq = URLRequest(url: URL(string: urlStr)!)
         
-        let niWebView = getNewWebView(urlReq: urlReq, frame: niContentFrameView!.frame)
+        let niWebView = getNewWebView(contentId: contentId, urlReq: urlReq, frame: niContentFrameView!.frame)
         
         niWebView.navigationDelegate = self
         
         self.latestTab = niContentFrameView!.createNewTab(tabView: niWebView, label: "", urlStr: urlStr)
-        
     }
     
-    func webView(_ webView: WKWebView, didCommit navigation: WKNavigation!) {
-       debugPrint("didCommit")
-   }
+    func openWebsiteInNewTab(_ urlStr: String){
+        let id = UUID()
+        openWebsiteInNewTab(urlStr: urlStr, contentId: id)
+    }
 
     public func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         let title = webView.title?.truncate(20)

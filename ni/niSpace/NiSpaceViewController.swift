@@ -73,7 +73,10 @@ class NiSpaceViewController: NSViewController{
     private func recreateContentFrame(data: NiContentFrameModel){
         
         let url = CachedWebTable.fetchURL(contentId: data.children[0].id)
-        let storedWebsite = openWebsiteInNewContentFrame(
+        
+        //TODO: adjust to multiple tabs
+        let storedWebsite = reopenWebsiteInContentFrame(
+            contentId: data.children[0].id,
             urlStr: url,
             initPosition: NSRect(
                 origin: CGPoint(x: data.position.x.px, y: data.position.y.px),
@@ -98,7 +101,7 @@ class NiSpaceViewController: NSViewController{
         
         DocumentTable.upsertDoc(id: niSpaceID!, name: niSpaceName!, document: documentJson)
         
-        niDocument.activeNiFrames.first?.storeContent(documentId: niSpaceID!)
+        niDocument.persistContent(documentId: niSpaceID!)
     }
     
     func genJson() -> String{

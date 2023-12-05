@@ -12,8 +12,11 @@ import WebKit
 class NiWebView: WKWebView{
     
     private let owner: ContentFrameController
+    let contentId: UUID
 
-    init(owner: ContentFrameController, frame: NSRect, configuration: WKWebViewConfiguration) {
+    init(contentId: UUID, owner: ContentFrameController, frame: NSRect, configuration: WKWebViewConfiguration) {
+        
+        self.contentId = contentId
         self.owner = owner
         
         super.init(frame: frame, configuration: configuration)
