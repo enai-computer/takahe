@@ -237,8 +237,10 @@ class ContentFrameView: NSBox{
     }
     
     
-     //MARK :- store and load here
-     
+    /*
+     * MARK: - store and load here
+     */
+    
     func persistContent(documentId: UUID){
         for tab in niContentTabView.tabViewItems{
             let tabView = tab.view as! NiWebView

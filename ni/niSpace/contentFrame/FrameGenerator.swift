@@ -16,14 +16,23 @@ func runGoogleSearch(_ searchTerm: String, owner: Any?) -> ContentFrameView {
     return frame
 }
 
-func reopenWebsiteInContentFrame(contentId: UUID, urlStr: String, initPosition: NSRect) -> ContentFrameView {
+func reopenContentFrame(contentFrame: NiContentFrameModel, tabs: [NiCFTabModel]) -> ContentFrameView {
     
     let frameController = ContentFrameController()
     frameController.loadView()
-    frameController.openWebsiteInNewTab(urlStr: urlStr, contentId: contentId)
+    for tab in tabs{
+        let urlStr = CachedWebTable.fetchURL(contentId: tab.id)
+        frameController.openWebsiteInNewTab(urlStr: urlStr, contentId: tab.id)
+    }
     
+    //positioning
+    let initPosition = NSRect(
+        origin: CGPoint(x: contentFrame.position.x.px, y: contentFrame.position.y.px),
+        size: CGSize(width: contentFrame.width.px, height: contentFrame.height.px)
+    )
     let frame = frameController.view as! ContentFrameView
     frame.frame = initPosition
+    
     return frame
 }
 

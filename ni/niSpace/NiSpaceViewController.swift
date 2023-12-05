@@ -74,16 +74,9 @@ class NiSpaceViewController: NSViewController{
         
         let url = CachedWebTable.fetchURL(contentId: data.children[0].id)
         
-        //TODO: adjust to multiple tabs
-        let storedWebsite = reopenWebsiteInContentFrame(
-            contentId: data.children[0].id,
-            urlStr: url,
-            initPosition: NSRect(
-                origin: CGPoint(x: data.position.x.px, y: data.position.y.px),
-                size: CGSize(width: data.width.px, height: data.height.px)))
-        self.niDocument.addNiFrame(storedWebsite)
-        storedWebsite.setFrameOwner(self.niDocument)
-
+        let storedWebsiteContentFrame = reopenContentFrame(contentFrame: data, tabs: data.children)
+        self.niDocument.addNiFrame(storedWebsiteContentFrame)
+        storedWebsiteContentFrame.setFrameOwner(self.niDocument)
     }
     
     func storeSpace(){

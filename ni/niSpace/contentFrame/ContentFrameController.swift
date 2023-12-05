@@ -15,7 +15,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate{
     var latestTab: Int = 0
     
     override func loadView() {
-        self.niContentFrameView = NSView.loadFromNib(nibName: "ContentFrameView", owner: self)! as! ContentFrameView
+        self.niContentFrameView = (NSView.loadFromNib(nibName: "ContentFrameView", owner: self) as! ContentFrameView)
         self.view = niContentFrameView!
         self.view.wantsLayer = true
         self.view.layer?.backgroundColor = NSColor(.sandLight1).cgColor
