@@ -39,11 +39,7 @@ class ContentFrameView: NSBox{
     @IBOutlet var contentBackButton: NSImageView!
     @IBOutlet var contentForwardButton: NSImageView!
     
-    @IBOutlet var boundContent: NSView!
-    
     @IBOutlet var niContentTabView: NSTabView!
-    
-    
     
     var wkContent: WKWebView? = nil
     private var niContentId: UUID? = nil
@@ -68,11 +64,20 @@ class ContentFrameView: NSBox{
     }
 
     
-    func setContent(_ newContentView: WKWebView!){
+    func addContent(_ newContentView: NiWebView!){
 
-        newContentView.frame.size = boundContent.frame.size
-        newContentView.frame.origin = boundContent.frame.origin
-        niContentTabView.tabViewItem(at: 0).view = newContentView
+        newContentView.frame.size = niContentTabView.frame.size
+        newContentView.frame.origin = niContentTabView.frame.origin
+
+        let tabViewPos = niContentTabView.numberOfTabViewItems
+        let tabViewItem = NSTabViewItem()
+        tabViewItem.view = newContentView
+
+        tabViewItem.label = "tab " + String(tabViewPos)
+        
+        niContentTabView.addTabViewItem(tabViewItem)
+        
+        niContentTabView.selectTabViewItem(at: tabViewPos)
         self.wkContent = newContentView
     }
 
@@ -232,7 +237,6 @@ class ContentFrameView: NSBox{
             positionInViewStack = 0
         }else{
             borderColor = .sandLight9
-            
         }
     }
     

@@ -27,26 +27,6 @@
                         <rect key="frame" x="3" y="0.0" width="911" height="404"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES"/>
                         <font key="font" metaFont="system"/>
-                        <tabViewItems>
-                            <tabViewItem label="Tab1" identifier="" id="ahz-ho-tcZ">
-                                <view key="view" id="0fq-D5-8jm">
-                                    <rect key="frame" x="10" y="33" width="891" height="358"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                    <subviews>
-                                        <customView id="IXM-GT-a1N">
-                                            <rect key="frame" x="-3" y="-3" width="897" height="366"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        </customView>
-                                    </subviews>
-                                </view>
-                            </tabViewItem>
-                            <tabViewItem label="Tab2" identifier="" id="Zl3-C5-fx1">
-                                <view key="view" id="KO4-uh-ya7">
-                                    <rect key="frame" x="10" y="33" width="891" height="358"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                </view>
-                            </tabViewItem>
-                        </tabViewItems>
                     </tabView>
                     <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" contentType="url" translatesAutoresizingMaskIntoConstraints="NO" id="QFH-so-HLv" customClass="ContentFrameHeader" customModule="ni" customModuleProvider="target">
                         <rect key="frame" x="45" y="386" width="357" height="21"/>
@@ -75,7 +55,6 @@
             <color key="borderColor" name="SandLight12"/>
             <color key="fillColor" name="SandLight1"/>
             <connections>
-                <outlet property="boundContent" destination="IXM-GT-a1N" id="UAM-In-6zu"/>
                 <outlet property="closeButton" destination="Utx-ML-7oY" id="kU3-Bd-2G3"/>
                 <outlet property="contentBackButton" destination="rcT-6J-b1L" id="RYT-Vl-p2w"/>
                 <outlet property="contentForwardButton" destination="eFl-A6-f9y" id="rOd-Bb-2cH"/>
@@ -84,6 +63,14 @@
             </connections>
             <point key="canvasLocation" x="-652" y="-653"/>
         </box>
+        <menu id="ENN-UI-hRR">
+            <items>
+                <menuItem title="open link in new tab" id="Eii-G0-fjD">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                </menuItem>
+            </items>
+            <point key="canvasLocation" x="-816.5" y="-966.5"/>
+        </menu>
     </objects>
     <resources>
         <image name="NSGoBackTemplate" width="12" height="17"/>

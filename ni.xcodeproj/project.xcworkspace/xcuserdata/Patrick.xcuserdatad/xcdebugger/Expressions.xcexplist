@@ -3,6 +3,17 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "ContentFrameView.addContent(_:):ContentFrameView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "niContentTabView.numberOfTabViewItems-1">
+            </PersistentString>
+            <PersistentString
+               value = "newContentView.title">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "NiSpaceViewController.viewDidLoad():NiSpaceViewController.swift">
          <PersistentStrings>
             <PersistentString
@@ -55,17 +66,6 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "NiTableCellView.mouseDown(with:):HomeViewController.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "data!.id">
-            </PersistentString>
-            <PersistentString
-               value = "event.clickCount">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
          contextName = "HomeViewController.tableView(_:objectValueFor:row:):HomeViewController.swift">
          <PersistentStrings>
             <PersistentString
@@ -77,6 +77,20 @@
          contextName = "HomeViewController.tableView(_:viewFor:row:):HomeViewController.swift">
       </ContextState>
       <ContextState
+         contextName = "NiTableCellView.data.getter:HomeViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "NiTableCellView.mouseDown(with:):HomeViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "event.clickCount">
+            </PersistentString>
+            <PersistentString
+               value = "data!.id">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "NiSpaceViewController.genJson():NiSpaceViewController.swift">
          <PersistentStrings>
             <PersistentString
@@ -86,9 +100,6 @@
       </ContextState>
       <ContextState
          contextName = "DBStorage.init():DBStorage.swift">
-      </ContextState>
-      <ContextState
-         contextName = "NiTableCellView.data.getter:HomeViewController.swift">
       </ContextState>
       <ContextState
          contextName = "NiSpaceDocument.inFrame(_:):NiSpaceDocument.swift">

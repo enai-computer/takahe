@@ -5,7 +5,7 @@ import WebKit
 
 func runGoogleSearch(_ searchTerm: String, owner: Any?) -> ContentFrameView {
     
-    let wkView = WKWebView(frame: NSRect(x: 30, y: 30, width: 900, height: 360), configuration: WKWebViewConfiguration())
+    let wkView = NiWebView(frame: NSRect(x: 30, y: 30, width: 900, height: 360), configuration: WKWebViewConfiguration())
     
     let encodedSearchTerm = searchTerm.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
     
@@ -19,14 +19,14 @@ func runGoogleSearch(_ searchTerm: String, owner: Any?) -> ContentFrameView {
     frameController.loadView()
     let frame = frameController.view as! ContentFrameView
     frame.contentHeader.stringValue = urlStr
-    frame.setContent(wkView)
+    frame.addContent(wkView)
 
     return frame
 }
 
 func openWebsite(_ urlStr: String, owner: Any?) -> ContentFrameView {
     
-    let wkView = WKWebView(frame: NSRect(x: 30, y: 30, width: 900, height: 400), configuration: WKWebViewConfiguration())
+    let wkView = NiWebView(frame: NSRect(x: 30, y: 30, width: 900, height: 400), configuration: WKWebViewConfiguration())
     
     let urlReq = URLRequest(url: URL(string: urlStr)!)
 
@@ -37,14 +37,14 @@ func openWebsite(_ urlStr: String, owner: Any?) -> ContentFrameView {
     frameController.loadView()
     let frame = frameController.view as! ContentFrameView
     frame.contentHeader.stringValue = urlStr
-    frame.setContent(wkView)
+    frame.addContent(wkView)
 
     return frame
 }
 
 func openWebsite(urlStr: String, owner: Any?, width: NiCoordinate, height: NiCoordinate, position: NiViewPosition) -> ContentFrameView{
     
-    let wkView = WKWebView(frame: NSRect(x: position.x.px, y: position.y.px, width: width.px, height: height.px), configuration: WKWebViewConfiguration())
+    let wkView = NiWebView(frame: NSRect(x: position.x.px, y: position.y.px, width: width.px, height: height.px), configuration: WKWebViewConfiguration())
     
     let urlReq = URLRequest(url: URL(string: urlStr)!)
     wkView.load(urlReq)
@@ -54,7 +54,7 @@ func openWebsite(urlStr: String, owner: Any?, width: NiCoordinate, height: NiCoo
     frameController.loadView()
     let frame = frameController.view as! ContentFrameView
     frame.contentHeader.stringValue = urlStr
-    frame.setContent(wkView)
+    frame.addContent(wkView)
     
     return frame
 }
