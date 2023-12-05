@@ -25,6 +25,14 @@
          contextName = "NiSpaceDocument.mouseDown(with:):NiSpaceDocument.swift">
       </ContextState>
       <ContextState
+         contextName = "ContentFrameView.openWebsiteInNewTab(urlStr:width:height:position:):ContentFrameView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "wkView.title">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "ContentFrameView.mouseDown(with:):ContentFrameView.swift">
          <PersistentStrings>
             <PersistentString

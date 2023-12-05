@@ -73,13 +73,14 @@ class NiSpaceViewController: NSViewController{
     private func recreateContentFrame(data: NiContentFrameModel){
         
         let url = CachedWebTable.fetchURL(contentId: data.children[0].id)
-        let storedWebsite = openWebsite(urlStr: url, owner: self.niDocument, width: data.width, height: data.height, position: data.position)
+        let storedWebsite = openWebsiteInNewContentFrame(
+            urlStr: url,
+            initPosition: NSRect(
+                origin: CGPoint(x: data.position.x.px, y: data.position.y.px),
+                size: CGSize(width: data.width.px, height: data.height.px)))
         self.niDocument.addNiFrame(storedWebsite)
         storedWebsite.setFrameOwner(self.niDocument)
-        storedWebsite.frame.size.width = data.width.px
-        storedWebsite.frame.size.height = data.height.px
-        storedWebsite.frame.origin.x = data.position.x.px
-        storedWebsite.frame.origin.y = data.position.y.px
+
     }
     
     func storeSpace(){

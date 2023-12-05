@@ -11,8 +11,11 @@ import WebKit
 
 class NiWebView: WKWebView{
     
+    private let owner: ContentFrameView
 
-    override init(frame: NSRect, configuration: WKWebViewConfiguration) {
+    init(owner: ContentFrameView, frame: NSRect, configuration: WKWebViewConfiguration) {
+        self.owner = owner
+        
         super.init(frame: frame, configuration: configuration)
         GlobalScriptMessageHandler.instance.ensureHandles(configuration: self.configuration)
     }
@@ -28,21 +31,22 @@ class NiWebView: WKWebView{
             return
         }
         
+        // if menuItem.identifier?.rawValue == "WKMenuItemIdentifierOpenLink" {
         let niOpenInNewTab = NSMenuItem()
         
         niOpenInNewTab.title = "open link in new tab"
-        niOpenInNewTab.action = #selector(openLink(_:))
+        niOpenInNewTab.action = #selector(openLinkInNewTab(_:))
         niOpenInNewTab.target = self
         menu.items = [niOpenInNewTab]
     
     }
     
-    @objc func openLink(_ sender: AnyObject) {
+    @objc func openLinkInNewTab(_ sender: AnyObject) {
             if let url = GlobalScriptMessageHandler.instance.contextMenu_href {
-                let url = URL(string: url)!
-                self.load(URLRequest(url: url))
+                owner.openWebsiteInNewTab(url)
             }
         }
+
 }
 
 

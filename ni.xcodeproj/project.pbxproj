@@ -24,6 +24,7 @@
 		A1F33E2E2AB7299500E2E7CD /* DefaultWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F33E2D2AB7299500E2E7CD /* DefaultWindow.swift */; };
 		A1F33E302AB7316300E2E7CD /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F33E2F2AB7316300E2E7CD /* HomeView.swift */; };
 		CD66CE332B1F819E0006BB98 /* NiWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD66CE322B1F819E0006BB98 /* NiWebView.swift */; };
+		CD66CE352B1FBE090006BB98 /* NiWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD66CE342B1FBE090006BB98 /* NiWebViewController.swift */; };
 		CDB06B5D2AF81D54008DB8FF /* NiScroll.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB06B5C2AF81D54008DB8FF /* NiScroll.swift */; };
 		CDB06B5F2AF81F91008DB8FF /* NiScrollController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB06B5E2AF81F91008DB8FF /* NiScrollController.swift */; };
 		CDB06B612AF84E1F008DB8FF /* NiSpaceDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB06B602AF84E1F008DB8FF /* NiSpaceDocument.swift */; };
@@ -59,6 +60,7 @@
 		A1F33E2D2AB7299500E2E7CD /* DefaultWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultWindow.swift; sourceTree = "<group>"; };
 		A1F33E2F2AB7316300E2E7CD /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		CD66CE322B1F819E0006BB98 /* NiWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiWebView.swift; sourceTree = "<group>"; };
+		CD66CE342B1FBE090006BB98 /* NiWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiWebViewController.swift; sourceTree = "<group>"; };
 		CDB06B5C2AF81D54008DB8FF /* NiScroll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiScroll.swift; sourceTree = "<group>"; };
 		CDB06B5E2AF81F91008DB8FF /* NiScrollController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiScrollController.swift; sourceTree = "<group>"; };
 		CDB06B602AF84E1F008DB8FF /* NiSpaceDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiSpaceDocument.swift; sourceTree = "<group>"; };
@@ -138,6 +140,7 @@
 			isa = PBXGroup;
 			children = (
 				CD66CE322B1F819E0006BB98 /* NiWebView.swift */,
+				CD66CE342B1FBE090006BB98 /* NiWebViewController.swift */,
 			);
 			path = NiWebViewElements;
 			sourceTree = "<group>";
@@ -274,6 +277,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CD66CE352B1FBE090006BB98 /* NiWebViewController.swift in Sources */,
 				CDB06B5F2AF81F91008DB8FF /* NiScrollController.swift in Sources */,
 				A1E41BFA2ACB57EF00338417 /* ContentFrameView.swift in Sources */,
 				A14E8F212AD20A2600409DDF /* DefaultWindowController.swift in Sources */,

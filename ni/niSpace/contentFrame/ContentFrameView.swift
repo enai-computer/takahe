@@ -64,22 +64,27 @@ class ContentFrameView: NSBox{
     }
 
     
-    func addContent(_ newContentView: NiWebView!){
+    func openWebsiteInNewTab(_ urlStr: String){
 
-        newContentView.frame.size = niContentTabView.frame.size
-        newContentView.frame.origin = niContentTabView.frame.origin
+        let urlReq = URLRequest(url: URL(string: urlStr)!)
 
+        contentHeader.stringValue = urlStr
+
+        let niWebViewController = NiWebViewController(owner: self, urlReq: urlReq, frame: niContentTabView.frame)
+        
         let tabViewPos = niContentTabView.numberOfTabViewItems
         let tabViewItem = NSTabViewItem()
-        tabViewItem.view = newContentView
+
+        tabViewItem.view = niWebViewController.view
 
         tabViewItem.label = "tab " + String(tabViewPos)
         
         niContentTabView.addTabViewItem(tabViewItem)
         
         niContentTabView.selectTabViewItem(at: tabViewPos)
-        self.wkContent = newContentView
+        self.wkContent = (niWebViewController.view as! WKWebView)
     }
+    
 
     func storeContent(documentId: UUID){
         if(niContentId == nil){
