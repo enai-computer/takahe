@@ -21,7 +21,6 @@ class ContentFrameController: NSViewController, WKNavigationDelegate{
         self.view.layer?.backgroundColor = NSColor(.sandLight1).cgColor
     }
     
-
     private func getNewWebView(contentId: UUID, urlReq: URLRequest, frame: NSRect) -> NiWebView {
 
         let wkView = NiWebView(contentId: contentId, owner: self, frame: frame, configuration: WKWebViewConfiguration())

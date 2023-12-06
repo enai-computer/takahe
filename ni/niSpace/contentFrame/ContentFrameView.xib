@@ -23,23 +23,6 @@
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                         <imageCell key="cell" alignment="left" imageAlignment="topRight" image="xmark" catalog="system" id="1Vu-cP-tyr"/>
                     </imageView>
-                    <tabView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="d8b-7o-70b">
-                        <rect key="frame" x="3" y="0.0" width="911" height="404"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES"/>
-                        <font key="font" metaFont="system"/>
-                    </tabView>
-                    <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" contentType="url" translatesAutoresizingMaskIntoConstraints="NO" id="QFH-so-HLv" customClass="ContentFrameHeader" customModule="ni" customModuleProvider="target">
-                        <rect key="frame" x="45" y="386" width="357" height="21"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" borderStyle="bezel" usesSingleLineMode="YES" bezelStyle="round" id="2ic-Ap-kJE">
-                            <font key="font" metaFont="system"/>
-                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="SandLight1"/>
-                        </textFieldCell>
-                        <connections>
-                            <action selector="updateContent:" target="kXm-wH-PdA" id="hJg-oQ-XKW"/>
-                        </connections>
-                    </textField>
                     <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rcT-6J-b1L" userLabel="back-button">
                         <rect key="frame" x="10" y="388" width="12" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -50,6 +33,16 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="NSGoForwardTemplate" id="i8b-xK-NTA"/>
                     </imageView>
+                    <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pqK-4Q-PhI">
+                        <rect key="frame" x="45" y="385.5" width="21.5" height="22"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="plus" catalog="system" id="4VL-ga-9mz"/>
+                    </imageView>
+                    <tabView fixedFrame="YES" type="noTabsBezelBorder" translatesAutoresizingMaskIntoConstraints="NO" id="d8b-7o-70b">
+                        <rect key="frame" x="-5" y="-4" width="919" height="390"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </tabView>
                 </subviews>
             </view>
             <color key="borderColor" name="SandLight12"/>
@@ -58,7 +51,7 @@
                 <outlet property="closeButton" destination="Utx-ML-7oY" id="kU3-Bd-2G3"/>
                 <outlet property="contentBackButton" destination="rcT-6J-b1L" id="RYT-Vl-p2w"/>
                 <outlet property="contentForwardButton" destination="eFl-A6-f9y" id="rOd-Bb-2cH"/>
-                <outlet property="contentHeader" destination="QFH-so-HLv" id="ocX-7o-rOC"/>
+                <outlet property="createNewTabButton" destination="pqK-4Q-PhI" id="yOV-of-ujd"/>
                 <outlet property="niContentTabView" destination="d8b-7o-70b" id="rDA-Fc-OHT"/>
             </connections>
             <point key="canvasLocation" x="-652" y="-653"/>
@@ -75,6 +68,7 @@
     <resources>
         <image name="NSGoBackTemplate" width="12" height="17"/>
         <image name="NSGoForwardTemplate" width="12" height="17"/>
+        <image name="plus" catalog="system" width="14" height="13"/>
         <image name="xmark" catalog="system" width="14" height="13"/>
         <namedColor name="SandLight1">
             <color red="0.99215686274509807" green="0.99215686274509807" blue="0.9882352941176471" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

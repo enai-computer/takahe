@@ -32,12 +32,12 @@ class ContentFrameView: NSBox{
     
     private var niParentDoc: NiSpaceDocument? = nil
     
-    @IBOutlet var contentHeader: ContentFrameHeader!
     
     //Buttons
     @IBOutlet var closeButton: NSImageView!
     @IBOutlet var contentBackButton: NSImageView!
     @IBOutlet var contentForwardButton: NSImageView!
+    @IBOutlet var createNewTabButton: NSImageView!
     
     @IBOutlet var niContentTabView: NSTabView!
     
@@ -47,18 +47,6 @@ class ContentFrameView: NSBox{
     
     func setFrameOwner(_ owner: NiSpaceDocument!){
         self.niParentDoc = owner
-    }
-    
-    
-    @IBAction func updateContent(_ newURL: ContentFrameHeader) {
-
-        let urlReq = URLRequest(url: URL(string: newURL.stringValue)!)
-        
-        let activeTabView = niContentTabView.selectedTabViewItem?.view as! WKWebView
-        activeTabView.load(urlReq)
-        
-        contentHeader.stringValue = newURL.stringValue
-        contentHeader.isEditable = false
     }
 
     
@@ -75,7 +63,7 @@ class ContentFrameView: NSBox{
         
         niContentTabView.selectTabViewItem(at: tabViewPos)
         
-        self.contentHeader.stringValue = urlStr
+//        self.contentHeader.stringValue = urlStr
         
         return tabViewPos
     }
@@ -83,6 +71,7 @@ class ContentFrameView: NSBox{
     /**
      * window like functions (moving and resizing) here:
      */
+    
     
     /*
      * catching mouse down events here:
@@ -119,6 +108,11 @@ class ContentFrameView: NSBox{
         if NSPointInRect(posInFrame, contentForwardButton.frame){
             let activeTabView = niContentTabView.selectedTabViewItem?.view as! WKWebView
             activeTabView.goForward()
+        }
+        
+        //clicked add tab button
+        if NSPointInRect(posInFrame, createNewTabButton.frame){
+            
         }
     }
     
