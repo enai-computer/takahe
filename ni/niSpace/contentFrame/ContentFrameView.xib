@@ -43,6 +43,35 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES"/>
                         <font key="font" metaFont="system"/>
                     </tabView>
+                    <scrollView fixedFrame="YES" autohidesScrollers="YES" horizontalLineScroll="17" horizontalPageScroll="10" verticalLineScroll="17" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gq9-Fx-UHG">
+                        <rect key="frame" x="74" y="382" width="801" height="29"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <clipView key="contentView" id="Vuc-Er-z2l">
+                            <rect key="frame" x="1" y="1" width="799" height="27"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <subviews>
+                                <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="sequential" multipleSelection="NO" autosaveColumns="NO" usesAutomaticRowHeights="YES" id="edY-XT-peD">
+                                    <rect key="frame" x="0.0" y="0.0" width="799" height="27"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <size key="intercellSpacing" width="17" height="0.0"/>
+                                    <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
+                                    <connections>
+                                        <outlet property="dataSource" destination="-2" id="f1U-dr-EKv"/>
+                                        <outlet property="delegate" destination="-2" id="osP-fw-2j0"/>
+                                    </connections>
+                                </tableView>
+                            </subviews>
+                        </clipView>
+                        <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="CUM-FV-tZk">
+                            <rect key="frame" x="1" y="119" width="223" height="15"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                        </scroller>
+                        <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="iQQ-rT-afs">
+                            <rect key="frame" x="785" y="29" width="15" height="0.0"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                        </scroller>
+                    </scrollView>
                 </subviews>
             </view>
             <color key="borderColor" name="SandLight12"/>
@@ -53,6 +82,7 @@
                 <outlet property="contentForwardButton" destination="eFl-A6-f9y" id="rOd-Bb-2cH"/>
                 <outlet property="createNewTabButton" destination="pqK-4Q-PhI" id="yOV-of-ujd"/>
                 <outlet property="niContentTabView" destination="d8b-7o-70b" id="rDA-Fc-OHT"/>
+                <outlet property="niTabHeaderView" destination="edY-XT-peD" id="url-ta-DQq"/>
             </connections>
             <point key="canvasLocation" x="-652" y="-653"/>
         </box>

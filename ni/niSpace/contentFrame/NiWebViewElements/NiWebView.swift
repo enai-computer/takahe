@@ -12,12 +12,14 @@ import WebKit
 class NiWebView: WKWebView{
     
     private let owner: ContentFrameController
+    var tabHeader: NiCFTabHeaderView
     let contentId: UUID
 
-    init(contentId: UUID, owner: ContentFrameController, frame: NSRect, configuration: WKWebViewConfiguration) {
+    init(contentId: UUID, tabHeader: NiCFTabHeaderView, owner: ContentFrameController, frame: NSRect, configuration: WKWebViewConfiguration) {
         
         self.contentId = contentId
         self.owner = owner
+        self.tabHeader = tabHeader
         
         super.init(frame: frame, configuration: configuration)
         GlobalScriptMessageHandler.instance.ensureHandles(configuration: self.configuration)

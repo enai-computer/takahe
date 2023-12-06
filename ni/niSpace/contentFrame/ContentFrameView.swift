@@ -39,6 +39,7 @@ class ContentFrameView: NSBox{
     @IBOutlet var contentForwardButton: NSImageView!
     @IBOutlet var createNewTabButton: NSImageView!
     
+    @IBOutlet var niTabHeaderView: NSTableView!
     @IBOutlet var niContentTabView: NSTabView!
     
     required init?(coder: NSCoder) {
@@ -63,9 +64,11 @@ class ContentFrameView: NSBox{
         
         niContentTabView.selectTabViewItem(at: tabViewPos)
         
-//        self.contentHeader.stringValue = urlStr
-        
         return tabViewPos
+    }
+    
+    func selectTab(pos: Int){
+        niContentTabView.selectTabViewItem(at: pos)
     }
     
     /**

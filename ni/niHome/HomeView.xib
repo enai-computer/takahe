@@ -62,6 +62,7 @@
                                 </connections>
                             </tableView>
                         </subviews>
+                        <nil key="backgroundColor"/>
                     </clipView>
                     <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="6vb-FH-nLZ">
                         <rect key="frame" x="-100" y="-100" width="223" height="15"/>
