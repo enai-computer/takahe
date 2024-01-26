@@ -13,8 +13,8 @@ struct CFConstants {
     static let wvBoarderHeight: CGFloat = 10.0
     static let width: CGFloat = wvWidth + wvBoarderWidth * 2
     static let height: CGFloat = wvHeight + wvBoarderHeight * 2
-    static let boarderColor = NSColor(.sandLight9)
-    static let boarderColorSelected = NSColor(.sandLight12)
+    static let boarderColor = NSColor(.sandLight1)
+    static let boarderColorSelected = NSColor(.sandLight3)
 
     // const needed for resizing:
     static let actionArea: CGFloat = 6
@@ -38,6 +38,7 @@ class ContentFrameView: NSBox{
     @IBOutlet var closeButton: NSImageView!
     @IBOutlet var contentBackButton: NSImageView!
     @IBOutlet var contentForwardButton: NSImageView!
+    @IBOutlet var addTabButton: NSImageView!
     
     @IBOutlet var niContentTabView: NSTabView!
     
@@ -119,6 +120,12 @@ class ContentFrameView: NSBox{
         if NSPointInRect(posInFrame, contentForwardButton.frame){
             let activeTabView = niContentTabView.selectedTabViewItem?.view as! WKWebView
             activeTabView.goForward()
+        }
+        
+        if NSPointInRect(posInFrame, addTabButton.frame){
+            if let cfc = self.nextResponder as? ContentFrameController{
+                cfc.openWebsiteInNewTab("https://www.google.com")
+            }
         }
     }
     
@@ -221,10 +228,22 @@ class ContentFrameView: NSBox{
         frameIsActive = !frameIsActive
     
         if frameIsActive{
-            borderColor = .sandLight12
+            borderColor = .sandLight3
             positionInViewStack = 0
+            
+            contentHeader.isHidden = false
+            closeButton.isHidden = false
+            contentBackButton.isHidden = false
+            contentForwardButton.isHidden = false
+            addTabButton.isHidden = false
         }else{
-            borderColor = .sandLight9
+            borderColor = .sandLight1
+            
+            contentHeader.isHidden = true
+            closeButton.isHidden = true
+            contentBackButton.isHidden = true
+            contentForwardButton.isHidden = true
+            addTabButton.isHidden = true
         }
     }
     
