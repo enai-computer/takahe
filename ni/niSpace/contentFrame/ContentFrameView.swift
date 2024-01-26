@@ -59,7 +59,7 @@ class ContentFrameView: NSBox{
         activeTabView.load(urlReq)
         
         contentHeader.stringValue = newURL.stringValue
-        contentHeader.isEditable = false
+        contentHeader.disableEdit()
     }
 
     
