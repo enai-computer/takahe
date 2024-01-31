@@ -227,7 +227,7 @@ class ContentFrameView: NSBox{
     func toggleActive(){
 
         frameIsActive = !frameIsActive
-    
+        
         if frameIsActive{
             self.layer?.borderColor = NSColor(.sandLight3).cgColor
             positionInViewStack = 0
@@ -237,14 +237,16 @@ class ContentFrameView: NSBox{
             contentBackButton.isHidden = false
             contentForwardButton.isHidden = false
             addTabButton.isHidden = false
+            
         }else{
             self.layer?.borderColor = NSColor(.sandLight1).cgColor
-            
+        
             contentHeader.isHidden = true
             closeButton.isHidden = true
             contentBackButton.isHidden = true
             contentForwardButton.isHidden = true
             addTabButton.isHidden = true
+            
         }
     }
     
@@ -255,7 +257,6 @@ class ContentFrameView: NSBox{
     func getPositionInViewStack() -> Int{
         return positionInViewStack
     }
-    
     
     /*
      * MARK: - store and load here
