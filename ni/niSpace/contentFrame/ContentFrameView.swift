@@ -2,6 +2,7 @@
 
 import Cocoa
 import WebKit
+import QuartzCore
 
 struct CFConstants {
     static let nibName: String = "ContentFrameView"
@@ -228,7 +229,7 @@ class ContentFrameView: NSBox{
         frameIsActive = !frameIsActive
     
         if frameIsActive{
-            borderColor = .sandLight3
+            self.layer?.borderColor = NSColor(.sandLight3).cgColor
             positionInViewStack = 0
             
             contentHeader.isHidden = false
@@ -237,7 +238,7 @@ class ContentFrameView: NSBox{
             contentForwardButton.isHidden = false
             addTabButton.isHidden = false
         }else{
-            borderColor = .sandLight1
+            self.layer?.borderColor = NSColor(.sandLight1).cgColor
             
             contentHeader.isHidden = true
             closeButton.isHidden = true

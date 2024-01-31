@@ -8,6 +8,7 @@
 import Foundation
 import Cocoa
 import WebKit
+import QuartzCore
 
 class ContentFrameController: NSViewController, WKNavigationDelegate{
     
@@ -18,6 +19,9 @@ class ContentFrameController: NSViewController, WKNavigationDelegate{
         self.niContentFrameView = (NSView.loadFromNib(nibName: "ContentFrameView", owner: self) as! ContentFrameView)
         self.view = niContentFrameView!
         self.view.wantsLayer = true
+        self.view.layer?.cornerRadius = 10
+        self.view.layer?.borderWidth = 5
+        self.view.layer?.borderColor = NSColor(.sandLight3).cgColor
         self.view.layer?.backgroundColor = NSColor(.sandLight1).cgColor
     }
     
