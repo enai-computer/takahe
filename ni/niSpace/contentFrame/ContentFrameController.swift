@@ -35,7 +35,8 @@ class ContentFrameController: NSViewController, WKNavigationDelegate{
     }
     
     func openWebsiteInNewTab(urlStr: String, contentId: UUID){
-        let urlReq = URLRequest(url: URL(string: urlStr)!)
+        let url = URL(string: urlStr) ?? URL(string: "https://www.google.com")
+        let urlReq = URLRequest(url: url!)
         
         let niWebView = getNewWebView(contentId: contentId, urlReq: urlReq, frame: niContentFrameView!.frame)
         

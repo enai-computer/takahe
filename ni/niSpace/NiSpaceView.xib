@@ -74,9 +74,9 @@
                     </scroller>
                 </scrollView>
                 <searchField wantsLayer="YES" focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MRs-tE-yVb">
-                    <rect key="frame" x="312" y="439" width="177" height="22"/>
+                    <rect key="frame" x="297" y="439" width="217" height="22"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <searchFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" borderStyle="bezel" placeholderString="search" usesSingleLineMode="YES" bezelStyle="round" sendsWholeSearchString="YES" id="LGj-Ph-s5R">
+                    <searchFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" borderStyle="bezel" placeholderString="what would you like to do?" usesSingleLineMode="YES" bezelStyle="round" sendsWholeSearchString="YES" id="LGj-Ph-s5R">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>

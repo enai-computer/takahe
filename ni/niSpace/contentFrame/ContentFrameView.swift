@@ -92,6 +92,7 @@ class ContentFrameView: NSBox{
     override func mouseDown(with event: NSEvent) {
         if !frameIsActive{
             nextResponder?.mouseDown(with: event)
+            return
         }
 
         super.mouseDown(with: event)
