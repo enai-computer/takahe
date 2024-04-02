@@ -85,20 +85,14 @@ class NiSpaceDocument: NSView{
     }
 
     private func setTopNiFrame(_ window: NSWindow?, _ newTopFrame: ContentFrameView){
-        
-        //getting old vals and updating old topFrame
-        let zVal = topNiFrame?.layer?.zPosition ?? nil
+
         topNiFrame?.toggleActive()
         
         //switch
+        newTopFrame.removeFromSuperview()
+        self.addSubview(newTopFrame)
         topNiFrame = newTopFrame
-        
-        //updating new top Frame
-        if zVal != nil {
-            topNiFrame?.layer?.zPosition = zVal! + 1     //TODO: fix at some point. May cause stack-overflow
-        }
-        window?.makeFirstResponder(topNiFrame)          //TODO: check if needed. May be a source for future bugs
-       
+
         topNiFrame?.toggleActive()
     }
     

@@ -64,7 +64,7 @@ class ContentFrameView: NSBox{
     }
 
     
-    func createNewTab(tabView: WKWebView, label: String, urlStr: String) -> Int{
+    func createNewTab(tabView: NiWebView, label: String, urlStr: String) -> Int{
 
         let tabViewPos = niContentTabView.numberOfTabViewItems
         let tabViewItem = NSTabViewItem()
@@ -228,6 +228,7 @@ class ContentFrameView: NSBox{
     func toggleActive(){
 
         frameIsActive = !frameIsActive
+        let webView = niContentTabView.selectedTabViewItem?.view as! NiWebView
         
         if frameIsActive{
             self.layer?.borderColor = NSColor(.sandLight3).cgColor
@@ -239,6 +240,7 @@ class ContentFrameView: NSBox{
             contentForwardButton.isHidden = false
             addTabButton.isHidden = false
             
+            webView.setActive()
         }else{
             self.layer?.borderColor = NSColor(.sandLight1).cgColor
         
@@ -248,6 +250,7 @@ class ContentFrameView: NSBox{
             contentForwardButton.isHidden = true
             addTabButton.isHidden = true
             
+            webView.setInactive()
         }
     }
     

@@ -50,7 +50,56 @@ class NiWebView: WKWebView{
                 owner.openWebsiteInNewTab(url)
             }
         }
-
+    
+    func setActive(){
+        viewIsActive = true
+    }
+    
+    func setInactive(){
+        viewIsActive = false
+    }
+//    
+//    override func mouseUp(with event: NSEvent) {
+//        if(viewIsActive){
+//            super.mouseUp(with: event)
+//        }
+//    }
+//    
+//    override func mouseDown(with event: NSEvent) {
+//        if(viewIsActive){
+//            super.mouseDown(with: event)
+//        }
+//    }
+//    
+//    override func mouseMoved(with event: NSEvent) {
+//        if(viewIsActive){
+//            super.mouseMoved(with: event)
+//        }
+//    }
+//
+//    override func mouseExited(with event: NSEvent) {
+//        if(viewIsActive){
+//            super.mouseExited(with: event)
+//        }
+//    }
+//    
+//    override func mouseEntered(with event: NSEvent) {
+//        if(viewIsActive){
+//            super.mouseEntered(with: event)
+//        }
+//    }
+//    
+//    override func mouseDragged(with event: NSEvent) {
+//        if(viewIsActive){
+//            super.mouseDragged(with: event)
+//        }
+//    }
+//    
+//    override func scrollWheel(with event: NSEvent) {
+//        if(viewIsActive){
+//            super.scrollWheel(with: event)
+//        }
+//    }
 }
 
 

@@ -3,7 +3,6 @@
 import Cocoa
 
 class DefaultWindowController: NSWindowController{
-   
     
     override func windowDidLoad() {
         super.windowDidLoad()
