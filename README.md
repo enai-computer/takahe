@@ -1,7 +1,9 @@
 # Welcome to the ni Mac-Version
 
-What is ni? 
+
+### What is ni?  
 Talk to Curran
 
-How does it work?
+
+### How does it work?
 Talk to Patrick
