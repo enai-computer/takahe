@@ -24,8 +24,8 @@
                         <imageCell key="cell" alignment="left" imageAlignment="topRight" image="xmark" catalog="system" id="1Vu-cP-tyr"/>
                     </imageView>
                     <tabView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="d8b-7o-70b">
-                        <rect key="frame" x="3" y="0.0" width="911" height="404"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES"/>
+                        <rect key="frame" x="-8" y="-10" width="925" height="405"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <font key="font" metaFont="system"/>
                     </tabView>
                     <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rcT-6J-b1L" userLabel="back-button">
@@ -38,7 +38,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="NSGoForwardTemplate" id="i8b-xK-NTA"/>
                     </imageView>
-                    <textField verticalHuggingPriority="750" fixedFrame="YES" contentType="url" translatesAutoresizingMaskIntoConstraints="NO" id="QFH-so-HLv" customClass="ContentFrameHeader" customModule="ni" customModuleProvider="target">
+                    <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" contentType="url" translatesAutoresizingMaskIntoConstraints="NO" id="QFH-so-HLv" customClass="ContentFrameHeader" customModule="ni" customModuleProvider="target">
                         <rect key="frame" x="70" y="387" width="306" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" borderStyle="border" drawsBackground="YES" usesSingleLineMode="YES" id="2ic-Ap-kJE">

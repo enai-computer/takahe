@@ -18,8 +18,8 @@ struct CFConstants {
     static let boarderColorSelected = NSColor(.sandLight3)
 
     // const needed for resizing:
-    static let actionArea: CGFloat = 6
-    static let cornerActionArea: CGFloat = 32
+    static let actionAreaMargin: CGFloat = 6
+    static let cornerActionAreaMargin: CGFloat = 32
  }
 
 
@@ -140,6 +140,8 @@ class ContentFrameView: NSBox{
         cursorDownPoint = .zero
         cursorOnBorder = .no
         deactivateDocumentResize = false
+        //TODO: look for a cleaner solution,- this is called here so the hand icon switches from closed to open
+        resetCursorRects()
     }
     
     override func mouseDragged(with event: NSEvent) {
@@ -152,7 +154,6 @@ class ContentFrameView: NSBox{
         if cursorOnBorder == OnBorder.no{
             return
         }
-        
         let currCursorPoint = event.locationInWindow
         let horizontalDistanceDragged = currCursorPoint.x - cursorDownPoint.x
         let verticalDistanceDragged = currCursorPoint.y - cursorDownPoint.y
@@ -164,21 +165,40 @@ class ContentFrameView: NSBox{
             case .top:
                 repositionView(horizontalDistanceDragged, verticalDistanceDragged)
             case .bottomRight:
-                enaiResize(horizontalDistanceDragged, verticalDistanceDragged)
+                resizeOwnFrame(horizontalDistanceDragged, verticalDistanceDragged)
+            case .bottom:
+                resizeOwnFrame(0, verticalDistanceDragged)
+            case .leftSide:
+                resizeOwnFrame(horizontalDistanceDragged, 0, cursorLeftSide: true)
+            case .rightSide:
+                resizeOwnFrame(horizontalDistanceDragged, 0)
         default: return
         }
     }
     
+    override func resetCursorRects() {
+        if(frameIsActive){
+            if(cursorDownPoint == .zero){
+                addCursorRect(getTopBorderActionArea(), cursor: NSCursor.openHand)
+            }else{
+                addCursorRect(getTopBorderActionArea(), cursor: NSCursor.closedHand)
+            }
+            addCursorRect(getRightSideBorderActionArea(), cursor: NSCursor.resizeLeftRight)
+            addCursorRect(getLeftSideBorderActionArea(), cursor: NSCursor.resizeLeftRight)
+            addCursorRect(getBottomBorderActionArea(), cursor: NSCursor.resizeUpDown)
+        }
+    }
+        
     enum OnBorder{
-        case no, top, bottomRight
+        case no, top, bottomRight, bottom, leftSide, rightSide
     }
     
     func isOnBoarder(_ cursorLocation: CGPoint) -> OnBorder{
         
-        let aa = CFConstants.actionArea
-        let cAA = CFConstants.cornerActionArea
+        let aa = CFConstants.actionAreaMargin
+        let cAA = CFConstants.cornerActionAreaMargin
         
-        if (((frame.size.height - aa) < cursorLocation.y && cursorLocation.y < frame.size.height) && (0 < cursorLocation.x && cursorLocation.x < frame.size.width)){
+        if (NSPointInRect(cursorLocation, getTopBorderActionArea())){
             return .top
         }
         
@@ -186,7 +206,33 @@ class ContentFrameView: NSBox{
             (frame.size.width - cAA < cursorLocation.x && cursorLocation.x < frame.size.width)){
             return .bottomRight
         }
+        
+        if(NSPointInRect(cursorLocation, getBottomBorderActionArea())){
+            return .bottom
+        }
+        if(NSPointInRect(cursorLocation, getLeftSideBorderActionArea())){
+            return .leftSide
+        }
+        if(NSPointInRect(cursorLocation, getRightSideBorderActionArea())){
+            return .rightSide
+        }
         return .no
+    }
+    
+    private func getTopBorderActionArea() -> NSRect{
+        return NSRect(x: 0, y: frame.size.height-CFConstants.actionAreaMargin, width: frame.size.width, height: CFConstants.actionAreaMargin)
+    }
+    
+    private func getBottomBorderActionArea() -> NSRect{
+        return NSRect(x:0, y: 0, width: (frame.size.width - CFConstants.cornerActionAreaMargin), height: CFConstants.actionAreaMargin)
+    }
+    
+    private func getLeftSideBorderActionArea() -> NSRect{
+        return NSRect(x:0, y:0, width: CFConstants.actionAreaMargin, height: frame.size.height)
+    }
+    
+    private func getRightSideBorderActionArea() -> NSRect{
+        return NSRect(x: (frame.size.width - CFConstants.actionAreaMargin), y: CFConstants.cornerActionAreaMargin, width: CFConstants.actionAreaMargin, height: (frame.size.height - CFConstants.cornerActionAreaMargin))
     }
     
     private func repositionView(_ xDiff: Double, _ yDiff: Double) {
@@ -217,12 +263,22 @@ class ContentFrameView: NSBox{
         }
     }
     
-    func enaiResize(_ xDiff: Double, _ yDiff: Double){
+    func resizeOwnFrame(_ xDiff: Double, _ yDiff: Double, cursorLeftSide invertX: Bool = false){
         let frameSize = frame.size
         var nsize = frameSize
-        nsize.height += (yDiff * -1)
-        nsize.width += xDiff
+        
+        if(invertX){
+            nsize.width -= xDiff
+        }else{
+            nsize.width += xDiff
+        }
+        nsize.height -= yDiff
+        
         self.setFrameSize(nsize)
+        
+        if(invertX){
+            self.frame.origin.x += xDiff
+        }
     }
     
     func toggleActive(){
