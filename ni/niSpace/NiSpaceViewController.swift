@@ -71,9 +71,6 @@ class NiSpaceViewController: NSViewController{
     }
     
     private func recreateContentFrame(data: NiContentFrameModel){
-        
-        let url = CachedWebTable.fetchURL(contentId: data.children[0].id)
-        
         let storedWebsiteContentFrame = reopenContentFrame(contentFrame: data, tabs: data.children)
         self.niDocument.addNiFrame(storedWebsiteContentFrame)
         storedWebsiteContentFrame.setFrameOwner(self.niDocument)

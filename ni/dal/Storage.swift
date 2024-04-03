@@ -8,7 +8,6 @@
 import Cocoa
 import SQLite
 
-//private let STORAGE_PATH = "~/Library/Application Support/io.enai.app/"
 private let DB_SPACES = "/spaces.sqlite3"
 
 class Storage{

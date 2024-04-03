@@ -20,6 +20,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate{
         self.view = niContentFrameView!
         self.view.wantsLayer = true
         self.view.layer?.cornerRadius = 10
+        self.view.layer?.cornerCurve = .continuous
         self.view.layer?.borderWidth = 5
         self.view.layer?.borderColor = NSColor(.sandLight3).cgColor
         self.view.layer?.backgroundColor = NSColor(.sandLight1).cgColor
@@ -34,7 +35,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate{
         return wkView
     }
     
-    func openWebsiteInNewTab(urlStr: String, contentId: UUID){
+    func openWebsiteInNewTab(urlStr: String, contentId: UUID, tabName: String){
         let url = URL(string: urlStr) ?? URL(string: "https://www.google.com")
         let urlReq = URLRequest(url: url!)
         
@@ -42,12 +43,12 @@ class ContentFrameController: NSViewController, WKNavigationDelegate{
         
         niWebView.navigationDelegate = self
         
-        self.latestTab = niContentFrameView!.createNewTab(tabView: niWebView, label: "", urlStr: urlStr)
+        self.latestTab = niContentFrameView!.createNewTab(tabView: niWebView, label: tabName, urlStr: urlStr)
     }
     
     func openWebsiteInNewTab(_ urlStr: String){
         let id = UUID()
-        openWebsiteInNewTab(urlStr: urlStr, contentId: id)
+        openWebsiteInNewTab(urlStr: urlStr, contentId: id, tabName: "")
     }
 
     public func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {

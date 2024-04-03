@@ -100,6 +100,14 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "ContentFrameView.persistContent(documentId:):ContentFrameView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "tabView.title">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "NiSpaceDocument.setTopNiFrame(_:_:):NiSpaceDocument.swift">
       </ContextState>
       <ContextState

@@ -21,8 +21,8 @@ func reopenContentFrame(contentFrame: NiContentFrameModel, tabs: [NiCFTabModel])
     let frameController = ContentFrameController()
     frameController.loadView()
     for tab in tabs{
-        let urlStr = CachedWebTable.fetchURL(contentId: tab.id)
-        frameController.openWebsiteInNewTab(urlStr: urlStr, contentId: tab.id)
+        let record = CachedWebTable.fetchCachedWebsite(contentId: tab.id)
+        frameController.openWebsiteInNewTab(urlStr: record.url, contentId: tab.id, tabName: record.title)
     }
     
     //positioning

@@ -71,7 +71,11 @@ class ContentFrameView: NSBox{
 
         tabViewItem.view = tabView
 
-        tabViewItem.label = "tab " + String(tabViewPos)
+        if(label.isEmpty){
+            tabViewItem.label = "tab " + String(tabViewPos)
+        }else{
+            tabViewItem.label = label
+        }
         
         niContentTabView.addTabViewItem(tabViewItem)
         
