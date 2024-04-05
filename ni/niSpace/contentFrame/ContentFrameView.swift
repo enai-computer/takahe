@@ -65,24 +65,16 @@ class ContentFrameView: NSBox{
     }
 
     
-    func createNewTab(tabView: NiWebView, label: String, urlStr: String) -> Int{
+    func createNewTab(tabView: NiWebView) -> Int{
 
         let tabViewPos = niContentTabView.numberOfTabViewItems
         let tabViewItem = NSTabViewItem()
 
         tabViewItem.view = tabView
 
-        if(label.isEmpty){
-            tabViewItem.label = "tab " + String(tabViewPos)
-        }else{
-            tabViewItem.label = label
-        }
-        
         niContentTabView.addTabViewItem(tabViewItem)
         
         niContentTabView.selectTabViewItem(at: tabViewPos)
-        
-//        self.contentHeader.stringValue = urlStr
         
         return tabViewPos
     }

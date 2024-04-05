@@ -14,7 +14,8 @@ class NiWebView: WKWebView{
     private let owner: ContentFrameController
     let contentId: UUID
     private var viewIsActive: Bool = true
-
+	var tabHead: ContentFrameTabHead?
+	
     init(contentId: UUID, owner: ContentFrameController, frame: NSRect, configuration: WKWebViewConfiguration) {
         
         self.contentId = contentId
