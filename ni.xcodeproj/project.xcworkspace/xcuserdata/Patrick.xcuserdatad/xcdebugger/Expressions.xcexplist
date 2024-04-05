@@ -92,6 +92,9 @@
          contextName = "closure #1 in Expressible.asSQL():Expression.swift">
       </ContextState>
       <ContextState
+         contextName = "reopenContentFrame(contentFrame:tabs:):FrameGenerator.swift">
+      </ContextState>
+      <ContextState
          contextName = "NiSpaceViewController.loadStoredSpace(niSpaceID:):NiSpaceViewController.swift">
          <PersistentStrings>
             <PersistentString
@@ -137,6 +140,14 @@
          <PersistentStrings>
             <PersistentString
                value = "niFrame.frame">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ContentFrameView.hideHeader():ContentFrameView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "cfHeadView.frame.height">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

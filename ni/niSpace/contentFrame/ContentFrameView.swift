@@ -33,18 +33,19 @@ class ContentFrameView: NSBox{
     
     private var niParentDoc: NiSpaceDocument? = nil
     
-    @IBOutlet var contentHeader: ContentFrameHeader!
-    
-    //Buttons
-    @IBOutlet var closeButton: NSImageView!
-    @IBOutlet var contentBackButton: NSImageView!
-    @IBOutlet var contentForwardButton: NSImageView!
-    @IBOutlet var addTabButton: NSImageView!
-    
-    @IBOutlet var niContentTabView: NSTabView!
+	//Header
+	@IBOutlet var cfHeadView: ContentFrameHeadView!
+	@IBOutlet var contentBackButton: NSImageView!
+	@IBOutlet var contentForwardButton: NSImageView!
+	@IBOutlet var closeButton: NSImageView!
+	@IBOutlet var addTabButton: NSImageView!
+	
+	//TabView
+	@IBOutlet var niContentTabView: NSTabView!
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
+		self.layer?.cornerCurve = .continuous
     }
     
     func setFrameOwner(_ owner: NiSpaceDocument!){
@@ -59,8 +60,8 @@ class ContentFrameView: NSBox{
         let activeTabView = niContentTabView.selectedTabViewItem?.view as! WKWebView
         activeTabView.load(urlReq)
         
-        contentHeader.stringValue = newURL.stringValue
-        contentHeader.disableEdit()
+//        contentHeader.stringValue = newURL.stringValue
+//        contentHeader.disableEdit()
     }
 
     
@@ -81,7 +82,7 @@ class ContentFrameView: NSBox{
         
         niContentTabView.selectTabViewItem(at: tabViewPos)
         
-        self.contentHeader.stringValue = urlStr
+//        self.contentHeader.stringValue = urlStr
         
         return tabViewPos
     }
@@ -91,7 +92,7 @@ class ContentFrameView: NSBox{
      */
     
     /*
-     * catching mouse down events here:
+     *  MARK: - mouse down events here:
      */
     override func mouseDown(with event: NSEvent) {
         if !frameIsActive{
@@ -199,7 +200,6 @@ class ContentFrameView: NSBox{
     
     func isOnBoarder(_ cursorLocation: CGPoint) -> OnBorder{
         
-        let aa = CFConstants.actionAreaMargin
         let cAA = CFConstants.cornerActionAreaMargin
         
         if (NSPointInRect(cursorLocation, getTopBorderActionArea())){
@@ -285,6 +285,9 @@ class ContentFrameView: NSBox{
         }
     }
     
+	/*
+	 * MARK: - toggle Active
+	 */
     func toggleActive(){
 
         frameIsActive = !frameIsActive
@@ -294,26 +297,48 @@ class ContentFrameView: NSBox{
             self.layer?.borderColor = NSColor(.sandLight3).cgColor
             positionInViewStack = 0
             
-            contentHeader.isHidden = false
-            closeButton.isHidden = false
-            contentBackButton.isHidden = false
-            contentForwardButton.isHidden = false
-            addTabButton.isHidden = false
-            
+			showHeader()
             webView.setActive()
         }else{
             self.layer?.borderColor = NSColor(.sandLight1).cgColor
-        
-            contentHeader.isHidden = true
-            closeButton.isHidden = true
-            contentBackButton.isHidden = true
-            contentForwardButton.isHidden = true
-            addTabButton.isHidden = true
-            
+  
+			hideHeader()
             webView.setInactive()
         }
     }
+	
+	private func hideHeader(){
+		cfHeadView.isHidden = true
+		
+//		let currentSize = niContentTabView.frame.size
+//		var nsize = currentSize
+//		nsize.height += cfHeadView.frame.height
+//		niContentTabView.setFrameSize(nsize)
+		
+//		cfHeadView.removeFromSuperview()
+//		NSLayoutConstraint.activate([
+//			niContentTabView.topAnchor.constraint(equalTo: self.topAnchor)
+//			
+//		])
+//		niContentTabView.heightAnchor.constraint(equalTo: self.heightAnchor).isActive = true
+//		layout()
+	}
+	
+	private func showHeader(){
+		cfHeadView.isHidden = false
+
+//		let currentSize = niContentTabView.frame.size
+//		var nsize = currentSize
+//		
+//		nsize.height -= cfHeadView.frame.height
+//		niContentTabView.setFrameSize(nsize)
+		
+//		addSubview(cfHeadView)
+//		layoutSubtreeIfNeeded()
+//		layout()
+	}
     
+	
     func droppedInViewStack(){
         positionInViewStack += 1
     }

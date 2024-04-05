@@ -59,7 +59,7 @@ class NiSpaceViewController: NSViewController{
             let docModel = try jsonDecoder.decode(NiDocumentObjectModel.self, from: docJson)
             if (docModel.type == NiDocumentObjectTypes.document){
                 let data = docModel.data as! NiDocumentModel
-                let children = data.children as! [NiDocumentObjectModel]
+				let children = data.children 
                 for child in children{
                     let childData = child.data as! NiContentFrameModel
                     recreateContentFrame(data: childData)

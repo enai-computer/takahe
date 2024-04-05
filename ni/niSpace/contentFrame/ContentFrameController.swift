@@ -10,7 +10,7 @@ import Cocoa
 import WebKit
 import QuartzCore
 
-class ContentFrameController: NSViewController, WKNavigationDelegate{
+class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollectionViewDataSource, NSCollectionViewDelegate{
     
     var niContentFrameView: ContentFrameView? = nil
     var latestTab: Int = 0
@@ -59,5 +59,17 @@ class ContentFrameController: NSViewController, WKNavigationDelegate{
         niContentFrameView!.niContentTabView.tabViewItems[latestTab].label = title!
         
     }
+	
+	func collectionView(_ collectionView: NSCollectionView, numberOfItemsInSection section: Int) -> Int{
+		return 1
+	}
     
+	func collectionView(_ collectionView: NSCollectionView, itemForRepresentedObjectAt indexPath: IndexPath) -> NSCollectionViewItem {
+		let item = collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier("ContentFrameTabHead"), for: indexPath)
+		guard let tabHead = item as? ContentFrameTabHead else {return item}
+		
+		tabHead.view.wantsLayer = true
+		
+		return tabHead
+	}
 }
