@@ -31,18 +31,18 @@ class NiWebView: WKWebView{
     
     override func willOpenMenu(_ menu: NSMenu, with event: NSEvent) {
         
-        // Hacky do nothing, if not a link
-        if(menu.items[0].title == "Reload"){
-            return
-        }
-        
-        // if menuItem.identifier?.rawValue == "WKMenuItemIdentifierOpenLink" {
-        let niOpenInNewTab = NSMenuItem()
-        
-        niOpenInNewTab.title = "open link in new tab"
-        niOpenInNewTab.action = #selector(openLinkInNewTab(_:))
-        niOpenInNewTab.target = self
-        menu.items = [niOpenInNewTab]
+//        // Hacky do nothing, if not a link
+//        if(menu.items[0].title == "Reload"){
+//            return
+//        }
+//        
+//        // if menuItem.identifier?.rawValue == "WKMenuItemIdentifierOpenLink" {
+//        let niOpenInNewTab = NSMenuItem()
+//        
+//        niOpenInNewTab.title = "open link in new tab"
+//        niOpenInNewTab.action = #selector(openLinkInNewTab(_:))
+//        niOpenInNewTab.target = self
+//        menu.items = [niOpenInNewTab]
     
     }
     

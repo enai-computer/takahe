@@ -16,6 +16,7 @@ class ContentFrameTabHead: NSCollectionViewItem {
 	override func viewDidLoad() {
         super.viewDidLoad()
 
+		view.wantsLayer = true
 		view.layer?.cornerRadius = 5
 		view.layer?.cornerCurve = .continuous
 		view.layer?.backgroundColor = NSColor(.sandLight1).cgColor

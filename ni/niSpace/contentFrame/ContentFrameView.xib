@@ -32,10 +32,10 @@
                                         <collectionView id="wB8-UP-dFY">
                                             <rect key="frame" x="0.0" y="0.0" width="780" height="158"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
-                                            <collectionViewFlowLayout key="collectionViewLayout" minimumInteritemSpacing="10" minimumLineSpacing="10" scrollDirection="horizontal" id="Wti-La-5hp">
-                                                <size key="itemSize" width="195" height="30"/>
+                                            <collectionViewFlowLayout key="collectionViewLayout" minimumInteritemSpacing="6" minimumLineSpacing="1" scrollDirection="horizontal" id="Wti-La-5hp">
+                                                <size key="itemSize" width="195" height="22"/>
                                             </collectionViewFlowLayout>
-                                            <color key="primaryBackgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="primaryBackgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                             <connections>
                                                 <outlet property="dataSource" destination="-2" id="sD7-CD-z1v"/>
                                                 <outlet property="delegate" destination="-2" id="WJe-Po-RtO"/>
@@ -83,14 +83,15 @@
                 </subviews>
             </view>
             <shadow key="shadow" blurRadius="6">
-                <size key="offset" width="2" height="4"/>
-                <color key="color" red="0.43921568989999998" green="0.4352940917" blue="0.42745098469999998" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="displayP3"/>
+                <size key="offset" width="2" height="-4"/>
+                <color key="color" red="0.4392156862745098" green="0.43529411764705883" blue="0.42745098039215684" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="displayP3"/>
             </shadow>
             <color key="borderColor" name="SandLight3"/>
             <color key="fillColor" name="SandLight1"/>
             <connections>
                 <outlet property="addTabButton" destination="GMe-PK-SX5" id="bBG-vF-gtC"/>
                 <outlet property="cfHeadView" destination="Pdl-B9-RoX" id="S8d-c6-NIZ"/>
+                <outlet property="cfTabHeadCollection" destination="wB8-UP-dFY" id="Q9l-en-w4j"/>
                 <outlet property="closeButton" destination="Utx-ML-7oY" id="B7l-wf-zmC"/>
                 <outlet property="contentBackButton" destination="rcT-6J-b1L" id="fyG-GL-z9e"/>
                 <outlet property="contentForwardButton" destination="eFl-A6-f9y" id="4v5-Pf-dIF"/>

@@ -35,6 +35,7 @@ class ContentFrameView: NSBox{
     
 	//Header
 	@IBOutlet var cfHeadView: ContentFrameHeadView!
+	@IBOutlet var cfTabHeadCollection: NSCollectionView!
 	@IBOutlet var contentBackButton: NSImageView!
 	@IBOutlet var contentForwardButton: NSImageView!
 	@IBOutlet var closeButton: NSImageView!
@@ -102,26 +103,26 @@ class ContentFrameView: NSBox{
             cursorDownPoint = event.locationInWindow
         }
         
-        let posInFrame = self.contentView!.convert(cursorPos, from: self)
+        let posInHeadView = self.cfHeadView!.convert(cursorPos, from: self)
         
         //clicked on close button
-        if NSPointInRect(posInFrame, closeButton.frame){
+        if NSPointInRect(posInHeadView, closeButton.frame){
             removeFromSuperview()
         }
         
         //clicked on back button
-        if NSPointInRect(posInFrame, contentBackButton.frame){
+        if NSPointInRect(posInHeadView, contentBackButton.frame){
             let activeTabView = niContentTabView.selectedTabViewItem?.view as! WKWebView
             activeTabView.goBack()
         }
         
         //clicked on forward button
-        if NSPointInRect(posInFrame, contentForwardButton.frame){
+        if NSPointInRect(posInHeadView, contentForwardButton.frame){
             let activeTabView = niContentTabView.selectedTabViewItem?.view as! WKWebView
             activeTabView.goForward()
         }
         
-        if NSPointInRect(posInFrame, addTabButton.frame){
+        if NSPointInRect(posInHeadView, addTabButton.frame){
             if let cfc = self.nextResponder as? ContentFrameController{
                 cfc.openWebsiteInNewTab("https://www.google.com")
             }

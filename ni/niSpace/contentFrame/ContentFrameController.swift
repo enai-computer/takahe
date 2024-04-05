@@ -34,6 +34,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
         self.view.layer?.borderColor = NSColor(.sandLight3).cgColor
         self.view.layer?.backgroundColor = NSColor(.sandLight1).cgColor
 		
+		niContentFrameView!.cfHeadView.wantsLayer = true
 		niContentFrameView!.cfHeadView.layer?.backgroundColor = NSColor(.sandLight3).cgColor
     }
     
@@ -66,6 +67,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
     func openWebsiteInNewTab(_ urlStr: String){
         let id = UUID()
         openWebsiteInNewTab(urlStr: urlStr, contentId: id, tabName: "")
+		niContentFrameView?.cfTabHeadCollection.reloadData()
     }
 	
 	/*
@@ -74,6 +76,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
 	func webView(_ webView: WKWebView, didFinish: WKNavigation!){
 		let wv = webView as! NiWebView
 		wv.tabHead?.setTitle(wv.title ?? "")
+		wv.tabHead?.setIcon(urlStr: wv.url!.absoluteString)
 	}
 	
 	/*
