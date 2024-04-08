@@ -23,12 +23,16 @@
 		A1E41C022ACC1DF600338417 /* ContentFrameHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E41C012ACC1DF600338417 /* ContentFrameHeader.swift */; };
 		A1F33E2E2AB7299500E2E7CD /* DefaultWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F33E2D2AB7299500E2E7CD /* DefaultWindow.swift */; };
 		A1F33E302AB7316300E2E7CD /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F33E2F2AB7316300E2E7CD /* HomeView.swift */; };
+		CD6317E12BC3F11000434D56 /* NiUserInputError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6317E02BC3F11000434D56 /* NiUserInputError.swift */; };
+		CD6317E32BC3F18300434D56 /* NiBadTypeError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6317E22BC3F18300434D56 /* NiBadTypeError.swift */; };
+		CD6317E52BC3F67400434D56 /* ContentFrameTabHeadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6317E42BC3F67400434D56 /* ContentFrameTabHeadView.swift */; };
 		CD66CE332B1F819E0006BB98 /* NiWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD66CE322B1F819E0006BB98 /* NiWebView.swift */; };
 		CD66CE382B1FD26A0006BB98 /* NiStringUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD66CE372B1FD26A0006BB98 /* NiStringUtils.swift */; };
 		CD7578372BBDA98700293930 /* ContentFrameHeadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7578362BBDA98700293930 /* ContentFrameHeadView.swift */; };
 		CD7578462BC000F200293930 /* ContentFrameTabHead.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7578442BC000F200293930 /* ContentFrameTabHead.swift */; };
 		CD7578472BC000F200293930 /* ContentFrameTabHead.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD7578452BC000F200293930 /* ContentFrameTabHead.xib */; };
 		CD75784A2BC0207E00293930 /* FaviconFinder in Frameworks */ = {isa = PBXBuildFile; productRef = CD7578492BC0207E00293930 /* FaviconFinder */; };
+		CD75784C2BC065FB00293930 /* ContentFrameTabHeadTextNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD75784B2BC065FB00293930 /* ContentFrameTabHeadTextNode.swift */; };
 		CDB06B5D2AF81D54008DB8FF /* NiScroll.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB06B5C2AF81D54008DB8FF /* NiScroll.swift */; };
 		CDB06B5F2AF81F91008DB8FF /* NiScrollController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB06B5E2AF81F91008DB8FF /* NiScrollController.swift */; };
 		CDB06B612AF84E1F008DB8FF /* NiSpaceDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB06B602AF84E1F008DB8FF /* NiSpaceDocument.swift */; };
@@ -61,11 +65,15 @@
 		A1E41C012ACC1DF600338417 /* ContentFrameHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentFrameHeader.swift; sourceTree = "<group>"; };
 		A1F33E2D2AB7299500E2E7CD /* DefaultWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultWindow.swift; sourceTree = "<group>"; };
 		A1F33E2F2AB7316300E2E7CD /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		CD6317E02BC3F11000434D56 /* NiUserInputError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiUserInputError.swift; sourceTree = "<group>"; };
+		CD6317E22BC3F18300434D56 /* NiBadTypeError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiBadTypeError.swift; sourceTree = "<group>"; };
+		CD6317E42BC3F67400434D56 /* ContentFrameTabHeadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentFrameTabHeadView.swift; sourceTree = "<group>"; };
 		CD66CE322B1F819E0006BB98 /* NiWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiWebView.swift; sourceTree = "<group>"; };
 		CD66CE372B1FD26A0006BB98 /* NiStringUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiStringUtils.swift; sourceTree = "<group>"; };
 		CD7578362BBDA98700293930 /* ContentFrameHeadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentFrameHeadView.swift; sourceTree = "<group>"; };
 		CD7578442BC000F200293930 /* ContentFrameTabHead.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentFrameTabHead.swift; sourceTree = "<group>"; };
 		CD7578452BC000F200293930 /* ContentFrameTabHead.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContentFrameTabHead.xib; sourceTree = "<group>"; };
+		CD75784B2BC065FB00293930 /* ContentFrameTabHeadTextNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentFrameTabHeadTextNode.swift; sourceTree = "<group>"; };
 		CDB06B5C2AF81D54008DB8FF /* NiScroll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiScroll.swift; sourceTree = "<group>"; };
 		CDB06B5E2AF81F91008DB8FF /* NiScrollController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiScrollController.swift; sourceTree = "<group>"; };
 		CDB06B602AF84E1F008DB8FF /* NiSpaceDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiSpaceDocument.swift; sourceTree = "<group>"; };
@@ -121,6 +129,7 @@
 				A1B8E6A92AAFB5EC00AC6566 /* ni.xcdatamodeld */,
 				A1F33E2D2AB7299500E2E7CD /* DefaultWindow.swift */,
 				A14E8F202AD20A2600409DDF /* DefaultWindowController.swift */,
+				CD6317DF2BC3F0F300434D56 /* errors */,
 				CD66CE362B1FD24B0006BB98 /* utils */,
 			);
 			path = ni;
@@ -138,6 +147,15 @@
 				A1E41BFE2ACB6B1300338417 /* FrameGenerator.swift */,
 			);
 			path = contentFrame;
+			sourceTree = "<group>";
+		};
+		CD6317DF2BC3F0F300434D56 /* errors */ = {
+			isa = PBXGroup;
+			children = (
+				CD6317E02BC3F11000434D56 /* NiUserInputError.swift */,
+				CD6317E22BC3F18300434D56 /* NiBadTypeError.swift */,
+			);
+			path = errors;
 			sourceTree = "<group>";
 		};
 		CD66CE312B1F7AFF0006BB98 /* NiWebViewElements */ = {
@@ -162,6 +180,8 @@
 				CD7578362BBDA98700293930 /* ContentFrameHeadView.swift */,
 				CD7578442BC000F200293930 /* ContentFrameTabHead.swift */,
 				CD7578452BC000F200293930 /* ContentFrameTabHead.xib */,
+				CD75784B2BC065FB00293930 /* ContentFrameTabHeadTextNode.swift */,
+				CD6317E42BC3F67400434D56 /* ContentFrameTabHeadView.swift */,
 			);
 			path = NiContentFrameHead;
 			sourceTree = "<group>";
@@ -300,12 +320,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CD75784C2BC065FB00293930 /* ContentFrameTabHeadTextNode.swift in Sources */,
 				CDB06B5F2AF81F91008DB8FF /* NiScrollController.swift in Sources */,
 				A1E41BFA2ACB57EF00338417 /* ContentFrameView.swift in Sources */,
 				A14E8F212AD20A2600409DDF /* DefaultWindowController.swift in Sources */,
 				A1B8E6A62AAFB5EC00AC6566 /* AppDelegate.swift in Sources */,
 				CDB06B5D2AF81D54008DB8FF /* NiScroll.swift in Sources */,
+				CD6317E12BC3F11000434D56 /* NiUserInputError.swift in Sources */,
 				CD66CE332B1F819E0006BB98 /* NiWebView.swift in Sources */,
+				CD6317E52BC3F67400434D56 /* ContentFrameTabHeadView.swift in Sources */,
 				CDD6B9562B1C326A00C6144D /* ContentFrameController.swift in Sources */,
 				A1E41BFF2ACB6B1300338417 /* FrameGenerator.swift in Sources */,
 				A1B8E6AB2AAFB5EC00AC6566 /* ni.xcdatamodeld in Sources */,
@@ -323,6 +346,7 @@
 				A1603A722ADF21C3007A7FA0 /* HomeViewController.swift in Sources */,
 				CD66CE382B1FD26A0006BB98 /* NiStringUtils.swift in Sources */,
 				CD7578462BC000F200293930 /* ContentFrameTabHead.swift in Sources */,
+				CD6317E32BC3F18300434D56 /* NiBadTypeError.swift in Sources */,
 				CD7578372BBDA98700293930 /* ContentFrameHeadView.swift in Sources */,
 				A14E8F272AD5EAF800409DDF /* NiSpaceView.swift in Sources */,
 			);
@@ -375,9 +399,11 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Apple Development: Patrick Lukas (7GWH3D38XY)";
 				COPY_PHASE_STRIP = NO;
 				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = SNXQ3BDQ5V;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -395,7 +421,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 13.5;
+				MACOSX_DEPLOYMENT_TARGET = 14.1;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -439,9 +465,11 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Apple Development: Patrick Lukas (7GWH3D38XY)";
 				COPY_PHASE_STRIP = NO;
 				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = SNXQ3BDQ5V;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = NO;
@@ -454,7 +482,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 13.5;
+				MACOSX_DEPLOYMENT_TARGET = 14.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;
@@ -470,6 +498,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = ni/ni.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 2;

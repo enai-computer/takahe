@@ -17,7 +17,7 @@
          contextName = "HomeViewController.tableView(_:viewFor:row:):HomeViewController.swift">
       </ContextState>
       <ContextState
-         contextName = "NiTableCellView.data.getter:HomeViewController.swift">
+         contextName = "NiWebView.mouseDown(with:):NiWebView.swift">
       </ContextState>
       <ContextState
          contextName = "ContentFrameView.repositionView(_:_:):ContentFrameView.swift">
@@ -28,10 +28,15 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "NiWebView.scrollWheel(with:):NiWebView.swift">
+         contextName = "NiTableCellView.data.getter:HomeViewController.swift">
       </ContextState>
       <ContextState
-         contextName = "NiWebView.mouseDown(with:):NiWebView.swift">
+         contextName = "ContentFrameView.openWebsiteInNewTab(urlStr:width:height:position:):ContentFrameView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "wkView.title">
+            </PersistentString>
+         </PersistentStrings>
       </ContextState>
       <ContextState
          contextName = "ContentFrameView.openWebsiteInNewTab(_:):ContentFrameView.swift">
@@ -53,6 +58,17 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "ContentFrameTabHead.loadWebsite(newURL:):ContentFrameTabHead.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.parent">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ContentFrameController.selectTab(at:):ContentFrameController.swift">
+      </ContextState>
+      <ContextState
          contextName = "ContentFrameView.isOnBoarder(_:):ContentFrameView.swift">
          <PersistentStrings>
             <PersistentString
@@ -64,10 +80,10 @@
          contextName = "NiTableCellView.mouseDown(with:):HomeViewController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "event.clickCount">
+               value = "data!.id">
             </PersistentString>
             <PersistentString
-               value = "data!.id">
+               value = "event.clickCount">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -87,6 +103,9 @@
       </ContextState>
       <ContextState
          contextName = "DBStorage.init():DBStorage.swift">
+      </ContextState>
+      <ContextState
+         contextName = "ContentFrameController.openWebsiteInNewTab(urlStr:contentId:tabName:):ContentFrameController.swift">
       </ContextState>
       <ContextState
          contextName = "closure #1 in Expressible.asSQL():Expression.swift">
@@ -168,18 +187,24 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "NiSpaceViewController.viewDidLoad():NiSpaceViewController.swift">
+         contextName = "ContentFrameController.collectionView(_:itemForRepresentedObjectAt:):ContentFrameController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "scrollView.documentView?.frame">
+               value = "indexPath.item">
+            </PersistentString>
+            <PersistentString
+               value = "indexPath.section">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "ContentFrameView.openWebsiteInNewTab(urlStr:width:height:position:):ContentFrameView.swift">
+         contextName = "NiWebView.scrollWheel(with:):NiWebView.swift">
+      </ContextState>
+      <ContextState
+         contextName = "NiSpaceViewController.viewDidLoad():NiSpaceViewController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "wkView.title">
+               value = "scrollView.documentView?.frame">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

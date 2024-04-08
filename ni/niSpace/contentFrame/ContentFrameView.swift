@@ -75,8 +75,6 @@ class ContentFrameView: NSBox{
 
         niContentTabView.addTabViewItem(tabViewItem)
         
-        niContentTabView.selectTabViewItem(at: tabViewPos)
-        
         return tabViewPos
     }
     

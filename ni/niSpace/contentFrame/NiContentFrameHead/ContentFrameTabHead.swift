@@ -11,7 +11,10 @@ import FaviconFinder
 class ContentFrameTabHead: NSCollectionViewItem {
 
 	@IBOutlet var image: NSImageView!
-	@IBOutlet var tabHeadTitle: NSTextField!
+	@IBOutlet var tabHeadTitle: ContentFrameTabHeadTextNode!
+	
+	var parentController: ContentFrameController?
+	var tabPosition: Int?
 	
 	override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,8 +22,22 @@ class ContentFrameTabHead: NSCollectionViewItem {
 		view.wantsLayer = true
 		view.layer?.cornerRadius = 5
 		view.layer?.cornerCurve = .continuous
-		view.layer?.backgroundColor = NSColor(.sandLight1).cgColor
+		setBackground()
+		
+		let headView = self.view as! ContentFrameTabHeadView
+		headView.parentControler = self
+		
+		tabHeadTitle.parentView = self.view
+		tabHeadTitle.parentController = self
     }
+	
+	private func setBackground(){
+		view.layer?.backgroundColor = NSColor(.sandLight1).cgColor
+	}
+	
+	private func removeBackground(){
+		view.layer?.backgroundColor = NSColor(.transparent).cgColor
+	}
 	
 	@MainActor
 	func setIcon(_ img: NSImage?){
@@ -52,4 +69,21 @@ class ContentFrameTabHead: NSCollectionViewItem {
 		self.tabHeadTitle.stringValue = title
 	}
 	
+	func setURL(urlStr: String){
+		self.tabHeadTitle.urlStr = urlStr
+	}
+	
+	func loadWebsite(newURL: String) throws {
+		guard let url = URL(string: newURL) else {throw NiUserInputError.invalidURL(url: newURL)}
+		parentController?.loadWebsiteInSelectedTab(url)
+	}
+	
+	func selectSelf(){
+		parentController?.selectTab(at: tabPosition!)
+		setBackground()
+	}
+	
+	func deselectSelf(){
+		removeBackground()
+	}
 }

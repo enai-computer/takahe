@@ -14,12 +14,13 @@ import FaviconFinder
 class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollectionViewDataSource, NSCollectionViewDelegate{
     
     var niContentFrameView: ContentFrameView? = nil
-    private var latestTab: TabHeadModel? = nil
+    private var selectedTabModel: TabHeadModel? = nil
 	private var tabs: [TabHeadModel] = []
 	
-	private struct TabHeadModel{
+	struct TabHeadModel{
 		var url: String = ""
 		var webView: NiWebView?
+//		var headController: ContentFrameTabHead
 		var icon: Favicon?
 		var position: Int = -1
 	}
@@ -47,7 +48,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
         return wkView
     }
     
-    func openWebsiteInNewTab(urlStr: String, contentId: UUID, tabName: String){
+    func openWebsiteInNewTab(urlStr: String, contentId: UUID, tabName: String) -> Int{
         let url = URL(string: urlStr) ?? URL(string: "https://www.google.com")
         let urlReq = URLRequest(url: url!)
         
@@ -55,20 +56,29 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
         
         niWebView.navigationDelegate = self
 		
-		var tabHead = TabHeadModel()
+		var tabHeadModel = TabHeadModel()
+		tabHeadModel.position = niContentFrameView!.createNewTab(tabView: niWebView)
+		tabHeadModel.url = urlStr
+		tabHeadModel.webView = niWebView
+		self.selectedTabModel = tabHeadModel
+		self.tabs.append(tabHeadModel)
 		
-		tabHead.position = niContentFrameView!.createNewTab(tabView: niWebView)
-		tabHead.url = urlStr
-		tabHead.webView = niWebView
-		self.latestTab = tabHead
-		self.tabs.append(tabHead)
+		return tabHeadModel.position
     }
-    
+	
     func openWebsiteInNewTab(_ urlStr: String){
         let id = UUID()
-        openWebsiteInNewTab(urlStr: urlStr, contentId: id, tabName: "")
+        let pos = openWebsiteInNewTab(urlStr: urlStr, contentId: id, tabName: "")
+//		niContentFrameView?.cfTabHeadCollection.reloadItems(at: Set(arrayLiteral: IndexPath(item: pos, section: 0)))
 		niContentFrameView?.cfTabHeadCollection.reloadData()
+		
+		selectTab(at: pos)
     }
+	
+	func loadWebsiteInSelectedTab(_ url: URL){
+		let urlReq = URLRequest(url: url)
+		selectedTabModel?.webView?.load(urlReq)
+	}
 	
 	/*
 	 * MARK: - WKDelegate functions
@@ -77,6 +87,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
 		let wv = webView as! NiWebView
 		wv.tabHead?.setTitle(wv.title ?? "")
 		wv.tabHead?.setIcon(urlStr: wv.url!.absoluteString)
+		wv.tabHead?.setURL(urlStr: wv.url!.absoluteString)
 	}
 	
 	/*
@@ -88,13 +99,22 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
     
 	func collectionView(_ collectionView: NSCollectionView, itemForRepresentedObjectAt indexPath: IndexPath) -> NSCollectionViewItem {
 		let item = collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier("ContentFrameTabHead"), for: indexPath)
+		
 		guard let tabHead = item as? ContentFrameTabHead else {return item}
-		
 		tabHead.view.wantsLayer = true
-		tabHead.setIcon(urlStr: self.latestTab!.url)
-		
-		self.latestTab?.webView?.tabHead = tabHead
+		tabHead.parentController = self
+		tabHead.tabPosition = indexPath.item
+
+		self.tabs[indexPath.item].webView?.tabHead = tabHead
 		
 		return tabHead
+	}
+	
+	func selectTab(at: Int){
+		self.selectedTabModel?.webView?.tabHead?.deselectSelf()
+		
+		self.niContentFrameView?.niContentTabView.selectTabViewItem(at: at)
+		
+		self.selectedTabModel = tabs[at]
 	}
 }
