@@ -60,7 +60,6 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
 		tabHeadModel.position = niContentFrameView!.createNewTab(tabView: niWebView)
 		tabHeadModel.url = urlStr
 		tabHeadModel.webView = niWebView
-		self.selectedTabModel = tabHeadModel
 		self.tabs.append(tabHeadModel)
 		
 		return tabHeadModel.position

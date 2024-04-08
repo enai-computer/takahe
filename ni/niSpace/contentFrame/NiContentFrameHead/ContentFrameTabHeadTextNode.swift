@@ -18,7 +18,8 @@ class ContentFrameTabHeadTextNode: NSTextField{
 	
 	override func mouseDown(with event: NSEvent) {
 		if(event.clickCount == 1){
-			parentController?.selectSelf()
+			nextResponder?.mouseDown(with: event)
+			return
 		}
 		
 		if(event.clickCount == 2){
