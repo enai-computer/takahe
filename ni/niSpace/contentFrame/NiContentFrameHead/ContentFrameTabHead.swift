@@ -29,6 +29,9 @@ class ContentFrameTabHead: NSCollectionViewItem {
 		
 		tabHeadTitle.parentView = self.view
 		tabHeadTitle.parentController = self
+		tabHeadTitle.layer?.cornerRadius = 5
+		tabHeadTitle.layer?.cornerCurve = .continuous
+		tabHeadTitle.focusRingType = .none
     }
 	
 	private func setBackground(){
@@ -65,7 +68,6 @@ class ContentFrameTabHead: NSCollectionViewItem {
 	
 	@MainActor
 	func setTitle(_ title: String){
-		self.tabHeadTitle.isEditable = false
 		self.tabHeadTitle.stringValue = title
 	}
 	
@@ -85,5 +87,9 @@ class ContentFrameTabHead: NSCollectionViewItem {
 	
 	func deselectSelf(){
 		removeBackground()
+	}
+	
+	func redraw(){
+		parentController?.niContentFrameView?.cfTabHeadCollection.reloadData()
 	}
 }

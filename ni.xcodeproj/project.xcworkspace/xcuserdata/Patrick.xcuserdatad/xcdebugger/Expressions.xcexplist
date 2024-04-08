@@ -102,6 +102,14 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "ContentFrameTabHeadTextNode.mouseDown(with:):ContentFrameTabHeadTextNode.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "nextResponder">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "DBStorage.init():DBStorage.swift">
       </ContextState>
       <ContextState

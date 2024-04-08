@@ -104,10 +104,18 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
 		tabHead.parentController = self
 		tabHead.tabPosition = indexPath.item
 
-		self.tabs[indexPath.item].webView?.tabHead = tabHead
+		if (self.tabs[indexPath.item].webView?.tabHead == nil){
+			self.tabs[indexPath.item].webView?.tabHead = tabHead
+		}
+		
 		
 		return tabHead
 	}
+	
+//	func collectionView(_ collectionView: NSCollectionView, layout collectionViewLayout: NSCollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> NSSize {
+//		
+//		return self.tabs[indexPath.item].webView?.tabHead?.view.frame.size ?? NSSize()
+//	}
 	
 	func selectTab(at: Int){
 		self.selectedTabModel?.webView?.tabHead?.deselectSelf()
