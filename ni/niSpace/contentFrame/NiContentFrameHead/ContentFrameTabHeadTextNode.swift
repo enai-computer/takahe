@@ -7,6 +7,7 @@
 
 import Foundation
 import Cocoa
+import Carbon.HIToolbox
 
 class ContentFrameTabHeadTextNode: NSTextField{
 	
@@ -18,7 +19,7 @@ class ContentFrameTabHeadTextNode: NSTextField{
 
 	
 	override func mouseDown(with event: NSEvent) {
-		if(event.clickCount == 1){
+		if(!self.isEditable && event.clickCount == 1){
 			nextResponder?.mouseDown(with: event)
 			return
 		}
@@ -26,6 +27,16 @@ class ContentFrameTabHeadTextNode: NSTextField{
 		if(event.clickCount == 2){
 			enableEditing()
 		}
+	}
+	
+	override func keyDown(with event: NSEvent) {
+		if(self.isEditable && event.keyCode == kVK_Escape){
+			disableEditing()
+		}
+	}
+	
+	override func cancelOperation(_ sender: Any?) {
+		disableEditing()
 	}
 	
 	override func textDidEndEditing(_ notification: Notification) {
@@ -39,6 +50,7 @@ class ContentFrameTabHeadTextNode: NSTextField{
 
 	private func enableEditing(){
 		self.isEditable = true
+		self.isSelectable = true
 		self.stringValue = urlStr
 		
 		defaultSize = parentView?.frame.size
@@ -46,7 +58,7 @@ class ContentFrameTabHeadTextNode: NSTextField{
 		if(nSize != nil){
 			nSize?.width = CGFloat(urlStr.count) * 8.0 + 30
 			parentView!.frame.size = nSize!
-			parentController?.redraw()
+//			parentController?.redraw()
 		}
 		
 		self.textColor = NSColor(.textLight)
@@ -58,6 +70,7 @@ class ContentFrameTabHeadTextNode: NSTextField{
 	
 	private func disableEditing(){
 		self.isEditable = false
+		self.isSelectable = false
 		
 		self.textColor = NSColor(.textDark)
 		self.backgroundColor = NSColor(.transparent)
@@ -66,5 +79,6 @@ class ContentFrameTabHeadTextNode: NSTextField{
 		if(defaultSize != nil){
 			parentView?.frame.size = defaultSize!
 		}
+		
 	}
 }

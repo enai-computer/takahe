@@ -44,6 +44,9 @@ class ContentFrameView: NSBox{
 	//TabView
 	@IBOutlet var niContentTabView: NSTabView!
     
+	// overlays the contentTabView to deactivate clicks and visualise deactivation state
+	private var overlay: NSView?
+	
     required init?(coder: NSCoder) {
         super.init(coder: coder)
 		self.layer?.cornerCurve = .continuous
@@ -290,11 +293,19 @@ class ContentFrameView: NSBox{
             
 			showHeader()
             webView.setActive()
+			
+//			overlay?.removeFromSuperview()
+//			niContentTabView.addSubview(niContentTabView.selectedTabViewItem!.view!)
         }else{
             self.layer?.borderColor = NSColor(.sandLight1).cgColor
   
 			hideHeader()
             webView.setInactive()
+			
+//			overlay = cfOverlay(frame: self.frame)
+//			addSubview(overlay!)
+//			window?.makeFirstResponder(overlay)
+//			niContentTabView.selectedTabViewItem?.view?.removeFromSuperviewWithoutNeedingDisplay()
         }
     }
 	

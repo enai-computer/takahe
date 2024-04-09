@@ -34,7 +34,7 @@
                     <rect key="frame" x="328" y="469" width="143" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="center" placeholderString="your new space" drawsBackground="YES" id="FUW-He-GMD">
-                        <font key="font" metaFont="system"/>
+                        <font key="font" size="13" name="Sohne-Leicht"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="SandLight3"/>
                     </textFieldCell>
@@ -77,7 +77,7 @@
                     <rect key="frame" x="297" y="439" width="217" height="22"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <searchFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" borderStyle="bezel" placeholderString="what would you like to do?" usesSingleLineMode="YES" bezelStyle="round" sendsWholeSearchString="YES" id="LGj-Ph-s5R">
-                        <font key="font" metaFont="system"/>
+                        <font key="font" size="13" name="Sohne-Leicht"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </searchFieldCell>

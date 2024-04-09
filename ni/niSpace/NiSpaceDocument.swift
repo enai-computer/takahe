@@ -65,7 +65,7 @@ class NiSpaceDocument: NSView{
 
         let posInViewStack = newTopFrame?.getPositionInViewStack()
         
-        activeNiFrames.remove(at: posInViewStack!)
+//        activeNiFrames.remove(at: posInViewStack!)
         for niFrame in activeNiFrames{
             niFrame.droppedInViewStack()
         }

@@ -1,6 +1,7 @@
 //Created on 17.09.23
 
 import Cocoa
+import Carbon.HIToolbox
 
 class DefaultWindow: NSWindow{
  
@@ -8,4 +9,16 @@ class DefaultWindow: NSWindow{
         super.init(contentRect: contentRect, styleMask: style, backing: backingStoreType, defer: flag)
         self.center()
     }
+	
+	override func keyDown(with event: NSEvent) {
+		switch Int(event.keyCode) {
+			case kVK_Escape:
+				print("Esc pressed")
+				return
+			default:
+				break
+		}
+		super.keyDown(with: event)
+	}
+	
 }

@@ -14,15 +14,16 @@ import FaviconFinder
 class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollectionViewDataSource, NSCollectionViewDelegate{
     
     var niContentFrameView: ContentFrameView? = nil
-    private var selectedTabModel: TabHeadModel? = nil
-	private var tabs: [TabHeadModel] = []
+    private var selectedTabModel: Int = -1
+	private var tabs: [TabHeadViewModel] = []
 	
-	struct TabHeadModel{
+	struct TabHeadViewModel{
+		var title: String = ""
 		var url: String = ""
 		var webView: NiWebView?
-//		var headController: ContentFrameTabHead
 		var icon: Favicon?
 		var position: Int = -1
+		var isSelected: Bool = false
 	}
 	
     override func loadView() {
@@ -56,10 +57,11 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
         
         niWebView.navigationDelegate = self
 		
-		var tabHeadModel = TabHeadModel()
+		var tabHeadModel = TabHeadViewModel()
 		tabHeadModel.position = niContentFrameView!.createNewTab(tabView: niWebView)
 		tabHeadModel.url = urlStr
 		tabHeadModel.webView = niWebView
+		tabHeadModel.webView!.tabHeadPosition = tabHeadModel.position
 		self.tabs.append(tabHeadModel)
 		
 		return tabHeadModel.position
@@ -69,14 +71,12 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
         let id = UUID()
         let pos = openWebsiteInNewTab(urlStr: urlStr, contentId: id, tabName: "")
 //		niContentFrameView?.cfTabHeadCollection.reloadItems(at: Set(arrayLiteral: IndexPath(item: pos, section: 0)))
-		niContentFrameView?.cfTabHeadCollection.reloadData()
-		
 		selectTab(at: pos)
     }
 	
 	func loadWebsiteInSelectedTab(_ url: URL){
 		let urlReq = URLRequest(url: url)
-		selectedTabModel?.webView?.load(urlReq)
+		tabs[selectedTabModel].webView?.load(urlReq)
 	}
 	
 	/*
@@ -84,9 +84,11 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
 	 */
 	func webView(_ webView: WKWebView, didFinish: WKNavigation!){
 		let wv = webView as! NiWebView
-		wv.tabHead?.setTitle(wv.title ?? "")
-		wv.tabHead?.setIcon(urlStr: wv.url!.absoluteString)
-		wv.tabHead?.setURL(urlStr: wv.url!.absoluteString)
+		self.tabs[wv.tabHeadPosition].title = wv.title ?? ""
+		self.tabs[wv.tabHeadPosition].url = wv.url!.absoluteString
+//		self.tabs[wv.tabHeadPosition].icon = TODO: set icon here
+		
+		niContentFrameView?.cfTabHeadCollection.reloadItems(at: Set(arrayLiteral: IndexPath(item: wv.tabHeadPosition, section: 0)))
 	}
 	
 	/*
@@ -97,17 +99,20 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
 	}
     
 	func collectionView(_ collectionView: NSCollectionView, itemForRepresentedObjectAt indexPath: IndexPath) -> NSCollectionViewItem {
+		//After returning an item object from your collectionView(_:itemForRepresentedObjectAt:) method, you do not modify that object again.
 		let item = collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier("ContentFrameTabHead"), for: indexPath)
 		
 		guard let tabHead = item as? ContentFrameTabHead else {return item}
-		tabHead.view.wantsLayer = true
+
 		tabHead.parentController = self
 		tabHead.tabPosition = indexPath.item
-
-		if (self.tabs[indexPath.item].webView?.tabHead == nil){
-			self.tabs[indexPath.item].webView?.tabHead = tabHead
-		}
 		
+		let tabHeadModel = tabs[indexPath.item]
+		tabHead.setTitle(tabHeadModel.title)
+		tabHead.setURL(urlStr: tabHeadModel.url)
+		tabHead.setIcon(urlStr: tabHeadModel.url)
+		
+		tabHead.setBackground(isSelected: tabHeadModel.isSelected)
 		
 		return tabHead
 	}
@@ -118,10 +123,14 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
 //	}
 	
 	func selectTab(at: Int){
-		self.selectedTabModel?.webView?.tabHead?.deselectSelf()
+//		tabs[selectedTabModel].isSelected = false
 		
 		self.niContentFrameView?.niContentTabView.selectTabViewItem(at: at)
 		
-		self.selectedTabModel = tabs[at]
+		self.selectedTabModel = at
+		tabs[selectedTabModel].isSelected = true
+		
+		niContentFrameView?.cfTabHeadCollection.reloadData()
+		
 	}
 }

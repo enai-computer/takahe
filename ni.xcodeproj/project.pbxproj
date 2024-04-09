@@ -30,6 +30,7 @@
 		CD6317ED2BC4852300434D56 /* soehne-leicht.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CD6317E92BC4852300434D56 /* soehne-leicht.ttf */; };
 		CD6317EE2BC4852300434D56 /* soehne-buch.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CD6317EA2BC4852300434D56 /* soehne-buch.ttf */; };
 		CD6317EF2BC4852300434D56 /* soehne-kraftig.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CD6317EB2BC4852300434D56 /* soehne-kraftig.ttf */; };
+		CD6317F12BC53A9600434D56 /* cfOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6317F02BC53A9600434D56 /* cfOverlay.swift */; };
 		CD66CE332B1F819E0006BB98 /* NiWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD66CE322B1F819E0006BB98 /* NiWebView.swift */; };
 		CD66CE382B1FD26A0006BB98 /* NiStringUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD66CE372B1FD26A0006BB98 /* NiStringUtils.swift */; };
 		CD7578372BBDA98700293930 /* ContentFrameHeadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7578362BBDA98700293930 /* ContentFrameHeadView.swift */; };
@@ -76,6 +77,7 @@
 		CD6317E92BC4852300434D56 /* soehne-leicht.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "soehne-leicht.ttf"; sourceTree = "<group>"; };
 		CD6317EA2BC4852300434D56 /* soehne-buch.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "soehne-buch.ttf"; sourceTree = "<group>"; };
 		CD6317EB2BC4852300434D56 /* soehne-kraftig.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "soehne-kraftig.ttf"; sourceTree = "<group>"; };
+		CD6317F02BC53A9600434D56 /* cfOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cfOverlay.swift; sourceTree = "<group>"; };
 		CD66CE322B1F819E0006BB98 /* NiWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiWebView.swift; sourceTree = "<group>"; };
 		CD66CE372B1FD26A0006BB98 /* NiStringUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiStringUtils.swift; sourceTree = "<group>"; };
 		CD7578362BBDA98700293930 /* ContentFrameHeadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentFrameHeadView.swift; sourceTree = "<group>"; };
@@ -154,6 +156,7 @@
 				A1E41BF92ACB57EF00338417 /* ContentFrameView.swift */,
 				CDD6B9552B1C326A00C6144D /* ContentFrameController.swift */,
 				A1E41BFE2ACB6B1300338417 /* FrameGenerator.swift */,
+				CD6317F02BC53A9600434D56 /* cfOverlay.swift */,
 			);
 			path = contentFrame;
 			sourceTree = "<group>";
@@ -355,6 +358,7 @@
 				CD75784C2BC065FB00293930 /* ContentFrameTabHeadTextNode.swift in Sources */,
 				CDB06B5F2AF81F91008DB8FF /* NiScrollController.swift in Sources */,
 				A1E41BFA2ACB57EF00338417 /* ContentFrameView.swift in Sources */,
+				CD6317F12BC53A9600434D56 /* cfOverlay.swift in Sources */,
 				A14E8F212AD20A2600409DDF /* DefaultWindowController.swift in Sources */,
 				A1B8E6A62AAFB5EC00AC6566 /* AppDelegate.swift in Sources */,
 				CDB06B5D2AF81D54008DB8FF /* NiScroll.swift in Sources */,

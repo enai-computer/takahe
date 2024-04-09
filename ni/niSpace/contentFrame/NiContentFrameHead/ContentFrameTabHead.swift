@@ -14,7 +14,7 @@ class ContentFrameTabHead: NSCollectionViewItem {
 	@IBOutlet var tabHeadTitle: ContentFrameTabHeadTextNode!
 	
 	var parentController: ContentFrameController?
-	var tabPosition: Int?
+	var tabPosition: Int = -1
 	
 	override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,7 +22,6 @@ class ContentFrameTabHead: NSCollectionViewItem {
 		view.wantsLayer = true
 		view.layer?.cornerRadius = 5
 		view.layer?.cornerCurve = .continuous
-		setBackground()
 		
 		let headView = self.view as! ContentFrameTabHeadView
 		headView.parentControler = self
@@ -34,17 +33,24 @@ class ContentFrameTabHead: NSCollectionViewItem {
 		tabHeadTitle.focusRingType = .none
     }
 	
-	private func setBackground(){
-		view.layer?.backgroundColor = NSColor(.sandLight1).cgColor
+	override func prepareForReuse() {
+		//TODO: reset everything to default values
+		tabPosition = -1
 	}
 	
-	private func removeBackground(){
-		view.layer?.backgroundColor = NSColor(.transparent).cgColor
+	func setBackground(isSelected: Bool){
+		if(isSelected){
+			view.layer?.backgroundColor = NSColor(.sandLight1).cgColor
+		}else{
+			view.layer?.backgroundColor = NSColor(.transparent).cgColor
+		}
+		
 	}
 	
 	@MainActor
 	func setIcon(_ img: NSImage?){
 		self.image.image = img
+		self.image.alphaValue = 1.0
 	}
     
 	func setIcon(urlStr: String){
@@ -69,6 +75,7 @@ class ContentFrameTabHead: NSCollectionViewItem {
 	@MainActor
 	func setTitle(_ title: String){
 		self.tabHeadTitle.stringValue = title
+		self.tabHeadTitle.isSelectable = false
 	}
 	
 	func setURL(urlStr: String){
@@ -81,12 +88,7 @@ class ContentFrameTabHead: NSCollectionViewItem {
 	}
 	
 	func selectSelf(){
-		parentController?.selectTab(at: tabPosition!)
-		setBackground()
-	}
-	
-	func deselectSelf(){
-		removeBackground()
+		parentController?.selectTab(at: tabPosition)
 	}
 	
 	func redraw(){
