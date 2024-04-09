@@ -21,4 +21,8 @@ class DefaultWindow: NSWindow{
 		super.keyDown(with: event)
 	}
 	
+	override func cancelOperation(_ sender: Any?) {
+		return
+	}
+	
 }

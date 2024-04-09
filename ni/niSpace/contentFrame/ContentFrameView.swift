@@ -1,6 +1,7 @@
 //Created on 02.10.23
 
 import Cocoa
+import Carbon.HIToolbox
 import WebKit
 import QuartzCore
 
@@ -85,6 +86,14 @@ class ContentFrameView: NSBox{
      * window like functions (moving and resizing) here:
      */
     
+	/*
+	 * MARK: - keyboard caputure here:
+	 */
+	override func cancelOperation(_ sender: Any?) {
+		//TODO: Mimize window
+		return
+	}
+	
     /*
      *  MARK: - mouse down events here:
      */
