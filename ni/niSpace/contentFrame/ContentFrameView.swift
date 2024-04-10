@@ -44,9 +44,6 @@ class ContentFrameView: NSBox{
 	
 	//TabView
 	@IBOutlet var niContentTabView: NSTabView!
-    
-	// overlays the contentTabView to deactivate clicks and visualise deactivation state
-	private var overlay: NSView?
 	
     required init?(coder: NSCoder) {
         super.init(coder: coder)
@@ -302,24 +299,23 @@ class ContentFrameView: NSBox{
             
 			showHeader()
             webView.setActive()
-			
-//			overlay?.removeFromSuperview()
+//			niContentTabView.selectedTabViewItem?.view?.wantsLayer = false
 //			niContentTabView.addSubview(niContentTabView.selectedTabViewItem!.view!)
         }else{
             self.layer?.borderColor = NSColor(.sandLight1).cgColor
   
 			hideHeader()
             webView.setInactive()
-			
-//			overlay = cfOverlay(frame: self.frame)
-//			addSubview(overlay!)
-//			window?.makeFirstResponder(overlay)
+//			niContentTabView.selectedTabViewItem?.view?.wantsLayer = true
+
 //			niContentTabView.selectedTabViewItem?.view?.removeFromSuperviewWithoutNeedingDisplay()
         }
     }
 	
 	private func hideHeader(){
-		cfHeadView.isHidden = true
+		if(1 == niContentTabView.numberOfTabViewItems){
+			cfHeadView.isHidden = true
+		}
 		
 //		let currentSize = niContentTabView.frame.size
 //		var nsize = currentSize

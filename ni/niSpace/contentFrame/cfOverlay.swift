@@ -15,7 +15,7 @@ class cfOverlay: NSView{
 	}
 	
 	override func mouseDown(with event: NSEvent) {
-		print("YAY")
+		//TODO: make this CF active 
 	}
 	
 	override func mouseUp(with event: NSEvent) {

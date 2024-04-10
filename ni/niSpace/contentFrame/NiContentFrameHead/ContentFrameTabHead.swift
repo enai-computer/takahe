@@ -26,7 +26,6 @@ class ContentFrameTabHead: NSCollectionViewItem {
 		let headView = self.view as! ContentFrameTabHeadView
 		headView.parentControler = self
 		
-		tabHeadTitle.parentView = self.view
 		tabHeadTitle.parentController = self
 		tabHeadTitle.layer?.cornerRadius = 5
 		tabHeadTitle.layer?.cornerCurve = .continuous
@@ -38,7 +37,17 @@ class ContentFrameTabHead: NSCollectionViewItem {
 		tabPosition = -1
 	}
 	
-	func setBackground(isSelected: Bool){
+	func configureView(parentController: ContentFrameController, tabPosition: Int, viewModel: TabHeadViewModel){
+		self.tabPosition = tabPosition
+		self.parentController = parentController
+		
+		self.setText(viewModel)
+		self.setIcon(urlStr: viewModel.url)
+		
+		self.setBackground(isSelected: viewModel.isSelected)
+	}
+	
+	private func setBackground(isSelected: Bool){
 		if(isSelected){
 			view.layer?.backgroundColor = NSColor(.sandLight1).cgColor
 		}else{
@@ -73,13 +82,12 @@ class ContentFrameTabHead: NSCollectionViewItem {
 	}
 	
 	@MainActor
-	func setTitle(_ title: String){
-		self.tabHeadTitle.stringValue = title
-		self.tabHeadTitle.isSelectable = false
-	}
-	
-	func setURL(urlStr: String){
-		self.tabHeadTitle.urlStr = urlStr
+	private func setText(_ viewModel: TabHeadViewModel){
+		if(viewModel.inEditingMode){
+			self.tabHeadTitle.enableEditing(urlStr: viewModel.url)
+		}else{
+			self.tabHeadTitle.disableEditing(title: viewModel.title)
+		}
 	}
 	
 	func loadWebsite(newURL: String) throws {
@@ -89,6 +97,14 @@ class ContentFrameTabHead: NSCollectionViewItem {
 	
 	func selectSelf(){
 		parentController?.selectTab(at: tabPosition)
+	}
+	
+	func startEditMode(){
+		parentController?.editTabUrl(at: tabPosition)
+	}
+	
+	func endEditMode(){
+		parentController?.endEditingTabUrl(at: tabPosition)
 	}
 	
 	func redraw(){

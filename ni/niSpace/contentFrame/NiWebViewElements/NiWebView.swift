@@ -16,6 +16,9 @@ class NiWebView: WKWebView{
     private var viewIsActive: Bool = true
 	var tabHeadPosition: Int = -1
 	
+	// overlays own view to deactivate clicks and visualise deactivation state
+	private var overlay: NSView?
+	
     init(contentId: UUID, owner: ContentFrameController, frame: NSRect, configuration: WKWebViewConfiguration) {
         
         self.contentId = contentId
@@ -53,10 +56,14 @@ class NiWebView: WKWebView{
         }
     
     func setActive(){
+		overlay?.removeFromSuperview()
         viewIsActive = true
     }
     
     func setInactive(){
+		overlay = cfOverlay(frame: self.frame)
+		addSubview(overlay!)
+		window?.makeFirstResponder(overlay)
         viewIsActive = false
     }
 //    

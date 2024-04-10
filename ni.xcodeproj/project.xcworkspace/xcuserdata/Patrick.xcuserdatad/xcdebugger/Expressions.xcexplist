@@ -95,6 +95,14 @@
          contextName = "NiSpaceDocument.setTopNiFrame(_:_:):NiSpaceDocument.swift">
       </ContextState>
       <ContextState
+         contextName = "ContentFrameTabHeadTextNode.textDidEndEditing(_:):ContentFrameTabHeadTextNode.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.stringValue">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "ContentFrameView.addContent(_:):ContentFrameView.swift">
          <PersistentStrings>
             <PersistentString
@@ -154,6 +162,14 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "ContentFrameController.loadWebsiteInSelectedTab(_:):ContentFrameController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "selectedTabModel">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "DBStorage.init():DBStorage.swift">
       </ContextState>
       <ContextState
@@ -209,10 +225,10 @@
          contextName = "NiTableCellView.mouseDown(with:):HomeViewController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "data!.id">
+               value = "event.clickCount">
             </PersistentString>
             <PersistentString
-               value = "event.clickCount">
+               value = "data!.id">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

@@ -11,21 +11,13 @@ import WebKit
 import QuartzCore
 import FaviconFinder
 
-class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollectionViewDataSource, NSCollectionViewDelegate{
+class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollectionViewDataSource, NSCollectionViewDelegate, NSCollectionViewDelegateFlowLayout{
     
     var niContentFrameView: ContentFrameView? = nil
     private var selectedTabModel: Int = -1
+	private var aTabIsInEditingMode: Bool = false
 	private var tabs: [TabHeadViewModel] = []
-	
-	struct TabHeadViewModel{
-		var title: String = ""
-		var url: String = ""
-		var webView: NiWebView?
-		var icon: Favicon?
-		var position: Int = -1
-		var isSelected: Bool = false
-	}
-	
+		
     override func loadView() {
         self.niContentFrameView = (NSView.loadFromNib(nibName: "ContentFrameView", owner: self) as! ContentFrameView)
         self.view = niContentFrameView!
@@ -104,26 +96,41 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
 		
 		guard let tabHead = item as? ContentFrameTabHead else {return item}
 
-		tabHead.parentController = self
-		tabHead.tabPosition = indexPath.item
-		
-		let tabHeadModel = tabs[indexPath.item]
-		tabHead.setTitle(tabHeadModel.title)
-		tabHead.setURL(urlStr: tabHeadModel.url)
-		tabHead.setIcon(urlStr: tabHeadModel.url)
-		
-		tabHead.setBackground(isSelected: tabHeadModel.isSelected)
+		tabHead.configureView(parentController: self, tabPosition: indexPath.item, viewModel: tabs[indexPath.item])
 		
 		return tabHead
 	}
 	
-//	func collectionView(_ collectionView: NSCollectionView, layout collectionViewLayout: NSCollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> NSSize {
-//		
-//		return self.tabs[indexPath.item].webView?.tabHead?.view.frame.size ?? NSSize()
-//	}
+	func collectionView(_ collectionView: NSCollectionView, layout collectionViewLayout: NSCollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> NSSize {
+		
+		let viewModel = tabs[indexPath.item]
+		if(!viewModel.inEditingMode){
+			return NSSize(width: 195, height: 22)
+		}
+		
+		let maxWidth = (niContentFrameView?.cfTabHeadCollection.frame.width ?? 780) / 2
+		var tabHeadWidth = CGFloat(viewModel.url.count) * 8.0 + 30
+		
+		if(maxWidth < tabHeadWidth){
+			tabHeadWidth = maxWidth
+		}
+		
+		return NSSize(width: tabHeadWidth, height: 22)
+	}
 	
 	func selectTab(at: Int){
-//		tabs[selectedTabModel].isSelected = false
+		
+		if(aTabIsInEditingMode && at != selectedTabModel){
+			endEditingTabUrl(at: selectedTabModel)
+		}
+		
+		if(aTabIsInEditingMode && at == selectedTabModel){
+			return
+		}
+		
+		if(0 <= selectedTabModel){
+			tabs[selectedTabModel].isSelected = false
+		}
 		
 		self.niContentFrameView?.niContentTabView.selectTabViewItem(at: at)
 		
@@ -131,6 +138,19 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
 		tabs[selectedTabModel].isSelected = true
 		
 		niContentFrameView?.cfTabHeadCollection.reloadData()
-		
 	}
+	
+	func editTabUrl(at: Int){
+		self.aTabIsInEditingMode = true
+		tabs[selectedTabModel].inEditingMode = true
+		niContentFrameView?.cfTabHeadCollection.reloadData()
+	}
+	
+	func endEditingTabUrl(at: Int){
+		self.aTabIsInEditingMode = false
+		tabs[selectedTabModel].inEditingMode = false
+		niContentFrameView?.cfTabHeadCollection.reloadData()
+	}
+	
+	
 }
