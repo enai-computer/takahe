@@ -62,7 +62,6 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
     func openWebsiteInNewTab(_ urlStr: String){
         let id = UUID()
         let pos = openWebsiteInNewTab(urlStr: urlStr, contentId: id, tabName: "")
-//		niContentFrameView?.cfTabHeadCollection.reloadItems(at: Set(arrayLiteral: IndexPath(item: pos, section: 0)))
 		selectTab(at: pos)
     }
 	
@@ -118,7 +117,16 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
 		return NSSize(width: tabHeadWidth, height: 22)
 	}
 	
-	func selectTab(at: Int){
+	func selectTab(at: Int, mouseDownEvent: NSEvent? = nil){
+		
+		//No tab switching while CF is not active
+		if(!self.niContentFrameView!.frameIsActive){
+			
+			if(mouseDownEvent != nil){
+				nextResponder?.mouseDown(with: mouseDownEvent!)
+			}
+			return
+		}
 		
 		if(aTabIsInEditingMode && at != selectedTabModel){
 			endEditingTabUrl(at: selectedTabModel)

@@ -50,6 +50,9 @@ class NiSpaceViewController: NSViewController{
         searchView.setFrameOwner(self.niDocument)
     }
     
+	/*
+	 * MARK: - load and store Space here
+	 */
     func loadStoredSpace(niSpaceID: UUID, name: String){
         self.setSpaceName(name)
         self.niSpaceID = niSpaceID
@@ -97,7 +100,7 @@ class NiSpaceViewController: NSViewController{
     func genJson() -> String{
         
         var children: [NiDocumentObjectModel] = []
-        for frame in niDocument.activeNiFrames {
+        for frame in niDocument.drawnNiFrames {
             children.append(frame.toNiContentFrameModel())
         }
             

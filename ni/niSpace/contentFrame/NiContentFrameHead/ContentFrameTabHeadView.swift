@@ -13,6 +13,6 @@ class ContentFrameTabHeadView: NSView{
 	var parentControler: ContentFrameTabHead?
 	
 	override func mouseDown(with event: NSEvent) {
-		parentControler?.selectSelf()
+		parentControler?.selectSelf(mouseDownEvent: event)
 	}
 }

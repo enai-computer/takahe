@@ -35,15 +35,15 @@ class NiSpaceDocument: NSView{
      */
     
     var topNiFrame: ContentFrameView? = nil
-    var activeNiFrames: [ContentFrameView] = []
+    var drawnNiFrames: [ContentFrameView] = []	//rn all niFrames are drawn. Needs to be reworked in future
     
     func addNiFrame(_ subView: ContentFrameView){
         self.addSubview(subView)
         
-        for niFrame in activeNiFrames{
+        for niFrame in drawnNiFrames{
             niFrame.droppedInViewStack()
         }
-        activeNiFrames.insert(subView, at: 0)
+        drawnNiFrames.insert(subView, at: 0)
         
         setTopNiFrame(NSApplication.shared.keyWindow, subView)
     }
@@ -66,17 +66,17 @@ class NiSpaceDocument: NSView{
         let posInViewStack = newTopFrame?.getPositionInViewStack()
         
 //        activeNiFrames.remove(at: posInViewStack!)
-        for niFrame in activeNiFrames{
+        for niFrame in drawnNiFrames{
             niFrame.droppedInViewStack()
         }
-        activeNiFrames.insert(newTopFrame!, at: 0)
+        drawnNiFrames.insert(newTopFrame!, at: 0)
         
         setTopNiFrame(NSApplication.shared.keyWindow, newTopFrame!)
     }
     
     private func inFrame(_ cursorPoint: CGPoint) -> ContentFrameView?{
         
-        for niFrame in activeNiFrames {
+        for niFrame in drawnNiFrames {
             if NSPointInRect(cursorPoint, niFrame.frame){
                 return niFrame
             }
@@ -97,7 +97,7 @@ class NiSpaceDocument: NSView{
     }
     
     func persistContent(documentId: UUID){
-        for contentFrame in activeNiFrames{
+        for contentFrame in drawnNiFrames{
             contentFrame.persistContent(documentId: documentId)
         }
     }

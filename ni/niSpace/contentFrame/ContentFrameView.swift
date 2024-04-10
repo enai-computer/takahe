@@ -29,7 +29,7 @@ class ContentFrameView: NSBox{
     private var cursorDownPoint: CGPoint  = .zero
     private var cursorOnBorder: OnBorder = .no
     private var deactivateDocumentResize: Bool = false
-    private var frameIsActive: Bool = false
+    private(set) var frameIsActive: Bool = false
     private var positionInViewStack: Int = 0     // 0 = up top
     
     private var niParentDoc: NiSpaceDocument? = nil

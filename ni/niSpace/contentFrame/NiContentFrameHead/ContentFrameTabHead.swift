@@ -95,8 +95,8 @@ class ContentFrameTabHead: NSCollectionViewItem {
 		parentController?.loadWebsiteInSelectedTab(url)
 	}
 	
-	func selectSelf(){
-		parentController?.selectTab(at: tabPosition)
+	func selectSelf(mouseDownEvent: NSEvent? = nil){
+		parentController?.selectTab(at: tabPosition, mouseDownEvent: mouseDownEvent)
 	}
 	
 	func startEditMode(){
