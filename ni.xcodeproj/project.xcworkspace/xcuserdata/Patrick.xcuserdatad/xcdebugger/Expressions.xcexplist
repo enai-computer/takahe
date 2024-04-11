@@ -6,6 +6,17 @@
          contextName = "NiSpaceDocument.mouseDown(with:):NiSpaceDocument.swift">
       </ContextState>
       <ContextState
+         contextName = "ContentFrameView.isOnBoarder(_:):ContentFrameView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "frame.maxY">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ContentFrameController.openWebsiteInNewTab(urlStr:contentId:tabName:):ContentFrameController.swift">
+      </ContextState>
+      <ContextState
          contextName = "HomeViewController.tableView(_:objectValueFor:row:):HomeViewController.swift">
          <PersistentStrings>
             <PersistentString
@@ -14,10 +25,57 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "HomeViewController.tableView(_:viewFor:row:):HomeViewController.swift">
+         contextName = "ContentFrameView.persistContent(documentId:):ContentFrameView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "tabView.title">
+            </PersistentString>
+         </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "NiTableCellView.data.getter:HomeViewController.swift">
+         contextName = "closure #1 in Expressible.asSQL():Expression.swift">
+      </ContextState>
+      <ContextState
+         contextName = "NiSpaceViewController.viewDidLoad():NiSpaceViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "scrollView.documentView?.frame">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ContentFrameController.collectionView(_:itemForRepresentedObjectAt:):ContentFrameController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "indexPath.item">
+            </PersistentString>
+            <PersistentString
+               value = "indexPath.section">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ContentFrameView.mouseDown(with:):ContentFrameView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "cursorOnBorder">
+            </PersistentString>
+            <PersistentString
+               value = "frame">
+            </PersistentString>
+            <PersistentString
+               value = "event.locationInWindow">
+            </PersistentString>
+            <PersistentString
+               value = "NSPointInRect(posInHeadView, closeButton.frame)">
+            </PersistentString>
+            <PersistentString
+               value = "frameIsActive">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "HomeViewController.tableView(_:viewFor:row:):HomeViewController.swift">
       </ContextState>
       <ContextState
          contextName = "ContentFrameView.repositionView(_:_:):ContentFrameView.swift">
@@ -31,15 +89,30 @@
          contextName = "NiWebView.scrollWheel(with:):NiWebView.swift">
       </ContextState>
       <ContextState
+         contextName = "ContentFrameController.selectTab(at:):ContentFrameController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "reopenContentFrame(contentFrame:tabs:):FrameGenerator.swift">
+      </ContextState>
+      <ContextState
          contextName = "NiWebView.mouseDown(with:):NiWebView.swift">
       </ContextState>
       <ContextState
-         contextName = "ContentFrameView.openWebsiteInNewTab(_:):ContentFrameView.swift">
+         contextName = "ContentFrameTabHeadTextNode.textDidEndEditing(_:):ContentFrameTabHeadTextNode.swift">
          <PersistentStrings>
             <PersistentString
-               value = "niWebViewController.view.navigationDelegate">
+               value = "self.stringValue">
             </PersistentString>
          </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "NiSpaceDocument.setTopNiFrame(_:_:):NiSpaceDocument.swift">
+      </ContextState>
+      <ContextState
+         contextName = "NiWebViewController.init(owner:urlReq:frame:):NiWebViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "DefaultWindowController.windowShouldClose(_:):DefaultWindowController.swift">
       </ContextState>
       <ContextState
          contextName = "ContentFrameView.addContent(_:):ContentFrameView.swift">
@@ -53,21 +126,85 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "ContentFrameView.isOnBoarder(_:):ContentFrameView.swift">
+         contextName = "ContentFrameView.resetCursorRects():ContentFrameView.swift">
          <PersistentStrings>
             <PersistentString
-               value = "frame.maxY">
+               value = "getTopBorderActionArea()">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "NiTableCellView.mouseDown(with:):HomeViewController.swift">
+         contextName = "ContentFrameView.hideHeader():ContentFrameView.swift">
          <PersistentStrings>
             <PersistentString
-               value = "event.clickCount">
+               value = "cfHeadView.frame.height">
             </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ContentFrameHeader.makeEditable():ContentFrameHeader.swift">
+         <PersistentStrings>
             <PersistentString
-               value = "data!.id">
+               value = "tmpCell!.controlView">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "NiSpaceDocument.inFrame(_:):NiSpaceDocument.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "niFrame.frame">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "NiWebView.setInactive():NiWebView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "owner.view">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ContentFrameView.openWebsiteInNewTab(_:):ContentFrameView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "niWebViewController.view.navigationDelegate">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ContentFrameView.openWebsiteInNewTab(urlStr:width:height:position:):ContentFrameView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "wkView.title">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ContentFrameController.loadWebsiteInSelectedTab(_:):ContentFrameController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "selectedTabModel">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "DBStorage.init():DBStorage.swift">
+      </ContextState>
+      <ContextState
+         contextName = "NiSpaceViewController.loadStoredSpace(niSpaceID:):NiSpaceViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "docModel">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ContentFrameTabHeadTextNode.mouseDown(with:):ContentFrameTabHeadTextNode.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "nextResponder">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -86,65 +223,43 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "DBStorage.init():DBStorage.swift">
+         contextName = "cfOverlay.mouseDown(with:):cfOverlay.swift">
       </ContextState>
       <ContextState
-         contextName = "closure #1 in Expressible.asSQL():Expression.swift">
-      </ContextState>
-      <ContextState
-         contextName = "NiSpaceViewController.loadStoredSpace(niSpaceID:):NiSpaceViewController.swift">
+         contextName = "NiSpaceViewController.loadStoredSpace(niSpaceID:name:):NiSpaceViewController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "docModel">
+               value = "String(from: docJson)">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "ContentFrameView.persistContent(documentId:):ContentFrameView.swift">
+         contextName = "ContentFrameTabHead.setIcon(_:):ContentFrameTabHead.swift">
          <PersistentStrings>
             <PersistentString
-               value = "tabView.title">
+               value = "self.image.image">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "NiSpaceDocument.setTopNiFrame(_:_:):NiSpaceDocument.swift">
+         contextName = "NiTableCellView.data.getter:HomeViewController.swift">
       </ContextState>
       <ContextState
-         contextName = "ContentFrameView.resetCursorRects():ContentFrameView.swift">
+         contextName = "ContentFrameTabHead.loadWebsite(newURL:):ContentFrameTabHead.swift">
          <PersistentStrings>
             <PersistentString
-               value = "getTopBorderActionArea()">
+               value = "self.parent">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "NiWebViewController.init(owner:urlReq:frame:):NiWebViewController.swift">
-      </ContextState>
-      <ContextState
-         contextName = "ContentFrameView.mouseDown(with:):ContentFrameView.swift">
+         contextName = "NiTableCellView.mouseDown(with:):HomeViewController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "frame">
+               value = "data!.id">
             </PersistentString>
             <PersistentString
-               value = "event.locationInWindow">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "NiSpaceDocument.inFrame(_:):NiSpaceDocument.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "niFrame.frame">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "ContentFrameHeader.makeEditable():ContentFrameHeader.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "tmpCell!.controlView">
+               value = "event.clickCount">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -157,18 +272,10 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "NiSpaceViewController.viewDidLoad():NiSpaceViewController.swift">
+         contextName = "ContentFrameView.mouseDragged(with:):ContentFrameView.swift">
          <PersistentStrings>
             <PersistentString
-               value = "scrollView.documentView?.frame">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "ContentFrameView.openWebsiteInNewTab(urlStr:width:height:position:):ContentFrameView.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "wkView.title">
+               value = "cursorOnBorder">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

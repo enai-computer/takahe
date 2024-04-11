@@ -14,7 +14,11 @@ class NiWebView: WKWebView{
     private let owner: ContentFrameController
     let contentId: UUID
     private var viewIsActive: Bool = true
-
+	var tabHeadPosition: Int = -1
+	
+	// overlays own view to deactivate clicks and visualise deactivation state
+	private var overlay: NSView?
+	
     init(contentId: UUID, owner: ContentFrameController, frame: NSRect, configuration: WKWebViewConfiguration) {
         
         self.contentId = contentId
@@ -30,18 +34,18 @@ class NiWebView: WKWebView{
     
     override func willOpenMenu(_ menu: NSMenu, with event: NSEvent) {
         
-        // Hacky do nothing, if not a link
-        if(menu.items[0].title == "Reload"){
-            return
-        }
-        
-        // if menuItem.identifier?.rawValue == "WKMenuItemIdentifierOpenLink" {
-        let niOpenInNewTab = NSMenuItem()
-        
-        niOpenInNewTab.title = "open link in new tab"
-        niOpenInNewTab.action = #selector(openLinkInNewTab(_:))
-        niOpenInNewTab.target = self
-        menu.items = [niOpenInNewTab]
+//        // Hacky do nothing, if not a link
+//        if(menu.items[0].title == "Reload"){
+//            return
+//        }
+//        
+//        // if menuItem.identifier?.rawValue == "WKMenuItemIdentifierOpenLink" {
+//        let niOpenInNewTab = NSMenuItem()
+//        
+//        niOpenInNewTab.title = "open link in new tab"
+//        niOpenInNewTab.action = #selector(openLinkInNewTab(_:))
+//        niOpenInNewTab.target = self
+//        menu.items = [niOpenInNewTab]
     
     }
     
@@ -52,10 +56,14 @@ class NiWebView: WKWebView{
         }
     
     func setActive(){
+		overlay?.removeFromSuperview()
         viewIsActive = true
     }
     
     func setInactive(){
+		overlay = cfOverlay(frame: self.frame, nxtResponder: owner.view)
+		addSubview(overlay!)
+		window?.makeFirstResponder(overlay)
         viewIsActive = false
     }
 //    

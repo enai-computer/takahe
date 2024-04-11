@@ -1,6 +1,7 @@
 //Created on 02.10.23
 
 import Cocoa
+import Carbon.HIToolbox
 import WebKit
 import QuartzCore
 
@@ -28,23 +29,25 @@ class ContentFrameView: NSBox{
     private var cursorDownPoint: CGPoint  = .zero
     private var cursorOnBorder: OnBorder = .no
     private var deactivateDocumentResize: Bool = false
-    private var frameIsActive: Bool = false
+    private(set) var frameIsActive: Bool = false
     private var positionInViewStack: Int = 0     // 0 = up top
     
     private var niParentDoc: NiSpaceDocument? = nil
     
-    @IBOutlet var contentHeader: ContentFrameHeader!
-    
-    //Buttons
-    @IBOutlet var closeButton: NSImageView!
-    @IBOutlet var contentBackButton: NSImageView!
-    @IBOutlet var contentForwardButton: NSImageView!
-    @IBOutlet var addTabButton: NSImageView!
-    
-    @IBOutlet var niContentTabView: NSTabView!
-    
+	//Header
+	@IBOutlet var cfHeadView: ContentFrameHeadView!
+	@IBOutlet var cfTabHeadCollection: NSCollectionView!
+	@IBOutlet var contentBackButton: NSImageView!
+	@IBOutlet var contentForwardButton: NSImageView!
+	@IBOutlet var closeButton: NSImageView!
+	@IBOutlet var addTabButton: NSImageView!
+	
+	//TabView
+	@IBOutlet var niContentTabView: NSTabView!
+	
     required init?(coder: NSCoder) {
         super.init(coder: coder)
+		self.layer?.cornerCurve = .continuous
     }
     
     func setFrameOwner(_ owner: NiSpaceDocument!){
@@ -59,29 +62,19 @@ class ContentFrameView: NSBox{
         let activeTabView = niContentTabView.selectedTabViewItem?.view as! WKWebView
         activeTabView.load(urlReq)
         
-        contentHeader.stringValue = newURL.stringValue
-        contentHeader.disableEdit()
+//        contentHeader.stringValue = newURL.stringValue
+//        contentHeader.disableEdit()
     }
 
     
-    func createNewTab(tabView: NiWebView, label: String, urlStr: String) -> Int{
+    func createNewTab(tabView: NiWebView) -> Int{
 
         let tabViewPos = niContentTabView.numberOfTabViewItems
         let tabViewItem = NSTabViewItem()
 
         tabViewItem.view = tabView
 
-        if(label.isEmpty){
-            tabViewItem.label = "tab " + String(tabViewPos)
-        }else{
-            tabViewItem.label = label
-        }
-        
         niContentTabView.addTabViewItem(tabViewItem)
-        
-        niContentTabView.selectTabViewItem(at: tabViewPos)
-        
-        self.contentHeader.stringValue = urlStr
         
         return tabViewPos
     }
@@ -90,8 +83,16 @@ class ContentFrameView: NSBox{
      * window like functions (moving and resizing) here:
      */
     
+	/*
+	 * MARK: - keyboard caputure here:
+	 */
+	override func cancelOperation(_ sender: Any?) {
+		//TODO: Mimize window
+		return
+	}
+	
     /*
-     * catching mouse down events here:
+     *  MARK: - mouse down events here:
      */
     override func mouseDown(with event: NSEvent) {
         if !frameIsActive{
@@ -109,26 +110,27 @@ class ContentFrameView: NSBox{
             cursorDownPoint = event.locationInWindow
         }
         
-        let posInFrame = self.contentView!.convert(cursorPos, from: self)
+        let posInHeadView = self.cfHeadView!.convert(cursorPos, from: self)
         
         //clicked on close button
-        if NSPointInRect(posInFrame, closeButton.frame){
+        if NSPointInRect(posInHeadView, closeButton.frame){
+			
             removeFromSuperview()
         }
         
         //clicked on back button
-        if NSPointInRect(posInFrame, contentBackButton.frame){
+        if NSPointInRect(posInHeadView, contentBackButton.frame){
             let activeTabView = niContentTabView.selectedTabViewItem?.view as! WKWebView
             activeTabView.goBack()
         }
         
         //clicked on forward button
-        if NSPointInRect(posInFrame, contentForwardButton.frame){
+        if NSPointInRect(posInHeadView, contentForwardButton.frame){
             let activeTabView = niContentTabView.selectedTabViewItem?.view as! WKWebView
             activeTabView.goForward()
         }
         
-        if NSPointInRect(posInFrame, addTabButton.frame){
+        if NSPointInRect(posInHeadView, addTabButton.frame){
             if let cfc = self.nextResponder as? ContentFrameController{
                 cfc.openWebsiteInNewTab("https://www.google.com")
             }
@@ -199,7 +201,6 @@ class ContentFrameView: NSBox{
     
     func isOnBoarder(_ cursorLocation: CGPoint) -> OnBorder{
         
-        let aa = CFConstants.actionAreaMargin
         let cAA = CFConstants.cornerActionAreaMargin
         
         if (NSPointInRect(cursorLocation, getTopBorderActionArea())){
@@ -285,6 +286,9 @@ class ContentFrameView: NSBox{
         }
     }
     
+	/*
+	 * MARK: - toggle Active
+	 */
     func toggleActive(){
 
         frameIsActive = !frameIsActive
@@ -294,26 +298,55 @@ class ContentFrameView: NSBox{
             self.layer?.borderColor = NSColor(.sandLight3).cgColor
             positionInViewStack = 0
             
-            contentHeader.isHidden = false
-            closeButton.isHidden = false
-            contentBackButton.isHidden = false
-            contentForwardButton.isHidden = false
-            addTabButton.isHidden = false
-            
+			showHeader()
             webView.setActive()
+//			niContentTabView.selectedTabViewItem?.view?.wantsLayer = false
+//			niContentTabView.addSubview(niContentTabView.selectedTabViewItem!.view!)
         }else{
             self.layer?.borderColor = NSColor(.sandLight1).cgColor
-        
-            contentHeader.isHidden = true
-            closeButton.isHidden = true
-            contentBackButton.isHidden = true
-            contentForwardButton.isHidden = true
-            addTabButton.isHidden = true
-            
+  
+			hideHeader()
             webView.setInactive()
+//			niContentTabView.selectedTabViewItem?.view?.wantsLayer = true
+
+//			niContentTabView.selectedTabViewItem?.view?.removeFromSuperviewWithoutNeedingDisplay()
         }
     }
+	
+	private func hideHeader(){
+		if(1 == niContentTabView.numberOfTabViewItems){
+			cfHeadView.isHidden = true
+		}
+		
+//		let currentSize = niContentTabView.frame.size
+//		var nsize = currentSize
+//		nsize.height += cfHeadView.frame.height
+//		niContentTabView.setFrameSize(nsize)
+		
+//		cfHeadView.removeFromSuperview()
+//		NSLayoutConstraint.activate([
+//			niContentTabView.topAnchor.constraint(equalTo: self.topAnchor)
+//			
+//		])
+//		niContentTabView.heightAnchor.constraint(equalTo: self.heightAnchor).isActive = true
+//		layout()
+	}
+	
+	private func showHeader(){
+		cfHeadView.isHidden = false
+
+//		let currentSize = niContentTabView.frame.size
+//		var nsize = currentSize
+//		
+//		nsize.height -= cfHeadView.frame.height
+//		niContentTabView.setFrameSize(nsize)
+		
+//		addSubview(cfHeadView)
+//		layoutSubtreeIfNeeded()
+//		layout()
+	}
     
+	
     func droppedInViewStack(){
         positionInViewStack += 1
     }

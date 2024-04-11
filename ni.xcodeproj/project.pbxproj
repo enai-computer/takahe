@@ -23,13 +23,24 @@
 		A1E41C022ACC1DF600338417 /* ContentFrameHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E41C012ACC1DF600338417 /* ContentFrameHeader.swift */; };
 		A1F33E2E2AB7299500E2E7CD /* DefaultWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F33E2D2AB7299500E2E7CD /* DefaultWindow.swift */; };
 		A1F33E302AB7316300E2E7CD /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F33E2F2AB7316300E2E7CD /* HomeView.swift */; };
+		CD6317E12BC3F11000434D56 /* NiUserInputError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6317E02BC3F11000434D56 /* NiUserInputError.swift */; };
+		CD6317E32BC3F18300434D56 /* NiBadTypeError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6317E22BC3F18300434D56 /* NiBadTypeError.swift */; };
+		CD6317E52BC3F67400434D56 /* ContentFrameTabHeadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6317E42BC3F67400434D56 /* ContentFrameTabHeadView.swift */; };
+		CD6317EC2BC4852300434D56 /* soehne-dreiviertelfett.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CD6317E82BC4852300434D56 /* soehne-dreiviertelfett.ttf */; };
+		CD6317ED2BC4852300434D56 /* soehne-leicht.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CD6317E92BC4852300434D56 /* soehne-leicht.ttf */; };
+		CD6317EE2BC4852300434D56 /* soehne-buch.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CD6317EA2BC4852300434D56 /* soehne-buch.ttf */; };
+		CD6317EF2BC4852300434D56 /* soehne-kraftig.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CD6317EB2BC4852300434D56 /* soehne-kraftig.ttf */; };
+		CD6317F12BC53A9600434D56 /* cfOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6317F02BC53A9600434D56 /* cfOverlay.swift */; };
 		CD66CE332B1F819E0006BB98 /* NiWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD66CE322B1F819E0006BB98 /* NiWebView.swift */; };
 		CD66CE382B1FD26A0006BB98 /* NiStringUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD66CE372B1FD26A0006BB98 /* NiStringUtils.swift */; };
+		CD7578372BBDA98700293930 /* ContentFrameHeadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7578362BBDA98700293930 /* ContentFrameHeadView.swift */; };
+		CD7578462BC000F200293930 /* ContentFrameTabHead.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7578442BC000F200293930 /* ContentFrameTabHead.swift */; };
+		CD7578472BC000F200293930 /* ContentFrameTabHead.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD7578452BC000F200293930 /* ContentFrameTabHead.xib */; };
+		CD75784A2BC0207E00293930 /* FaviconFinder in Frameworks */ = {isa = PBXBuildFile; productRef = CD7578492BC0207E00293930 /* FaviconFinder */; };
+		CD75784C2BC065FB00293930 /* ContentFrameTabHeadTextNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD75784B2BC065FB00293930 /* ContentFrameTabHeadTextNode.swift */; };
 		CDB06B5D2AF81D54008DB8FF /* NiScroll.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB06B5C2AF81D54008DB8FF /* NiScroll.swift */; };
 		CDB06B5F2AF81F91008DB8FF /* NiScrollController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB06B5E2AF81F91008DB8FF /* NiScrollController.swift */; };
 		CDB06B612AF84E1F008DB8FF /* NiSpaceDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB06B602AF84E1F008DB8FF /* NiSpaceDocument.swift */; };
-		CDB06B652AF9723F008DB8FF /* TabHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDB06B642AF9723F008DB8FF /* TabHeaderView.xib */; };
-		CDD6B9332B13C57300C6144D /* ContentFrameTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD6B9322B13C57300C6144D /* ContentFrameTabView.swift */; };
 		CDD6B9392B152A8000C6144D /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD6B9382B152A8000C6144D /* Storage.swift */; };
 		CDD6B93E2B152D3F00C6144D /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = CDD6B93D2B152D3F00C6144D /* SQLite */; };
 		CDD6B9402B169F7700C6144D /* DocumentTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD6B93F2B169F7700C6144D /* DocumentTable.swift */; };
@@ -38,6 +49,7 @@
 		CDD6B9472B16A29100C6144D /* DocumentIdContentIdTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD6B9462B16A29100C6144D /* DocumentIdContentIdTable.swift */; };
 		CDD6B9522B1BFE8B00C6144D /* NiDocumentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD6B9512B1BFE8B00C6144D /* NiDocumentModel.swift */; };
 		CDD6B9562B1C326A00C6144D /* ContentFrameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD6B9552B1C326A00C6144D /* ContentFrameController.swift */; };
+		CDE76C1C2BC6989000CE9513 /* TabHeadViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE76C1B2BC6989000CE9513 /* TabHeadViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -59,13 +71,23 @@
 		A1E41C012ACC1DF600338417 /* ContentFrameHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentFrameHeader.swift; sourceTree = "<group>"; };
 		A1F33E2D2AB7299500E2E7CD /* DefaultWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultWindow.swift; sourceTree = "<group>"; };
 		A1F33E2F2AB7316300E2E7CD /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		CD6317E02BC3F11000434D56 /* NiUserInputError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiUserInputError.swift; sourceTree = "<group>"; };
+		CD6317E22BC3F18300434D56 /* NiBadTypeError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiBadTypeError.swift; sourceTree = "<group>"; };
+		CD6317E42BC3F67400434D56 /* ContentFrameTabHeadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentFrameTabHeadView.swift; sourceTree = "<group>"; };
+		CD6317E82BC4852300434D56 /* soehne-dreiviertelfett.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "soehne-dreiviertelfett.ttf"; sourceTree = "<group>"; };
+		CD6317E92BC4852300434D56 /* soehne-leicht.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "soehne-leicht.ttf"; sourceTree = "<group>"; };
+		CD6317EA2BC4852300434D56 /* soehne-buch.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "soehne-buch.ttf"; sourceTree = "<group>"; };
+		CD6317EB2BC4852300434D56 /* soehne-kraftig.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "soehne-kraftig.ttf"; sourceTree = "<group>"; };
+		CD6317F02BC53A9600434D56 /* cfOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cfOverlay.swift; sourceTree = "<group>"; };
 		CD66CE322B1F819E0006BB98 /* NiWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiWebView.swift; sourceTree = "<group>"; };
 		CD66CE372B1FD26A0006BB98 /* NiStringUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiStringUtils.swift; sourceTree = "<group>"; };
+		CD7578362BBDA98700293930 /* ContentFrameHeadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentFrameHeadView.swift; sourceTree = "<group>"; };
+		CD7578442BC000F200293930 /* ContentFrameTabHead.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentFrameTabHead.swift; sourceTree = "<group>"; };
+		CD7578452BC000F200293930 /* ContentFrameTabHead.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContentFrameTabHead.xib; sourceTree = "<group>"; };
+		CD75784B2BC065FB00293930 /* ContentFrameTabHeadTextNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentFrameTabHeadTextNode.swift; sourceTree = "<group>"; };
 		CDB06B5C2AF81D54008DB8FF /* NiScroll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiScroll.swift; sourceTree = "<group>"; };
 		CDB06B5E2AF81F91008DB8FF /* NiScrollController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiScrollController.swift; sourceTree = "<group>"; };
 		CDB06B602AF84E1F008DB8FF /* NiSpaceDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiSpaceDocument.swift; sourceTree = "<group>"; };
-		CDB06B642AF9723F008DB8FF /* TabHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TabHeaderView.xib; sourceTree = "<group>"; };
-		CDD6B9322B13C57300C6144D /* ContentFrameTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentFrameTabView.swift; sourceTree = "<group>"; };
 		CDD6B9382B152A8000C6144D /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		CDD6B93F2B169F7700C6144D /* DocumentTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentTable.swift; sourceTree = "<group>"; };
 		CDD6B9422B16A14300C6144D /* ContentTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentTable.swift; sourceTree = "<group>"; };
@@ -73,6 +95,7 @@
 		CDD6B9462B16A29100C6144D /* DocumentIdContentIdTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentIdContentIdTable.swift; sourceTree = "<group>"; };
 		CDD6B9512B1BFE8B00C6144D /* NiDocumentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiDocumentModel.swift; sourceTree = "<group>"; };
 		CDD6B9552B1C326A00C6144D /* ContentFrameController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentFrameController.swift; sourceTree = "<group>"; };
+		CDE76C1B2BC6989000CE9513 /* TabHeadViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabHeadViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +104,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CDD6B93E2B152D3F00C6144D /* SQLite in Frameworks */,
+				CD75784A2BC0207E00293930 /* FaviconFinder in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -107,16 +131,18 @@
 			isa = PBXGroup;
 			children = (
 				CDD6B94F2B1BFE6500C6144D /* models */,
-				CDD6B94A2B19469000C6144D /* niHome */,
 				CDD6B9342B1527B700C6144D /* dal */,
+				CDD6B94A2B19469000C6144D /* niHome */,
 				CDB06B5B2AF81CB6008DB8FF /* niSpace */,
 				A1B8E6A52AAFB5EC00AC6566 /* AppDelegate.swift */,
+				CD6317E62BC4845100434D56 /* assets */,
 				A1B8E6AC2AAFB5EF00AC6566 /* Assets.xcassets */,
 				A1B8E6AE2AAFB5EF00AC6566 /* Main.storyboard */,
 				A1B8E6B12AAFB5EF00AC6566 /* ni.entitlements */,
 				A1B8E6A92AAFB5EC00AC6566 /* ni.xcdatamodeld */,
 				A1F33E2D2AB7299500E2E7CD /* DefaultWindow.swift */,
 				A14E8F202AD20A2600409DDF /* DefaultWindowController.swift */,
+				CD6317DF2BC3F0F300434D56 /* errors */,
 				CD66CE362B1FD24B0006BB98 /* utils */,
 			);
 			path = ni;
@@ -125,16 +151,44 @@
 		A1E41BFD2ACB684F00338417 /* contentFrame */ = {
 			isa = PBXGroup;
 			children = (
+				CD7578352BBD9FD100293930 /* NiContentFrameHead */,
 				CD66CE312B1F7AFF0006BB98 /* NiWebViewElements */,
 				A1E41C012ACC1DF600338417 /* ContentFrameHeader.swift */,
 				A1E41BF52ACB533400338417 /* ContentFrameView.xib */,
 				A1E41BF92ACB57EF00338417 /* ContentFrameView.swift */,
 				CDD6B9552B1C326A00C6144D /* ContentFrameController.swift */,
 				A1E41BFE2ACB6B1300338417 /* FrameGenerator.swift */,
-				CDB06B642AF9723F008DB8FF /* TabHeaderView.xib */,
-				CDD6B9322B13C57300C6144D /* ContentFrameTabView.swift */,
+				CD6317F02BC53A9600434D56 /* cfOverlay.swift */,
 			);
 			path = contentFrame;
+			sourceTree = "<group>";
+		};
+		CD6317DF2BC3F0F300434D56 /* errors */ = {
+			isa = PBXGroup;
+			children = (
+				CD6317E02BC3F11000434D56 /* NiUserInputError.swift */,
+				CD6317E22BC3F18300434D56 /* NiBadTypeError.swift */,
+			);
+			path = errors;
+			sourceTree = "<group>";
+		};
+		CD6317E62BC4845100434D56 /* assets */ = {
+			isa = PBXGroup;
+			children = (
+				CD6317E72BC484E100434D56 /* fonts */,
+			);
+			path = assets;
+			sourceTree = "<group>";
+		};
+		CD6317E72BC484E100434D56 /* fonts */ = {
+			isa = PBXGroup;
+			children = (
+				CD6317EA2BC4852300434D56 /* soehne-buch.ttf */,
+				CD6317E82BC4852300434D56 /* soehne-dreiviertelfett.ttf */,
+				CD6317EB2BC4852300434D56 /* soehne-kraftig.ttf */,
+				CD6317E92BC4852300434D56 /* soehne-leicht.ttf */,
+			);
+			path = fonts;
 			sourceTree = "<group>";
 		};
 		CD66CE312B1F7AFF0006BB98 /* NiWebViewElements */ = {
@@ -151,6 +205,19 @@
 				CD66CE372B1FD26A0006BB98 /* NiStringUtils.swift */,
 			);
 			path = utils;
+			sourceTree = "<group>";
+		};
+		CD7578352BBD9FD100293930 /* NiContentFrameHead */ = {
+			isa = PBXGroup;
+			children = (
+				CD7578362BBDA98700293930 /* ContentFrameHeadView.swift */,
+				CD7578442BC000F200293930 /* ContentFrameTabHead.swift */,
+				CD7578452BC000F200293930 /* ContentFrameTabHead.xib */,
+				CD75784B2BC065FB00293930 /* ContentFrameTabHeadTextNode.swift */,
+				CD6317E42BC3F67400434D56 /* ContentFrameTabHeadView.swift */,
+				CDE76C1B2BC6989000CE9513 /* TabHeadViewModel.swift */,
+			);
+			path = NiContentFrameHead;
 			sourceTree = "<group>";
 		};
 		CDB06B5B2AF81CB6008DB8FF /* niSpace */ = {
@@ -223,6 +290,7 @@
 			name = ni;
 			packageProductDependencies = (
 				CDD6B93D2B152D3F00C6144D /* SQLite */,
+				CD7578492BC0207E00293930 /* FaviconFinder */,
 			);
 			productName = ni;
 			productReference = A1B8E6A22AAFB5EC00AC6566 /* ni.app */;
@@ -254,6 +322,7 @@
 			mainGroup = A1B8E6992AAFB5EC00AC6566;
 			packageReferences = (
 				CDD6B93C2B152D3F00C6144D /* XCLocalSwiftPackageReference "../takahe-dependencies/SQLite.swift" */,
+				CD7578482BC0207E00293930 /* XCRemoteSwiftPackageReference "FaviconFinder" */,
 			);
 			productRefGroup = A1B8E6A32AAFB5EC00AC6566 /* Products */;
 			projectDirPath = "";
@@ -270,10 +339,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				A1B8E6AD2AAFB5EF00AC6566 /* Assets.xcassets in Resources */,
-				CDB06B652AF9723F008DB8FF /* TabHeaderView.xib in Resources */,
 				A1B8E6B02AAFB5EF00AC6566 /* Main.storyboard in Resources */,
+				CD6317EC2BC4852300434D56 /* soehne-dreiviertelfett.ttf in Resources */,
+				CD6317EF2BC4852300434D56 /* soehne-kraftig.ttf in Resources */,
+				CD7578472BC000F200293930 /* ContentFrameTabHead.xib in Resources */,
 				A1E41BF62ACB533400338417 /* ContentFrameView.xib in Resources */,
+				CD6317ED2BC4852300434D56 /* soehne-leicht.ttf in Resources */,
 				A14E8F252AD5EADF00409DDF /* NiSpaceView.xib in Resources */,
+				CD6317EE2BC4852300434D56 /* soehne-buch.ttf in Resources */,
 				A1603A702ADF21B4007A7FA0 /* HomeView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -285,13 +358,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CD75784C2BC065FB00293930 /* ContentFrameTabHeadTextNode.swift in Sources */,
 				CDB06B5F2AF81F91008DB8FF /* NiScrollController.swift in Sources */,
 				A1E41BFA2ACB57EF00338417 /* ContentFrameView.swift in Sources */,
+				CD6317F12BC53A9600434D56 /* cfOverlay.swift in Sources */,
 				A14E8F212AD20A2600409DDF /* DefaultWindowController.swift in Sources */,
 				A1B8E6A62AAFB5EC00AC6566 /* AppDelegate.swift in Sources */,
 				CDB06B5D2AF81D54008DB8FF /* NiScroll.swift in Sources */,
-				CDD6B9332B13C57300C6144D /* ContentFrameTabView.swift in Sources */,
+				CD6317E12BC3F11000434D56 /* NiUserInputError.swift in Sources */,
 				CD66CE332B1F819E0006BB98 /* NiWebView.swift in Sources */,
+				CD6317E52BC3F67400434D56 /* ContentFrameTabHeadView.swift in Sources */,
 				CDD6B9562B1C326A00C6144D /* ContentFrameController.swift in Sources */,
 				A1E41BFF2ACB6B1300338417 /* FrameGenerator.swift in Sources */,
 				A1B8E6AB2AAFB5EC00AC6566 /* ni.xcdatamodeld in Sources */,
@@ -301,6 +377,7 @@
 				A1F33E2E2AB7299500E2E7CD /* DefaultWindow.swift in Sources */,
 				CDB06B612AF84E1F008DB8FF /* NiSpaceDocument.swift in Sources */,
 				CDD6B9432B16A14300C6144D /* ContentTable.swift in Sources */,
+				CDE76C1C2BC6989000CE9513 /* TabHeadViewModel.swift in Sources */,
 				CDD6B9402B169F7700C6144D /* DocumentTable.swift in Sources */,
 				CDD6B9452B16A1A200C6144D /* CachedWebTable.swift in Sources */,
 				A1E41C022ACC1DF600338417 /* ContentFrameHeader.swift in Sources */,
@@ -308,6 +385,9 @@
 				CDD6B9472B16A29100C6144D /* DocumentIdContentIdTable.swift in Sources */,
 				A1603A722ADF21C3007A7FA0 /* HomeViewController.swift in Sources */,
 				CD66CE382B1FD26A0006BB98 /* NiStringUtils.swift in Sources */,
+				CD7578462BC000F200293930 /* ContentFrameTabHead.swift in Sources */,
+				CD6317E32BC3F18300434D56 /* NiBadTypeError.swift in Sources */,
+				CD7578372BBDA98700293930 /* ContentFrameHeadView.swift in Sources */,
 				A14E8F272AD5EAF800409DDF /* NiSpaceView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -359,9 +439,11 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Apple Development: Patrick Lukas (7GWH3D38XY)";
 				COPY_PHASE_STRIP = NO;
 				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = SNXQ3BDQ5V;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -379,7 +461,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MACOSX_DEPLOYMENT_TARGET = 14.1;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -423,9 +505,11 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Apple Development: Patrick Lukas (7GWH3D38XY)";
 				COPY_PHASE_STRIP = NO;
 				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = SNXQ3BDQ5V;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = NO;
@@ -438,7 +522,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MACOSX_DEPLOYMENT_TARGET = 14.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;
@@ -454,6 +538,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = ni/ni.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 2;
@@ -467,7 +552,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 0.1.2;
+				MARKETING_VERSION = 0.1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = io.enai.ni;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -494,7 +579,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 0.1.2;
+				MARKETING_VERSION = 0.1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = io.enai.ni;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -532,7 +617,23 @@
 		};
 /* End XCLocalSwiftPackageReference section */
 
+/* Begin XCRemoteSwiftPackageReference section */
+		CD7578482BC0207E00293930 /* XCRemoteSwiftPackageReference "FaviconFinder" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/will-lumley/FaviconFinder.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
 /* Begin XCSwiftPackageProductDependency section */
+		CD7578492BC0207E00293930 /* FaviconFinder */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CD7578482BC0207E00293930 /* XCRemoteSwiftPackageReference "FaviconFinder" */;
+			productName = FaviconFinder;
+		};
 		CDD6B93D2B152D3F00C6144D /* SQLite */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = SQLite;
