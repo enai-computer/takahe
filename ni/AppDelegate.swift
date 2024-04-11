@@ -35,7 +35,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func switchToHome(){
         window = NSApplication.shared.keyWindow!
-        window.contentViewController = HomeViewController()
+        window.contentViewController = HomeViewOLDController()
         window.contentViewController!.loadView()
     }
 

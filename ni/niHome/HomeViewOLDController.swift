@@ -2,10 +2,10 @@
 
 import Cocoa
 
-class HomeViewController: NSViewController, NSTableViewDataSource, NSTableViewDelegate{
+class HomeViewOLDController: NSViewController, NSTableViewDataSource, NSTableViewDelegate{
 
     
-    private var lstOfDocuments: [NiDocumentMetaData] = [NiDocumentMetaData]()
+    private var lstOfDocuments: [NiDocumentViewModel] = [NiDocumentViewModel]()
     @IBAction func mainSearch(_ searchField: NSSearchField) {
 
     }
@@ -16,7 +16,7 @@ class HomeViewController: NSViewController, NSTableViewDataSource, NSTableViewDe
     }
     
     override func loadView() {
-        self.view = NSView.loadFromNib(nibName: "HomeView", owner: self)!
+        self.view = NSView.loadFromNib(nibName: "HomeViewOLD", owner: self)!
         super.view.wantsLayer = true
         super.view.layer?.backgroundColor = NSColor(.sandLight1).cgColor
     }
@@ -56,9 +56,9 @@ class HomeViewController: NSViewController, NSTableViewDataSource, NSTableViewDe
 
 class NiTableCellView: NSView{
     
-    private var data: NiDocumentMetaData? = nil
+    private var data: NiDocumentViewModel? = nil
     
-    func setData(data: NiDocumentMetaData){
+    func setData(data: NiDocumentViewModel){
         self.data = data
         let label = NSTextField(labelWithString: (data.name ?? "nameless"))
         self.addSubview(label)
@@ -68,7 +68,7 @@ class NiTableCellView: NSView{
     override func mouseDown(with event: NSEvent) {
         if (event.clickCount == 2){
             let appDelegate = NSApp.delegate as! AppDelegate
-            appDelegate.loadExistingSpace(niSpaceID: data!.id, name: data!.name!)
+            appDelegate.loadExistingSpace(niSpaceID: data!.id, name: data!.name)
         }
     }
 }
