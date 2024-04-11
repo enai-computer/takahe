@@ -159,6 +159,4 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
 		tabs[selectedTabModel].inEditingMode = false
 		niContentFrameView?.cfTabHeadCollection.reloadData()
 	}
-	
-	
 }

@@ -114,6 +114,7 @@ class ContentFrameView: NSBox{
         
         //clicked on close button
         if NSPointInRect(posInHeadView, closeButton.frame){
+			
             removeFromSuperview()
         }
         

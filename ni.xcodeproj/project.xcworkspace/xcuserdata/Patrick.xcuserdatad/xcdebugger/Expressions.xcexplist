@@ -58,10 +58,19 @@
          contextName = "ContentFrameView.mouseDown(with:):ContentFrameView.swift">
          <PersistentStrings>
             <PersistentString
+               value = "cursorOnBorder">
+            </PersistentString>
+            <PersistentString
                value = "frame">
             </PersistentString>
             <PersistentString
                value = "event.locationInWindow">
+            </PersistentString>
+            <PersistentString
+               value = "NSPointInRect(posInHeadView, closeButton.frame)">
+            </PersistentString>
+            <PersistentString
+               value = "frameIsActive">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -89,18 +98,21 @@
          contextName = "NiWebView.mouseDown(with:):NiWebView.swift">
       </ContextState>
       <ContextState
-         contextName = "NiWebViewController.init(owner:urlReq:frame:):NiWebViewController.swift">
-      </ContextState>
-      <ContextState
-         contextName = "NiSpaceDocument.setTopNiFrame(_:_:):NiSpaceDocument.swift">
-      </ContextState>
-      <ContextState
          contextName = "ContentFrameTabHeadTextNode.textDidEndEditing(_:):ContentFrameTabHeadTextNode.swift">
          <PersistentStrings>
             <PersistentString
                value = "self.stringValue">
             </PersistentString>
          </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "NiSpaceDocument.setTopNiFrame(_:_:):NiSpaceDocument.swift">
+      </ContextState>
+      <ContextState
+         contextName = "NiWebViewController.init(owner:urlReq:frame:):NiWebViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "DefaultWindowController.windowShouldClose(_:):DefaultWindowController.swift">
       </ContextState>
       <ContextState
          contextName = "ContentFrameView.addContent(_:):ContentFrameView.swift">
@@ -214,6 +226,14 @@
          contextName = "cfOverlay.mouseDown(with:):cfOverlay.swift">
       </ContextState>
       <ContextState
+         contextName = "NiSpaceViewController.loadStoredSpace(niSpaceID:name:):NiSpaceViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "String(from: docJson)">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "ContentFrameTabHead.setIcon(_:):ContentFrameTabHead.swift">
          <PersistentStrings>
             <PersistentString
@@ -236,10 +256,10 @@
          contextName = "NiTableCellView.mouseDown(with:):HomeViewController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "event.clickCount">
+               value = "data!.id">
             </PersistentString>
             <PersistentString
-               value = "data!.id">
+               value = "event.clickCount">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -248,6 +268,14 @@
          <PersistentStrings>
             <PersistentString
                value = "niDocument.activeNiFrames">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ContentFrameView.mouseDragged(with:):ContentFrameView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "cursorOnBorder">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
