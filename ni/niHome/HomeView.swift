@@ -56,16 +56,7 @@ struct RightSide: View {
 		self.predictableValues = listOfSpaces
 	}
 	
-	func lstToShow() -> Array<NiDocumentViewModel>{
-		return if(self.predictedValues.isEmpty){
-			self.predictableValues
-		   }else{
-			   self.predictedValues
-		   }
-	}
-	
 	var body: some View {
-	
 		VStack(alignment: .leading){
 			
 			Spacer().frame(minHeight: 0.5)
@@ -89,53 +80,93 @@ struct RightSide: View {
 		}
 		.frame(minWidth: 240, idealWidth: 320, maxWidth: .infinity, maxHeight: .infinity)
 		.onAppear {
-			//TODO: clean this up!
-				NSEvent.addLocalMonitorForEvents(matching: [.keyDown]) { nsevent in
-					if(selectedPos == nil && selection != nil){
-						//TODO: clean up:
-						selectedPos = lstToShow().firstIndex(of: selection!)
-					}
-					
-					if (nsevent.keyCode == 125){	//down
-						if(selection == nil){
-							selectedPos = 0
-							selection = lstToShow()[selectedPos!]
-							
-							self.preListScrollInput = self.textFieldInput
-							self.allowTextPredictions = false
-							self.textFieldInput = selection!.name
-						}else if(selectedPos! + 1 < lstToShow().count){
-							selectedPos! += 1
-							selection = lstToShow()[selectedPos!]
-							self.textFieldInput = selection!.name
-						}else{
-							selection = nil
-							selectedPos = nil
-							self.allowTextPredictions = true
-							self.textFieldInput = self.preListScrollInput!
-						}
-					}else if nsevent.keyCode == 126{	//up
-						if(selection != nil && selectedPos == 0){
-							selection = nil
-							selectedPos = nil
-							self.allowTextPredictions = true
-							self.textFieldInput = self.preListScrollInput!
-						} else if(selection != nil && 0 < selectedPos!){
-							selectedPos! -= 1
-							selection = lstToShow()[selectedPos!]
-							self.textFieldInput = selection!.name
-						} else if(selection == nil && selectedPos == nil){
-							selectedPos = lstToShow().count - 1
-							selection = lstToShow()[selectedPos!]
-							
-							self.preListScrollInput = self.textFieldInput
-							self.allowTextPredictions = false
-							self.textFieldInput = selection!.name
-						}
-					}
-					return nsevent
+			NSEvent.addLocalMonitorForEvents(matching: [.keyDown]) { nsevent in
+				
+				if(selection != nil && selectedPos == nil){
+					//TODO: improve implementation
+					selectedPos = lstToShow().firstIndex(of: selection!)
 				}
+				
+				if (nsevent.keyCode == 125){	//down
+					handleKeyDown()
+				}else if (nsevent.keyCode == 126){	//up
+					handleKeyUp()
+				}else if(nsevent.keyCode == 53){
+					clearInput()
+				}
+				
+				return nsevent
 			}
+		}
+	}
+	
+	func lstToShow() -> Array<NiDocumentViewModel>{
+		return if(self.predictedValues.isEmpty){
+			self.predictableValues
+		   }else{
+			   self.predictedValues
+		   }
+	}
+	
+	func handleKeyDown(){
+		if(selection == nil){
+			selectedPos = 0
+			selection = lstToShow()[selectedPos!]
+			
+			enterSuggestionField()
+		}else if(selectedPos! + 1 < lstToShow().count){
+			selectedPos! += 1
+			selection = lstToShow()[selectedPos!]
+			self.textFieldInput = selection!.name
+		}else{
+			exitSuggestionField()
+		}
+	}
+		
+	func handleKeyUp(){
+		if(selection != nil && selectedPos == 0){
+
+			exitSuggestionField()
+		} else if(selection != nil && 0 < selectedPos!){
+			selectedPos! -= 1
+			selection = lstToShow()[selectedPos!]
+			textFieldInput = selection!.name
+		} else if(selection == nil && selectedPos == nil){
+			selectedPos = lstToShow().count - 1
+			selection = lstToShow()[selectedPos!]
+			
+			enterSuggestionField()
+		}
+	}
+	
+	func enterSuggestionField(){
+		preListScrollInput = textFieldInput
+		allowTextPredictions = false
+		textFieldInput = selection!.name
+	}
+	
+	func exitSuggestionField(){
+		selection = nil
+		selectedPos = nil
+		
+		textFieldInput = preListScrollInput ?? ""
+		allowTextPredictions = true
+		
+		preListScrollInput = nil
+	}
+	
+	func clearInput(){
+		
+		if(preListScrollInput != nil){
+			textFieldInput = preListScrollInput!
+			preListScrollInput = nil
+		}else{
+			textFieldInput = ""
+		}
+		
+		selection = nil
+		selectedPos = nil
+		allowTextPredictions = true
 	}
 }
 
