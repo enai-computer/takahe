@@ -12,7 +12,7 @@ struct NiDocumentViewModel: Hashable{
     let id: UUID
     var name: String
     var updatedAt: Date
-	var selected: Bool = false
+	var isSelected: Bool = false
 }
 
 class DocumentTable{

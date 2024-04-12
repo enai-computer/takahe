@@ -19,6 +19,9 @@ struct PredictingTextField: View {
 	/// Current input of the user in the TextField. This is Binded as perhaps there is the urge to alter this during live time. E.g. when a predicted value was selected and the input should be cleared
 	@Binding var textFieldInput: String
 	
+	//in case the user interacts with the suggestions we do not want to update the list of suggestions
+	@Binding var allowPredictions: Bool
+	
 	/// The time interval between predictions based on current input. Default is 0.1 second. I would not recommend setting this to low as it can be CPU heavy.
 	@State var predictionInterval: Double?
 	
@@ -27,11 +30,18 @@ struct PredictingTextField: View {
 	
 	@State private var isBeingEdited: Bool = false
 	
-	init(predictableValues: Binding<Array<NiDocumentViewModel>>, predictedValues: Binding<Array<NiDocumentViewModel>>, textFieldInput: Binding<String>, textFieldTitle: String? = "", predictionInterval: Double? = 0.1){
+	init(predictableValues: Binding<Array<NiDocumentViewModel>>,
+		 predictedValues: Binding<Array<NiDocumentViewModel>>,
+		 textFieldInput: Binding<String>,
+		 allowPredictions: Binding<Bool>,
+		 textFieldTitle: String? = "",
+		 predictionInterval: Double? = 0.1
+	){
 		
 		self._predictableValues = predictableValues
 		self._predictedValues = predictedValues
 		self._textFieldInput = textFieldInput
+		self._allowPredictions = allowPredictions
 		
 		self.textFieldTitle = textFieldTitle
 		self.predictionInterval = predictionInterval
@@ -44,6 +54,8 @@ struct PredictingTextField: View {
 			onEditingChanged: { editing in self.realTimePrediction(status: editing)},
 			onCommit: { self.makePrediction()}
 		)	//TODO: update onCommit here
+		.font(Font.custom("soehne-Leicht", size: 12))
+		
 	}
 	
 	/// Schedules prediction based on interval and only a if input is being made
@@ -51,7 +63,11 @@ struct PredictingTextField: View {
 		self.isBeingEdited = status
 		if status == true {
 			Timer.scheduledTimer(withTimeInterval: self.predictionInterval ?? 1, repeats: true) { timer in
-				self.makePrediction()
+				
+				if(allowPredictions){
+					self.makePrediction()
+				}
+
 				
 				if self.isBeingEdited == false {
 					timer.invalidate()
