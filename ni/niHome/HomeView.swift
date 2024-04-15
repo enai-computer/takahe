@@ -23,19 +23,28 @@ struct HomeView: View {
 	
 	var lstOfSpaces = DocumentTable.fetchListofDocs()
 	let controllerWrapper: ControllerWrapper
+	let width: CGFloat
+	let height: CGFloat
 	
-	init(_ controllerWrapper: ControllerWrapper){
+	init(_ controllerWrapper: ControllerWrapper, width: CGFloat, height: CGFloat){
 		self.controllerWrapper = controllerWrapper
+		self.width = width
+		self.height = height
 	}
 	
     var body: some View {
 		VStack{
-			HSplitView {
-				LeftSide().background(Color.leftSideBackground)
+			HStack(alignment:.center, spacing: 0.0) {
+				LeftSide()
+					.frame(width: (self.width*(3/8)), height: self.height)
+					.scaledToFit()
+					.background(Color.leftSideBackground)
 				RightSide(controllerWrapper, listOfSpaces: lstOfSpaces)
+					.frame(width: (self.width*(5/8)), height: self.height)
+					.scaledToFit()
 					.background(Color.rightSideBackground)
 			}
-		}
+		}.frame(width: width, height: height)
 	}
 }
 
@@ -45,11 +54,14 @@ struct LeftSide: View {
 			Text("\(getWelcomeMessage()), \(NSUserName())")
 				.font(Font.custom("soehne-buch", size: 24))
 				.foregroundStyle(.sandLight11)
-			
-		}.frame(minWidth: 240, idealWidth: 320, maxWidth: .infinity, maxHeight: .infinity)
+		}
 	}
 }
 
+
+//extension NSTextList{
+//	open override var
+//}
 
 struct RightSide: View {
 	let controllerWrapper: ControllerWrapper
@@ -69,7 +81,7 @@ struct RightSide: View {
 	}
 	
 	var body: some View {
-		VStack(alignment: .leading){
+		VStack(alignment: .leading, spacing: 0.0){
 			
 			Spacer().frame(minHeight: 0.5)
 			
@@ -79,18 +91,24 @@ struct RightSide: View {
 				textFieldInput: self.$textFieldInput,
 				allowPredictions: self.$allowTextPredictions
 			)
+			.tint(.black)
+			.padding(EdgeInsets(top: 0.0, leading: 20.0, bottom: 0.0, trailing: 20.0))
 			.autocorrectionDisabled(false)
 			.textFieldStyle(RoundedBorderTextFieldStyle())
 
+			
 			List(lstToShow(), id: \.self, selection: $selection){ v in
 				SuggestionRow(data: v, selected: $selection, textFieldInput: $textFieldInput)
 				.listRowSeparatorTint(Color("transparent"))
+				.selectionDisabled()
+				.listRowInsets(EdgeInsets())
 			}
+			.accentColor(Color.transparent)
+			.padding(EdgeInsets(top: 0.0, leading: 0.0, bottom: 0.0, trailing: 0.0))
 			.scrollContentBackground(.hidden)
 			.background(Color.transparent)
 
 		}
-		.frame(minWidth: 240, idealWidth: 320, maxWidth: .infinity, maxHeight: .infinity)
 		.onAppear {
 			NSEvent.addLocalMonitorForEvents(matching: [.keyDown]) { nsEvent in
 								
@@ -219,13 +237,14 @@ struct SuggestionRow: View {
 	}
 	
 	var body: some View {
-		HStack(){
+		HStack(alignment: .center){
 			Image(systemName: "square.2.stack.3d")
 			Text(data.name)
 				.foregroundStyle(.sandDark8)
 				.font(Font.custom("soehne-leicht", size: 12))
 			Spacer()
 		}
+		.padding(5.0)
 		.background(alignment: .center){
 			if(data.id == selected?.id){
 				BackgroundView()
@@ -238,14 +257,7 @@ struct SuggestionRow: View {
 struct BackgroundView: View {
 	var body: some View {
 		Color.textSelectedBackground
-			.cornerRadius(5.0)
-	}
-}
-
-struct BackgroundView2: View {
-	var body: some View {
-		Color.transparent
-			.cornerRadius(5.0)
+			.clipShape(RoundedRectangle(cornerSize: CGSize(width: 5, height: 5), style: .continuous))
 	}
 }
 
@@ -259,5 +271,5 @@ struct MenuBar: View {
 }
 
 #Preview {
-    HomeView(ControllerWrapper())
+	HomeView(ControllerWrapper(), width:800.0, height: 450.0)
 }

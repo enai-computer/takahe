@@ -16,11 +16,11 @@ func getWelcomeMessage() -> String{
 		return "Good morning"
 	}
 	
-	if(11 < currentHour && currentHour < 18){
+	if(11 < currentHour && currentHour < 20){
 		return "Good afternoon"
 	}
 	
-	if(17 < currentHour && currentHour < 23){
+	if(19 < currentHour && currentHour < 24){
 		return "Good evening"
 	}
 	return "Hello"

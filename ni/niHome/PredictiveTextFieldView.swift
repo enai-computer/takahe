@@ -7,6 +7,13 @@
 
 import SwiftUI
 
+extension NSTextField {
+	open override var focusRingType: NSFocusRingType {
+			get { .none }
+			set { }
+	}
+}
+
 /// TextField capable of making predictions based on provided predictable values
 struct PredictingTextField: View {
 	
@@ -53,6 +60,11 @@ struct PredictingTextField: View {
 			text: self.$textFieldInput,
 			onEditingChanged: { editing in self.realTimePrediction(status: editing)},
 			onCommit: { self.makePrediction()}
+		)
+		.overlay(
+			RoundedRectangle(cornerRadius: 5, style: .continuous)
+			.stroke(lineWidth: 3.0)
+			.foregroundStyle(Color.transparent)
 		)
 		.font(Font.custom("soehne-Leicht", size: 12))
 		

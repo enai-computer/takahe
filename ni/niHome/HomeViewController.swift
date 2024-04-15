@@ -12,21 +12,25 @@ class HomeViewController: NSHostingController<HomeView>{
 	
 	private let presentingController: NSViewController
 	
+	let w: CGFloat
+	let h: CGFloat
+	
 	init(presentingController: NSViewController) {
 		self.presentingController = presentingController
 
 		let wrapper = ControllerWrapper()
 		
-		super.init(rootView: HomeView(wrapper))
+		//TODO: fix sizing options
+		w = presentingController.view.frame.width - 100
+		h = presentingController.view.frame.height - 100
+		
+		super.init(rootView: HomeView(wrapper, width: w, height: h))
 		
 		wrapper.hostingController = self
 		
-		//TODO: fix sizing options
-		let w = presentingController.view.frame.width
-		let h = presentingController.view.frame.height
-		
 		preferredContentSize = NSSize(width: w, height: h)
 		sizingOptions = .preferredContentSize
+		
 		view.frame.size.width = w
 		view.frame.size.height = h
 	}
@@ -36,7 +40,13 @@ class HomeViewController: NSHostingController<HomeView>{
 	}
 	
 	func show() {
-		presentingController.present(self, asPopoverRelativeTo: NSRect(x: 0, y: 0, width: 0, height: 0), of: presentingController.view, preferredEdge: .maxX, behavior: .applicationDefined)
+		presentingController.present(
+			self,
+			asPopoverRelativeTo: NSRect(x: 0, y: 0, width: w, height: h),
+			of: presentingController.view,
+			preferredEdge: .maxX,
+			behavior: .applicationDefined
+		)
 	}
 	
 	func openNewSpace(){
