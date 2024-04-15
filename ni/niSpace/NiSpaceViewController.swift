@@ -10,6 +10,7 @@ class NiSpaceViewController: NSViewController{
 	//header elements here:
 	@IBOutlet var header: NSBox!
 	@IBOutlet var time: NSTextField!
+	@IBOutlet var spaceName: NSTextField!
 	
 	@IBOutlet var niDocument: NiSpaceDocument!
 	
@@ -58,16 +59,10 @@ class NiSpaceViewController: NSViewController{
 			self.time.stringValue = currentTime
 		}
 	}
-	
-    @IBAction func updateSpaceName(_ sender: NSTextField) {
-        niSpaceName = sender.stringValue
-        sender.isEditable = false
-    }
     
     func setSpaceName(_ name: String){
         self.niSpaceName = name
-        let niView = view as! NiSpaceView
-        niView.setSpaceName(name)
+		self.spaceName.stringValue = name
     }
     
     

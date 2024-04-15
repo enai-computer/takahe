@@ -7,13 +7,15 @@
 
 import Foundation
 
+let _localisedDateFormatter = getLocalisedDateFormatter()
+
 func getLocalHour() -> Int{
 	var cal = Calendar(identifier: .gregorian)
 	cal.timeZone = TimeZone.current
 	return cal.component(.hour, from: Date())
 }
 
-func getLocalisedTime() -> String{
+func getLocalisedDateFormatter() -> DateFormatter{
 	let f = DateFormatter()
 	
 	f.timeStyle = .short
@@ -21,5 +23,9 @@ func getLocalisedTime() -> String{
 	f.locale = Locale.current
 	f.calendar = Calendar.current
 	
-	return f.string(from: Date())
+	return f
+}
+
+func getLocalisedTime() -> String{
+	return _localisedDateFormatter.string(from: Date())
 }
