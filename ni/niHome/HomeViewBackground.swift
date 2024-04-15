@@ -2,7 +2,7 @@
 
 import Cocoa
 
-class HomeViewOLD: NSView{
+class HomeViewBackground: NSView{
     
     
     @IBOutlet var ListOfSpaces: NSView!

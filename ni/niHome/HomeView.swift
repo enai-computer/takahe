@@ -71,7 +71,7 @@ struct RightSide: View {
 			.textFieldStyle(RoundedBorderTextFieldStyle())
 
 			List(lstToShow(), id: \.self, selection: $selection){ v in
-				SuggestionRow(data: v, selected: $selection)
+				SuggestionRow(data: v, selected: $selection, textFieldInput: $textFieldInput)
 				.listRowSeparatorTint(Color("transparent"))
 			}
 			.scrollContentBackground(.hidden)
@@ -80,23 +80,29 @@ struct RightSide: View {
 		}
 		.frame(minWidth: 240, idealWidth: 320, maxWidth: .infinity, maxHeight: .infinity)
 		.onAppear {
-			NSEvent.addLocalMonitorForEvents(matching: [.keyDown]) { nsevent in
-				
-				if(selection != nil && selectedPos == nil){
-					//TODO: improve implementation
-					selectedPos = lstToShow().firstIndex(of: selection!)
+			NSEvent.addLocalMonitorForEvents(matching: [.keyDown]) { nsEvent in
+								
+				if(nsEvent.type == .keyDown){
+					handleKeyEvents(nsEvent: nsEvent)
 				}
-				
-				if (nsevent.keyCode == 125){	//down
-					handleKeyDown()
-				}else if (nsevent.keyCode == 126){	//up
-					handleKeyUp()
-				}else if(nsevent.keyCode == 53){
-					clearInput()
-				}
-				
-				return nsevent
+				return nsEvent
 			}
+		}
+	}
+	
+	func handleKeyEvents(nsEvent: NSEvent){
+		
+		//TODO: come back and check if needed
+		if(selection != nil && selectedPos == nil){
+			selectedPos = lstToShow().firstIndex(of: selection!)
+		}
+		
+		if (nsEvent.keyCode == 125){	//down
+			handleKeyDown()
+		}else if (nsEvent.keyCode == 126){	//up
+			handleKeyUp()
+		}else if(nsEvent.keyCode == 53){	//ESC
+			clearInput()
 		}
 	}
 	
@@ -125,7 +131,6 @@ struct RightSide: View {
 		
 	func handleKeyUp(){
 		if(selection != nil && selectedPos == 0){
-
 			exitSuggestionField()
 		} else if(selection != nil && 0 < selectedPos!){
 			selectedPos! -= 1
@@ -174,11 +179,17 @@ struct RightSide: View {
 struct SuggestionRow: View {
 	
 	private var data: NiDocumentViewModel
-	private let selected: Binding<NiDocumentViewModel?>
+	@Binding var selected: NiDocumentViewModel?
+	@Binding var textFieldInput: String
 	
-	init(data: NiDocumentViewModel, selected: Binding<NiDocumentViewModel?>){
+	init(
+		data: NiDocumentViewModel, 
+		selected: Binding<NiDocumentViewModel?>,
+		textFieldInput: Binding<String>
+	){
 		self.data = data
-		self.selected = selected
+		self._selected = selected
+		self._textFieldInput = textFieldInput
 	}
 	
 	var body: some View {
@@ -190,13 +201,9 @@ struct SuggestionRow: View {
 			Spacer()
 		}
 		.background(alignment: .center){
-//			Group{
-				if(data.id == selected.wrappedValue?.id){
-					BackgroundView()
-				}else{
-					
-				}
-//		    }
+			if(data.id == selected?.id){
+				BackgroundView()
+			}
 		}
 		.frame(maxWidth: .infinity)
 	}

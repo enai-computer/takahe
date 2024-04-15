@@ -6,6 +6,7 @@ class DefaultWindowController: NSWindowController{
     
     override func windowDidLoad() {
         super.windowDidLoad()
-        contentViewController = HomeViewOLDController()
+        contentViewController = HomeViewBackgroundController()
     }
+	
 }

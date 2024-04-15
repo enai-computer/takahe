@@ -11,8 +11,8 @@
 		A14E8F252AD5EADF00409DDF /* NiSpaceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A14E8F242AD5EADF00409DDF /* NiSpaceView.xib */; };
 		A14E8F272AD5EAF800409DDF /* NiSpaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14E8F262AD5EAF800409DDF /* NiSpaceView.swift */; };
 		A14E8F292AD5EB1600409DDF /* NiSpaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14E8F282AD5EB1600409DDF /* NiSpaceViewController.swift */; };
-		A1603A702ADF21B4007A7FA0 /* HomeViewOLD.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1603A6F2ADF21B4007A7FA0 /* HomeViewOLD.xib */; };
-		A1603A722ADF21C3007A7FA0 /* HomeViewOLDController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1603A712ADF21C3007A7FA0 /* HomeViewOLDController.swift */; };
+		A1603A702ADF21B4007A7FA0 /* HomeViewBackground.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1603A6F2ADF21B4007A7FA0 /* HomeViewBackground.xib */; };
+		A1603A722ADF21C3007A7FA0 /* HomeViewBackgroundController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1603A712ADF21C3007A7FA0 /* HomeViewBackgroundController.swift */; };
 		A1B8E6A62AAFB5EC00AC6566 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B8E6A52AAFB5EC00AC6566 /* AppDelegate.swift */; };
 		A1B8E6AB2AAFB5EC00AC6566 /* ni.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A1B8E6A92AAFB5EC00AC6566 /* ni.xcdatamodeld */; };
 		A1B8E6AD2AAFB5EF00AC6566 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A1B8E6AC2AAFB5EF00AC6566 /* Assets.xcassets */; };
@@ -22,7 +22,7 @@
 		A1E41BFF2ACB6B1300338417 /* FrameGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E41BFE2ACB6B1300338417 /* FrameGenerator.swift */; };
 		A1E41C022ACC1DF600338417 /* ContentFrameHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E41C012ACC1DF600338417 /* ContentFrameHeader.swift */; };
 		A1F33E2E2AB7299500E2E7CD /* DefaultWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F33E2D2AB7299500E2E7CD /* DefaultWindow.swift */; };
-		A1F33E302AB7316300E2E7CD /* HomeViewOLD.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F33E2F2AB7316300E2E7CD /* HomeViewOLD.swift */; };
+		A1F33E302AB7316300E2E7CD /* HomeViewBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F33E2F2AB7316300E2E7CD /* HomeViewBackground.swift */; };
 		CD19BC942BC7E404002AF14E /* HomeAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CD19BC932BC7E404002AF14E /* HomeAssets.xcassets */; };
 		CD19BC962BC7E5BF002AF14E /* HomeViewUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD19BC952BC7E5BF002AF14E /* HomeViewUtils.swift */; };
 		CD19BC992BC81A46002AF14E /* PredictiveTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD19BC982BC81A46002AF14E /* PredictiveTextFieldView.swift */; };
@@ -62,8 +62,8 @@
 		A14E8F242AD5EADF00409DDF /* NiSpaceView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NiSpaceView.xib; sourceTree = "<group>"; };
 		A14E8F262AD5EAF800409DDF /* NiSpaceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiSpaceView.swift; sourceTree = "<group>"; };
 		A14E8F282AD5EB1600409DDF /* NiSpaceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiSpaceViewController.swift; sourceTree = "<group>"; };
-		A1603A6F2ADF21B4007A7FA0 /* HomeViewOLD.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeViewOLD.xib; sourceTree = "<group>"; };
-		A1603A712ADF21C3007A7FA0 /* HomeViewOLDController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewOLDController.swift; sourceTree = "<group>"; };
+		A1603A6F2ADF21B4007A7FA0 /* HomeViewBackground.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeViewBackground.xib; sourceTree = "<group>"; };
+		A1603A712ADF21C3007A7FA0 /* HomeViewBackgroundController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewBackgroundController.swift; sourceTree = "<group>"; };
 		A1B8E6A22AAFB5EC00AC6566 /* ni.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ni.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1B8E6A52AAFB5EC00AC6566 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A1B8E6AA2AAFB5EC00AC6566 /* ni.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ni.xcdatamodel; sourceTree = "<group>"; };
@@ -75,7 +75,7 @@
 		A1E41BFE2ACB6B1300338417 /* FrameGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrameGenerator.swift; sourceTree = "<group>"; };
 		A1E41C012ACC1DF600338417 /* ContentFrameHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentFrameHeader.swift; sourceTree = "<group>"; };
 		A1F33E2D2AB7299500E2E7CD /* DefaultWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultWindow.swift; sourceTree = "<group>"; };
-		A1F33E2F2AB7316300E2E7CD /* HomeViewOLD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewOLD.swift; sourceTree = "<group>"; };
+		A1F33E2F2AB7316300E2E7CD /* HomeViewBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewBackground.swift; sourceTree = "<group>"; };
 		CD19BC932BC7E404002AF14E /* HomeAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = HomeAssets.xcassets; sourceTree = "<group>"; };
 		CD19BC952BC7E5BF002AF14E /* HomeViewUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewUtils.swift; sourceTree = "<group>"; };
 		CD19BC982BC81A46002AF14E /* PredictiveTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictiveTextFieldView.swift; sourceTree = "<group>"; };
@@ -144,12 +144,12 @@
 				CDD6B9342B1527B700C6144D /* dal */,
 				CDD6B94A2B19469000C6144D /* niHome */,
 				CDB06B5B2AF81CB6008DB8FF /* niSpace */,
-				A1B8E6A52AAFB5EC00AC6566 /* AppDelegate.swift */,
 				CD6317E62BC4845100434D56 /* assets */,
 				A1B8E6AC2AAFB5EF00AC6566 /* Assets.xcassets */,
 				A1B8E6AE2AAFB5EF00AC6566 /* Main.storyboard */,
 				A1B8E6B12AAFB5EF00AC6566 /* ni.entitlements */,
 				A1B8E6A92AAFB5EC00AC6566 /* ni.xcdatamodeld */,
+				A1B8E6A52AAFB5EC00AC6566 /* AppDelegate.swift */,
 				A1F33E2D2AB7299500E2E7CD /* DefaultWindow.swift */,
 				A14E8F202AD20A2600409DDF /* DefaultWindowController.swift */,
 				CD6317DF2BC3F0F300434D56 /* errors */,
@@ -267,9 +267,9 @@
 		CDD6B94A2B19469000C6144D /* niHome */ = {
 			isa = PBXGroup;
 			children = (
-				A1603A6F2ADF21B4007A7FA0 /* HomeViewOLD.xib */,
-				A1603A712ADF21C3007A7FA0 /* HomeViewOLDController.swift */,
-				A1F33E2F2AB7316300E2E7CD /* HomeViewOLD.swift */,
+				A1603A6F2ADF21B4007A7FA0 /* HomeViewBackground.xib */,
+				A1603A712ADF21C3007A7FA0 /* HomeViewBackgroundController.swift */,
+				A1F33E2F2AB7316300E2E7CD /* HomeViewBackground.swift */,
 				CD680F7E2BC7DF59008D495D /* HomeView.swift */,
 				CD680F802BC7DF8A008D495D /* HomeWindowController.swift */,
 				CD19BC932BC7E404002AF14E /* HomeAssets.xcassets */,
@@ -363,7 +363,7 @@
 				A14E8F252AD5EADF00409DDF /* NiSpaceView.xib in Resources */,
 				CD19BC942BC7E404002AF14E /* HomeAssets.xcassets in Resources */,
 				CD6317EE2BC4852300434D56 /* soehne-buch.ttf in Resources */,
-				A1603A702ADF21B4007A7FA0 /* HomeViewOLD.xib in Resources */,
+				A1603A702ADF21B4007A7FA0 /* HomeViewBackground.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -390,7 +390,7 @@
 				CD19BC962BC7E5BF002AF14E /* HomeViewUtils.swift in Sources */,
 				A1B8E6AB2AAFB5EC00AC6566 /* ni.xcdatamodeld in Sources */,
 				CD680F7F2BC7DF59008D495D /* HomeView.swift in Sources */,
-				A1F33E302AB7316300E2E7CD /* HomeViewOLD.swift in Sources */,
+				A1F33E302AB7316300E2E7CD /* HomeViewBackground.swift in Sources */,
 				A14E8F292AD5EB1600409DDF /* NiSpaceViewController.swift in Sources */,
 				CDD6B9522B1BFE8B00C6144D /* NiDocumentModel.swift in Sources */,
 				A1F33E2E2AB7299500E2E7CD /* DefaultWindow.swift in Sources */,
@@ -402,7 +402,7 @@
 				A1E41C022ACC1DF600338417 /* ContentFrameHeader.swift in Sources */,
 				CDD6B9392B152A8000C6144D /* Storage.swift in Sources */,
 				CDD6B9472B16A29100C6144D /* DocumentIdContentIdTable.swift in Sources */,
-				A1603A722ADF21C3007A7FA0 /* HomeViewOLDController.swift in Sources */,
+				A1603A722ADF21C3007A7FA0 /* HomeViewBackgroundController.swift in Sources */,
 				CD66CE382B1FD26A0006BB98 /* NiStringUtils.swift in Sources */,
 				CD7578462BC000F200293930 /* ContentFrameTabHead.swift in Sources */,
 				CD6317E32BC3F18300434D56 /* NiBadTypeError.swift in Sources */,

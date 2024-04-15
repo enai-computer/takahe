@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Cocoa
 
 func getWelcomeMessage() -> String{
 	
@@ -29,4 +30,14 @@ func getHour() -> Int{
 	var cal = Calendar(identifier: .gregorian)
 	cal.timeZone = TimeZone.current
 	return cal.component(.hour, from: Date())
+}
+
+func openExistingSpace(spaceId: UUID, name: String){
+	let appDelegate = NSApp.delegate as! AppDelegate
+	appDelegate.loadExistingSpace(niSpaceID: spaceId, name: name)
+}
+
+func openNewSpace(){
+	let appDelegate = NSApp.delegate as! AppDelegate
+	appDelegate.switchToNewSpace()
 }
