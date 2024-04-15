@@ -10,7 +10,7 @@ import Cocoa
 
 func getWelcomeMessage() -> String{
 	
-	let currentHour = getHour()
+	let currentHour = getLocalHour()
 	
 	if(3 < currentHour && currentHour < 12){
 		return "Good morning"
@@ -24,20 +24,4 @@ func getWelcomeMessage() -> String{
 		return "Good evening"
 	}
 	return "Hello"
-}
-
-func getHour() -> Int{
-	var cal = Calendar(identifier: .gregorian)
-	cal.timeZone = TimeZone.current
-	return cal.component(.hour, from: Date())
-}
-
-func openExistingSpace(spaceId: UUID, name: String){
-	let appDelegate = NSApp.delegate as! AppDelegate
-	appDelegate.loadExistingSpace(niSpaceID: spaceId, name: name)
-}
-
-func openNewSpace(){
-	let appDelegate = NSApp.delegate as! AppDelegate
-	appDelegate.switchToNewSpace()
 }

@@ -22,18 +22,9 @@ class HomeViewBackgroundController: NSViewController, NSTableViewDataSource, NST
         }
         (NSClassFromString("NSApplication")?.value(forKeyPath: "sharedApplication.windows") as? [AnyObject])?.first?.perform(#selector(NSWindow.toggleFullScreen(_:)))
 		
-		//TODO: move this to it's own function, so it can always overlay the screen
-		let w = self.view.frame.width
-		let h = self.view.frame.height
-		
-		let hostingController = NSHostingController(rootView: HomeView())
-		hostingController.preferredContentSize = NSSize(width: w, height: h)
-		hostingController.sizingOptions = .preferredContentSize
-		hostingController.view.frame.size.width = w
-		hostingController.view.frame.size.height = h
-		
-		self.present(hostingController, asPopoverRelativeTo: NSRect(x: 0, y: 0, width: 0, height: 0), of: self.view, preferredEdge: .maxX, behavior: .applicationDefined)
-//		self.dismiss(hostingController)
+
+		let hostingController = HomeViewController(presentingController: self)
+		hostingController.show()
     }
 
 	override var representedObject: Any? {

@@ -37,12 +37,13 @@
 		CD66CE332B1F819E0006BB98 /* NiWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD66CE322B1F819E0006BB98 /* NiWebView.swift */; };
 		CD66CE382B1FD26A0006BB98 /* NiStringUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD66CE372B1FD26A0006BB98 /* NiStringUtils.swift */; };
 		CD680F7F2BC7DF59008D495D /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD680F7E2BC7DF59008D495D /* HomeView.swift */; };
-		CD680F812BC7DF8A008D495D /* HomeWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD680F802BC7DF8A008D495D /* HomeWindowController.swift */; };
 		CD7578372BBDA98700293930 /* ContentFrameHeadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7578362BBDA98700293930 /* ContentFrameHeadView.swift */; };
 		CD7578462BC000F200293930 /* ContentFrameTabHead.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7578442BC000F200293930 /* ContentFrameTabHead.swift */; };
 		CD7578472BC000F200293930 /* ContentFrameTabHead.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD7578452BC000F200293930 /* ContentFrameTabHead.xib */; };
 		CD75784A2BC0207E00293930 /* FaviconFinder in Frameworks */ = {isa = PBXBuildFile; productRef = CD7578492BC0207E00293930 /* FaviconFinder */; };
 		CD75784C2BC065FB00293930 /* ContentFrameTabHeadTextNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD75784B2BC065FB00293930 /* ContentFrameTabHeadTextNode.swift */; };
+		CD8873742BCD235300007BE9 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8873732BCD235300007BE9 /* HomeViewController.swift */; };
+		CD8873782BCD649800007BE9 /* TimeUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8873772BCD649800007BE9 /* TimeUtils.swift */; };
 		CDB06B5D2AF81D54008DB8FF /* NiScroll.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB06B5C2AF81D54008DB8FF /* NiScroll.swift */; };
 		CDB06B5F2AF81F91008DB8FF /* NiScrollController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB06B5E2AF81F91008DB8FF /* NiScrollController.swift */; };
 		CDB06B612AF84E1F008DB8FF /* NiSpaceDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB06B602AF84E1F008DB8FF /* NiSpaceDocument.swift */; };
@@ -90,11 +91,12 @@
 		CD66CE322B1F819E0006BB98 /* NiWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiWebView.swift; sourceTree = "<group>"; };
 		CD66CE372B1FD26A0006BB98 /* NiStringUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiStringUtils.swift; sourceTree = "<group>"; };
 		CD680F7E2BC7DF59008D495D /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
-		CD680F802BC7DF8A008D495D /* HomeWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeWindowController.swift; sourceTree = "<group>"; };
 		CD7578362BBDA98700293930 /* ContentFrameHeadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentFrameHeadView.swift; sourceTree = "<group>"; };
 		CD7578442BC000F200293930 /* ContentFrameTabHead.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentFrameTabHead.swift; sourceTree = "<group>"; };
 		CD7578452BC000F200293930 /* ContentFrameTabHead.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContentFrameTabHead.xib; sourceTree = "<group>"; };
 		CD75784B2BC065FB00293930 /* ContentFrameTabHeadTextNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentFrameTabHeadTextNode.swift; sourceTree = "<group>"; };
+		CD8873732BCD235300007BE9 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		CD8873772BCD649800007BE9 /* TimeUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeUtils.swift; sourceTree = "<group>"; };
 		CDB06B5C2AF81D54008DB8FF /* NiScroll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiScroll.swift; sourceTree = "<group>"; };
 		CDB06B5E2AF81F91008DB8FF /* NiScrollController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiScrollController.swift; sourceTree = "<group>"; };
 		CDB06B602AF84E1F008DB8FF /* NiSpaceDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiSpaceDocument.swift; sourceTree = "<group>"; };
@@ -213,6 +215,7 @@
 			isa = PBXGroup;
 			children = (
 				CD66CE372B1FD26A0006BB98 /* NiStringUtils.swift */,
+				CD8873772BCD649800007BE9 /* TimeUtils.swift */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -271,10 +274,10 @@
 				A1603A712ADF21C3007A7FA0 /* HomeViewBackgroundController.swift */,
 				A1F33E2F2AB7316300E2E7CD /* HomeViewBackground.swift */,
 				CD680F7E2BC7DF59008D495D /* HomeView.swift */,
-				CD680F802BC7DF8A008D495D /* HomeWindowController.swift */,
 				CD19BC932BC7E404002AF14E /* HomeAssets.xcassets */,
 				CD19BC952BC7E5BF002AF14E /* HomeViewUtils.swift */,
 				CD19BC982BC81A46002AF14E /* PredictiveTextFieldView.swift */,
+				CD8873732BCD235300007BE9 /* HomeViewController.swift */,
 			);
 			path = niHome;
 			sourceTree = "<group>";
@@ -379,10 +382,10 @@
 				A1E41BFA2ACB57EF00338417 /* ContentFrameView.swift in Sources */,
 				CD6317F12BC53A9600434D56 /* cfOverlay.swift in Sources */,
 				A14E8F212AD20A2600409DDF /* DefaultWindowController.swift in Sources */,
+				CD8873742BCD235300007BE9 /* HomeViewController.swift in Sources */,
 				A1B8E6A62AAFB5EC00AC6566 /* AppDelegate.swift in Sources */,
 				CDB06B5D2AF81D54008DB8FF /* NiScroll.swift in Sources */,
 				CD6317E12BC3F11000434D56 /* NiUserInputError.swift in Sources */,
-				CD680F812BC7DF8A008D495D /* HomeWindowController.swift in Sources */,
 				CD66CE332B1F819E0006BB98 /* NiWebView.swift in Sources */,
 				CD6317E52BC3F67400434D56 /* ContentFrameTabHeadView.swift in Sources */,
 				CDD6B9562B1C326A00C6144D /* ContentFrameController.swift in Sources */,
@@ -404,6 +407,7 @@
 				CDD6B9472B16A29100C6144D /* DocumentIdContentIdTable.swift in Sources */,
 				A1603A722ADF21C3007A7FA0 /* HomeViewBackgroundController.swift in Sources */,
 				CD66CE382B1FD26A0006BB98 /* NiStringUtils.swift in Sources */,
+				CD8873782BCD649800007BE9 /* TimeUtils.swift in Sources */,
 				CD7578462BC000F200293930 /* ContentFrameTabHead.swift in Sources */,
 				CD6317E32BC3F18300434D56 /* NiBadTypeError.swift in Sources */,
 				CD7578372BBDA98700293930 /* ContentFrameHeadView.swift in Sources */,

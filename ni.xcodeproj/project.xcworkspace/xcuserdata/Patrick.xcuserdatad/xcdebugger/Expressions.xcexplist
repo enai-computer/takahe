@@ -6,10 +6,29 @@
          contextName = "NiSpaceDocument.mouseDown(with:):NiSpaceDocument.swift">
       </ContextState>
       <ContextState
+         contextName = "RightSide.handleKeyEvents(nsEvent:):HomeView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "nsEvent.specialKey">
+            </PersistentString>
+            <PersistentString
+               value = "nsEvent.keyCode">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "ContentFrameView.isOnBoarder(_:):ContentFrameView.swift">
          <PersistentStrings>
             <PersistentString
                value = "frame.maxY">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "switchSpace():HomeView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "NSApp.keyWindow?.contentViewController">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -58,7 +77,7 @@
          contextName = "ContentFrameView.mouseDown(with:):ContentFrameView.swift">
          <PersistentStrings>
             <PersistentString
-               value = "cursorOnBorder">
+               value = "frameIsActive">
             </PersistentString>
             <PersistentString
                value = "frame">
@@ -70,7 +89,7 @@
                value = "NSPointInRect(posInHeadView, closeButton.frame)">
             </PersistentString>
             <PersistentString
-               value = "frameIsActive">
+               value = "cursorOnBorder">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -109,10 +128,10 @@
          contextName = "NiSpaceDocument.setTopNiFrame(_:_:):NiSpaceDocument.swift">
       </ContextState>
       <ContextState
-         contextName = "NiWebViewController.init(owner:urlReq:frame:):NiWebViewController.swift">
+         contextName = "DefaultWindowController.windowShouldClose(_:):DefaultWindowController.swift">
       </ContextState>
       <ContextState
-         contextName = "DefaultWindowController.windowShouldClose(_:):DefaultWindowController.swift">
+         contextName = "NiWebViewController.init(owner:urlReq:frame:):NiWebViewController.swift">
       </ContextState>
       <ContextState
          contextName = "ContentFrameView.addContent(_:):ContentFrameView.swift">
@@ -256,10 +275,10 @@
          contextName = "NiTableCellView.mouseDown(with:):HomeViewController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "data!.id">
+               value = "event.clickCount">
             </PersistentString>
             <PersistentString
-               value = "event.clickCount">
+               value = "data!.id">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

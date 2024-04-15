@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Cocoa
 
 let stdCorner = RectangleCornerRadii(
 	topLeading: 5,
@@ -14,20 +15,25 @@ let stdCorner = RectangleCornerRadii(
 	topTrailing: 5
 )
 
+class ControllerWrapper{
+	weak var hostingController: HomeViewController?
+}
+
 struct HomeView: View {
 	
-	private var isShown = true
 	var lstOfSpaces = DocumentTable.fetchListofDocs()
+	let controllerWrapper: ControllerWrapper
+	
+	init(_ controllerWrapper: ControllerWrapper){
+		self.controllerWrapper = controllerWrapper
+	}
 	
     var body: some View {
 		VStack{
 			HSplitView {
 				LeftSide().background(Color.leftSideBackground)
-				RightSide(listOfSpaces: lstOfSpaces)
+				RightSide(controllerWrapper, listOfSpaces: lstOfSpaces)
 					.background(Color.rightSideBackground)
-			}
-			if(!isShown){
-				MenuBar()
 			}
 		}
 	}
@@ -35,14 +41,19 @@ struct HomeView: View {
 
 struct LeftSide: View {
 	var body: some View {
-		Text("\(getWelcomeMessage()), \(NSUserName())")
-			.font(Font.custom("soehne-buch", size: 24))
-			.foregroundStyle(.sandLight11)
-			.frame(minWidth: 240, idealWidth: 320, maxWidth: .infinity, maxHeight: .infinity)
+		VStack{
+			Text("\(getWelcomeMessage()), \(NSUserName())")
+				.font(Font.custom("soehne-buch", size: 24))
+				.foregroundStyle(.sandLight11)
+			
+		}.frame(minWidth: 240, idealWidth: 320, maxWidth: .infinity, maxHeight: .infinity)
 	}
 }
 
+
 struct RightSide: View {
+	let controllerWrapper: ControllerWrapper
+	
 	@State var textFieldInput: String = ""
 	@State var predictableValues: Array<NiDocumentViewModel>
 	@State var predictedValues: Array<NiDocumentViewModel> = []
@@ -52,8 +63,9 @@ struct RightSide: View {
 	@State var allowTextPredictions: Bool = true
 	@State var preListScrollInput: String?
 	
-	init(listOfSpaces: [NiDocumentViewModel]){
+	init(_ controllerWrapper: ControllerWrapper, listOfSpaces: [NiDocumentViewModel]){
 		self.predictableValues = listOfSpaces
+		self.controllerWrapper = controllerWrapper
 	}
 	
 	var body: some View {
@@ -103,6 +115,8 @@ struct RightSide: View {
 			handleKeyUp()
 		}else if(nsEvent.keyCode == 53){	//ESC
 			clearInput()
+		}else if(nsEvent.keyCode == 36){	//enter
+			switchToSpace()
 		}
 	}
 	
@@ -165,6 +179,8 @@ struct RightSide: View {
 		if(preListScrollInput != nil){
 			textFieldInput = preListScrollInput!
 			preListScrollInput = nil
+		}else if(textFieldInput.isEmpty){
+			tryHideHomeView()
 		}else{
 			textFieldInput = ""
 		}
@@ -172,6 +188,16 @@ struct RightSide: View {
 		selection = nil
 		selectedPos = nil
 		allowTextPredictions = true
+	}
+	
+	func tryHideHomeView(){
+		controllerWrapper.hostingController?.tryHide()
+	}
+	
+	func switchToSpace(){
+		if (selection != nil){
+			controllerWrapper.hostingController?.openExistingSpace(spaceId: selection!.id, name: selection!.name)
+		}
 	}
 }
 
@@ -233,5 +259,5 @@ struct MenuBar: View {
 }
 
 #Preview {
-    HomeView()
+    HomeView(ControllerWrapper())
 }

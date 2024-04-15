@@ -53,7 +53,7 @@ struct PredictingTextField: View {
 			text: self.$textFieldInput,
 			onEditingChanged: { editing in self.realTimePrediction(status: editing)},
 			onCommit: { self.makePrediction()}
-		)	//TODO: update onCommit here
+		)
 		.font(Font.custom("soehne-Leicht", size: 12))
 		
 	}
