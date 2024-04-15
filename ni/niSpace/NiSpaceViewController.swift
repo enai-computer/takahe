@@ -24,7 +24,6 @@ class NiSpaceViewController: NSViewController{
         self.view.layer?.backgroundColor = NSColor(.sandLight1).cgColor
 		
 		time.stringValue = getLocalisedTime()
-		time.font = NSFont(name: "soehne-buch", size: 2.4)
 		
 		setHeaderStyle()
 		setAutoUpdatingTime()
