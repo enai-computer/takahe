@@ -15,6 +15,8 @@ let stdCorner = RectangleCornerRadii(
 	topTrailing: 5
 )
 
+let NewSpaceID = UUID(uuidString: "00000000-0000-0000-0000-000000000000")
+
 class ControllerWrapper{
 	weak var hostingController: HomeViewController?
 }
@@ -59,14 +61,15 @@ struct LeftSide: View {
 }
 
 
-//extension NSTextList{
-//	open override var
-//}
 
+/*
+ * MARK: - right side
+ */
 struct RightSide: View {
 	let controllerWrapper: ControllerWrapper
 	
 	@State var textFieldInput: String = ""
+	@State var textFieldDisabled: Bool = false
 	@State var predictableValues: Array<NiDocumentViewModel>
 	@State var predictedValues: Array<NiDocumentViewModel> = []
 	
@@ -95,10 +98,11 @@ struct RightSide: View {
 			.padding(EdgeInsets(top: 0.0, leading: 20.0, bottom: 0.0, trailing: 20.0))
 			.autocorrectionDisabled(false)
 			.textFieldStyle(RoundedBorderTextFieldStyle())
+			.disabled(textFieldDisabled)
 
 			
 			List(lstToShow(), id: \.self, selection: $selection){ v in
-				SuggestionRow(data: v, selected: $selection, textFieldInput: $textFieldInput)
+				SuggestionRow(parent: self, data: v, selected: $selection, textFieldInput: $textFieldInput)
 				.listRowSeparatorTint(Color("transparent"))
 				.selectionDisabled()
 				.listRowInsets(EdgeInsets())
@@ -124,7 +128,7 @@ struct RightSide: View {
 		
 		//TODO: come back and check if needed
 		if(selection != nil && selectedPos == nil){
-			selectedPos = lstToShow().firstIndex(of: selection!)
+			updateSelectedPos(selectedRow: selection!)
 		}
 		
 		if (nsEvent.keyCode == 125){	//down
@@ -138,6 +142,10 @@ struct RightSide: View {
 		}
 	}
 	
+	func updateSelectedPos(selectedRow: NiDocumentViewModel){
+		selectedPos = lstToShow().firstIndex(of: selectedRow)
+	}
+	
 	func lstToShow() -> Array<NiDocumentViewModel>{
 		if(textFieldInput.isEmpty || (preListScrollInput != nil && preListScrollInput!.isEmpty)){
 			return if(self.predictedValues.isEmpty){
@@ -148,16 +156,16 @@ struct RightSide: View {
 		}
 		
 		let newSpaceOption = if(preListScrollInput == nil) {
-			NiDocumentViewModel(id: nil, name: textFieldInput)
+			NiDocumentViewModel(id: NewSpaceID, name: textFieldInput)
 		} else {
-			NiDocumentViewModel(id: nil, name: preListScrollInput!)
+			NiDocumentViewModel(id: NewSpaceID, name: preListScrollInput!)
 		}
 		
-		return if(self.predictedValues.isEmpty){
-				self.predictableValues + [newSpaceOption]
-		   }else{
-			   self.predictedValues + [newSpaceOption]
-		   }
+		if(self.predictedValues.isEmpty){
+			return [newSpaceOption]
+		}else{
+			return self.predictedValues + [newSpaceOption]
+		}
 	}
 	
 	func handleKeyDown(){
@@ -191,8 +199,12 @@ struct RightSide: View {
 	}
 	
 	func enterSuggestionField(){
-		preListScrollInput = textFieldInput
+		//we are calling this function on mouse clicks when we already entered the selection field. That is why we check if we already entered it. If so we do NOT set the preListScrollInput
+		if(allowTextPredictions){
+			preListScrollInput = textFieldInput
+		}
 		allowTextPredictions = false
+//		textFieldDisabled = true
 		textFieldInput = selection!.name
 	}
 	
@@ -201,6 +213,7 @@ struct RightSide: View {
 		selectedPos = nil
 		
 		textFieldInput = preListScrollInput ?? ""
+//		textFieldDisabled = false
 		allowTextPredictions = true
 		
 		preListScrollInput = nil
@@ -227,26 +240,31 @@ struct RightSide: View {
 	}
 	
 	func switchToSpace(){
-		if (selection != nil && selection?.id != nil){
+		if (selection != nil && selection?.id != NewSpaceID){
 			controllerWrapper.hostingController?.openExistingSpace(spaceId: selection!.id!, name: selection!.name)
-		}else if(selection != nil && selection?.id == nil){
+		}else if(selection != nil && selection?.id == NewSpaceID){
 			controllerWrapper.hostingController?.openNewSpace(name: selection!.name)
 		}
 	}
 }
 
-
+/*
+ * MARK: - Suggestion Row
+ */
 struct SuggestionRow: View {
 	
 	private var data: NiDocumentViewModel
 	@Binding var selected: NiDocumentViewModel?
 	@Binding var textFieldInput: String
+	var parent: RightSide
 	
 	init(
-		data: NiDocumentViewModel, 
+		parent: RightSide,
+		data: NiDocumentViewModel,
 		selected: Binding<NiDocumentViewModel?>,
 		textFieldInput: Binding<String>
 	){
+		self.parent = parent
 		self.data = data
 		self._selected = selected
 		self._textFieldInput = textFieldInput
@@ -274,11 +292,20 @@ struct SuggestionRow: View {
 			}
 		}
 		.frame(maxWidth: .infinity)
+		.gesture(
+			TapGesture(count: 2).onEnded {
+				parent.switchToSpace()
+			}.exclusively(before: TapGesture(count: 1).onEnded {
+				selected = data
+				parent.enterSuggestionField()
+				parent.updateSelectedPos(selectedRow: data)
+			})
+		)
 	}
 	
 	func getSpaceTitle() -> String{
 		
-		if(data.id != nil){
+		if(data.id != NewSpaceID){
 			return data.name
 		}
 		return "Create a space: " + data.name
@@ -305,6 +332,9 @@ struct MenuBar: View {
 	HomeView(ControllerWrapper(), width:800.0, height: 450.0)
 }
 
+/*
+ * MARK: - View extension
+ */
 extension View {
 	
 	/**
