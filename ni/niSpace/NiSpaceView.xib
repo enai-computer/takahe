@@ -51,11 +51,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="1430" height="35"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eXw-Ij-Wev">
-                                <rect key="frame" x="30" y="6" width="24" height="24"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyUpOrDown" image="SpaceIcon" id="Gad-aN-4C5"/>
-                            </imageView>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="yLB-kD-fbD">
                                 <rect key="frame" x="1360" y="9" width="40" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
@@ -74,6 +69,12 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
+                            <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Yne-Pi-Jml">
+                                <rect key="frame" x="30" y="6" width="24" height="24"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="SpaceIcon" id="mpw-cc-7kz"/>
+                                <color key="contentTintColor" name="IntAerospaceOrange"/>
+                            </imageView>
                         </subviews>
                     </view>
                     <shadow key="shadow" blurRadius="6">
@@ -98,6 +99,9 @@
     </objects>
     <resources>
         <image name="SpaceIcon" width="24" height="24"/>
+        <namedColor name="IntAerospaceOrange">
+            <color red="1" green="0.30980392156862746" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="SandDark5">
             <color red="0.1803921568627451" green="0.1803921568627451" blue="0.16862745098039217" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

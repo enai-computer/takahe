@@ -9,9 +9,9 @@ import SQLite
 import Cocoa
 
 struct NiDocumentViewModel: Hashable{
-    let id: UUID
+    let id: UUID?
     var name: String
-    var updatedAt: Date
+    var updatedAt: Date?
 	var isSelected: Bool = false
 }
 

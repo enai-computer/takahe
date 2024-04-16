@@ -20,17 +20,17 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         return true
     }
     
-    func switchToNewSpace() -> NiSpaceViewController{
+    func switchToNewSpace(niSpaceID: UUID, name: String) -> NiSpaceViewController{
         window = NSApplication.shared.keyWindow!
-        let niSpaceController = NiSpaceViewController()
+        let niSpaceController = NiSpaceViewController(niSpaceID: niSpaceID, niSpaceName: name)
         window.contentViewController = niSpaceController
         niSpaceController.loadView()
         return niSpaceController
     }
     
     func loadExistingSpace(niSpaceID: UUID, name: String){
-        let controller = switchToNewSpace()
-        controller.loadStoredSpace(niSpaceID: niSpaceID, name: name)
+        let controller = switchToNewSpace(niSpaceID: niSpaceID, name: name)
+        controller.loadStoredSpace(niSpaceID: niSpaceID)
     }
     
     func switchToHome(){

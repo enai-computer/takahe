@@ -139,10 +139,24 @@ struct RightSide: View {
 	}
 	
 	func lstToShow() -> Array<NiDocumentViewModel>{
+		if(textFieldInput.isEmpty || (preListScrollInput != nil && preListScrollInput!.isEmpty)){
+			return if(self.predictedValues.isEmpty){
+					self.predictableValues
+			   }else{
+				   self.predictedValues
+			   }
+		}
+		
+		let newSpaceOption = if(preListScrollInput == nil) {
+			NiDocumentViewModel(id: nil, name: textFieldInput)
+		} else {
+			NiDocumentViewModel(id: nil, name: preListScrollInput!)
+		}
+		
 		return if(self.predictedValues.isEmpty){
-			self.predictableValues
+				self.predictableValues + [newSpaceOption]
 		   }else{
-			   self.predictedValues
+			   self.predictedValues + [newSpaceOption]
 		   }
 	}
 	
@@ -213,8 +227,10 @@ struct RightSide: View {
 	}
 	
 	func switchToSpace(){
-		if (selection != nil){
-			controllerWrapper.hostingController?.openExistingSpace(spaceId: selection!.id, name: selection!.name)
+		if (selection != nil && selection?.id != nil){
+			controllerWrapper.hostingController?.openExistingSpace(spaceId: selection!.id!, name: selection!.name)
+		}else if(selection != nil && selection?.id == nil){
+			controllerWrapper.hostingController?.openNewSpace(name: selection!.name)
 		}
 	}
 }
@@ -238,8 +254,15 @@ struct SuggestionRow: View {
 	
 	var body: some View {
 		HStack(alignment: .center){
-			Image(systemName: "square.2.stack.3d")
-			Text(data.name)
+			Image("SpaceIcon")
+				.resizable()
+				.frame(width:15, height: 15)
+				.if(data.id == selected?.id){
+					$0.foregroundColor(.intAerospaceOrange)
+				} else: {
+					$0.foregroundColor(.sandLight9)
+				}
+			Text(getSpaceTitle())
 				.foregroundStyle(.sandDark8)
 				.font(Font.custom("soehne-leicht", size: 12))
 			Spacer()
@@ -251,6 +274,14 @@ struct SuggestionRow: View {
 			}
 		}
 		.frame(maxWidth: .infinity)
+	}
+	
+	func getSpaceTitle() -> String{
+		
+		if(data.id != nil){
+			return data.name
+		}
+		return "Create a space: " + data.name
 	}
 }
 
@@ -272,4 +303,46 @@ struct MenuBar: View {
 
 #Preview {
 	HomeView(ControllerWrapper(), width:800.0, height: 450.0)
+}
+
+extension View {
+	
+	/**
+	 * Example:
+	 *	var body: some view {
+	 *		myView
+	 *			.if(X) { $0.buttonStyle(.bordered) }
+	 *	}
+	 */
+	@ViewBuilder
+	func `if`<Transform: View>(
+	  _ condition: Bool,
+	  transform: (Self) -> Transform
+	) -> some View {
+	  if condition {
+		transform(self)
+	  } else {
+		self
+	  }
+	}
+	
+	/**
+	 * Example:
+	 *	var body: some view {
+	 *		myView
+	 *			.if(X) { $0.buttonStyle(.bordered) } else: { $0.buttonStyle(.borderedProminent) }
+	 *	}
+	 */
+	@ViewBuilder
+	func `if`<TrueContent: View, FalseContent: View>(
+	  _ condition: Bool,
+	  if ifTransform: (Self) -> TrueContent,
+	  else elseTransform: (Self) -> FalseContent
+	) -> some View {
+	  if condition {
+		ifTransform(self)
+	  } else {
+		elseTransform(self)
+	  }
+	}
 }

@@ -14,8 +14,8 @@
             filePath = "ni/niSpace/NiSpaceViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "135"
-            endingLineNumber = "135"
+            startingLineNumber = "129"
+            endingLineNumber = "129"
             landmarkName = "storeSpace()"
             landmarkType = "7">
          </BreakpointContent>
@@ -30,41 +30,9 @@
             filePath = "ni/niSpace/NiSpaceViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "137"
-            endingLineNumber = "137"
+            startingLineNumber = "131"
+            endingLineNumber = "131"
             landmarkName = "storeSpace()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "0A984563-1E7D-4973-94AD-5FDDAC6D4A73"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ni/niSpace/NiSpaceViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "129"
-            endingLineNumber = "129"
-            landmarkName = "storeSpace()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "0DB0AE9B-8985-4EB4-9632-C4F7F3B91240"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ni/niSpace/NiSpaceViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "63"
-            endingLineNumber = "63"
-            landmarkName = "setSpaceName(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -638,9 +606,9 @@
             filePath = "ni/niSpace/NiSpaceViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "108"
-            endingLineNumber = "108"
-            landmarkName = "loadStoredSpace(niSpaceID:name:)"
+            startingLineNumber = "111"
+            endingLineNumber = "111"
+            landmarkName = "loadStoredSpace(niSpaceID:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -704,7 +672,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "55"
             endingLineNumber = "55"
-            landmarkName = "openNewSpace()"
+            landmarkName = "openNewSpace(name:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -782,8 +750,8 @@
             filePath = "ni/niSpace/NiSpaceViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "70"
-            endingLineNumber = "70"
+            startingLineNumber = "75"
+            endingLineNumber = "75"
             landmarkName = "mouseDown(with:)"
             landmarkType = "7">
          </BreakpointContent>

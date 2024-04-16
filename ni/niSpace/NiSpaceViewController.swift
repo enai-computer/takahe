@@ -4,8 +4,8 @@ import Cocoa
 
 class NiSpaceViewController: NSViewController{
     
-    private var niSpaceID: UUID? = nil
-    private var niSpaceName: String? = nil
+    private let niSpaceID: UUID
+    private let niSpaceName: String
     
 	//header elements here:
 	@IBOutlet var header: NSBox!
@@ -13,6 +13,16 @@ class NiSpaceViewController: NSViewController{
 	@IBOutlet var spaceName: NSTextField!
 	
 	@IBOutlet var niDocument: NiSpaceDocument!
+	
+	init(niSpaceID: UUID, niSpaceName: String) {
+		self.niSpaceID = niSpaceID
+		self.niSpaceName = niSpaceName
+		super.init(nibName: nil, bundle: nil)
+	}
+	
+	required init?(coder: NSCoder) {
+		fatalError("init(coder:) has not been implemented")
+	}
 	
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +34,7 @@ class NiSpaceViewController: NSViewController{
         self.view.layer?.backgroundColor = NSColor(.sandLight1).cgColor
 		
 		time.stringValue = getLocalisedTime()
+		spaceName.stringValue = niSpaceName
 		
 		setHeaderStyle()
 		setAutoUpdatingTime()
@@ -59,12 +70,6 @@ class NiSpaceViewController: NSViewController{
 		}
 	}
     
-    func setSpaceName(_ name: String){
-        self.niSpaceName = name
-		self.spaceName.stringValue = name
-    }
-    
-    
 	override func mouseDown(with event: NSEvent) {
 		let cursorPos = self.view.convert(event.locationInWindow, from: nil)
 		if(NSPointInRect(cursorPos, header.frame)){
@@ -95,9 +100,7 @@ class NiSpaceViewController: NSViewController{
 	/*
 	 * MARK: - load and store Space here
 	 */
-    func loadStoredSpace(niSpaceID: UUID, name: String){
-        self.setSpaceName(name)
-        self.niSpaceID = niSpaceID
+    func loadStoredSpace(niSpaceID: UUID){
         do{
             let docJson = (DocumentTable.fetchDocumentModel(id: niSpaceID)?.data(using: .utf8))!
             let jsonDecoder = JSONDecoder()
@@ -122,21 +125,12 @@ class NiSpaceViewController: NSViewController{
     }
     
     func storeSpace(){
-        if(niSpaceID == nil){
-            niSpaceID = UUID()
-        }
         
-        if(niSpaceName == nil){
-            let displayFormatter = DateFormatter()
-            displayFormatter.dateFormat = "yyyy-MM-dd"
-            niSpaceName = "Space from " + displayFormatter.string(from: Date())
-        }
-
         let documentJson = genJson()
         
-        DocumentTable.upsertDoc(id: niSpaceID!, name: niSpaceName!, document: documentJson)
+        DocumentTable.upsertDoc(id: niSpaceID, name: niSpaceName, document: documentJson)
         
-        niDocument.persistContent(documentId: niSpaceID!)
+        niDocument.persistContent(documentId: niSpaceID)
     }
     
     func genJson() -> String{
@@ -149,7 +143,7 @@ class NiSpaceViewController: NSViewController{
         let toEncode = NiDocumentObjectModel(
             type: NiDocumentObjectTypes.document,
             data: NiDocumentModel(
-                id: niSpaceID!,
+                id: niSpaceID,
                 height: self.niDocument.frame.height,
                 width: self.niDocument.frame.width,
                 children: children
