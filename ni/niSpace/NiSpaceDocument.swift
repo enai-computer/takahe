@@ -34,18 +34,19 @@ class NiSpaceDocument: NSView{
      * TODO: fix activation and deactivation 
      */
     
-    var topNiFrame: ContentFrameView? = nil
-    var drawnNiFrames: [ContentFrameView] = []	//rn all niFrames are drawn. Needs to be reworked in future
+    var topNiFrame: ContentFrameController? = nil
+    var drawnNiFrames: [ContentFrameController] = []	//rn all niFrames are drawn. Needs to be reworked in future
     
-    func addNiFrame(_ subView: ContentFrameView){
-        self.addSubview(subView)
+    func addNiFrame(_ subViewController: ContentFrameController){
+		self.addSubview(subViewController.view)
         
         for niFrame in drawnNiFrames{
-            niFrame.droppedInViewStack()
+			//TODO: fix this behaviour
+//            niFrame.droppedInViewStack()
         }
-        drawnNiFrames.insert(subView, at: 0)
+        drawnNiFrames.insert(subViewController, at: 0)
         
-        setTopNiFrame(NSApplication.shared.keyWindow, subView)
+        setTopNiFrame(NSApplication.shared.keyWindow, subViewController)
     }
     
     
@@ -63,9 +64,9 @@ class NiSpaceDocument: NSView{
             return
         }
 
-        let posInViewStack = newTopFrame?.getPositionInViewStack()
-        
+//        let posInViewStack = newTopFrame?.getPositionInViewStack()
 //        activeNiFrames.remove(at: posInViewStack!)
+		
         for niFrame in drawnNiFrames{
             niFrame.droppedInViewStack()
         }
@@ -74,23 +75,23 @@ class NiSpaceDocument: NSView{
         setTopNiFrame(NSApplication.shared.keyWindow, newTopFrame!)
     }
     
-    private func inFrame(_ cursorPoint: CGPoint) -> ContentFrameView?{
+    private func inFrame(_ cursorPoint: CGPoint) -> ContentFrameController?{
         
         for niFrame in drawnNiFrames {
-            if NSPointInRect(cursorPoint, niFrame.frame){
+			if NSPointInRect(cursorPoint, niFrame.view.frame){
                 return niFrame
             }
         }
         return nil
     }
 
-    private func setTopNiFrame(_ window: NSWindow?, _ newTopFrame: ContentFrameView){
+    private func setTopNiFrame(_ window: NSWindow?, _ newTopFrame: ContentFrameController){
 
         topNiFrame?.toggleActive()
         
         //switch
-        newTopFrame.removeFromSuperview()
-        self.addSubview(newTopFrame)
+		newTopFrame.view.removeFromSuperview()
+		self.addSubview(newTopFrame.view)
         topNiFrame = newTopFrame
 
         topNiFrame?.toggleActive()

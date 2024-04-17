@@ -11,9 +11,10 @@ import WebKit
 import QuartzCore
 import FaviconFinder
 
+//TODO: clean up tech debt and move the delegates out of here
 class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollectionViewDataSource, NSCollectionViewDelegate, NSCollectionViewDelegateFlowLayout{
     
-    var niContentFrameView: ContentFrameView? = nil
+    private(set) var niContentFrameView: ContentFrameView? = nil
     private var selectedTabModel: Int = -1
 	private var aTabIsInEditingMode: Bool = false
 	private var tabs: [TabHeadViewModel] = []
@@ -83,6 +84,19 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
 	func loadWebsiteInSelectedTab(_ url: URL){
 		let urlReq = URLRequest(url: url)
 		tabs[selectedTabModel].webView?.load(urlReq)
+	}
+	
+	func droppedInViewStack(){
+		//TODO: pull the logic into the controller, as long as it does not have implications of the view
+		niContentFrameView?.droppedInViewStack()
+	}
+	
+	func toggleActive(){
+		niContentFrameView?.toggleActive()
+	}
+	
+	func persistContent(documentId: UUID){
+		niContentFrameView?.persistContent(documentId: documentId)
 	}
 	
 	/*

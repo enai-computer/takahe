@@ -97,11 +97,12 @@ class NiSpaceViewController: NSViewController{
     }
     
 	func openEmptyCF(){
-		let view = openEmptyContentFrame()
-		view.frame.origin = calculateOrigin(for: view.frame)
+		let controller = openEmptyContentFrame()
+		let newCFView = controller.view as! ContentFrameView
+		newCFView.frame.origin = calculateOrigin(for: controller.view.frame)
 		
-		self.niDocument.addNiFrame(view)
-		view.setFrameOwner(self.niDocument)
+		self.niDocument.addNiFrame(controller)
+		newCFView.setFrameOwner(self.niDocument)
 	}
     
 	func calculateOrigin(for frame: NSRect) -> CGPoint{
@@ -118,10 +119,10 @@ class NiSpaceViewController: NSViewController{
 	
     @IBAction func runWebSearch(_ searchField: NSSearchField) {
         //TODO: refactor
-        let searchView = runGoogleSearch(searchField.stringValue, owner: self)
+        let searchViewController = runGoogleSearch(searchField.stringValue, owner: self)
 
-        self.niDocument.addNiFrame(searchView)
-        searchView.setFrameOwner(self.niDocument)
+		self.niDocument.addNiFrame(searchViewController)
+		searchViewController.niContentFrameView!.setFrameOwner(self.niDocument)
     }
     
 	/*
@@ -146,9 +147,9 @@ class NiSpaceViewController: NSViewController{
     }
     
     private func recreateContentFrame(data: NiContentFrameModel){
-        let storedWebsiteContentFrame = reopenContentFrame(contentFrame: data, tabs: data.children)
-        self.niDocument.addNiFrame(storedWebsiteContentFrame)
-        storedWebsiteContentFrame.setFrameOwner(self.niDocument)
+        let storedWebsiteCFController = reopenContentFrame(contentFrame: data, tabs: data.children)
+        self.niDocument.addNiFrame(storedWebsiteCFController)
+		storedWebsiteCFController.niContentFrameView!.setFrameOwner(self.niDocument)
     }
     
     func storeSpace(){
@@ -163,8 +164,8 @@ class NiSpaceViewController: NSViewController{
     func genJson() -> String{
         
         var children: [NiDocumentObjectModel] = []
-        for frame in niDocument.drawnNiFrames {
-            children.append(frame.toNiContentFrameModel())
+        for cfController in niDocument.drawnNiFrames {
+			children.append(cfController.niContentFrameView!.toNiContentFrameModel())
         }
             
         let toEncode = NiDocumentObjectModel(

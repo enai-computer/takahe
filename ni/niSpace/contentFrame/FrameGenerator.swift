@@ -3,17 +3,15 @@
 import Cocoa
 import WebKit
 
-func openEmptyContentFrame() -> ContentFrameView{
+func openEmptyContentFrame() -> ContentFrameController{
 	let frameController = ContentFrameController()
 	frameController.loadView()
 	frameController.openEmptyTab()
 	
-	let frame = frameController.view as! ContentFrameView
-
-	return frame
+	return frameController
 }
 
-func runGoogleSearch(_ searchTerm: String, owner: Any?) -> ContentFrameView {
+func runGoogleSearch(_ searchTerm: String, owner: Any?) -> ContentFrameController {
         
     let encodedSearchTerm = searchTerm.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
     let urlStr = "https://www.google.com/search?q=" + encodedSearchTerm!
@@ -21,12 +19,11 @@ func runGoogleSearch(_ searchTerm: String, owner: Any?) -> ContentFrameView {
     let frameController = ContentFrameController()
     frameController.loadView()
     frameController.openWebsiteInNewTab(urlStr)
-    let frame = frameController.view as! ContentFrameView
-
-    return frame
+    
+	return frameController
 }
 
-func reopenContentFrame(contentFrame: NiContentFrameModel, tabs: [NiCFTabModel]) -> ContentFrameView {
+func reopenContentFrame(contentFrame: NiContentFrameModel, tabs: [NiCFTabModel]) -> ContentFrameController {
     
     let frameController = ContentFrameController()
     frameController.loadView()
@@ -43,7 +40,7 @@ func reopenContentFrame(contentFrame: NiContentFrameModel, tabs: [NiCFTabModel])
     let frame = frameController.view as! ContentFrameView
     frame.frame = initPosition
     
-    return frame
+    return frameController
 }
 
 extension NSView {
