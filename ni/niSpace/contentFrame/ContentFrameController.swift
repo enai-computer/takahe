@@ -41,13 +41,28 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
         return wkView
     }
     
+	func openEmptyTab(){
+		let niWebView = NiWebView(contentId: UUID(), owner: self, frame: niContentFrameView!.frame, configuration: WKWebViewConfiguration())
+
+		let localHTMLurl = Bundle.main.url(forResource: "emptyTab", withExtension: "html")!
+		niWebView.loadFileURL(localHTMLurl, allowingReadAccessTo: localHTMLurl)
+		
+		let req = URLRequest(url: localHTMLurl)
+		niWebView.load(req)
+		niWebView.navigationDelegate = self
+		
+		var tabHeadModel = TabHeadViewModel()
+		tabHeadModel.position = niContentFrameView!.createNewTab(tabView: niWebView)
+		tabHeadModel.webView = niWebView
+		tabHeadModel.webView!.tabHeadPosition = tabHeadModel.position
+		self.tabs.append(tabHeadModel)
+	}
+	
     func openWebsiteInNewTab(urlStr: String, contentId: UUID, tabName: String) -> Int{
         let url = URL(string: urlStr) ?? URL(string: "https://www.google.com")
         let urlReq = URLRequest(url: url!)
         
         let niWebView = getNewWebView(contentId: contentId, urlReq: urlReq, frame: niContentFrameView!.frame)
-        
-        niWebView.navigationDelegate = self
 		
 		var tabHeadModel = TabHeadViewModel()
 		tabHeadModel.position = niContentFrameView!.createNewTab(tabView: niWebView)

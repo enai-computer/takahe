@@ -3,6 +3,16 @@
 import Cocoa
 import WebKit
 
+func openEmptyContentFrame() -> ContentFrameView{
+	let frameController = ContentFrameController()
+	frameController.loadView()
+	frameController.openEmptyTab()
+	
+	let frame = frameController.view as! ContentFrameView
+
+	return frame
+}
+
 func runGoogleSearch(_ searchTerm: String, owner: Any?) -> ContentFrameView {
         
     let encodedSearchTerm = searchTerm.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)

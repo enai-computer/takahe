@@ -29,7 +29,7 @@ class NiSpaceDocument: NSView{
     }
     
     /*
-     * Window like functions for niFrames below:
+     * MARK: Window like functions for niFrames below:
      *
      * TODO: fix activation and deactivation 
      */

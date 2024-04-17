@@ -1,6 +1,7 @@
 //Created on 9.10.23
 
 import Cocoa
+import Carbon.HIToolbox
 
 class NiSpaceViewController: NSViewController{
     
@@ -70,6 +71,9 @@ class NiSpaceViewController: NSViewController{
 		}
 	}
     
+	/*
+	 * MARK: - mouse and key events here
+	 */
 	override func mouseDown(with event: NSEvent) {
 		let cursorPos = self.view.convert(event.locationInWindow, from: nil)
 		if(NSPointInRect(cursorPos, header.frame)){
@@ -79,16 +83,39 @@ class NiSpaceViewController: NSViewController{
 		}
 	}
 	
+	override func keyDown(with event: NSEvent) {
+		
+		if(event.modifierFlags == .command && event.keyCode == kVK_ANSI_N){
+			openEmptyCF()
+		}
+	}
+	
     func returnToHome() {
         storeSpace()
-//        let appDelegate = NSApp.delegate as! AppDelegate
-//        appDelegate.switchToHome()
 		let hostingController = HomeViewController(presentingController: self)
 		hostingController.show()
     }
     
+	func openEmptyCF(){
+		let view = openEmptyContentFrame()
+		view.frame.origin = calculateOrigin(for: view.frame)
+		
+		self.niDocument.addNiFrame(view)
+		view.setFrameOwner(self.niDocument)
+	}
     
-    
+	func calculateOrigin(for frame: NSRect) -> CGPoint{
+		let windowSize = NSApplication.shared.keyWindow!.frame.size
+		
+		let x_center = windowSize.width / 2
+		let y_center = windowSize.height / 2
+		
+		let x_dist_to_center = frame.width / 2
+		let y_dist_to_center = frame.height / 2
+		
+		return CGPoint(x: (x_center-x_dist_to_center), y: (y_center - y_dist_to_center))
+	}
+	
     @IBAction func runWebSearch(_ searchField: NSSearchField) {
         //TODO: refactor
         let searchView = runGoogleSearch(searchField.stringValue, owner: self)

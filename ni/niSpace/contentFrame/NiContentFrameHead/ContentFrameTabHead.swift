@@ -66,8 +66,10 @@ class ContentFrameTabHead: NSCollectionViewItem {
 		//FIXME: reloads Website to get FavIcon every time we redraw tabs
 		Task {
 			do{
-				let img = try await fetchFavIcon(url: URL(string: urlStr)!)
-				setIcon(img)
+				if(!urlStr.isEmpty){
+					let img = try await fetchFavIcon(url: URL(string: urlStr)!)
+					setIcon(img)
+				}
 			}catch{
 				debugPrint(error)
 			}
