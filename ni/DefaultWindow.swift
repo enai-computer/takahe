@@ -12,8 +12,16 @@ class DefaultWindow: NSWindow{
 	
 	override func keyDown(with event: NSEvent) {
 		
-		if(event.modifierFlags.contains(.command) && event.keyCode == kVK_ANSI_N){
-			handleCMD_N()
+		if(event.modifierFlags.contains(.command)){
+			
+			if(event.keyCode == kVK_ANSI_N){
+				handleCMD_N()
+				return
+			}
+			
+			if(event.keyCode == kVK_ANSI_W){
+				handleCMD_W()
+			}
 		}
 		
 		switch Int(event.keyCode) {
@@ -33,6 +41,12 @@ class DefaultWindow: NSWindow{
 	func handleCMD_N(){
 		if let controller = contentViewController as? NiSpaceViewController{
 			controller.openEmptyCF()
+		}
+	}
+	
+	func handleCMD_W(){
+		if let controller = contentViewController as? NiSpaceViewController{
+			controller.closeTabOfTopCF()
 		}
 	}
 }

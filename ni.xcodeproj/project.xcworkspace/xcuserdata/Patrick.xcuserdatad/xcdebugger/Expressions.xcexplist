@@ -6,10 +6,10 @@
          contextName = "NiSpaceDocument.mouseDown(with:):NiSpaceDocument.swift">
       </ContextState>
       <ContextState
-         contextName = "ContentFrameView.mouseDragged(with:):ContentFrameView.swift">
+         contextName = "NiSpaceViewController.genJson():NiSpaceViewController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "cursorOnBorder">
+               value = "niDocument.activeNiFrames">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -18,6 +18,14 @@
          <PersistentStrings>
             <PersistentString
                value = "frame.maxY">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "NiWebView.keyDown(with:):NiWebView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "nextResponder">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -49,15 +57,15 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "closure #1 in Expressible.asSQL():Expression.swift">
-      </ContextState>
-      <ContextState
          contextName = "ContentFrameController.webView(_:didFinish:):ContentFrameController.swift">
          <PersistentStrings>
             <PersistentString
                value = "wv.tabHeadPosition">
             </PersistentString>
          </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in Expressible.asSQL():Expression.swift">
       </ContextState>
       <ContextState
          contextName = "NiSpaceViewController.viewDidLoad():NiSpaceViewController.swift">
@@ -82,7 +90,7 @@
          contextName = "ContentFrameView.mouseDown(with:):ContentFrameView.swift">
          <PersistentStrings>
             <PersistentString
-               value = "cursorOnBorder">
+               value = "frameIsActive">
             </PersistentString>
             <PersistentString
                value = "frame">
@@ -94,7 +102,7 @@
                value = "NSPointInRect(posInHeadView, closeButton.frame)">
             </PersistentString>
             <PersistentString
-               value = "frameIsActive">
+               value = "cursorOnBorder">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -174,6 +182,17 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "ContentFrameController.keyDown(with:):ContentFrameController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "event.keyCode">
+            </PersistentString>
+            <PersistentString
+               value = "kVK_ANSI_W">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "NiSpaceDocument.inFrame(_:):NiSpaceDocument.swift">
          <PersistentStrings>
             <PersistentString
@@ -198,10 +217,24 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "ContentFrameController.removeSelectedTab():ContentFrameController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "tabs.count">
+            </PersistentString>
+            <PersistentString
+               value = "selectedTabModel == 0 &amp;&amp; self.tabs.count == 1">
+            </PersistentString>
+            <PersistentString
+               value = "self.tabs.count">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "DefaultWindow.keyDown(with:):DefaultWindow.swift">
          <PersistentStrings>
             <PersistentString
-               value = "event.modifierFlags.contains(.command)">
+               value = "NSEvent.ModifierFlags.command">
             </PersistentString>
             <PersistentString
                value = "NSEvent.ModifierFlags.control">
@@ -213,10 +246,10 @@
                value = "kVK_RightCommand">
             </PersistentString>
             <PersistentString
-               value = "kVK_Command">
+               value = "event.modifierFlags.contains(.command)">
             </PersistentString>
             <PersistentString
-               value = "NSEvent.ModifierFlags.command">
+               value = "kVK_Command">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -300,6 +333,14 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "ContentFrameView.mouseDragged(with:):ContentFrameView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "cursorOnBorder">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "NiTableCellView.data.getter:HomeViewController.swift">
       </ContextState>
       <ContextState
@@ -314,18 +355,10 @@
          contextName = "NiTableCellView.mouseDown(with:):HomeViewController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "data!.id">
-            </PersistentString>
-            <PersistentString
                value = "event.clickCount">
             </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "NiSpaceViewController.genJson():NiSpaceViewController.swift">
-         <PersistentStrings>
             <PersistentString
-               value = "niDocument.activeNiFrames">
+               value = "data!.id">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

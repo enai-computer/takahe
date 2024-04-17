@@ -128,10 +128,13 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
 			}else if(event.keyCode == kVK_ANSI_T){
 				let pos = openEmptyTab()
 				selectTab(at: pos)
+				return
 			}else if(event.keyCode == kVK_ANSI_W){
 				removeSelectedTab()
+				return
 			}
 		}
+		nextResponder?.keyDown(with: event)
 	}
 	
 	/*

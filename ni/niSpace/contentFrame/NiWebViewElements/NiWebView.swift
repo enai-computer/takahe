@@ -47,7 +47,6 @@ class NiWebView: WKWebView{
 //        niOpenInNewTab.action = #selector(openLinkInNewTab(_:))
 //        niOpenInNewTab.target = self
 //        menu.items = [niOpenInNewTab]
-    
     }
     
     @objc func openLinkInNewTab(_ sender: AnyObject) {

@@ -88,6 +88,10 @@ class NiSpaceViewController: NSViewController{
 		newCFView.setFrameOwner(self.niDocument)
 	}
 	
+	func closeTabOfTopCF(){
+		niDocument.topNiFrame?.removeSelectedTab()
+	}
+	
 	/*
 	 * MARK: - mouse and key events here
 	 */
@@ -107,7 +111,9 @@ class NiSpaceViewController: NSViewController{
 		
 		if(event.modifierFlags.contains(.command) && event.keyCode == kVK_ANSI_N){
 			openEmptyCF()
+			return
 		}
+		nextResponder?.keyDown(with: event)
 	}
 	
     

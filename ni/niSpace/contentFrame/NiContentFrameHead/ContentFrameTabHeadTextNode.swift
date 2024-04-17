@@ -23,14 +23,17 @@ class ContentFrameTabHeadTextNode: NSTextField{
 		}
 		
 		if(!self.isEditable && event.clickCount == 2){
-//			enableEditing()
 			parentController?.startEditMode()
+			return
 		}
+		nextResponder?.mouseDown(with: event)
 	}
 	
 	override func keyDown(with event: NSEvent) {
 		if(self.isEditable && event.keyCode == kVK_Escape){
 			endEditing()
+		}else{
+			nextResponder?.keyDown(with: event)
 		}
 	}
 	
