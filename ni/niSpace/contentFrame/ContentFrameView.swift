@@ -79,17 +79,15 @@ class ContentFrameView: NSBox{
         return tabViewPos
     }
     
+	func deleteSelectedTab(at position: Int){
+		
+		niContentTabView.removeTabViewItem(niContentTabView.tabViewItem(at: position))
+	}
+	
     /**
      * window like functions (moving and resizing) here:
      */
     
-	/*
-	 * MARK: - keyboard caputure here:
-	 */
-	override func cancelOperation(_ sender: Any?) {
-		//TODO: Mimize window
-		return
-	}
 	
     /*
      *  MARK: - mouse down events here:

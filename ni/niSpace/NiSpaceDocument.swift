@@ -24,10 +24,11 @@ class NiSpaceDocument: NSView{
     }
     
     func extendDocumentDownwards(){
+		//FIXME: this needs to be improved
         let window = NSApplication.shared.keyWindow!
         self.frame.size.height += window.frame.height * EMPTYSPACEFACTOR
     }
-    
+	
     /*
      * MARK: Window like functions for niFrames below:
      *

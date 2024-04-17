@@ -7,6 +7,7 @@
 
 import Foundation
 import Cocoa
+import Carbon.HIToolbox
 import WebKit
 import QuartzCore
 import FaviconFinder
@@ -42,14 +43,13 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
         return wkView
     }
     
-	func openEmptyTab(){
+	func openEmptyTab() -> Int{
 		let niWebView = NiWebView(contentId: UUID(), owner: self, frame: niContentFrameView!.frame, configuration: WKWebViewConfiguration())
 
 		let localHTMLurl = Bundle.main.url(forResource: "emptyTab", withExtension: "html")!
 		niWebView.loadFileURL(localHTMLurl, allowingReadAccessTo: localHTMLurl)
 		
 		let req = URLRequest(url: localHTMLurl)
-		niWebView.load(req)
 		niWebView.navigationDelegate = self
 		
 		var tabHeadModel = TabHeadViewModel()
@@ -57,6 +57,11 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
 		tabHeadModel.webView = niWebView
 		tabHeadModel.webView!.tabHeadPosition = tabHeadModel.position
 		self.tabs.append(tabHeadModel)
+		
+		//Needs to be down here, as local websites will load before tab was added which creates problems in the webView on load call-back
+		niWebView.load(req)
+		
+		return tabHeadModel.position
 	}
 	
     func openWebsiteInNewTab(urlStr: String, contentId: UUID, tabName: String) -> Int{
@@ -97,6 +102,36 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
 	
 	func persistContent(documentId: UUID){
 		niContentFrameView?.persistContent(documentId: documentId)
+	}
+	
+	func removeSelectedTab(){
+		if(0 < selectedTabModel){
+			let toDeletePos = selectedTabModel
+			selectedTabModel -= 1
+			
+			niContentFrameView?.deleteSelectedTab(at: toDeletePos)
+			self.tabs.remove(at: toDeletePos)
+			
+			selectTab(at: selectedTabModel)
+		}else if( selectedTabModel == 0 && self.tabs.count == 1){
+			view.removeFromSuperview()
+		}
+	}
+	
+	/*
+	 * MARK: - keyboard caputure here:
+	 */
+	override func keyDown(with event: NSEvent) {
+		if(event.modifierFlags.contains(.command)){
+			if(event.keyCode == kVK_ANSI_N){
+				nextResponder?.keyDown(with: event)
+			}else if(event.keyCode == kVK_ANSI_T){
+				let pos = openEmptyTab()
+				selectTab(at: pos)
+			}else if(event.keyCode == kVK_ANSI_W){
+				removeSelectedTab()
+			}
+		}
 	}
 	
 	/*

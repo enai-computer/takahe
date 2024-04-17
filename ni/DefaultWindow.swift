@@ -11,6 +11,11 @@ class DefaultWindow: NSWindow{
     }
 	
 	override func keyDown(with event: NSEvent) {
+		
+		if(event.modifierFlags.contains(.command) && event.keyCode == kVK_ANSI_N){
+			handleCMD_N()
+		}
+		
 		switch Int(event.keyCode) {
 			case kVK_Escape:
 				print("Esc pressed")
@@ -25,4 +30,9 @@ class DefaultWindow: NSWindow{
 		return
 	}
 	
+	func handleCMD_N(){
+		if let controller = contentViewController as? NiSpaceViewController{
+			controller.openEmptyCF()
+		}
+	}
 }

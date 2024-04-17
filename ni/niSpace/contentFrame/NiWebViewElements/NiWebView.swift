@@ -7,6 +7,7 @@
 
 import Foundation
 import Cocoa
+import Carbon.HIToolbox
 import WebKit
 
 class NiWebView: WKWebView{
@@ -66,7 +67,13 @@ class NiWebView: WKWebView{
 		window?.makeFirstResponder(overlay)
         viewIsActive = false
     }
-//    
+	
+	override func keyDown(with event: NSEvent) {
+		if(event.modifierFlags.contains(.command)){
+			nextResponder?.keyDown(with: event)
+		}
+	}
+//
 //    override func mouseUp(with event: NSEvent) {
 //        if(viewIsActive){
 //            super.mouseUp(with: event)

@@ -15,6 +15,8 @@ class NiSpaceViewController: NSViewController{
 	
 	@IBOutlet var niDocument: NiSpaceDocument!
 	
+	private var leastRecentlyUsedOrigin: CGPoint? = nil
+	
 	init(niSpaceID: UUID, niSpaceName: String) {
 		self.niSpaceID = niSpaceID
 		self.niSpaceName = niSpaceName
@@ -71,6 +73,21 @@ class NiSpaceViewController: NSViewController{
 		}
 	}
     
+	func returnToHome() {
+		storeSpace()
+		let hostingController = HomeViewController(presentingController: self)
+		hostingController.show()
+	}
+	
+	func openEmptyCF(){
+		let controller = openEmptyContentFrame()
+		let newCFView = controller.view as! ContentFrameView
+		newCFView.frame.origin = calculateOrigin(for: controller.view.frame)
+		
+		self.niDocument.addNiFrame(controller)
+		newCFView.setFrameOwner(self.niDocument)
+	}
+	
 	/*
 	 * MARK: - mouse and key events here
 	 */
@@ -84,32 +101,30 @@ class NiSpaceViewController: NSViewController{
 	}
 	
 	override func keyDown(with event: NSEvent) {
+		if(event.modifierFlags.contains(.command)){
+			print("caught in SpaceView Controller")
+		}
 		
-		if(event.modifierFlags == .command && event.keyCode == kVK_ANSI_N){
+		if(event.modifierFlags.contains(.command) && event.keyCode == kVK_ANSI_N){
 			openEmptyCF()
 		}
 	}
 	
-    func returnToHome() {
-        storeSpace()
-		let hostingController = HomeViewController(presentingController: self)
-		hostingController.show()
-    }
-    
-	func openEmptyCF(){
-		let controller = openEmptyContentFrame()
-		let newCFView = controller.view as! ContentFrameView
-		newCFView.frame.origin = calculateOrigin(for: controller.view.frame)
-		
-		self.niDocument.addNiFrame(controller)
-		newCFView.setFrameOwner(self.niDocument)
-	}
     
 	func calculateOrigin(for frame: NSRect) -> CGPoint{
 		let windowSize = NSApplication.shared.keyWindow!.frame.size
 		
-		let x_center = windowSize.width / 2
-		let y_center = windowSize.height / 2
+		let x_center: Double
+		let y_center: Double
+		
+		if(leastRecentlyUsedOrigin == nil){
+			x_center = windowSize.width / 2
+			y_center = windowSize.height / 2
+		}else{
+			x_center = leastRecentlyUsedOrigin!.x + 30
+			y_center = leastRecentlyUsedOrigin!.y + 30
+		}
+		leastRecentlyUsedOrigin = CGPoint(x: x_center, y: y_center)
 		
 		let x_dist_to_center = frame.width / 2
 		let y_dist_to_center = frame.height / 2
