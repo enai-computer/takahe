@@ -22,6 +22,7 @@ class ControllerWrapper{
 }
 
 struct HomeView: View {
+	@Namespace var homeViewNameSpace
 	
 	var lstOfSpaces = DocumentTable.fetchListofDocs()
 	let controllerWrapper: ControllerWrapper
@@ -41,10 +42,11 @@ struct HomeView: View {
 					.frame(width: (self.width*(3/8)), height: self.height)
 					.scaledToFit()
 					.background(Color.leftSideBackground)
-				RightSide(controllerWrapper, listOfSpaces: lstOfSpaces)
+				RightSide(controllerWrapper, inNamespace: homeViewNameSpace, listOfSpaces: lstOfSpaces)
 					.frame(width: (self.width*(5/8)), height: self.height)
 					.scaledToFit()
 					.background(Color.rightSideBackground)
+					.prefersDefaultFocus(in: homeViewNameSpace)
 			}
 		}.frame(width: width, height: height)
 	}
@@ -66,6 +68,8 @@ struct LeftSide: View {
  * MARK: - right side
  */
 struct RightSide: View {
+	let homeViewNameSpace: Namespace.ID
+	
 	let controllerWrapper: ControllerWrapper
 	
 	@State var textFieldInput: String = ""
@@ -77,9 +81,12 @@ struct RightSide: View {
 	@State var selectedPos: Int?
 	@State var allowTextPredictions: Bool = true
 	@State var preListScrollInput: String?
+	@State var isHoverActive: Bool = true
+	@State var latestCursorPT: CGPoint?
 	
-	init(_ controllerWrapper: ControllerWrapper, listOfSpaces: [NiDocumentViewModel]){
+	init(_ controllerWrapper: ControllerWrapper, inNamespace: Namespace.ID, listOfSpaces: [NiDocumentViewModel]){
 		self.predictableValues = listOfSpaces
+		self.homeViewNameSpace = inNamespace
 		self.controllerWrapper = controllerWrapper
 	}
 	
@@ -99,10 +106,16 @@ struct RightSide: View {
 			.autocorrectionDisabled(false)
 			.textFieldStyle(RoundedBorderTextFieldStyle())
 			.disabled(textFieldDisabled)
+			.onKeyPress(phases: [.up]){k in
+				isHoverActive = false
+				continueTyping()
+				return .handled
+			}
+			.prefersDefaultFocus(in: homeViewNameSpace)
 
 			
 			List(lstToShow(), id: \.self, selection: $selection){ v in
-				SuggestionRow(parent: self, data: v, selected: $selection, textFieldInput: $textFieldInput)
+				SuggestionRow(parent: self, data: v, selected: $selection, textFieldInput: $textFieldInput, isHoverActive: $isHoverActive)
 				.listRowSeparatorTint(Color("transparent"))
 				.selectionDisabled()
 				.listRowInsets(EdgeInsets())
@@ -111,7 +124,17 @@ struct RightSide: View {
 			.padding(EdgeInsets(top: 0.0, leading: 0.0, bottom: 0.0, trailing: 0.0))
 			.scrollContentBackground(.hidden)
 			.background(Color.transparent)
-
+			.onContinuousHover(coordinateSpace: .local){ phase in
+				switch phase{
+					case .active(let pt):
+						if(latestCursorPT != pt){
+							latestCursorPT = pt
+							isHoverActive = true
+						}
+					case .ended:
+						return
+				}
+			}
 		}
 		.onAppear {
 			NSEvent.addLocalMonitorForEvents(matching: [.keyDown]) { nsEvent in
@@ -208,6 +231,14 @@ struct RightSide: View {
 		textFieldInput = selection!.name
 	}
 	
+	func continueTyping(){
+		selection = nil
+		selectedPos = nil
+		allowTextPredictions = true
+		
+		preListScrollInput = nil
+	}
+	
 	func exitSuggestionField(){
 		selection = nil
 		selectedPos = nil
@@ -256,18 +287,21 @@ struct SuggestionRow: View {
 	private var data: NiDocumentViewModel
 	@Binding var selected: NiDocumentViewModel?
 	@Binding var textFieldInput: String
+	@Binding var isHoverActive: Bool
 	var parent: RightSide
 	
 	init(
 		parent: RightSide,
 		data: NiDocumentViewModel,
 		selected: Binding<NiDocumentViewModel?>,
-		textFieldInput: Binding<String>
+		textFieldInput: Binding<String>,
+		isHoverActive: Binding<Bool>
 	){
 		self.parent = parent
 		self.data = data
 		self._selected = selected
 		self._textFieldInput = textFieldInput
+		self._isHoverActive = isHoverActive
 	}
 	
 	var body: some View {
@@ -295,12 +329,20 @@ struct SuggestionRow: View {
 		.gesture(
 			TapGesture(count: 2).onEnded {
 				parent.switchToSpace()
-			}.exclusively(before: TapGesture(count: 1).onEnded {
-				selected = data
-				parent.enterSuggestionField()
-				parent.updateSelectedPos(selectedRow: data)
-			})
+			}
 		)
+		.onContinuousHover(coordinateSpace: .local){ phase in
+			if(isHoverActive){
+				switch phase{
+					case .active(_):
+						selected = data
+						parent.enterSuggestionField()
+						parent.updateSelectedPos(selectedRow: data)
+					case .ended:
+						parent.exitSuggestionField()
+				}
+			}
+		}
 	}
 	
 	func getSpaceTitle() -> String{
