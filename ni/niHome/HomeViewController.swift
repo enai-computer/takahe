@@ -65,7 +65,10 @@ class HomeViewController: NSHostingController<HomeView>{
 	}
 
 	func tryHide(){
-		//TODO: fail in case we are on HomeViewBackground
+		//fail in case we are on HomeViewBackground
+		if ((presentingController as? HomeViewBackgroundController) != nil){
+			return
+		}
 		presentingController.dismiss(self)
 	}
 }
