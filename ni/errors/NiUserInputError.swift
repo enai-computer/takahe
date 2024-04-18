@@ -8,4 +8,5 @@
 
 enum NiUserInputError : Error{
 	case invalidURL(url: String)
+	case invalidSearch(url: String)
 }

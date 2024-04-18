@@ -92,8 +92,7 @@ class ContentFrameTabHead: NSCollectionViewItem {
 		}
 	}
 	
-	func loadWebsite(newURL: String) throws {
-		guard let url = URL(string: newURL) else {throw NiUserInputError.invalidURL(url: newURL)}
+	func loadWebsite(url: URL) {
 		parentController?.loadWebsiteInSelectedTab(url)
 	}
 	

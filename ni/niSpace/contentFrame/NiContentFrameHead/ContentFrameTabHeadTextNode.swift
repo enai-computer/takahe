@@ -43,11 +43,12 @@ class ContentFrameTabHeadTextNode: NSTextField{
 	
 	override func textDidEndEditing(_ notification: Notification) {
 		do{
-			try self.parentController?.loadWebsite(newURL: self.stringValue)
-			endEditing()
+			let url = try urlOrSearchUrl(from: self.stringValue)
+			self.parentController?.loadWebsite(url: url)
 		}catch{
 			print("Failed to load website, due to " + error.localizedDescription)
 		}
+		endEditing()
 	}
 
 	func enableEditing(urlStr: String){
