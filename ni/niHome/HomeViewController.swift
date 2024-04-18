@@ -53,7 +53,8 @@ class HomeViewController: NSHostingController<HomeView>{
 		presentingController.dismiss(self)
 		
 		let appDelegate = NSApp.delegate as! AppDelegate
-		appDelegate.switchToNewSpace(niSpaceID: UUID(), name: name)
+		let spaceController = appDelegate.switchToEmptySpace(niSpaceID: UUID(), name: name)
+		spaceController.openEmptyCF()
 	}
 	
 	func openExistingSpace(spaceId: UUID, name: String){

@@ -20,7 +20,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         return true
     }
     
-    func switchToNewSpace(niSpaceID: UUID, name: String) -> NiSpaceViewController{
+    func switchToEmptySpace(niSpaceID: UUID, name: String) -> NiSpaceViewController{
         window = NSApplication.shared.keyWindow!
         let niSpaceController = NiSpaceViewController(niSpaceID: niSpaceID, niSpaceName: name)
         window.contentViewController = niSpaceController
@@ -29,7 +29,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     func loadExistingSpace(niSpaceID: UUID, name: String){
-        let controller = switchToNewSpace(niSpaceID: niSpaceID, name: name)
+        let controller = switchToEmptySpace(niSpaceID: niSpaceID, name: name)
         controller.loadStoredSpace(niSpaceID: niSpaceID)
     }
     
