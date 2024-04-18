@@ -188,7 +188,6 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
 		
 		//No tab switching while CF is not active
 		if(!self.niContentFrameView!.frameIsActive){
-			
 			if(mouseDownEvent != nil){
 				nextResponder?.mouseDown(with: mouseDownEvent!)
 			}

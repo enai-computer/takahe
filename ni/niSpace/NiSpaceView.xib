@@ -44,8 +44,8 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
                 </scrollView>
-                <box borderType="none" title="header" titlePosition="noTitle" id="gvf-LW-L3l">
-                    <rect key="frame" x="85" y="860" width="1430" height="35"/>
+                <box borderType="none" title="topbar" titlePosition="noTitle" id="gvf-LW-L3l">
+                    <rect key="frame" x="85" y="865" width="1430" height="35"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                     <view key="contentView" id="beS-87-ueE">
                         <rect key="frame" x="0.0" y="0.0" width="1430" height="35"/>

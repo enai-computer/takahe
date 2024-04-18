@@ -251,8 +251,8 @@ class ContentFrameView: NSBox{
         }
             // do nothing when trying to move to far to the right
         
-        if (frame.origin.y - yDiff < 0){
-            frame.origin.y = 0
+        if (frame.origin.y - yDiff < 45){	//45px is the hight of the top bar + shadow - FIXME: write cleaner implemetation
+            frame.origin.y = 45
         }else if(frame.origin.y - yDiff + frame.height > docHeight){
             frame.origin.y -= yDiff
             
