@@ -61,6 +61,8 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
 		//Needs to be down here, as local websites will load before tab was added which creates problems in the webView on load call-back
 		niWebView.load(req)
 		
+		selectTab(at: tabHeadModel.position)
+		
 		return tabHeadModel.position
 	}
 	
@@ -77,13 +79,14 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
 		tabHeadModel.webView!.tabHeadPosition = tabHeadModel.position
 		self.tabs.append(tabHeadModel)
 		
+		selectTab(at: tabHeadModel.position)
+		
 		return tabHeadModel.position
     }
 	
     func openWebsiteInNewTab(_ urlStr: String){
         let id = UUID()
-        let pos = openWebsiteInNewTab(urlStr: urlStr, contentId: id, tabName: "")
-		selectTab(at: pos)
+        _ = openWebsiteInNewTab(urlStr: urlStr, contentId: id, tabName: "")
     }
 	
 	func loadWebsiteInSelectedTab(_ url: URL){
@@ -123,11 +126,8 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
 	 */
 	override func keyDown(with event: NSEvent) {
 		if(event.modifierFlags.contains(.command)){
-			if(event.keyCode == kVK_ANSI_N){
-				nextResponder?.keyDown(with: event)
-			}else if(event.keyCode == kVK_ANSI_T){
-				let pos = openEmptyTab()
-				selectTab(at: pos)
+			if(event.keyCode == kVK_ANSI_T){
+				_ = openEmptyTab()
 				return
 			}else if(event.keyCode == kVK_ANSI_W){
 				removeSelectedTab()

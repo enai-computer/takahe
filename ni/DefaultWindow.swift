@@ -21,6 +21,7 @@ class DefaultWindow: NSWindow{
 			
 			if(event.keyCode == kVK_ANSI_W){
 				handleCMD_W()
+				return
 			}
 		}
 		

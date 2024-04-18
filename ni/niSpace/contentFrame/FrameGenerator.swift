@@ -6,7 +6,7 @@ import WebKit
 func openEmptyContentFrame() -> ContentFrameController{
 	let frameController = ContentFrameController()
 	frameController.loadView()
-	frameController.openEmptyTab()
+	_ = frameController.openEmptyTab()
 	
 	return frameController
 }
@@ -29,7 +29,7 @@ func reopenContentFrame(contentFrame: NiContentFrameModel, tabs: [NiCFTabModel])
     frameController.loadView()
     for tab in tabs{
         let record = CachedWebTable.fetchCachedWebsite(contentId: tab.id)
-        frameController.openWebsiteInNewTab(urlStr: record.url, contentId: tab.id, tabName: record.title)
+        _ = frameController.openWebsiteInNewTab(urlStr: record.url, contentId: tab.id, tabName: record.title)
     }
     
     //positioning
