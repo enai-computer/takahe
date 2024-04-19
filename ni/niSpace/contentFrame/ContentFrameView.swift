@@ -130,7 +130,7 @@ class ContentFrameView: NSBox{
         
         if NSPointInRect(posInHeadView, addTabButton.frame){
             if let cfc = self.nextResponder as? ContentFrameController{
-                cfc.openWebsiteInNewTab("https://www.google.com")
+				_ = cfc.openEmptyTab()
             }
         }
     }

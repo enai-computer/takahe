@@ -55,9 +55,11 @@ struct HomeView: View {
 struct LeftSide: View {
 	var body: some View {
 		VStack{
+			Spacer().frame(maxHeight: 150)
 			Text("\(getWelcomeMessage()), \(NSUserName())")
 				.font(Font.custom("soehne-buch", size: 24))
 				.foregroundStyle(.sandLight11)
+			Spacer()
 		}
 	}
 }
@@ -93,7 +95,7 @@ struct RightSide: View {
 	var body: some View {
 		VStack(alignment: .leading, spacing: 0.0){
 			
-			Spacer().frame(minHeight: 0.5)
+			Spacer().frame(maxHeight: 150)
 			
 			PredictingTextField(
 				predictableValues: self.$predictableValues,
@@ -106,7 +108,10 @@ struct RightSide: View {
 			.autocorrectionDisabled(false)
 			.textFieldStyle(RoundedBorderTextFieldStyle())
 			.disabled(textFieldDisabled)
-			.onKeyPress(phases: [.up]){k in
+			.onKeyPress(phases: .up){k in
+				if ([.upArrow, .downArrow, .escape].contains(k.key)){
+					return .handled
+				}
 				isHoverActive = false
 				continueTyping()
 				return .handled

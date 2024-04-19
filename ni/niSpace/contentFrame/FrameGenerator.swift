@@ -11,18 +11,6 @@ func openEmptyContentFrame() -> ContentFrameController{
 	return frameController
 }
 
-func runGoogleSearch(_ searchTerm: String, owner: Any?) -> ContentFrameController {
-        
-    let encodedSearchTerm = searchTerm.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
-    let urlStr = "https://www.google.com/search?q=" + encodedSearchTerm!
-
-    let frameController = ContentFrameController()
-    frameController.loadView()
-    frameController.openWebsiteInNewTab(urlStr)
-    
-	return frameController
-}
-
 func reopenContentFrame(contentFrame: NiContentFrameModel, tabs: [NiCFTabModel]) -> ContentFrameController {
     
     let frameController = ContentFrameController()

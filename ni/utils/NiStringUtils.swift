@@ -11,7 +11,7 @@ import Foundation
 func urlOrSearchUrl(from dirtyInput: String) throws -> URL{
 	
 	if(isValidWebUrl(url: dirtyInput)){
-		return try tryCreateWebUrl(from: dirtyInput)
+		return try createWebUrl(from: dirtyInput)
 	}
 	
 	let encodedSearchTerm = dirtyInput.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
@@ -20,7 +20,7 @@ func urlOrSearchUrl(from dirtyInput: String) throws -> URL{
 	return url
 }
 
-func tryCreateWebUrl(from urlDirty: String) throws -> URL{
+func createWebUrl(from urlDirty: String) throws -> URL{
 	let urlClean: String
 	if(urlDirty.hasPrefix("http")){
 		urlClean = urlDirty

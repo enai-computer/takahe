@@ -137,14 +137,6 @@ class NiSpaceViewController: NSViewController{
 		
 		return CGPoint(x: (x_center-x_dist_to_center), y: (y_center - y_dist_to_center))
 	}
-	
-    @IBAction func runWebSearch(_ searchField: NSSearchField) {
-        //TODO: refactor
-        let searchViewController = runGoogleSearch(searchField.stringValue, owner: self)
-
-		self.niDocument.addNiFrame(searchViewController)
-		searchViewController.niContentFrameView!.setFrameOwner(self.niDocument)
-    }
     
 	/*
 	 * MARK: - load and store Space here

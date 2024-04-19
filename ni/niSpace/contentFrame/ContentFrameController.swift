@@ -46,7 +46,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
 	func openEmptyTab() -> Int{
 		let niWebView = NiWebView(contentId: UUID(), owner: self, frame: niContentFrameView!.frame, configuration: WKWebViewConfiguration())
 
-		let localHTMLurl = Bundle.main.url(forResource: "emptyTab", withExtension: "html")!
+		let localHTMLurl = getEmtpyWebViewURL()
 		niWebView.loadFileURL(localHTMLurl, allowingReadAccessTo: localHTMLurl)
 		
 		let req = URLRequest(url: localHTMLurl)
@@ -67,8 +67,15 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
 	}
 	
     func openWebsiteInNewTab(urlStr: String, contentId: UUID, tabName: String) -> Int{
-        let url = URL(string: urlStr) ?? URL(string: "https://www.google.com")
-        let urlReq = URLRequest(url: url!)
+		
+		let url: URL
+		do{
+			url = try createWebUrl(from: urlStr)
+		}catch{
+			url = getCouldNotLoadWebViewURL()
+		}
+
+        let urlReq = URLRequest(url: url)
         
         let niWebView = getNewWebView(contentId: contentId, urlReq: urlReq, frame: niContentFrameView!.frame)
 		

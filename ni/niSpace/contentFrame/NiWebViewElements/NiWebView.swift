@@ -49,6 +49,7 @@ class NiWebView: WKWebView{
 //        menu.items = [niOpenInNewTab]
     }
     
+	//function for right click open link in new tab
     @objc func openLinkInNewTab(_ sender: AnyObject) {
             if let url = GlobalScriptMessageHandler.instance.contextMenu_href {
                 owner.openWebsiteInNewTab(url)

@@ -23,8 +23,9 @@
 		A1E41C022ACC1DF600338417 /* ContentFrameHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E41C012ACC1DF600338417 /* ContentFrameHeader.swift */; };
 		A1F33E2E2AB7299500E2E7CD /* DefaultWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F33E2D2AB7299500E2E7CD /* DefaultWindow.swift */; };
 		A1F33E302AB7316300E2E7CD /* HomeViewBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F33E2F2AB7316300E2E7CD /* HomeViewBackground.swift */; };
-		CD1160C52BCFD87900345E3E /* FrameTest.png in Resources */ = {isa = PBXBuildFile; fileRef = CD1160C42BCFD87900345E3E /* FrameTest.png */; };
 		CD1160C82BD142D100345E3E /* WebURL in Frameworks */ = {isa = PBXBuildFile; productRef = CD1160C72BD142D100345E3E /* WebURL */; };
+		CD1160CA2BD27B9E00345E3E /* NiWebViewUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1160C92BD27B9E00345E3E /* NiWebViewUtils.swift */; };
+		CD1160CC2BD286ED00345E3E /* emptyTab-1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CD1160CB2BD286EC00345E3E /* emptyTab-1.jpg */; };
 		CD19BC942BC7E404002AF14E /* HomeAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CD19BC932BC7E404002AF14E /* HomeAssets.xcassets */; };
 		CD19BC962BC7E5BF002AF14E /* HomeViewUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD19BC952BC7E5BF002AF14E /* HomeViewUtils.swift */; };
 		CD19BC992BC81A46002AF14E /* PredictiveTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD19BC982BC81A46002AF14E /* PredictiveTextFieldView.swift */; };
@@ -80,7 +81,8 @@
 		A1E41C012ACC1DF600338417 /* ContentFrameHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentFrameHeader.swift; sourceTree = "<group>"; };
 		A1F33E2D2AB7299500E2E7CD /* DefaultWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultWindow.swift; sourceTree = "<group>"; };
 		A1F33E2F2AB7316300E2E7CD /* HomeViewBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewBackground.swift; sourceTree = "<group>"; };
-		CD1160C42BCFD87900345E3E /* FrameTest.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FrameTest.png; sourceTree = "<group>"; };
+		CD1160C92BD27B9E00345E3E /* NiWebViewUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiWebViewUtils.swift; sourceTree = "<group>"; };
+		CD1160CB2BD286EC00345E3E /* emptyTab-1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "emptyTab-1.jpg"; sourceTree = "<group>"; };
 		CD19BC932BC7E404002AF14E /* HomeAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = HomeAssets.xcassets; sourceTree = "<group>"; };
 		CD19BC952BC7E5BF002AF14E /* HomeViewUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewUtils.swift; sourceTree = "<group>"; };
 		CD19BC982BC81A46002AF14E /* PredictiveTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictiveTextFieldView.swift; sourceTree = "<group>"; };
@@ -193,7 +195,7 @@
 		CD6317E62BC4845100434D56 /* assets */ = {
 			isa = PBXGroup;
 			children = (
-				CD1160C42BCFD87900345E3E /* FrameTest.png */,
+				CD1160CB2BD286EC00345E3E /* emptyTab-1.jpg */,
 				CD53ACBF2BCEE0ED00D5912B /* emptyTab.html */,
 				CD6317E72BC484E100434D56 /* fonts */,
 			);
@@ -215,6 +217,7 @@
 			isa = PBXGroup;
 			children = (
 				CD66CE322B1F819E0006BB98 /* NiWebView.swift */,
+				CD1160C92BD27B9E00345E3E /* NiWebViewUtils.swift */,
 			);
 			path = NiWebViewElements;
 			sourceTree = "<group>";
@@ -373,10 +376,10 @@
 				CD7578472BC000F200293930 /* ContentFrameTabHead.xib in Resources */,
 				A1E41BF62ACB533400338417 /* ContentFrameView.xib in Resources */,
 				CD53ACC02BCEE0ED00D5912B /* emptyTab.html in Resources */,
+				CD1160CC2BD286ED00345E3E /* emptyTab-1.jpg in Resources */,
 				CD6317ED2BC4852300434D56 /* soehne-leicht.ttf in Resources */,
 				A14E8F252AD5EADF00409DDF /* NiSpaceView.xib in Resources */,
 				CD19BC942BC7E404002AF14E /* HomeAssets.xcassets in Resources */,
-				CD1160C52BCFD87900345E3E /* FrameTest.png in Resources */,
 				CD6317EE2BC4852300434D56 /* soehne-buch.ttf in Resources */,
 				A1603A702ADF21B4007A7FA0 /* HomeViewBackground.xib in Resources */,
 			);
@@ -420,6 +423,7 @@
 				A1603A722ADF21C3007A7FA0 /* HomeViewBackgroundController.swift in Sources */,
 				CD66CE382B1FD26A0006BB98 /* NiStringUtils.swift in Sources */,
 				CD8873782BCD649800007BE9 /* TimeUtils.swift in Sources */,
+				CD1160CA2BD27B9E00345E3E /* NiWebViewUtils.swift in Sources */,
 				CD7578462BC000F200293930 /* ContentFrameTabHead.swift in Sources */,
 				CD6317E32BC3F18300434D56 /* NiBadTypeError.swift in Sources */,
 				CD7578372BBDA98700293930 /* ContentFrameHeadView.swift in Sources */,
