@@ -9,8 +9,8 @@ struct CFConstants {
     static let nibName: String = "ContentFrameView"
     static let x: CGFloat = 30
     static let y: CGFloat = 30
-    static let wvWidth: CGFloat = 900
-    static let wvHeight: CGFloat = 400
+    static let wvWidth: CGFloat = 800
+    static let wvHeight: CGFloat = 450
     static let wvBoarderWidth: CGFloat = 10.0
     static let wvBoarderHeight: CGFloat = 10.0
     static let width: CGFloat = wvWidth + wvBoarderWidth * 2

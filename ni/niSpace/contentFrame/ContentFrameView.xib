@@ -11,25 +11,25 @@
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <userDefaultsController representsSharedInstance="YES" id="Vcb-fX-N4R"/>
         <box wantsLayer="YES" boxType="custom" borderWidth="5" cornerRadius="10" title="Box" id="kXm-wH-PdA" customClass="ContentFrameView" customModule="ni" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="920" height="420"/>
+            <rect key="frame" x="0.0" y="0.0" width="1066" height="635"/>
             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
             <view key="contentView" id="2ff-RG-I27">
-                <rect key="frame" x="5" y="5" width="910" height="410"/>
+                <rect key="frame" x="5" y="5" width="1056" height="625"/>
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
                     <customView id="Pdl-B9-RoX" customClass="ContentFrameHeadView" customModule="ni" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="380" width="910" height="30"/>
+                        <rect key="frame" x="0.0" y="595" width="1056" height="30"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <subviews>
-                            <scrollView wantsLayer="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" hasVerticalScroller="NO" usesPredominantAxisScrolling="NO" verticalScrollElasticity="none" id="AwF-3w-n4g">
-                                <rect key="frame" x="65" y="0.0" width="780" height="30"/>
+                            <scrollView wantsLayer="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasVerticalScroller="NO" usesPredominantAxisScrolling="NO" verticalScrollElasticity="none" id="AwF-3w-n4g">
+                                <rect key="frame" x="65" y="0.0" width="926" height="30"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <clipView key="contentView" drawsBackground="NO" id="PQx-Md-yMS">
-                                    <rect key="frame" x="0.0" y="0.0" width="780" height="30"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="926" height="30"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <collectionView id="wB8-UP-dFY">
-                                            <rect key="frame" x="0.0" y="0.0" width="780" height="158"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="926" height="30"/>
                                             <autoresizingMask key="autoresizingMask" heightSizable="YES"/>
                                             <collectionViewFlowLayout key="collectionViewLayout" minimumInteritemSpacing="8" minimumLineSpacing="1" scrollDirection="horizontal" id="Wti-La-5hp">
                                                 <size key="itemSize" width="195" height="22"/>
@@ -44,7 +44,7 @@
                                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                 </clipView>
                                 <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="aVi-Gl-lD4">
-                                    <rect key="frame" x="-100" y="-100" width="233" height="15"/>
+                                    <rect key="frame" x="0.0" y="14" width="660" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="cGw-ix-zoM">
@@ -68,14 +68,14 @@
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="plus.app" catalog="system" id="GM5-6m-UKQ"/>
                             </imageView>
                             <imageView autoresizesSubviews="NO" id="Utx-ML-7oY" userLabel="Close CF Button">
-                                <rect key="frame" x="881" y="7.5" width="15.5" height="13"/>
+                                <rect key="frame" x="1027" y="7.5" width="15.5" height="13"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                 <imageCell key="cell" alignment="left" imageAlignment="topRight" image="xmark" catalog="system" id="1Vu-cP-tyr"/>
                             </imageView>
                         </subviews>
                     </customView>
                     <tabView fixedFrame="YES" type="noTabsNoBorder" translatesAutoresizingMaskIntoConstraints="NO" id="d8b-7o-70b">
-                        <rect key="frame" x="-3" y="-4" width="916" height="386"/>
+                        <rect key="frame" x="-3" y="-4" width="1062" height="601"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <font key="font" metaFont="system"/>
                     </tabView>
