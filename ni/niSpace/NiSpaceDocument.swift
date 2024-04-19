@@ -36,7 +36,7 @@ class NiSpaceDocument: NSView{
      */
     
     var topNiFrame: ContentFrameController? = nil
-    var drawnNiFrames: [ContentFrameController] = []	//rn all niFrames are drawn. Needs to be reworked in future
+    private(set) var drawnNiFrames: [ContentFrameController] = []	//rn all niFrames are drawn. Needs to be reworked in future
     
     func addNiFrame(_ subViewController: ContentFrameController){
 		self.addSubview(subViewController.view)
@@ -71,7 +71,7 @@ class NiSpaceDocument: NSView{
         for niFrame in drawnNiFrames{
             niFrame.droppedInViewStack()
         }
-        drawnNiFrames.insert(newTopFrame!, at: 0)
+//        drawnNiFrames.insert(newTopFrame!, at: 0)
         
         setTopNiFrame(NSApplication.shared.keyWindow, newTopFrame!)
     }
