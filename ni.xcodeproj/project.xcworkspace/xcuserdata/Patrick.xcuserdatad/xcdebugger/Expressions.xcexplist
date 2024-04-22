@@ -120,6 +120,9 @@
          contextName = "ContentFrameTabHeadTextNode.textDidEndEditing(_:):ContentFrameTabHeadTextNode.swift">
          <PersistentStrings>
             <PersistentString
+               value = "">
+            </PersistentString>
+            <PersistentString
                value = "self.stringValue">
             </PersistentString>
          </PersistentStrings>

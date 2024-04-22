@@ -188,6 +188,10 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
 			tabHeadWidth = maxWidth
 		}
 		
+		if(tabHeadWidth < 200){
+			tabHeadWidth = 200
+		}
+		
 		return NSSize(width: tabHeadWidth, height: 22)
 	}
 	
