@@ -9,7 +9,6 @@ import Cocoa
 import SwiftUI
 
 class HomeViewController: NSHostingController<HomeView>{
-	
 	private let presentingController: NSViewController
 	
 	let w: CGFloat
@@ -21,9 +20,10 @@ class HomeViewController: NSHostingController<HomeView>{
 		let wrapper = ControllerWrapper()
 		
 		//TODO: fix sizing options
-		w = presentingController.view.frame.width - 100
+		w = presentingController.view.frame.width - 170
 		h = presentingController.view.frame.height - 100
 		
+
 		super.init(rootView: HomeView(wrapper, width: w, height: h))
 		
 		wrapper.hostingController = self
@@ -33,6 +33,8 @@ class HomeViewController: NSHostingController<HomeView>{
 		
 		view.frame.size.width = w
 		view.frame.size.height = h
+		view.frame.origin.x = presentingController.view.frame.origin.x + 85
+		
 	}
 	
 	@MainActor required dynamic init?(coder: NSCoder) {
@@ -40,13 +42,7 @@ class HomeViewController: NSHostingController<HomeView>{
 	}
 	
 	func show() {
-		presentingController.present(
-			self,
-			asPopoverRelativeTo: NSRect(x: 0, y: 0, width: w, height: h),
-			of: presentingController.view,
-			preferredEdge: .maxX,
-			behavior: .applicationDefined
-		)
+		presentingController.present(self, animator: HomeViewAnimator())
 	}
 	
 	func openNewSpace(name: String){
@@ -71,4 +67,6 @@ class HomeViewController: NSHostingController<HomeView>{
 		}
 		presentingController.dismiss(self)
 	}
+	
+
 }

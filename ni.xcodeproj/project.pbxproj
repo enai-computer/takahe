@@ -59,6 +59,7 @@
 		CDD6B9472B16A29100C6144D /* DocumentIdContentIdTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD6B9462B16A29100C6144D /* DocumentIdContentIdTable.swift */; };
 		CDD6B9522B1BFE8B00C6144D /* NiDocumentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD6B9512B1BFE8B00C6144D /* NiDocumentModel.swift */; };
 		CDD6B9562B1C326A00C6144D /* ContentFrameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD6B9552B1C326A00C6144D /* ContentFrameController.swift */; };
+		CDDBCB292BD6AE6900E7B187 /* HomeViewAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDDBCB282BD6AE6900E7B187 /* HomeViewAnimator.swift */; };
 		CDE76C1C2BC6989000CE9513 /* TabHeadViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE76C1B2BC6989000CE9513 /* TabHeadViewModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -114,6 +115,7 @@
 		CDD6B9462B16A29100C6144D /* DocumentIdContentIdTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentIdContentIdTable.swift; sourceTree = "<group>"; };
 		CDD6B9512B1BFE8B00C6144D /* NiDocumentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiDocumentModel.swift; sourceTree = "<group>"; };
 		CDD6B9552B1C326A00C6144D /* ContentFrameController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentFrameController.swift; sourceTree = "<group>"; };
+		CDDBCB282BD6AE6900E7B187 /* HomeViewAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewAnimator.swift; sourceTree = "<group>"; };
 		CDE76C1B2BC6989000CE9513 /* TabHeadViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabHeadViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -289,6 +291,7 @@
 				CD19BC952BC7E5BF002AF14E /* HomeViewUtils.swift */,
 				CD19BC982BC81A46002AF14E /* PredictiveTextFieldView.swift */,
 				CD8873732BCD235300007BE9 /* HomeViewController.swift */,
+				CDDBCB282BD6AE6900E7B187 /* HomeViewAnimator.swift */,
 			);
 			path = niHome;
 			sourceTree = "<group>";
@@ -424,6 +427,7 @@
 				CD66CE382B1FD26A0006BB98 /* NiStringUtils.swift in Sources */,
 				CD8873782BCD649800007BE9 /* TimeUtils.swift in Sources */,
 				CD1160CA2BD27B9E00345E3E /* NiWebViewUtils.swift in Sources */,
+				CDDBCB292BD6AE6900E7B187 /* HomeViewAnimator.swift in Sources */,
 				CD7578462BC000F200293930 /* ContentFrameTabHead.swift in Sources */,
 				CD6317E32BC3F18300434D56 /* NiBadTypeError.swift in Sources */,
 				CD7578372BBDA98700293930 /* ContentFrameHeadView.swift in Sources */,
@@ -578,7 +582,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = ni/ni.entitlements;
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 2;

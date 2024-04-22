@@ -360,7 +360,8 @@ class ContentFrameView: NSBox{
     func persistContent(documentId: UUID){
         for tab in niContentTabView.tabViewItems{
             let tabView = tab.view as! NiWebView
-            CachedWebTable.upsert(documentId: documentId, id: tabView.contentId, title: tabView.title, url: tabView.url!.absoluteString)
+			//FIXME: 
+//            CachedWebTable.upsert(documentId: documentId, id: tabView.contentId, title: tabView.title, url: tabView.url!.absoluteString)
         }
     }
     

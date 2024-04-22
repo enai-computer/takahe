@@ -39,6 +39,12 @@ class DefaultWindow: NSWindow{
 		return
 	}
 	
+	override func toggleToolbarShown(_ sender: Any?) {
+		//do nothing
+		var i = 0
+		i += 1
+	}
+	
 	func handleCMD_N(){
 		if let controller = contentViewController as? NiSpaceViewController{
 			controller.openEmptyCF()

@@ -24,6 +24,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         window = NSApplication.shared.keyWindow!
         let niSpaceController = NiSpaceViewController(niSpaceID: niSpaceID, niSpaceName: name)
         window.contentViewController = niSpaceController
+//		window.
         niSpaceController.loadView()
         return niSpaceController
     }
