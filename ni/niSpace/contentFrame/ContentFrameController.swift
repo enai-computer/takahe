@@ -165,6 +165,15 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
 		niContentFrameView?.cfTabHeadCollection.reloadItems(at: Set(arrayLiteral: IndexPath(item: wv.tabHeadPosition, section: 0)))
 	}
 	
+	func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: any Error){
+		print("NAV ERROR: \(error)")
+		//TODO: ERROR PAGE
+	}
+	
+	func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: any Error){
+		print("NAV ERROR: \(error)")
+	}
+	
 	/*
 	 * MARK: - Tab Heads collection control functions
 	 */
@@ -236,20 +245,19 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
 	
 	func editTabUrl(at: Int){
 		self.aTabIsInEditingMode = true
-		tabs[selectedTabModel].inEditingMode = true
+		tabs[at].inEditingMode = true
 		niContentFrameView?.cfTabHeadCollection.reloadData()
 	}
 	
 	func endEditingTabUrl(at: Int){
 		self.aTabIsInEditingMode = false
-		tabs[selectedTabModel].inEditingMode = false
+		tabs[at].inEditingMode = false
 		
-		print("here the tabs[selectedTabModel].title should be set *if* the user commits instead of aborts changes")
-				// This update interferes with the (async) web view callback and effectively defaults all editing operations to go to Google
+//		print("here the tabs[selectedTabModel].title should be set *if* the user commits instead of aborts changes")
+		// This update interferes with the (async) web view callback and effectively defaults all editing operations to go to Google
 		RunLoop.main.perform { [self] in
 			niContentFrameView?.cfTabHeadCollection.reloadData()
 		}
-
 	}
 	
 	/*

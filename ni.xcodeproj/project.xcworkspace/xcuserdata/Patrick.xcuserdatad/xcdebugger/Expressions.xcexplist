@@ -41,6 +41,17 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "ContentFrameTabHead.setText(_:):ContentFrameTabHead.swift">
+      </ContextState>
+      <ContextState
+         contextName = "ContentFrameTabHead.controlTextDidEndEditing(_:):ContentFrameTabHead.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "notification.userInfo[NSFieldEditor]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "ContentFrameView.persistContent(documentId:):ContentFrameView.swift">
          <PersistentStrings>
             <PersistentString

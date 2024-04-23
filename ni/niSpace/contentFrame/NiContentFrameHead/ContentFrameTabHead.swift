@@ -13,6 +13,7 @@ class ContentFrameTabHead: NSCollectionViewItem, NSTextFieldDelegate {
 	@IBOutlet var image: NSImageView!
 	@IBOutlet var tabHeadTitle: ContentFrameTabHeadTextNode!
 	
+	private var finishedEditing = true
 	var parentController: ContentFrameController?
 	var tabPosition: Int = -1
 	
@@ -37,20 +38,31 @@ class ContentFrameTabHead: NSCollectionViewItem, NSTextFieldDelegate {
 		tabPosition = -1
 	}
 	
+	func  controlTextDidBeginEditing(_ notification: Notification) {
+		finishedEditing = false
+	}
+	
 	func control(_ control: NSControl, textShouldBeginEditing fieldEditor: NSText) -> Bool {
 		// print("tab wants to be edited")
 		return true
 	}
 
 	func controlTextDidEndEditing(_ notification: Notification) {
+		
+		//needed as this is called on CollectionItem reload. idk why :O
+		if(finishedEditing){
+			return
+		}
+		
 		guard let textField = notification.object as? ContentFrameTabHeadTextNode
 		  else { preconditionFailure("ContentFrameTabHead expects to react to changes to ContentFrameTabHeadTextNode only") }
 
-		  print("did end", textField.stringValue)
-
-		  // ⚠️ End editing mode to disable the text field and change the tab state *first* so that eventual update to web view arrives to a consistent state.
-		  endEditMode()
-
+		
+		let exitKey = (notification.userInfo! as NSDictionary)["NSTextMovement"]
+		print("did end with \(String(describing: exitKey))")
+		// ⚠️ End editing mode to disable the text field and change the tab state *first* so that eventual update to web view arrives to a consistent state.
+		endEditMode()
+		finishedEditing = true
 		do{
 			let url = try urlOrSearchUrl(from: textField.stringValue)
 			self.loadWebsite(url: url)

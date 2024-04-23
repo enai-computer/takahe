@@ -9,12 +9,12 @@ import Foundation
 
 
 func urlOrSearchUrl(from dirtyInput: String) throws -> URL{
-	
-	if(isValidWebUrl(url: dirtyInput)){
-		return try createWebUrl(from: dirtyInput)
+	let greyInput = dirtyInput.trimmingCharacters(in: .whitespaces)
+	if(isValidWebUrl(url: greyInput)){
+		return try createWebUrl(from: greyInput)
 	}
 	
-	let encodedSearchTerm = dirtyInput.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+	let encodedSearchTerm = greyInput.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
 	let urlSearch = "https://www.google.com/search?q=" + encodedSearchTerm!
 	guard let url = URL(string: urlSearch) else {throw NiUserInputError.invalidSearch(url: urlSearch)}
 	return url

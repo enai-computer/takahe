@@ -30,6 +30,12 @@ class ContentFrameTabHeadTextNode: NSTextField{
 		}
 		nextResponder?.mouseDown(with: event)
 	}
+	
+	//needed to handle ESC
+	override func cancelOperation(_ sender: Any?) {
+		parentController?.endEditMode()
+	}
+	
 
 	func enableEditing(urlStr: String){
 		self.stringValue = urlStr
