@@ -16,16 +16,20 @@ class NiSpaceDocumentController: NSViewController{
 	
 	private var leastRecentlyUsedOrigin: CGPoint? = nil
 	
-	init(niSpaceID: UUID, niSpaceName: String) {
-		self.niSpaceID = niSpaceID
-		self.niSpaceName = niSpaceName
-		super.init()
+	init(id: UUID, name: String) {
+		self.niSpaceID = id
+		self.niSpaceName = name
+		super.init(nibName: nil, bundle: Bundle.main)
 	}
 	
 	required init?(coder: NSCoder) {
 		self.niSpaceID = emptySpaceID
 		self.niSpaceName = ""
 		super.init(coder: coder)
+	}
+	
+	override func loadView() {
+		self.view = NiSpaceDocumentView()
 	}
 	
 	func openEmptyCF(){

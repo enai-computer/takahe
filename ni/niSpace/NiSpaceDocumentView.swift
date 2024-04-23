@@ -12,7 +12,16 @@ let EMPTYSPACEFACTOR: Double = 0.3
 
 class NiSpaceDocumentView: NSView{
         
-    
+	init(){
+		var frameSize = NSRect()
+		
+		let window = NSApplication.shared.keyWindow!
+		frameSize.size.height = window.frame.height * (1+EMPTYSPACEFACTOR)
+		frameSize.size.width = window.frame.width
+		
+		super.init(frame: frameSize)
+	}
+	
     required init(coder: NSCoder) {
         super.init(coder: coder)!
         let window = NSApplication.shared.keyWindow

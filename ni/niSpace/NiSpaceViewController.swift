@@ -6,7 +6,7 @@ import Carbon.HIToolbox
 class NiSpaceViewController: NSViewController{
     
 	private var spaceLoaded: Bool = false
-    private let niSpaceName: String
+    private var niSpaceName: String
     
 	//header elements here:
 	@IBOutlet var header: NSBox!
@@ -19,12 +19,10 @@ class NiSpaceViewController: NSViewController{
 	
 	init(){
 		self.niSpaceName = ""
-//		self.niDocument = NiSpaceDocumentController()
 		super.init(nibName: nil, bundle: nil)
 	}
 	
 	init(niSpaceID: UUID, niSpaceName: String) {
-//		self.niDocument = NiSpaceDocumentController(niSpaceID: niSpaceID, niSpaceName: niSpaceName)
 		self.niSpaceName = niSpaceName
 		super.init(nibName: nil, bundle: nil)
 	}
@@ -35,6 +33,8 @@ class NiSpaceViewController: NSViewController{
 	
 	override func loadView() {
 		self.view = NSView.loadFromNib(nibName: "NiSpaceView", owner: self)! as! NiSpaceView
+		addChild(niDocument)
+		
 		self.view.wantsLayer = true
 		self.view.layer?.backgroundColor = NSColor(.sandLight1).cgColor
 		
@@ -133,12 +133,23 @@ class NiSpaceViewController: NSViewController{
 	/*
 	 * MARK: - load and store Space here
 	 */
-	func loadSpace(){
+	private func getEmptySpaceDocument(id: UUID, name: String) -> NiSpaceDocumentController{
+		let controller = NiSpaceDocumentController(id: id, name: name)
 		
+		return controller
 	}
 	
 	func loadSpace(niSpaceID: UUID, name: String){
+		niSpaceName = name
+		spaceName.stringValue = name
 		
+		let spaceDoc = getEmptySpaceDocument(id: niSpaceID, name: name)
+		spaceDoc.loadStoredSpace(niSpaceID: niSpaceID)
+		
+		addChild(spaceDoc)
+		transition(from: niDocument, to: spaceDoc, options: [.crossfade])
+		
+		niDocument = spaceDoc
 	}
 
     

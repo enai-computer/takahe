@@ -47,7 +47,7 @@ class HomeViewController: NSHostingController<HomeView>{
 	
 	func openNewSpace(name: String){
 		
-		presentingController.loadSpace()
+		presentingController.loadSpace(niSpaceID: UUID(), name: name)
 		presentingController.dismiss(self)
 		
 //		let appDelegate = NSApp.delegate as! AppDelegate
