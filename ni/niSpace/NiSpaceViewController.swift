@@ -5,7 +5,7 @@ import Carbon.HIToolbox
 
 class NiSpaceViewController: NSViewController{
     
-    private let niSpaceID: UUID
+	private var spaceLoaded: Bool = false
     private let niSpaceName: String
     
 	//header elements here:
@@ -13,12 +13,18 @@ class NiSpaceViewController: NSViewController{
 	@IBOutlet var time: NSTextField!
 	@IBOutlet var spaceName: NSTextField!
 	
-	@IBOutlet var niDocument: NiSpaceDocument!
+	@IBOutlet var niDocument: NiSpaceDocumentController!
+	//	private var niDocument: NiSpaceDocumentController
+
 	
-	private var leastRecentlyUsedOrigin: CGPoint? = nil
+	init(){
+		self.niSpaceName = ""
+//		self.niDocument = NiSpaceDocumentController()
+		super.init(nibName: nil, bundle: nil)
+	}
 	
 	init(niSpaceID: UUID, niSpaceName: String) {
-		self.niSpaceID = niSpaceID
+//		self.niDocument = NiSpaceDocumentController(niSpaceID: niSpaceID, niSpaceName: niSpaceName)
 		self.niSpaceName = niSpaceName
 		super.init(nibName: nil, bundle: nil)
 	}
@@ -27,21 +33,31 @@ class NiSpaceViewController: NSViewController{
 		fatalError("init(coder:) has not been implemented")
 	}
 	
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
- 
-    override func loadView() {
-        self.view = NSView.loadFromNib(nibName: "NiSpaceView", owner: self)! as! NiSpaceView
-        self.view.wantsLayer = true
-        self.view.layer?.backgroundColor = NSColor(.sandLight1).cgColor
+	override func loadView() {
+		self.view = NSView.loadFromNib(nibName: "NiSpaceView", owner: self)! as! NiSpaceView
+		self.view.wantsLayer = true
+		self.view.layer?.backgroundColor = NSColor(.sandLight1).cgColor
 		
 		time.stringValue = getLocalisedTime()
 		spaceName.stringValue = niSpaceName
 		
 		setHeaderStyle()
 		setAutoUpdatingTime()
+	}
+	
+    override func viewDidLoad() {
+        super.viewDidLoad()
     }
+	
+	override func viewDidAppear() {
+		super.viewDidAppear()
+		
+		if(!spaceLoaded){
+			let hostingController = HomeViewController(presentingController: self)
+			hostingController.show()
+		}
+	}
+ 
 	
 	override func viewWillDisappear() {
 		removeAutoUpdatingTime()
@@ -74,22 +90,17 @@ class NiSpaceViewController: NSViewController{
 	}
     
 	func returnToHome() {
-		storeSpace()
+		niDocument.storeSpace()
 		let hostingController = HomeViewController(presentingController: self)
 		hostingController.show()
 	}
 	
 	func openEmptyCF(){
-		let controller = openEmptyContentFrame()
-		let newCFView = controller.view as! ContentFrameView
-		newCFView.frame.origin = calculateOrigin(for: controller.view.frame)
-		
-		self.niDocument.addNiFrame(controller)
-		newCFView.setFrameOwner(self.niDocument)
+		niDocument.openEmptyCF()
 	}
 	
 	func closeTabOfTopCF(){
-		niDocument.topNiFrame?.removeSelectedTab()
+		niDocument.closeTabOfTopCF()
 	}
 	
 	/*
@@ -117,89 +128,18 @@ class NiSpaceViewController: NSViewController{
 	}
 	
     
-	func calculateOrigin(for frame: NSRect) -> CGPoint{
-		let windowSize = NSApplication.shared.keyWindow!.frame.size
-		
-		let x_center: Double
-		let y_center: Double
-		
-		if(leastRecentlyUsedOrigin == nil){
-			x_center = windowSize.width / 2
-			y_center = windowSize.height / 2
-		}else{
-			x_center = leastRecentlyUsedOrigin!.x + 30
-			y_center = leastRecentlyUsedOrigin!.y + 30
-		}
-		leastRecentlyUsedOrigin = CGPoint(x: x_center, y: y_center)
-		
-		let x_dist_to_center = frame.width / 2
-		let y_dist_to_center = frame.height / 2
-		
-		return CGPoint(x: (x_center-x_dist_to_center), y: (y_center - y_dist_to_center))
-	}
+
     
 	/*
 	 * MARK: - load and store Space here
 	 */
-    func loadStoredSpace(niSpaceID: UUID){
-        do{
-            let docJson = (DocumentTable.fetchDocumentModel(id: niSpaceID)?.data(using: .utf8))!
-            let jsonDecoder = JSONDecoder()
-            let docModel = try jsonDecoder.decode(NiDocumentObjectModel.self, from: docJson)
-            if (docModel.type == NiDocumentObjectTypes.document){
-                let data = docModel.data as! NiDocumentModel
-				let children = data.children 
-                for child in children{
-                    let childData = child.data as! NiContentFrameModel
-                    recreateContentFrame(data: childData)
-                }
-            }
-        }catch{
-            print(error)
-        }
-    }
-    
-    private func recreateContentFrame(data: NiContentFrameModel){
-        let storedWebsiteCFController = reopenContentFrame(contentFrame: data, tabs: data.children)
-        self.niDocument.addNiFrame(storedWebsiteCFController)
-		storedWebsiteCFController.niContentFrameView!.setFrameOwner(self.niDocument)
-    }
-    
-    func storeSpace(){
-        
-        let documentJson = genJson()
-        
-        DocumentTable.upsertDoc(id: niSpaceID, name: niSpaceName, document: documentJson)
-        
-        niDocument.persistContent(documentId: niSpaceID)
-    }
-    
-    func genJson() -> String{
-        
-        var children: [NiDocumentObjectModel] = []
-        for cfController in niDocument.drawnNiFrames {
-			children.append(cfController.niContentFrameView!.toNiContentFrameModel())
-        }
-            
-        let toEncode = NiDocumentObjectModel(
-            type: NiDocumentObjectTypes.document,
-            data: NiDocumentModel(
-                id: niSpaceID,
-                height: self.niDocument.frame.height,
-                width: self.niDocument.frame.width,
-                children: children
-            )
-        )
-        let jsonEncoder = JSONEncoder()
-        jsonEncoder.outputFormatting = .prettyPrinted
-        
-        do{
-            let jsonData = try jsonEncoder.encode(toEncode)
-            return String(data: jsonData, encoding: .utf8) ?? "FAILED GENERATING JSON"
-        }catch{
-            print(error)
-        }
-        return "FAILED GENERATING JSON"
-    }
+	func loadSpace(){
+		
+	}
+	
+	func loadSpace(niSpaceID: UUID, name: String){
+		
+	}
+
     
 }

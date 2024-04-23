@@ -32,7 +32,7 @@ class ContentFrameView: NSBox{
     private(set) var frameIsActive: Bool = false
     private var positionInViewStack: Int = 0     // 0 = up top
     
-    private var niParentDoc: NiSpaceDocument? = nil
+    private var niParentDoc: NiSpaceDocumentView? = nil
     
 	//Header
 	@IBOutlet var cfHeadView: ContentFrameHeadView!
@@ -50,7 +50,7 @@ class ContentFrameView: NSBox{
 		self.layer?.cornerCurve = .continuous
     }
     
-    func setFrameOwner(_ owner: NiSpaceDocument!){
+    func setFrameOwner(_ owner: NiSpaceDocumentView!){
         self.niParentDoc = owner
     }
     

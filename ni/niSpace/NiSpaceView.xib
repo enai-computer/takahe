@@ -10,7 +10,7 @@
             <connections>
                 <outlet property="clippy" destination="yNc-sE-qT2" id="CY1-EK-B1h"/>
                 <outlet property="header" destination="gvf-LW-L3l" id="FAr-Ol-uRc"/>
-                <outlet property="niDocument" destination="93b-vm-ObV" id="Kc2-nd-EJH"/>
+                <outlet property="niDocument" destination="AOV-if-yNQ" id="XS1-g0-Czv"/>
                 <outlet property="spaceName" destination="IcY-Xb-pUo" id="ECl-ux-gyo"/>
                 <outlet property="time" destination="yLB-kD-fbD" id="LJa-ji-zdb"/>
             </connections>
@@ -28,7 +28,7 @@
                         <rect key="frame" x="1" y="1" width="1598" height="898"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view id="93b-vm-ObV" customClass="NiSpaceDocument" customModule="ni" customModuleProvider="target">
+                            <view id="93b-vm-ObV" customClass="NiSpaceDocumentView" customModule="ni" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="1583" height="883"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </view>
@@ -96,6 +96,11 @@
             <point key="canvasLocation" x="29" y="154"/>
         </customView>
         <userDefaultsController representsSharedInstance="YES" id="Jkl-Uc-Uy6"/>
+        <viewController id="AOV-if-yNQ" customClass="NiSpaceDocumentController" customModule="ni" customModuleProvider="target">
+            <connections>
+                <outlet property="view" destination="93b-vm-ObV" id="vRh-IH-6Ju"/>
+            </connections>
+        </viewController>
     </objects>
     <resources>
         <image name="SpaceIcon" width="24" height="24"/>

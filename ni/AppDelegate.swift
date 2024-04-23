@@ -20,26 +20,21 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         return true
     }
     
-    func switchToEmptySpace(niSpaceID: UUID, name: String) -> NiSpaceViewController{
-        window = NSApplication.shared.keyWindow!
-        let niSpaceController = NiSpaceViewController(niSpaceID: niSpaceID, niSpaceName: name)
-        window.contentViewController = niSpaceController
-//		window.
-        niSpaceController.loadView()
-        return niSpaceController
-    }
+	//TODO: Delete
+//    func switchToEmptySpace(niSpaceID: UUID, name: String) -> NiSpaceViewController{
+//        window = NSApplication.shared.keyWindow!
+//        let niSpaceController = NiSpaceViewController(niSpaceID: niSpaceID, niSpaceName: name)
+//        window.contentViewController = niSpaceController
+//        niSpaceController.loadView()
+//        return niSpaceController
+//    }
     
-    func loadExistingSpace(niSpaceID: UUID, name: String){
-        let controller = switchToEmptySpace(niSpaceID: niSpaceID, name: name)
-        controller.loadStoredSpace(niSpaceID: niSpaceID)
-    }
+	//TODO: Delete
+//    func loadExistingSpace(niSpaceID: UUID, name: String){
+//        let controller = switchToEmptySpace(niSpaceID: niSpaceID, name: name)
+//        controller.loadStoredSpace(niSpaceID: niSpaceID)
+//    }
     
-    func switchToHome(){
-        window = NSApplication.shared.keyWindow!
-        window.contentViewController = HomeViewBackgroundController()
-        window.contentViewController!.loadView()
-    }
-
     // MARK: - Core Data stack
 
     lazy var persistentContainer: NSPersistentContainer = {

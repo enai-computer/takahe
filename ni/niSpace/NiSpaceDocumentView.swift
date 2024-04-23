@@ -10,13 +10,15 @@ import Foundation
 
 let EMPTYSPACEFACTOR: Double = 0.3
 
-class NiSpaceDocument: NSView{
+class NiSpaceDocumentView: NSView{
         
     
     required init(coder: NSCoder) {
         super.init(coder: coder)!
-        let window = NSApplication.shared.keyWindow!
-        self.frame.size.height = window.frame.height * (1+EMPTYSPACEFACTOR)
+        let window = NSApplication.shared.keyWindow
+		if(window != nil){
+			self.frame.size.height = window!.frame.height * (1+EMPTYSPACEFACTOR)
+		}
     }
     
     override var isFlipped: Bool{
