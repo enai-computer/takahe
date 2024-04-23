@@ -8,7 +8,7 @@
 import Cocoa
 import FaviconFinder
 
-class ContentFrameTabHead: NSCollectionViewItem {
+class ContentFrameTabHead: NSCollectionViewItem, NSTextFieldDelegate {
 
 	@IBOutlet var image: NSImageView!
 	@IBOutlet var tabHeadTitle: ContentFrameTabHeadTextNode!
@@ -37,7 +37,29 @@ class ContentFrameTabHead: NSCollectionViewItem {
 		tabPosition = -1
 	}
 	
-	func configureView(parentController: ContentFrameController, tabPosition: Int, viewModel: TabHeadViewModel){
+	func control(_ control: NSControl, textShouldBeginEditing fieldEditor: NSText) -> Bool {
+		// print("tab wants to be edited")
+		return true
+	}
+
+	func controlTextDidEndEditing(_ notification: Notification) {
+		guard let textField = notification.object as? ContentFrameTabHeadTextNode
+		  else { preconditionFailure("ContentFrameTabHead expects to react to changes to ContentFrameTabHeadTextNode only") }
+
+		  print("did end", textField.stringValue)
+
+		  // ⚠️ End editing mode to disable the text field and change the tab state *first* so that eventual update to web view arrives to a consistent state.
+		  endEditMode()
+
+		do{
+			let url = try urlOrSearchUrl(from: textField.stringValue)
+			self.loadWebsite(url: url)
+		}catch{
+			print("Failed to load website, due to " + error.localizedDescription)
+		}
+	}
+	
+	func configureView(parentController: ContentFrameController, tabPosition: Int, viewModel: TabViewModel){
 		self.tabPosition = tabPosition
 		self.parentController = parentController
 		
@@ -53,7 +75,6 @@ class ContentFrameTabHead: NSCollectionViewItem {
 		}else{
 			view.layer?.backgroundColor = NSColor(.transparent).cgColor
 		}
-		
 	}
 	
 	@MainActor
@@ -83,17 +104,20 @@ class ContentFrameTabHead: NSCollectionViewItem {
 				.largest().image?.image
 	}
 	
-	@MainActor
-	private func setText(_ viewModel: TabHeadViewModel){
+	private func setText(_ viewModel: TabViewModel){
 		if(viewModel.inEditingMode){
-			self.tabHeadTitle.enableEditing(urlStr: viewModel.url)
+			if(viewModel.state == .empty){
+				self.tabHeadTitle.enableEditing(urlStr: "")
+			}else{
+				self.tabHeadTitle.enableEditing(urlStr: viewModel.url)
+			}
 		}else{
 			self.tabHeadTitle.disableEditing(title: viewModel.title)
 		}
 	}
 	
 	func loadWebsite(url: URL) {
-		parentController?.loadWebsiteInSelectedTab(url)
+		parentController?.loadWebsite(url, forTab: tabPosition)
 	}
 	
 	func selectSelf(mouseDownEvent: NSEvent? = nil){
@@ -108,7 +132,4 @@ class ContentFrameTabHead: NSCollectionViewItem {
 		parentController?.endEditingTabUrl(at: tabPosition)
 	}
 	
-	func redraw(){
-		parentController?.niContentFrameView?.cfTabHeadCollection.reloadData()
-	}
 }

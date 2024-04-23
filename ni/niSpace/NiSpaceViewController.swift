@@ -137,6 +137,18 @@ class NiSpaceViewController: NSViewController{
 		return controller
 	}
 	
+	func createSpace(name: String){
+		niSpaceName = name
+		spaceName.stringValue = name
+		
+		let spaceDoc = getEmptySpaceDocument(id: UUID(), name: name)
+		
+		addChild(spaceDoc)
+		transition(from: niDocument, to: spaceDoc, options: [.crossfade])
+
+		niDocument = spaceDoc
+	}
+	
 	func loadSpace(niSpaceID: UUID, name: String){
 		niSpaceName = name
 		spaceName.stringValue = name

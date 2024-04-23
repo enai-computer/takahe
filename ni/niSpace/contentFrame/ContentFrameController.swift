@@ -18,7 +18,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
     private(set) var niContentFrameView: ContentFrameView? = nil
     private var selectedTabModel: Int = -1
 	private var aTabIsInEditingMode: Bool = false
-	private var tabs: [TabHeadViewModel] = []
+	private var tabs: [TabViewModel] = []
 		
     override func loadView() {
         self.niContentFrameView = (NSView.loadFromNib(nibName: "ContentFrameView", owner: self) as! ContentFrameView)
@@ -52,7 +52,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
 		let req = URLRequest(url: localHTMLurl)
 		niWebView.navigationDelegate = self
 		
-		var tabHeadModel = TabHeadViewModel()
+		var tabHeadModel = TabViewModel(contentId: UUID())
 		tabHeadModel.position = niContentFrameView!.createNewTab(tabView: niWebView)
 		tabHeadModel.webView = niWebView
 		tabHeadModel.webView!.tabHeadPosition = tabHeadModel.position
@@ -66,7 +66,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
 		return tabHeadModel.position
 	}
 	
-    func openWebsiteInNewTab(urlStr: String, contentId: UUID, tabName: String) -> Int{
+	func openWebsiteInNewTab(urlStr: String, contentId: UUID, tabName: String, webContentState: String? = nil) -> Int{
 		
 		let url: URL
 		do{
@@ -79,11 +79,17 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
         
         let niWebView = getNewWebView(contentId: contentId, urlReq: urlReq, frame: niContentFrameView!.frame)
 		
-		var tabHeadModel = TabHeadViewModel()
+		var tabHeadModel = TabViewModel(contentId: contentId)
 		tabHeadModel.position = niContentFrameView!.createNewTab(tabView: niWebView)
 		tabHeadModel.url = urlStr
 		tabHeadModel.webView = niWebView
 		tabHeadModel.webView!.tabHeadPosition = tabHeadModel.position
+		if(webContentState != nil){
+			tabHeadModel.state = WebViewState(rawValue: webContentState!)!
+		}else{
+			tabHeadModel.state = .loading
+		}
+		
 		self.tabs.append(tabHeadModel)
 		
 		selectTab(at: tabHeadModel.position)
@@ -96,9 +102,12 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
         _ = openWebsiteInNewTab(urlStr: urlStr, contentId: id, tabName: "")
     }
 	
-	func loadWebsiteInSelectedTab(_ url: URL){
+	func loadWebsite(_ url: URL, forTab at: Int){
 		let urlReq = URLRequest(url: url)
-		tabs[selectedTabModel].webView?.load(urlReq)
+		
+		tabs[at].state = .loading
+		tabs[at].url = url.absoluteString
+		tabs[at].webView?.load(urlReq)
 	}
 	
 	func droppedInViewStack(){
@@ -108,10 +117,6 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
 	
 	func toggleActive(){
 		niContentFrameView?.toggleActive()
-	}
-	
-	func persistContent(documentId: UUID){
-		niContentFrameView?.persistContent(documentId: documentId)
 	}
 	
 	func removeSelectedTab(){
@@ -151,7 +156,11 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
 		let wv = webView as! NiWebView
 		self.tabs[wv.tabHeadPosition].title = wv.title ?? ""
 		self.tabs[wv.tabHeadPosition].url = wv.url!.absoluteString
-//		self.tabs[wv.tabHeadPosition].icon = TODO: set icon here
+		
+		//an empty tab still loads a local html
+		if(self.tabs[wv.tabHeadPosition].state != .empty){
+			self.tabs[wv.tabHeadPosition].state = .loaded
+		}
 		
 		niContentFrameView?.cfTabHeadCollection.reloadItems(at: Set(arrayLiteral: IndexPath(item: wv.tabHeadPosition, section: 0)))
 	}
@@ -234,6 +243,53 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
 	func endEditingTabUrl(at: Int){
 		self.aTabIsInEditingMode = false
 		tabs[selectedTabModel].inEditingMode = false
-		niContentFrameView?.cfTabHeadCollection.reloadData()
+		
+		print("here the tabs[selectedTabModel].title should be set *if* the user commits instead of aborts changes")
+				// This update interferes with the (async) web view callback and effectively defaults all editing operations to go to Google
+		RunLoop.main.perform { [self] in
+			niContentFrameView?.cfTabHeadCollection.reloadData()
+		}
+
+	}
+	
+	/*
+	 * MARK: - store and load here
+	 */
+	func persistContent(documentId: UUID){
+		for tab in tabs {
+            CachedWebTable.upsert(documentId: documentId, id: tab.contentId, title: tab.title, url: tab.url)
+		}
+	}
+	
+	func toNiContentFrameModel() -> NiDocumentObjectModel{
+		
+		var children: [NiCFTabModel] = []
+		
+		for (i, tab) in tabs.enumerated(){
+			children.append(
+				NiCFTabModel(
+					id: tab.contentId,
+					contentType: NiCFTabContentType.web,
+					contentState: tab.state.rawValue,
+					active: true,
+					position: i
+				)
+			)
+		}
+		
+		return NiDocumentObjectModel(
+			type: NiDocumentObjectTypes.contentFrame,
+			data: NiContentFrameModel(
+				state: NiConentFrameState.expanded,
+				height: NiCoordinate(px: view.frame.height),
+				width: NiCoordinate(px: view.frame.width),
+				position: NiViewPosition(
+					posInViewStack: niContentFrameView!.positionInViewStack,
+					x: NiCoordinate(px: view.frame.origin.x),
+					y: NiCoordinate(px: view.frame.origin.y)
+				),
+				children: children
+			)
+		)
 	}
 }

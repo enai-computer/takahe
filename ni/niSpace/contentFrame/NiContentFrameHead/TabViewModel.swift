@@ -6,12 +6,21 @@
 //
 
 import FaviconFinder
+import Foundation
 
-struct TabHeadViewModel{
+enum WebViewState: String{
+	case empty, error, loading, loaded, cached
+}
+
+struct TabViewModel{
+	let contentId: UUID
+	
 	var title: String = ""
 	var url: String = ""
+	var state: WebViewState = .empty
 	var webView: NiWebView?
 	var icon: Favicon?
+	
 	var position: Int = -1
 	var isSelected: Bool = false
 	var inEditingMode: Bool = false

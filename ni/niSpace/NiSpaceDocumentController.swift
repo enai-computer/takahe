@@ -110,7 +110,7 @@ class NiSpaceDocumentController: NSViewController{
 		
 		var children: [NiDocumentObjectModel] = []
 		for cfController in myView.drawnNiFrames {
-			children.append(cfController.niContentFrameView!.toNiContentFrameModel())
+			children.append(cfController.toNiContentFrameModel())
 		}
 			
 		let toEncode = NiDocumentObjectModel(

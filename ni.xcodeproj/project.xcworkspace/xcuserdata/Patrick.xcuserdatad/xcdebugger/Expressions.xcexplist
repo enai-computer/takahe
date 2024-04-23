@@ -22,22 +22,6 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "NiSpaceDocumentController.init(coder:):NiSpaceDocumentController.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "coder.bundle">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "NiSpaceViewController.loadSpace(niSpaceID:name:):NiSpaceViewController.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "self.children">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
          contextName = "switchSpace():HomeView.swift">
          <PersistentStrings>
             <PersistentString
@@ -65,15 +49,15 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "NiSpaceViewController.viewDidAppear():NiSpaceViewController.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "self.view.frame">
-            </PersistentString>
-         </PersistentStrings>
+         contextName = "closure #1 in Expressible.asSQL():Expression.swift">
       </ContextState>
       <ContextState
-         contextName = "closure #1 in Expressible.asSQL():Expression.swift">
+         contextName = "ContentFrameController.webView(_:didFinish:):ContentFrameController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.tabs[wv.tabHeadPosition]">
+            </PersistentString>
+         </PersistentStrings>
       </ContextState>
       <ContextState
          contextName = "NiSpaceViewController.viewDidLoad():NiSpaceViewController.swift">
@@ -91,14 +75,6 @@
             </PersistentString>
             <PersistentString
                value = "indexPath.section">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "NiSpaceDocumentController.myView.getter:NiSpaceDocumentController.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "self.view">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -215,14 +191,6 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "ContentFrameView.toNiContentFrameModel():ContentFrameView.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "self.frame.height">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
          contextName = "NiSpaceDocument.inFrame(_:):NiSpaceDocument.swift">
          <PersistentStrings>
             <PersistentString
@@ -258,9 +226,6 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "HomeViewController.tryHide():HomeViewController.swift">
-      </ContextState>
-      <ContextState
          contextName = "ContentFrameView.openWebsiteInNewTab(urlStr:width:height:position:):ContentFrameView.swift">
          <PersistentStrings>
             <PersistentString
@@ -275,9 +240,6 @@
                value = "selectedTabModel">
             </PersistentString>
          </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "HomeViewController.init(presentingController:):HomeViewController.swift">
       </ContextState>
       <ContextState
          contextName = "DBStorage.init():DBStorage.swift">

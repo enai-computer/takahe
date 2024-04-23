@@ -6,18 +6,6 @@ import WebKit
 import QuartzCore
 
 struct CFConstants {
-    static let nibName: String = "ContentFrameView"
-    static let x: CGFloat = 30
-    static let y: CGFloat = 30
-    static let wvWidth: CGFloat = 800
-    static let wvHeight: CGFloat = 450
-    static let wvBoarderWidth: CGFloat = 10.0
-    static let wvBoarderHeight: CGFloat = 10.0
-    static let width: CGFloat = wvWidth + wvBoarderWidth * 2
-    static let height: CGFloat = wvHeight + wvBoarderHeight * 2
-    static let boarderColor = NSColor(.sandLight1)
-    static let boarderColorSelected = NSColor(.sandLight3)
-
     // const needed for resizing:
     static let actionAreaMargin: CGFloat = 6
     static let cornerActionAreaMargin: CGFloat = 32
@@ -30,7 +18,7 @@ class ContentFrameView: NSBox{
     private var cursorOnBorder: OnBorder = .no
     private var deactivateDocumentResize: Bool = false
     private(set) var frameIsActive: Bool = false
-    private var positionInViewStack: Int = 0     // 0 = up top
+    private(set) var positionInViewStack: Int = 0     // 0 = up top
     
     private var niParentDoc: NiSpaceDocumentView? = nil
     
@@ -52,18 +40,6 @@ class ContentFrameView: NSBox{
     
     func setFrameOwner(_ owner: NiSpaceDocumentView!){
         self.niParentDoc = owner
-    }
-    
-    
-    @IBAction func updateContent(_ newURL: ContentFrameHeader) {
-
-        let urlReq = URLRequest(url: URL(string: newURL.stringValue)!)
-        
-        let activeTabView = niContentTabView.selectedTabViewItem?.view as! WKWebView
-        activeTabView.load(urlReq)
-        
-//        contentHeader.stringValue = newURL.stringValue
-//        contentHeader.disableEdit()
     }
 
     
@@ -353,48 +329,4 @@ class ContentFrameView: NSBox{
         return positionInViewStack
     }
     
-    /*
-     * MARK: - store and load here
-     */
-    
-    func persistContent(documentId: UUID){
-        for tab in niContentTabView.tabViewItems{
-            let tabView = tab.view as! NiWebView
-			//FIXME: 
-//            CachedWebTable.upsert(documentId: documentId, id: tabView.contentId, title: tabView.title, url: tabView.url!.absoluteString)
-        }
-    }
-    
-    
-    func toNiContentFrameModel() -> NiDocumentObjectModel{
-        
-        var children: [NiCFTabModel] = []
-        
-        for (i, tab) in niContentTabView.tabViewItems.enumerated(){
-            let tabView = tab.view as! NiWebView
-            children.append(
-                NiCFTabModel(
-                    id: tabView.contentId,
-                    contentType: NiCFTabContentType.web,
-                    active: true,
-                    position: i
-                )
-            )
-        }
-        
-        return NiDocumentObjectModel(
-            type: NiDocumentObjectTypes.contentFrame,
-            data: NiContentFrameModel(
-                state: NiConentFrameState.expanded,
-                height: NiCoordinate(px: self.frame.height),
-                width: NiCoordinate(px: self.frame.width),
-                position: NiViewPosition(
-                    posInViewStack: self.positionInViewStack,
-                    x: NiCoordinate(px: self.frame.origin.x),
-                    y: NiCoordinate(px: self.frame.origin.y)
-                ),
-                children: children
-            )
-        )
-    }
 }

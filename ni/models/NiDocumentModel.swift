@@ -97,6 +97,7 @@ enum NiCFTabContentType: String, Codable{
 struct NiCFTabModel: Codable{
     var id: UUID
     var contentType: NiCFTabContentType
+	var contentState: String	//can have vastly different values depending on the type. To be decoded by the ViewModels
     var active: Bool    // if this is the currently active tab
     var position: Int   // position in window, starting from left
 }
