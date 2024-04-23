@@ -12,7 +12,7 @@ class NiSpaceViewController: NSViewController{
 	@IBOutlet var header: NSBox!
 	@IBOutlet var time: NSTextField!
 	@IBOutlet var spaceName: NSTextField!
-	
+
 	@IBOutlet var niDocument: NiSpaceDocumentController!
 	//	private var niDocument: NiSpaceDocumentController
 
@@ -128,8 +128,6 @@ class NiSpaceViewController: NSViewController{
 	}
 	
     
-
-    
 	/*
 	 * MARK: - load and store Space here
 	 */
@@ -148,7 +146,7 @@ class NiSpaceViewController: NSViewController{
 		
 		addChild(spaceDoc)
 		transition(from: niDocument, to: spaceDoc, options: [.crossfade])
-		
+
 		niDocument = spaceDoc
 	}
 

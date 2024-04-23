@@ -25,8 +25,8 @@ func reopenContentFrame(contentFrame: NiContentFrameModel, tabs: [NiCFTabModel])
         origin: CGPoint(x: contentFrame.position.x.px, y: contentFrame.position.y.px),
         size: CGSize(width: contentFrame.width.px, height: contentFrame.height.px)
     )
-    let frame = frameController.view as! ContentFrameView
-    frame.frame = initPosition
+
+	frameController.view.frame = initPosition
     
     return frameController
 }

@@ -8,6 +8,8 @@
 import Cocoa
 
 class NiScrollController: NSViewController{
-    
-    
+
+	override func viewDidLoad() {
+//		print("NiScrollController appeared")
+	}
 }

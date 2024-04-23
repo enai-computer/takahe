@@ -45,7 +45,7 @@
 		CD75784C2BC065FB00293930 /* ContentFrameTabHeadTextNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD75784B2BC065FB00293930 /* ContentFrameTabHeadTextNode.swift */; };
 		CD8873742BCD235300007BE9 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8873732BCD235300007BE9 /* HomeViewController.swift */; };
 		CD8873782BCD649800007BE9 /* TimeUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8873772BCD649800007BE9 /* TimeUtils.swift */; };
-		CDB06B5D2AF81D54008DB8FF /* NiScroll.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB06B5C2AF81D54008DB8FF /* NiScroll.swift */; };
+		CDB06B5D2AF81D54008DB8FF /* NiScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB06B5C2AF81D54008DB8FF /* NiScrollView.swift */; };
 		CDB06B5F2AF81F91008DB8FF /* NiScrollController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB06B5E2AF81F91008DB8FF /* NiScrollController.swift */; };
 		CDB06B612AF84E1F008DB8FF /* NiSpaceDocumentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB06B602AF84E1F008DB8FF /* NiSpaceDocumentView.swift */; };
 		CDD6B9392B152A8000C6144D /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD6B9382B152A8000C6144D /* Storage.swift */; };
@@ -100,7 +100,7 @@
 		CD75784B2BC065FB00293930 /* ContentFrameTabHeadTextNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentFrameTabHeadTextNode.swift; sourceTree = "<group>"; };
 		CD8873732BCD235300007BE9 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		CD8873772BCD649800007BE9 /* TimeUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeUtils.swift; sourceTree = "<group>"; };
-		CDB06B5C2AF81D54008DB8FF /* NiScroll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiScroll.swift; sourceTree = "<group>"; };
+		CDB06B5C2AF81D54008DB8FF /* NiScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiScrollView.swift; sourceTree = "<group>"; };
 		CDB06B5E2AF81F91008DB8FF /* NiScrollController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiScrollController.swift; sourceTree = "<group>"; };
 		CDB06B602AF84E1F008DB8FF /* NiSpaceDocumentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiSpaceDocumentView.swift; sourceTree = "<group>"; };
 		CDD6B9382B152A8000C6144D /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
@@ -249,7 +249,7 @@
 				A14E8F242AD5EADF00409DDF /* NiSpaceView.xib */,
 				A14E8F262AD5EAF800409DDF /* NiSpaceView.swift */,
 				A14E8F282AD5EB1600409DDF /* NiSpaceViewController.swift */,
-				CDB06B5C2AF81D54008DB8FF /* NiScroll.swift */,
+				CDB06B5C2AF81D54008DB8FF /* NiScrollView.swift */,
 				CDB06B5E2AF81F91008DB8FF /* NiScrollController.swift */,
 				CDB06B602AF84E1F008DB8FF /* NiSpaceDocumentView.swift */,
 				CDDBCB2A2BD7C23E00E7B187 /* NiSpaceDocumentController.swift */,
@@ -395,7 +395,7 @@
 				A14E8F212AD20A2600409DDF /* DefaultWindowController.swift in Sources */,
 				CD8873742BCD235300007BE9 /* HomeViewController.swift in Sources */,
 				A1B8E6A62AAFB5EC00AC6566 /* AppDelegate.swift in Sources */,
-				CDB06B5D2AF81D54008DB8FF /* NiScroll.swift in Sources */,
+				CDB06B5D2AF81D54008DB8FF /* NiScrollView.swift in Sources */,
 				CD6317E12BC3F11000434D56 /* NiUserInputError.swift in Sources */,
 				CD66CE332B1F819E0006BB98 /* NiWebView.swift in Sources */,
 				CD6317E52BC3F67400434D56 /* ContentFrameTabHeadView.swift in Sources */,

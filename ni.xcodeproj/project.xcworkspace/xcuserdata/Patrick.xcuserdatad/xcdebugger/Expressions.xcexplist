@@ -215,6 +215,14 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "ContentFrameView.toNiContentFrameModel():ContentFrameView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.frame.height">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "NiSpaceDocument.inFrame(_:):NiSpaceDocument.swift">
          <PersistentStrings>
             <PersistentString

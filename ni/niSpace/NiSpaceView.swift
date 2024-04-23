@@ -3,7 +3,5 @@
 import Cocoa
 
 class NiSpaceView: NSView{
-    
-    @IBOutlet weak var niScrollView: NiScroll!
-    
+      
 }
