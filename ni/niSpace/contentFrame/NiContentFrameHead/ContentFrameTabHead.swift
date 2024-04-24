@@ -13,7 +13,7 @@ class ContentFrameTabHead: NSCollectionViewItem, NSTextFieldDelegate {
 	@IBOutlet var image: NSImageView!
 	@IBOutlet var tabHeadTitle: ContentFrameTabHeadTextNode!
 	
-	private var finishedEditing = true
+	private var inEditingMode = false
 	var parentController: ContentFrameController?
 	var tabPosition: Int = -1
 	
@@ -31,16 +31,13 @@ class ContentFrameTabHead: NSCollectionViewItem, NSTextFieldDelegate {
     }
 	
 	override func prepareForReuse() {
-		//TODO: reset everything to default values
-//		super.prepareForReuse()
-//		tabPosition = -1
+		tabPosition = -1
 		image.image = Bundle.main.image(forResource: "AppIcon")
-//		tabHeadTitle = ContentFrameTabHeadTextNode()
 		parentController = nil
 	}
 	
-	func  controlTextDidBeginEditing(_ notification: Notification) {
-		finishedEditing = false
+	func controlTextDidBeginEditing(_ notification: Notification) {
+		inEditingMode = true
 	}
 	
 	func control(_ control: NSControl, textShouldBeginEditing fieldEditor: NSText) -> Bool {
@@ -51,19 +48,25 @@ class ContentFrameTabHead: NSCollectionViewItem, NSTextFieldDelegate {
 	func controlTextDidEndEditing(_ notification: Notification) {
 		
 		//needed as this is called on CollectionItem reload. idk why :O
-		if(finishedEditing){
+		if(!inEditingMode){
 			return
 		}
 		
 		guard let textField = notification.object as? ContentFrameTabHeadTextNode
 		  else { preconditionFailure("ContentFrameTabHead expects to react to changes to ContentFrameTabHeadTextNode only") }
-
 		
 		let exitKey = (notification.userInfo! as NSDictionary)["NSTextMovement"]
 		print("did end with \(String(describing: exitKey))")
-		// ⚠️ End editing mode to disable the text field and change the tab state *first* so that eventual update to web view arrives to a consistent state.
+
+		inEditingMode = false
+
+		// ⚠️ End editing mode to disable the text field and change the tab state *first* so that eventual update to web view arrive to a consistent state. As the WebView callbacks do update TabHeads
 		endEditMode()
-		finishedEditing = true
+		
+		//do not load new website if enter was not the key
+		if ((exitKey as? Int) != 16){
+			return
+		}
 		do{
 			let url = try urlOrSearchUrl(from: textField.stringValue)
 			self.loadWebsite(url: url)
@@ -126,6 +129,8 @@ class ContentFrameTabHead: NSCollectionViewItem, NSTextFieldDelegate {
 	
 	private func setText(_ viewModel: TabViewModel){
 		if(viewModel.inEditingMode){
+			self.inEditingMode = true
+			
 			if(viewModel.state == .empty || viewModel.state == .error){
 				self.tabHeadTitle.enableEditing(urlStr: "")
 			}else{
