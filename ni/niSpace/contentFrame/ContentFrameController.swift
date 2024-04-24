@@ -271,6 +271,10 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
 		}
 	}
 	
+	func setTabIcon(at: Int, icon: NSImage?){
+		tabs[at].icon = icon
+	}
+	
 	/*
 	 * MARK: - store and load here
 	 */

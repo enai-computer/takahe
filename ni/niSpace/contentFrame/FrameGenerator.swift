@@ -6,7 +6,6 @@ import WebKit
 func openEmptyContentFrame() -> ContentFrameController{
 	let frameController = ContentFrameController()
 	frameController.loadView()
-	_ = frameController.openEmptyTab()
 	
 	return frameController
 }

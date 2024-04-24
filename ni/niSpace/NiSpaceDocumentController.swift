@@ -9,6 +9,8 @@ import Cocoa
 
 class NiSpaceDocumentController: NSViewController{
 	
+	var myView: NiSpaceDocumentView {return self.view as! NiSpaceDocumentView}
+	
 	private let emptySpaceID: UUID = UUID(uuidString: "00000000-0000-0000-0000-000000000000")!
 	
 	private let niSpaceName: String
@@ -36,9 +38,11 @@ class NiSpaceDocumentController: NSViewController{
 		let controller = openEmptyContentFrame()
 		let newCFView = controller.view as! ContentFrameView
 		newCFView.frame.origin = calculateOrigin(for: controller.view.frame)
+		newCFView.setFrameOwner(myView)
 		
 		myView.addNiFrame(controller)
-		newCFView.setFrameOwner(myView)
+		
+		_ = controller.openEmptyTab()
 	}
 	
 	func closeTabOfTopCF(){
@@ -69,7 +73,7 @@ class NiSpaceDocumentController: NSViewController{
 	 * MARK: - load and store space document here
 	 */
 	
-	var myView: NiSpaceDocumentView {return self.view as! NiSpaceDocumentView}
+
 	
 	func loadStoredSpace(niSpaceID: UUID){
 		do{

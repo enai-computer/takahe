@@ -35,7 +35,10 @@ class ContentFrameTabHead: NSCollectionViewItem, NSTextFieldDelegate {
 	
 	override func prepareForReuse() {
 		//TODO: reset everything to default values
-		tabPosition = -1
+//		super.prepareForReuse()
+//		tabPosition = -1
+		image.image = Bundle.main.image(forResource: "AppIcon")
+//		tabHeadTitle = ContentFrameTabHeadTextNode()
 	}
 	
 	func  controlTextDidBeginEditing(_ notification: Notification) {
@@ -76,7 +79,9 @@ class ContentFrameTabHead: NSCollectionViewItem, NSTextFieldDelegate {
 		self.parentController = parentController
 		
 		self.setText(viewModel)
-		self.setIcon(urlStr: viewModel.url)
+		
+		
+		self.setIcon(viewModel)
 		
 		self.setBackground(isSelected: viewModel.isSelected)
 	}
@@ -90,18 +95,25 @@ class ContentFrameTabHead: NSCollectionViewItem, NSTextFieldDelegate {
 	}
 	
 	@MainActor
-	func setIcon(_ img: NSImage?){
+	func setIcon(img: NSImage?){
 		self.image.image = img
 		self.image.alphaValue = 1.0
 	}
     
-	func setIcon(urlStr: String){
-		//FIXME: reloads Website to get FavIcon every time we redraw tabs
+	private func setIcon(_ viewModel: TabViewModel){
+
+		if(viewModel.icon != nil){
+			setIcon(img: viewModel.icon!)
+			return
+		}
+		
 		Task {
 			do{
-				if(!urlStr.isEmpty){
-					let img = try await fetchFavIcon(url: URL(string: urlStr)!)
-					setIcon(img)
+				if(!viewModel.url.isEmpty){
+					let img = try await fetchFavIcon(url: URL(string: viewModel.url)!)
+					
+					parentController?.setTabIcon(at: tabPosition, icon: img)
+					self.setIcon(img: img)
 				}
 			}catch{
 				debugPrint(error)
