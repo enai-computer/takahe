@@ -118,7 +118,7 @@ class ContentFrameTabHead: NSCollectionViewItem, NSTextFieldDelegate {
 	
 	private func setText(_ viewModel: TabViewModel){
 		if(viewModel.inEditingMode){
-			if(viewModel.state == .empty){
+			if(viewModel.state == .empty || viewModel.state == .error){
 				self.tabHeadTitle.enableEditing(urlStr: "")
 			}else{
 				self.tabHeadTitle.enableEditing(urlStr: viewModel.url)

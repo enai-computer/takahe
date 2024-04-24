@@ -158,7 +158,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
 		self.tabs[wv.tabHeadPosition].url = wv.url!.absoluteString
 		
 		//an empty tab still loads a local html
-		if(self.tabs[wv.tabHeadPosition].state != .empty){
+		if(self.tabs[wv.tabHeadPosition].state != .empty && self.tabs[wv.tabHeadPosition].state != .error ){
 			self.tabs[wv.tabHeadPosition].state = .loaded
 		}
 		
@@ -168,11 +168,21 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
 	func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: any Error){
 		let errorURL = getCouldNotLoadWebViewURL()
 		webView.loadFileURL(errorURL, allowingReadAccessTo: errorURL.deletingLastPathComponent())
+		
+		guard let wv = webView as? NiWebView else{
+			return
+		}
+		self.tabs[wv.tabHeadPosition].state = .error
 	}
 	
 	func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: any Error){
 		let errorURL = getCouldNotLoadWebViewURL()
 		webView.loadFileURL(errorURL, allowingReadAccessTo: errorURL.deletingLastPathComponent())
+		
+		guard let wv = webView as? NiWebView else{
+			return
+		}
+		self.tabs[wv.tabHeadPosition].state = .error
 	}
 	
 	/*
