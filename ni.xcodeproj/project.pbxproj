@@ -57,6 +57,8 @@
 		CDD6B9562B1C326A00C6144D /* ContentFrameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD6B9552B1C326A00C6144D /* ContentFrameController.swift */; };
 		CDDBCB292BD6AE6900E7B187 /* HomeViewAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDDBCB282BD6AE6900E7B187 /* HomeViewAnimator.swift */; };
 		CDDBCB2B2BD7C23E00E7B187 /* NiSpaceDocumentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDDBCB2A2BD7C23E00E7B187 /* NiSpaceDocumentController.swift */; };
+		CDDBCB2E2BD8FA4C00E7B187 /* errorLoading-1.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = CDDBCB2C2BD8FA4C00E7B187 /* errorLoading-1.jpeg */; };
+		CDDBCB2F2BD8FA4D00E7B187 /* errorLoading.html in Resources */ = {isa = PBXBuildFile; fileRef = CDDBCB2D2BD8FA4C00E7B187 /* errorLoading.html */; };
 		CDE76C1C2BC6989000CE9513 /* TabViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE76C1B2BC6989000CE9513 /* TabViewModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -110,6 +112,8 @@
 		CDD6B9552B1C326A00C6144D /* ContentFrameController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentFrameController.swift; sourceTree = "<group>"; };
 		CDDBCB282BD6AE6900E7B187 /* HomeViewAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewAnimator.swift; sourceTree = "<group>"; };
 		CDDBCB2A2BD7C23E00E7B187 /* NiSpaceDocumentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiSpaceDocumentController.swift; sourceTree = "<group>"; };
+		CDDBCB2C2BD8FA4C00E7B187 /* errorLoading-1.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "errorLoading-1.jpeg"; sourceTree = "<group>"; };
+		CDDBCB2D2BD8FA4C00E7B187 /* errorLoading.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = errorLoading.html; sourceTree = "<group>"; };
 		CDE76C1B2BC6989000CE9513 /* TabViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -192,6 +196,8 @@
 			children = (
 				CD1160CB2BD286EC00345E3E /* emptyTab-1.jpg */,
 				CD53ACBF2BCEE0ED00D5912B /* emptyTab.html */,
+				CDDBCB2C2BD8FA4C00E7B187 /* errorLoading-1.jpeg */,
+				CDDBCB2D2BD8FA4C00E7B187 /* errorLoading.html */,
 				CD6317E72BC484E100434D56 /* fonts */,
 			);
 			path = assets;
@@ -364,10 +370,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				A1B8E6AD2AAFB5EF00AC6566 /* Assets.xcassets in Resources */,
+				CDDBCB2E2BD8FA4C00E7B187 /* errorLoading-1.jpeg in Resources */,
 				A1B8E6B02AAFB5EF00AC6566 /* Main.storyboard in Resources */,
 				CD6317EC2BC4852300434D56 /* soehne-dreiviertelfett.ttf in Resources */,
 				CD6317EF2BC4852300434D56 /* soehne-kraftig.ttf in Resources */,
 				CD7578472BC000F200293930 /* ContentFrameTabHead.xib in Resources */,
+				CDDBCB2F2BD8FA4D00E7B187 /* errorLoading.html in Resources */,
 				A1E41BF62ACB533400338417 /* ContentFrameView.xib in Resources */,
 				CD53ACC02BCEE0ED00D5912B /* emptyTab.html in Resources */,
 				CD1160CC2BD286ED00345E3E /* emptyTab-1.jpg in Resources */,

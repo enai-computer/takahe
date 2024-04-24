@@ -166,12 +166,13 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
 	}
 	
 	func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: any Error){
-		print("NAV ERROR: \(error)")
-		//TODO: ERROR PAGE
+		let errorURL = getCouldNotLoadWebViewURL()
+		webView.loadFileURL(errorURL, allowingReadAccessTo: errorURL.deletingLastPathComponent())
 	}
 	
 	func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: any Error){
-		print("NAV ERROR: \(error)")
+		let errorURL = getCouldNotLoadWebViewURL()
+		webView.loadFileURL(errorURL, allowingReadAccessTo: errorURL.deletingLastPathComponent())
 	}
 	
 	/*

@@ -13,6 +13,5 @@ func getEmtpyWebViewURL() -> URL{
 }
 
 func getCouldNotLoadWebViewURL() -> URL{
-	//FIXME: load correct html
-	return Bundle.main.url(forResource: "emptyTab", withExtension: "html")!
+	return Bundle.main.url(forResource: "errorLoading", withExtension: "html")!
 }
