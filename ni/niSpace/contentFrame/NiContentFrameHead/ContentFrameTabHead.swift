@@ -46,7 +46,6 @@ class ContentFrameTabHead: NSCollectionViewItem, NSTextFieldDelegate {
 	}
 
 	func controlTextDidEndEditing(_ notification: Notification) {
-		
 		//needed as this is called on CollectionItem reload. idk why :O
 		if(!inEditingMode){
 			return
@@ -55,15 +54,12 @@ class ContentFrameTabHead: NSCollectionViewItem, NSTextFieldDelegate {
 		guard let textField = notification.object as? ContentFrameTabHeadTextNode
 		  else { preconditionFailure("ContentFrameTabHead expects to react to changes to ContentFrameTabHeadTextNode only") }
 		
-		let exitKey = (notification.userInfo! as NSDictionary)["NSTextMovement"]
-		print("did end with \(String(describing: exitKey))")
-
-		inEditingMode = false
-
 		// ⚠️ End editing mode to disable the text field and change the tab state *first* so that eventual update to web view arrive to a consistent state. As the WebView callbacks do update TabHeads
+		inEditingMode = false
 		endEditMode()
 		
-		//do not load new website if enter was not the key
+		//do not load new website if return was not pressed
+		let exitKey = (notification.userInfo! as NSDictionary)["NSTextMovement"]
 		if ((exitKey as? Int) != 16){
 			return
 		}
