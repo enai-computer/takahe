@@ -75,17 +75,15 @@ class ContentFrameTabHead: NSCollectionViewItem, NSTextFieldDelegate {
 	func configureView(parentController: ContentFrameController, tabPosition: Int, viewModel: TabViewModel){
 		self.tabPosition = tabPosition
 		self.parentController = parentController
+		self.isSelected = viewModel.isSelected
 		
 		self.setText(viewModel)
-		
-		
 		self.setIcon(viewModel)
-		
-		self.setBackground(isSelected: viewModel.isSelected)
+		self.setBackground()
 	}
 	
-	private func setBackground(isSelected: Bool){
-		if(isSelected){
+	private func setBackground(){
+		if(self.isSelected){
 			view.layer?.backgroundColor = NSColor(.sandLight1).cgColor
 		}else{
 			view.layer?.backgroundColor = NSColor(.transparent).cgColor
@@ -159,7 +157,8 @@ class ContentFrameTabHead: NSCollectionViewItem, NSTextFieldDelegate {
 	 */
 	
 	override func mouseDown(with event: NSEvent) {
-		if(!tabHeadTitle.isEditable && event.clickCount == 1){
+		//need to test if we are already selected otherwise we call self select on a double click and screw up where the text editing happens as this Item will process the double click, but may have a different postion, due to view recycling
+		if(!self.isSelected && !tabHeadTitle.isEditable && event.clickCount == 1){
 			selectSelf(mouseDownEvent: event)
 			return
 		}
