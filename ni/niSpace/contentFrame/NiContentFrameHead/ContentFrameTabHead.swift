@@ -24,9 +24,6 @@ class ContentFrameTabHead: NSCollectionViewItem, NSTextFieldDelegate {
 		view.layer?.cornerRadius = 5
 		view.layer?.cornerCurve = .continuous
 		
-		let headView = self.view as! ContentFrameTabHeadView
-		headView.parentControler = self
-		
 		tabHeadTitle.parentController = self
 		tabHeadTitle.layer?.cornerRadius = 5
 		tabHeadTitle.layer?.cornerCurve = .continuous
@@ -39,6 +36,7 @@ class ContentFrameTabHead: NSCollectionViewItem, NSTextFieldDelegate {
 //		tabPosition = -1
 		image.image = Bundle.main.image(forResource: "AppIcon")
 //		tabHeadTitle = ContentFrameTabHeadTextNode()
+		parentController = nil
 	}
 	
 	func  controlTextDidBeginEditing(_ notification: Notification) {
@@ -156,4 +154,20 @@ class ContentFrameTabHead: NSCollectionViewItem, NSTextFieldDelegate {
 		parentController?.endEditingTabUrl(at: tabPosition)
 	}
 	
+	/*
+	 * MARK: -mouse down event here
+	 */
+	
+	override func mouseDown(with event: NSEvent) {
+		if(!tabHeadTitle.isEditable && event.clickCount == 1){
+			selectSelf(mouseDownEvent: event)
+			return
+		}
+
+		if(!tabHeadTitle.isEditable && event.clickCount == 2){
+			startEditMode()
+			return
+		}
+		nextResponder?.mouseDown(with: event)
+	}
 }

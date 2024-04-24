@@ -28,7 +28,6 @@
 		CD53ACC02BCEE0ED00D5912B /* emptyTab.html in Resources */ = {isa = PBXBuildFile; fileRef = CD53ACBF2BCEE0ED00D5912B /* emptyTab.html */; };
 		CD6317E12BC3F11000434D56 /* NiUserInputError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6317E02BC3F11000434D56 /* NiUserInputError.swift */; };
 		CD6317E32BC3F18300434D56 /* NiBadTypeError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6317E22BC3F18300434D56 /* NiBadTypeError.swift */; };
-		CD6317E52BC3F67400434D56 /* ContentFrameTabHeadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6317E42BC3F67400434D56 /* ContentFrameTabHeadView.swift */; };
 		CD6317EC2BC4852300434D56 /* soehne-dreiviertelfett.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CD6317E82BC4852300434D56 /* soehne-dreiviertelfett.ttf */; };
 		CD6317ED2BC4852300434D56 /* soehne-leicht.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CD6317E92BC4852300434D56 /* soehne-leicht.ttf */; };
 		CD6317EE2BC4852300434D56 /* soehne-buch.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CD6317EA2BC4852300434D56 /* soehne-buch.ttf */; };
@@ -85,7 +84,6 @@
 		CD53ACBF2BCEE0ED00D5912B /* emptyTab.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = emptyTab.html; sourceTree = "<group>"; };
 		CD6317E02BC3F11000434D56 /* NiUserInputError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiUserInputError.swift; sourceTree = "<group>"; };
 		CD6317E22BC3F18300434D56 /* NiBadTypeError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiBadTypeError.swift; sourceTree = "<group>"; };
-		CD6317E42BC3F67400434D56 /* ContentFrameTabHeadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentFrameTabHeadView.swift; sourceTree = "<group>"; };
 		CD6317E82BC4852300434D56 /* soehne-dreiviertelfett.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "soehne-dreiviertelfett.ttf"; sourceTree = "<group>"; };
 		CD6317E92BC4852300434D56 /* soehne-leicht.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "soehne-leicht.ttf"; sourceTree = "<group>"; };
 		CD6317EA2BC4852300434D56 /* soehne-buch.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "soehne-buch.ttf"; sourceTree = "<group>"; };
@@ -239,7 +237,6 @@
 				CD7578442BC000F200293930 /* ContentFrameTabHead.swift */,
 				CD7578452BC000F200293930 /* ContentFrameTabHead.xib */,
 				CD75784B2BC065FB00293930 /* ContentFrameTabHeadTextNode.swift */,
-				CD6317E42BC3F67400434D56 /* ContentFrameTabHeadView.swift */,
 				CDE76C1B2BC6989000CE9513 /* TabViewModel.swift */,
 			);
 			path = NiContentFrameHead;
@@ -403,7 +400,6 @@
 				CDB06B5D2AF81D54008DB8FF /* NiScrollView.swift in Sources */,
 				CD6317E12BC3F11000434D56 /* NiUserInputError.swift in Sources */,
 				CD66CE332B1F819E0006BB98 /* NiWebView.swift in Sources */,
-				CD6317E52BC3F67400434D56 /* ContentFrameTabHeadView.swift in Sources */,
 				CDD6B9562B1C326A00C6144D /* ContentFrameController.swift in Sources */,
 				A1E41BFF2ACB6B1300338417 /* FrameGenerator.swift in Sources */,
 				CD19BC962BC7E5BF002AF14E /* HomeViewUtils.swift in Sources */,

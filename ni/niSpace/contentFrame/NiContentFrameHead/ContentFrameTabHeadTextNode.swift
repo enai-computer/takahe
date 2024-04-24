@@ -17,19 +17,6 @@ class ContentFrameTabHeadTextNode: NSTextField{
 	}
 	
 	var defaultSize: CGSize?
-
-	override func mouseDown(with event: NSEvent) {
-		if(!self.isEditable && event.clickCount == 1){
-			nextResponder?.mouseDown(with: event)
-			return
-		}
-		
-		if(!self.isEditable && event.clickCount == 2){
-			parentController?.startEditMode()
-			return
-		}
-		nextResponder?.mouseDown(with: event)
-	}
 	
 	//needed to handle ESC
 	override func cancelOperation(_ sender: Any?) {
