@@ -18,9 +18,9 @@ class ContentFrameView: NSBox{
     private var cursorOnBorder: OnBorder = .no
     private var deactivateDocumentResize: Bool = false
     private(set) var frameIsActive: Bool = false
-    private(set) var positionInViewStack: Int = 0     // 0 = up top
     
     private var niParentDoc: NiSpaceDocumentView? = nil
+	private var myController: ContentFrameController? = nil
     
 	//Header
 	@IBOutlet var cfHeadView: ContentFrameHeadView!
@@ -42,6 +42,9 @@ class ContentFrameView: NSBox{
         self.niParentDoc = owner
     }
 
+	func setSelfController(_ con: ContentFrameController){
+		self.myController = con
+	}
     
     func createNewTab(tabView: NiWebView) -> Int{
 
@@ -57,7 +60,6 @@ class ContentFrameView: NSBox{
     }
     
 	func deleteSelectedTab(at position: Int){
-		
 		niContentTabView.removeTabViewItem(niContentTabView.tabViewItem(at: position))
 	}
 	
@@ -71,11 +73,9 @@ class ContentFrameView: NSBox{
      */
     override func mouseDown(with event: NSEvent) {
         if !frameIsActive{
-            nextResponder?.mouseDown(with: event)
+			niParentDoc?.setTopNiFrame(NSApplication.shared.keyWindow, myController!)
             return
         }
-
-        super.mouseDown(with: event)
         
         let cursorPos = self.convert(event.locationInWindow, from: nil)
         
@@ -89,7 +89,6 @@ class ContentFrameView: NSBox{
         
         //clicked on close button
         if NSPointInRect(posInHeadView, closeButton.frame){
-			
             removeFromSuperview()
         }
         
@@ -272,7 +271,6 @@ class ContentFrameView: NSBox{
         
         if frameIsActive{
             self.layer?.borderColor = NSColor(.sandLight3).cgColor
-            positionInViewStack = 0
             
 			showHeader()
             webView?.setActive()
@@ -321,14 +319,5 @@ class ContentFrameView: NSBox{
 //		layoutSubtreeIfNeeded()
 //		layout()
 	}
-    
-	
-    func droppedInViewStack(){
-        positionInViewStack += 1
-    }
-    
-    func getPositionInViewStack() -> Int{
-        return positionInViewStack
-    }
     
 }

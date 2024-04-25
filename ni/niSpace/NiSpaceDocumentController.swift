@@ -40,7 +40,7 @@ class NiSpaceDocumentController: NSViewController{
 	
 	func openEmptyCF(){
 		let controller = openEmptyContentFrame()
-		let newCFView = controller.view as! ContentFrameView
+		let newCFView = controller.niContentFrameView!
 		newCFView.frame.origin = calculateOrigin(for: controller.view.frame)
 		newCFView.setFrameOwner(myView)
 		
@@ -103,14 +103,16 @@ class NiSpaceDocumentController: NSViewController{
 		}
 		
 		let documentJson = genJson()
+		//View json stored here
 		DocumentTable.upsertDoc(id: niSpaceID, name: niSpaceName, document: documentJson)
+		//Content of the CFs stored here
 		myView.persistContent(documentId: niSpaceID)
 	}
 	
 	func genJson() -> String{
 		
 		var children: [NiDocumentObjectModel] = []
-		for cfController in myView.drawnNiFrames {
+		for cfController in myView.contentFrameControllers {
 			children.append(cfController.toNiContentFrameModel())
 		}
 			

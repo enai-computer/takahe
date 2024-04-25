@@ -22,6 +22,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
 		
     override func loadView() {
         self.niContentFrameView = (NSView.loadFromNib(nibName: "ContentFrameView", owner: self) as! ContentFrameView)
+		self.niContentFrameView?.setSelfController(self)
         self.view = niContentFrameView!
         self.view.wantsLayer = true
         self.view.layer?.cornerRadius = 10
@@ -110,11 +111,6 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
 		tabs[at].webView?.load(urlReq)
 	}
 	
-	func droppedInViewStack(){
-		//TODO: pull the logic into the controller, as long as it does not have implications of the view
-		niContentFrameView?.droppedInViewStack()
-	}
-	
 	func toggleActive(){
 		niContentFrameView?.toggleActive()
 	}
@@ -131,6 +127,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
 		}else if( selectedTabModel == 0 && self.tabs.count == 1){
 			view.removeFromSuperview()
 		}
+		//TODO: remove tab if selected tab model == 0 && count > 1
 	}
 	
 	/*
@@ -300,6 +297,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
 			)
 		}
 		
+		let posInStack = Int(view.layer!.zPosition)
 		return NiDocumentObjectModel(
 			type: NiDocumentObjectTypes.contentFrame,
 			data: NiContentFrameModel(
@@ -307,7 +305,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
 				height: NiCoordinate(px: view.frame.height),
 				width: NiCoordinate(px: view.frame.width),
 				position: NiViewPosition(
-					posInViewStack: niContentFrameView!.positionInViewStack,
+					posInViewStack: posInStack,
 					x: NiCoordinate(px: view.frame.origin.x),
 					y: NiCoordinate(px: view.frame.origin.y)
 				),

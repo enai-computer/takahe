@@ -13,6 +13,9 @@ let EMPTYSPACEFACTOR: Double = 1
 class NiSpaceDocumentView: NSView{
         
 	private var allowSubViewResize: Bool = true
+	private(set) var topNiFrame: ContentFrameController? = nil
+	private(set) var contentFrameControllers: Set<ContentFrameController> = []	//rn all niFrames are drawn. Needs to be reworked in future
+	
 	
 	init(height: CGFloat? = nil){
 		var frameSize = NSRect()
@@ -42,7 +45,6 @@ class NiSpaceDocumentView: NSView{
     }
     
     func extendDocumentDownwards(){
-		
 		//otherwise we reposition the ContentFrames within the document
 		self.allowSubViewResize = false
 		
@@ -63,59 +65,18 @@ class NiSpaceDocumentView: NSView{
      * TODO: fix activation and deactivation 
      */
     
-    var topNiFrame: ContentFrameController? = nil
-    private(set) var drawnNiFrames: [ContentFrameController] = []	//rn all niFrames are drawn. Needs to be reworked in future
     
     func addNiFrame(_ subViewController: ContentFrameController){
 		self.addSubview(subViewController.view)
-        
-        for niFrame in drawnNiFrames{
-			//TODO: fix this behaviour
-//            niFrame.droppedInViewStack()
-        }
-        drawnNiFrames.insert(subViewController, at: 0)
-        
-        setTopNiFrame(NSApplication.shared.keyWindow, subViewController)
+		setTopNiFrame(NSApplication.shared.keyWindow, subViewController)
+		contentFrameControllers.insert(subViewController)
     }
-    
-    
-    override func mouseDown(with event: NSEvent) {
-        super.mouseDown(with: event)
-        
-        if topNiFrame == nil{
-            return
-        }
-        
-        let cursorPos = self.convert(event.locationInWindow, from: nil)
-        let newTopFrame = inFrame(cursorPos)
-        
-        if (newTopFrame == nil || self.topNiFrame == newTopFrame){
-            return
-        }
+	
+	func removeNiFrame(_ subViewController: ContentFrameController){
+		contentFrameControllers.remove(subViewController)
+	}
 
-//        let posInViewStack = newTopFrame?.getPositionInViewStack()
-//        activeNiFrames.remove(at: posInViewStack!)
-		
-        for niFrame in drawnNiFrames{
-            niFrame.droppedInViewStack()
-        }
-//        drawnNiFrames.insert(newTopFrame!, at: 0)
-        
-        setTopNiFrame(NSApplication.shared.keyWindow, newTopFrame!)
-    }
-    
-    private func inFrame(_ cursorPoint: CGPoint) -> ContentFrameController?{
-        
-        for niFrame in drawnNiFrames {
-			if NSPointInRect(cursorPoint, niFrame.view.frame){
-                return niFrame
-            }
-        }
-        return nil
-    }
-
-    private func setTopNiFrame(_ window: NSWindow?, _ newTopFrame: ContentFrameController){
-
+    func setTopNiFrame(_ window: NSWindow?, _ newTopFrame: ContentFrameController){
         topNiFrame?.toggleActive()
         
         //switch
@@ -124,10 +85,10 @@ class NiSpaceDocumentView: NSView{
         topNiFrame = newTopFrame
 
         topNiFrame?.toggleActive()
-    }
+	}
     
     func persistContent(documentId: UUID){
-        for contentFrame in drawnNiFrames{
+        for contentFrame in contentFrameControllers{
             contentFrame.persistContent(documentId: documentId)
         }
     }
