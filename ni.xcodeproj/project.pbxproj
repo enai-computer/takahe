@@ -25,6 +25,7 @@
 		CD19BC942BC7E404002AF14E /* HomeAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CD19BC932BC7E404002AF14E /* HomeAssets.xcassets */; };
 		CD19BC962BC7E5BF002AF14E /* HomeViewUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD19BC952BC7E5BF002AF14E /* HomeViewUtils.swift */; };
 		CD19BC992BC81A46002AF14E /* PredictiveTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD19BC982BC81A46002AF14E /* PredictiveTextFieldView.swift */; };
+		CD42CEC92BDA48180039814D /* NiScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD42CEC82BDA48180039814D /* NiScrollView.swift */; };
 		CD53ACC02BCEE0ED00D5912B /* emptyTab.html in Resources */ = {isa = PBXBuildFile; fileRef = CD53ACBF2BCEE0ED00D5912B /* emptyTab.html */; };
 		CD6317E12BC3F11000434D56 /* NiUserInputError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6317E02BC3F11000434D56 /* NiUserInputError.swift */; };
 		CD6317E32BC3F18300434D56 /* NiBadTypeError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6317E22BC3F18300434D56 /* NiBadTypeError.swift */; };
@@ -43,8 +44,6 @@
 		CD75784C2BC065FB00293930 /* ContentFrameTabHeadTextNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD75784B2BC065FB00293930 /* ContentFrameTabHeadTextNode.swift */; };
 		CD8873742BCD235300007BE9 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8873732BCD235300007BE9 /* HomeViewController.swift */; };
 		CD8873782BCD649800007BE9 /* TimeUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8873772BCD649800007BE9 /* TimeUtils.swift */; };
-		CDB06B5D2AF81D54008DB8FF /* NiScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB06B5C2AF81D54008DB8FF /* NiScrollView.swift */; };
-		CDB06B5F2AF81F91008DB8FF /* NiScrollController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB06B5E2AF81F91008DB8FF /* NiScrollController.swift */; };
 		CDB06B612AF84E1F008DB8FF /* NiSpaceDocumentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB06B602AF84E1F008DB8FF /* NiSpaceDocumentView.swift */; };
 		CDD6B9392B152A8000C6144D /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD6B9382B152A8000C6144D /* Storage.swift */; };
 		CDD6B93E2B152D3F00C6144D /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = CDD6B93D2B152D3F00C6144D /* SQLite */; };
@@ -81,6 +80,7 @@
 		CD19BC932BC7E404002AF14E /* HomeAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = HomeAssets.xcassets; sourceTree = "<group>"; };
 		CD19BC952BC7E5BF002AF14E /* HomeViewUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewUtils.swift; sourceTree = "<group>"; };
 		CD19BC982BC81A46002AF14E /* PredictiveTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictiveTextFieldView.swift; sourceTree = "<group>"; };
+		CD42CEC82BDA48180039814D /* NiScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiScrollView.swift; sourceTree = "<group>"; };
 		CD53ACBF2BCEE0ED00D5912B /* emptyTab.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = emptyTab.html; sourceTree = "<group>"; };
 		CD6317E02BC3F11000434D56 /* NiUserInputError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiUserInputError.swift; sourceTree = "<group>"; };
 		CD6317E22BC3F18300434D56 /* NiBadTypeError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiBadTypeError.swift; sourceTree = "<group>"; };
@@ -98,8 +98,6 @@
 		CD75784B2BC065FB00293930 /* ContentFrameTabHeadTextNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentFrameTabHeadTextNode.swift; sourceTree = "<group>"; };
 		CD8873732BCD235300007BE9 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		CD8873772BCD649800007BE9 /* TimeUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeUtils.swift; sourceTree = "<group>"; };
-		CDB06B5C2AF81D54008DB8FF /* NiScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiScrollView.swift; sourceTree = "<group>"; };
-		CDB06B5E2AF81F91008DB8FF /* NiScrollController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiScrollController.swift; sourceTree = "<group>"; };
 		CDB06B602AF84E1F008DB8FF /* NiSpaceDocumentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiSpaceDocumentView.swift; sourceTree = "<group>"; };
 		CDD6B9382B152A8000C6144D /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		CDD6B93F2B169F7700C6144D /* DocumentTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentTable.swift; sourceTree = "<group>"; };
@@ -249,10 +247,9 @@
 				A14E8F242AD5EADF00409DDF /* NiSpaceView.xib */,
 				A14E8F262AD5EAF800409DDF /* NiSpaceView.swift */,
 				A14E8F282AD5EB1600409DDF /* NiSpaceViewController.swift */,
-				CDB06B5C2AF81D54008DB8FF /* NiScrollView.swift */,
-				CDB06B5E2AF81F91008DB8FF /* NiScrollController.swift */,
 				CDB06B602AF84E1F008DB8FF /* NiSpaceDocumentView.swift */,
 				CDDBCB2A2BD7C23E00E7B187 /* NiSpaceDocumentController.swift */,
+				CD42CEC82BDA48180039814D /* NiScrollView.swift */,
 			);
 			path = niSpace;
 			sourceTree = "<group>";
@@ -391,13 +388,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				CD75784C2BC065FB00293930 /* ContentFrameTabHeadTextNode.swift in Sources */,
-				CDB06B5F2AF81F91008DB8FF /* NiScrollController.swift in Sources */,
 				A1E41BFA2ACB57EF00338417 /* ContentFrameView.swift in Sources */,
 				CD6317F12BC53A9600434D56 /* cfOverlay.swift in Sources */,
 				A14E8F212AD20A2600409DDF /* DefaultWindowController.swift in Sources */,
 				CD8873742BCD235300007BE9 /* HomeViewController.swift in Sources */,
 				A1B8E6A62AAFB5EC00AC6566 /* AppDelegate.swift in Sources */,
-				CDB06B5D2AF81D54008DB8FF /* NiScrollView.swift in Sources */,
 				CD6317E12BC3F11000434D56 /* NiUserInputError.swift in Sources */,
 				CD66CE332B1F819E0006BB98 /* NiWebView.swift in Sources */,
 				CDD6B9562B1C326A00C6144D /* ContentFrameController.swift in Sources */,
@@ -414,6 +409,7 @@
 				CDD6B9402B169F7700C6144D /* DocumentTable.swift in Sources */,
 				CDD6B9452B16A1A200C6144D /* CachedWebTable.swift in Sources */,
 				CDD6B9392B152A8000C6144D /* Storage.swift in Sources */,
+				CD42CEC92BDA48180039814D /* NiScrollView.swift in Sources */,
 				CDDBCB2B2BD7C23E00E7B187 /* NiSpaceDocumentController.swift in Sources */,
 				CDD6B9472B16A29100C6144D /* DocumentIdContentIdTable.swift in Sources */,
 				CD66CE382B1FD26A0006BB98 /* NiStringUtils.swift in Sources */,

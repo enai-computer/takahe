@@ -13,6 +13,7 @@ class NiSpaceViewController: NSViewController{
 	@IBOutlet var time: NSTextField!
 	@IBOutlet var spaceName: NSTextField!
 
+	@IBOutlet var niScrollView: NiScrollView!
 	@IBOutlet var niDocument: NiSpaceDocumentController!
 	//	private var niDocument: NiSpaceDocumentController
 
@@ -160,6 +161,7 @@ class NiSpaceViewController: NSViewController{
 		transition(from: niDocument, to: spaceDoc, options: [.crossfade])
 
 		niDocument = spaceDoc
+		niScrollView.documentView = spaceDoc.view
 	}
 
     

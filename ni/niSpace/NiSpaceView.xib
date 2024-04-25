@@ -8,9 +8,9 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NiSpaceViewController" customModule="ni" customModuleProvider="target">
             <connections>
-                <outlet property="clippy" destination="yNc-sE-qT2" id="CY1-EK-B1h"/>
                 <outlet property="header" destination="gvf-LW-L3l" id="FAr-Ol-uRc"/>
                 <outlet property="niDocument" destination="AOV-if-yNQ" id="XS1-g0-Czv"/>
+                <outlet property="niScrollView" destination="eEh-KB-aea" id="eGO-rP-RcL"/>
                 <outlet property="spaceName" destination="IcY-Xb-pUo" id="ECl-ux-gyo"/>
                 <outlet property="time" destination="yLB-kD-fbD" id="LJa-ji-zdb"/>
             </connections>
@@ -25,11 +25,11 @@
                     <rect key="frame" x="0.0" y="0.0" width="1600" height="900"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <clipView key="contentView" id="yNc-sE-qT2">
-                        <rect key="frame" x="1" y="1" width="1598" height="898"/>
+                        <rect key="frame" x="1" y="1" width="1583" height="898"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view id="93b-vm-ObV" customClass="NiSpaceDocumentView" customModule="ni" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="1583" height="883"/>
+                                <rect key="frame" x="0.0" y="0.0" width="1568" height="883"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </view>
                         </subviews>
@@ -40,7 +40,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
                     <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="LWS-iL-QKc">
-                        <rect key="frame" x="1583" y="1" width="16" height="898"/>
+                        <rect key="frame" x="1584" y="1" width="15" height="898"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
                 </scrollView>
@@ -96,11 +96,6 @@
         <viewController id="AOV-if-yNQ" customClass="NiSpaceDocumentController" customModule="ni" customModuleProvider="target">
             <connections>
                 <outlet property="view" destination="93b-vm-ObV" id="1hH-en-x7n"/>
-            </connections>
-        </viewController>
-        <viewController id="YMu-VN-iOE" customClass="NiScrollController" customModule="ni" customModuleProvider="target">
-            <connections>
-                <outlet property="view" destination="eEh-KB-aea" id="5w1-H3-VLp"/>
             </connections>
         </viewController>
     </objects>

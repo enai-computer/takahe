@@ -50,7 +50,8 @@ class ContentFrameView: NSBox{
 
         tabViewItem.view = tabView
 
-        niContentTabView.addTabViewItem(tabViewItem)
+		//FIXME: function below creates issues
+		niContentTabView.addTabViewItem(tabViewItem)
         
         return tabViewPos
     }
