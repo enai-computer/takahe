@@ -56,8 +56,9 @@ class HomeViewController: NSHostingController<HomeView>{
 	}
 
 	func tryHide(){
-		//TODO: fail in case we are on an empty Space
-		presentingController.dismiss(self)
+		if(presentingController.spaceLoaded){
+			presentingController.dismiss(self)
+		}
 	}
 	
 

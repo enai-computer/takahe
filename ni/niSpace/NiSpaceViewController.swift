@@ -5,7 +5,7 @@ import Carbon.HIToolbox
 
 class NiSpaceViewController: NSViewController{
     
-	private var spaceLoaded: Bool = false
+	private(set) var spaceLoaded: Bool = false
     private var niSpaceName: String
     
 	//header elements here:
@@ -148,6 +148,8 @@ class NiSpaceViewController: NSViewController{
 		transition(from: niDocument, to: spaceDoc, options: [.crossfade])
 
 		niDocument = spaceDoc
+		
+		spaceLoaded = true
 	}
 	
 	func loadSpace(niSpaceID id: UUID, name: String){
@@ -171,6 +173,8 @@ class NiSpaceViewController: NSViewController{
 
 		niDocument = spaceDoc
 		niScrollView.documentView = spaceDoc.view
+		
+		spaceLoaded = true
 	}
 
 	private func loadStoredSpace(niSpaceID: UUID) -> NiDocumentObjectModel?{
