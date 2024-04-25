@@ -226,17 +226,18 @@ class ContentFrameView: NSBox{
         }else if (frame.origin.x + xDiff + (frame.width/2.0) < docW){
             frame.origin.x += xDiff
         }
-            // do nothing when trying to move to far to the right
+		// do nothing when trying to move to far to the right
         
         if (frame.origin.y - yDiff < 45){	//45px is the hight of the top bar + shadow - FIXME: write cleaner implemetation
             frame.origin.y = 45
         }else if(frame.origin.y - yDiff + frame.height > docHeight){
-            frame.origin.y -= yDiff
             
             if(!deactivateDocumentResize && yDiff < 0){ //mouse moving downwards, not upwards
                 self.niParentDoc!.extendDocumentDownwards()
                 deactivateDocumentResize = true     //get's activated again when mouse lifted
-            }
+			}else{
+				frame.origin.y -= yDiff
+			}
 
         }else{
             frame.origin.y -= yDiff

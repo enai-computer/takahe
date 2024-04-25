@@ -12,6 +12,8 @@ let EMPTYSPACEFACTOR: Double = 0.3
 
 class NiSpaceDocumentView: NSView{
         
+	private var allowSubViewResize: Bool = true
+	
 	init(){
 		var frameSize = NSRect()
 		
@@ -35,10 +37,20 @@ class NiSpaceDocumentView: NSView{
     }
     
     func extendDocumentDownwards(){
-		//FIXME: this needs to be improved
+		
+		//otherwise we reposition the ContentFrames within the document
+		self.allowSubViewResize = false
+		
         let window = NSApplication.shared.keyWindow!
         self.frame.size.height += window.frame.height * EMPTYSPACEFACTOR
     }
+	
+	override func resizeSubviews(withOldSize oldSize: NSSize) {
+		if(self.allowSubViewResize){
+			super.resizeSubviews(withOldSize: oldSize)
+		}
+		self.allowSubViewResize = true
+	}
 	
     /*
      * MARK: Window like functions for niFrames below:
