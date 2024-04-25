@@ -43,8 +43,8 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
         return wkView
     }
     
-	func openEmptyTab() -> Int{
-		let niWebView = NiWebView(contentId: UUID(), owner: self, frame: niContentFrameView!.frame, configuration: WKWebViewConfiguration())
+	func openEmptyTab(_ contentId: UUID = UUID()) -> Int{
+		let niWebView = NiWebView(contentId: contentId, owner: self, frame: niContentFrameView!.frame, configuration: WKWebViewConfiguration())
 
 		let localHTMLurl = getEmtpyWebViewURL()
 		niWebView.loadFileURL(localHTMLurl, allowingReadAccessTo: localHTMLurl)

@@ -16,7 +16,11 @@ func reopenContentFrame(contentFrame: NiContentFrameModel, tabs: [NiCFTabModel])
     frameController.loadView()
     for tab in tabs{
         let record = CachedWebTable.fetchCachedWebsite(contentId: tab.id)
-		_ = frameController.openWebsiteInNewTab(urlStr: record.url, contentId: tab.id, tabName: record.title, webContentState: tab.contentState)
+		if(WebViewState(rawValue: tab.contentState) == .empty ){
+			_ = frameController.openEmptyTab(tab.id)
+		}else{
+			_ = frameController.openWebsiteInNewTab(urlStr: record.url, contentId: tab.id, tabName: record.title, webContentState: tab.contentState)
+		}
     }
     
     //positioning
@@ -29,6 +33,8 @@ func reopenContentFrame(contentFrame: NiContentFrameModel, tabs: [NiCFTabModel])
     
     return frameController
 }
+
+//openEmptyTab WebViewState(rawValue: webContentState!)!
 
 extension NSView {
 
