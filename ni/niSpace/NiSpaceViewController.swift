@@ -132,8 +132,8 @@ class NiSpaceViewController: NSViewController{
 	/*
 	 * MARK: - load and store Space here
 	 */
-	private func getEmptySpaceDocument(id: UUID, name: String) -> NiSpaceDocumentController{
-		let controller = NiSpaceDocumentController(id: id, name: name)
+	private func getEmptySpaceDocument(id: UUID, name: String, height: CGFloat? = nil) -> NiSpaceDocumentController{
+		let controller = NiSpaceDocumentController(id: id, name: name, height: height)
 		
 		return controller
 	}
@@ -150,12 +150,21 @@ class NiSpaceViewController: NSViewController{
 		niDocument = spaceDoc
 	}
 	
-	func loadSpace(niSpaceID: UUID, name: String){
+	func loadSpace(niSpaceID id: UUID, name: String){
+		let spaceDoc: NiSpaceDocumentController
+		
 		niSpaceName = name
 		spaceName.stringValue = name
 		
-		let spaceDoc = getEmptySpaceDocument(id: niSpaceID, name: name)
-		spaceDoc.loadStoredSpace(niSpaceID: niSpaceID)
+		let spaceModel = loadStoredSpace(niSpaceID: id)
+		
+		if(spaceModel == nil){
+			spaceDoc = getEmptySpaceDocument(id: id, name: name)
+		}else{
+			let docHeightPx = (spaceModel?.data as? NiDocumentModel)?.height.px
+			spaceDoc = getEmptySpaceDocument(id: id, name: name, height: docHeightPx)
+			spaceDoc.recreateSpace(docModel: spaceModel!)
+		}
 		
 		addChild(spaceDoc)
 		transition(from: niDocument, to: spaceDoc, options: [.crossfade])
@@ -164,5 +173,16 @@ class NiSpaceViewController: NSViewController{
 		niScrollView.documentView = spaceDoc.view
 	}
 
+	private func loadStoredSpace(niSpaceID: UUID) -> NiDocumentObjectModel?{
+		do{
+			let docJson = (DocumentTable.fetchDocumentModel(id: niSpaceID)?.data(using: .utf8))!
+			let jsonDecoder = JSONDecoder()
+			let docModel = try jsonDecoder.decode(NiDocumentObjectModel.self, from: docJson)
+			return docModel
+		}catch{
+			print(error)
+		}
+		return nil
+	}
     
 }

@@ -15,23 +15,26 @@ class NiSpaceDocumentController: NSViewController{
 	
 	private let niSpaceName: String
 	private let niSpaceID: UUID
+	private let initHeight: CGFloat?
 	
 	private var leastRecentlyUsedOrigin: CGPoint? = nil
 	
-	init(id: UUID, name: String) {
+	init(id: UUID, name: String, height: CGFloat? = nil) {
 		self.niSpaceID = id
 		self.niSpaceName = name
+		self.initHeight = height
 		super.init(nibName: nil, bundle: Bundle.main)
 	}
 	
 	required init?(coder: NSCoder) {
 		self.niSpaceID = emptySpaceID
 		self.niSpaceName = ""
+		self.initHeight = nil
 		super.init(coder: coder)
 	}
 	
 	override func loadView() {
-		self.view = NiSpaceDocumentView()
+		self.view = NiSpaceDocumentView(height: initHeight)
 	}
 	
 	func openEmptyCF(){
@@ -73,23 +76,14 @@ class NiSpaceDocumentController: NSViewController{
 	 * MARK: - load and store space document here
 	 */
 	
-
-	
-	func loadStoredSpace(niSpaceID: UUID){
-		do{
-			let docJson = (DocumentTable.fetchDocumentModel(id: niSpaceID)?.data(using: .utf8))!
-			let jsonDecoder = JSONDecoder()
-			let docModel = try jsonDecoder.decode(NiDocumentObjectModel.self, from: docJson)
-			if (docModel.type == NiDocumentObjectTypes.document){
-				let data = docModel.data as! NiDocumentModel
-				let children = data.children
-				for child in children{
-					let childData = child.data as! NiContentFrameModel
-					recreateContentFrame(data: childData)
-				}
+	func recreateSpace(docModel: NiDocumentObjectModel){
+		if (docModel.type == NiDocumentObjectTypes.document){
+			let data = docModel.data as! NiDocumentModel
+			let children = data.children
+			for child in children{
+				let childData = child.data as! NiContentFrameModel
+				recreateContentFrame(data: childData)
 			}
-		}catch{
-			print(error)
 		}
 	}
 	

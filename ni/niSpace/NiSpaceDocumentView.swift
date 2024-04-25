@@ -14,12 +14,17 @@ class NiSpaceDocumentView: NSView{
         
 	private var allowSubViewResize: Bool = true
 	
-	init(){
+	init(height: CGFloat? = nil){
 		var frameSize = NSRect()
 		
 		let window = NSApplication.shared.keyWindow!
-		frameSize.size.height = window.frame.height * (1+EMPTYSPACEFACTOR)
 		frameSize.size.width = window.frame.width
+		
+		if(height == nil){
+			frameSize.size.height = window.frame.height * (1+EMPTYSPACEFACTOR)
+		}else{
+			frameSize.size.height = height!
+		}
 		
 		super.init(frame: frameSize)
 	}
