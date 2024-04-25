@@ -18,6 +18,7 @@ class NiSpaceDocumentController: NSViewController{
 	private let initHeight: CGFloat?
 	
 	private var leastRecentlyUsedOrigin: CGPoint? = nil
+	private var leastRecentlyUsedOriginFactor: CGFloat = 1
 	
 	init(id: UUID, name: String, height: CGFloat? = nil) {
 		self.niSpaceID = id
@@ -53,19 +54,21 @@ class NiSpaceDocumentController: NSViewController{
 	}
 	
 	private func calculateOrigin(for frame: NSRect) -> CGPoint{
-		let windowSize = NSApplication.shared.keyWindow!.frame.size
+		let viewSize = view.visibleRect.size
 		
 		let x_center: Double
 		let y_center: Double
 		
-		if(leastRecentlyUsedOrigin == nil){
-			x_center = windowSize.width / 2
-			y_center = windowSize.height / 2
+		if(leastRecentlyUsedOrigin == nil || leastRecentlyUsedOrigin != view.visibleRect.origin){
+			x_center = viewSize.width / 2
+			y_center = view.visibleRect.origin.y + viewSize.height / 2
+			leastRecentlyUsedOriginFactor = 1
 		}else{
-			x_center = leastRecentlyUsedOrigin!.x + 30
-			y_center = leastRecentlyUsedOrigin!.y + 30
+			x_center = leastRecentlyUsedOrigin!.x + viewSize.width / 2 + leastRecentlyUsedOriginFactor * 30
+			y_center = leastRecentlyUsedOrigin!.y + viewSize.height / 2 + leastRecentlyUsedOriginFactor * 30
+			leastRecentlyUsedOriginFactor += 1
 		}
-		leastRecentlyUsedOrigin = CGPoint(x: x_center, y: y_center)
+		leastRecentlyUsedOrigin = CGPoint(x: view.visibleRect.origin.x, y: view.visibleRect.origin.y)
 		
 		let x_dist_to_center = frame.width / 2
 		let y_dist_to_center = frame.height / 2

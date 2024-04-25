@@ -8,7 +8,7 @@
 import Cocoa
 import Foundation
 
-let EMPTYSPACEFACTOR: Double = 0.3
+let EMPTYSPACEFACTOR: Double = 1
 
 class NiSpaceDocumentView: NSView{
         
