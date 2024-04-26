@@ -5,7 +5,6 @@ import Cocoa
 @main
 class AppDelegate: NSObject, NSApplicationDelegate {
 
-    var window: NSWindow!
     var storage: Storage?
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
@@ -19,21 +18,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationSupportsSecureRestorableState(_ app: NSApplication) -> Bool {
         return true
     }
-    
-	//TODO: Delete
-//    func switchToEmptySpace(niSpaceID: UUID, name: String) -> NiSpaceViewController{
-//        window = NSApplication.shared.keyWindow!
-//        let niSpaceController = NiSpaceViewController(niSpaceID: niSpaceID, niSpaceName: name)
-//        window.contentViewController = niSpaceController
-//        niSpaceController.loadView()
-//        return niSpaceController
-//    }
-    
-	//TODO: Delete
-//    func loadExistingSpace(niSpaceID: UUID, name: String){
-//        let controller = switchToEmptySpace(niSpaceID: niSpaceID, name: name)
-//        controller.loadStoredSpace(niSpaceID: niSpaceID)
-//    }
     
     // MARK: - Core Data stack
 
@@ -91,9 +75,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationShouldTerminate(_ sender: NSApplication) -> NSApplication.TerminateReply {
         // Save changes in the application's managed object context before the application terminates.
-        
-        //TODO: Save application state
-        
+
+		let window = NSApplication.shared.keyWindow!
+		if window is DefaultWindow{
+			if let controller = window.contentViewController as? NiSpaceViewController{
+				controller.niDocument.storeSpace()
+			}
+		}
+
 //        let context = persistentContainer.viewContext
 //        
 //        if !context.commitEditing() {
