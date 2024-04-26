@@ -60,9 +60,9 @@ struct HomeView: View {
 struct LeftSide: View {
 	var body: some View {
 		VStack{
-			Spacer().frame(maxHeight: 220)
+			Spacer().frame(maxHeight: 229)
 			Text("\(getWelcomeMessage()), \(NSUserName())")
-				.font(.custom("soehne-kraftig", size: 39))
+				.font(.custom("Sohne-Kraftig", size: 28))
 				.foregroundStyle(.sandLight11)
 			Spacer()
 		}
@@ -100,10 +100,10 @@ struct RightSide: View {
 	var body: some View {
 		VStack(alignment: .leading, spacing: 0.0){
 			
-			Spacer().frame(maxHeight: 200)
+			Spacer().frame(maxHeight: 213)
 			
 			HStack(){
-				Spacer(minLength: 8.0)
+				Spacer(minLength: 12.5)
 				PredictingTextField(
 					predictableValues: self.$predictableValues,
 					predictedValues: self.$predictedValues,
@@ -128,7 +128,8 @@ struct RightSide: View {
 			 .foregroundStyle(Color.sandLight1)
 			 .frame(minHeight: 64)
 			)
-			.padding([.leading, .bottom], 20.0)
+			.padding([.leading, .trailing], 60.0)
+			.padding(.bottom, 20.0)
 			
 			List(lstToShow(), id: \.self, selection: $selection){ v in
 				SuggestionRow(parent: self, data: v, selected: $selection, textFieldInput: $textFieldInput, isHoverActive: $isHoverActive)
@@ -137,7 +138,7 @@ struct RightSide: View {
 				.listRowInsets(EdgeInsets())
 			}
 			.accentColor(Color.transparent)
-			.padding(EdgeInsets(top: 0.0, leading: 0.0, bottom: 0.0, trailing: 0.0))
+			.padding(EdgeInsets(top: 0.0, leading: 40.0, bottom: 0.0, trailing: 0.0))
 			.scrollContentBackground(.hidden)
 			.background(Color.transparent)
 			.onContinuousHover(coordinateSpace: .local){ phase in
@@ -334,7 +335,7 @@ struct SuggestionRow: View {
 				.padding([.trailing], 8.0)
 			Text(getSpaceTitle())
 				.foregroundStyle(.sandDark8)
-				.font(.custom("soehne-buch", size: 18))
+				.font(.custom("Sohne-Buch", size: 18))
 			Spacer()
 		}
 		.padding(5.0)

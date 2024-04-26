@@ -19,6 +19,7 @@
 		A1E41BFA2ACB57EF00338417 /* ContentFrameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E41BF92ACB57EF00338417 /* ContentFrameView.swift */; };
 		A1E41BFF2ACB6B1300338417 /* FrameGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E41BFE2ACB6B1300338417 /* FrameGenerator.swift */; };
 		A1F33E2E2AB7299500E2E7CD /* DefaultWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F33E2D2AB7299500E2E7CD /* DefaultWindow.swift */; };
+		CD0FA1C12BDBE2BA0065313B /* Inter-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CD0FA1C02BDBE2BA0065313B /* Inter-Regular.ttf */; };
 		CD1160C82BD142D100345E3E /* WebURL in Frameworks */ = {isa = PBXBuildFile; productRef = CD1160C72BD142D100345E3E /* WebURL */; };
 		CD1160CA2BD27B9E00345E3E /* NiWebViewUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1160C92BD27B9E00345E3E /* NiWebViewUtils.swift */; };
 		CD1160CC2BD286ED00345E3E /* emptyTab-1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CD1160CB2BD286EC00345E3E /* emptyTab-1.jpg */; };
@@ -75,6 +76,7 @@
 		A1E41BF92ACB57EF00338417 /* ContentFrameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentFrameView.swift; sourceTree = "<group>"; };
 		A1E41BFE2ACB6B1300338417 /* FrameGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrameGenerator.swift; sourceTree = "<group>"; };
 		A1F33E2D2AB7299500E2E7CD /* DefaultWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultWindow.swift; sourceTree = "<group>"; };
+		CD0FA1C02BDBE2BA0065313B /* Inter-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Regular.ttf"; sourceTree = "<group>"; };
 		CD1160C92BD27B9E00345E3E /* NiWebViewUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiWebViewUtils.swift; sourceTree = "<group>"; };
 		CD1160CB2BD286EC00345E3E /* emptyTab-1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "emptyTab-1.jpg"; sourceTree = "<group>"; };
 		CD19BC932BC7E404002AF14E /* HomeAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = HomeAssets.xcassets; sourceTree = "<group>"; };
@@ -204,6 +206,7 @@
 		CD6317E72BC484E100434D56 /* fonts */ = {
 			isa = PBXGroup;
 			children = (
+				CD0FA1C02BDBE2BA0065313B /* Inter-Regular.ttf */,
 				CD6317EA2BC4852300434D56 /* soehne-buch.ttf */,
 				CD6317E82BC4852300434D56 /* soehne-dreiviertelfett.ttf */,
 				CD6317EB2BC4852300434D56 /* soehne-kraftig.ttf */,
@@ -366,6 +369,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A1B8E6AD2AAFB5EF00AC6566 /* Assets.xcassets in Resources */,
+				CD0FA1C12BDBE2BA0065313B /* Inter-Regular.ttf in Resources */,
 				CDDBCB2E2BD8FA4C00E7B187 /* errorLoading-1.jpeg in Resources */,
 				A1B8E6B02AAFB5EF00AC6566 /* Main.storyboard in Resources */,
 				CD6317EC2BC4852300434D56 /* soehne-dreiviertelfett.ttf in Resources */,

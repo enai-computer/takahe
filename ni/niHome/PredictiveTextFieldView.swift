@@ -63,7 +63,7 @@ struct PredictingTextField: View {
 		)
 		.textFieldStyle(.plain)
 		.border(Color.transparent)
-		.font(Font.custom("soehne-Leicht", size: 21))
+		.font(Font.custom("Sohne-Leicht", size: 21))
 	}
 	
 	/// Schedules prediction based on interval and only a if input is being made

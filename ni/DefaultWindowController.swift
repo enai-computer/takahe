@@ -9,6 +9,11 @@ class DefaultWindowController: NSWindowController{
 		window?.toggleFullScreen(nil)
 
 		contentViewController = NiSpaceViewController()
+
+		//HELP: in case you need to know the fonts
+//		for family: String in NSFontManager.shared.availableFonts{
+//			print(family)
+//		}
     }
 	
 }
