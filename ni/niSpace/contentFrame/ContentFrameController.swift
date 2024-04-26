@@ -28,7 +28,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
         self.view.layer?.cornerRadius = 10
         self.view.layer?.cornerCurve = .continuous
         self.view.layer?.borderWidth = 5
-        self.view.layer?.borderColor = NSColor(.sandLight3).cgColor
+        self.view.layer?.borderColor = NSColor(.sandLight4).cgColor
         self.view.layer?.backgroundColor = NSColor(.sandLight1).cgColor
 		
 		niContentFrameView!.cfHeadView.wantsLayer = true
@@ -297,6 +297,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
 			)
 		}
 		
+		//FIXME: this does not work :cry: 
 		let posInStack = Int(view.layer!.zPosition)
 		return NiDocumentObjectModel(
 			type: NiDocumentObjectTypes.contentFrame,

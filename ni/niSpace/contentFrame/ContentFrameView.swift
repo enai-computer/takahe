@@ -271,15 +271,17 @@ class ContentFrameView: NSBox{
         let webView = niContentTabView.selectedTabViewItem?.view as? NiWebView	//a new content frame will not have a webView yet
         
         if frameIsActive{
-            self.layer?.borderColor = NSColor(.sandLight3).cgColor
+            self.layer?.borderColor = NSColor(.sandLight4).cgColor
+			self.layer?.shadowOpacity = 1.0
             
 			showHeader()
             webView?.setActive()
 //			niContentTabView.selectedTabViewItem?.view?.wantsLayer = false
 //			niContentTabView.addSubview(niContentTabView.selectedTabViewItem!.view!)
         }else{
-            self.layer?.borderColor = NSColor(.sandLight1).cgColor
-  
+            self.layer?.borderColor = NSColor(.sandLight3).cgColor
+			self.layer?.shadowOpacity = 0.0
+			
 			hideHeader()
             webView?.setInactive()
 //			niContentTabView.selectedTabViewItem?.view?.wantsLayer = true

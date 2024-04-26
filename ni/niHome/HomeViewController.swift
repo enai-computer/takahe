@@ -43,20 +43,24 @@ class HomeViewController: NSHostingController<HomeView>{
 	
 	func show() {
 		presentingController.present(self, animator: HomeViewAnimator())
+		presentingController.homeViewShown = true
 	}
 	
 	func openNewSpace(name: String){
 		presentingController.createSpace(name: name)
+		presentingController.homeViewShown = false
 		presentingController.dismiss(self)
 	}
 	
 	func openExistingSpace(spaceId: UUID, name: String){
 		presentingController.loadSpace(niSpaceID: spaceId, name: name)
+		presentingController.homeViewShown = false
 		presentingController.dismiss(self)
 	}
 
 	func tryHide(){
 		if(presentingController.spaceLoaded){
+			presentingController.homeViewShown = false
 			presentingController.dismiss(self)
 		}
 	}

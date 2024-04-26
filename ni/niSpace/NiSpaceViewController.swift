@@ -6,6 +6,7 @@ import Carbon.HIToolbox
 class NiSpaceViewController: NSViewController{
     
 	private(set) var spaceLoaded: Bool = false
+	var homeViewShown: Bool = false
     private var niSpaceName: String
     
 	//header elements here:
@@ -109,7 +110,7 @@ class NiSpaceViewController: NSViewController{
 	 */
 	override func mouseDown(with event: NSEvent) {
 		let cursorPos = self.view.convert(event.locationInWindow, from: nil)
-		if(NSPointInRect(cursorPos, header.frame)){
+		if(!homeViewShown && NSPointInRect(cursorPos, header.frame)){
 			returnToHome()
 		}else{
 			nextResponder?.mouseDown(with: event)
