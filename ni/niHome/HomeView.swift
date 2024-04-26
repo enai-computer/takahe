@@ -60,9 +60,9 @@ struct HomeView: View {
 struct LeftSide: View {
 	var body: some View {
 		VStack{
-			Spacer().frame(maxHeight: 150)
+			Spacer().frame(maxHeight: 220)
 			Text("\(getWelcomeMessage()), \(NSUserName())")
-				.font(Font.custom("soehne-buch", size: 24))
+				.font(.custom("soehne-kraftig", size: 39))
 				.foregroundStyle(.sandLight11)
 			Spacer()
 		}
@@ -100,29 +100,35 @@ struct RightSide: View {
 	var body: some View {
 		VStack(alignment: .leading, spacing: 0.0){
 			
-			Spacer().frame(maxHeight: 150)
+			Spacer().frame(maxHeight: 200)
 			
-			PredictingTextField(
-				predictableValues: self.$predictableValues,
-				predictedValues: self.$predictedValues,
-				textFieldInput: self.$textFieldInput,
-				allowPredictions: self.$allowTextPredictions
-			)
-			.tint(.black)
-			.padding(EdgeInsets(top: 0.0, leading: 20.0, bottom: 0.0, trailing: 20.0))
-			.autocorrectionDisabled(false)
-			.textFieldStyle(RoundedBorderTextFieldStyle())
-			.disabled(textFieldDisabled)
-			.onKeyPress(phases: .up){k in
-				if ([.upArrow, .downArrow, .escape].contains(k.key)){
+			HStack(){
+				Spacer(minLength: 8.0)
+				PredictingTextField(
+					predictableValues: self.$predictableValues,
+					predictedValues: self.$predictedValues,
+					textFieldInput: self.$textFieldInput,
+					allowPredictions: self.$allowTextPredictions
+				)
+				.tint(.black)
+				.padding(EdgeInsets(top: 20.0, leading: 28.0, bottom: 20.0, trailing: 20.0))
+				.autocorrectionDisabled(false)
+				.disabled(textFieldDisabled)
+				.onKeyPress(phases: .up){k in
+					if ([.upArrow, .downArrow, .escape].contains(k.key)){
+						return .handled
+					}
+					isHoverActive = false
+					continueTyping()
 					return .handled
 				}
-				isHoverActive = false
-				continueTyping()
-				return .handled
-			}
-			.prefersDefaultFocus(in: homeViewNameSpace)
-
+				.prefersDefaultFocus(in: homeViewNameSpace)
+			}.background(
+				RoundedRectangle(cornerRadius: 16, style: .continuous)
+			 .foregroundStyle(Color.sandLight1)
+			 .frame(minHeight: 64)
+			)
+			.padding([.leading, .bottom], 20.0)
 			
 			List(lstToShow(), id: \.self, selection: $selection){ v in
 				SuggestionRow(parent: self, data: v, selected: $selection, textFieldInput: $textFieldInput, isHoverActive: $isHoverActive)
@@ -316,17 +322,19 @@ struct SuggestionRow: View {
 	
 	var body: some View {
 		HStack(alignment: .center){
+			Spacer().frame(maxWidth: 8)
 			Image("SpaceIcon")
 				.resizable()
-				.frame(width:15, height: 15)
+				.frame(width:18, height: 18)
 				.if(data.id == selected?.id){
 					$0.foregroundColor(.intAerospaceOrange)
 				} else: {
 					$0.foregroundColor(.sandLight9)
 				}
+				.padding([.trailing], 8.0)
 			Text(getSpaceTitle())
 				.foregroundStyle(.sandDark8)
-				.font(Font.custom("soehne-leicht", size: 12))
+				.font(.custom("soehne-buch", size: 18))
 			Spacer()
 		}
 		.padding(5.0)
@@ -381,7 +389,7 @@ struct MenuBar: View {
 }
 
 #Preview {
-	HomeView(ControllerWrapper(), width:800.0, height: 450.0)
+	HomeView(ControllerWrapper(), width:1600.0, height: 900.0)
 }
 
 /*

@@ -61,13 +61,9 @@ struct PredictingTextField: View {
 			onEditingChanged: { editing in self.realTimePrediction(status: editing)},
 			onCommit: { self.makePrediction()}
 		)
-		.overlay(
-			RoundedRectangle(cornerRadius: 5, style: .continuous)
-			.stroke(lineWidth: 3.0)
-			.foregroundStyle(Color.transparent)
-		)
-		.font(Font.custom("soehne-Leicht", size: 12))
-		
+		.textFieldStyle(.plain)
+		.border(Color.transparent)
+		.font(Font.custom("soehne-Leicht", size: 21))
 	}
 	
 	/// Schedules prediction based on interval and only a if input is being made

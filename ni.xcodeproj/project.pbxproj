@@ -99,6 +99,7 @@
 		CD8873732BCD235300007BE9 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		CD8873772BCD649800007BE9 /* TimeUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeUtils.swift; sourceTree = "<group>"; };
 		CDB06B602AF84E1F008DB8FF /* NiSpaceDocumentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiSpaceDocumentView.swift; sourceTree = "<group>"; };
+		CDBC33F82BDBC896000EEF3D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		CDD6B9382B152A8000C6144D /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		CDD6B93F2B169F7700C6144D /* DocumentTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentTable.swift; sourceTree = "<group>"; };
 		CDD6B9422B16A14300C6144D /* ContentTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentTable.swift; sourceTree = "<group>"; };
@@ -146,6 +147,7 @@
 		A1B8E6A42AAFB5EC00AC6566 /* ni */ = {
 			isa = PBXGroup;
 			children = (
+				CDBC33F82BDBC896000EEF3D /* Info.plist */,
 				CDD6B94F2B1BFE6500C6144D /* models */,
 				CDD6B9342B1527B700C6144D /* dal */,
 				CDD6B94A2B19469000C6144D /* niHome */,
@@ -574,11 +576,12 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 0;
+				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = SNXQ3BDQ5V;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = ni;
+				INFOPLIST_FILE = ni/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Enai;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_NSMainStoryboardFile = Main;
 				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
@@ -603,10 +606,11 @@
 				CODE_SIGN_ENTITLEMENTS = ni/ni.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 0;
+				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = ni;
+				INFOPLIST_FILE = ni/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Enai;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_NSMainStoryboardFile = Main;
 				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
