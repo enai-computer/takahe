@@ -21,7 +21,7 @@
             <rect key="frame" x="0.0" y="0.0" width="1600" height="900"/>
             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
             <subviews>
-                <scrollView fixedFrame="YES" borderType="line" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eEh-KB-aea" customClass="NiScrollView" customModule="ni" customModuleProvider="target">
+                <scrollView fixedFrame="YES" borderType="line" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eEh-KB-aea" customClass="NiScrollView" customModule="ni" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="0.0" width="1600" height="900"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <clipView key="contentView" id="yNc-sE-qT2">
@@ -39,7 +39,7 @@
                         <rect key="frame" x="-100" y="-100" width="792" height="15"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
-                    <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="LWS-iL-QKc">
+                    <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="LWS-iL-QKc">
                         <rect key="frame" x="1583" y="1" width="16" height="898"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
