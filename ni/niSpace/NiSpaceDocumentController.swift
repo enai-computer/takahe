@@ -38,6 +38,9 @@ class NiSpaceDocumentController: NSViewController{
 		self.view = NiSpaceDocumentView(height: initHeight)
 	}
 	
+	/**
+	 Do not use before view is loaded, as CF View size gets calculated by the visibleRect
+	*/
 	func openEmptyCF(){
 		let controller = openEmptyContentFrame()
 		let newCFView = controller.niContentFrameView!

@@ -346,7 +346,7 @@ struct SuggestionRow: View {
 		}
 		.frame(maxWidth: .infinity)
 		.gesture(
-			TapGesture(count: 2).onEnded {
+			TapGesture(count: 1).onEnded {
 				parent.switchToSpace()
 			}
 		)

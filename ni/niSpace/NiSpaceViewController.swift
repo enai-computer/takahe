@@ -144,13 +144,16 @@ class NiSpaceViewController: NSViewController{
 		spaceName.stringValue = name
 		
 		let spaceDoc = getEmptySpaceDocument(id: UUID(), name: name)
-		
+				
 		addChild(spaceDoc)
 		transition(from: niDocument, to: spaceDoc, options: [.crossfade])
 
 		niDocument = spaceDoc
 		
 		spaceLoaded = true
+		
+		//Needs to happen here, as we rely on the visible view for size
+		spaceDoc.openEmptyCF()
 	}
 	
 	func loadSpace(niSpaceID id: UUID, name: String){
