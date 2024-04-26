@@ -3,26 +3,24 @@
 import Cocoa
 import WebKit
 
-func runGoogleSearch(_ searchTerm: String, owner: Any?) -> ContentFrameView {
-        
-    let encodedSearchTerm = searchTerm.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
-    let urlStr = "https://www.google.com/search?q=" + encodedSearchTerm!
-
-    let frameController = ContentFrameController()
-    frameController.loadView()
-    frameController.openWebsiteInNewTab(urlStr)
-    let frame = frameController.view as! ContentFrameView
-
-    return frame
+func openEmptyContentFrame() -> ContentFrameController{
+	let frameController = ContentFrameController()
+	frameController.loadView()
+	
+	return frameController
 }
 
-func reopenContentFrame(contentFrame: NiContentFrameModel, tabs: [NiCFTabModel]) -> ContentFrameView {
+func reopenContentFrame(contentFrame: NiContentFrameModel, tabs: [NiCFTabModel]) -> ContentFrameController {
     
     let frameController = ContentFrameController()
     frameController.loadView()
     for tab in tabs{
         let record = CachedWebTable.fetchCachedWebsite(contentId: tab.id)
-        frameController.openWebsiteInNewTab(urlStr: record.url, contentId: tab.id, tabName: record.title)
+		if(WebViewState(rawValue: tab.contentState) == .empty ){
+			_ = frameController.openEmptyTab(tab.id)
+		}else{
+			_ = frameController.openWebsiteInNewTab(urlStr: record.url, contentId: tab.id, tabName: record.title, webContentState: tab.contentState)
+		}
     }
     
     //positioning
@@ -30,11 +28,13 @@ func reopenContentFrame(contentFrame: NiContentFrameModel, tabs: [NiCFTabModel])
         origin: CGPoint(x: contentFrame.position.x.px, y: contentFrame.position.y.px),
         size: CGSize(width: contentFrame.width.px, height: contentFrame.height.px)
     )
-    let frame = frameController.view as! ContentFrameView
-    frame.frame = initPosition
+
+	frameController.view.frame = initPosition
     
-    return frame
+    return frameController
 }
+
+//openEmptyTab WebViewState(rawValue: webContentState!)!
 
 extension NSView {
 

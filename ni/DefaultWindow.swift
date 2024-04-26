@@ -11,6 +11,20 @@ class DefaultWindow: NSWindow{
     }
 	
 	override func keyDown(with event: NSEvent) {
+		
+		if(event.modifierFlags.contains(.command)){
+			
+			if(event.keyCode == kVK_ANSI_N){
+				handleCMD_N()
+				return
+			}
+			
+			if(event.keyCode == kVK_ANSI_W){
+				handleCMD_W()
+				return
+			}
+		}
+		
 		switch Int(event.keyCode) {
 			case kVK_Escape:
 				print("Esc pressed")
@@ -25,4 +39,21 @@ class DefaultWindow: NSWindow{
 		return
 	}
 	
+	override func toggleToolbarShown(_ sender: Any?) {
+		//do nothing
+		var i = 0
+		i += 1
+	}
+	
+	func handleCMD_N(){
+		if let controller = contentViewController as? NiSpaceViewController{
+			controller.openEmptyCF()
+		}
+	}
+	
+	func handleCMD_W(){
+		if let controller = contentViewController as? NiSpaceViewController{
+			controller.closeTabOfTopCF()
+		}
+	}
 }

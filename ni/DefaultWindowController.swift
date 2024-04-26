@@ -6,6 +6,9 @@ class DefaultWindowController: NSWindowController{
     
     override func windowDidLoad() {
         super.windowDidLoad()
-        contentViewController = HomeViewController()
+		window?.toggleFullScreen(nil)
+
+		contentViewController = NiSpaceViewController()
     }
+	
 }

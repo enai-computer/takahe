@@ -11,62 +11,45 @@ import Carbon.HIToolbox
 
 class ContentFrameTabHeadTextNode: NSTextField{
 	
-	var parentController: ContentFrameTabHead?
+	var parentController: ContentFrameTabHead?{
+		set { delegate = newValue }
+		get { (delegate as! ContentFrameTabHead) }
+	}
 	
 	var defaultSize: CGSize?
-
 	
-	override func mouseDown(with event: NSEvent) {
-		if(!self.isEditable && event.clickCount == 1){
-			nextResponder?.mouseDown(with: event)
-			return
-		}
-		
-		if(!self.isEditable && event.clickCount == 2){
-//			enableEditing()
-			parentController?.startEditMode()
-		}
-	}
-	
-	override func keyDown(with event: NSEvent) {
-		if(self.isEditable && event.keyCode == kVK_Escape){
-			endEditing()
-		}
-	}
-	
+	//needed to handle ESC
 	override func cancelOperation(_ sender: Any?) {
-		endEditing()
+		parentController?.endEditMode()
 	}
 	
-	override func textDidEndEditing(_ notification: Notification) {
-		do{
-			try self.parentController?.loadWebsite(newURL: self.stringValue)
-			endEditing()
-		}catch{
-			print("Failed to load website, due to " + error.localizedDescription)
-		}
-	}
 
 	func enableEditing(urlStr: String){
+		self.stringValue = urlStr
+		
+		guard !self.isEditable else { return }
+		
 		self.isEditable = true
 		self.isSelectable = true
-		self.stringValue = urlStr
 		self.textColor = NSColor(.textLight)
 		self.backgroundColor = NSColor(.textBackgroundDark)
 		self.drawsBackground = true
+		
+		//starts editing
+		self.selectText(nil)
 		self.currentEditor()?.moveToEndOfLine(nil)
 	}
 	
 	func disableEditing(title: String){
+		self.stringValue = title
+		
+		guard self.isEditable else { return }
+		
 		self.isEditable = false
 		self.isSelectable = false
-		self.stringValue = title
 		self.textColor = NSColor(.textDark)
 		self.backgroundColor = NSColor(.transparent)
 		self.drawsBackground = false
 	}
-	
-	private func endEditing(){
-		parentController?.endEditMode()
-	}
+
 }

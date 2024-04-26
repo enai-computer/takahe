@@ -7,6 +7,7 @@
 
 import Foundation
 import Cocoa
+import Carbon.HIToolbox
 import WebKit
 
 class NiWebView: WKWebView{
@@ -46,9 +47,9 @@ class NiWebView: WKWebView{
 //        niOpenInNewTab.action = #selector(openLinkInNewTab(_:))
 //        niOpenInNewTab.target = self
 //        menu.items = [niOpenInNewTab]
-    
     }
     
+	//function for right click open link in new tab
     @objc func openLinkInNewTab(_ sender: AnyObject) {
             if let url = GlobalScriptMessageHandler.instance.contextMenu_href {
                 owner.openWebsiteInNewTab(url)
@@ -66,48 +67,6 @@ class NiWebView: WKWebView{
 		window?.makeFirstResponder(overlay)
         viewIsActive = false
     }
-//    
-//    override func mouseUp(with event: NSEvent) {
-//        if(viewIsActive){
-//            super.mouseUp(with: event)
-//        }
-//    }
-//    
-//    override func mouseDown(with event: NSEvent) {
-//        if(viewIsActive){
-//            super.mouseDown(with: event)
-//        }
-//    }
-//    
-//    override func mouseMoved(with event: NSEvent) {
-//        if(viewIsActive){
-//            super.mouseMoved(with: event)
-//        }
-//    }
-//
-//    override func mouseExited(with event: NSEvent) {
-//        if(viewIsActive){
-//            super.mouseExited(with: event)
-//        }
-//    }
-//    
-//    override func mouseEntered(with event: NSEvent) {
-//        if(viewIsActive){
-//            super.mouseEntered(with: event)
-//        }
-//    }
-//    
-//    override func mouseDragged(with event: NSEvent) {
-//        if(viewIsActive){
-//            super.mouseDragged(with: event)
-//        }
-//    }
-//    
-//    override func scrollWheel(with event: NSEvent) {
-//        if(viewIsActive){
-//            super.scrollWheel(with: event)
-//        }
-//    }
 }
 
 

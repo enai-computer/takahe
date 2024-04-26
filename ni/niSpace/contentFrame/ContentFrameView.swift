@@ -6,18 +6,6 @@ import WebKit
 import QuartzCore
 
 struct CFConstants {
-    static let nibName: String = "ContentFrameView"
-    static let x: CGFloat = 30
-    static let y: CGFloat = 30
-    static let wvWidth: CGFloat = 900
-    static let wvHeight: CGFloat = 400
-    static let wvBoarderWidth: CGFloat = 10.0
-    static let wvBoarderHeight: CGFloat = 10.0
-    static let width: CGFloat = wvWidth + wvBoarderWidth * 2
-    static let height: CGFloat = wvHeight + wvBoarderHeight * 2
-    static let boarderColor = NSColor(.sandLight1)
-    static let boarderColorSelected = NSColor(.sandLight3)
-
     // const needed for resizing:
     static let actionAreaMargin: CGFloat = 6
     static let cornerActionAreaMargin: CGFloat = 32
@@ -30,9 +18,9 @@ class ContentFrameView: NSBox{
     private var cursorOnBorder: OnBorder = .no
     private var deactivateDocumentResize: Bool = false
     private(set) var frameIsActive: Bool = false
-    private var positionInViewStack: Int = 0     // 0 = up top
     
-    private var niParentDoc: NiSpaceDocument? = nil
+    private var niParentDoc: NiSpaceDocumentView? = nil
+	private var myController: ContentFrameController? = nil
     
 	//Header
 	@IBOutlet var cfHeadView: ContentFrameHeadView!
@@ -50,22 +38,13 @@ class ContentFrameView: NSBox{
 		self.layer?.cornerCurve = .continuous
     }
     
-    func setFrameOwner(_ owner: NiSpaceDocument!){
+    func setFrameOwner(_ owner: NiSpaceDocumentView!){
         self.niParentDoc = owner
     }
-    
-    
-    @IBAction func updateContent(_ newURL: ContentFrameHeader) {
 
-        let urlReq = URLRequest(url: URL(string: newURL.stringValue)!)
-        
-        let activeTabView = niContentTabView.selectedTabViewItem?.view as! WKWebView
-        activeTabView.load(urlReq)
-        
-//        contentHeader.stringValue = newURL.stringValue
-//        contentHeader.disableEdit()
-    }
-
+	func setSelfController(_ con: ContentFrameController){
+		self.myController = con
+	}
     
     func createNewTab(tabView: NiWebView) -> Int{
 
@@ -74,33 +53,29 @@ class ContentFrameView: NSBox{
 
         tabViewItem.view = tabView
 
-        niContentTabView.addTabViewItem(tabViewItem)
+		//FIXME: function below creates issues
+		niContentTabView.addTabViewItem(tabViewItem)
         
         return tabViewPos
     }
     
+	func deleteSelectedTab(at position: Int){
+		niContentTabView.removeTabViewItem(niContentTabView.tabViewItem(at: position))
+	}
+	
     /**
      * window like functions (moving and resizing) here:
      */
     
-	/*
-	 * MARK: - keyboard caputure here:
-	 */
-	override func cancelOperation(_ sender: Any?) {
-		//TODO: Mimize window
-		return
-	}
 	
     /*
      *  MARK: - mouse down events here:
      */
     override func mouseDown(with event: NSEvent) {
         if !frameIsActive{
-            nextResponder?.mouseDown(with: event)
+			niParentDoc?.setTopNiFrame(NSApplication.shared.keyWindow, myController!)
             return
         }
-
-        super.mouseDown(with: event)
         
         let cursorPos = self.convert(event.locationInWindow, from: nil)
         
@@ -114,7 +89,7 @@ class ContentFrameView: NSBox{
         
         //clicked on close button
         if NSPointInRect(posInHeadView, closeButton.frame){
-			
+			niParentDoc?.removeNiFrame(myController!)
             removeFromSuperview()
         }
         
@@ -132,7 +107,7 @@ class ContentFrameView: NSBox{
         
         if NSPointInRect(posInHeadView, addTabButton.frame){
             if let cfc = self.nextResponder as? ContentFrameController{
-                cfc.openWebsiteInNewTab("https://www.google.com")
+				_ = cfc.openEmptyTab()
             }
         }
     }
@@ -251,17 +226,18 @@ class ContentFrameView: NSBox{
         }else if (frame.origin.x + xDiff + (frame.width/2.0) < docW){
             frame.origin.x += xDiff
         }
-            // do nothing when trying to move to far to the right
+		// do nothing when trying to move to far to the right
         
-        if (frame.origin.y - yDiff < 0){
-            frame.origin.y = 0
+        if (frame.origin.y - yDiff < 45){	//45px is the hight of the top bar + shadow - FIXME: write cleaner implemetation
+            frame.origin.y = 45
         }else if(frame.origin.y - yDiff + frame.height > docHeight){
-            frame.origin.y -= yDiff
             
             if(!deactivateDocumentResize && yDiff < 0){ //mouse moving downwards, not upwards
                 self.niParentDoc!.extendDocumentDownwards()
                 deactivateDocumentResize = true     //get's activated again when mouse lifted
-            }
+			}else{
+				frame.origin.y -= yDiff
+			}
 
         }else{
             frame.origin.y -= yDiff
@@ -292,21 +268,22 @@ class ContentFrameView: NSBox{
     func toggleActive(){
 
         frameIsActive = !frameIsActive
-        let webView = niContentTabView.selectedTabViewItem?.view as! NiWebView
+        let webView = niContentTabView.selectedTabViewItem?.view as? NiWebView	//a new content frame will not have a webView yet
         
         if frameIsActive{
-            self.layer?.borderColor = NSColor(.sandLight3).cgColor
-            positionInViewStack = 0
+            self.layer?.borderColor = NSColor(.sandLight4).cgColor
+			self.layer?.shadowOpacity = 1.0
             
 			showHeader()
-            webView.setActive()
+            webView?.setActive()
 //			niContentTabView.selectedTabViewItem?.view?.wantsLayer = false
 //			niContentTabView.addSubview(niContentTabView.selectedTabViewItem!.view!)
         }else{
-            self.layer?.borderColor = NSColor(.sandLight1).cgColor
-  
+            self.layer?.borderColor = NSColor(.sandLight3).cgColor
+			self.layer?.shadowOpacity = 0.0
+			
 			hideHeader()
-            webView.setInactive()
+            webView?.setInactive()
 //			niContentTabView.selectedTabViewItem?.view?.wantsLayer = true
 
 //			niContentTabView.selectedTabViewItem?.view?.removeFromSuperviewWithoutNeedingDisplay()
@@ -346,56 +323,4 @@ class ContentFrameView: NSBox{
 //		layout()
 	}
     
-	
-    func droppedInViewStack(){
-        positionInViewStack += 1
-    }
-    
-    func getPositionInViewStack() -> Int{
-        return positionInViewStack
-    }
-    
-    /*
-     * MARK: - store and load here
-     */
-    
-    func persistContent(documentId: UUID){
-        for tab in niContentTabView.tabViewItems{
-            let tabView = tab.view as! NiWebView
-            CachedWebTable.upsert(documentId: documentId, id: tabView.contentId, title: tabView.title, url: tabView.url!.absoluteString)
-        }
-    }
-    
-    
-    func toNiContentFrameModel() -> NiDocumentObjectModel{
-        
-        var children: [NiCFTabModel] = []
-        
-        for (i, tab) in niContentTabView.tabViewItems.enumerated(){
-            let tabView = tab.view as! NiWebView
-            children.append(
-                NiCFTabModel(
-                    id: tabView.contentId,
-                    contentType: NiCFTabContentType.web,
-                    active: true,
-                    position: i
-                )
-            )
-        }
-        
-        return NiDocumentObjectModel(
-            type: NiDocumentObjectTypes.contentFrame,
-            data: NiContentFrameModel(
-                state: NiConentFrameState.expanded,
-                height: NiCoordinate(px: self.frame.height),
-                width: NiCoordinate(px: self.frame.width),
-                position: NiViewPosition(
-                    posInViewStack: self.positionInViewStack,
-                    x: NiCoordinate(px: self.frame.origin.x),
-                    y: NiCoordinate(px: self.frame.origin.y)
-                ),
-                children: children
-            )
-        )
-    }
 }
