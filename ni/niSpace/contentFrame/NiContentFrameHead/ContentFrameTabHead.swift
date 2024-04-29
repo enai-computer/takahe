@@ -128,7 +128,7 @@ class ContentFrameTabHead: NSCollectionViewItem, NSTextFieldDelegate {
 	private func activateCloseButton(){
 		closeButton.isEnabled = true
 		closeButton.isHidden = false
-		closeButton.contentTintColor = NSColor(.intAerospaceOrange)
+		closeButton.contentTintColor = NSColor(.sandLight9)
 	}
 	
 	private func hideCloseButton(){
