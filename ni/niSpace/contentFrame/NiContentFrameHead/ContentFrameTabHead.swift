@@ -14,6 +14,7 @@ class ContentFrameTabHead: NSCollectionViewItem, NSTextFieldDelegate {
 	@IBOutlet var tabHeadTitle: ContentFrameTabHeadTextNode!
 	
 	private var inEditingMode = false
+//	private var hoverEffectTrackingArea: NSTrackingArea? = nil
 	var parentController: ContentFrameController?
 	var tabPosition: Int = -1
 	
@@ -28,6 +29,9 @@ class ContentFrameTabHead: NSCollectionViewItem, NSTextFieldDelegate {
 		tabHeadTitle.layer?.cornerRadius = 5
 		tabHeadTitle.layer?.cornerCurve = .continuous
 		tabHeadTitle.focusRingType = .none
+		
+		let hoverEffectTrackingArea = NSTrackingArea(rect: view.frame, options: [.mouseEnteredAndExited, .activeInKeyWindow], owner: self, userInfo: nil)
+		view.addTrackingArea(hoverEffectTrackingArea)
     }
 	
 	override func prepareForReuse() {
@@ -79,6 +83,22 @@ class ContentFrameTabHead: NSCollectionViewItem, NSTextFieldDelegate {
 		self.setText(viewModel)
 		self.setIcon(viewModel)
 		self.setBackground()
+		
+
+	}
+	
+	override func mouseExited(with event: NSEvent) {
+		if(self.isSelected){
+			return
+		}
+		setBackground()
+	}
+	
+	override func mouseEntered(with event: NSEvent) {
+		if(self.isSelected){
+			return
+		}
+		view.layer?.backgroundColor = NSColor(.sandLight6).cgColor
 	}
 	
 	private func setBackground(){
