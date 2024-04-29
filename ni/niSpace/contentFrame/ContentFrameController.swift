@@ -115,17 +115,24 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
 		niContentFrameView?.toggleActive()
 	}
 	
-	func removeSelectedTab(){
 	func closeTab(at: Int){
 		if(at != selectedTabModel){
 
 			niContentFrameView?.deleteSelectedTab(at: at)
 			self.tabs.remove(at: at)
 			
+			if (at < selectedTabModel){
+				selectedTabModel -= 1
+				tabs[selectedTabModel].webView?.tabHeadPosition = selectedTabModel
+			}
+			
+			niContentFrameView?.cfTabHeadCollection.reloadData()
 		}else {
 			closeSelectedTab()
 		}
 	}
+	
+	func closeSelectedTab(){
 		if(0 < selectedTabModel){
 			let toDeletePos = selectedTabModel
 			selectedTabModel -= 1
@@ -134,18 +141,19 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
 			self.tabs.remove(at: toDeletePos)
 			
 			selectTab(at: selectedTabModel)
+			
+			niContentFrameView?.cfTabHeadCollection.reloadData()
 		}else if( selectedTabModel == 0 && self.tabs.count == 1){
 			view.removeFromSuperview()
 		}else if( selectedTabModel == 0 && 1 < self.tabs.count){
-			if(0 < selectedTabModel){
-				let toDeletePos = selectedTabModel
-				selectedTabModel += 1
-				
-				niContentFrameView?.deleteSelectedTab(at: toDeletePos)
-				self.tabs.remove(at: toDeletePos)
-				
-				selectTab(at: selectedTabModel)
-			}
+			let toDeletePos = selectedTabModel
+			
+			niContentFrameView?.deleteSelectedTab(at: toDeletePos)
+			self.tabs.remove(at: toDeletePos)
+			
+			selectTab(at: selectedTabModel)
+			
+			niContentFrameView?.cfTabHeadCollection.reloadData()
 		}
 	}
 	
@@ -158,7 +166,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
 				_ = openEmptyTab()
 				return
 			}else if(event.keyCode == kVK_ANSI_W){
-				removeSelectedTab()
+				closeSelectedTab()
 				return
 			}
 		}

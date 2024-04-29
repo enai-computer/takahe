@@ -53,7 +53,7 @@ class NiSpaceDocumentController: NSViewController{
 	}
 	
 	func closeTabOfTopCF(){
-		myView.topNiFrame?.removeSelectedTab()
+		myView.topNiFrame?.closeSelectedTab()
 	}
 	
 	private func calculateOrigin(for frame: NSRect) -> CGPoint{

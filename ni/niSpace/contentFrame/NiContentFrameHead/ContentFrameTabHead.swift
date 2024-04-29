@@ -11,6 +11,7 @@ import FaviconFinder
 class ContentFrameTabHead: NSCollectionViewItem, NSTextFieldDelegate {
 
 	@IBOutlet var image: NSImageView!
+	@IBOutlet var closeButton: NiActionImage!
 	@IBOutlet var tabHeadTitle: ContentFrameTabHeadTextNode!
 	
 	private var inEditingMode = false
@@ -29,6 +30,9 @@ class ContentFrameTabHead: NSCollectionViewItem, NSTextFieldDelegate {
 		tabHeadTitle.layer?.cornerRadius = 5
 		tabHeadTitle.layer?.cornerCurve = .continuous
 		tabHeadTitle.focusRingType = .none
+		
+		hideCloseButton()
+		closeButton.mouseDownFunction = pressedClosedButton
 		
 		let hoverEffectTrackingArea = NSTrackingArea(rect: view.frame, options: [.mouseEnteredAndExited, .activeInKeyWindow], owner: self, userInfo: nil)
 		view.addTrackingArea(hoverEffectTrackingArea)
@@ -83,8 +87,10 @@ class ContentFrameTabHead: NSCollectionViewItem, NSTextFieldDelegate {
 		self.setText(viewModel)
 		self.setIcon(viewModel)
 		self.setBackground()
-		
-
+	}
+	
+	private func pressedClosedButton(with event: NSEvent) {
+		parentController?.closeTab(at: tabPosition)
 	}
 	
 	override func mouseExited(with event: NSEvent) {
@@ -92,6 +98,7 @@ class ContentFrameTabHead: NSCollectionViewItem, NSTextFieldDelegate {
 			return
 		}
 		setBackground()
+		hideCloseButton()
 	}
 	
 	override func mouseEntered(with event: NSEvent) {
@@ -99,15 +106,36 @@ class ContentFrameTabHead: NSCollectionViewItem, NSTextFieldDelegate {
 			return
 		}
 		view.layer?.backgroundColor = NSColor(.sandLight6).cgColor
+		activateCloseButton()
 	}
 	
 	private func setBackground(){
 		if(self.isSelected){
 			view.layer?.backgroundColor = NSColor(.sandLight1).cgColor
+			passiveCloseButton()
 		}else{
 			view.layer?.backgroundColor = NSColor(.transparent).cgColor
+			hideCloseButton()
 		}
 	}
+	
+	private func passiveCloseButton(){
+		closeButton.isEnabled = true
+		closeButton.isHidden = false
+		closeButton.contentTintColor = NSColor(.sandLight9)
+	}
+	
+	private func activateCloseButton(){
+		closeButton.isEnabled = true
+		closeButton.isHidden = false
+		closeButton.contentTintColor = NSColor(.intAerospaceOrange)
+	}
+	
+	private func hideCloseButton(){
+		closeButton.isEnabled = false
+		closeButton.isHidden = true
+	}
+	
 	
 	@MainActor
 	func setIcon(img: NSImage?){
