@@ -85,10 +85,23 @@ class NiSpaceDocumentController: NSViewController{
 	func recreateSpace(docModel: NiDocumentObjectModel){
 		if (docModel.type == NiDocumentObjectTypes.document){
 			let data = docModel.data as! NiDocumentModel
-			let children = data.children
-			for child in children{
+			let docModelChildren = data.children
+			var contentFramesToRecreate: [NiContentFrameModel] = []
+			
+			//Ordering the CFs so they will appear in the same order again
+			//we'll need to add the one at the bottom first
+			//posInViewStack is the Z-Position of the CF smallest first and then upwards
+			// the setTopNiFrame function will be called and automatically renumber the Cframes
+			for child in docModelChildren{
 				let childData = child.data as! NiContentFrameModel
-				recreateContentFrame(data: childData)
+				contentFramesToRecreate.append(childData)
+			}
+			let orderedCFsToRecreate = contentFramesToRecreate.sorted{
+				$0.position.posInViewStack < $1.position.posInViewStack
+			}
+			
+			for cfData in orderedCFsToRecreate{
+				recreateContentFrame(data: cfData)
 			}
 		}
 	}

@@ -332,7 +332,8 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
 			)
 		}
 		
-		//FIXME: this does not work :cry: 
+		
+		//FIXME: this does not work :cry:
 		let posInStack = Int(view.layer!.zPosition)
 		return NiDocumentObjectModel(
 			type: NiDocumentObjectTypes.contentFrame,

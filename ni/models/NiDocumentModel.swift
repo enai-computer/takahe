@@ -24,6 +24,7 @@ enum NiDocumentObjectTypes: String, Codable{
 
 
 class NiDocumentObjectModel: Codable{
+
     var type: NiDocumentObjectTypes
     var data: Codable
     

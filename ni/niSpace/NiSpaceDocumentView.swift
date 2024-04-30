@@ -77,11 +77,19 @@ class NiSpaceDocumentView: NSView{
 	}
 
     func setTopNiFrame(_ window: NSWindow?, _ newTopFrame: ContentFrameController){
+		let zPosOldTopNiFrame = topNiFrame?.view.layer?.zPosition
         topNiFrame?.toggleActive()
         
         //switch
 		newTopFrame.view.removeFromSuperview()
 		self.addSubview(newTopFrame.view)
+		if zPosOldTopNiFrame != nil {
+			//TODO: fix at some point. May cause stack-overflow
+			//on document reload zPostions are regiven, so we renumber them from 0 upwards
+			newTopFrame.view.layer?.zPosition = zPosOldTopNiFrame! + 1
+		}else{
+			newTopFrame.view.layer?.zPosition = 0
+		}
         topNiFrame = newTopFrame
 
         topNiFrame?.toggleActive()

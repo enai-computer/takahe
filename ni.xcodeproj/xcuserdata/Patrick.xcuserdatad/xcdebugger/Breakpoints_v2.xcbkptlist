@@ -30,8 +30,8 @@
             filePath = "ni/niSpace/contentFrame/ContentFrameController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "341"
-            endingLineNumber = "341"
+            startingLineNumber = "342"
+            endingLineNumber = "342"
             landmarkName = "toNiContentFrameModel()"
             landmarkType = "7">
          </BreakpointContent>
@@ -62,8 +62,8 @@
             filePath = "ni/niSpace/NiSpaceDocumentController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "110"
-            endingLineNumber = "110"
+            startingLineNumber = "123"
+            endingLineNumber = "123"
             landmarkName = "storeSpace()"
             landmarkType = "7">
          </BreakpointContent>
@@ -78,8 +78,8 @@
             filePath = "ni/niSpace/NiSpaceDocumentController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "131"
-            endingLineNumber = "131"
+            startingLineNumber = "144"
+            endingLineNumber = "144"
             landmarkName = "genJson()"
             landmarkType = "7">
          </BreakpointContent>
@@ -146,36 +146,38 @@
             endingLineNumber = "177"
             landmarkName = "loadSpace(niSpaceID:name:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "1381AB5F-2B51-4CC4-B248-656D027FF9F6 - 2b41d2de2767c350"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "ni.NiSpaceViewController.loadSpace(niSpaceID: Foundation.UUID, name: Swift.String) -&gt; ()"
-                  moduleName = "ni"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Patrick/Workbench/takahe/ni/niSpace/NiSpaceViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "178"
-                  endingLineNumber = "178">
-               </Location>
-               <Location
-                  uuid = "1381AB5F-2B51-4CC4-B248-656D027FF9F6 - 2b41d2de2767c3bf"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "ni.NiSpaceViewController.loadSpace(niSpaceID: Foundation.UUID, name: Swift.String) -&gt; ()"
-                  moduleName = "ni"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Patrick/Workbench/takahe/ni/niSpace/NiSpaceViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "177"
-                  endingLineNumber = "177">
-               </Location>
-            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "241EB2E4-F3C1-42C0-A001-E454076BF11D"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ni/niSpace/contentFrame/ContentFrameController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "338"
+            endingLineNumber = "338"
+            landmarkName = "toNiContentFrameModel()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C8E296AB-CF1A-4B14-925A-E65D93D776B1"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ni/niSpace/NiSpaceDocumentController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "131"
+            endingLineNumber = "131"
+            landmarkName = "genJson()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
