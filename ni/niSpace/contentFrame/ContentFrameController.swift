@@ -184,9 +184,9 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
 		//an empty tab still loads a local html
 		if(self.tabs[wv.tabHeadPosition].state != .empty && self.tabs[wv.tabHeadPosition].state != .error ){
 			self.tabs[wv.tabHeadPosition].state = .loaded
+			niContentFrameView?.cfTabHeadCollection.reloadItems(at: Set(arrayLiteral: IndexPath(item: wv.tabHeadPosition, section: 0)))
 		}
 		
-		niContentFrameView?.cfTabHeadCollection.reloadItems(at: Set(arrayLiteral: IndexPath(item: wv.tabHeadPosition, section: 0)))
 	}
 	
 	func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: any Error){
