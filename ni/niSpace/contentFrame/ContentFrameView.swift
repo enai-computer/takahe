@@ -255,6 +255,14 @@ class ContentFrameView: NSBox{
         }
         nsize.height -= yDiff
         
+		//enforcing min CF size
+		if(nsize.height < 150){
+			nsize.height = 150
+		}
+		if(nsize.width < 350){
+			nsize.width = 350
+		}
+		
         self.setFrameSize(nsize)
         
         if(invertX){
