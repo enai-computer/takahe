@@ -47,12 +47,14 @@ class HomeViewController: NSHostingController<HomeView>{
 	}
 	
 	func openNewSpace(name: String){
+		presentingController.niDocument.myView.isHidden = false
 		presentingController.createSpace(name: name)
 		presentingController.homeViewShown = false
 		presentingController.dismiss(self)
 	}
 	
 	func openExistingSpace(spaceId: UUID, name: String){
+		presentingController.niDocument.myView.isHidden = false
 		presentingController.loadSpace(niSpaceID: spaceId, name: name)
 		presentingController.homeViewShown = false
 		presentingController.dismiss(self)
@@ -60,6 +62,7 @@ class HomeViewController: NSHostingController<HomeView>{
 
 	func tryHide(){
 		if(presentingController.spaceLoaded){
+			presentingController.niDocument.myView.isHidden = false
 			presentingController.homeViewShown = false
 			presentingController.dismiss(self)
 		}

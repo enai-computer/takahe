@@ -93,6 +93,7 @@ class NiSpaceViewController: NSViewController{
     
 	func returnToHome() {
 		niDocument.storeSpace()
+		niDocument.myView.isHidden = true
 		let hostingController = HomeViewController(presentingController: self)
 		hostingController.show()
 	}
