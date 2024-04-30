@@ -295,9 +295,6 @@ class ContentFrameView: NSBox{
     }
 	
 	private func hideHeader(){
-		if(1 == niContentTabView.numberOfTabViewItems){
-			cfHeadView.isHidden = true
-		}
 		
 //		let currentSize = niContentTabView.frame.size
 //		var nsize = currentSize
@@ -314,7 +311,6 @@ class ContentFrameView: NSBox{
 	}
 	
 	private func showHeader(){
-		cfHeadView.isHidden = false
 
 //		let currentSize = niContentTabView.frame.size
 //		var nsize = currentSize
