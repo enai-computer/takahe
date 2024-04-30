@@ -272,6 +272,8 @@ class ContentFrameView: NSBox{
         
         if frameIsActive{
             self.layer?.borderColor = NSColor(.sandLight4).cgColor
+			self.layer?.backgroundColor = NSColor(.sandLight4).cgColor
+			cfHeadView.layer?.backgroundColor = NSColor(.sandLight4).cgColor
 			self.layer?.shadowOpacity = 1.0
             
 			showHeader()
@@ -280,6 +282,8 @@ class ContentFrameView: NSBox{
 //			niContentTabView.addSubview(niContentTabView.selectedTabViewItem!.view!)
         }else{
             self.layer?.borderColor = NSColor(.sandLight3).cgColor
+			self.layer?.backgroundColor = NSColor(.sandLight3).cgColor
+			cfHeadView.layer?.backgroundColor = NSColor(.sandLight3).cgColor
 			self.layer?.shadowOpacity = 0.0
 			
 			hideHeader()

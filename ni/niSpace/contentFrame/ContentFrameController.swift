@@ -29,10 +29,10 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
         self.view.layer?.cornerCurve = .continuous
         self.view.layer?.borderWidth = 5
         self.view.layer?.borderColor = NSColor(.sandLight4).cgColor
-        self.view.layer?.backgroundColor = NSColor(.sandLight1).cgColor
+        self.view.layer?.backgroundColor = NSColor(.sandLight4).cgColor
 		
 		niContentFrameView!.cfHeadView.wantsLayer = true
-		niContentFrameView!.cfHeadView.layer?.backgroundColor = NSColor(.sandLight3).cgColor
+		niContentFrameView!.cfHeadView.layer?.backgroundColor = NSColor(.sandLight4).cgColor
     }
     
 
@@ -231,7 +231,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
 		
 		let viewModel = tabs[indexPath.item]
 		if(!viewModel.inEditingMode){
-			return NSSize(width: 195, height: 22)
+			return NSSize(width: 195, height: 30)
 		}
 		
 		let maxWidth = (niContentFrameView?.cfTabHeadCollection.frame.width ?? 780) / 2
@@ -245,7 +245,15 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
 			tabHeadWidth = 200
 		}
 		
-		return NSSize(width: tabHeadWidth, height: 22)
+		return NSSize(width: tabHeadWidth, height: 30)
+	}
+	
+	func collectionView(
+		_ collectionView: NSCollectionView,
+		layout collectionViewLayout: NSCollectionViewLayout,
+		minimumLineSpacingForSectionAt section: Int
+	) -> CGFloat{
+		return 4.00
 	}
 	
 	func selectTab(at: Int, mouseDownEvent: NSEvent? = nil){

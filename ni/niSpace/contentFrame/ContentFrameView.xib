@@ -18,21 +18,21 @@
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
                     <customView id="Pdl-B9-RoX" customClass="ContentFrameHeadView" customModule="ni" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="595" width="1056" height="30"/>
+                        <rect key="frame" x="0.0" y="591" width="1056" height="34"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <subviews>
                             <scrollView wantsLayer="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasVerticalScroller="NO" usesPredominantAxisScrolling="NO" verticalScrollElasticity="none" id="AwF-3w-n4g">
-                                <rect key="frame" x="65" y="0.0" width="926" height="30"/>
+                                <rect key="frame" x="94" y="4" width="910" height="30"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <clipView key="contentView" drawsBackground="NO" id="PQx-Md-yMS">
-                                    <rect key="frame" x="0.0" y="0.0" width="926" height="30"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="910" height="30"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <collectionView id="wB8-UP-dFY">
-                                            <rect key="frame" x="0.0" y="0.0" width="926" height="30"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="910" height="30"/>
                                             <autoresizingMask key="autoresizingMask" heightSizable="YES"/>
-                                            <collectionViewFlowLayout key="collectionViewLayout" minimumInteritemSpacing="8" minimumLineSpacing="1" scrollDirection="horizontal" id="Wti-La-5hp">
-                                                <size key="itemSize" width="195" height="22"/>
+                                            <collectionViewFlowLayout key="collectionViewLayout" minimumInteritemSpacing="16" scrollDirection="horizontal" id="Wti-La-5hp">
+                                                <size key="itemSize" width="195" height="30"/>
                                             </collectionViewFlowLayout>
                                             <color key="primaryBackgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                             <connections>
@@ -41,10 +41,10 @@
                                             </connections>
                                         </collectionView>
                                     </subviews>
-                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="backgroundColor" name="SandLight4"/>
                                 </clipView>
                                 <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="aVi-Gl-lD4">
-                                    <rect key="frame" x="0.0" y="14" width="916" height="16"/>
+                                    <rect key="frame" x="0.0" y="14" width="910" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="cGw-ix-zoM">
@@ -53,29 +53,29 @@
                                 </scroller>
                             </scrollView>
                             <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rcT-6J-b1L" userLabel="back-button">
-                                <rect key="frame" x="6" y="7" width="16" height="16"/>
+                                <rect key="frame" x="6" y="7" width="24" height="24"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="arrowLeft" id="T7D-RU-6Pz"/>
                             </imageView>
                             <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eFl-A6-f9y" userLabel="forward-button">
-                                <rect key="frame" x="26" y="7" width="16" height="16"/>
+                                <rect key="frame" x="30" y="7" width="24" height="24"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="arrowRight" id="i8b-xK-NTA"/>
                             </imageView>
                             <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GMe-PK-SX5" userLabel="Add Button">
-                                <rect key="frame" x="46" y="7" width="18" height="18"/>
+                                <rect key="frame" x="54" y="7" width="24" height="24"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="plus" id="GM5-6m-UKQ"/>
                             </imageView>
                             <imageView autoresizesSubviews="NO" id="Utx-ML-7oY" userLabel="Close CF Button">
-                                <rect key="frame" x="1027" y="7.5" width="15.5" height="13"/>
+                                <rect key="frame" x="1027" y="11.5" width="15.5" height="13"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                 <imageCell key="cell" alignment="left" imageAlignment="topRight" image="xmark" catalog="system" id="1Vu-cP-tyr"/>
                             </imageView>
                         </subviews>
                     </customView>
                     <tabView fixedFrame="YES" type="noTabsNoBorder" translatesAutoresizingMaskIntoConstraints="NO" id="d8b-7o-70b">
-                        <rect key="frame" x="-3" y="-4" width="1062" height="601"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1056" height="591"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <font key="font" metaFont="system"/>
                     </tabView>
@@ -85,8 +85,8 @@
                 <size key="offset" width="2" height="-4"/>
                 <color key="color" red="0.4392156862745098" green="0.43529411764705883" blue="0.42745098039215684" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="displayP3"/>
             </shadow>
-            <color key="borderColor" name="SandLight3"/>
-            <color key="fillColor" name="SandLight1"/>
+            <color key="borderColor" name="SandLight4"/>
+            <color key="fillColor" name="SandLight4"/>
             <connections>
                 <outlet property="addTabButton" destination="GMe-PK-SX5" id="bBG-vF-gtC"/>
                 <outlet property="cfHeadView" destination="Pdl-B9-RoX" id="S8d-c6-NIZ"/>
@@ -108,15 +108,12 @@
         </menu>
     </objects>
     <resources>
-        <image name="arrowLeft" width="14" height="13"/>
-        <image name="arrowRight" width="14" height="13"/>
-        <image name="plus" width="14" height="14"/>
+        <image name="arrowLeft" width="24" height="24"/>
+        <image name="arrowRight" width="24" height="24"/>
+        <image name="plus" width="24" height="24"/>
         <image name="xmark" catalog="system" width="14" height="13"/>
-        <namedColor name="SandLight1">
-            <color red="0.99215686274509807" green="0.99215686274509807" blue="0.9882352941176471" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="SandLight3">
-            <color red="0.95294117647058818" green="0.95294117647058818" blue="0.94901960784313721" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <namedColor name="SandLight4">
+            <color red="0.93333333333333335" green="0.93333333333333335" blue="0.92549019607843142" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>
