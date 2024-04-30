@@ -21,7 +21,7 @@ class HomeViewController: NSHostingController<HomeView>{
 		
 		//TODO: fix sizing options
 		w = presentingController.view.frame.width - 170
-		h = presentingController.view.frame.height - 100
+		h = presentingController.view.frame.height - 50
 		
 
 		super.init(rootView: HomeView(wrapper, width: w, height: h))

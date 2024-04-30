@@ -24,7 +24,7 @@ class HomeViewAnimator: NSObject, NSViewControllerPresentationAnimator{
 		
 		NSAnimationContext.runAnimationGroup({ context in
 			context.duration = 0.5
-			viewController.view.animator().frame.origin.y = fromViewController.view.frame.origin.y + 100
+			viewController.view.animator().frame.origin.y = fromViewController.view.frame.origin.y + 50
 		})
 	}
 
