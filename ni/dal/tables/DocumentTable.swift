@@ -58,7 +58,7 @@ class DocumentTable{
         }
     }
     
-    static func fetchListofDocs(limit: Int = 10) -> [NiDocumentViewModel]{
+    static func fetchListofDocs(limit: Int = 30) -> [NiDocumentViewModel]{
         var res: [NiDocumentViewModel] = []
         
         do{
