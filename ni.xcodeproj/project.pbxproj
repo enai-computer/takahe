@@ -289,8 +289,8 @@
 				CD19BC932BC7E404002AF14E /* HomeAssets.xcassets */,
 				CD19BC952BC7E5BF002AF14E /* HomeViewUtils.swift */,
 				CD19BC982BC81A46002AF14E /* PredictiveTextFieldView.swift */,
-				CD8873732BCD235300007BE9 /* HomeViewController.swift */,
 				CDDBCB282BD6AE6900E7B187 /* HomeViewAnimator.swift */,
+				CD8873732BCD235300007BE9 /* HomeViewController.swift */,
 			);
 			path = niHome;
 			sourceTree = "<group>";
@@ -584,7 +584,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = SNXQ3BDQ5V;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -614,7 +614,7 @@
 				CODE_SIGN_ENTITLEMENTS = ni/ni.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEAD_CODE_STRIPPING = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ni/Info.plist;

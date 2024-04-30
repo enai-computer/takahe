@@ -170,6 +170,8 @@ class NiSpaceViewController: NSViewController{
 			let docHeightPx = (spaceModel?.data as? NiDocumentModel)?.height.px
 			spaceDoc = getEmptySpaceDocument(id: id, name: name, height: docHeightPx)
 			spaceDoc.recreateSpace(docModel: spaceModel!)
+			
+			niDocument.view.frame = spaceDoc.view.frame
 		}
 		
 		addChild(spaceDoc)
