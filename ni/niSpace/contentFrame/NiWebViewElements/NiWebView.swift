@@ -10,22 +10,26 @@ import Cocoa
 import Carbon.HIToolbox
 import WebKit
 
+
+
 class NiWebView: WKWebView{
     
     private let owner: ContentFrameController
     let contentId: UUID
-    private var viewIsActive: Bool = true
+    private(set) var viewIsActive: Bool = true
 	var tabHeadPosition: Int = -1
 	
 	// overlays own view to deactivate clicks and visualise deactivation state
 	private var overlay: NSView?
 	
-    init(contentId: UUID, owner: ContentFrameController, frame: NSRect, configuration: WKWebViewConfiguration) {
+    init(contentId: UUID, owner: ContentFrameController, frame: NSRect) {
         
         self.contentId = contentId
         self.owner = owner
+		
+		let wvConfig = generateWKWebViewConfiguration()
         
-        super.init(frame: frame, configuration: configuration)
+        super.init(frame: frame, configuration: wvConfig)
         GlobalScriptMessageHandler.instance.ensureHandles(configuration: self.configuration)
     }
     
@@ -33,6 +37,8 @@ class NiWebView: WKWebView{
         fatalError("init(coder:) has not been implemented")
     }
     
+
+	
     override func willOpenMenu(_ menu: NSMenu, with event: NSEvent) {
         
         // Hacky do nothing, if not a link
@@ -65,8 +71,8 @@ class NiWebView: WKWebView{
 		overlay = cfOverlay(frame: self.frame, nxtResponder: owner.view)
 		addSubview(overlay!)
 		window?.makeFirstResponder(overlay)
-        viewIsActive = false
-    }
+        viewIsActive = false    }
+	
 }
 
 

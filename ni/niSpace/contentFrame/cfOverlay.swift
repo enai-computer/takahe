@@ -15,6 +15,9 @@ class cfOverlay: NSView{
 	init(frame: NSRect, nxtResponder: NSResponder?){
 		super.init(frame: frame)
 		self.niNxtResponder = nxtResponder
+		
+		let fullFrametrackingArea = NSTrackingArea(rect: frame, options: [.mouseEnteredAndExited, .activeAlways, .cursorUpdate, .enabledDuringMouseDrag, .mouseMoved], owner: self, userInfo: nil)
+		addTrackingArea(fullFrametrackingArea)
 	}
 	
 	required init?(coder: NSCoder) {

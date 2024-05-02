@@ -38,14 +38,14 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
 
     private func getNewWebView(contentId: UUID, urlReq: URLRequest, frame: NSRect) -> NiWebView {
 
-        let wkView = NiWebView(contentId: contentId, owner: self, frame: frame, configuration: WKWebViewConfiguration())
+        let wkView = NiWebView(contentId: contentId, owner: self, frame: frame)
         wkView.load(urlReq)
         wkView.navigationDelegate = self
         return wkView
     }
     
 	func openEmptyTab(_ contentId: UUID = UUID()) -> Int{
-		let niWebView = NiWebView(contentId: contentId, owner: self, frame: niContentFrameView!.frame, configuration: WKWebViewConfiguration())
+		let niWebView = NiWebView(contentId: contentId, owner: self, frame: niContentFrameView!.frame)
 
 		let localHTMLurl = getEmtpyWebViewURL()
 		niWebView.loadFileURL(localHTMLurl, allowingReadAccessTo: localHTMLurl)
