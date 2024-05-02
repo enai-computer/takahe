@@ -20,7 +20,7 @@ class HomeViewController: NSHostingController<HomeView>{
 		let wrapper = ControllerWrapper()
 		
 		//TODO: fix sizing options
-		w = presentingController.view.frame.width - 170
+		w = presentingController.view.frame.width - 100
 		h = presentingController.view.frame.height - 50
 		
 
@@ -33,7 +33,7 @@ class HomeViewController: NSHostingController<HomeView>{
 		
 		view.frame.size.width = w
 		view.frame.size.height = h
-		view.frame.origin.x = presentingController.view.frame.origin.x + 85
+		view.frame.origin.x = presentingController.view.frame.origin.x + 50
 		
 	}
 	

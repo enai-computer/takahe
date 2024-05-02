@@ -39,7 +39,7 @@ class NiWebView: WKWebView{
         if(menu.items[0].title == "Reload"){
             return
         }
-        
+		
         // if menuItem.identifier?.rawValue == "WKMenuItemIdentifierOpenLink" {
         let niOpenInNewTab = NSMenuItem()
         

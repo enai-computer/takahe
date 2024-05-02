@@ -316,7 +316,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
 		}
 	}
 	
-	func toNiContentFrameModel() -> NiDocumentObjectModel{
+	func toNiContentFrameModel() -> (model: NiDocumentObjectModel, nrOfTabs: Int){
 		
 		var children: [NiCFTabModel] = []
 		
@@ -335,7 +335,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
 		
 		//FIXME: this does not work :cry:
 		let posInStack = Int(view.layer!.zPosition)
-		return NiDocumentObjectModel(
+		let model = NiDocumentObjectModel(
 			type: NiDocumentObjectTypes.contentFrame,
 			data: NiContentFrameModel(
 				state: NiConentFrameState.expanded,
@@ -349,5 +349,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
 				children: children
 			)
 		)
+		
+		return (model: model, nrOfTabs: children.count)
 	}
 }

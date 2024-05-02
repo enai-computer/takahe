@@ -19,6 +19,7 @@
 		A1E41BFA2ACB57EF00338417 /* ContentFrameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E41BF92ACB57EF00338417 /* ContentFrameView.swift */; };
 		A1E41BFF2ACB6B1300338417 /* FrameGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E41BFE2ACB6B1300338417 /* FrameGenerator.swift */; };
 		A1F33E2E2AB7299500E2E7CD /* DefaultWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F33E2D2AB7299500E2E7CD /* DefaultWindow.swift */; };
+		CD0589372BE1837B00E9A01E /* PostHog in Frameworks */ = {isa = PBXBuildFile; productRef = CD0589362BE1837B00E9A01E /* PostHog */; };
 		CD0FA1C12BDBE2BA0065313B /* Inter-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CD0FA1C02BDBE2BA0065313B /* Inter-Regular.ttf */; };
 		CD1160C82BD142D100345E3E /* WebURL in Frameworks */ = {isa = PBXBuildFile; productRef = CD1160C72BD142D100345E3E /* WebURL */; };
 		CD1160CA2BD27B9E00345E3E /* NiWebViewUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1160C92BD27B9E00345E3E /* NiWebViewUtils.swift */; };
@@ -126,6 +127,7 @@
 				CDD6B93E2B152D3F00C6144D /* SQLite in Frameworks */,
 				CD75784A2BC0207E00293930 /* FaviconFinder in Frameworks */,
 				CD1160C82BD142D100345E3E /* WebURL in Frameworks */,
+				CD0589372BE1837B00E9A01E /* PostHog in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -323,6 +325,7 @@
 				CDD6B93D2B152D3F00C6144D /* SQLite */,
 				CD7578492BC0207E00293930 /* FaviconFinder */,
 				CD1160C72BD142D100345E3E /* WebURL */,
+				CD0589362BE1837B00E9A01E /* PostHog */,
 			);
 			productName = ni;
 			productReference = A1B8E6A22AAFB5EC00AC6566 /* ni.app */;
@@ -356,6 +359,7 @@
 				CDD6B93C2B152D3F00C6144D /* XCLocalSwiftPackageReference "../takahe-dependencies/SQLite.swift" */,
 				CD7578482BC0207E00293930 /* XCRemoteSwiftPackageReference "FaviconFinder" */,
 				CD1160C62BD142D100345E3E /* XCRemoteSwiftPackageReference "swift-url" */,
+				CD0589352BE1837B00E9A01E /* XCRemoteSwiftPackageReference "posthog-ios" */,
 			);
 			productRefGroup = A1B8E6A32AAFB5EC00AC6566 /* Products */;
 			projectDirPath = "";
@@ -584,7 +588,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = SNXQ3BDQ5V;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -614,7 +618,7 @@
 				CODE_SIGN_ENTITLEMENTS = ni/ni.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEAD_CODE_STRIPPING = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ni/Info.plist;
@@ -665,6 +669,14 @@
 /* End XCLocalSwiftPackageReference section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		CD0589352BE1837B00E9A01E /* XCRemoteSwiftPackageReference "posthog-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/PostHog/posthog-ios.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.2.4;
+			};
+		};
 		CD1160C62BD142D100345E3E /* XCRemoteSwiftPackageReference "swift-url" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/karwa/swift-url.git";
@@ -684,6 +696,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		CD0589362BE1837B00E9A01E /* PostHog */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CD0589352BE1837B00E9A01E /* XCRemoteSwiftPackageReference "posthog-ios" */;
+			productName = PostHog;
+		};
 		CD1160C72BD142D100345E3E /* WebURL */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = CD1160C62BD142D100345E3E /* XCRemoteSwiftPackageReference "swift-url" */;

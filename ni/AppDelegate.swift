@@ -1,18 +1,35 @@
 //  Created on 11.09.23.
 
 import Cocoa
+import PostHog
 
 @main
 class AppDelegate: NSObject, NSApplicationDelegate {
 
     var storage: Storage?
-    
+	
+	//analytics
+	private var applicationStarted: Date? = nil
+	private var spacesLoaded: [UUID:Int] = [:]
+	
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        Storage.db
+        _ = Storage.db
+		
+		let POSTHOG_API_KEY = "phc_qwTCTecFkqQyd3OYFoiWniEjMLBmJ3KL8P5rNRqJYN1"
+		let POSTHOG_HOST = "https://eu.i.posthog.com"
+		let postHogConfig = PostHogConfig(apiKey: POSTHOG_API_KEY, host: POSTHOG_HOST)
+		PostHogSDK.shared.setup(postHogConfig)
+		
+		applicationStarted = Date()
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
         //TODO: Insert code here to tear down your application
+		
+		//PostHog
+		let timeSinceStartMin = (Date().timeIntervalSinceReferenceDate - applicationStarted!.timeIntervalSinceReferenceDate) / 60
+		PostHogSDK.shared.capture("Application_closed", properties: ["time_since_start_minutes": timeSinceStartMin, "nr_of_spaces_visted": spacesLoaded.count])
+		PostHogSDK.shared.flush()
     }
 
     func applicationSupportsSecureRestorableState(_ app: NSApplication) -> Bool {
@@ -75,7 +92,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationShouldTerminate(_ sender: NSApplication) -> NSApplication.TerminateReply {
         // Save changes in the application's managed object context before the application terminates.
-
 		let window = NSApplication.shared.keyWindow!
 		if window is DefaultWindow{
 			if let controller = window.contentViewController as? NiSpaceViewController{
@@ -124,5 +140,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         return .terminateNow
     }
 
+	func spaceLoadedSinceStart(_ spaceID: UUID) -> Int{
+		if(spacesLoaded[spaceID] == nil){
+			spacesLoaded[spaceID] = 1
+			return 1
+		}
+		let nrOfLoads = spacesLoaded[spaceID]! + 1
+		spacesLoaded[spaceID] = nrOfLoads
+		return nrOfLoads
+	}
 }
 

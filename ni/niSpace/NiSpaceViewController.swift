@@ -2,6 +2,7 @@
 
 import Cocoa
 import Carbon.HIToolbox
+import PostHog
 
 class NiSpaceViewController: NSViewController{
     
@@ -144,7 +145,8 @@ class NiSpaceViewController: NSViewController{
 		niSpaceName = name
 		spaceName.stringValue = name
 		
-		let spaceDoc = getEmptySpaceDocument(id: UUID(), name: name)
+		let spaceId = UUID()
+		let spaceDoc = getEmptySpaceDocument(id: spaceId, name: name)
 				
 		addChild(spaceDoc)
 		transition(from: niDocument, to: spaceDoc, options: [.crossfade])
@@ -155,6 +157,9 @@ class NiSpaceViewController: NSViewController{
 		
 		//Needs to happen here, as we rely on the visible view for size
 		spaceDoc.openEmptyCF()
+		
+		PostHogSDK.shared.capture("Space_created")
+		_ = (NSApplication.shared.delegate as! AppDelegate).spaceLoadedSinceStart(spaceId)
 	}
 	
 	func loadSpace(niSpaceID id: UUID, name: String){
@@ -182,6 +187,10 @@ class NiSpaceViewController: NSViewController{
 		niScrollView.documentView = spaceDoc.view
 		
 		spaceLoaded = true
+		
+		let nrOfTimesLoaded = (NSApplication.shared.delegate as! AppDelegate).spaceLoadedSinceStart(id)
+		
+		PostHogSDK.shared.capture("Space_loaded", properties: ["loaded_since_AppStart": nrOfTimesLoaded])
 	}
 
 	private func loadStoredSpace(niSpaceID: UUID) -> NiDocumentObjectModel?{

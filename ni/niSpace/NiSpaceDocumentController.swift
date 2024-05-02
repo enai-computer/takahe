@@ -6,6 +6,7 @@
 //
 
 import Cocoa
+import PostHog
 
 class NiSpaceDocumentController: NSViewController{
 	
@@ -16,6 +17,7 @@ class NiSpaceDocumentController: NSViewController{
 	private let niSpaceName: String
 	private let niSpaceID: UUID
 	private let initHeight: CGFloat?
+	private let spaceOpenedAt: Date
 	
 	private var leastRecentlyUsedOrigin: CGPoint? = nil
 	private var leastRecentlyUsedOriginFactor: CGFloat = 1
@@ -24,6 +26,7 @@ class NiSpaceDocumentController: NSViewController{
 		self.niSpaceID = id
 		self.niSpaceName = name
 		self.initHeight = height
+		self.spaceOpenedAt = Date()
 		super.init(nibName: nil, bundle: Bundle.main)
 	}
 	
@@ -31,6 +34,7 @@ class NiSpaceDocumentController: NSViewController{
 		self.niSpaceID = emptySpaceID
 		self.niSpaceName = ""
 		self.initHeight = nil
+		self.spaceOpenedAt = Date()
 		super.init(coder: coder)
 	}
 	
@@ -128,8 +132,13 @@ class NiSpaceDocumentController: NSViewController{
 	func genJson() -> String{
 		
 		var children: [NiDocumentObjectModel] = []
+		var nrOfTabsInSpace = 0
+		
 		for cfController in myView.contentFrameControllers {
-			children.append(cfController.toNiContentFrameModel())
+			let modelData = cfController.toNiContentFrameModel()
+			
+			children.append(modelData.model)
+			nrOfTabsInSpace += modelData.nrOfTabs
 		}
 			
 		let toEncode = NiDocumentObjectModel(
@@ -143,6 +152,16 @@ class NiSpaceDocumentController: NSViewController{
 		)
 		let jsonEncoder = JSONEncoder()
 		jsonEncoder.outputFormatting = .prettyPrinted
+		
+		let minInSpace = (Date().timeIntervalSinceReferenceDate - spaceOpenedAt.timeIntervalSinceReferenceDate) / 60
+		PostHogSDK.shared.capture("Space_saved",
+								  properties: [
+									"number_of_windows": children.count,
+									"number_of_tabs": nrOfTabsInSpace,
+									"length": myView.frame.height,
+									"time_in_space_min": minInSpace
+								  ]
+		)
 		
 		do{
 			let jsonData = try jsonEncoder.encode(toEncode)
