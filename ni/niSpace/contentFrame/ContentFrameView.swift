@@ -29,6 +29,7 @@ class ContentFrameView: NSBox{
 	@IBOutlet var contentForwardButton: NSImageView!
 	@IBOutlet var closeButton: NSImageView!
 	@IBOutlet var addTabButton: NSImageView!
+	@IBOutlet var cfHeadDragArea: NSView!
 	
 	//TabView
 	@IBOutlet var niContentTabView: NSTabView!
@@ -85,6 +86,10 @@ class ContentFrameView: NSBox{
             cursorDownPoint = event.locationInWindow
         }
         
+		if cursorOnBorder == .top{
+			NSCursor.closedHand.push()
+		}
+		
         let posInHeadView = self.cfHeadView!.convert(cursorPos, from: self)
         
         //clicked on close button
@@ -117,6 +122,9 @@ class ContentFrameView: NSBox{
             nextResponder?.mouseUp(with: event)
         }
         
+		if cursorOnBorder == .top{
+			NSCursor.pop()
+		}
         super.mouseUp(with: event)
         cursorDownPoint = .zero
         cursorOnBorder = .no
@@ -161,8 +169,7 @@ class ContentFrameView: NSBox{
         if(frameIsActive){
             if(cursorDownPoint == .zero){
                 addCursorRect(getTopBorderActionArea(), cursor: NSCursor.openHand)
-            }else{
-                addCursorRect(getTopBorderActionArea(), cursor: NSCursor.closedHand)
+				addCursorRect(getDragArea(), cursor: NSCursor.openHand)
             }
             addCursorRect(getRightSideBorderActionArea(), cursor: NSCursor.resizeLeftRight)
             addCursorRect(getLeftSideBorderActionArea(), cursor: NSCursor.resizeLeftRight)
@@ -181,6 +188,10 @@ class ContentFrameView: NSBox{
         if (NSPointInRect(cursorLocation, getTopBorderActionArea())){
             return .top
         }
+		
+		if(NSPointInRect(cursorLocation, getDragArea())){
+			return .top
+		}
         
         if ((0 < cursorLocation.y && cursorLocation.y < cAA) &&
             (frame.size.width - cAA < cursorLocation.x && cursorLocation.x < frame.size.width)){
@@ -202,6 +213,10 @@ class ContentFrameView: NSBox{
     private func getTopBorderActionArea() -> NSRect{
         return NSRect(x: 0, y: frame.size.height-CFConstants.actionAreaMargin, width: frame.size.width, height: CFConstants.actionAreaMargin)
     }
+	
+	private func getDragArea() -> NSRect{
+		return self.convert(cfHeadDragArea.frame, from: cfHeadView)
+	}
     
     private func getBottomBorderActionArea() -> NSRect{
         return NSRect(x:0, y: 0, width: (frame.size.width - CFConstants.cornerActionAreaMargin), height: CFConstants.actionAreaMargin)

@@ -22,14 +22,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <subviews>
                             <scrollView wantsLayer="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasVerticalScroller="NO" usesPredominantAxisScrolling="NO" verticalScrollElasticity="none" id="AwF-3w-n4g">
-                                <rect key="frame" x="94" y="4" width="910" height="30"/>
+                                <rect key="frame" x="94" y="4" width="860" height="30"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <clipView key="contentView" drawsBackground="NO" id="PQx-Md-yMS">
-                                    <rect key="frame" x="0.0" y="0.0" width="910" height="30"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="860" height="30"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <collectionView id="wB8-UP-dFY">
-                                            <rect key="frame" x="0.0" y="0.0" width="910" height="30"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="860" height="30"/>
                                             <autoresizingMask key="autoresizingMask" heightSizable="YES"/>
                                             <collectionViewFlowLayout key="collectionViewLayout" minimumInteritemSpacing="16" scrollDirection="horizontal" id="Wti-La-5hp">
                                                 <size key="itemSize" width="195" height="30"/>
@@ -44,7 +44,7 @@
                                     <color key="backgroundColor" name="SandLight4"/>
                                 </clipView>
                                 <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="aVi-Gl-lD4">
-                                    <rect key="frame" x="0.0" y="14" width="910" height="16"/>
+                                    <rect key="frame" x="0.0" y="14" width="860" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="cGw-ix-zoM">
@@ -52,6 +52,10 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
+                            <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tOm-Uf-Gpz">
+                                <rect key="frame" x="954" y="0.0" width="65" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" heightSizable="YES"/>
+                            </customView>
                             <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rcT-6J-b1L" userLabel="back-button">
                                 <rect key="frame" x="6" y="7" width="24" height="24"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -89,6 +93,7 @@
             <color key="fillColor" name="SandLight4"/>
             <connections>
                 <outlet property="addTabButton" destination="GMe-PK-SX5" id="bBG-vF-gtC"/>
+                <outlet property="cfHeadDragArea" destination="tOm-Uf-Gpz" id="gz4-6o-F78"/>
                 <outlet property="cfHeadView" destination="Pdl-B9-RoX" id="S8d-c6-NIZ"/>
                 <outlet property="cfTabHeadCollection" destination="wB8-UP-dFY" id="Q9l-en-w4j"/>
                 <outlet property="closeButton" destination="Utx-ML-7oY" id="B7l-wf-zmC"/>
