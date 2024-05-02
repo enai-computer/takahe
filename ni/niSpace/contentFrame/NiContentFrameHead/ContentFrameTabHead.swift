@@ -106,23 +106,16 @@ class ContentFrameTabHead: NSCollectionViewItem, NSTextFieldDelegate {
 			return
 		}
 		view.layer?.backgroundColor = NSColor(.sandLight6).cgColor
-		activateCloseButton()
 	}
 	
 	private func setBackground(){
 		if(self.isSelected){
 			view.layer?.backgroundColor = NSColor(.sandLight1).cgColor
-			passiveCloseButton()
+			activateCloseButton()
 		}else{
 			view.layer?.backgroundColor = NSColor(.transparent).cgColor
 			hideCloseButton()
 		}
-	}
-	
-	private func passiveCloseButton(){
-		closeButton.isEnabled = true
-		closeButton.isHidden = false
-		closeButton.contentTintColor = NSColor(.sandLight9)
 	}
 	
 	private func activateCloseButton(){

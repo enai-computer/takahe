@@ -117,18 +117,20 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
 	
 	func closeTab(at: Int){
 		if(at != selectedTabModel){
-
-			niContentFrameView?.deleteSelectedTab(at: at)
-			self.tabs.remove(at: at)
-			
-			if (at < selectedTabModel){
-				selectedTabModel -= 1
-				tabs[selectedTabModel].webView?.tabHeadPosition = selectedTabModel
-			}
-			
-			niContentFrameView?.cfTabHeadCollection.reloadData()
+			//open: implement proper methodology to end editing a URL, before closing a tab
+			//otherwise we'll run into an index out of bounds issue
 		}else {
+			updateWVTabHeadPos(from: at+1)
 			closeSelectedTab()
+		}
+	}
+	
+	private func updateWVTabHeadPos(from: Int){
+		var toUpdate = from
+		
+		while toUpdate < tabs.count{
+			tabs[toUpdate].webView?.tabHeadPosition = (toUpdate - 1)
+			toUpdate += 1
 		}
 	}
 	
