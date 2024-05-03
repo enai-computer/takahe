@@ -7,13 +7,15 @@ class DefaultWindowController: NSWindowController{
     override func windowDidLoad() {
         super.windowDidLoad()
 		window?.toggleFullScreen(nil)
-
+		window?.isReleasedWhenClosed = true
+		
 		contentViewController = NiSpaceViewController()
 
 		//HELP: in case you need to know the fonts
 //		for family: String in NSFontManager.shared.availableFonts{
 //			print(family)
 //		}
+		
     }
 	
 }

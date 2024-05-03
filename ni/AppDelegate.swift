@@ -84,17 +84,26 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             }
         }
     }
-
+	
     func windowWillReturnUndoManager(window: NSWindow) -> UndoManager? {
         // Returns the NSUndoManager for the application. In this case, the manager returned is that of the managed object context for the application.
         return persistentContainer.viewContext.undoManager
     }
 
+	func applicationWillResignActive(_ notification: Notification) {
+		let window = NSApplication.shared.keyWindow
+		if (window != nil && window is DefaultWindow){
+			if let controller = window!.contentViewController as? NiSpaceViewController{
+				controller.niDocument.storeSpace()
+			}
+		}
+	}
+	
     func applicationShouldTerminate(_ sender: NSApplication) -> NSApplication.TerminateReply {
         // Save changes in the application's managed object context before the application terminates.
-		let window = NSApplication.shared.keyWindow!
-		if window is DefaultWindow{
-			if let controller = window.contentViewController as? NiSpaceViewController{
+		let window = NSApplication.shared.keyWindow
+		if (window != nil && window is DefaultWindow){
+			if let controller = window!.contentViewController as? NiSpaceViewController{
 				controller.niDocument.storeSpace()
 			}
 		}
