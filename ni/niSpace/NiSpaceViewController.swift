@@ -93,7 +93,7 @@ class NiSpaceViewController: NSViewController{
 	}
     
 	func returnToHome() {
-		niDocument.storeSpace()
+		storeCurrentSpace()
 		niDocument.myView.isHidden = true
 		let hostingController = HomeViewController(presentingController: self)
 		hostingController.show()
@@ -105,6 +105,10 @@ class NiSpaceViewController: NSViewController{
 	
 	func closeTabOfTopCF(){
 		niDocument.closeTabOfTopCF()
+	}
+	
+	func storeCurrentSpace(){
+		niDocument.storeSpace(scrollPosition: niScrollView.documentVisibleRect.origin.y)
 	}
 	
 	/*
@@ -164,7 +168,7 @@ class NiSpaceViewController: NSViewController{
 	
 	func loadSpace(niSpaceID id: UUID, name: String){
 		let spaceDoc: NiSpaceDocumentController
-		
+		var scrollTo: NSPoint? = nil
 		niSpaceName = name
 		spaceName.stringValue = name
 		
@@ -175,7 +179,7 @@ class NiSpaceViewController: NSViewController{
 		}else{
 			let docHeightPx = (spaceModel?.data as? NiDocumentModel)?.height.px
 			spaceDoc = getEmptySpaceDocument(id: id, name: name, height: docHeightPx)
-			spaceDoc.recreateSpace(docModel: spaceModel!)
+			scrollTo = spaceDoc.recreateSpace(docModel: spaceModel!)
 			
 			niDocument.view.frame = spaceDoc.view.frame
 		}
@@ -185,11 +189,14 @@ class NiSpaceViewController: NSViewController{
 
 		niDocument = spaceDoc
 		niScrollView.documentView = spaceDoc.view
+		if(scrollTo != nil){
+			niScrollView.scroll(niScrollView.contentView, to: scrollTo!)
+		}
 		
+
 		spaceLoaded = true
 		
 		let nrOfTimesLoaded = (NSApplication.shared.delegate as! AppDelegate).spaceLoadedSinceStart(id)
-		
 		PostHogSDK.shared.capture("Space_loaded", properties: ["loaded_since_AppStart": nrOfTimesLoaded])
 	}
 

@@ -93,7 +93,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		let window = NSApplication.shared.keyWindow
 		if (window != nil && window is DefaultWindow){
 			if let controller = window!.contentViewController as? NiSpaceViewController{
-				controller.niDocument.storeSpace()
+				controller.storeCurrentSpace()
 			}
 		}
 	}
@@ -103,7 +103,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		let window = NSApplication.shared.keyWindow
 		if (window != nil && window is DefaultWindow){
 			if let controller = window!.contentViewController as? NiSpaceViewController{
-				controller.niDocument.storeSpace()
+				controller.storeCurrentSpace()
 			}
 		}
 

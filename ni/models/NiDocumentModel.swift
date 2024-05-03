@@ -59,16 +59,18 @@ class NiDocumentModel: Codable{
     let id: UUID
     let height: NiCoordinate
     let width: NiCoordinate
+	let viewPosition: NiCoordinate?
     let children: [NiDocumentObjectModel]
     
     enum NiDocumentModelKeys: String, CodingKey{
-        case id, height, width, children
+        case id, height, width, viewPosition, children
     }
     
-    init(id: UUID, height: CGFloat, width: CGFloat, children: [NiDocumentObjectModel]){
+	init(id: UUID, height: CGFloat, width: CGFloat, children: [NiDocumentObjectModel], viewPosition: CGFloat? = nil){
         self.id = id
         self.height = NiCoordinate(px: height)
         self.width = NiCoordinate(px: width)
+		self.viewPosition = if(viewPosition != nil){NiCoordinate(px: viewPosition!)} else {nil}
         self.children = children
     }
     
@@ -77,6 +79,7 @@ class NiDocumentModel: Codable{
         self.id = try container.decode(UUID.self, forKey: NiDocumentModelKeys.id)
         self.height = try container.decode(NiCoordinate.self, forKey: NiDocumentModelKeys.height)
         self.width = try container.decode(NiCoordinate.self, forKey: NiDocumentModelKeys.width)
+		self.viewPosition = try container.decode(NiCoordinate.self, forKey: NiDocumentModelKeys.viewPosition)
         self.children = try container.decode([NiDocumentObjectModel].self, forKey: NiDocumentModelKeys.children)
     }
     
@@ -85,6 +88,7 @@ class NiDocumentModel: Codable{
         try container.encode(self.id, forKey: NiDocumentModelKeys.id)
         try container.encode(self.height, forKey: NiDocumentModelKeys.height)
         try container.encode(self.width, forKey: NiDocumentModelKeys.width)
+		try container.encode(self.viewPosition, forKey: NiDocumentModelKeys.viewPosition)
         try container.encode(self.children, forKey: NiDocumentModelKeys.children)
     }
 }

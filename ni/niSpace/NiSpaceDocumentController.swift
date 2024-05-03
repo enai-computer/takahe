@@ -86,7 +86,7 @@ class NiSpaceDocumentController: NSViewController{
 	 * MARK: - load and store space document here
 	 */
 	
-	func recreateSpace(docModel: NiDocumentObjectModel){
+	func recreateSpace(docModel: NiDocumentObjectModel) -> NSPoint?{
 		if (docModel.type == NiDocumentObjectTypes.document){
 			let data = docModel.data as! NiDocumentModel
 			let docModelChildren = data.children
@@ -107,7 +107,12 @@ class NiSpaceDocumentController: NSViewController{
 			for cfData in orderedCFsToRecreate{
 				recreateContentFrame(data: cfData)
 			}
+			
+			if (data.viewPosition != nil && 10.0 < data.viewPosition!.px){
+				return NSPoint(x: 0.0, y: data.viewPosition!.px)
+			}
 		}
+		return nil
 	}
 	
 	private func recreateContentFrame(data: NiContentFrameModel){
@@ -116,20 +121,20 @@ class NiSpaceDocumentController: NSViewController{
 		storedWebsiteCFController.niContentFrameView!.setFrameOwner(myView)
 	}
 	
-	func storeSpace(){
+	func storeSpace(scrollPosition: CGFloat){
 		
 		if(self.niSpaceID == emptySpaceID){
 			return
 		}
 		
-		let documentJson = genJson()
+		let documentJson = genJson(scrollPosition: scrollPosition)
 		//View json stored here
 		DocumentTable.upsertDoc(id: niSpaceID, name: niSpaceName, document: documentJson)
 		//Content of the CFs stored here
 		myView.persistContent(documentId: niSpaceID)
 	}
 	
-	func genJson() -> String{
+	private func genJson(scrollPosition: CGFloat) -> String{
 		
 		var children: [NiDocumentObjectModel] = []
 		var nrOfTabsInSpace = 0
@@ -147,7 +152,8 @@ class NiSpaceDocumentController: NSViewController{
 				id: niSpaceID,
 				height: myView.frame.height,
 				width: myView.frame.width,
-				children: children
+				children: children,
+				viewPosition: scrollPosition
 			)
 		)
 		let jsonEncoder = JSONEncoder()
