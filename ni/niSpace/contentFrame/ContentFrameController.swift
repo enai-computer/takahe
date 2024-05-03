@@ -274,6 +274,14 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
 			return
 		}
 		
+		forceSelectTab(at: at)
+		
+		niContentFrameView?.cfTabHeadCollection.reloadData()
+	}
+	/// skipps all checks ensuring UI consistency. Does not reload the TabHead Collection View
+	///
+	/// Only call this directly, when reloading a space!
+	func forceSelectTab(at: Int){
 		if(0 <= selectedTabModel){
 			tabs[selectedTabModel].isSelected = false
 		}
@@ -281,9 +289,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
 		self.niContentFrameView?.niContentTabView.selectTabViewItem(at: at)
 		
 		self.selectedTabModel = at
-		tabs[selectedTabModel].isSelected = true
-		
-		niContentFrameView?.cfTabHeadCollection.reloadData()
+		tabs[selectedTabModel].isSelected = true		
 	}
 	
 	func editTabUrl(at: Int){
@@ -326,7 +332,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
 					id: tab.contentId,
 					contentType: NiCFTabContentType.web,
 					contentState: tab.state.rawValue,
-					active: true,
+					active: tab.isSelected,
 					position: i
 				)
 			)

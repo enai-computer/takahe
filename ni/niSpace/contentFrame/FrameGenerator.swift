@@ -12,14 +12,22 @@ func openEmptyContentFrame() -> ContentFrameController{
 
 func reopenContentFrame(contentFrame: NiContentFrameModel, tabs: [NiCFTabModel]) -> ContentFrameController {
     
+	var activeTab: Int = -1
     let frameController = ContentFrameController()
     frameController.loadView()
-    for tab in tabs{
+	for (i, tab) in tabs.enumerated(){
         let record = CachedWebTable.fetchCachedWebsite(contentId: tab.id)
 		if(WebViewState(rawValue: tab.contentState) == .empty ){
 			_ = frameController.openEmptyTab(tab.id)
 		}else{
 			_ = frameController.openWebsiteInNewTab(urlStr: record.url, contentId: tab.id, tabName: record.title, webContentState: tab.contentState)
+		}
+		
+		//Clean-up after 1st of July 2024,-
+		//existing users have all their tabs active by default
+		//once all users updated to 0.1.4 Build 7 or later and opened and stored all spaces at least once
+		if(tab.active){
+			activeTab = i
 		}
     }
     
@@ -30,7 +38,10 @@ func reopenContentFrame(contentFrame: NiContentFrameModel, tabs: [NiCFTabModel])
     )
 
 	frameController.view.frame = initPosition
-    
+	if(0 <= activeTab){
+		frameController.forceSelectTab(at: activeTab)
+	}
+	
     return frameController
 }
 
