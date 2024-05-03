@@ -192,7 +192,6 @@ class NiSpaceViewController: NSViewController{
 		if(scrollTo != nil){
 			niScrollView.scroll(niScrollView.contentView, to: scrollTo!)
 		}
-		
 
 		spaceLoaded = true
 		

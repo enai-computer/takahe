@@ -138,7 +138,7 @@ struct RightSide: View {
 				.listRowInsets(EdgeInsets())
 			}
 			.accentColor(Color.transparent)
-			.padding(EdgeInsets(top: 0.0, leading: 40.0, bottom: 0.0, trailing: 0.0))
+			.padding(EdgeInsets(top: 0.0, leading: 40.0, bottom: 0.0, trailing: 40.0))
 			.scrollContentBackground(.hidden)
 			.background(Color.transparent)
 			.onContinuousHover(coordinateSpace: .local){ phase in
