@@ -5,15 +5,14 @@ import PostHog
 
 @main
 class AppDelegate: NSObject, NSApplicationDelegate {
-
-    var storage: Storage?
 	
 	//analytics
 	private var applicationStarted: Date? = nil
 	private var spacesLoaded: [UUID:Int] = [:]
 	
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        _ = Storage.db
+		
+		_ = Storage.db
 		
 		let POSTHOG_API_KEY = "phc_qwTCTecFkqQyd3OYFoiWniEjMLBmJ3KL8P5rNRqJYN1"
 		let POSTHOG_HOST = "https://eu.i.posthog.com"
@@ -22,7 +21,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		
 		applicationStarted = Date()
     }
-
+		
     func applicationWillTerminate(_ aNotification: Notification) {
         //TODO: Insert code here to tear down your application
 		
