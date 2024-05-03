@@ -67,11 +67,12 @@ class NiWebView: WKWebView{
         viewIsActive = true
     }
     
-    func setInactive(){
+	func setInactive(){
 		overlay = cfOverlay(frame: self.frame, nxtResponder: owner.view)
 		addSubview(overlay!)
 		window?.makeFirstResponder(overlay)
-        viewIsActive = false    }
+		viewIsActive = false
+	}
 	
 }
 

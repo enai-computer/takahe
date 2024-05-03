@@ -145,8 +145,8 @@ class ContentFrameTabHead: NSCollectionViewItem, NSTextFieldDelegate {
 		
 		Task {
 			do{
-				if(!viewModel.url.isEmpty){
-					let img = try await fetchFavIcon(url: URL(string: viewModel.url)!)
+				if(viewModel.webView?.url?.absoluteString != nil){
+					let img = try await fetchFavIcon(url: URL(string: viewModel.webView!.url!.absoluteString)!)
 					
 					parentController?.setTabIcon(at: tabPosition, icon: img)
 					self.setIcon(img: img)
@@ -171,10 +171,10 @@ class ContentFrameTabHead: NSCollectionViewItem, NSTextFieldDelegate {
 			if(viewModel.state == .empty || viewModel.state == .error){
 				self.tabHeadTitle.enableEditing(urlStr: "")
 			}else{
-				self.tabHeadTitle.enableEditing(urlStr: viewModel.url)
+				self.tabHeadTitle.enableEditing(urlStr: viewModel.webView?.url?.absoluteString ?? "")
 			}
 		}else{
-			self.tabHeadTitle.disableEditing(title: viewModel.title)
+			self.tabHeadTitle.disableEditing(title: viewModel.webView?.title ?? viewModel.title)
 		}
 	}
 	

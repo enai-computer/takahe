@@ -82,7 +82,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
 		
 		var tabHeadModel = TabViewModel(contentId: contentId)
 		tabHeadModel.position = niContentFrameView!.createNewTab(tabView: niWebView)
-		tabHeadModel.url = urlStr
+//		tabHeadModel.url = urlStr
 		tabHeadModel.webView = niWebView
 		tabHeadModel.webView!.tabHeadPosition = tabHeadModel.position
 		if(webContentState != nil){
@@ -107,7 +107,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
 		let urlReq = URLRequest(url: url)
 		
 		tabs[at].state = .loading
-		tabs[at].url = url.absoluteString
+//		tabs[at].url = url.absoluteString
 		tabs[at].webView?.load(urlReq)
 	}
 	
@@ -180,8 +180,9 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
 	 */
 	func webView(_ webView: WKWebView, didFinish: WKNavigation!){
 		let wv = webView as! NiWebView
+		
 		self.tabs[wv.tabHeadPosition].title = wv.title ?? ""
-		self.tabs[wv.tabHeadPosition].url = wv.url!.absoluteString
+		self.tabs[wv.tabHeadPosition].icon = nil
 		
 		//an empty tab still loads a local html
 		if(self.tabs[wv.tabHeadPosition].state != .empty && self.tabs[wv.tabHeadPosition].state != .error ){
@@ -237,14 +238,11 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
 		}
 		
 		let maxWidth = (niContentFrameView?.cfTabHeadCollection.frame.width ?? 780) / 2
-		var tabHeadWidth = CGFloat(viewModel.url.count) * 8.0 + 30
+		let nrOfCharacters = viewModel.webView?.url?.absoluteString.count ?? 30
+		var tabHeadWidth = CGFloat(nrOfCharacters) * 8.0 + 30
 		
 		if(maxWidth < tabHeadWidth){
 			tabHeadWidth = maxWidth
-		}
-		
-		if(tabHeadWidth < 200){
-			tabHeadWidth = 200
 		}
 		
 		return NSSize(width: tabHeadWidth, height: 30)
@@ -314,7 +312,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
 	 */
 	func persistContent(documentId: UUID){
 		for tab in tabs {
-            CachedWebTable.upsert(documentId: documentId, id: tab.contentId, title: tab.title, url: tab.url)
+			CachedWebTable.upsert(documentId: documentId, id: tab.contentId, title: tab.title, url: tab.webView?.url?.absoluteString ?? "")
 		}
 	}
 	
