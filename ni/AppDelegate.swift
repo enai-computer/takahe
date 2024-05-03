@@ -9,6 +9,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	//analytics
 	private var applicationStarted: Date? = nil
 	private var spacesLoaded: [UUID:Int] = [:]
+	//if loading fails we do not want to overwrite the space!
+	private var dontStoreSpace = Set<UUID>()
 	
     func applicationDidFinishLaunching(_ aNotification: Notification) {
 		
@@ -156,6 +158,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		let nrOfLoads = spacesLoaded[spaceID]! + 1
 		spacesLoaded[spaceID] = nrOfLoads
 		return nrOfLoads
+	}
+	
+	func disableSaveForSpace(_ spaceID: UUID){
+		dontStoreSpace.insert(spaceID)
+	}
+	
+	func allowedToSaveSpace(_ spaceID: UUID) -> Bool{
+		return !dontStoreSpace.contains(spaceID)
 	}
 }
 

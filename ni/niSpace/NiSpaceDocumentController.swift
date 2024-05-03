@@ -127,6 +127,11 @@ class NiSpaceDocumentController: NSViewController{
 			return
 		}
 		
+		if( !(NSApplication.shared.delegate as! AppDelegate).allowedToSaveSpace(self.niSpaceID)){
+			print("not allowed to store page. Most likely due to loading issues.")
+			return
+		}
+		
 		let documentJson = genJson(scrollPosition: scrollPosition)
 		//View json stored here
 		DocumentTable.upsertDoc(id: niSpaceID, name: niSpaceName, document: documentJson)

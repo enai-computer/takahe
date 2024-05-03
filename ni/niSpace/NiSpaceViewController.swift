@@ -207,6 +207,7 @@ class NiSpaceViewController: NSViewController{
 			return docModel
 		}catch{
 			print(error)
+			(NSApplication.shared.delegate as! AppDelegate).disableSaveForSpace(niSpaceID)
 		}
 		return nil
 	}

@@ -79,7 +79,7 @@ class NiDocumentModel: Codable{
         self.id = try container.decode(UUID.self, forKey: NiDocumentModelKeys.id)
         self.height = try container.decode(NiCoordinate.self, forKey: NiDocumentModelKeys.height)
         self.width = try container.decode(NiCoordinate.self, forKey: NiDocumentModelKeys.width)
-		self.viewPosition = try container.decode(NiCoordinate.self, forKey: NiDocumentModelKeys.viewPosition)
+		self.viewPosition = try container.decodeIfPresent(NiCoordinate.self, forKey: NiDocumentModelKeys.viewPosition)
         self.children = try container.decode([NiDocumentObjectModel].self, forKey: NiDocumentModelKeys.children)
     }
     
