@@ -27,12 +27,14 @@ class ContentFrameView: NSBox{
 	@IBOutlet var cfTabHeadCollection: NSCollectionView!
 	@IBOutlet var contentBackButton: NSImageView!
 	@IBOutlet var contentForwardButton: NSImageView!
+	var prevButtonColor: NSColor? = nil
 	@IBOutlet var closeButton: NSImageView!
 	@IBOutlet var addTabButton: NSImageView!
 	@IBOutlet var cfHeadDragArea: NSView!
 	
 	//TabView
 	@IBOutlet var niContentTabView: NSTabView!
+	var observation: NSKeyValueObservation?
 	
     required init?(coder: NSCoder) {
         super.init(coder: coder)
@@ -56,12 +58,52 @@ class ContentFrameView: NSBox{
 
 		//FIXME: function below creates issues
 		niContentTabView.addTabViewItem(tabViewItem)
+
+		setWebViewObservers(tabView: tabView)
         
         return tabViewPos
     }
     
+	private func setWebViewObservers(tabView: NiWebView){
+		tabView.addObserver(self, forKeyPath: "canGoBack", options: [.initial, .new], context: nil)
+		tabView.addObserver(self, forKeyPath: "canGoForward", options: [.initial, .new], context: nil)
+	}
+	
+	override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+		guard let niWebView = niContentTabView.selectedTabViewItem?.view as? NiWebView else {return}
+		if keyPath == "canGoBack" {
+			self.setBackButtonTint(niWebView.canGoBack)
+		}else if keyPath == "canGoForward"{
+			self.setForwardButtonTint(niWebView.canGoForward)
+		}
+	}
+	
 	func deleteSelectedTab(at position: Int){
 		niContentTabView.removeTabViewItem(niContentTabView.tabViewItem(at: position))
+	}
+	
+	func updateFwdBackTint(){
+		guard let niWebView = niContentTabView.selectedTabViewItem?.view as? NiWebView else {return}
+		self.setBackButtonTint(niWebView.canGoBack)
+		self.setForwardButtonTint(niWebView.canGoForward)
+	}
+	
+	@MainActor
+	private func setBackButtonTint(_ canGoBack: Bool = false){
+		if(canGoBack){
+			self.contentBackButton.contentTintColor = NSColor(.sandLight11)
+		}else{
+			self.contentBackButton.contentTintColor = NSColor(.sandLight8)
+		}
+	}
+	
+	@MainActor
+	private func setForwardButtonTint(_ canGoFwd: Bool = false){
+		if(canGoFwd){
+			self.contentForwardButton.contentTintColor = NSColor(.sandLight11)
+		}else{
+			self.contentForwardButton.contentTintColor = NSColor(.sandLight8)
+		}
 	}
 	
     /**

@@ -35,6 +35,9 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
 		niContentFrameView!.cfHeadView.layer?.backgroundColor = NSColor(.sandLight4).cgColor
     }
     
+	override func viewDidAppear() {
+		super.viewDidAppear()
+	}
 
     private func getNewWebView(contentId: UUID, urlReq: URLRequest, frame: NSRect) -> NiWebView {
 
@@ -287,9 +290,10 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
 		}
 		
 		self.niContentFrameView?.niContentTabView.selectTabViewItem(at: at)
+		self.niContentFrameView?.updateFwdBackTint()
 		
 		self.selectedTabModel = at
-		tabs[selectedTabModel].isSelected = true		
+		tabs[selectedTabModel].isSelected = true
 	}
 	
 	func editTabUrl(at: Int){
