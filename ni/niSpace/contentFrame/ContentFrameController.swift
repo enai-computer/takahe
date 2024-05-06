@@ -300,13 +300,17 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
 	
 	func endEditingTabUrl(at: Int){
 		self.aTabIsInEditingMode = false
-		tabs[at].inEditingMode = false
 		
-//		print("here the tabs[selectedTabModel].title should be set *if* the user commits instead of aborts changes")
-		// This update interferes with the (async) web view callback and effectively defaults all editing operations to go to Google
-		RunLoop.main.perform { [self] in
-			niContentFrameView?.cfTabHeadCollection.reloadData()
+		if(at < tabs.count){
+			tabs[at].inEditingMode = false
+			
+			// print("here the tabs[selectedTabModel].title should be set *if* the user commits instead of aborts changes")
+			// This update interferes with the (async) web view callback and effectively defaults all editing operations to go to Google
+			RunLoop.main.perform { [self] in
+				niContentFrameView?.cfTabHeadCollection.reloadData()
+			}
 		}
+
 	}
 	
 	func setTabIcon(at: Int, icon: NSImage?){
