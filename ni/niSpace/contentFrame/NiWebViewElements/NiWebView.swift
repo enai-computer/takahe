@@ -18,6 +18,7 @@ class NiWebView: WKWebView{
     let contentId: UUID
     private(set) var viewIsActive: Bool = true
 	var tabHeadPosition: Int = -1
+	var retries: Int = 0
 	
 	// overlays own view to deactivate clicks and visualise deactivation state
 	private var overlay: NSView?

@@ -182,7 +182,9 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
 	 * MARK: - WKDelegate functions
 	 */
 	func webView(_ webView: WKWebView, didFinish: WKNavigation!){
-		let wv = webView as! NiWebView
+		guard let wv = webView as? NiWebView else{return}
+		
+		wv.retries = 0
 		
 		self.tabs[wv.tabHeadPosition].title = wv.title ?? ""
 		self.tabs[wv.tabHeadPosition].icon = nil
@@ -196,22 +198,26 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
 	}
 	
 	func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: any Error){
-		let errorURL = getCouldNotLoadWebViewURL()
-		webView.loadFileURL(errorURL, allowingReadAccessTo: errorURL.deletingLastPathComponent())
-		
-		guard let wv = webView as? NiWebView else{
-			return
-		}
-		self.tabs[wv.tabHeadPosition].state = .error
+		handleFailedLoad(webView)
 	}
 	
 	func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: any Error){
-		let errorURL = getCouldNotLoadWebViewURL()
-		webView.loadFileURL(errorURL, allowingReadAccessTo: errorURL.deletingLastPathComponent())
-		
+		handleFailedLoad(webView)
+	}
+	
+	private func handleFailedLoad(_ webView: WKWebView){
 		guard let wv = webView as? NiWebView else{
+			let errorURL = getCouldNotLoadWebViewURL()
+			webView.loadFileURL(errorURL, allowingReadAccessTo: errorURL.deletingLastPathComponent())
 			return
 		}
+		if (wv.retries < 2){
+			wv.reload()
+			wv.retries += 1
+			return
+		}
+		let errorURL = getCouldNotLoadWebViewURL()
+		webView.loadFileURL(errorURL, allowingReadAccessTo: errorURL.deletingLastPathComponent())
 		self.tabs[wv.tabHeadPosition].state = .error
 	}
 	
