@@ -45,6 +45,7 @@ struct HomeView: View {
 				RightSide(controllerWrapper, inNamespace: homeViewNameSpace, listOfSpaces: lstOfSpaces)
 					.frame(width: (self.width*(5/8)), height: self.height)
 					.scaledToFit()
+					.padding(.leading, 20)
 					.background(Color.rightSideBackground)
 					.prefersDefaultFocus(in: homeViewNameSpace)
 			}
@@ -59,11 +60,15 @@ struct HomeView: View {
 
 struct LeftSide: View {
 	var body: some View {
-		VStack{
+		VStack(alignment: .trailing, spacing: 0){
 			Spacer().frame(maxHeight: 229)
-			Text("\(getWelcomeMessage()), \(NSUserName())")
-				.font(.custom("Sohne-Kraftig", size: 28))
-				.foregroundStyle(.sandLight11)
+			HStack{
+				Spacer()
+				Text("\(getWelcomeMessage()), \(NSUserName())")
+					.font(.custom("Sohne-Kraftig", size: 28))
+					.foregroundStyle(.sandLight11)
+					.padding(.trailing, 100)
+			}
 			Spacer()
 		}
 	}
@@ -99,7 +104,6 @@ struct RightSide: View {
 	
 	var body: some View {
 		VStack(alignment: .leading, spacing: 0.0){
-			
 			Spacer().frame(maxHeight: 213)
 			
 			HStack(){
@@ -138,7 +142,7 @@ struct RightSide: View {
 				.listRowInsets(EdgeInsets())
 			}
 			.accentColor(Color.transparent)
-			.padding(EdgeInsets(top: 0.0, leading: 40.0, bottom: 0.0, trailing: 40.0))
+			.padding(EdgeInsets(top: 15.0, leading: 40.0, bottom: 0.0, trailing: 40.0))
 			.scrollContentBackground(.hidden)
 			.background(Color.transparent)
 			.onContinuousHover(coordinateSpace: .local){ phase in
@@ -152,6 +156,8 @@ struct RightSide: View {
 						return
 				}
 			}
+			Spacer()
+			HomeViewClock()
 		}
 		.onAppear {
 			NSEvent.addLocalMonitorForEvents(matching: [.keyDown]) { nsEvent in
@@ -334,11 +340,12 @@ struct SuggestionRow: View {
 				}
 				.padding([.trailing], 8.0)
 			Text(getSpaceTitle())
-				.foregroundStyle(.sandDark8)
+				.foregroundStyle(.sandLight11)
 				.font(.custom("Sohne-Buch", size: 18))
 			Spacer()
 		}
 		.padding(5.0)
+		.padding([.top, .bottom], 3)
 		.background(alignment: .center){
 			if(data.id == selected?.id){
 				BackgroundView()
@@ -380,11 +387,24 @@ struct BackgroundView: View {
 	}
 }
 
-struct MenuBar: View {
-	var body: some View {
+/*
+ * MARK: - Clock bottom right
+ */
+
+struct HomeViewClock: View{
+	let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+	@State var timeNow = getLocalisedTime()
+	
+	var body: some View{
 		HStack{
 			Spacer()
-			Text("10:PM")
+			Text(timeNow)
+				.onReceive(timer){ _ in
+					self.timeNow = getLocalisedTime()
+				}
+				.font(.custom("Sohne-Buch", size: 15))
+				.padding(.trailing, 30)
+				.padding(.bottom, 9)
 		}
 	}
 }
@@ -393,113 +413,3 @@ struct MenuBar: View {
 	HomeView(ControllerWrapper(), width:1600.0, height: 900.0)
 }
 
-/*
- * MARK: - View extension
- */
-extension View {
-	
-	/**
-	 * Example:
-	 *	var body: some view {
-	 *		myView
-	 *			.if(X) { $0.buttonStyle(.bordered) }
-	 *	}
-	 */
-	@ViewBuilder
-	func `if`<Transform: View>(
-	  _ condition: Bool,
-	  transform: (Self) -> Transform
-	) -> some View {
-	  if condition {
-		transform(self)
-	  } else {
-		self
-	  }
-	}
-	
-	/**
-	 * Example:
-	 *	var body: some view {
-	 *		myView
-	 *			.if(X) { $0.buttonStyle(.bordered) } else: { $0.buttonStyle(.borderedProminent) }
-	 *	}
-	 */
-	@ViewBuilder
-	func `if`<TrueContent: View, FalseContent: View>(
-	  _ condition: Bool,
-	  if ifTransform: (Self) -> TrueContent,
-	  else elseTransform: (Self) -> FalseContent
-	) -> some View {
-	  if condition {
-		ifTransform(self)
-	  } else {
-		elseTransform(self)
-	  }
-	}
-}
-
-// defines OptionSet, which corners to be rounded – same as UIRectCorner
-struct RectCorner: OptionSet {
-	
-	let rawValue: Int
-		
-	static let topLeft = RectCorner(rawValue: 1 << 0)
-	static let topRight = RectCorner(rawValue: 1 << 1)
-	static let bottomRight = RectCorner(rawValue: 1 << 2)
-	static let bottomLeft = RectCorner(rawValue: 1 << 3)
-	
-	static let allCorners: RectCorner = [.topLeft, topRight, .bottomLeft, .bottomRight]
-}
-
-
-// draws shape with specified rounded corners applying corner radius
-struct RoundedCornersShape: Shape {
-	
-	var radius: CGFloat = .zero
-	var corners: RectCorner = .allCorners
-
-	func path(in rect: CGRect) -> Path {
-		var path = Path()
-
-		let p1 = CGPoint(x: rect.minX, y: corners.contains(.topLeft) ? rect.minY + radius  : rect.minY )
-		let p2 = CGPoint(x: corners.contains(.topLeft) ? rect.minX + radius : rect.minX, y: rect.minY )
-
-		let p3 = CGPoint(x: corners.contains(.topRight) ? rect.maxX - radius : rect.maxX, y: rect.minY )
-		let p4 = CGPoint(x: rect.maxX, y: corners.contains(.topRight) ? rect.minY + radius  : rect.minY )
-
-		let p5 = CGPoint(x: rect.maxX, y: corners.contains(.bottomRight) ? rect.maxY - radius : rect.maxY )
-		let p6 = CGPoint(x: corners.contains(.bottomRight) ? rect.maxX - radius : rect.maxX, y: rect.maxY )
-
-		let p7 = CGPoint(x: corners.contains(.bottomLeft) ? rect.minX + radius : rect.minX, y: rect.maxY )
-		let p8 = CGPoint(x: rect.minX, y: corners.contains(.bottomLeft) ? rect.maxY - radius : rect.maxY )
-
-		
-		path.move(to: p1)
-		path.addArc(tangent1End: CGPoint(x: rect.minX, y: rect.minY),
-					tangent2End: p2,
-					radius: radius)
-		path.addLine(to: p3)
-		path.addArc(tangent1End: CGPoint(x: rect.maxX, y: rect.minY),
-					tangent2End: p4,
-					radius: radius)
-		path.addLine(to: p5)
-		path.addArc(tangent1End: CGPoint(x: rect.maxX, y: rect.maxY),
-					tangent2End: p6,
-					radius: radius)
-		path.addLine(to: p7)
-		path.addArc(tangent1End: CGPoint(x: rect.minX, y: rect.maxY),
-					tangent2End: p8,
-					radius: radius)
-		path.closeSubpath()
-
-		return path
-	}
-}
-
-// View extension, to be used like modifier:
-// SomeView().roundedCorners(radius: 20, corners: [.topLeft, .bottomRight])
-extension View {
-	func roundedCorners(radius: CGFloat, corners: RectCorner) -> some View {
-		clipShape( RoundedCornersShape(radius: radius, corners: corners) )
-	}
-}

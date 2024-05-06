@@ -24,6 +24,7 @@
 		CD1160C82BD142D100345E3E /* WebURL in Frameworks */ = {isa = PBXBuildFile; productRef = CD1160C72BD142D100345E3E /* WebURL */; };
 		CD1160CA2BD27B9E00345E3E /* NiWebViewUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1160C92BD27B9E00345E3E /* NiWebViewUtils.swift */; };
 		CD1160CC2BD286ED00345E3E /* emptyTab-1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CD1160CB2BD286EC00345E3E /* emptyTab-1.jpg */; };
+		CD1552472BE9286D00A59AE9 /* SwiftUIUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1552462BE9286D00A59AE9 /* SwiftUIUtils.swift */; };
 		CD19BC942BC7E404002AF14E /* HomeAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CD19BC932BC7E404002AF14E /* HomeAssets.xcassets */; };
 		CD19BC962BC7E5BF002AF14E /* HomeViewUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD19BC952BC7E5BF002AF14E /* HomeViewUtils.swift */; };
 		CD19BC992BC81A46002AF14E /* PredictiveTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD19BC982BC81A46002AF14E /* PredictiveTextFieldView.swift */; };
@@ -82,6 +83,7 @@
 		CD0FA1C02BDBE2BA0065313B /* Inter-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Regular.ttf"; sourceTree = "<group>"; };
 		CD1160C92BD27B9E00345E3E /* NiWebViewUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiWebViewUtils.swift; sourceTree = "<group>"; };
 		CD1160CB2BD286EC00345E3E /* emptyTab-1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "emptyTab-1.jpg"; sourceTree = "<group>"; };
+		CD1552462BE9286D00A59AE9 /* SwiftUIUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIUtils.swift; sourceTree = "<group>"; };
 		CD19BC932BC7E404002AF14E /* HomeAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = HomeAssets.xcassets; sourceTree = "<group>"; };
 		CD19BC952BC7E5BF002AF14E /* HomeViewUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewUtils.swift; sourceTree = "<group>"; };
 		CD19BC982BC81A46002AF14E /* PredictiveTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictiveTextFieldView.swift; sourceTree = "<group>"; };
@@ -236,6 +238,7 @@
 				CD66CE372B1FD26A0006BB98 /* NiStringUtils.swift */,
 				CD8873772BCD649800007BE9 /* TimeUtils.swift */,
 				CD5B15392BDFBFE40030F017 /* NiActionImage.swift */,
+				CD1552462BE9286D00A59AE9 /* SwiftUIUtils.swift */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -431,6 +434,7 @@
 				CD66CE382B1FD26A0006BB98 /* NiStringUtils.swift in Sources */,
 				CD8873782BCD649800007BE9 /* TimeUtils.swift in Sources */,
 				CD1160CA2BD27B9E00345E3E /* NiWebViewUtils.swift in Sources */,
+				CD1552472BE9286D00A59AE9 /* SwiftUIUtils.swift in Sources */,
 				CDDBCB292BD6AE6900E7B187 /* HomeViewAnimator.swift in Sources */,
 				CD7578462BC000F200293930 /* ContentFrameTabHead.swift in Sources */,
 				CD6317E32BC3F18300434D56 /* NiBadTypeError.swift in Sources */,

@@ -56,7 +56,7 @@ struct PredictingTextField: View {
 	
 	var body: some View {
 		TextField(
-			"What would you like to explore?",
+			"what would you like to do",
 			text: self.$textFieldInput,
 			onEditingChanged: { editing in self.realTimePrediction(status: editing)},
 			onCommit: { self.makePrediction()}
