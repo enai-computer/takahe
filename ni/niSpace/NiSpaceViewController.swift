@@ -124,10 +124,6 @@ class NiSpaceViewController: NSViewController{
 	}
 	
 	override func keyDown(with event: NSEvent) {
-		if(event.modifierFlags.contains(.command)){
-			print("caught in SpaceView Controller")
-		}
-		
 		if(event.modifierFlags.contains(.command) && event.keyCode == kVK_ANSI_N){
 			openEmptyCF()
 			return
