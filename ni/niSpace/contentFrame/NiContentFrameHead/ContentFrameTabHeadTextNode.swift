@@ -37,7 +37,7 @@ class ContentFrameTabHeadTextNode: NSTextField{
 		
 		//starts editing
 		self.selectText(nil)
-		self.currentEditor()?.moveToEndOfLine(nil)
+		self.currentEditor()
 	}
 	
 	func disableEditing(title: String){

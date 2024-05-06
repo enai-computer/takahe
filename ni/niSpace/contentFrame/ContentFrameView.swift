@@ -112,7 +112,7 @@ class ContentFrameView: NSBox{
         
         if NSPointInRect(posInHeadView, addTabButton.frame){
             if let cfc = self.nextResponder as? ContentFrameController{
-				_ = cfc.openEmptyTab()
+				cfc.openEmptyTabAndEdit()
             }
         }
     }

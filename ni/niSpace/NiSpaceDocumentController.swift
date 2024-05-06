@@ -53,7 +53,7 @@ class NiSpaceDocumentController: NSViewController{
 		
 		myView.addNiFrame(controller)
 		
-		_ = controller.openEmptyTab()
+		controller.openEmptyTabAndEdit()
 	}
 	
 	func closeTabOfTopCF(){

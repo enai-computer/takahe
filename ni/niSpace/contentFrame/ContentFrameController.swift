@@ -159,13 +159,18 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
 		}
 	}
 	
+	func openEmptyTabAndEdit(){
+		let tabPos = openEmptyTab()
+		editTabUrl(at: tabPos, isNewTab: true)
+	}
+	
 	/*
 	 * MARK: - keyboard caputure here:
 	 */
 	override func keyDown(with event: NSEvent) {
 		if(event.modifierFlags.contains(.command)){
 			if(event.keyCode == kVK_ANSI_T){
-				_ = openEmptyTab()
+				openEmptyTabAndEdit()
 				return
 			}else if(event.keyCode == kVK_ANSI_W){
 				closeSelectedTab()
@@ -292,21 +297,34 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
 		tabs[selectedTabModel].isSelected = true		
 	}
 	
-	func editTabUrl(at: Int){
+	func editTabUrl(at: Int, isNewTab: Bool = false){
 		self.aTabIsInEditingMode = true
 		tabs[at].inEditingMode = true
 		niContentFrameView?.cfTabHeadCollection.reloadData()
+		
+		guard let item = niContentFrameView?.cfTabHeadCollection.item(at: at) as? ContentFrameTabHead else {
+			return
+		}
+		if(isNewTab){
+			view.window?.makeFirstResponder(item.tabHeadTitle)
+		}
+		item.tabHeadTitle.currentEditor()?.moveToEndOfLine(nil)
 	}
 	
 	func endEditingTabUrl(at: Int){
 		self.aTabIsInEditingMode = false
-		tabs[at].inEditingMode = false
 		
-//		print("here the tabs[selectedTabModel].title should be set *if* the user commits instead of aborts changes")
-		// This update interferes with the (async) web view callback and effectively defaults all editing operations to go to Google
-		RunLoop.main.perform { [self] in
-			niContentFrameView?.cfTabHeadCollection.reloadData()
+		//needed for deletion of a tab in editing mode
+		if (at<tabs.count){
+			tabs[at].inEditingMode = false
+			
+	//		print("here the tabs[selectedTabModel].title should be set *if* the user commits instead of aborts changes")
+			// This update interferes with the (async) web view callback and effectively defaults all editing operations to go to Google
+			RunLoop.main.perform { [self] in
+				niContentFrameView?.cfTabHeadCollection.reloadData()
+			}
 		}
+
 	}
 	
 	func setTabIcon(at: Int, icon: NSImage?){
