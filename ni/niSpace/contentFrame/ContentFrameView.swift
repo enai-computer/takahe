@@ -145,7 +145,7 @@ class ContentFrameView: NSBox{
             let activeTabView = niContentTabView.selectedTabViewItem?.view as! WKWebView
             activeTabView.goBack()
         }
-        
+
         //clicked on forward button
         if NSPointInRect(posInHeadView, contentForwardButton.frame){
             let activeTabView = niContentTabView.selectedTabViewItem?.view as! WKWebView
