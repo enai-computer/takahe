@@ -342,10 +342,10 @@ class ContentFrameView: NSBox{
 	
 	func fillView(){
 		let visibleView = self.niParentDoc!.visibleRect
-		let w = visibleView.size.width * 0.85
+		let w = visibleView.size.width * 0.9
 		let h = visibleView.size.height * 0.9
 		
-		let x = visibleView.size.width * 0.1	//origin x will always be 0
+		let x = visibleView.size.width * 0.05	//origin x will always be 0
 		let y = visibleView.origin.y + 50		//view is flipped, distance from top
 		
 		self.setFrameSize(NSSize(width: w, height: h))
