@@ -34,6 +34,8 @@
 		CD5A04C82BEA2BBF004CC3AA /* CFMinimizedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5A04C72BEA2BBF004CC3AA /* CFMinimizedView.swift */; };
 		CD5A04CB2BEA3CC7004CC3AA /* CFMinimizedStackItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD5A04CA2BEA3CC7004CC3AA /* CFMinimizedStackItem.xib */; };
 		CD5A04CD2BEA3CD0004CC3AA /* CFMinimizedStackItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5A04CC2BEA3CD0004CC3AA /* CFMinimizedStackItem.swift */; };
+		CD5A04CF2BEA42EB004CC3AA /* cfUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5A04CE2BEA42EB004CC3AA /* cfUtils.swift */; };
+		CD5A04D12BEA78E4004CC3AA /* CFBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5A04D02BEA78E4004CC3AA /* CFBaseView.swift */; };
 		CD5B153A2BDFBFE40030F017 /* NiActionImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5B15392BDFBFE40030F017 /* NiActionImage.swift */; };
 		CD6317E12BC3F11000434D56 /* NiUserInputError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6317E02BC3F11000434D56 /* NiUserInputError.swift */; };
 		CD6317E32BC3F18300434D56 /* NiBadTypeError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6317E22BC3F18300434D56 /* NiBadTypeError.swift */; };
@@ -97,6 +99,8 @@
 		CD5A04C72BEA2BBF004CC3AA /* CFMinimizedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CFMinimizedView.swift; sourceTree = "<group>"; };
 		CD5A04CA2BEA3CC7004CC3AA /* CFMinimizedStackItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CFMinimizedStackItem.xib; sourceTree = "<group>"; };
 		CD5A04CC2BEA3CD0004CC3AA /* CFMinimizedStackItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CFMinimizedStackItem.swift; sourceTree = "<group>"; };
+		CD5A04CE2BEA42EB004CC3AA /* cfUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cfUtils.swift; sourceTree = "<group>"; };
+		CD5A04D02BEA78E4004CC3AA /* CFBaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CFBaseView.swift; sourceTree = "<group>"; };
 		CD5B15392BDFBFE40030F017 /* NiActionImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiActionImage.swift; sourceTree = "<group>"; };
 		CD6317E02BC3F11000434D56 /* NiUserInputError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiUserInputError.swift; sourceTree = "<group>"; };
 		CD6317E22BC3F18300434D56 /* NiBadTypeError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiBadTypeError.swift; sourceTree = "<group>"; };
@@ -195,6 +199,8 @@
 				CDD6B9552B1C326A00C6144D /* ContentFrameController.swift */,
 				A1E41BFE2ACB6B1300338417 /* FrameGenerator.swift */,
 				CD6317F02BC53A9600434D56 /* cfOverlay.swift */,
+				CD5A04CE2BEA42EB004CC3AA /* cfUtils.swift */,
+				CD5A04D02BEA78E4004CC3AA /* CFBaseView.swift */,
 			);
 			path = contentFrame;
 			sourceTree = "<group>";
@@ -432,6 +438,7 @@
 				CD6317F12BC53A9600434D56 /* cfOverlay.swift in Sources */,
 				A14E8F212AD20A2600409DDF /* DefaultWindowController.swift in Sources */,
 				CD5B153A2BDFBFE40030F017 /* NiActionImage.swift in Sources */,
+				CD5A04CF2BEA42EB004CC3AA /* cfUtils.swift in Sources */,
 				CD8873742BCD235300007BE9 /* HomeViewController.swift in Sources */,
 				A1B8E6A62AAFB5EC00AC6566 /* AppDelegate.swift in Sources */,
 				CD6317E12BC3F11000434D56 /* NiUserInputError.swift in Sources */,
@@ -460,6 +467,7 @@
 				CDDBCB292BD6AE6900E7B187 /* HomeViewAnimator.swift in Sources */,
 				CD7578462BC000F200293930 /* ContentFrameTabHead.swift in Sources */,
 				CD6317E32BC3F18300434D56 /* NiBadTypeError.swift in Sources */,
+				CD5A04D12BEA78E4004CC3AA /* CFBaseView.swift in Sources */,
 				CD7578372BBDA98700293930 /* ContentFrameHeadView.swift in Sources */,
 				A14E8F272AD5EAF800409DDF /* NiSpaceView.swift in Sources */,
 				CD5A04CD2BEA3CD0004CC3AA /* CFMinimizedStackItem.swift in Sources */,

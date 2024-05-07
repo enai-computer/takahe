@@ -51,12 +51,23 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
 	
 	
 	private func loadMinimizedView(){
-		let minimizedView = (NSView.loadFromNib(nibName: "CFMinimized", owner: self) as! CFMinimizedView)
+		let minimizedView = (NSView.loadFromNib(nibName: "CFMinimizedView", owner: self) as! CFMinimizedView)
 		
-		self.view = minimizedView
+		//TODO: FixMe: can not be loaded from storage like this
+		minimizedView.setFrameOwner(niContentFrameView?.niParentDoc)
+		
 		sharedLoadViewSetters()
 		
+		let stackItems = genMinimizedStackItems(tabs: tabs, owner: self)
+		minimizedView.listOfTabs?.setViews(stackItems, in: .top)
+		minimizedView.setHight(nrOfItems: stackItems.count)
 		
+		minimizedView.frame.origin.y = self.view.frame.origin.y
+		minimizedView.frame.origin.x = self.view.frame.origin.x + self.view.frame.width - minimizedView.frame.width
+		
+		self.view.superview?.replaceSubview(self.view, with: minimizedView)
+		
+		self.view = minimizedView
 	}
 	
 	private func sharedLoadViewSetters(){
@@ -197,6 +208,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
 	
 	func minimizeClicked(_ event: NSEvent) {
 		print("minimizeClicked")
+		loadMinimizedView()
 	}
 	
 	

@@ -20,12 +20,17 @@ class CFMinimizedStackItem: NSView{
 		layer?.backgroundColor = NSColor(.sandLight3).cgColor
 		layer?.borderWidth = 4
 		layer?.borderColor = NSColor(.sandLight4).cgColor
+		
+		let hoverEffectTrackingArea = NSTrackingArea(rect: self.frame, options: [.mouseEnteredAndExited, .activeInKeyWindow], owner: self, userInfo: nil)
+		self.addTrackingArea(hoverEffectTrackingArea)
 	}
 	
-	func setItemData(position: Int, title: String, icon: NSImage){
+	func setItemData(position: Int, title: String, icon: NSImage?){
 		tabPosition = position
 		tabTitle.stringValue = title
-		tabIcon.image = icon
+		if(icon != nil){
+			tabIcon.image = icon
+		}
 	}
 	
 	override func mouseEntered(with event: NSEvent) {

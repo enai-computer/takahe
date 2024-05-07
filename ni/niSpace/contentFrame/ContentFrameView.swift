@@ -12,14 +12,14 @@ struct CFConstants {
  }
 
 
-class ContentFrameView: NSBox{
+class ContentFrameView: CFBaseView{
     
-    private var cursorDownPoint: CGPoint  = .zero
-    private var cursorOnBorder: OnBorder = .no
-    private var deactivateDocumentResize: Bool = false
+//    private var cursorDownPoint: CGPoint  = .zero
+//    private var cursorOnBorder: OnBorder = .no
+//    private var deactivateDocumentResize: Bool = false
     private(set) var frameIsActive: Bool = false
 
-    private var niParentDoc: NiSpaceDocumentView? = nil
+//    private var niParentDoc: NiSpaceDocumentView? = nil
 	private var myController: ContentFrameController? = nil
     
 	//Header
@@ -40,10 +40,6 @@ class ContentFrameView: NSBox{
     required init?(coder: NSCoder) {
         super.init(coder: coder)
 		self.layer?.cornerCurve = .continuous
-    }
-    
-    func setFrameOwner(_ owner: NiSpaceDocumentView!){
-        self.niParentDoc = owner
     }
 
 	func setSelfController(_ con: ContentFrameController){
@@ -190,8 +186,6 @@ class ContentFrameView: NSBox{
             nextResponder?.mouseDragged(with: event)
         }
         
-        super.mouseDragged(with: event)
-
         if cursorOnBorder == OnBorder.no{
             return
         }
@@ -228,12 +222,8 @@ class ContentFrameView: NSBox{
             addCursorRect(getBottomBorderActionArea(), cursor: NSCursor.resizeUpDown)
         }
     }
-        
-    enum OnBorder{
-        case no, top, bottomRight, bottom, leftSide, rightSide
-    }
     
-    func isOnBoarder(_ cursorLocation: CGPoint) -> OnBorder{
+    override func isOnBoarder(_ cursorLocation: CGPoint) -> OnBorder{
         
         let cAA = CFConstants.cornerActionAreaMargin
         
@@ -285,34 +275,34 @@ class ContentFrameView: NSBox{
 	/*
 	 * MARK: resize and repositioning here
 	 */
-    private func repositionView(_ xDiff: Double, _ yDiff: Double) {
-        
-        let docW = self.niParentDoc!.frame.size.width
-        let docHeight = self.niParentDoc!.frame.size.height
-        
-        //checks for out of bounds
-        if(frame.origin.x + xDiff < 0){
-            frame.origin.x = 0
-        }else if (frame.origin.x + xDiff + (frame.width/2.0) < docW){
-            frame.origin.x += xDiff
-        }
-		// do nothing when trying to move to far to the right
-        
-        if (frame.origin.y - yDiff < 45){	//45px is the hight of the top bar + shadow - FIXME: write cleaner implemetation
-            frame.origin.y = 45
-        }else if(frame.origin.y - yDiff + frame.height > docHeight){
-            
-            if(!deactivateDocumentResize && yDiff < 0){ //mouse moving downwards, not upwards
-                self.niParentDoc!.extendDocumentDownwards()
-                deactivateDocumentResize = true     //get's activated again when mouse lifted
-			}else{
-				frame.origin.y -= yDiff
-			}
-
-        }else{
-            frame.origin.y -= yDiff
-        }
-    }
+//    private func repositionView(_ xDiff: Double, _ yDiff: Double) {
+//        
+//        let docW = self.niParentDoc!.frame.size.width
+//        let docHeight = self.niParentDoc!.frame.size.height
+//        
+//        //checks for out of bounds
+//        if(frame.origin.x + xDiff < 0){
+//            frame.origin.x = 0
+//        }else if (frame.origin.x + xDiff + (frame.width/2.0) < docW){
+//            frame.origin.x += xDiff
+//        }
+//		// do nothing when trying to move to far to the right
+//        
+//        if (frame.origin.y - yDiff < 45){	//45px is the hight of the top bar + shadow - FIXME: write cleaner implemetation
+//            frame.origin.y = 45
+//        }else if(frame.origin.y - yDiff + frame.height > docHeight){
+//            
+//            if(!deactivateDocumentResize && yDiff < 0){ //mouse moving downwards, not upwards
+//                self.niParentDoc!.extendDocumentDownwards()
+//                deactivateDocumentResize = true     //get's activated again when mouse lifted
+//			}else{
+//				frame.origin.y -= yDiff
+//			}
+//
+//        }else{
+//            frame.origin.y -= yDiff
+//        }
+//    }
     
     func resizeOwnFrame(_ xDiff: Double, _ yDiff: Double, cursorLeftSide invertX: Bool = false){
         let frameSize = frame.size
