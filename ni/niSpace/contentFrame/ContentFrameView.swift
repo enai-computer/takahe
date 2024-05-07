@@ -131,6 +131,10 @@ class ContentFrameView: NSBox{
         
 		if cursorOnBorder == .top{
 			NSCursor.closedHand.push()
+			if(event.clickCount == 2){
+				fillView()
+				return
+			}
 		}
 		
         let posInHeadView = self.cfHeadView!.convert(cursorPos, from: self)
@@ -278,6 +282,9 @@ class ContentFrameView: NSBox{
         return NSRect(x: (frame.size.width - CFConstants.actionAreaMargin), y: CFConstants.cornerActionAreaMargin, width: CFConstants.actionAreaMargin, height: (frame.size.height - CFConstants.cornerActionAreaMargin))
     }
     
+	/*
+	 * MARK: resize and repositioning here
+	 */
     private func repositionView(_ xDiff: Double, _ yDiff: Double) {
         
         let docW = self.niParentDoc!.frame.size.width
@@ -332,6 +339,18 @@ class ContentFrameView: NSBox{
             self.frame.origin.x += xDiff
         }
     }
+	
+	func fillView(){
+		let visibleView = self.niParentDoc!.visibleRect
+		let w = visibleView.size.width * 0.85
+		let h = visibleView.size.height * 0.9
+		
+		let x = visibleView.size.width * 0.1	//origin x will always be 0
+		let y = visibleView.origin.y + 50		//view is flipped, distance from top
+		
+		self.setFrameSize(NSSize(width: w, height: h))
+		self.setFrameOrigin(NSPoint(x: x, y: y))
+	}
     
 	/*
 	 * MARK: - toggle Active
