@@ -31,6 +31,7 @@ class ContentFrameView: NSBox{
 	@IBOutlet var closeButton: NSImageView!
 	@IBOutlet var addTabButton: NSImageView!
 	@IBOutlet var cfHeadDragArea: NSView!
+	@IBOutlet var minimizeButton: NSImageView!
 	
 	//TabView
 	@IBOutlet var niContentTabView: NSTabView!
@@ -151,6 +152,11 @@ class ContentFrameView: NSBox{
             let activeTabView = niContentTabView.selectedTabViewItem?.view as! WKWebView
             activeTabView.goForward()
         }
+		
+		if NSPointInRect(posInHeadView, minimizeButton.frame){
+			guard let myController = nextResponder as? ContentFrameController else{return}
+			myController.minimizeClicked(event)
+		}
         
         if NSPointInRect(posInHeadView, addTabButton.frame){
             if let cfc = self.nextResponder as? ContentFrameController{

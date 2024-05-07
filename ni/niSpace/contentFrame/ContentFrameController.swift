@@ -162,6 +162,11 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
 		}
 	}
 	
+	func minimizeClicked(_ event: NSEvent) {
+		print("minimizeClicked")
+	}
+	
+	
 	/*
 	 * MARK: - keyboard caputure here:
 	 */
