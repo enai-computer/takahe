@@ -27,7 +27,7 @@
                     <color key="contentTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </imageView>
                 <textField verticalHuggingPriority="750" textCompletion="NO" contentType="url" id="M3P-Ts-CdH" customClass="ContentFrameTabHeadTextNode" customModule="ni" customModuleProvider="target">
-                    <rect key="frame" x="26" y="6" width="148" height="18"/>
+                    <rect key="frame" x="26" y="6" width="144" height="18"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" alignment="left" placeholderString="browse the web" usesSingleLineMode="YES" id="i0z-zx-THu">
                         <font key="font" size="13" name="Sohne-Buch"/>
@@ -36,7 +36,7 @@
                     </textFieldCell>
                 </textField>
                 <imageView focusRingType="none" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="05Y-AR-Re4" customClass="NiActionImage" customModule="ni" customModuleProvider="target">
-                    <rect key="frame" x="174" y="9" width="12" height="12"/>
+                    <rect key="frame" x="172" y="5" width="20" height="20"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                     <imageCell key="cell" enabled="NO" focusRingType="none" alignment="left" animates="YES" imageScaling="proportionallyUpOrDown" image="close" id="5cB-Fo-tLg"/>
                     <color key="contentTintColor" name="SandLight9"/>
@@ -48,7 +48,7 @@
     </objects>
     <resources>
         <image name="NSApplicationIcon" width="32" height="32"/>
-        <image name="close" width="13" height="13"/>
+        <image name="close" width="24" height="24"/>
         <namedColor name="SandLight9">
             <color red="0.56470588235294117" green="0.56470588235294117" blue="0.5490196078431373" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

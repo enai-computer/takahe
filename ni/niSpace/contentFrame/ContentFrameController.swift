@@ -19,22 +19,55 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
     private var selectedTabModel: Int = -1
 	private var aTabIsInEditingMode: Bool = false
 	private var tabs: [TabViewModel] = []
+	private var viewState: NiConentFrameState = .expanded
 		
+	init(viewState: NiConentFrameState){
+		self.viewState = viewState
+		super.init(nibName: nil, bundle: nil)
+	}
+	
+	required init?(coder: NSCoder) {
+		fatalError("init(coder:) has not been implemented")
+	}
+	
     override func loadView() {
-        self.niContentFrameView = (NSView.loadFromNib(nibName: "ContentFrameView", owner: self) as! ContentFrameView)
+		if(viewState == .minimised){
+			loadMinimizedView()
+		}else{
+			loadDefaultView()
+		}
+    }
+    
+	private func loadDefaultView(){
+		self.niContentFrameView = (NSView.loadFromNib(nibName: "ContentFrameView", owner: self) as! ContentFrameView)
 		self.niContentFrameView?.setSelfController(self)
-        self.view = niContentFrameView!
-        self.view.wantsLayer = true
-        self.view.layer?.cornerRadius = 10
-        self.view.layer?.cornerCurve = .continuous
-        self.view.layer?.borderWidth = 5
-        self.view.layer?.borderColor = NSColor(.sandLight4).cgColor
-        self.view.layer?.backgroundColor = NSColor(.sandLight4).cgColor
+		self.view = niContentFrameView!
+		
+		sharedLoadViewSetters()
 		
 		niContentFrameView!.cfHeadView.wantsLayer = true
 		niContentFrameView!.cfHeadView.layer?.backgroundColor = NSColor(.sandLight4).cgColor
-    }
-    
+	}
+	
+	
+	private func loadMinimizedView(){
+		let minimizedView = (NSView.loadFromNib(nibName: "CFMinimized", owner: self) as! CFMinimizedView)
+		
+		self.view = minimizedView
+		sharedLoadViewSetters()
+		
+		
+	}
+	
+	private func sharedLoadViewSetters(){
+		self.view.wantsLayer = true
+		self.view.layer?.cornerRadius = 10
+		self.view.layer?.cornerCurve = .continuous
+		self.view.layer?.borderWidth = 5
+		self.view.layer?.borderColor = NSColor(.sandLight4).cgColor
+		self.view.layer?.backgroundColor = NSColor(.sandLight4).cgColor
+	}
+	
 	override func viewDidAppear() {
 		super.viewDidAppear()
 	}

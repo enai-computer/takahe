@@ -4,7 +4,7 @@ import Cocoa
 import WebKit
 
 func openEmptyContentFrame() -> ContentFrameController{
-	let frameController = ContentFrameController()
+	let frameController = ContentFrameController(viewState: .expanded)
 	frameController.loadView()
 	
 	return frameController
@@ -13,7 +13,7 @@ func openEmptyContentFrame() -> ContentFrameController{
 func reopenContentFrame(contentFrame: NiContentFrameModel, tabs: [NiCFTabModel]) -> ContentFrameController {
     
 	var activeTab: Int = -1
-    let frameController = ContentFrameController()
+	let frameController = ContentFrameController(viewState: contentFrame.state)
     frameController.loadView()
 	for (i, tab) in tabs.enumerated(){
         let record = CachedWebTable.fetchCachedWebsite(contentId: tab.id)
