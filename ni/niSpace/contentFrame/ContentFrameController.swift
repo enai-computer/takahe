@@ -16,13 +16,18 @@ import FaviconFinder
 class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollectionViewDataSource, NSCollectionViewDelegate, NSCollectionViewDelegateFlowLayout{
     
     private(set) var niContentFrameView: ContentFrameView? = nil
+	var myView: CFBaseView {return self.view as! CFBaseView}
     private var selectedTabModel: Int = -1
 	private var aTabIsInEditingMode: Bool = false
 	private var tabs: [TabViewModel] = []
 	private var viewState: NiConentFrameState = .expanded
 		
-	init(viewState: NiConentFrameState){
+	init(viewState: NiConentFrameState, tabsModel: [TabViewModel]? = nil){
 		self.viewState = viewState
+		
+		if(tabsModel != nil){
+			self.tabs = tabsModel!
+		}
 		super.init(nibName: nil, bundle: nil)
 	}
 	
@@ -32,7 +37,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
 	
     override func loadView() {
 		if(viewState == .minimised){
-			loadMinimizedView()
+			loadAndDisplayMinimizedView()
 		}else{
 			loadDefaultView()
 		}
@@ -49,25 +54,39 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
 		niContentFrameView!.cfHeadView.layer?.backgroundColor = NSColor(.sandLight4).cgColor
 	}
 	
+	private func loadAndDisplayMinimizedView(){
+		let minimizedView = loadMinimizedView()
+		self.view = minimizedView
+		sharedLoadViewSetters()
+	}
 	
-	private func loadMinimizedView(){
+	private func loadMinimizedView() -> CFMinimizedView{
 		let minimizedView = (NSView.loadFromNib(nibName: "CFMinimizedView", owner: self) as! CFMinimizedView)
 		
 		//TODO: FixMe: can not be loaded from storage like this
 		minimizedView.setFrameOwner(niContentFrameView?.niParentDoc)
 		
-		sharedLoadViewSetters()
-		
 		let stackItems = genMinimizedStackItems(tabs: tabs, owner: self)
 		minimizedView.listOfTabs?.setViews(stackItems, in: .top)
 		minimizedView.setHight(nrOfItems: stackItems.count)
 		
+		self.viewState = .minimised
+		
+		return minimizedView
+	}
+	
+	private func minimizeSelf(){
+		let minimizedView = loadMinimizedView()
+		
+		//position
 		minimizedView.frame.origin.y = self.view.frame.origin.y
 		minimizedView.frame.origin.x = self.view.frame.origin.x + self.view.frame.width - minimizedView.frame.width
 		
+		//replace
 		self.view.superview?.replaceSubview(self.view, with: minimizedView)
 		
 		self.view = minimizedView
+		sharedLoadViewSetters()
 	}
 	
 	private func sharedLoadViewSetters(){
@@ -129,7 +148,6 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
 		
 		var tabHeadModel = TabViewModel(contentId: contentId)
 		tabHeadModel.position = niContentFrameView!.createNewTab(tabView: niWebView)
-//		tabHeadModel.url = urlStr
 		tabHeadModel.webView = niWebView
 		tabHeadModel.webView!.tabHeadPosition = tabHeadModel.position
 		if(webContentState != nil){
@@ -208,7 +226,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
 	
 	func minimizeClicked(_ event: NSEvent) {
 		print("minimizeClicked")
-		loadMinimizedView()
+		minimizeSelf()
 	}
 	
 	
@@ -380,6 +398,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
 	/*
 	 * MARK: - store and load here
 	 */
+	
 	func persistContent(documentId: UUID){
 		for tab in tabs {
 			CachedWebTable.upsert(documentId: documentId, id: tab.contentId, title: tab.title, url: tab.webView?.url?.absoluteString ?? "")
@@ -408,7 +427,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
 		let model = NiDocumentObjectModel(
 			type: NiDocumentObjectTypes.contentFrame,
 			data: NiContentFrameModel(
-				state: NiConentFrameState.expanded,
+				state: self.viewState,
 				height: NiCoordinate(px: view.frame.height),
 				width: NiCoordinate(px: view.frame.width),
 				position: NiViewPosition(
