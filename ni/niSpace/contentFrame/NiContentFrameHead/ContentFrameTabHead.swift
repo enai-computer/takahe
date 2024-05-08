@@ -6,7 +6,6 @@
 //
 
 import Cocoa
-import FaviconFinder
 
 class ContentFrameTabHead: NSCollectionViewItem, NSTextFieldDelegate {
 
@@ -157,12 +156,12 @@ class ContentFrameTabHead: NSCollectionViewItem, NSTextFieldDelegate {
 		}
 	}
 	
-	private func fetchFavIcon(url: URL) async throws -> NSImage?{
-		return try await FaviconFinder(url: url)
-				.fetchFaviconURLs()
-				.download()
-				.largest().image?.image
-	}
+//	private func fetchFavIcon(url: URL) async throws -> NSImage?{
+//		return try await FaviconFinder(url: url)
+//				.fetchFaviconURLs()
+//				.download()
+//				.largest().image?.image
+//	}
 	
 	private func setText(_ viewModel: TabViewModel){
 		if(viewModel.inEditingMode){

@@ -6,6 +6,7 @@
 //
 
 import Cocoa
+import FaviconFinder
 
 func genMinimizedStackItems(tabs: [TabViewModel], owner: Any?) -> [CFMinimizedStackItem]{
 	
@@ -13,9 +14,18 @@ func genMinimizedStackItems(tabs: [TabViewModel], owner: Any?) -> [CFMinimizedSt
 	
 	for tab in tabs {
 		let itemView = (NSView.loadFromNib(nibName: "CFMinimizedStackItem", owner: owner) as! CFMinimizedStackItem)
-		itemView.setItemData(position: tab.position, title: tab.title, icon: tab.icon)
+		let url = tab.webView?.url?.absoluteString ?? tab.url
+		itemView.setItemData(position: tab.position, title: tab.title, icon: tab.icon, urlStr: url)
 		stackItems.append(itemView)
 	}
 	
 	return stackItems
 }
+
+func fetchFavIcon(url: URL) async throws -> NSImage?{
+	return try await FaviconFinder(url: url)
+			.fetchFaviconURLs()
+			.download()
+			.largest().image?.image
+}
+

@@ -25,12 +25,31 @@ class CFMinimizedStackItem: NSView{
 		self.addTrackingArea(hoverEffectTrackingArea)
 	}
 	
-	func setItemData(position: Int, title: String, icon: NSImage?){
+	func setItemData(position: Int, title: String, icon: NSImage?, urlStr: String? = nil){
 		tabPosition = position
 		tabTitle.stringValue = title
 		if(icon != nil){
 			tabIcon.image = icon
+		}else if(urlStr != nil && !urlStr!.isEmpty){
+			Task {
+				do{
+					let img = try await fetchFavIcon(url: URL(string: urlStr!)!)!
+					self.setIcon(img)
+				}catch{
+					debugPrint(error)
+				}
+			}
 		}
+	}
+	
+	@MainActor
+	func setIcon(_ img: NSImage){
+		tabIcon.image = img
+	}
+	
+	override func mouseDown(with event: NSEvent) {
+		guard let myController = nextResponder?.nextResponder?.nextResponder?.nextResponder as? ContentFrameController else{return}
+		myController.minimizedToExpanded(tabPosition)
 	}
 	
 	override func mouseEntered(with event: NSEvent) {

@@ -17,7 +17,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
     
 	var myView: CFBaseView {return self.view as! CFBaseView}
 	
-    private var expandedCFView: ContentFrameView? = nil
+    private(set) var expandedCFView: ContentFrameView? = nil
     private var selectedTabModel: Int = -1
 	private var aTabIsInEditingMode: Bool = false
 	private var tabs: [TabViewModel] = []
@@ -40,17 +40,20 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
 		if(viewState == .minimised){
 			loadAndDisplayMinimizedView()
 		}else{
-			loadDefaultView()
+			loadAndDisplayDefaultView()
 		}
     }
     
-	private func loadDefaultView(){
+	private func loadAndDisplayDefaultView(){
+		loadExpandedView()
+		self.view = expandedCFView!
+		sharedLoadViewSetters()
+	}
+	
+	private func loadExpandedView(){
 		self.expandedCFView = (NSView.loadFromNib(nibName: "ContentFrameView", owner: self) as! ContentFrameView)
 		self.expandedCFView?.setSelfController(self)
-		self.view = expandedCFView!
-		
-		sharedLoadViewSetters()
-		
+
 		expandedCFView!.cfHeadView.wantsLayer = true
 		expandedCFView!.cfHeadView.layer?.backgroundColor = NSColor(.sandLight4).cgColor
 	}
@@ -64,8 +67,9 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
 	private func loadMinimizedView() -> CFMinimizedView{
 		let minimizedView = (NSView.loadFromNib(nibName: "CFMinimizedView", owner: self) as! CFMinimizedView)
 		
-		//TODO: FixMe: can not be loaded from storage like this
+		//if loaded when space is generated from storage this value will be overwritten
 		minimizedView.setFrameOwner(expandedCFView?.niParentDoc)
+		minimizedView.setSelfController(self)
 		
 		let stackItems = genMinimizedStackItems(tabs: tabs, owner: self)
 		minimizedView.listOfTabs?.setViews(stackItems, in: .top)
@@ -135,17 +139,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
 	}
 	
 	func openWebsiteInNewTab(urlStr: String, contentId: UUID, tabName: String, webContentState: String? = nil) -> Int{
-		
-		let url: URL
-		do{
-			url = try createWebUrl(from: urlStr)
-		}catch{
-			url = getCouldNotLoadWebViewURL()
-		}
-
-        let urlReq = URLRequest(url: url)
-        
-        let niWebView = getNewWebView(contentId: contentId, urlReq: urlReq, frame: expandedCFView!.frame)
+		let niWebView = getNewWebView(urlStr: urlStr, contentId: contentId)
 		
 		var tabHeadModel = TabViewModel(contentId: contentId)
 		tabHeadModel.position = expandedCFView!.createNewTab(tabView: niWebView)
@@ -163,6 +157,19 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
 		
 		return tabHeadModel.position
     }
+	
+	func getNewWebView(urlStr: String, contentId: UUID) -> NiWebView{
+		let url: URL
+		do{
+			url = try createWebUrl(from: urlStr)
+		}catch{
+			url = getCouldNotLoadWebViewURL()
+		}
+
+		let urlReq = URLRequest(url: url)
+		
+		return getNewWebView(contentId: contentId, urlReq: urlReq, frame: expandedCFView!.frame)
+	}
 	
     func openWebsiteInNewTab(_ urlStr: String){
         let id = UUID()
@@ -236,21 +243,36 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
 		}
 	}
 	
-	//TODO: add option to switch to a specific tab
-	func minimizedToExpanded(){
-		if(expandedCFView != nil){
-			//position
-			//TODO: ensure it's not out of bounds?
-			expandedCFView!.frame.origin.y = self.view.frame.origin.y
-			expandedCFView!.frame.origin.x = self.view.frame.origin.x + self.view.frame.width - expandedCFView!.frame.width
-			
-			//replace
-			self.view.superview?.replaceSubview(self.view, with: expandedCFView!)
-			self.view = expandedCFView!
-			
-			self.viewState = .expanded
+	func minimizedToExpanded(_ selectTabAt: Int = -1){
+		if(expandedCFView == nil){
+			recreateExpandedCFView()
+			expandedCFView?.setFrameOwner(self.myView.niParentDoc)
 		}
-		//TODO: else recreate CF
+		//position
+		//TODO: ensure it's not out of bounds?
+		expandedCFView!.frame.origin.y = self.view.frame.origin.y
+		expandedCFView!.frame.origin.x = self.view.frame.origin.x + self.view.frame.width - expandedCFView!.frame.width
+		
+		//replace
+		self.view.superview?.replaceSubview(self.view, with: expandedCFView!)
+		self.view = expandedCFView!
+		
+		self.viewState = .expanded
+		if(0 <= selectTabAt){
+			forceSelectTab(at: selectTabAt)
+		}
+		self.expandedCFView!.toggleActive()
+	}
+	
+	func recreateExpandedCFView() {
+		loadExpandedView()
+		for tab in tabs{
+			var tab = tab
+			let wview = getNewWebView(urlStr: tab.url, contentId: tab.contentId)
+			tab.webView = wview
+			tab.position = expandedCFView!.createNewTab(tabView: wview)
+			wview.tabHeadPosition = tab.position
+		}
 	}
 	
 	/*
@@ -283,6 +305,9 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
 		//an empty tab still loads a local html
 		if(self.tabs[wv.tabHeadPosition].state != .empty && self.tabs[wv.tabHeadPosition].state != .error ){
 			self.tabs[wv.tabHeadPosition].state = .loaded
+			if(wv.url != nil){
+				self.tabs[wv.tabHeadPosition].url = wv.url!.absoluteString
+			}
 			expandedCFView?.cfTabHeadCollection.reloadItems(at: Set(arrayLiteral: IndexPath(item: wv.tabHeadPosition, section: 0)))
 		}
 		

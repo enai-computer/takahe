@@ -68,7 +68,7 @@ class NiSpaceDocumentView: NSView{
     
     func addNiFrame(_ subViewController: ContentFrameController){
 		self.addSubview(subViewController.view)
-		setTopNiFrame(NSApplication.shared.keyWindow, subViewController)
+		setTopNiFrame(subViewController)
 		contentFrameControllers.insert(subViewController)
     }
 	
@@ -76,7 +76,7 @@ class NiSpaceDocumentView: NSView{
 		contentFrameControllers.remove(subViewController)
 	}
 
-    func setTopNiFrame(_ window: NSWindow?, _ newTopFrame: ContentFrameController){
+    func setTopNiFrame( _ newTopFrame: ContentFrameController){
 		let zPosOldTopNiFrame = topNiFrame?.view.layer?.zPosition
         topNiFrame?.toggleActive()
         
@@ -91,8 +91,12 @@ class NiSpaceDocumentView: NSView{
 			newTopFrame.view.layer?.zPosition = 0
 		}
         topNiFrame = newTopFrame
-
-        topNiFrame?.toggleActive()
+		
+		//in case the frame was already active before this function call, we do not want to deactivate it
+		guard let cfView = topNiFrame?.expandedCFView as? ContentFrameView else{return}
+		if(!cfView.frameIsActive){
+			topNiFrame?.toggleActive()
+		}
 	}
     
     func persistContent(documentId: UUID){

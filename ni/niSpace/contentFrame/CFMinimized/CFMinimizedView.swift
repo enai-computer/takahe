@@ -13,6 +13,7 @@ class CFMinimizedView: CFBaseView{
 	@IBOutlet var cfHeadView: NSView!
 	@IBOutlet var listOfTabs: NSStackView?
 	@IBOutlet var maximizeButton: NSImageView!
+	@IBOutlet var closeButton: NSImageView!
 	
 	required init?(coder: NSCoder) {
 		super.init(coder: coder)
@@ -41,6 +42,14 @@ class CFMinimizedView: CFBaseView{
 		if(NSPointInRect(posInHeadView, maximizeButton.frame)){
 			guard let myController = nextResponder as? ContentFrameController else{return}
 			myController.minimizedToExpanded()
+			return
+		}
+		
+		//clicked on close button
+		if NSPointInRect(posInHeadView, closeButton.frame){
+			niParentDoc?.removeNiFrame(myController!)
+			removeFromSuperview()
+			return
 		}
 		
 		cursorOnBorder = isOnBoarder(posInFrame!)

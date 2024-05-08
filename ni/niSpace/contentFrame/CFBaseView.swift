@@ -14,12 +14,18 @@ import Cocoa
 class CFBaseView: NSBox{
 	
 	var niParentDoc: NiSpaceDocumentView? = nil
+	var myController: ContentFrameController? = nil
+	
 	var deactivateDocumentResize: Bool = false
 	var cursorOnBorder: OnBorder = .no
 	var cursorDownPoint: CGPoint  = .zero
 	
 	func setFrameOwner(_ owner: NiSpaceDocumentView!){
 		self.niParentDoc = owner
+	}
+	
+	func setSelfController(_ con: ContentFrameController){
+		self.myController = con
 	}
 	
 	func repositionView(_ xDiff: Double, _ yDiff: Double) {

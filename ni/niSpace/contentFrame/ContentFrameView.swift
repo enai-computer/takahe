@@ -20,7 +20,6 @@ class ContentFrameView: CFBaseView{
     private(set) var frameIsActive: Bool = false
 
 //    private var niParentDoc: NiSpaceDocumentView? = nil
-	private var myController: ContentFrameController? = nil
     
 	//Header
 	@IBOutlet var cfHeadView: ContentFrameHeadView!
@@ -41,10 +40,6 @@ class ContentFrameView: CFBaseView{
         super.init(coder: coder)
 		self.layer?.cornerCurve = .continuous
     }
-
-	func setSelfController(_ con: ContentFrameController){
-		self.myController = con
-	}
     
     func createNewTab(tabView: NiWebView) -> Int{
 
@@ -113,7 +108,7 @@ class ContentFrameView: CFBaseView{
      */
     override func mouseDown(with event: NSEvent) {
         if !frameIsActive{
-			niParentDoc?.setTopNiFrame(NSApplication.shared.keyWindow, myController!)
+			niParentDoc?.setTopNiFrame(myController!)
             return
         }
         
