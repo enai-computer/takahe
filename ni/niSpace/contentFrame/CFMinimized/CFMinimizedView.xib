@@ -43,6 +43,7 @@
             <connections>
                 <outlet property="cfHeadView" destination="c22-O7-iKe" id="WnO-fb-i7N"/>
                 <outlet property="listOfTabs" destination="v3S-NA-oVt" id="reL-19-mRB"/>
+                <outlet property="maximizeButton" destination="wU3-64-xsG" id="Iwa-Nh-s9x"/>
             </connections>
             <point key="canvasLocation" x="139.5" y="-104"/>
         </box>

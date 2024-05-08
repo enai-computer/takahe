@@ -47,7 +47,7 @@ class NiSpaceDocumentController: NSViewController{
 	*/
 	func openEmptyCF(){
 		let controller = openEmptyContentFrame()
-		let newCFView = controller.niContentFrameView!
+		let newCFView = controller.myView
 		newCFView.frame.origin = calculateOrigin(for: controller.view.frame)
 		newCFView.setFrameOwner(myView)
 		

@@ -15,8 +15,9 @@ import FaviconFinder
 //TODO: clean up tech debt and move the delegates out of here
 class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollectionViewDataSource, NSCollectionViewDelegate, NSCollectionViewDelegateFlowLayout{
     
-    private(set) var niContentFrameView: ContentFrameView? = nil
 	var myView: CFBaseView {return self.view as! CFBaseView}
+	
+    private var expandedCFView: ContentFrameView? = nil
     private var selectedTabModel: Int = -1
 	private var aTabIsInEditingMode: Bool = false
 	private var tabs: [TabViewModel] = []
@@ -44,14 +45,14 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
     }
     
 	private func loadDefaultView(){
-		self.niContentFrameView = (NSView.loadFromNib(nibName: "ContentFrameView", owner: self) as! ContentFrameView)
-		self.niContentFrameView?.setSelfController(self)
-		self.view = niContentFrameView!
+		self.expandedCFView = (NSView.loadFromNib(nibName: "ContentFrameView", owner: self) as! ContentFrameView)
+		self.expandedCFView?.setSelfController(self)
+		self.view = expandedCFView!
 		
 		sharedLoadViewSetters()
 		
-		niContentFrameView!.cfHeadView.wantsLayer = true
-		niContentFrameView!.cfHeadView.layer?.backgroundColor = NSColor(.sandLight4).cgColor
+		expandedCFView!.cfHeadView.wantsLayer = true
+		expandedCFView!.cfHeadView.layer?.backgroundColor = NSColor(.sandLight4).cgColor
 	}
 	
 	private func loadAndDisplayMinimizedView(){
@@ -64,7 +65,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
 		let minimizedView = (NSView.loadFromNib(nibName: "CFMinimizedView", owner: self) as! CFMinimizedView)
 		
 		//TODO: FixMe: can not be loaded from storage like this
-		minimizedView.setFrameOwner(niContentFrameView?.niParentDoc)
+		minimizedView.setFrameOwner(expandedCFView?.niParentDoc)
 		
 		let stackItems = genMinimizedStackItems(tabs: tabs, owner: self)
 		minimizedView.listOfTabs?.setViews(stackItems, in: .top)
@@ -111,7 +112,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
     }
     
 	func openEmptyTab(_ contentId: UUID = UUID()) -> Int{
-		let niWebView = NiWebView(contentId: contentId, owner: self, frame: niContentFrameView!.frame)
+		let niWebView = NiWebView(contentId: contentId, owner: self, frame: expandedCFView!.frame)
 
 		let localHTMLurl = getEmtpyWebViewURL()
 		niWebView.loadFileURL(localHTMLurl, allowingReadAccessTo: localHTMLurl)
@@ -120,7 +121,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
 		niWebView.navigationDelegate = self
 		
 		var tabHeadModel = TabViewModel(contentId: UUID())
-		tabHeadModel.position = niContentFrameView!.createNewTab(tabView: niWebView)
+		tabHeadModel.position = expandedCFView!.createNewTab(tabView: niWebView)
 		tabHeadModel.webView = niWebView
 		tabHeadModel.webView!.tabHeadPosition = tabHeadModel.position
 		self.tabs.append(tabHeadModel)
@@ -144,10 +145,10 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
 
         let urlReq = URLRequest(url: url)
         
-        let niWebView = getNewWebView(contentId: contentId, urlReq: urlReq, frame: niContentFrameView!.frame)
+        let niWebView = getNewWebView(contentId: contentId, urlReq: urlReq, frame: expandedCFView!.frame)
 		
 		var tabHeadModel = TabViewModel(contentId: contentId)
-		tabHeadModel.position = niContentFrameView!.createNewTab(tabView: niWebView)
+		tabHeadModel.position = expandedCFView!.createNewTab(tabView: niWebView)
 		tabHeadModel.webView = niWebView
 		tabHeadModel.webView!.tabHeadPosition = tabHeadModel.position
 		if(webContentState != nil){
@@ -177,7 +178,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
 	}
 	
 	func toggleActive(){
-		niContentFrameView?.toggleActive()
+		expandedCFView?.toggleActive()
 	}
 	
 	func closeTab(at: Int){
@@ -204,31 +205,53 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
 			let toDeletePos = selectedTabModel
 			selectedTabModel -= 1
 			
-			niContentFrameView?.deleteSelectedTab(at: toDeletePos)
+			expandedCFView?.deleteSelectedTab(at: toDeletePos)
 			self.tabs.remove(at: toDeletePos)
 			
 			selectTab(at: selectedTabModel)
 			
-			niContentFrameView?.cfTabHeadCollection.reloadData()
+			expandedCFView?.cfTabHeadCollection.reloadData()
 		}else if( selectedTabModel == 0 && self.tabs.count == 1){
 			view.removeFromSuperview()
 		}else if( selectedTabModel == 0 && 1 < self.tabs.count){
 			let toDeletePos = selectedTabModel
 			
-			niContentFrameView?.deleteSelectedTab(at: toDeletePos)
+			expandedCFView?.deleteSelectedTab(at: toDeletePos)
 			self.tabs.remove(at: toDeletePos)
 			
 			selectTab(at: selectedTabModel)
 			
-			niContentFrameView?.cfTabHeadCollection.reloadData()
+			expandedCFView?.cfTabHeadCollection.reloadData()
 		}
 	}
 	
 	func minimizeClicked(_ event: NSEvent) {
-		print("minimizeClicked")
 		minimizeSelf()
 	}
 	
+	
+	func maximizeClicked(_ event: NSEvent){
+		if(viewState == .minimised){
+			minimizedToExpanded()
+		}
+	}
+	
+	//TODO: add option to switch to a specific tab
+	func minimizedToExpanded(){
+		if(expandedCFView != nil){
+			//position
+			//TODO: ensure it's not out of bounds?
+			expandedCFView!.frame.origin.y = self.view.frame.origin.y
+			expandedCFView!.frame.origin.x = self.view.frame.origin.x + self.view.frame.width - expandedCFView!.frame.width
+			
+			//replace
+			self.view.superview?.replaceSubview(self.view, with: expandedCFView!)
+			self.view = expandedCFView!
+			
+			self.viewState = .expanded
+		}
+		//TODO: else recreate CF
+	}
 	
 	/*
 	 * MARK: - keyboard caputure here:
@@ -260,7 +283,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
 		//an empty tab still loads a local html
 		if(self.tabs[wv.tabHeadPosition].state != .empty && self.tabs[wv.tabHeadPosition].state != .error ){
 			self.tabs[wv.tabHeadPosition].state = .loaded
-			niContentFrameView?.cfTabHeadCollection.reloadItems(at: Set(arrayLiteral: IndexPath(item: wv.tabHeadPosition, section: 0)))
+			expandedCFView?.cfTabHeadCollection.reloadItems(at: Set(arrayLiteral: IndexPath(item: wv.tabHeadPosition, section: 0)))
 		}
 		
 	}
@@ -314,7 +337,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
 			return NSSize(width: 195, height: 30)
 		}
 		
-		let maxWidth = (niContentFrameView?.cfTabHeadCollection.frame.width ?? 780) / 2
+		let maxWidth = (expandedCFView?.cfTabHeadCollection.frame.width ?? 780) / 2
 		let nrOfCharacters = viewModel.webView?.url?.absoluteString.count ?? 30
 		var tabHeadWidth = CGFloat(nrOfCharacters) * 8.0 + 30
 		
@@ -336,7 +359,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
 	func selectTab(at: Int, mouseDownEvent: NSEvent? = nil){
 		
 		//No tab switching while CF is not active
-		if(!self.niContentFrameView!.frameIsActive){
+		if(!self.expandedCFView!.frameIsActive){
 			if(mouseDownEvent != nil){
 				nextResponder?.mouseDown(with: mouseDownEvent!)
 			}
@@ -353,7 +376,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
 		
 		forceSelectTab(at: at)
 		
-		niContentFrameView?.cfTabHeadCollection.reloadData()
+		expandedCFView?.cfTabHeadCollection.reloadData()
 	}
 	/// skipps all checks ensuring UI consistency. Does not reload the TabHead Collection View
 	///
@@ -363,8 +386,8 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
 			tabs[selectedTabModel].isSelected = false
 		}
 		
-		self.niContentFrameView?.niContentTabView.selectTabViewItem(at: at)
-		self.niContentFrameView?.updateFwdBackTint()
+		self.expandedCFView?.niContentTabView.selectTabViewItem(at: at)
+		self.expandedCFView?.updateFwdBackTint()
 		
 		self.selectedTabModel = at
 		tabs[selectedTabModel].isSelected = true
@@ -373,7 +396,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
 	func editTabUrl(at: Int){
 		self.aTabIsInEditingMode = true
 		tabs[at].inEditingMode = true
-		niContentFrameView?.cfTabHeadCollection.reloadData()
+		expandedCFView?.cfTabHeadCollection.reloadData()
 	}
 	
 	func endEditingTabUrl(at: Int){
@@ -385,7 +408,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
 			// print("here the tabs[selectedTabModel].title should be set *if* the user commits instead of aborts changes")
 			// This update interferes with the (async) web view callback and effectively defaults all editing operations to go to Google
 			RunLoop.main.perform { [self] in
-				niContentFrameView?.cfTabHeadCollection.reloadData()
+				expandedCFView?.cfTabHeadCollection.reloadData()
 			}
 		}
 

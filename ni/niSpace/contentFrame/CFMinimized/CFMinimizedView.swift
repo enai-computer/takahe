@@ -12,6 +12,7 @@ class CFMinimizedView: CFBaseView{
 	
 	@IBOutlet var cfHeadView: NSView!
 	@IBOutlet var listOfTabs: NSStackView?
+	@IBOutlet var maximizeButton: NSImageView!
 	
 	required init?(coder: NSCoder) {
 		super.init(coder: coder)
@@ -35,6 +36,12 @@ class CFMinimizedView: CFBaseView{
 	
 	override func mouseDown(with event: NSEvent) {
 		let posInFrame = self.contentView?.convert(event.locationInWindow, from: nil)
+		let posInHeadView = self.cfHeadView.convert(event.locationInWindow, from: nil)
+		
+		if(NSPointInRect(posInHeadView, maximizeButton.frame)){
+			guard let myController = nextResponder as? ContentFrameController else{return}
+			myController.minimizedToExpanded()
+		}
 		
 		cursorOnBorder = isOnBoarder(posInFrame!)
 		if cursorOnBorder != .no{
