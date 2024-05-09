@@ -20,7 +20,7 @@ class CFMinimizedView: CFBaseView{
 	}
 	
 	func setHight(nrOfItems: Int){
-		frame.size.height = Double(nrOfItems) * 50.0 + 36.0
+		frame.size.height = Double(nrOfItems) * 39.0 + 36.0
 	}
 	
 	override func isOnBoarder(_ cursorLocation: CGPoint) -> CFBaseView.OnBorder {

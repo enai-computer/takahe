@@ -107,10 +107,6 @@ class NiSpaceDocumentView: NSView{
 		if(!cfBaseView.frameIsActive){
 			topNiFrame?.toggleActive()
 		}
-		for c in contentFrameControllers{
-			print(c.view.layer?.zPosition)
-		}
-
 	}
     
     func persistContent(documentId: UUID){

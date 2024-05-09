@@ -24,7 +24,7 @@ class CFMinimizedStackItem: NSView{
 	}
 	
 	func setRoundedCorners(_ edge: NSDirectionalRectEdge){
-		layer?.cornerRadius = 10
+		layer?.cornerRadius = 8
 		layer?.cornerCurve = .continuous
 		if(edge == .top){
 			layer?.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner]
