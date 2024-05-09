@@ -16,6 +16,7 @@ struct TabViewModel{
 	let contentId: UUID
 	
 	var title: String = ""
+	var url: String = ""
 	var state: WebViewState = .empty
 	var webView: NiWebView?
 	var icon: NSImage?

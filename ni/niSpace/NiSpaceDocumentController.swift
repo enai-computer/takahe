@@ -47,7 +47,7 @@ class NiSpaceDocumentController: NSViewController{
 	*/
 	func openEmptyCF(){
 		let controller = openEmptyContentFrame()
-		let newCFView = controller.niContentFrameView!
+		let newCFView = controller.myView
 		newCFView.frame.origin = calculateOrigin(for: controller.view.frame)
 		newCFView.setFrameOwner(myView)
 		
@@ -116,9 +116,9 @@ class NiSpaceDocumentController: NSViewController{
 	}
 	
 	private func recreateContentFrame(data: NiContentFrameModel){
-		let storedWebsiteCFController = reopenContentFrame(contentFrame: data, tabs: data.children)
+		let storedWebsiteCFController = reopenContentFrame(contentFrame: data, tabDataModel: data.children)
 		myView.addNiFrame(storedWebsiteCFController)
-		storedWebsiteCFController.niContentFrameView!.setFrameOwner(myView)
+		storedWebsiteCFController.myView.setFrameOwner(myView)
 	}
 	
 	func storeSpace(scrollPosition: CGFloat){

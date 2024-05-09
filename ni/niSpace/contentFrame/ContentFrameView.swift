@@ -12,15 +12,9 @@ struct CFConstants {
  }
 
 
-class ContentFrameView: NSBox{
+class ContentFrameView: CFBaseView{
     
-    private var cursorDownPoint: CGPoint  = .zero
-    private var cursorOnBorder: OnBorder = .no
-    private var deactivateDocumentResize: Bool = false
-    private(set) var frameIsActive: Bool = false
-
-    private var niParentDoc: NiSpaceDocumentView? = nil
-	private var myController: ContentFrameController? = nil
+//    private(set) var frameIsActive: Bool = false
     
 	//Header
 	@IBOutlet var cfHeadView: ContentFrameHeadView!
@@ -31,6 +25,7 @@ class ContentFrameView: NSBox{
 	@IBOutlet var closeButton: NSImageView!
 	@IBOutlet var addTabButton: NSImageView!
 	@IBOutlet var cfHeadDragArea: NSView!
+	@IBOutlet var minimizeButton: NSImageView!
 	
 	//TabView
 	@IBOutlet var niContentTabView: NSTabView!
@@ -40,14 +35,6 @@ class ContentFrameView: NSBox{
         super.init(coder: coder)
 		self.layer?.cornerCurve = .continuous
     }
-    
-    func setFrameOwner(_ owner: NiSpaceDocumentView!){
-        self.niParentDoc = owner
-    }
-
-	func setSelfController(_ con: ContentFrameController){
-		self.myController = con
-	}
     
     func createNewTab(tabView: NiWebView) -> Int{
 
@@ -116,7 +103,7 @@ class ContentFrameView: NSBox{
      */
     override func mouseDown(with event: NSEvent) {
         if !frameIsActive{
-			niParentDoc?.setTopNiFrame(NSApplication.shared.keyWindow, myController!)
+			niParentDoc?.setTopNiFrame(myController!)
             return
         }
         
@@ -129,6 +116,10 @@ class ContentFrameView: NSBox{
         }
         
 		if cursorOnBorder == .top{
+			if(event.clickCount == 2){
+				fillView()
+				return
+			}
 			NSCursor.closedHand.push()
 		}
 		
@@ -151,6 +142,11 @@ class ContentFrameView: NSBox{
             let activeTabView = niContentTabView.selectedTabViewItem?.view as! WKWebView
             activeTabView.goForward()
         }
+		
+		if NSPointInRect(posInHeadView, minimizeButton.frame){
+			guard let myController = nextResponder as? ContentFrameController else{return}
+			myController.minimizeClicked(event)
+		}
         
         if NSPointInRect(posInHeadView, addTabButton.frame){
             if let cfc = self.nextResponder as? ContentFrameController{
@@ -162,12 +158,13 @@ class ContentFrameView: NSBox{
     override func mouseUp(with event: NSEvent) {
         if !frameIsActive{
             nextResponder?.mouseUp(with: event)
+			return
         }
         
 		if cursorOnBorder == .top{
 			NSCursor.pop()
 		}
-        super.mouseUp(with: event)
+
         cursorDownPoint = .zero
         cursorOnBorder = .no
         deactivateDocumentResize = false
@@ -178,10 +175,9 @@ class ContentFrameView: NSBox{
     override func mouseDragged(with event: NSEvent) {
         if !frameIsActive{
             nextResponder?.mouseDragged(with: event)
+			return
         }
         
-        super.mouseDragged(with: event)
-
         if cursorOnBorder == OnBorder.no{
             return
         }
@@ -209,6 +205,7 @@ class ContentFrameView: NSBox{
     
     override func resetCursorRects() {
         if(frameIsActive){
+			//otherwise hand opens while dragging
             if(cursorDownPoint == .zero){
                 addCursorRect(getTopBorderActionArea(), cursor: NSCursor.openHand)
 				addCursorRect(getDragArea(), cursor: NSCursor.openHand)
@@ -218,12 +215,8 @@ class ContentFrameView: NSBox{
             addCursorRect(getBottomBorderActionArea(), cursor: NSCursor.resizeUpDown)
         }
     }
-        
-    enum OnBorder{
-        case no, top, bottomRight, bottom, leftSide, rightSide
-    }
     
-    func isOnBoarder(_ cursorLocation: CGPoint) -> OnBorder{
+    override func isOnBoarder(_ cursorLocation: CGPoint) -> OnBorder{
         
         let cAA = CFConstants.cornerActionAreaMargin
         
@@ -272,35 +265,9 @@ class ContentFrameView: NSBox{
         return NSRect(x: (frame.size.width - CFConstants.actionAreaMargin), y: CFConstants.cornerActionAreaMargin, width: CFConstants.actionAreaMargin, height: (frame.size.height - CFConstants.cornerActionAreaMargin))
     }
     
-    private func repositionView(_ xDiff: Double, _ yDiff: Double) {
-        
-        let docW = self.niParentDoc!.frame.size.width
-        let docHeight = self.niParentDoc!.frame.size.height
-        
-        //checks for out of bounds
-        if(frame.origin.x + xDiff < 0){
-            frame.origin.x = 0
-        }else if (frame.origin.x + xDiff + (frame.width/2.0) < docW){
-            frame.origin.x += xDiff
-        }
-		// do nothing when trying to move to far to the right
-        
-        if (frame.origin.y - yDiff < 45){	//45px is the hight of the top bar + shadow - FIXME: write cleaner implemetation
-            frame.origin.y = 45
-        }else if(frame.origin.y - yDiff + frame.height > docHeight){
-            
-            if(!deactivateDocumentResize && yDiff < 0){ //mouse moving downwards, not upwards
-                self.niParentDoc!.extendDocumentDownwards()
-                deactivateDocumentResize = true     //get's activated again when mouse lifted
-			}else{
-				frame.origin.y -= yDiff
-			}
-
-        }else{
-            frame.origin.y -= yDiff
-        }
-    }
-    
+	/*
+	 * MARK: resize here
+	 */
     func resizeOwnFrame(_ xDiff: Double, _ yDiff: Double, cursorLeftSide invertX: Bool = false){
         let frameSize = frame.size
         var nsize = frameSize
@@ -326,11 +293,23 @@ class ContentFrameView: NSBox{
             self.frame.origin.x += xDiff
         }
     }
+	
+	func fillView(){
+		let visibleView = self.niParentDoc!.visibleRect
+		let w = visibleView.size.width * 0.9
+		let h = visibleView.size.height * 0.9
+		
+		let x = visibleView.size.width * 0.05	//origin x will always be 0
+		let y = visibleView.origin.y + 50		//view is flipped, distance from top
+		
+		self.setFrameSize(NSSize(width: w, height: h))
+		self.setFrameOrigin(NSPoint(x: x, y: y))
+	}
     
 	/*
 	 * MARK: - toggle Active
 	 */
-    func toggleActive(){
+    override func toggleActive(){
 
         frameIsActive = !frameIsActive
         let webView = niContentTabView.selectedTabViewItem?.view as? NiWebView	//a new content frame will not have a webView yet
@@ -343,8 +322,8 @@ class ContentFrameView: NSBox{
             
 			showHeader()
             webView?.setActive()
-//			niContentTabView.selectedTabViewItem?.view?.wantsLayer = false
-//			niContentTabView.addSubview(niContentTabView.selectedTabViewItem!.view!)
+			self.resetCursorRects()
+
         }else{
             self.layer?.borderColor = NSColor(.sandLight3).cgColor
 			self.layer?.backgroundColor = NSColor(.sandLight3).cgColor
@@ -353,9 +332,7 @@ class ContentFrameView: NSBox{
 			
 			hideHeader()
             webView?.setInactive()
-//			niContentTabView.selectedTabViewItem?.view?.wantsLayer = true
-
-//			niContentTabView.selectedTabViewItem?.view?.removeFromSuperviewWithoutNeedingDisplay()
+			self.discardCursorRects()
         }
     }
 	

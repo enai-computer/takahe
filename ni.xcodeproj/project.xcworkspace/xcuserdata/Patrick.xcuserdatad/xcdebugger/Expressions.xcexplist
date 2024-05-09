@@ -6,7 +6,12 @@
          contextName = "NiSpaceDocument.mouseDown(with:):NiSpaceDocument.swift">
       </ContextState>
       <ContextState
-         contextName = "NiTableCellView.data.getter:HomeViewController.swift">
+         contextName = "ContentFrameTabHead.setIcon(_:):ContentFrameTabHead.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.image.image">
+            </PersistentString>
+         </PersistentStrings>
       </ContextState>
       <ContextState
          contextName = "ContentFrameView.isOnBoarder(_:):ContentFrameView.swift">
@@ -59,6 +64,14 @@
          <PersistentStrings>
             <PersistentString
                value = "self.tabs[wv.tabHeadPosition]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ContentFrameController.sharedLoadViewSetters():ContentFrameController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.view">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -156,13 +169,13 @@
          contextName = "tryCreateUrl(from:):NiStringUtils.swift">
          <PersistentStrings>
             <PersistentString
+               value = "url2.hostname">
+            </PersistentString>
+            <PersistentString
                value = "url2.origin">
             </PersistentString>
             <PersistentString
                value = "url2.scheme">
-            </PersistentString>
-            <PersistentString
-               value = "url2.hostname">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -203,6 +216,9 @@
                value = "tmpCell!.controlView">
             </PersistentString>
          </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "NiSpaceDocumentView.setTopNiFrame(_:):NiSpaceDocumentView.swift">
       </ContextState>
       <ContextState
          contextName = "NiSpaceDocument.inFrame(_:):NiSpaceDocument.swift">
@@ -322,6 +338,17 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "NiTableCellView.data.getter:HomeViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "ContentFrameView.mouseDragged(with:):ContentFrameView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "cursorOnBorder">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "ContentFrameTabHead.loadWebsite(newURL:):ContentFrameTabHead.swift">
          <PersistentStrings>
             <PersistentString
@@ -342,22 +369,6 @@
          <PersistentStrings>
             <PersistentString
                value = "String(from: docJson)">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "ContentFrameTabHead.setIcon(_:):ContentFrameTabHead.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "self.image.image">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "ContentFrameView.mouseDragged(with:):ContentFrameView.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "cursorOnBorder">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
