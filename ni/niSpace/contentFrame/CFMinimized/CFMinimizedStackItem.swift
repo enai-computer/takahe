@@ -18,8 +18,6 @@ class CFMinimizedStackItem: NSView{
 		
 		self.wantsLayer = true
 		layer?.backgroundColor = NSColor(.sandLight3).cgColor
-		layer?.borderWidth = 4
-		layer?.borderColor = NSColor(.sandLight4).cgColor
 		
 		let hoverEffectTrackingArea = NSTrackingArea(rect: self.frame, options: [.mouseEnteredAndExited, .activeInKeyWindow], owner: self, userInfo: nil)
 		self.addTrackingArea(hoverEffectTrackingArea)
