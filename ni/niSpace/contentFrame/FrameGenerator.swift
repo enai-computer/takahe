@@ -6,7 +6,6 @@ import WebKit
 func openEmptyContentFrame() -> ContentFrameController{
 	let frameController = ContentFrameController(viewState: .expanded, tabsModel: nil)
 	frameController.loadView()
-	
 	return frameController
 }
 

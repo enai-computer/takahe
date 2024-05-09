@@ -18,7 +18,14 @@ func genMinimizedStackItems(tabs: [TabViewModel], owner: Any?) -> [CFMinimizedSt
 		itemView.setItemData(position: tab.position, title: tab.title, icon: tab.icon, urlStr: url)
 		stackItems.append(itemView)
 	}
-	
+
+	if(stackItems.count == 1){
+		stackItems.first?.setRoundedCorners(.all)
+	}else{
+		stackItems.first?.setRoundedCorners(.top)
+		stackItems.last?.setRoundedCorners(.bottom)
+	}
+
 	return stackItems
 }
 

@@ -14,7 +14,7 @@
             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Wfx-Tx-W8b">
-                    <rect key="frame" x="9" y="9" width="32" height="32"/>
+                    <rect key="frame" x="9" y="14" width="20" height="20"/>
                     <autoresizingMask key="autoresizingMask"/>
                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="NSApplicationIcon" id="E73-vC-lA4"/>
                 </imageView>

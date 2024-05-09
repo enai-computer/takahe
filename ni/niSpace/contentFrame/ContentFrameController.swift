@@ -73,14 +73,16 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
 		
 		let stackItems = genMinimizedStackItems(tabs: tabs, owner: self)
 		minimizedView.listOfTabs?.setViews(stackItems, in: .top)
+
 		minimizedView.setHight(nrOfItems: stackItems.count)
 		
 		self.viewState = .minimised
 		
 		return minimizedView
 	}
-	
+
 	private func minimizeSelf(){
+		updateTabViewModel()
 		let minimizedView = loadMinimizedView()
 		
 		//position
@@ -92,6 +94,20 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
 		
 		self.view = minimizedView
 		sharedLoadViewSetters()
+	}
+	
+	private func updateTabViewModel(){
+		for tab in tabs{
+			var tab = tab
+			if(tab.webView != nil){
+				if(tab.webView!.title != nil){
+					tab.title = tab.webView!.title!
+				}
+				if(tab.webView!.url != nil){
+					tab.url = tab.webView!.url!.absoluteString
+				}
+			}
+		}
 	}
 	
 	private func sharedLoadViewSetters(){
@@ -449,7 +465,8 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
 	
 	func persistContent(documentId: UUID){
 		for tab in tabs {
-			CachedWebTable.upsert(documentId: documentId, id: tab.contentId, title: tab.title, url: tab.webView?.url?.absoluteString ?? "")
+			let url = tab.webView?.url?.absoluteString ?? tab.url
+			CachedWebTable.upsert(documentId: documentId, id: tab.contentId, title: tab.title, url: url)
 		}
 	}
 	

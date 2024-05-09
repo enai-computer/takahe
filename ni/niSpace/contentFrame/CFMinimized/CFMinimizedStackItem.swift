@@ -25,6 +25,16 @@ class CFMinimizedStackItem: NSView{
 		self.addTrackingArea(hoverEffectTrackingArea)
 	}
 	
+	func setRoundedCorners(_ edge: NSDirectionalRectEdge){
+		layer?.cornerRadius = 10
+		layer?.cornerCurve = .continuous
+		if(edge == .top){
+			layer?.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner]
+		}else if (edge == .bottom){
+			layer?.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+		}
+	}
+	
 	func setItemData(position: Int, title: String, icon: NSImage?, urlStr: String? = nil){
 		tabPosition = position
 		tabTitle.stringValue = title

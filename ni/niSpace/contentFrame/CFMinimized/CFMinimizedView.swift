@@ -17,11 +17,6 @@ class CFMinimizedView: CFBaseView{
 	
 	required init?(coder: NSCoder) {
 		super.init(coder: coder)
-		
-		//FIXME: on init listOfTabs is nil, so we never set the cornerRadius
-		listOfTabs?.wantsLayer = true
-		listOfTabs?.layer?.cornerRadius = 10
-		listOfTabs?.layer?.cornerCurve = .continuous
 	}
 	
 	func setHight(nrOfItems: Int){
