@@ -8,8 +8,52 @@
 import Foundation
 import WebKit
 
-func getEmtpyWebViewURL() -> URL{
+
+func getNewWebView(owner: ContentFrameController, contentId: UUID, urlReq: URLRequest, frame: NSRect) -> NiWebView {
+
+	let wkView = NiWebView(contentId: contentId, owner: owner, frame: frame)
+	wkView.load(urlReq)
+	wkView.navigationDelegate = owner
+	return wkView
+}
+
+func getNewWebView(owner: ContentFrameController, contentId: UUID, frame: NSRect, fileUrl: URL? = nil) -> NiWebView {
+	let niWebView = NiWebView(contentId: contentId, owner: owner, frame: frame)
+
+	let localHTMLurl = if(fileUrl == nil) {
+		getEmtpyWebViewURL()
+	}else{
+		fileUrl!
+	}
+	niWebView.loadFileURL(localHTMLurl, allowingReadAccessTo: localHTMLurl)
+	niWebView.navigationDelegate = owner
+	return niWebView
+}
+
+func getNewWebView(owner: ContentFrameController, frame: NSRect, dirtyUrl: String, contentId: UUID) -> NiWebView{
+	let url: URL
+	do{
+		url = try createWebUrl(from: dirtyUrl)
+	}catch{
+		url = getCouldNotLoadWebViewURL()
+	}
+
+	let urlReq = URLRequest(url: url)
 	
+	return getNewWebView(owner: owner, contentId: contentId, urlReq: urlReq, frame: frame)
+}
+
+func getNewWebView(owner: ContentFrameController, frame: NSRect, cleanUrl: String, contentId: UUID) -> NiWebView{
+	let url = URL(string: cleanUrl)!
+	if(url.scheme!.hasPrefix("file")){
+		return getNewWebView(owner: owner, contentId: contentId, frame: frame, fileUrl: url)
+	}
+	let urlReq = URLRequest(url: url)
+	return ni.getNewWebView(owner: owner, contentId: contentId, urlReq: urlReq, frame: frame)
+}
+
+
+func getEmtpyWebViewURL() -> URL{
 	return Bundle.main.url(forResource: "emptyTab", withExtension: "html")!
 }
 

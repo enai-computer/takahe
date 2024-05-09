@@ -127,29 +127,8 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
 		super.viewDidAppear()
 	}
 
-    private func getNewWebView(contentId: UUID, urlReq: URLRequest, frame: NSRect) -> NiWebView {
-
-        let wkView = NiWebView(contentId: contentId, owner: self, frame: frame)
-        wkView.load(urlReq)
-        wkView.navigationDelegate = self
-        return wkView
-    }
-    
-	private func getNewWebView(contentId: UUID, frame: NSRect, fileUrl: URL? = nil) -> NiWebView {
-		let niWebView = NiWebView(contentId: contentId, owner: self, frame: frame)
-
-		let localHTMLurl = if(fileUrl == nil) {
-			getEmtpyWebViewURL()
-		}else{
-			fileUrl!
-		}
-		niWebView.loadFileURL(localHTMLurl, allowingReadAccessTo: localHTMLurl)
-		niWebView.navigationDelegate = self
-		return niWebView
-	}
-	
 	func openEmptyTab(_ contentId: UUID = UUID()) -> Int{
-		let niWebView = getNewWebView(contentId: contentId, frame: expandedCFView!.frame, fileUrl: nil)
+		let niWebView = ni.getNewWebView(owner: self, contentId: contentId, frame: expandedCFView!.frame, fileUrl: nil)
 		
 		var tabHeadModel = TabViewModel(contentId: UUID())
 		tabHeadModel.position = expandedCFView!.createNewTab(tabView: niWebView)
@@ -163,7 +142,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
 	}
 	
 	func openWebsiteInNewTab(urlStr: String, contentId: UUID, tabName: String, webContentState: String? = nil) -> Int{
-		let niWebView = getNewWebView(dirtyUrl: urlStr, contentId: contentId)
+		let niWebView = getNewWebView(owner: self, frame: expandedCFView!.frame, dirtyUrl: urlStr, contentId: contentId)
 		
 		var tabHeadModel = TabViewModel(contentId: contentId)
 		tabHeadModel.position = expandedCFView!.createNewTab(tabView: niWebView)
@@ -181,28 +160,6 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
 		
 		return tabHeadModel.position
     }
-	
-	func getNewWebView(dirtyUrl: String, contentId: UUID) -> NiWebView{
-		let url: URL
-		do{
-			url = try createWebUrl(from: dirtyUrl)
-		}catch{
-			url = getCouldNotLoadWebViewURL()
-		}
-
-		let urlReq = URLRequest(url: url)
-		
-		return getNewWebView(contentId: contentId, urlReq: urlReq, frame: expandedCFView!.frame)
-	}
-	
-	func getNewWebView(cleanUrl: String, contentId: UUID) -> NiWebView{
-		let url = URL(string: cleanUrl)!
-		if(url.scheme!.hasPrefix("file")){
-			return getNewWebView(contentId: contentId, frame: expandedCFView!.frame, fileUrl: url)
-		}
-		let urlReq = URLRequest(url: url)
-		return getNewWebView(contentId: contentId, urlReq: urlReq, frame: expandedCFView!.frame)
-	}
 	
     func openWebsiteInNewTab(_ urlStr: String){
         let id = UUID()
@@ -300,7 +257,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
 	func recreateExpandedCFView() {
 		loadExpandedView()
 		for i in tabs.indices{
-			let wview = getNewWebView(cleanUrl: tabs[i].url, contentId: tabs[i].contentId)
+			let wview = getNewWebView(owner: self, frame: expandedCFView!.frame ,cleanUrl: tabs[i].url, contentId: tabs[i].contentId)
 			tabs[i].webView = wview
 			tabs[i].position = expandedCFView!.createNewTab(tabView: wview)
 			wview.tabHeadPosition = tabs[i].position
