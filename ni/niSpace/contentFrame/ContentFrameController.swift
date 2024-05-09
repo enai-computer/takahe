@@ -97,15 +97,19 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
 	}
 	
 	private func updateTabViewModel(){
-		for tab in tabs{
-			var tab = tab
-			if(tab.webView != nil){
-				if(tab.webView!.title != nil){
-					tab.title = tab.webView!.title!
+		for i in tabs.indices{
+			if(tabs[i].webView != nil){
+				if(tabs[i].webView!.title != nil){
+					tabs[i].title = tabs[i].webView!.title!
 				}
-				if(tab.webView!.url != nil){
-					tab.url = tab.webView!.url!.absoluteString
+				if(tabs[i].webView!.url != nil){
+					tabs[i].url = tabs[i].webView!.url!.absoluteString
 				}
+			}
+			if(i == selectedTabModel){
+				tabs[i].isSelected = true
+			}else{
+				tabs[i].isSelected = false
 			}
 		}
 	}
@@ -131,14 +135,21 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
         return wkView
     }
     
-	func openEmptyTab(_ contentId: UUID = UUID()) -> Int{
-		let niWebView = NiWebView(contentId: contentId, owner: self, frame: expandedCFView!.frame)
+	private func getNewWebView(contentId: UUID, frame: NSRect, fileUrl: URL? = nil) -> NiWebView {
+		let niWebView = NiWebView(contentId: contentId, owner: self, frame: frame)
 
-		let localHTMLurl = getEmtpyWebViewURL()
+		let localHTMLurl = if(fileUrl == nil) {
+			getEmtpyWebViewURL()
+		}else{
+			fileUrl!
+		}
 		niWebView.loadFileURL(localHTMLurl, allowingReadAccessTo: localHTMLurl)
-		
-		let req = URLRequest(url: localHTMLurl)
 		niWebView.navigationDelegate = self
+		return niWebView
+	}
+	
+	func openEmptyTab(_ contentId: UUID = UUID()) -> Int{
+		let niWebView = getNewWebView(contentId: contentId, frame: expandedCFView!.frame, fileUrl: nil)
 		
 		var tabHeadModel = TabViewModel(contentId: UUID())
 		tabHeadModel.position = expandedCFView!.createNewTab(tabView: niWebView)
@@ -146,16 +157,13 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
 		tabHeadModel.webView!.tabHeadPosition = tabHeadModel.position
 		self.tabs.append(tabHeadModel)
 		
-		//Needs to be down here, as local websites will load before tab was added which creates problems in the webView on load call-back
-		niWebView.load(req)
-		
 		selectTab(at: tabHeadModel.position)
 		
 		return tabHeadModel.position
 	}
 	
 	func openWebsiteInNewTab(urlStr: String, contentId: UUID, tabName: String, webContentState: String? = nil) -> Int{
-		let niWebView = getNewWebView(urlStr: urlStr, contentId: contentId)
+		let niWebView = getNewWebView(dirtyUrl: urlStr, contentId: contentId)
 		
 		var tabHeadModel = TabViewModel(contentId: contentId)
 		tabHeadModel.position = expandedCFView!.createNewTab(tabView: niWebView)
@@ -174,16 +182,25 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
 		return tabHeadModel.position
     }
 	
-	func getNewWebView(urlStr: String, contentId: UUID) -> NiWebView{
+	func getNewWebView(dirtyUrl: String, contentId: UUID) -> NiWebView{
 		let url: URL
 		do{
-			url = try createWebUrl(from: urlStr)
+			url = try createWebUrl(from: dirtyUrl)
 		}catch{
 			url = getCouldNotLoadWebViewURL()
 		}
 
 		let urlReq = URLRequest(url: url)
 		
+		return getNewWebView(contentId: contentId, urlReq: urlReq, frame: expandedCFView!.frame)
+	}
+	
+	func getNewWebView(cleanUrl: String, contentId: UUID) -> NiWebView{
+		let url = URL(string: cleanUrl)!
+		if(url.scheme!.hasPrefix("file")){
+			return getNewWebView(contentId: contentId, frame: expandedCFView!.frame, fileUrl: url)
+		}
+		let urlReq = URLRequest(url: url)
 		return getNewWebView(contentId: contentId, urlReq: urlReq, frame: expandedCFView!.frame)
 	}
 	
@@ -282,12 +299,14 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
 	
 	func recreateExpandedCFView() {
 		loadExpandedView()
-		for tab in tabs{
-			var tab = tab
-			let wview = getNewWebView(urlStr: tab.url, contentId: tab.contentId)
-			tab.webView = wview
-			tab.position = expandedCFView!.createNewTab(tabView: wview)
-			wview.tabHeadPosition = tab.position
+		for i in tabs.indices{
+			let wview = getNewWebView(cleanUrl: tabs[i].url, contentId: tabs[i].contentId)
+			tabs[i].webView = wview
+			tabs[i].position = expandedCFView!.createNewTab(tabView: wview)
+			wview.tabHeadPosition = tabs[i].position
+			if(tabs[i].isSelected){
+				selectedTabModel = i
+			}
 		}
 	}
 	
