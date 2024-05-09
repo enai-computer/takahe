@@ -31,9 +31,14 @@ class CFMinimizedView: CFBaseView{
 	}
 	
 	override func mouseDown(with event: NSEvent) {
+		if !frameIsActive{
+			niParentDoc?.setTopNiFrame(myController!)
+			return
+		}
 		let posInFrame = self.contentView?.convert(event.locationInWindow, from: nil)
 		let posInHeadView = self.cfHeadView.convert(event.locationInWindow, from: nil)
 		
+		//clicked on maximize Button
 		if(NSPointInRect(posInHeadView, maximizeButton.frame)){
 			guard let myController = nextResponder as? ContentFrameController else{return}
 			myController.minimizedToExpanded()
@@ -58,6 +63,11 @@ class CFMinimizedView: CFBaseView{
 	}
 	
 	override func mouseDragged(with event: NSEvent) {
+		if !frameIsActive{
+			nextResponder?.mouseDragged(with: event)
+			return
+		}
+		
 		if cursorOnBorder != .top{
 			return
 		}
@@ -72,11 +82,39 @@ class CFMinimizedView: CFBaseView{
 	}
 	
 	override func mouseUp(with event: NSEvent) {
+		if !frameIsActive{
+			nextResponder?.mouseUp(with: event)
+			return
+		}
 		if cursorOnBorder == .top{
 			NSCursor.pop()
 		}
 		cursorDownPoint = .zero
 		cursorOnBorder = .no
 		deactivateDocumentResize = false
+	}
+	
+	override func toggleActive(){
+		frameIsActive = !frameIsActive
+		
+		if frameIsActive{
+			self.resetCursorRects()
+		}else{
+			self.discardCursorRects()
+		}
+	}
+	
+	override func resetCursorRects() {
+		if(frameIsActive){
+			//otherwise hand opens while dragging
+			if(cursorDownPoint == .zero){
+				addCursorRect(getDragCursorRect(), cursor: NSCursor.openHand)
+			}
+		}
+	}
+	
+	private func getDragCursorRect() -> NSRect{
+		let width = cfHeadView.frame.width - closeButton.frame.width - maximizeButton.frame.width
+		return NSRect(x: 0.0, y: cfHeadView.frame.origin.y, width: width, height: cfHeadView.frame.height)
 	}
 }

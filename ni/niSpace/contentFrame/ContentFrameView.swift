@@ -14,12 +14,7 @@ struct CFConstants {
 
 class ContentFrameView: CFBaseView{
     
-//    private var cursorDownPoint: CGPoint  = .zero
-//    private var cursorOnBorder: OnBorder = .no
-//    private var deactivateDocumentResize: Bool = false
-    private(set) var frameIsActive: Bool = false
-
-//    private var niParentDoc: NiSpaceDocumentView? = nil
+//    private(set) var frameIsActive: Bool = false
     
 	//Header
 	@IBOutlet var cfHeadView: ContentFrameHeadView!
@@ -121,11 +116,11 @@ class ContentFrameView: CFBaseView{
         }
         
 		if cursorOnBorder == .top{
-			NSCursor.closedHand.push()
 			if(event.clickCount == 2){
 				fillView()
 				return
 			}
+			NSCursor.closedHand.push()
 		}
 		
         let posInHeadView = self.cfHeadView!.convert(cursorPos, from: self)
@@ -163,12 +158,13 @@ class ContentFrameView: CFBaseView{
     override func mouseUp(with event: NSEvent) {
         if !frameIsActive{
             nextResponder?.mouseUp(with: event)
+			return
         }
         
 		if cursorOnBorder == .top{
 			NSCursor.pop()
 		}
-        super.mouseUp(with: event)
+
         cursorDownPoint = .zero
         cursorOnBorder = .no
         deactivateDocumentResize = false
@@ -179,6 +175,7 @@ class ContentFrameView: CFBaseView{
     override func mouseDragged(with event: NSEvent) {
         if !frameIsActive{
             nextResponder?.mouseDragged(with: event)
+			return
         }
         
         if cursorOnBorder == OnBorder.no{
@@ -208,6 +205,7 @@ class ContentFrameView: CFBaseView{
     
     override func resetCursorRects() {
         if(frameIsActive){
+			//otherwise hand opens while dragging
             if(cursorDownPoint == .zero){
                 addCursorRect(getTopBorderActionArea(), cursor: NSCursor.openHand)
 				addCursorRect(getDragArea(), cursor: NSCursor.openHand)
@@ -268,37 +266,8 @@ class ContentFrameView: CFBaseView{
     }
     
 	/*
-	 * MARK: resize and repositioning here
+	 * MARK: resize here
 	 */
-//    private func repositionView(_ xDiff: Double, _ yDiff: Double) {
-//        
-//        let docW = self.niParentDoc!.frame.size.width
-//        let docHeight = self.niParentDoc!.frame.size.height
-//        
-//        //checks for out of bounds
-//        if(frame.origin.x + xDiff < 0){
-//            frame.origin.x = 0
-//        }else if (frame.origin.x + xDiff + (frame.width/2.0) < docW){
-//            frame.origin.x += xDiff
-//        }
-//		// do nothing when trying to move to far to the right
-//        
-//        if (frame.origin.y - yDiff < 45){	//45px is the hight of the top bar + shadow - FIXME: write cleaner implemetation
-//            frame.origin.y = 45
-//        }else if(frame.origin.y - yDiff + frame.height > docHeight){
-//            
-//            if(!deactivateDocumentResize && yDiff < 0){ //mouse moving downwards, not upwards
-//                self.niParentDoc!.extendDocumentDownwards()
-//                deactivateDocumentResize = true     //get's activated again when mouse lifted
-//			}else{
-//				frame.origin.y -= yDiff
-//			}
-//
-//        }else{
-//            frame.origin.y -= yDiff
-//        }
-//    }
-    
     func resizeOwnFrame(_ xDiff: Double, _ yDiff: Double, cursorLeftSide invertX: Bool = false){
         let frameSize = frame.size
         var nsize = frameSize
@@ -340,7 +309,7 @@ class ContentFrameView: CFBaseView{
 	/*
 	 * MARK: - toggle Active
 	 */
-    func toggleActive(){
+    override func toggleActive(){
 
         frameIsActive = !frameIsActive
         let webView = niContentTabView.selectedTabViewItem?.view as? NiWebView	//a new content frame will not have a webView yet
@@ -353,8 +322,8 @@ class ContentFrameView: CFBaseView{
             
 			showHeader()
             webView?.setActive()
-//			niContentTabView.selectedTabViewItem?.view?.wantsLayer = false
-//			niContentTabView.addSubview(niContentTabView.selectedTabViewItem!.view!)
+			self.resetCursorRects()
+
         }else{
             self.layer?.borderColor = NSColor(.sandLight3).cgColor
 			self.layer?.backgroundColor = NSColor(.sandLight3).cgColor
@@ -363,9 +332,7 @@ class ContentFrameView: CFBaseView{
 			
 			hideHeader()
             webView?.setInactive()
-//			niContentTabView.selectedTabViewItem?.view?.wantsLayer = true
-
-//			niContentTabView.selectedTabViewItem?.view?.removeFromSuperviewWithoutNeedingDisplay()
+			self.discardCursorRects()
         }
     }
 	

@@ -97,7 +97,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
 	 * MARK: passToView Functions
 	 */
 	func toggleActive(){
-		expandedCFView?.toggleActive()
+		myView.toggleActive()
 	}
 	
 	/*
@@ -110,12 +110,17 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
 		//position
 		minimizedView.frame.origin.y = self.view.frame.origin.y
 		minimizedView.frame.origin.x = self.view.frame.origin.x + self.view.frame.width - minimizedView.frame.width
+		if(self.view.layer != nil){
+			minimizedView.layer?.zPosition = self.view.layer!.zPosition
+		}
 		
 		//replace
 		self.view.superview?.replaceSubview(self.view, with: minimizedView)
 		
 		self.view = minimizedView
 		sharedLoadViewSetters()
+		
+		self.myView.niParentDoc?.setTopNiFrame(self)
 	}
 	
 	
@@ -139,6 +144,9 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
 		//TODO: ensure it's not out of bounds?
 		expandedCFView!.frame.origin.y = self.view.frame.origin.y
 		expandedCFView!.frame.origin.x = self.view.frame.origin.x + self.view.frame.width - expandedCFView!.frame.width
+		if(self.view.layer != nil){
+			expandedCFView!.layer?.zPosition = self.view.layer!.zPosition
+		}
 		
 		//replace
 		self.view.superview?.replaceSubview(self.view, with: expandedCFView!)
@@ -148,7 +156,9 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
 		if(0 <= selectTabAt){
 			forceSelectTab(at: selectTabAt)
 		}
-		self.expandedCFView!.toggleActive()
+		
+		self.expandedCFView!.niParentDoc?.setTopNiFrame(self)
+		
 	}
 	
 	func recreateExpandedCFView() {

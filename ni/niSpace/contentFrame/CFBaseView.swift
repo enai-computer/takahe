@@ -16,6 +16,7 @@ class CFBaseView: NSBox{
 	var niParentDoc: NiSpaceDocumentView? = nil
 	var myController: ContentFrameController? = nil
 	
+	var frameIsActive: Bool = false
 	var deactivateDocumentResize: Bool = false
 	var cursorOnBorder: OnBorder = .no
 	var cursorDownPoint: CGPoint  = .zero
@@ -58,6 +59,10 @@ class CFBaseView: NSBox{
 	}
 	
 	func isOnBoarder(_ cursorLocation: CGPoint) -> OnBorder{
+		preconditionFailure("This method must be overridden")
+	}
+	
+	func toggleActive(){
 		preconditionFailure("This method must be overridden")
 	}
 	
