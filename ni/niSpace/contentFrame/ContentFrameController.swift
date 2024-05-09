@@ -23,6 +23,9 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
 	private var tabs: [TabViewModel] = []
 	private var viewState: NiConentFrameState = .expanded
 		
+	/*
+	 * MARK: init & view loading here
+	 */
 	init(viewState: NiConentFrameState, tabsModel: [TabViewModel]? = nil){
 		self.viewState = viewState
 		
@@ -80,7 +83,26 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
 		
 		return minimizedView
 	}
-
+	
+	private func sharedLoadViewSetters(){
+		self.view.wantsLayer = true
+		self.view.layer?.cornerRadius = 10
+		self.view.layer?.cornerCurve = .continuous
+		self.view.layer?.borderWidth = 5
+		self.view.layer?.borderColor = NSColor(.sandLight4).cgColor
+		self.view.layer?.backgroundColor = NSColor(.sandLight4).cgColor
+	}
+	
+	/*
+	 * MARK: passToView Functions
+	 */
+	func toggleActive(){
+		expandedCFView?.toggleActive()
+	}
+	
+	/*
+	 * MARK: minimizing and maximizing
+	 */
 	private func minimizeSelf(){
 		updateTabViewModel()
 		let minimizedView = loadMinimizedView()
@@ -96,131 +118,6 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
 		sharedLoadViewSetters()
 	}
 	
-	private func updateTabViewModel(){
-		for i in tabs.indices{
-			if(tabs[i].webView != nil){
-				if(tabs[i].webView!.title != nil){
-					tabs[i].title = tabs[i].webView!.title!
-				}
-				if(tabs[i].webView!.url != nil){
-					tabs[i].url = tabs[i].webView!.url!.absoluteString
-				}
-			}
-			if(i == selectedTabModel){
-				tabs[i].isSelected = true
-			}else{
-				tabs[i].isSelected = false
-			}
-		}
-	}
-	
-	private func sharedLoadViewSetters(){
-		self.view.wantsLayer = true
-		self.view.layer?.cornerRadius = 10
-		self.view.layer?.cornerCurve = .continuous
-		self.view.layer?.borderWidth = 5
-		self.view.layer?.borderColor = NSColor(.sandLight4).cgColor
-		self.view.layer?.backgroundColor = NSColor(.sandLight4).cgColor
-	}
-	
-	override func viewDidAppear() {
-		super.viewDidAppear()
-	}
-
-	func openEmptyTab(_ contentId: UUID = UUID()) -> Int{
-		let niWebView = ni.getNewWebView(owner: self, contentId: contentId, frame: expandedCFView!.frame, fileUrl: nil)
-		
-		var tabHeadModel = TabViewModel(contentId: UUID())
-		tabHeadModel.position = expandedCFView!.createNewTab(tabView: niWebView)
-		tabHeadModel.webView = niWebView
-		tabHeadModel.webView!.tabHeadPosition = tabHeadModel.position
-		self.tabs.append(tabHeadModel)
-		
-		selectTab(at: tabHeadModel.position)
-		
-		return tabHeadModel.position
-	}
-	
-	func openWebsiteInNewTab(urlStr: String, contentId: UUID, tabName: String, webContentState: String? = nil) -> Int{
-		let niWebView = getNewWebView(owner: self, frame: expandedCFView!.frame, dirtyUrl: urlStr, contentId: contentId)
-		
-		var tabHeadModel = TabViewModel(contentId: contentId)
-		tabHeadModel.position = expandedCFView!.createNewTab(tabView: niWebView)
-		tabHeadModel.webView = niWebView
-		tabHeadModel.webView!.tabHeadPosition = tabHeadModel.position
-		if(webContentState != nil){
-			tabHeadModel.state = WebViewState(rawValue: webContentState!)!
-		}else{
-			tabHeadModel.state = .loading
-		}
-		
-		self.tabs.append(tabHeadModel)
-		
-		selectTab(at: tabHeadModel.position)
-		
-		return tabHeadModel.position
-    }
-	
-    func openWebsiteInNewTab(_ urlStr: String){
-        let id = UUID()
-        _ = openWebsiteInNewTab(urlStr: urlStr, contentId: id, tabName: "")
-    }
-	
-	func loadWebsite(_ url: URL, forTab at: Int){
-		let urlReq = URLRequest(url: url)
-		
-		tabs[at].state = .loading
-//		tabs[at].url = url.absoluteString
-		tabs[at].webView?.load(urlReq)
-	}
-	
-	func toggleActive(){
-		expandedCFView?.toggleActive()
-	}
-	
-	func closeTab(at: Int){
-		if(at != selectedTabModel){
-			//open: implement proper methodology to end editing a URL, before closing a tab
-			//otherwise we'll run into an index out of bounds issue
-		}else {
-			updateWVTabHeadPos(from: at+1)
-			closeSelectedTab()
-		}
-	}
-	
-	private func updateWVTabHeadPos(from: Int){
-		var toUpdate = from
-		
-		while toUpdate < tabs.count{
-			tabs[toUpdate].webView?.tabHeadPosition = (toUpdate - 1)
-			toUpdate += 1
-		}
-	}
-	
-	func closeSelectedTab(){
-		if(0 < selectedTabModel){
-			let toDeletePos = selectedTabModel
-			selectedTabModel -= 1
-			
-			expandedCFView?.deleteSelectedTab(at: toDeletePos)
-			self.tabs.remove(at: toDeletePos)
-			
-			selectTab(at: selectedTabModel)
-			
-			expandedCFView?.cfTabHeadCollection.reloadData()
-		}else if( selectedTabModel == 0 && self.tabs.count == 1){
-			view.removeFromSuperview()
-		}else if( selectedTabModel == 0 && 1 < self.tabs.count){
-			let toDeletePos = selectedTabModel
-			
-			expandedCFView?.deleteSelectedTab(at: toDeletePos)
-			self.tabs.remove(at: toDeletePos)
-			
-			selectTab(at: selectedTabModel)
-			
-			expandedCFView?.cfTabHeadCollection.reloadData()
-		}
-	}
 	
 	func minimizeClicked(_ event: NSEvent) {
 		minimizeSelf()
@@ -266,6 +163,187 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
 			}
 		}
 	}
+	
+	/*
+	 * MARK: tabViewModel consistency
+	 */
+	private func updateTabViewModel(){
+		for i in tabs.indices{
+			if(tabs[i].webView != nil){
+				if(tabs[i].webView!.title != nil){
+					tabs[i].title = tabs[i].webView!.title!
+				}
+				if(tabs[i].webView!.url != nil){
+					tabs[i].url = tabs[i].webView!.url!.absoluteString
+				}
+			}
+			if(i == selectedTabModel){
+				tabs[i].isSelected = true
+			}else{
+				tabs[i].isSelected = false
+			}
+		}
+	}
+	
+	/*
+	 * MARK: opening tabs
+	 */
+	func openEmptyTab(_ contentId: UUID = UUID()) -> Int{
+		let niWebView = ni.getNewWebView(owner: self, contentId: contentId, frame: expandedCFView!.frame, fileUrl: nil)
+		
+		var tabHeadModel = TabViewModel(contentId: UUID())
+		tabHeadModel.position = expandedCFView!.createNewTab(tabView: niWebView)
+		tabHeadModel.webView = niWebView
+		tabHeadModel.webView!.tabHeadPosition = tabHeadModel.position
+		self.tabs.append(tabHeadModel)
+		
+		selectTab(at: tabHeadModel.position)
+		
+		return tabHeadModel.position
+	}
+	
+	func openWebsiteInNewTab(urlStr: String, contentId: UUID, tabName: String, webContentState: String? = nil) -> Int{
+		let niWebView = getNewWebView(owner: self, frame: expandedCFView!.frame, dirtyUrl: urlStr, contentId: contentId)
+		
+		var tabHeadModel = TabViewModel(contentId: contentId)
+		tabHeadModel.position = expandedCFView!.createNewTab(tabView: niWebView)
+		tabHeadModel.webView = niWebView
+		tabHeadModel.webView!.tabHeadPosition = tabHeadModel.position
+		if(webContentState != nil){
+			tabHeadModel.state = WebViewState(rawValue: webContentState!)!
+		}else{
+			tabHeadModel.state = .loading
+		}
+		
+		self.tabs.append(tabHeadModel)
+		
+		selectTab(at: tabHeadModel.position)
+		
+		return tabHeadModel.position
+    }
+	
+    func openWebsiteInNewTab(_ urlStr: String){
+        let id = UUID()
+        _ = openWebsiteInNewTab(urlStr: urlStr, contentId: id, tabName: "")
+    }
+	
+	func loadWebsite(_ url: URL, forTab at: Int){
+		let urlReq = URLRequest(url: url)
+		
+		tabs[at].state = .loading
+		tabs[at].webView?.load(urlReq)
+	}
+	
+	/*
+	 * MARK: selecting, closing, editing tabs
+	 */
+	func closeTab(at: Int){
+		if(at != selectedTabModel){
+			//open: implement proper methodology to end editing a URL, before closing a tab
+			//otherwise we'll run into an index out of bounds issue
+		}else {
+			updateWVTabHeadPos(from: at+1)
+			closeSelectedTab()
+		}
+	}
+	
+	private func updateWVTabHeadPos(from: Int){
+		var toUpdate = from
+		
+		while toUpdate < tabs.count{
+			tabs[toUpdate].webView?.tabHeadPosition = (toUpdate - 1)
+			toUpdate += 1
+		}
+	}
+	
+	func closeSelectedTab(){
+		if(0 < selectedTabModel){
+			let toDeletePos = selectedTabModel
+			selectedTabModel -= 1
+			
+			expandedCFView?.deleteSelectedTab(at: toDeletePos)
+			self.tabs.remove(at: toDeletePos)
+			
+			selectTab(at: selectedTabModel)
+			
+			expandedCFView?.cfTabHeadCollection.reloadData()
+		}else if( selectedTabModel == 0 && self.tabs.count == 1){
+			view.removeFromSuperview()
+		}else if( selectedTabModel == 0 && 1 < self.tabs.count){
+			let toDeletePos = selectedTabModel
+			
+			expandedCFView?.deleteSelectedTab(at: toDeletePos)
+			self.tabs.remove(at: toDeletePos)
+			
+			selectTab(at: selectedTabModel)
+			
+			expandedCFView?.cfTabHeadCollection.reloadData()
+		}
+	}
+	
+	func selectTab(at: Int, mouseDownEvent: NSEvent? = nil){
+		
+		//No tab switching while CF is not active
+		if(!self.expandedCFView!.frameIsActive){
+			if(mouseDownEvent != nil){
+				nextResponder?.mouseDown(with: mouseDownEvent!)
+			}
+			return
+		}
+		
+		if(aTabIsInEditingMode && at != selectedTabModel){
+			endEditingTabUrl(at: selectedTabModel)
+		}
+		
+		if(aTabIsInEditingMode && at == selectedTabModel){
+			return
+		}
+		
+		forceSelectTab(at: at)
+		
+		expandedCFView?.cfTabHeadCollection.reloadData()
+	}
+	
+	/// skipps all checks ensuring UI consistency. Does not reload the TabHead Collection View
+	///
+	/// Only call this directly, when reloading a space!
+	func forceSelectTab(at: Int){
+		if(0 <= selectedTabModel){
+			tabs[selectedTabModel].isSelected = false
+		}
+		
+		self.expandedCFView?.niContentTabView.selectTabViewItem(at: at)
+		self.expandedCFView?.updateFwdBackTint()
+		
+		self.selectedTabModel = at
+		tabs[selectedTabModel].isSelected = true
+	}
+	
+	func editTabUrl(at: Int){
+		self.aTabIsInEditingMode = true
+		tabs[at].inEditingMode = true
+		expandedCFView?.cfTabHeadCollection.reloadData()
+	}
+	
+	func endEditingTabUrl(at: Int){
+		self.aTabIsInEditingMode = false
+		
+		if(at < tabs.count){
+			tabs[at].inEditingMode = false
+			
+			// print("here the tabs[selectedTabModel].title should be set *if* the user commits instead of aborts changes")
+			// This update interferes with the (async) web view callback and effectively defaults all editing operations to go to Google
+			RunLoop.main.perform { [self] in
+				expandedCFView?.cfTabHeadCollection.reloadData()
+			}
+		}
+
+	}
+	
+	func setTabIcon(at: Int, icon: NSImage?){
+		tabs[at].icon = icon
+	}
+	
 	
 	/*
 	 * MARK: - keyboard caputure here:
@@ -371,68 +449,6 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
 		minimumLineSpacingForSectionAt section: Int
 	) -> CGFloat{
 		return 4.00
-	}
-	
-	func selectTab(at: Int, mouseDownEvent: NSEvent? = nil){
-		
-		//No tab switching while CF is not active
-		if(!self.expandedCFView!.frameIsActive){
-			if(mouseDownEvent != nil){
-				nextResponder?.mouseDown(with: mouseDownEvent!)
-			}
-			return
-		}
-		
-		if(aTabIsInEditingMode && at != selectedTabModel){
-			endEditingTabUrl(at: selectedTabModel)
-		}
-		
-		if(aTabIsInEditingMode && at == selectedTabModel){
-			return
-		}
-		
-		forceSelectTab(at: at)
-		
-		expandedCFView?.cfTabHeadCollection.reloadData()
-	}
-	/// skipps all checks ensuring UI consistency. Does not reload the TabHead Collection View
-	///
-	/// Only call this directly, when reloading a space!
-	func forceSelectTab(at: Int){
-		if(0 <= selectedTabModel){
-			tabs[selectedTabModel].isSelected = false
-		}
-		
-		self.expandedCFView?.niContentTabView.selectTabViewItem(at: at)
-		self.expandedCFView?.updateFwdBackTint()
-		
-		self.selectedTabModel = at
-		tabs[selectedTabModel].isSelected = true
-	}
-	
-	func editTabUrl(at: Int){
-		self.aTabIsInEditingMode = true
-		tabs[at].inEditingMode = true
-		expandedCFView?.cfTabHeadCollection.reloadData()
-	}
-	
-	func endEditingTabUrl(at: Int){
-		self.aTabIsInEditingMode = false
-		
-		if(at < tabs.count){
-			tabs[at].inEditingMode = false
-			
-			// print("here the tabs[selectedTabModel].title should be set *if* the user commits instead of aborts changes")
-			// This update interferes with the (async) web view callback and effectively defaults all editing operations to go to Google
-			RunLoop.main.perform { [self] in
-				expandedCFView?.cfTabHeadCollection.reloadData()
-			}
-		}
-
-	}
-	
-	func setTabIcon(at: Int, icon: NSImage?){
-		tabs[at].icon = icon
 	}
 	
 	/*
