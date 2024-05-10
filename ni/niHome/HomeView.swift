@@ -170,9 +170,11 @@ struct RightSide: View {
 		}
 		.onAppear {
 			NSEvent.addLocalMonitorForEvents(matching: [.keyDown]) { nsEvent in
-								
 				if(nsEvent.type == .keyDown){
 					handleKeyEvents(nsEvent: nsEvent)
+				}
+				//surpress minimization of the KeyWindow
+				if(nsEvent.keyCode == 53){	//ESC
 					return .none
 				}
 				return nsEvent
