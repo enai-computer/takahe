@@ -56,6 +56,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
 	private func loadExpandedView(){
 		self.expandedCFView = (NSView.loadFromNib(nibName: "ContentFrameView", owner: self) as! ContentFrameView)
 		self.expandedCFView?.setSelfController(self)
+		self.expandedCFView?.initAfterViewLoad()
 
 		expandedCFView!.cfHeadView.wantsLayer = true
 		expandedCFView!.cfHeadView.layer?.backgroundColor = NSColor(.sandLight4).cgColor

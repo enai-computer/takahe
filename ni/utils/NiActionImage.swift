@@ -12,7 +12,6 @@ class NiActionImage: NSImageView{
 	
 	var mouseDownFunction: ((NSEvent) -> Void)?
 	var isActiveFunction: (() -> Bool)?
-	private var prevColor: NSColor? = nil
 
 	required init?(coder: NSCoder) {
 		super.init(coder: coder)
@@ -22,6 +21,12 @@ class NiActionImage: NSImageView{
 	}
 	
 	override func mouseDown(with event: NSEvent) {
+		//if is not active - don't change color
+		if(isActiveFunction != nil){
+			if(!isActiveFunction!()){
+				return
+			}
+		}
 		if (mouseDownFunction != nil){
 			mouseDownFunction!(event)
 		}
@@ -34,21 +39,31 @@ class NiActionImage: NSImageView{
 				return
 			}
 		}
-		prevColor = self.contentTintColor
-		self.contentTintColor = NSColor(.intAerospaceOrange)
+		self.contentTintColor = NSColor(.birkin)
 	}
 	
 	override func mouseExited(with event: NSEvent) {
 		//if is not active - don't change color
 		if(isActiveFunction != nil){
 			if(!isActiveFunction!()){
+				self.tintInactive()
 				return
 			}
 		}
-		if(prevColor != nil){
-			self.contentTintColor = prevColor!
-		}else{
-			self.contentTintColor = NSColor(.sandLight11)
-		}
+		self.tintActive()
+	}
+	
+	func tintInactive(){
+		self.contentTintColor = NSColor(.sandLight8)
+	}
+	
+	func tintActive(){
+		self.contentTintColor = NSColor(.sandLight11)
+	}
+	
+	override func prepareForReuse() {
+		super.prepareForReuse()
+		mouseDownFunction = nil
+		isActiveFunction = nil
 	}
 }

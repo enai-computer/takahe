@@ -19,14 +19,14 @@ class ContentFrameView: CFBaseView{
 	//Header
 	@IBOutlet var cfHeadView: ContentFrameHeadView!
 	@IBOutlet var cfTabHeadCollection: NSCollectionView!
-	@IBOutlet var contentBackButton: NSImageView!
-	@IBOutlet var contentForwardButton: NSImageView!
+	@IBOutlet var contentBackButton: NiActionImage!
+	@IBOutlet var contentForwardButton: NiActionImage!
 	var prevButtonColor: NSColor? = nil
-	@IBOutlet var closeButton: NSImageView!
-	@IBOutlet var addTabButton: NSImageView!
+	@IBOutlet var closeButton: NiActionImage!
+	@IBOutlet var addTabButton: NiActionImage!
 	@IBOutlet var cfHeadDragArea: NSView!
-	@IBOutlet var minimizeButton: NSImageView!
-	@IBOutlet var maximizeButton: NSImageView!
+	@IBOutlet var minimizeButton: NiActionImage!
+	@IBOutlet var maximizeButton: NiActionImage!
 	
 	//TabView
 	@IBOutlet var niContentTabView: NSTabView!
@@ -36,8 +36,27 @@ class ContentFrameView: CFBaseView{
 	
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-		self.layer?.cornerCurve = .continuous
     }
+	
+	func initAfterViewLoad(){
+		closeButton.mouseDownFunction = clickedCloseButton
+		closeButton.isActiveFunction = self.isFrameActive
+		
+		maximizeButton.mouseDownFunction = fillView
+		maximizeButton.isActiveFunction = self.isFrameActive
+		
+		minimizeButton.mouseDownFunction = clickedMinimizeButton
+		minimizeButton.isActiveFunction = self.isFrameActive
+		
+		addTabButton.mouseDownFunction = addTabClicked
+		addTabButton.isActiveFunction = self.isFrameActive
+		
+		contentBackButton.mouseDownFunction = backButtonClicked
+		contentBackButton.isActiveFunction = backButtonIsActive
+		
+		contentForwardButton.mouseDownFunction = forwardButtonClicked
+		contentForwardButton.isActiveFunction = fwdButtonIsActive
+	}
     
     func createNewTab(tabView: NiWebView) -> Int{
 
@@ -74,8 +93,24 @@ class ContentFrameView: CFBaseView{
 	
 	func updateFwdBackTint(){
 		guard let niWebView = niContentTabView.selectedTabViewItem?.view as? NiWebView else {return}
-		self.setBackButtonTint(niWebView.canGoBack)
-		self.setForwardButtonTint(niWebView.canGoForward)
+		self.setBackButtonTint(backButtonIsActive())
+		self.setForwardButtonTint(fwdButtonIsActive())
+	}
+	
+	func fwdButtonIsActive() -> Bool{
+		if(!frameIsActive){
+			return false
+		}
+		guard let niWebView = niContentTabView.selectedTabViewItem?.view as? NiWebView else {return false}
+		return niWebView.canGoForward
+	}
+	
+	func backButtonIsActive() -> Bool{
+		if(!frameIsActive){
+			return false
+		}
+		guard let niWebView = niContentTabView.selectedTabViewItem?.view as? NiWebView else {return false}
+		return niWebView.canGoBack
 	}
 	
 	@MainActor
@@ -104,6 +139,32 @@ class ContentFrameView: CFBaseView{
     /*
      *  MARK: - mouse down events here:
      */
+	func clickedCloseButton(with event: NSEvent){
+		niParentDoc?.removeNiFrame(myController!)
+		removeFromSuperview()
+	}
+	
+	func clickedMinimizeButton(with event: NSEvent){
+		guard let myController = nextResponder as? ContentFrameController else{return}
+		myController.minimizeClicked(event)
+	}
+	
+	func addTabClicked(with event: NSEvent){
+		if let cfc = self.nextResponder?.nextResponder as? ContentFrameController{
+			_ = cfc.openEmptyTab()
+		}
+	}
+	
+	func forwardButtonClicked(with event: NSEvent){
+		let activeTabView = niContentTabView.selectedTabViewItem?.view as! WKWebView
+		activeTabView.goForward()
+	}
+	
+	func backButtonClicked(with event: NSEvent){
+		let activeTabView = niContentTabView.selectedTabViewItem?.view as! WKWebView
+		activeTabView.goBack()
+	}
+	
     override func mouseDown(with event: NSEvent) {
         if !frameIsActive{
 			niParentDoc?.setTopNiFrame(myController!)
@@ -120,47 +181,13 @@ class ContentFrameView: CFBaseView{
         
 		if cursorOnBorder == .top{
 			if(event.clickCount == 2){
-				fillOrRetractView()
+				fillOrRetractView(with: event)
 				return
 			}
 			NSCursor.closedHand.push()
 		}
 		
         let posInHeadView = self.cfHeadView!.convert(cursorPos, from: self)
-        
-        //clicked on close button
-        if NSPointInRect(posInHeadView, closeButton.frame){
-			niParentDoc?.removeNiFrame(myController!)
-            removeFromSuperview()
-        }
-        
-        //clicked on back button
-        if NSPointInRect(posInHeadView, contentBackButton.frame){
-            let activeTabView = niContentTabView.selectedTabViewItem?.view as! WKWebView
-            activeTabView.goBack()
-        }
-
-        //clicked on forward button
-        if NSPointInRect(posInHeadView, contentForwardButton.frame){
-            let activeTabView = niContentTabView.selectedTabViewItem?.view as! WKWebView
-            activeTabView.goForward()
-        }
-		
-		if NSPointInRect(posInHeadView, maximizeButton.frame){
-			fillView()
-			return
-		}
-		
-		if NSPointInRect(posInHeadView, minimizeButton.frame){
-			guard let myController = nextResponder as? ContentFrameController else{return}
-			myController.minimizeClicked(event)
-		}
-        
-        if NSPointInRect(posInHeadView, addTabButton.frame){
-            if let cfc = self.nextResponder as? ContentFrameController{
-				_ = cfc.openEmptyTab()
-            }
-        }
     }
     
     override func mouseUp(with event: NSEvent) {
@@ -304,16 +331,16 @@ class ContentFrameView: CFBaseView{
 		previousCFSize = nil
     }
 	
-	func fillOrRetractView(){
+	func fillOrRetractView(with event: NSEvent){
 		if(previousCFSize == nil){
-			fillView()
+			fillView(with: event)
 			return
 		}
 		self.frame = previousCFSize!
 		previousCFSize = nil
 	}
 	
-	func fillView(){
+	func fillView(with event: NSEvent){
 		if(previousCFSize == nil){
 			previousCFSize = self.frame
 		}
@@ -360,7 +387,11 @@ class ContentFrameView: CFBaseView{
     }
 	
 	private func hideHeader(){
-		
+		updateFwdBackTint()
+		closeButton.tintInactive()
+		addTabButton.tintInactive()
+		minimizeButton.tintInactive()
+		maximizeButton.tintInactive()
 //		let currentSize = niContentTabView.frame.size
 //		var nsize = currentSize
 //		nsize.height += cfHeadView.frame.height
@@ -376,7 +407,11 @@ class ContentFrameView: CFBaseView{
 	}
 	
 	private func showHeader(){
-
+		updateFwdBackTint()
+		closeButton.tintActive()
+		addTabButton.tintActive()
+		minimizeButton.tintActive()
+		maximizeButton.tintActive()
 //		let currentSize = niContentTabView.frame.size
 //		var nsize = currentSize
 //		
