@@ -26,6 +26,7 @@ class ContentFrameView: CFBaseView{
 	@IBOutlet var addTabButton: NSImageView!
 	@IBOutlet var cfHeadDragArea: NSView!
 	@IBOutlet var minimizeButton: NSImageView!
+	@IBOutlet var maximizeButton: NSImageView!
 	
 	//TabView
 	@IBOutlet var niContentTabView: NSTabView!
@@ -116,10 +117,6 @@ class ContentFrameView: CFBaseView{
         }
         
 		if cursorOnBorder == .top{
-			if(event.clickCount == 2){
-				fillView()
-				return
-			}
 			NSCursor.closedHand.push()
 		}
 		
@@ -142,6 +139,11 @@ class ContentFrameView: CFBaseView{
             let activeTabView = niContentTabView.selectedTabViewItem?.view as! WKWebView
             activeTabView.goForward()
         }
+		
+		if NSPointInRect(posInHeadView, maximizeButton.frame){
+			fillView()
+			return
+		}
 		
 		if NSPointInRect(posInHeadView, minimizeButton.frame){
 			guard let myController = nextResponder as? ContentFrameController else{return}
@@ -296,11 +298,11 @@ class ContentFrameView: CFBaseView{
 	
 	func fillView(){
 		let visibleView = self.niParentDoc!.visibleRect
-		let w = visibleView.size.width * 0.9
-		let h = visibleView.size.height * 0.9
+		let w = visibleView.size.width - 100.0
+		let h = visibleView.size.height - 50.0
 		
-		let x = visibleView.size.width * 0.05	//origin x will always be 0
-		let y = visibleView.origin.y + 50		//view is flipped, distance from top
+		let x = 50.0	//origin x will always be 0
+		let y = visibleView.origin.y + 40		//view is flipped, distance from top
 		
 		self.setFrameSize(NSSize(width: w, height: h))
 		self.setFrameOrigin(NSPoint(x: x, y: y))

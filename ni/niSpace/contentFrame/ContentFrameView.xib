@@ -53,7 +53,7 @@
                                 </scroller>
                             </scrollView>
                             <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tOm-Uf-Gpz">
-                                <rect key="frame" x="930" y="0.0" width="65" height="34"/>
+                                <rect key="frame" x="905" y="0.0" width="65" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" heightSizable="YES"/>
                             </customView>
                             <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rcT-6J-b1L" userLabel="back-button">
@@ -81,6 +81,11 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                 <imageCell key="cell" alignment="left" animates="YES" imageScaling="proportionallyDown" image="minimize" id="ysI-fW-YS0"/>
                             </imageView>
+                            <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SHD-m6-fVV">
+                                <rect key="frame" x="976" y="7" width="24" height="24"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="maximize" id="Qze-9W-rWF"/>
+                            </imageView>
                         </subviews>
                     </customView>
                     <tabView fixedFrame="YES" type="noTabsNoBorder" translatesAutoresizingMaskIntoConstraints="NO" id="d8b-7o-70b">
@@ -104,6 +109,7 @@
                 <outlet property="closeButton" destination="Utx-ML-7oY" id="B7l-wf-zmC"/>
                 <outlet property="contentBackButton" destination="rcT-6J-b1L" id="fyG-GL-z9e"/>
                 <outlet property="contentForwardButton" destination="eFl-A6-f9y" id="4v5-Pf-dIF"/>
+                <outlet property="maximizeButton" destination="SHD-m6-fVV" id="65o-nQ-Ejc"/>
                 <outlet property="minimizeButton" destination="rUD-4M-Tk9" id="hfN-ZF-CcN"/>
                 <outlet property="niContentTabView" destination="d8b-7o-70b" id="rDA-Fc-OHT"/>
             </connections>
@@ -122,6 +128,7 @@
         <image name="arrowLeft" width="24" height="24"/>
         <image name="arrowRight" width="24" height="24"/>
         <image name="close" width="24" height="24"/>
+        <image name="maximize" width="24" height="24"/>
         <image name="minimize" width="24" height="24"/>
         <image name="plus" width="24" height="24"/>
         <namedColor name="SandLight4">
