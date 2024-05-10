@@ -32,6 +32,8 @@ class ContentFrameView: CFBaseView{
 	@IBOutlet var niContentTabView: NSTabView!
 	var observation: NSKeyValueObservation?
 	
+	private var previousCFSize: NSRect? = nil
+	
     required init?(coder: NSCoder) {
         super.init(coder: coder)
 		self.layer?.cornerCurve = .continuous
@@ -117,6 +119,10 @@ class ContentFrameView: CFBaseView{
         }
         
 		if cursorOnBorder == .top{
+			if(event.clickCount == 2){
+				fillOrRetractView()
+				return
+			}
 			NSCursor.closedHand.push()
 		}
 		
@@ -294,9 +300,24 @@ class ContentFrameView: CFBaseView{
         if(invertX){
             self.frame.origin.x += xDiff
         }
+		
+		previousCFSize = nil
     }
 	
+	func fillOrRetractView(){
+		if(previousCFSize == nil){
+			fillView()
+			return
+		}
+		self.frame = previousCFSize!
+		previousCFSize = nil
+	}
+	
 	func fillView(){
+		if(previousCFSize == nil){
+			previousCFSize = self.frame
+		}
+		
 		let visibleView = self.niParentDoc!.visibleRect
 		let w = visibleView.size.width - 100.0
 		let h = visibleView.size.height - 50.0
