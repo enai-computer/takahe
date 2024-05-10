@@ -142,6 +142,8 @@ class NiSpaceDocumentController: NSViewController{
 	private func genJson(scrollPosition: CGFloat) -> String{
 		
 		var children: [NiDocumentObjectModel] = []
+		var analyticsMinimized: Int = 0
+		var analyticsExpanded: Int = 0
 		var nrOfTabsInSpace = 0
 		
 		for cfController in myView.contentFrameControllers {
@@ -149,6 +151,11 @@ class NiSpaceDocumentController: NSViewController{
 			
 			children.append(modelData.model)
 			nrOfTabsInSpace += modelData.nrOfTabs
+			if(modelData.state == .minimised){
+				analyticsMinimized += 1
+			}else{
+				analyticsExpanded += 1
+			}
 		}
 			
 		let toEncode = NiDocumentObjectModel(
@@ -168,6 +175,8 @@ class NiSpaceDocumentController: NSViewController{
 		PostHogSDK.shared.capture("Space_saved",
 								  properties: [
 									"number_of_windows": children.count,
+									"windows_expanded": analyticsExpanded,
+									"windows_minimized": analyticsMinimized,
 									"number_of_tabs": nrOfTabsInSpace,
 									"length": myView.frame.height,
 									"time_in_space_min": minInSpace

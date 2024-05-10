@@ -473,7 +473,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
 		}
 	}
 	
-	func toNiContentFrameModel() -> (model: NiDocumentObjectModel, nrOfTabs: Int){
+	func toNiContentFrameModel() -> (model: NiDocumentObjectModel, nrOfTabs: Int, state: NiConentFrameState){
 		
 		var children: [NiCFTabModel] = []
 		
@@ -507,6 +507,6 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
 			)
 		)
 		
-		return (model: model, nrOfTabs: children.count)
+		return (model: model, nrOfTabs: children.count, state: self.viewState)
 	}
 }

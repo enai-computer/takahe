@@ -173,10 +173,10 @@ struct RightSide: View {
 				if(nsEvent.type == .keyDown){
 					handleKeyEvents(nsEvent: nsEvent)
 				}
-				//surpress minimization of the KeyWindow
-				if(nsEvent.keyCode == 53){	//ESC
-					return .none
-				}
+//				//FIXME: surpress minimization of the KeyWindow
+//				if(nsEvent.keyCode == 53 && controllerWrapper.hostingController != nil){	//ESC
+//					return .none
+//				}
 				return nsEvent
 			}
 		}
