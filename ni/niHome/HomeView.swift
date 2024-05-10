@@ -173,6 +173,7 @@ struct RightSide: View {
 								
 				if(nsEvent.type == .keyDown){
 					handleKeyEvents(nsEvent: nsEvent)
+					return .none
 				}
 				return nsEvent
 			}
