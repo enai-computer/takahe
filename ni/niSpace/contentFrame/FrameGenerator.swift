@@ -3,13 +3,15 @@
 import Cocoa
 import WebKit
 
+let maxWidthMargin: CGFloat = 30.0
+
 func openEmptyContentFrame() -> ContentFrameController{
 	let frameController = ContentFrameController(viewState: .expanded, tabsModel: nil)
 	frameController.loadView()
 	return frameController
 }
 
-func reopenContentFrame(contentFrame: NiContentFrameModel, tabDataModel: [NiCFTabModel]) -> ContentFrameController {
+func reopenContentFrame(screenWidth: CGFloat, contentFrame: NiContentFrameModel, tabDataModel: [NiCFTabModel]) -> ContentFrameController {
     
 	var activeTab: Int = -1
 	var tabViewModels = niCFTabModelToTabViewModel(tabs: tabDataModel)
@@ -22,11 +24,7 @@ func reopenContentFrame(contentFrame: NiContentFrameModel, tabDataModel: [NiCFTa
     frameController.loadView()
 	
 	//positioning
-	let initPosition = NSRect(
-		origin: CGPoint(x: contentFrame.position.x.px, y: contentFrame.position.y.px),
-		size: CGSize(width: contentFrame.width.px, height: contentFrame.height.px)
-	)
-	frameController.view.frame = initPosition
+	frameController.view.frame = initPositionAndSize(maxWidth: (screenWidth - maxWidthMargin), contentFrame: contentFrame)
 	
 	if(contentFrame.state == .minimised){
 		return frameController
@@ -54,6 +52,36 @@ func reopenContentFrame(contentFrame: NiContentFrameModel, tabDataModel: [NiCFTa
 	}
 	
     return frameController
+}
+
+/** Resizing here, in case the CFs are out of bounds on reload on a smaller screen
+ 
+ */
+func initPositionAndSize(maxWidth: CGFloat, contentFrame: NiContentFrameModel) -> NSRect {
+	var width = contentFrame.width.px
+	var x = contentFrame.position.x.px
+
+	if(maxWidth < width){
+		width = maxWidth
+	}
+	
+	//in the minimized State we want CFs to be fully on screen
+	if(contentFrame.state == .minimised){
+		let maxX = maxWidth - width
+		if(maxX < x){
+			x = maxX
+		}
+	}else{ //otherwise min Exposure must be visible
+		let maxX = maxWidth - minContentFrameExposure
+		if(maxX < x){
+			x = maxX
+		}
+	}
+	
+	return NSRect(
+		origin: CGPoint(x: x, y: contentFrame.position.y.px),
+		size: CGSize(width: width, height: contentFrame.height.px)
+	)
 }
 
 func niCFTabModelToTabViewModel(tabs: [NiCFTabModel]) -> [TabViewModel]{

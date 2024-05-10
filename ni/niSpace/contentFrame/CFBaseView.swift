@@ -6,7 +6,9 @@
 //
 import Cocoa
 
-/** Base class shared by all ContentFrame Classes. 
+let minContentFrameExposure: CGFloat = 150
+
+/** Base class shared by all ContentFrame Classes.
 	Implements common functionality.
  
 	Only inherite this class if your View is controlled by ContentFrameController. Do not use this class directly.
@@ -37,7 +39,9 @@ class CFBaseView: NSBox{
 		//checks for out of bounds
 		if(frame.origin.x + xDiff < 0){
 			frame.origin.x = 0
-		}else if (frame.origin.x + xDiff + (frame.width/2.0) < docW){
+		}else if (frame.origin.x + xDiff + minContentFrameExposure < docW){
+			frame.origin.x += xDiff
+		}else if (xDiff < 0){ //moving to the left getting the Frame out of bounds
 			frame.origin.x += xDiff
 		}
 		// do nothing when trying to move to far to the right

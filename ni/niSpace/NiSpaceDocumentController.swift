@@ -116,7 +116,7 @@ class NiSpaceDocumentController: NSViewController{
 	}
 	
 	private func recreateContentFrame(data: NiContentFrameModel){
-		let storedWebsiteCFController = reopenContentFrame(contentFrame: data, tabDataModel: data.children)
+		let storedWebsiteCFController = reopenContentFrame(screenWidth: self.view.frame.width, contentFrame: data, tabDataModel: data.children)
 		myView.addNiFrame(storedWebsiteCFController)
 		storedWebsiteCFController.myView.setFrameOwner(myView)
 	}
