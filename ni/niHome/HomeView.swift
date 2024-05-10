@@ -22,6 +22,11 @@ class ControllerWrapper{
 }
 
 struct HomeView: View {
+	enum FocusField: Hashable {
+	  case field
+	}
+
+	@FocusState private var focusedField: FocusField?
 	@Namespace var homeViewNameSpace
 	
 	var lstOfSpaces = DocumentTable.fetchListofDocs()
@@ -48,6 +53,7 @@ struct HomeView: View {
 					.padding(.leading, 20)
 					.background(Color.rightSideBackground)
 					.prefersDefaultFocus(in: homeViewNameSpace)
+					.focused($focusedField, equals: .field)
 			}
 		}
 		.frame(width: width, height: height)
@@ -55,6 +61,9 @@ struct HomeView: View {
 			RoundedCornersShape(radius: 30.0, corners: [.bottomLeft, .bottomRight])
 		)
 		.shadow(color: .homeViewShadow, radius: 10.0, x: 2, y: 4)
+		.onAppear {
+		  self.focusedField = .field
+	  }
 	}
 }
 
