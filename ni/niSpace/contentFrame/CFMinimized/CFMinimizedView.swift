@@ -12,15 +12,21 @@ class CFMinimizedView: CFBaseView{
 	
 	@IBOutlet var cfHeadView: NSView!
 	@IBOutlet var listOfTabs: NSStackView?
-	@IBOutlet var maximizeButton: NSImageView!
-	@IBOutlet var closeButton: NSImageView!
+	@IBOutlet var maximizeButton: NiActionImage!
+	@IBOutlet var closeButton: NiActionImage!
 	
 	required init?(coder: NSCoder) {
 		super.init(coder: coder)
 	}
 	
-	func setHight(nrOfItems: Int){
+	func initAfterViewLoad(nrOfItems: Int){
 		frame.size.height = Double(nrOfItems) * 39.0 + 36.0
+		
+		closeButton.mouseDownFunction = closeButtonClicked
+		closeButton.isActiveFunction = self.isFrameActive
+		
+		maximizeButton.mouseDownFunction = maximizeButtonClicked
+		maximizeButton.isActiveFunction = self.isFrameActive
 	}
 	
 	override func isOnBoarder(_ cursorLocation: CGPoint) -> CFBaseView.OnBorder {
@@ -30,27 +36,24 @@ class CFMinimizedView: CFBaseView{
 		return .no
 	}
 	
+	func closeButtonClicked(with event: NSEvent){
+		niParentDoc?.removeNiFrame(myController!)
+		removeFromSuperview()
+		return
+	}
+	
+	func maximizeButtonClicked(with event: NSEvent){
+		guard let myController = nextResponder as? ContentFrameController else{return}
+		myController.minimizedToExpanded()
+		return
+	}
+	
 	override func mouseDown(with event: NSEvent) {
 		if !frameIsActive{
 			niParentDoc?.setTopNiFrame(myController!)
 			return
 		}
 		let posInFrame = self.contentView?.convert(event.locationInWindow, from: nil)
-		let posInHeadView = self.cfHeadView.convert(event.locationInWindow, from: nil)
-		
-		//clicked on maximize Button
-		if(NSPointInRect(posInHeadView, maximizeButton.frame)){
-			guard let myController = nextResponder as? ContentFrameController else{return}
-			myController.minimizedToExpanded()
-			return
-		}
-		
-		//clicked on close button
-		if NSPointInRect(posInHeadView, closeButton.frame){
-			niParentDoc?.removeNiFrame(myController!)
-			removeFromSuperview()
-			return
-		}
 		
 		cursorOnBorder = isOnBoarder(posInFrame!)
 		if cursorOnBorder != .no{
@@ -98,8 +101,12 @@ class CFMinimizedView: CFBaseView{
 		frameIsActive = !frameIsActive
 		
 		if frameIsActive{
+			closeButton.tintActive()
+			maximizeButton.tintActive()
 			self.resetCursorRects()
 		}else{
+			closeButton.tintInactive()
+			maximizeButton.tintInactive()
 			self.discardCursorRects()
 		}
 	}

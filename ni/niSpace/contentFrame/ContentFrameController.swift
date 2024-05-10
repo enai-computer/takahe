@@ -78,7 +78,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
 		let stackItems = genMinimizedStackItems(tabs: tabs, owner: self)
 		minimizedView.listOfTabs?.setViews(stackItems, in: .top)
 
-		minimizedView.setHight(nrOfItems: stackItems.count)
+		minimizedView.initAfterViewLoad(nrOfItems: stackItems.count)
 		
 		self.viewState = .minimised
 		
