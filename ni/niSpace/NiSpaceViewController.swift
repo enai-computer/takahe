@@ -156,7 +156,8 @@ class NiSpaceViewController: NSViewController{
 		spaceLoaded = true
 		
 		//Needs to happen here, as we rely on the visible view for size
-		spaceDoc.openEmptyCF()
+		niDocument.openEmptyCF()
+		niScrollView.documentView = niDocument.view
 		
 		PostHogSDK.shared.capture("Space_created")
 		_ = (NSApplication.shared.delegate as! AppDelegate).spaceLoadedSinceStart(spaceId)
