@@ -150,7 +150,7 @@ class ContentFrameView: CFBaseView{
 	}
 	
 	func addTabClicked(with event: NSEvent){
-		if let cfc = self.nextResponder?.nextResponder as? ContentFrameController{
+		if let cfc = self.nextResponder as? ContentFrameController{
 			_ = cfc.openEmptyTab()
 		}
 	}

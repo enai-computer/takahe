@@ -9,7 +9,7 @@ class NiSpaceViewController: NSViewController{
 	private(set) var spaceLoaded: Bool = false
 	var homeViewShown: Bool = false
     private var niSpaceName: String
-    
+
 	//header elements here:
 	@IBOutlet var header: NSBox!
 	@IBOutlet var time: NSTextField!
@@ -17,9 +17,7 @@ class NiSpaceViewController: NSViewController{
 
 	@IBOutlet var niScrollView: NiScrollView!
 	@IBOutlet var niDocument: NiSpaceDocumentController!
-	//	private var niDocument: NiSpaceDocumentController
 
-	
 	init(){
 		self.niSpaceName = ""
 		super.init(nibName: nil, bundle: nil)

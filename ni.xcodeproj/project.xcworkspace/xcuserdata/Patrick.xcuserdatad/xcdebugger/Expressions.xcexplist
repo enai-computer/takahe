@@ -6,10 +6,10 @@
          contextName = "NiSpaceDocument.mouseDown(with:):NiSpaceDocument.swift">
       </ContextState>
       <ContextState
-         contextName = "ContentFrameTabHead.setIcon(_:):ContentFrameTabHead.swift">
+         contextName = "NiSpaceViewController.loadStoredSpace(niSpaceID:name:):NiSpaceViewController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "self.image.image">
+               value = "String(from: docJson)">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -106,10 +106,18 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "ContentFrameView.addTabClicked(with:):ContentFrameView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "nextResponder">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "ContentFrameView.mouseDown(with:):ContentFrameView.swift">
          <PersistentStrings>
             <PersistentString
-               value = "cursorOnBorder">
+               value = "frameIsActive">
             </PersistentString>
             <PersistentString
                value = "frame">
@@ -121,7 +129,7 @@
                value = "NSPointInRect(posInHeadView, closeButton.frame)">
             </PersistentString>
             <PersistentString
-               value = "frameIsActive">
+               value = "cursorOnBorder">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -169,13 +177,13 @@
          contextName = "tryCreateUrl(from:):NiStringUtils.swift">
          <PersistentStrings>
             <PersistentString
-               value = "url2.hostname">
-            </PersistentString>
-            <PersistentString
                value = "url2.origin">
             </PersistentString>
             <PersistentString
                value = "url2.scheme">
+            </PersistentString>
+            <PersistentString
+               value = "url2.hostname">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -202,6 +210,9 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "NiSpaceDocumentView.setTopNiFrame(_:):NiSpaceDocumentView.swift">
+      </ContextState>
+      <ContextState
          contextName = "ContentFrameView.hideHeader():ContentFrameView.swift">
          <PersistentStrings>
             <PersistentString
@@ -216,9 +227,6 @@
                value = "tmpCell!.controlView">
             </PersistentString>
          </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "NiSpaceDocumentView.setTopNiFrame(_:):NiSpaceDocumentView.swift">
       </ContextState>
       <ContextState
          contextName = "NiSpaceDocument.inFrame(_:):NiSpaceDocument.swift">
@@ -327,13 +335,21 @@
          contextName = "cfOverlay.mouseDown(with:):cfOverlay.swift">
       </ContextState>
       <ContextState
+         contextName = "ContentFrameTabHead.setIcon(_:):ContentFrameTabHead.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.image.image">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "NiTableCellView.mouseDown(with:):HomeViewController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "data!.id">
+               value = "event.clickCount">
             </PersistentString>
             <PersistentString
-               value = "event.clickCount">
+               value = "data!.id">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -361,14 +377,6 @@
          <PersistentStrings>
             <PersistentString
                value = "niDocument.drawnNiFrames">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "NiSpaceViewController.loadStoredSpace(niSpaceID:name:):NiSpaceViewController.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "String(from: docJson)">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
