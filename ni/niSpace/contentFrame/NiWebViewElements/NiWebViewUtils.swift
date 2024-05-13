@@ -14,12 +14,15 @@ func getNewWebView(owner: ContentFrameController, contentId: UUID, urlReq: URLRe
 	let wkView = NiWebView(contentId: contentId, owner: owner, frame: frame)
 	wkView.load(urlReq)
 	wkView.navigationDelegate = owner
+	wkView.uiDelegate = owner
+	
 	return wkView
 }
 
 func getNewWebView(owner: ContentFrameController, contentId: UUID, frame: NSRect, fileUrl: URL? = nil) -> NiWebView {
 	let niWebView = NiWebView(contentId: contentId, owner: owner, frame: frame)
-
+	niWebView.uiDelegate = owner
+	
 	let localHTMLurl = if(fileUrl == nil) {
 		getEmtpyWebViewURL()
 	}else{
@@ -51,7 +54,6 @@ func getNewWebView(owner: ContentFrameController, frame: NSRect, cleanUrl: Strin
 	let urlReq = URLRequest(url: url)
 	return ni.getNewWebView(owner: owner, contentId: contentId, urlReq: urlReq, frame: frame)
 }
-
 
 func getEmtpyWebViewURL() -> URL{
 	return Bundle.main.url(forResource: "emptyTab", withExtension: "html")!

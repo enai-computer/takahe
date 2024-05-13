@@ -13,7 +13,7 @@ import QuartzCore
 import FaviconFinder
 
 //TODO: clean up tech debt and move the delegates out of here
-class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollectionViewDataSource, NSCollectionViewDelegate, NSCollectionViewDelegateFlowLayout{
+class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelegate, NSCollectionViewDataSource, NSCollectionViewDelegate, NSCollectionViewDelegateFlowLayout{
     
 	var myView: CFBaseView {return self.view as! CFBaseView}
 	
@@ -409,6 +409,29 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
 	
 	func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: any Error){
 		handleFailedLoad(webView)
+	}
+	
+	func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+		if(navigationAction.modifierFlags == .command){
+			let urlStr = navigationAction.request.url?.absoluteString
+			if(urlStr != nil && !urlStr!.isEmpty){
+				self.openWebsiteInNewTab(urlStr!)
+				decisionHandler(WKNavigationActionPolicy.cancel)
+				return
+			}
+		}
+		decisionHandler(WKNavigationActionPolicy.allow)
+	}
+	
+	//open in new tab, example clicked file in gDrive
+	func webView(_ webView: WKWebView, createWebViewWith configuration: WKWebViewConfiguration, for navigationAction: WKNavigationAction, windowFeatures: WKWindowFeatures) -> WKWebView?{
+		if(navigationAction.targetFrame == nil){
+			let urlStr = navigationAction.request.url?.absoluteString
+			if(urlStr != nil && !urlStr!.isEmpty){
+				self.openWebsiteInNewTab(urlStr!)
+			}
+		}
+		return nil
 	}
 	
 	private func handleFailedLoad(_ webView: WKWebView){

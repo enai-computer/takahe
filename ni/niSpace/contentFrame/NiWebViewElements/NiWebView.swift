@@ -42,8 +42,9 @@ class NiWebView: WKWebView{
 	
     override func willOpenMenu(_ menu: NSMenu, with event: NSEvent) {
         
+		
         // Hacky do nothing, if not a link
-        if(menu.items[0].title == "Reload"){
+        if(menu.items[0].title != "Open Link"){
             return
         }
 		
