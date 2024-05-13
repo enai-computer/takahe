@@ -12,6 +12,7 @@ class NiSpaceDocumentController: NSViewController{
 	
 	var myView: NiSpaceDocumentView {return self.view as! NiSpaceDocumentView}
 	
+	private let defaultCFSize: CGSize = CGSize(width: 1250, height: 730)
 	private let emptySpaceID: UUID = UUID(uuidString: "00000000-0000-0000-0000-000000000000")!
 	
 	private let niSpaceName: String
@@ -48,6 +49,7 @@ class NiSpaceDocumentController: NSViewController{
 	func openEmptyCF(){
 		let controller = openEmptyContentFrame()
 		let newCFView = controller.myView
+		newCFView.frame.size = defaultCFSize
 		newCFView.frame.origin = calculateOrigin(for: controller.view.frame)
 		newCFView.setFrameOwner(myView)
 		
