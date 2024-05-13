@@ -79,7 +79,9 @@ class NiWebView: WKWebView{
 	override func keyDown(with event: NSEvent) {
 		if(event.modifierFlags.contains(.command) && event.keyCode == kVK_ANSI_R){
 			self.reload()
+			return
 		}
+		nextResponder?.keyDown(with: event)
 	}
 }
 
