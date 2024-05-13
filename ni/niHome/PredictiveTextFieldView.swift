@@ -94,29 +94,28 @@ struct PredictingTextField: View {
 		self.predictedValues = []
 		if !self.textFieldInput.isEmpty{
 			for value in self.predictableValues {
-				if self.textFieldInput.split(separator: " ").count > 1 {
-					self.makeMultiPrediction(value: value)
-				}else {
-					if value.name.lowercased().contains(self.textFieldInput.lowercased())
-//						 || value.name.contains(self.capitalizeFirstLetter(smallString: self.textFieldInput))
-					{
-						if !self.predictedValues.contains(value) {
-							self.predictedValues.append(value)
-						}
+//				if self.textFieldInput.split(separator: " ").count > 1 {
+//					self.makeMultiPrediction(value: value)
+//				}else {
+				if value.name.lowercased().contains(self.textFieldInput.lowercased()){
+					if !self.predictedValues.contains(value) {
+						self.predictedValues.append(value)
 					}
 				}
+//				}
 			}
 		}
 	}
 	
 	/// Makes predictions if the input String is splittable
-	private func makeMultiPrediction(value: NiDocumentViewModel) {
-		for subString in self.textFieldInput.split(separator: " ") {
-			if value.name.contains(String(subString)) || value.name.contains(self.capitalizeFirstLetter(smallString: String(subString))){
-				if !self.predictedValues.contains(value) {
-					self.predictedValues.append(value)
-				}
-			}
-		}
-	}
+	// disabled as it creates more issues for now
+//	private func makeMultiPrediction(value: NiDocumentViewModel) {
+//		for subString in self.textFieldInput.split(separator: " ") {
+//			if value.name.contains(String(subString)) || value.name.contains(self.capitalizeFirstLetter(smallString: String(subString))){
+//				if !self.predictedValues.contains(value) {
+//					self.predictedValues.append(value)
+//				}
+//			}
+//		}
+//	}
 }
