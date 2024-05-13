@@ -213,6 +213,14 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
 		return tabHeadModel.position
 	}
 	
+	func openAndEditEmptyTab(){
+		let pos = openEmptyTab()
+		//needs to happen a frame later as otherwise the cursor will not jump into the editing mode
+		DispatchQueue.main.async {
+			self.editTabUrl(at: pos)
+		}
+	}
+	
 	func openWebsiteInNewTab(urlStr: String, contentId: UUID, tabName: String, webContentState: String? = nil) -> Int{
 		let niWebView = getNewWebView(owner: self, frame: expandedCFView!.frame, dirtyUrl: urlStr, contentId: contentId)
 		
@@ -330,6 +338,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
 		tabs[selectedTabModel].isSelected = true
 	}
 	
+	@MainActor
 	func editTabUrl(at: Int){
 		self.aTabIsInEditingMode = true
 		tabs[at].inEditingMode = true
@@ -362,7 +371,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, NSCollecti
 	override func keyDown(with event: NSEvent) {
 		if(event.modifierFlags.contains(.command)){
 			if(event.keyCode == kVK_ANSI_T){
-				_ = openEmptyTab()
+				openAndEditEmptyTab()
 				return
 			}else if(event.keyCode == kVK_ANSI_W){
 				closeSelectedTab()
