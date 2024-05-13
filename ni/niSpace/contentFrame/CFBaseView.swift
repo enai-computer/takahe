@@ -75,6 +75,6 @@ class CFBaseView: NSBox{
 	}
 	
 	enum OnBorder{
-		case no, top, bottomRight, bottom, leftSide, rightSide
+		case no, topLeft, top, topRight, bottomLeft, bottom, bottomRight, leftSide, rightSide
 	}
 }

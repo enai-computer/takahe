@@ -63,6 +63,7 @@
 		CDD6B9472B16A29100C6144D /* DocumentIdContentIdTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD6B9462B16A29100C6144D /* DocumentIdContentIdTable.swift */; };
 		CDD6B9522B1BFE8B00C6144D /* NiDocumentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD6B9512B1BFE8B00C6144D /* NiDocumentModel.swift */; };
 		CDD6B9562B1C326A00C6144D /* ContentFrameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD6B9552B1C326A00C6144D /* ContentFrameController.swift */; };
+		CDD87ED02BF23C650045B84B /* NiCursorUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD87ECF2BF23C650045B84B /* NiCursorUtils.swift */; };
 		CDDBCB292BD6AE6900E7B187 /* HomeViewAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDDBCB282BD6AE6900E7B187 /* HomeViewAnimator.swift */; };
 		CDDBCB2B2BD7C23E00E7B187 /* NiSpaceDocumentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDDBCB2A2BD7C23E00E7B187 /* NiSpaceDocumentController.swift */; };
 		CDDBCB2E2BD8FA4C00E7B187 /* errorLoading-1.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = CDDBCB2C2BD8FA4C00E7B187 /* errorLoading-1.jpeg */; };
@@ -127,6 +128,7 @@
 		CDD6B9462B16A29100C6144D /* DocumentIdContentIdTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentIdContentIdTable.swift; sourceTree = "<group>"; };
 		CDD6B9512B1BFE8B00C6144D /* NiDocumentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiDocumentModel.swift; sourceTree = "<group>"; };
 		CDD6B9552B1C326A00C6144D /* ContentFrameController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentFrameController.swift; sourceTree = "<group>"; };
+		CDD87ECF2BF23C650045B84B /* NiCursorUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiCursorUtils.swift; sourceTree = "<group>"; };
 		CDDBCB282BD6AE6900E7B187 /* HomeViewAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewAnimator.swift; sourceTree = "<group>"; };
 		CDDBCB2A2BD7C23E00E7B187 /* NiSpaceDocumentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiSpaceDocumentController.swift; sourceTree = "<group>"; };
 		CDDBCB2C2BD8FA4C00E7B187 /* errorLoading-1.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "errorLoading-1.jpeg"; sourceTree = "<group>"; };
@@ -265,6 +267,7 @@
 				CD8873772BCD649800007BE9 /* TimeUtils.swift */,
 				CD5B15392BDFBFE40030F017 /* NiActionImage.swift */,
 				CD1552462BE9286D00A59AE9 /* SwiftUIUtils.swift */,
+				CDD87ECF2BF23C650045B84B /* NiCursorUtils.swift */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -463,6 +466,7 @@
 				CD66CE382B1FD26A0006BB98 /* NiStringUtils.swift in Sources */,
 				CD8873782BCD649800007BE9 /* TimeUtils.swift in Sources */,
 				CD1160CA2BD27B9E00345E3E /* NiWebViewUtils.swift in Sources */,
+				CDD87ED02BF23C650045B84B /* NiCursorUtils.swift in Sources */,
 				CD1552472BE9286D00A59AE9 /* SwiftUIUtils.swift in Sources */,
 				CDDBCB292BD6AE6900E7B187 /* HomeViewAnimator.swift in Sources */,
 				CD7578462BC000F200293930 /* ContentFrameTabHead.swift in Sources */,

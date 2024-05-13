@@ -42,7 +42,7 @@ class ContentFrameView: CFBaseView{
 		closeButton.mouseDownFunction = clickedCloseButton
 		closeButton.isActiveFunction = self.isFrameActive
 		
-		maximizeButton.mouseDownFunction = fillView
+		maximizeButton.mouseDownFunction = fillOrRetractView
 		maximizeButton.isActiveFunction = self.isFrameActive
 		
 		minimizeButton.mouseDownFunction = clickedMinimizeButton
@@ -224,12 +224,18 @@ class ContentFrameView: CFBaseView{
         cursorDownPoint = currCursorPoint
         
         switch cursorOnBorder {
+			case .topLeft:
+				resizeOwnFrame(horizontalDistanceDragged, verticalDistanceDragged, cursorLeftSide: true, cursorTop: true)
             case .top:
                 repositionView(horizontalDistanceDragged, verticalDistanceDragged)
-            case .bottomRight:
-                resizeOwnFrame(horizontalDistanceDragged, verticalDistanceDragged)
+			case .topRight:
+				resizeOwnFrame(horizontalDistanceDragged, verticalDistanceDragged, cursorTop: true)
+			case .bottomLeft:
+				resizeOwnFrame(horizontalDistanceDragged, verticalDistanceDragged, cursorLeftSide: true)
             case .bottom:
                 resizeOwnFrame(0, verticalDistanceDragged)
+			case .bottomRight:
+				resizeOwnFrame(horizontalDistanceDragged, verticalDistanceDragged)
             case .leftSide:
                 resizeOwnFrame(horizontalDistanceDragged, 0, cursorLeftSide: true)
             case .rightSide:
@@ -245,9 +251,23 @@ class ContentFrameView: CFBaseView{
                 addCursorRect(getTopBorderActionArea(), cursor: NSCursor.openHand)
 				addCursorRect(getDragArea(), cursor: NSCursor.openHand)
             }
-            addCursorRect(getRightSideBorderActionArea(), cursor: NSCursor.resizeLeftRight)
-            addCursorRect(getLeftSideBorderActionArea(), cursor: NSCursor.resizeLeftRight)
-            addCursorRect(getBottomBorderActionArea(), cursor: NSCursor.resizeUpDown)
+            addCursorRect(getRightSideBorderActionArea(), cursor: niLeftRightCursor)
+            addCursorRect(getLeftSideBorderActionArea(), cursor: niLeftRightCursor)
+            addCursorRect(getBottomBorderActionArea(), cursor: niUpDownCursor)
+			
+			//Corners Top
+			addCursorRect(getTopLeftCornerActionAreaVertical(), cursor: niDiagonalCursor)
+			addCursorRect(getTopLeftCornerActionAreaHorizontal(), cursor: niDiagonalCursor)
+			
+			addCursorRect(getTopRightCornerActionAreaVertical(), cursor: niDiagonalFlippedCursor)
+			addCursorRect(getTopRightCornerActionAreaHorizontal(), cursor: niDiagonalFlippedCursor)
+			
+			//Corners Bottom
+			addCursorRect(getBottomRightCornerActionAreaVertical(), cursor: niDiagonalCursor)
+			addCursorRect(getBottomRightCornerActionAreaHorizontal(), cursor: niDiagonalCursor)
+			
+			addCursorRect(getBottomLeftCornerActionAreaVertical(), cursor: niDiagonalFlippedCursor)
+			addCursorRect(getBottomLeftCornerActionAreaHorizontal(), cursor: niDiagonalFlippedCursor)
         }
     }
     
@@ -255,19 +275,28 @@ class ContentFrameView: CFBaseView{
         
         let cAA = CFConstants.cornerActionAreaMargin
         
-        if (NSPointInRect(cursorLocation, getTopBorderActionArea())){
+        if (NSPointInRect(cursorLocation, getTopBorderActionArea()) || NSPointInRect(cursorLocation, getDragArea())){
             return .top
         }
 		
-		if(NSPointInRect(cursorLocation, getDragArea())){
-			return .top
+		if (NSPointInRect(cursorLocation, getTopLeftCornerActionAreaVertical()) || NSPointInRect(cursorLocation, getTopLeftCornerActionAreaHorizontal())){
+			return .topLeft
+		}
+		
+		if(NSPointInRect(cursorLocation, getTopRightCornerActionAreaVertical()) || NSPointInRect(cursorLocation, getTopRightCornerActionAreaHorizontal())){
+			return .topRight
 		}
         
         if ((0 < cursorLocation.y && cursorLocation.y < cAA) &&
             (frame.size.width - cAA < cursorLocation.x && cursorLocation.x < frame.size.width)){
             return .bottomRight
         }
-        
+
+		if ((0 < cursorLocation.y && cursorLocation.y < cAA) &&
+			(0 < cursorLocation.x && cursorLocation.x < cAA)){
+			return .bottomLeft
+		}
+		
         if(NSPointInRect(cursorLocation, getBottomBorderActionArea())){
             return .bottom
         }
@@ -281,7 +310,7 @@ class ContentFrameView: CFBaseView{
     }
     
     private func getTopBorderActionArea() -> NSRect{
-        return NSRect(x: 0, y: frame.size.height-CFConstants.actionAreaMargin, width: frame.size.width, height: CFConstants.actionAreaMargin)
+		return NSRect(x: CFConstants.cornerActionAreaMargin, y: frame.size.height-CFConstants.actionAreaMargin, width: (frame.size.width - CFConstants.cornerActionAreaMargin * 2.0), height: CFConstants.actionAreaMargin)
     }
 	
 	private func getDragArea() -> NSRect{
@@ -289,21 +318,53 @@ class ContentFrameView: CFBaseView{
 	}
     
     private func getBottomBorderActionArea() -> NSRect{
-        return NSRect(x:0, y: 0, width: (frame.size.width - CFConstants.cornerActionAreaMargin), height: CFConstants.actionAreaMargin)
+		return NSRect(x:CFConstants.cornerActionAreaMargin, y: 0, width: (frame.size.width - CFConstants.cornerActionAreaMargin * 2.0), height: CFConstants.actionAreaMargin)
     }
     
     private func getLeftSideBorderActionArea() -> NSRect{
-        return NSRect(x:0, y:0, width: CFConstants.actionAreaMargin, height: frame.size.height)
+		return NSRect(x:0, y:CFConstants.cornerActionAreaMargin, width: CFConstants.actionAreaMargin, height: (frame.size.height - CFConstants.cornerActionAreaMargin * 2.0))
     }
     
     private func getRightSideBorderActionArea() -> NSRect{
-        return NSRect(x: (frame.size.width - CFConstants.actionAreaMargin), y: CFConstants.cornerActionAreaMargin, width: CFConstants.actionAreaMargin, height: (frame.size.height - CFConstants.cornerActionAreaMargin))
+		return NSRect(x: (frame.size.width - CFConstants.actionAreaMargin), y: CFConstants.cornerActionAreaMargin, width: CFConstants.actionAreaMargin, height: (frame.size.height - CFConstants.cornerActionAreaMargin * 2.0))
     }
-    
+
+	private func getTopRightCornerActionAreaVertical() -> NSRect{
+		return NSRect(x: (frame.size.width - CFConstants.actionAreaMargin) , y: (frame.height - CFConstants.cornerActionAreaMargin), width: CFConstants.actionAreaMargin, height: CFConstants.cornerActionAreaMargin)
+	}
+	
+	private func getTopRightCornerActionAreaHorizontal() -> NSRect{
+		return NSRect(x: (frame.size.width - CFConstants.cornerActionAreaMargin), y: (frame.height - CFConstants.actionAreaMargin), width: CFConstants.cornerActionAreaMargin, height: CFConstants.actionAreaMargin)
+	}
+	
+	private func getTopLeftCornerActionAreaVertical() -> NSRect{
+		return NSRect(x: 0, y: (frame.height - CFConstants.cornerActionAreaMargin), width: CFConstants.actionAreaMargin, height: CFConstants.cornerActionAreaMargin)
+	}
+	
+	private func getTopLeftCornerActionAreaHorizontal() -> NSRect{
+		return NSRect(x: 0.0, y: (frame.height - CFConstants.actionAreaMargin), width: CFConstants.cornerActionAreaMargin, height: CFConstants.actionAreaMargin)
+	}
+	
+	private func getBottomRightCornerActionAreaVertical() -> NSRect{
+		return NSRect(x: (frame.size.width - CFConstants.actionAreaMargin) , y: 0.0, width: CFConstants.actionAreaMargin, height: CFConstants.cornerActionAreaMargin)
+	}
+	
+	private func getBottomRightCornerActionAreaHorizontal() -> NSRect{
+		return NSRect(x: (frame.size.width - CFConstants.cornerActionAreaMargin), y: 0.0, width: CFConstants.cornerActionAreaMargin, height: CFConstants.actionAreaMargin)
+	}
+	
+	private func getBottomLeftCornerActionAreaVertical() -> NSRect{
+		return NSRect(x: 0.0, y: 0.0, width: CFConstants.actionAreaMargin, height: CFConstants.cornerActionAreaMargin)
+	}
+	
+	private func getBottomLeftCornerActionAreaHorizontal() -> NSRect{
+		return NSRect(x: 0.0, y: 0.0, width: CFConstants.cornerActionAreaMargin, height: CFConstants.actionAreaMargin)
+	}
+	
 	/*
 	 * MARK: resize here
 	 */
-    func resizeOwnFrame(_ xDiff: Double, _ yDiff: Double, cursorLeftSide invertX: Bool = false){
+	func resizeOwnFrame(_ xDiff: Double, _ yDiff: Double, cursorLeftSide invertX: Bool = false, cursorTop invertY: Bool = false){
         let frameSize = frame.size
         var nsize = frameSize
         
@@ -312,7 +373,12 @@ class ContentFrameView: CFBaseView{
         }else{
             nsize.width += xDiff
         }
-        nsize.height -= yDiff
+		if(invertY){
+			nsize.height += yDiff
+		}else{
+			nsize.height -= yDiff
+		}
+        
         
 		//enforcing min CF size
 		if(nsize.height < 150){
@@ -327,6 +393,10 @@ class ContentFrameView: CFBaseView{
         if(invertX){
             self.frame.origin.x += xDiff
         }
+		
+		if(invertY){
+			self.frame.origin.y -= yDiff
+		}
 		
 		previousCFSize = nil
     }
