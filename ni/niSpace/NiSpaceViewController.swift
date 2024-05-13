@@ -97,6 +97,11 @@ class NiSpaceViewController: NSViewController{
 		hostingController.show()
 	}
 	
+	func returnToHomeAndForceReload(){
+		returnToHome()
+		spaceLoaded = false
+	}
+	
 	func openEmptyCF(){
 		niDocument.openEmptyCF()
 	}
