@@ -159,13 +159,14 @@ class ContentFrameTabHead: NSCollectionViewItem, NSTextFieldDelegate {
 	private func setText(_ viewModel: TabViewModel){
 		if(viewModel.inEditingMode){
 			self.inEditingMode = true
-			
+			addEditingStyle()
 			if(viewModel.state == .empty || viewModel.state == .error){
 				self.tabHeadTitle.enableEditing(urlStr: "")
 			}else{
 				self.tabHeadTitle.enableEditing(urlStr: viewModel.webView?.url?.absoluteString ?? "")
 			}
 		}else{
+			removeEditingStyle()
 			self.tabHeadTitle.disableEditing(title: viewModel.webView?.title ?? viewModel.title)
 		}
 	}
@@ -186,6 +187,15 @@ class ContentFrameTabHead: NSCollectionViewItem, NSTextFieldDelegate {
 		parentController?.endEditingTabUrl(at: tabPosition)
 	}
 	
+	private func addEditingStyle(){
+		self.view.layer?.borderWidth = 1.0
+		self.view.layer?.borderColor = NSColor(.birkin).cgColor
+	}
+	
+	private func removeEditingStyle(){
+		self.view.layer?.borderWidth = 0.0
+	}
+	
 	/*
 	 * MARK: -mouse down event here
 	 */
@@ -202,7 +212,7 @@ class ContentFrameTabHead: NSCollectionViewItem, NSTextFieldDelegate {
 			return
 		}
 
-		if(!tabHeadTitle.isEditable && event.clickCount == 2){
+		if(self.isSelected && !tabHeadTitle.isEditable && event.clickCount == 1){
 			startEditMode()
 			return
 		}

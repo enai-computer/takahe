@@ -31,13 +31,12 @@ class ContentFrameTabHeadTextNode: NSTextField{
 		
 		self.isEditable = true
 		self.isSelectable = true
-		self.textColor = NSColor(.textLight)
-		self.backgroundColor = NSColor(.textBackgroundDark)
+		self.backgroundColor = NSColor(.transparent)
 		self.drawsBackground = true
 		
 		//starts editing
 		self.selectText(nil)
-		self.currentEditor()?.moveToEndOfLine(nil)
+		self.currentEditor()?.selectAll(nil)
 	}
 	
 	func disableEditing(title: String){
