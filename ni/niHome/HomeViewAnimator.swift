@@ -9,6 +9,12 @@ import Cocoa
 
 class HomeViewAnimator: NSObject, NSViewControllerPresentationAnimator{
 	
+	private let animate: Bool
+	
+	init(animate: Bool = true) {
+		self.animate = animate
+	}
+	
 	/*
 	 * MARK: animation up & down
 	 */
@@ -23,7 +29,11 @@ class HomeViewAnimator: NSObject, NSViewControllerPresentationAnimator{
 		fromViewController.view.addSubview(viewController.view)
 		
 		NSAnimationContext.runAnimationGroup({ context in
-			context.duration = 0.5
+			if(animate){
+				context.duration = 0.5
+			}else{
+				context.duration = 0.0
+			}
 			viewController.view.animator().frame.origin.y = fromViewController.view.frame.origin.y + 50
 		})
 	}

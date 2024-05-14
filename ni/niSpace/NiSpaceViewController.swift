@@ -90,11 +90,17 @@ class NiSpaceViewController: NSViewController{
 		}
 	}
     
-	func returnToHome() {
-		storeCurrentSpace()
+	func returnToHome(saveCurrentSpace: Bool = true) {
+		//already at home
+		if(homeViewShown){
+			return
+		}
+		if(saveCurrentSpace){
+			storeCurrentSpace()
+		}
 		niDocument.myView.isHidden = true
 		let hostingController = HomeViewController(presentingController: self)
-		hostingController.show()
+		hostingController.show(animate: saveCurrentSpace)
 	}
 	
 	func returnToHomeAndForceReload(){

@@ -41,8 +41,8 @@ class HomeViewController: NSHostingController<HomeView>{
 		fatalError("init(coder:) has not been implemented")
 	}
 	
-	func show() {
-		presentingController.present(self, animator: HomeViewAnimator())
+	func show(animate: Bool = true) {
+		presentingController.present(self, animator: HomeViewAnimator(animate: animate))
 		presentingController.homeViewShown = true
 	}
 	
@@ -65,7 +65,6 @@ class HomeViewController: NSHostingController<HomeView>{
 			presentingController.niDocument.myView.isHidden = false
 			presentingController.homeViewShown = false
 			presentingController.dismiss(self)
-			self.view.removeFromSuperview()
 		}
 	}
 	

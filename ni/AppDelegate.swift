@@ -6,9 +6,14 @@ import PostHog
 @main
 class AppDelegate: NSObject, NSApplicationDelegate {
 	
+	//TODO: move to a user controlled config file
+	let min_inactive_switch_to_home: Double = 29.0
+	
 	//analytics
 	private var applicationStarted: Date? = nil
 	private var spacesLoaded: [UUID:Int] = [:]
+	
+	private var lastActive: Date? = nil
 	//if loading fails we do not want to overwrite the space!
 	private var dontStoreSpace = Set<UUID>()
 	
@@ -98,6 +103,40 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 				controller.storeCurrentSpace()
 			}
 		}
+		lastActive = Date()
+	}
+	
+	func applicationWillBecomeActive(_ notification: Notification) {
+		if(lastActive == nil){
+			return
+		}
+		let minInactive = (Date().timeIntervalSinceReferenceDate - lastActive!.timeIntervalSinceReferenceDate) / 60
+		var userSentBackHome = false
+		
+		if(min_inactive_switch_to_home < minInactive){
+			let window = getDefaultWindow(notification)
+			if (window != nil){
+				if let controller = window!.contentViewController as? NiSpaceViewController{
+					//saved when going inactive. No need to do it again here
+					controller.returnToHome(saveCurrentSpace: false)
+				}
+			}else{
+				print("no window found")
+			}
+			userSentBackHome = true
+		}
+		
+		PostHogSDK.shared.capture("Application_became_active", properties: ["time_inactive_mins": minInactive, "sent_back_home": userSentBackHome])
+	}
+	
+	private func getDefaultWindow(_ notification: Notification) -> DefaultWindow?{
+		guard let appWind = (notification.object as? NSApplication)?.windows else {return nil}
+		for win in appWind {
+			if(win is DefaultWindow){
+				return win as? DefaultWindow
+			}
+		}
+		return nil
 	}
 	
     func applicationShouldTerminate(_ sender: NSApplication) -> NSApplication.TerminateReply {
