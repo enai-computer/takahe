@@ -65,6 +65,7 @@ class HomeViewController: NSHostingController<HomeView>{
 			presentingController.niDocument.myView.isHidden = false
 			presentingController.homeViewShown = false
 			presentingController.dismiss(self)
+			self.view.removeFromSuperview()
 		}
 	}
 	

@@ -97,6 +97,7 @@ struct RightSide: View {
 	@State var textFieldDisabled: Bool = false
 	@State var predictableValues: Array<NiDocumentViewModel>
 	@State var predictedValues: Array<NiDocumentViewModel> = []
+	@State var listToShow: Array<NiDocumentViewModel> = []
 	
 	@State var selection: NiDocumentViewModel?
 	@State var selectedPos: Int?
@@ -128,7 +129,7 @@ struct RightSide: View {
 				.autocorrectionDisabled(false)
 				.disabled(textFieldDisabled)
 				.onKeyPress(phases: .up){k in
-					if ([.upArrow, .downArrow, .escape].contains(k.key)){
+					if ([.upArrow, .downArrow, .escape, .return].contains(k.key)){
 						return .handled
 					}
 					isHoverActive = false
@@ -144,8 +145,8 @@ struct RightSide: View {
 			.padding([.leading, .trailing], 60.0)
 			.padding(.bottom, 20.0)
 			
-			List(lstToShow(), id: \.self, selection: $selection){ v in
-				SuggestionRow(parent: self, data: v, selected: $selection, textFieldInput: $textFieldInput, isHoverActive: $isHoverActive)
+			List(listToShow.indexed(), id: \.1.self, selection: $selection){ idx, value in
+				SuggestionRow(parent: self, data: value, selected: $selection, textFieldInput: $textFieldInput, isHoverActive: $isHoverActive, pos: idx)
 				.listRowSeparatorTint(Color("transparent"))
 				.selectionDisabled()
 				.listRowInsets(EdgeInsets())
@@ -169,7 +170,12 @@ struct RightSide: View {
 			HomeViewClock()
 		}
 		.onAppear {
-			NSEvent.addLocalMonitorForEvents(matching: [.keyDown]) { nsEvent in
+			listToShow = lstToShow()
+			NSEvent.addLocalMonitorForEvents(matching: [.keyDown, .keyUp]) { nsEvent in
+				if(nsEvent.type == .keyUp){
+					listToShow = lstToShow()
+				}
+				
 				if(nsEvent.type == .keyDown){
 					handleKeyEvents(nsEvent: nsEvent)
 				}
@@ -177,6 +183,7 @@ struct RightSide: View {
 				if(nsEvent.keyCode == 53 && controllerWrapper.hostingController != nil){	//ESC
 					return .none
 				}
+				
 				return nsEvent
 			}
 		}
@@ -201,7 +208,7 @@ struct RightSide: View {
 	}
 	
 	func updateSelectedPos(selectedRow: NiDocumentViewModel){
-		selectedPos = lstToShow().firstIndex(of: selectedRow)
+		selectedPos = listToShow.firstIndex(of: selectedRow)
 	}
 	
 	func lstToShow() -> Array<NiDocumentViewModel>{
@@ -229,16 +236,21 @@ struct RightSide: View {
 	func handleKeyDown(){
 		if(selection == nil){
 			selectedPos = 0
-			selection = lstToShow()[selectedPos!]
+			selection = listToShow[selectedPos!]
 			
 			enterSuggestionField()
 		}else if(selectedPos! + 1 < lstToShow().count){
 			selectedPos! += 1
-			selection = lstToShow()[selectedPos!]
+			selection = listToShow[selectedPos!]
 			self.textFieldInput = selection!.name
 		}else{
 			exitSuggestionField()
 		}
+	}
+	
+	func selectFirst(){
+		selectedPos = 0
+		selection = listToShow[selectedPos!]
 	}
 		
 	func handleKeyUp(){
@@ -246,11 +258,11 @@ struct RightSide: View {
 			exitSuggestionField()
 		} else if(selection != nil && 0 < selectedPos!){
 			selectedPos! -= 1
-			selection = lstToShow()[selectedPos!]
+			selection = listToShow[selectedPos!]
 			textFieldInput = selection!.name
 		} else if(selection == nil && selectedPos == nil){
-			selectedPos = lstToShow().count - 1
-			selection = lstToShow()[selectedPos!]
+			selectedPos = listToShow.count - 1
+			selection = listToShow[selectedPos!]
 			
 			enterSuggestionField()
 		}
@@ -310,6 +322,12 @@ struct RightSide: View {
 			controllerWrapper.hostingController?.openExistingSpace(spaceId: selection!.id!, name: selection!.name)
 		}else if(selection != nil && selection?.id == NewSpaceID){
 			controllerWrapper.hostingController?.openNewSpace(name: selection!.name)
+		}else if(selection == nil && !listToShow.isEmpty){
+			if(listToShow[0].id == NewSpaceID){
+				controllerWrapper.hostingController?.openNewSpace(name: listToShow[0].name)
+			}else{
+				controllerWrapper.hostingController?.openExistingSpace(spaceId: listToShow[0].id!, name: listToShow[0].name)
+			}
 		}
 	}
 }
@@ -320,6 +338,7 @@ struct RightSide: View {
 struct SuggestionRow: View {
 	
 	private var data: NiDocumentViewModel
+	private var currentPos: Int
 	@Binding var selected: NiDocumentViewModel?
 	@Binding var textFieldInput: String
 	@Binding var isHoverActive: Bool
@@ -330,13 +349,15 @@ struct SuggestionRow: View {
 		data: NiDocumentViewModel,
 		selected: Binding<NiDocumentViewModel?>,
 		textFieldInput: Binding<String>,
-		isHoverActive: Binding<Bool>
+		isHoverActive: Binding<Bool>,
+		pos: Int
 	){
 		self.parent = parent
 		self.data = data
 		self._selected = selected
 		self._textFieldInput = textFieldInput
 		self._isHoverActive = isHoverActive
+		self.currentPos = pos
 	}
 	
 	var body: some View {
@@ -360,6 +381,9 @@ struct SuggestionRow: View {
 		.padding([.top, .bottom], 3)
 		.background(alignment: .center){
 			if(data.id == selected?.id){
+				BackgroundView()
+			}
+			if(selected == nil && currentPos == 0){
 				BackgroundView()
 			}
 		}
