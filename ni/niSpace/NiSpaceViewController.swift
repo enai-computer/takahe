@@ -114,6 +114,10 @@ class NiSpaceViewController: NSViewController{
 		niDocument.storeSpace(scrollPosition: niScrollView.documentVisibleRect.origin.y)
 	}
 	
+	func reloadTabOfTopCF(){
+		niDocument.reloadTabOfTopCF()
+	}
+	
 	/*
 	 * MARK: - mouse and key events here
 	 */

@@ -101,6 +101,12 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		myView.toggleActive()
 	}
 	
+	func reloadSelectedTab(){
+		if(viewState != .minimised){
+			tabs[selectedTabModel].webView?.reload()
+		}
+	}
+	
 	/*
 	 * MARK: minimizing and maximizing
 	 */

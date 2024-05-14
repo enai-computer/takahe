@@ -23,6 +23,11 @@ class DefaultWindow: NSWindow{
 				handleCMD_W()
 				return
 			}
+			
+			if(event.keyCode == kVK_ANSI_R){
+				handleCMD_R()
+				return
+			}
 		}
 		
 		switch Int(event.keyCode) {
@@ -54,6 +59,12 @@ class DefaultWindow: NSWindow{
 	func handleCMD_W(){
 		if let controller = contentViewController as? NiSpaceViewController{
 			controller.closeTabOfTopCF()
+		}
+	}
+	
+	func handleCMD_R(){
+		if let controller = contentViewController as? NiSpaceViewController{
+			controller.reloadTabOfTopCF()
 		}
 	}
 }

@@ -42,7 +42,6 @@ class NiWebView: WKWebView{
 	
     override func willOpenMenu(_ menu: NSMenu, with event: NSEvent) {
         
-		
         // Hacky do nothing, if not a link
         if(menu.items[0].title != "Open Link"){
             return
@@ -77,7 +76,7 @@ class NiWebView: WKWebView{
 	}
 	
 	override func keyDown(with event: NSEvent) {
-		if(event.modifierFlags.contains(.command) && event.keyCode == kVK_ANSI_R){
+		if(viewIsActive && event.modifierFlags.contains(.command) && event.keyCode == kVK_ANSI_R){
 			self.reload()
 			return
 		}

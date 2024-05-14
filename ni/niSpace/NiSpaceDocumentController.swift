@@ -62,6 +62,10 @@ class NiSpaceDocumentController: NSViewController{
 		myView.topNiFrame?.closeSelectedTab()
 	}
 	
+	func reloadTabOfTopCF(){
+		myView.topNiFrame?.reloadSelectedTab()
+	}
+	
 	private func calculateOrigin(for frame: NSRect) -> CGPoint{
 		let viewSize = view.visibleRect.size
 		
