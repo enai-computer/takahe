@@ -375,6 +375,12 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	 * MARK: - keyboard caputure here:
 	 */
 	override func keyDown(with event: NSEvent) {
+		//key responder chain does not get updated properly
+		if(!myView.frameIsActive){
+			nextResponder?.keyDown(with: event)
+			return
+		}
+		
 		if(event.modifierFlags.contains(.command)){
 			if(event.keyCode == kVK_ANSI_T){
 				openAndEditEmptyTab()
