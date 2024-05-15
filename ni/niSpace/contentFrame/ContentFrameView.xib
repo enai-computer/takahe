@@ -22,14 +22,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <subviews>
                             <scrollView wantsLayer="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasVerticalScroller="NO" usesPredominantAxisScrolling="NO" verticalScrollElasticity="none" id="AwF-3w-n4g">
-                                <rect key="frame" x="94" y="4" width="860" height="30"/>
+                                <rect key="frame" x="94" y="4" width="811" height="30"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <clipView key="contentView" drawsBackground="NO" id="PQx-Md-yMS">
-                                    <rect key="frame" x="0.0" y="0.0" width="860" height="30"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="811" height="30"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <collectionView id="wB8-UP-dFY">
-                                            <rect key="frame" x="0.0" y="0.0" width="860" height="30"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="811" height="30"/>
                                             <autoresizingMask key="autoresizingMask" heightSizable="YES"/>
                                             <collectionViewFlowLayout key="collectionViewLayout" minimumInteritemSpacing="16" scrollDirection="horizontal" id="Wti-La-5hp">
                                                 <size key="itemSize" width="195" height="30"/>
@@ -44,7 +44,7 @@
                                     <color key="backgroundColor" name="SandLight4"/>
                                 </clipView>
                                 <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="aVi-Gl-lD4">
-                                    <rect key="frame" x="0.0" y="14" width="850" height="16"/>
+                                    <rect key="frame" x="0.0" y="14" width="811" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="cGw-ix-zoM">
@@ -112,6 +112,7 @@
                 <outlet property="maximizeButton" destination="SHD-m6-fVV" id="65o-nQ-Ejc"/>
                 <outlet property="minimizeButton" destination="rUD-4M-Tk9" id="hfN-ZF-CcN"/>
                 <outlet property="niContentTabView" destination="d8b-7o-70b" id="rDA-Fc-OHT"/>
+                <outlet property="tabHeadsScrollContainer" destination="AwF-3w-n4g" id="p4y-TZ-TIK"/>
             </connections>
             <point key="canvasLocation" x="-652" y="-653.5"/>
         </box>

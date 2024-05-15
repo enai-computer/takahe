@@ -19,6 +19,8 @@ class ContentFrameView: CFBaseView{
 	//Header
 	@IBOutlet var cfHeadView: ContentFrameHeadView!
 	@IBOutlet var cfTabHeadCollection: NSCollectionView!
+	@IBOutlet var tabHeadsScrollContainer: NSScrollView!
+	private var latestNrOfTabs: Int? = nil
 	@IBOutlet var contentBackButton: NiActionImage!
 	@IBOutlet var contentForwardButton: NiActionImage!
 	var prevButtonColor: NSColor? = nil
@@ -31,6 +33,9 @@ class ContentFrameView: CFBaseView{
 	//TabView
 	@IBOutlet var niContentTabView: NSTabView!
 	var observation: NSKeyValueObservation?
+	
+	static let SPACE_BETWEEN_TABS: CGFloat = 4.0
+	static let DEFAULT_TAB_SIZE = NSSize(width: 195, height: 30)
 	
 	private var previousCFSize: NSRect? = nil
 	
@@ -92,7 +97,6 @@ class ContentFrameView: CFBaseView{
 	}
 	
 	func updateFwdBackTint(){
-		guard let niWebView = niContentTabView.selectedTabViewItem?.view as? NiWebView else {return}
 		self.setBackButtonTint(backButtonIsActive())
 		self.setForwardButtonTint(fwdButtonIsActive())
 	}
@@ -177,6 +181,10 @@ class ContentFrameView: CFBaseView{
         cursorOnBorder = isOnBoarder(cursorPos)
         if cursorOnBorder != .no{
             cursorDownPoint = event.locationInWindow
+			
+			if(myController!.aTabIsInEditingMode){
+				myController?.endEditingTabUrl()
+			}
         }
         
 		if cursorOnBorder == .top{
@@ -186,8 +194,6 @@ class ContentFrameView: CFBaseView{
 			}
 			NSCursor.closedHand.push()
 		}
-		
-        let posInHeadView = self.cfHeadView!.convert(cursorPos, from: self)
     }
     
     override func mouseUp(with event: NSEvent) {
@@ -308,7 +314,7 @@ class ContentFrameView: CFBaseView{
         }
         return .no
     }
-    
+    //MARK: action area calculation here
     private func getTopBorderActionArea() -> NSRect{
 		return NSRect(x: CFConstants.cornerActionAreaMargin, y: frame.size.height-CFConstants.actionAreaMargin, width: (frame.size.width - CFConstants.cornerActionAreaMargin * 2.0), height: CFConstants.actionAreaMargin)
     }
@@ -361,6 +367,40 @@ class ContentFrameView: CFBaseView{
 		return NSRect(x: 0.0, y: 0.0, width: CFConstants.cornerActionAreaMargin, height: CFConstants.actionAreaMargin)
 	}
 	
+	func recalcDragArea(nrOfTabs: Int, specialTabWidth: CGFloat = 0.0){
+		var tabHScrollWidth = ( ContentFrameView.SPACE_BETWEEN_TABS + ContentFrameView.DEFAULT_TAB_SIZE.width) * CGFloat(nrOfTabs) + specialTabWidth
+		let tabHCollectionWidth = tabHScrollWidth
+		let originX = tabHeadsScrollContainer.frame.origin.x + tabHScrollWidth
+		
+		var w = maximizeButton.frame.minX - originX
+		var diffToMin = 0.0
+		if(w < 30.0){
+			diffToMin = 30.0 - w
+			w = 30.0
+		}
+		cfHeadDragArea.frame.origin.x = originX - diffToMin
+		cfHeadDragArea.frame.size.width = w
+		
+		if(cfHeadDragArea.frame.origin.x < (tabHScrollWidth + tabHeadsScrollContainer.frame.origin.x)){
+			tabHScrollWidth = cfHeadDragArea.frame.origin.x - tabHeadsScrollContainer.frame.origin.x
+		}
+		tabHeadsScrollContainer.frame.size.width = tabHScrollWidth
+		tabHeadsScrollContainer.documentView?.frame.size.width = tabHCollectionWidth
+		latestNrOfTabs = nrOfTabs
+	}
+	
+	private func recalcDragArea(){
+		if(latestNrOfTabs != nil){
+			recalcDragArea(nrOfTabs: latestNrOfTabs!)
+		}
+	}
+	
+	func recalcDragArea(specialTabWidth: CGFloat){
+		if(latestNrOfTabs != nil){
+			recalcDragArea(nrOfTabs: (latestNrOfTabs! - 1), specialTabWidth: specialTabWidth + 50.0 )
+		}
+	}
+	
 	/*
 	 * MARK: resize here
 	 */
@@ -399,6 +439,7 @@ class ContentFrameView: CFBaseView{
 		}
 		
 		previousCFSize = nil
+		recalcDragArea()
     }
 	
 	func fillOrRetractView(with event: NSEvent){
@@ -424,6 +465,7 @@ class ContentFrameView: CFBaseView{
 		
 		self.setFrameSize(NSSize(width: w, height: h))
 		self.setFrameOrigin(NSPoint(x: x, y: y))
+		recalcDragArea()
 	}
     
 	/*

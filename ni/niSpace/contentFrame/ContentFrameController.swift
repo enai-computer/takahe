@@ -19,7 +19,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	
     private(set) var expandedCFView: ContentFrameView? = nil
     private var selectedTabModel: Int = -1
-	private var aTabIsInEditingMode: Bool = false
+	private(set) var aTabIsInEditingMode: Bool = false
 	private var tabs: [TabViewModel] = []
 	private var viewState: NiConentFrameState = .expanded
 		
@@ -327,6 +327,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		forceSelectTab(at: at)
 		
 		expandedCFView?.cfTabHeadCollection.reloadData()
+		expandedCFView?.cfTabHeadCollection.scrollToItems(at: Set(arrayLiteral: IndexPath(item: at, section: 0)), scrollPosition: .nearestVerticalEdge)
 	}
 	
 	/// skipps all checks ensuring UI consistency. Does not reload the TabHead Collection View
@@ -349,6 +350,14 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		self.aTabIsInEditingMode = true
 		tabs[at].inEditingMode = true
 		expandedCFView?.cfTabHeadCollection.reloadData()
+		expandedCFView?.cfTabHeadCollection.scrollToItems(at: Set(arrayLiteral: IndexPath(item: at, section: 0)), scrollPosition: .nearestVerticalEdge)
+	}
+	
+	func endEditingTabUrl(){
+		if(!aTabIsInEditingMode){
+			return
+		}
+		endEditingTabUrl(at: selectedTabModel)
 	}
 	
 	func endEditingTabUrl(at: Int){
@@ -466,6 +475,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	 * MARK: - Tab Heads collection control functions
 	 */
 	func collectionView(_ collectionView: NSCollectionView, numberOfItemsInSection section: Int) -> Int{
+		expandedCFView?.recalcDragArea(nrOfTabs: self.tabs.count)
 		return self.tabs.count
 	}
     
@@ -484,7 +494,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		
 		let viewModel = tabs[indexPath.item]
 		if(!viewModel.inEditingMode){
-			return NSSize(width: 195, height: 30)
+			return ContentFrameView.DEFAULT_TAB_SIZE
 		}
 		
 		let maxWidth = (expandedCFView?.cfTabHeadCollection.frame.width ?? 780) / 2
@@ -495,6 +505,11 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 			tabHeadWidth = maxWidth
 		}
 		
+		if(tabHeadWidth < ContentFrameView.DEFAULT_TAB_SIZE.width){
+			tabHeadWidth = ContentFrameView.DEFAULT_TAB_SIZE.width
+		}
+		expandedCFView?.recalcDragArea(specialTabWidth: tabHeadWidth)
+		
 		return NSSize(width: tabHeadWidth, height: 30)
 	}
 	
@@ -503,7 +518,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		layout collectionViewLayout: NSCollectionViewLayout,
 		minimumLineSpacingForSectionAt section: Int
 	) -> CGFloat{
-		return 4.00
+		return ContentFrameView.SPACE_BETWEEN_TABS
 	}
 	
 	/*
