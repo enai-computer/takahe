@@ -389,7 +389,7 @@ class ContentFrameView: CFBaseView{
 		latestNrOfTabs = nrOfTabs
 	}
 	
-	private func recalcDragArea(){
+	func recalcDragArea(){
 		if(latestNrOfTabs != nil){
 			recalcDragArea(nrOfTabs: latestNrOfTabs!)
 		}

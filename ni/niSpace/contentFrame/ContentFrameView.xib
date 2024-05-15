@@ -44,7 +44,7 @@
                                     <color key="backgroundColor" name="SandLight4"/>
                                 </clipView>
                                 <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="aVi-Gl-lD4">
-                                    <rect key="frame" x="0.0" y="14" width="811" height="16"/>
+                                    <rect key="frame" x="0.0" y="14" width="801" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="cGw-ix-zoM">

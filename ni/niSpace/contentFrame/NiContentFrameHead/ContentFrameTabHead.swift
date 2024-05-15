@@ -67,7 +67,7 @@ class ContentFrameTabHead: NSCollectionViewItem, NSTextFieldDelegate {
 		
 		//do not load new website if return was not pressed
 		let exitKey = (notification.userInfo! as NSDictionary)["NSTextMovement"]
-		if ((exitKey as? Int) != 16){
+		if ((exitKey as? Int) != 16){	//Enter
 			return
 		}
 		do{

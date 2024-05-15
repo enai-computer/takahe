@@ -366,13 +366,11 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		if(at < tabs.count){
 			tabs[at].inEditingMode = false
 			
-			// print("here the tabs[selectedTabModel].title should be set *if* the user commits instead of aborts changes")
 			// This update interferes with the (async) web view callback and effectively defaults all editing operations to go to Google
 			RunLoop.main.perform { [self] in
 				expandedCFView?.cfTabHeadCollection.reloadData()
 			}
 		}
-
 	}
 	
 	func setTabIcon(at: Int, icon: NSImage?){
