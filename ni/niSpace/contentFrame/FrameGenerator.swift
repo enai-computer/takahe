@@ -11,39 +11,53 @@ func openEmptyContentFrame() -> ContentFrameController{
 	return frameController
 }
 
-func reopenContentFrame(screenWidth: CGFloat, contentFrame: NiContentFrameModel, tabDataModel: [NiCFTabModel]) -> ContentFrameController {
+func reopenContentFrame(screenWidth: CGFloat, contentFrame: NiContentFrameModel, tabDataModel: [NiCFTabModel]) -> ContentFrameController{
+	let tabViewModels = niCFTabModelToTabViewModel(tabs: tabDataModel)
+	let controller = reopenContentFrameWithOutPositioning(
+		screenWidth: screenWidth,
+		contentFrameState: contentFrame.state,
+		tabViewModels: tabViewModels
+	)
+	//positioning
+	controller.view.frame = initPositionAndSize(
+		maxWidth: (screenWidth - maxWidthMargin),
+		contentFrame: contentFrame
+	)
+	return controller
+}
+
+func reopenContentFrameWithOutPositioning(screenWidth: CGFloat, contentFrameState: NiConentFrameState, tabViewModels: [TabViewModel]) -> ContentFrameController {
     
 	var activeTab: Int = -1
-	var tabViewModels = niCFTabModelToTabViewModel(tabs: tabDataModel)
-	let frameController = if(contentFrame.state == .minimised){
-		ContentFrameController(viewState: contentFrame.state, tabsModel: tabViewModels)
+	
+	let frameController = if(contentFrameState == .minimised){
+		ContentFrameController(viewState: contentFrameState, tabsModel: tabViewModels)
 	}else{
-		ContentFrameController(viewState: contentFrame.state)
+		// we are not adding tabViewModel here as opening up a tab down there does that.
+		//FIXME: clean up that tech debt
+		ContentFrameController(viewState: contentFrameState)
 	}
 
     frameController.loadView()
 	
-	//positioning
-	frameController.view.frame = initPositionAndSize(maxWidth: (screenWidth - maxWidthMargin), contentFrame: contentFrame)
-	
-	if(contentFrame.state == .minimised){
+	if(contentFrameState == .minimised){
 		return frameController
 	}
 	
 	//loading tabs
 	//TODO: refactor,- set TabModel and let the content controllerreopen the tabs
-	for (i, tab) in tabDataModel.enumerated(){
-        let record = CachedWebTable.fetchCachedWebsite(contentId: tab.id)
-		if(WebViewState(rawValue: tab.contentState) == .empty ){
-			_ = frameController.openEmptyTab(tab.id)
+	for (i, tab) in tabViewModels.enumerated(){
+
+		if(tab.state == .empty ){
+			_ = frameController.openEmptyTab(tab.contentId)
 		}else{
-			_ = frameController.openWebsiteInNewTab(urlStr: record.url, contentId: tab.id, tabName: record.title, webContentState: tab.contentState)
+			_ = frameController.openWebsiteInNewTab(urlStr: tab.url, contentId: tab.contentId, tabName: tab.title, webContentState: tab.state)
 		}
 		
 		//Clean-up after 1st of July 2024,-
 		//existing users have all their tabs active by default
 		//once all users updated to 0.1.4 Build 7 or later and opened and stored all spaces at least once
-		if(tab.active){
+		if(tab.isSelected){
 			activeTab = i
 		}
     }

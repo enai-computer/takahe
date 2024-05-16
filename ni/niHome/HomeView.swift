@@ -15,7 +15,7 @@ let stdCorner = RectangleCornerRadii(
 	topTrailing: 5
 )
 
-let NewSpaceID = UUID(uuidString: "00000000-0000-0000-0000-000000000000")
+let NewSpaceID = NiSpaceDocumentController.EMPTY_SPACE_ID
 
 class ControllerWrapper{
 	weak var hostingController: HomeViewController?

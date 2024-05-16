@@ -184,8 +184,11 @@ class NiSpaceViewController: NSViewController{
 		
 		let spaceModel = loadStoredSpace(niSpaceID: id)
 		
-		if(spaceModel == nil){
+		if(spaceModel == nil && id != WelcomeSpaceGenerator.WELCOME_SPACE_ID){
 			spaceDoc = getEmptySpaceDocument(id: id, name: name)
+		}else if(spaceModel == nil && id == WelcomeSpaceGenerator.WELCOME_SPACE_ID){
+			spaceDoc = WelcomeSpaceGenerator.generateSpace(self.view.frame.size)
+			niDocument.view.frame = spaceDoc.view.frame
 		}else{
 			let docHeightPx = (spaceModel?.data as? NiDocumentModel)?.height.px
 			spaceDoc = getEmptySpaceDocument(id: id, name: name, height: docHeightPx)
@@ -211,9 +214,12 @@ class NiSpaceViewController: NSViewController{
 
 	private func loadStoredSpace(niSpaceID: UUID) -> NiDocumentObjectModel?{
 		do{
-			let docJson = (DocumentTable.fetchDocumentModel(id: niSpaceID)?.data(using: .utf8))!
+			let docJson = (DocumentTable.fetchDocumentModel(id: niSpaceID)?.data(using: .utf8))
+			if(docJson == nil){
+				return nil
+			}
 			let jsonDecoder = JSONDecoder()
-			let docModel = try jsonDecoder.decode(NiDocumentObjectModel.self, from: docJson)
+			let docModel = try jsonDecoder.decode(NiDocumentObjectModel.self, from: docJson!)
 			return docModel
 		}catch{
 			print(error)

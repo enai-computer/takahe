@@ -227,7 +227,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		}
 	}
 	
-	func openWebsiteInNewTab(urlStr: String, contentId: UUID, tabName: String, webContentState: String? = nil) -> Int{
+	func openWebsiteInNewTab(urlStr: String, contentId: UUID, tabName: String, webContentState: WebViewState? = nil) -> Int{
 		let niWebView = getNewWebView(owner: self, frame: expandedCFView!.frame, dirtyUrl: urlStr, contentId: contentId)
 		
 		var tabHeadModel = TabViewModel(contentId: contentId)
@@ -235,7 +235,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		tabHeadModel.webView = niWebView
 		tabHeadModel.webView!.tabHeadPosition = tabHeadModel.position
 		if(webContentState != nil){
-			tabHeadModel.state = WebViewState(rawValue: webContentState!)!
+			tabHeadModel.state = webContentState!
 		}else{
 			tabHeadModel.state = .loading
 		}

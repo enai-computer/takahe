@@ -1,0 +1,32 @@
+{
+	"windows": [
+		{
+			"windowName": "",
+			"state": "expanded",
+			"tabs": [
+				{
+					"title": "Welcome",
+					"url": "https://enai.notion.site/Welcome-to-your-new-life-108a451f1b3d4e21b55d9ac385c72638"
+				},
+				{
+					"title": "Enai - A New Interface",
+					"url": "enai.io"
+				}
+			]
+		},
+		{
+			"windowName": "",
+			"state": "minimised",
+			"tabs": [
+				{
+					"title": "Augmenting Human Intellect: A Conceptual Framework ",
+					"url": "https://www.dougengelbart.org/pubs/augment-3906.html"
+				},
+				{
+					"title": "A few words on Doug Engelbart",
+					"url": "https://worrydream.com/Engelbart/"
+				}
+			]
+		}
+	]
+}

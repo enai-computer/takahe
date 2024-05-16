@@ -13,7 +13,7 @@ class NiSpaceDocumentController: NSViewController{
 	var myView: NiSpaceDocumentView {return self.view as! NiSpaceDocumentView}
 	
 	private let defaultCFSize: CGSize = CGSize(width: 1250, height: 730)
-	private let emptySpaceID: UUID = UUID(uuidString: "00000000-0000-0000-0000-000000000000")!
+	static let EMPTY_SPACE_ID: UUID = UUID(uuidString: "00000000-0000-0000-0000-000000000000")!
 	
 	private let niSpaceName: String
 	private let niSpaceID: UUID
@@ -32,7 +32,7 @@ class NiSpaceDocumentController: NSViewController{
 	}
 	
 	required init?(coder: NSCoder) {
-		self.niSpaceID = emptySpaceID
+		self.niSpaceID = NiSpaceDocumentController.EMPTY_SPACE_ID
 		self.niSpaceName = ""
 		self.initHeight = nil
 		self.spaceOpenedAt = Date()
@@ -129,7 +129,7 @@ class NiSpaceDocumentController: NSViewController{
 	
 	func storeSpace(scrollPosition: CGFloat){
 		
-		if(self.niSpaceID == emptySpaceID){
+		if(self.niSpaceID == NiSpaceDocumentController.EMPTY_SPACE_ID){
 			return
 		}
 		

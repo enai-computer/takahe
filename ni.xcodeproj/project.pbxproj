@@ -54,6 +54,8 @@
 		CD75784C2BC065FB00293930 /* ContentFrameTabHeadTextNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD75784B2BC065FB00293930 /* ContentFrameTabHeadTextNode.swift */; };
 		CD8873742BCD235300007BE9 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8873732BCD235300007BE9 /* HomeViewController.swift */; };
 		CD8873782BCD649800007BE9 /* TimeUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8873772BCD649800007BE9 /* TimeUtils.swift */; };
+		CDA639562BF50596001941DE /* welcomeConfig.json in Resources */ = {isa = PBXBuildFile; fileRef = CDA639552BF50596001941DE /* welcomeConfig.json */; };
+		CDA639582BF508FF001941DE /* WelcomeSpaceGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA639572BF508FF001941DE /* WelcomeSpaceGenerator.swift */; };
 		CDB06B612AF84E1F008DB8FF /* NiSpaceDocumentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB06B602AF84E1F008DB8FF /* NiSpaceDocumentView.swift */; };
 		CDD6B9392B152A8000C6144D /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD6B9382B152A8000C6144D /* Storage.swift */; };
 		CDD6B93E2B152D3F00C6144D /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = CDD6B93D2B152D3F00C6144D /* SQLite */; };
@@ -119,6 +121,8 @@
 		CD75784B2BC065FB00293930 /* ContentFrameTabHeadTextNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentFrameTabHeadTextNode.swift; sourceTree = "<group>"; };
 		CD8873732BCD235300007BE9 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		CD8873772BCD649800007BE9 /* TimeUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeUtils.swift; sourceTree = "<group>"; };
+		CDA639552BF50596001941DE /* welcomeConfig.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = welcomeConfig.json; sourceTree = "<group>"; };
+		CDA639572BF508FF001941DE /* WelcomeSpaceGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeSpaceGenerator.swift; sourceTree = "<group>"; };
 		CDB06B602AF84E1F008DB8FF /* NiSpaceDocumentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiSpaceDocumentView.swift; sourceTree = "<group>"; };
 		CDBC33F82BDBC896000EEF3D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		CDD6B9382B152A8000C6144D /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
@@ -230,6 +234,7 @@
 		CD6317E62BC4845100434D56 /* assets */ = {
 			isa = PBXGroup;
 			children = (
+				CDA639552BF50596001941DE /* welcomeConfig.json */,
 				CD1160CB2BD286EC00345E3E /* emptyTab-1.jpg */,
 				CD53ACBF2BCEE0ED00D5912B /* emptyTab.html */,
 				CDDBCB2C2BD8FA4C00E7B187 /* errorLoading-1.jpeg */,
@@ -263,6 +268,7 @@
 		CD66CE362B1FD24B0006BB98 /* utils */ = {
 			isa = PBXGroup;
 			children = (
+				CDA639572BF508FF001941DE /* WelcomeSpaceGenerator.swift */,
 				CD66CE372B1FD26A0006BB98 /* NiStringUtils.swift */,
 				CD8873772BCD649800007BE9 /* TimeUtils.swift */,
 				CD5B15392BDFBFE40030F017 /* NiActionImage.swift */,
@@ -421,6 +427,7 @@
 				A1E41BF62ACB533400338417 /* ContentFrameView.xib in Resources */,
 				CD53ACC02BCEE0ED00D5912B /* emptyTab.html in Resources */,
 				CD1160CC2BD286ED00345E3E /* emptyTab-1.jpg in Resources */,
+				CDA639562BF50596001941DE /* welcomeConfig.json in Resources */,
 				CD6317ED2BC4852300434D56 /* soehne-leicht.ttf in Resources */,
 				A14E8F252AD5EADF00409DDF /* NiSpaceView.xib in Resources */,
 				CD19BC942BC7E404002AF14E /* HomeAssets.xcassets in Resources */,
@@ -461,6 +468,7 @@
 				CDD6B9452B16A1A200C6144D /* CachedWebTable.swift in Sources */,
 				CDD6B9392B152A8000C6144D /* Storage.swift in Sources */,
 				CD42CEC92BDA48180039814D /* NiScrollView.swift in Sources */,
+				CDA639582BF508FF001941DE /* WelcomeSpaceGenerator.swift in Sources */,
 				CDDBCB2B2BD7C23E00E7B187 /* NiSpaceDocumentController.swift in Sources */,
 				CDD6B9472B16A29100C6144D /* DocumentIdContentIdTable.swift in Sources */,
 				CD66CE382B1FD26A0006BB98 /* NiStringUtils.swift in Sources */,
