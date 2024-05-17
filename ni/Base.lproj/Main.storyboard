@@ -274,13 +274,14 @@
                                                 <action selector="performZoom:" target="Ady-hI-5gd" id="xGG-KH-eHv"/>
                                             </connections>
                                         </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="vka-e7-PtF"/>
                                         <menuItem title="Show Next Tab" allowsKeyEquivalentWhenHidden="YES" id="W2d-eI-LYY">
                                             <string key="keyEquivalent" base64-UTF8="YES">
 CQ
 </string>
                                             <modifierMask key="keyEquivalentModifierMask" control="YES"/>
                                             <connections>
-                                                <action selector="switchToNextTab:" target="Ady-hI-5gd" id="Kwo-mE-mhj"/>
+                                                <action selector="switchToNextTab:" target="Voe-Tx-rLC" id="ckQ-go-C6D"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem title="Show Previous Tab" allowsKeyEquivalentWhenHidden="YES" id="WqA-9q-aRY">
@@ -289,7 +290,7 @@ GQ
 </string>
                                             <modifierMask key="keyEquivalentModifierMask" shift="YES" control="YES"/>
                                             <connections>
-                                                <action selector="switchToPrevTab:" target="Ady-hI-5gd" id="IV5-Vf-7Kg"/>
+                                                <action selector="switchToPrevTab:" target="Voe-Tx-rLC" id="sEk-zw-h0F"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="9gg-5U-bxU"/>

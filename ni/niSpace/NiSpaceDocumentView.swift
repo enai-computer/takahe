@@ -114,4 +114,12 @@ class NiSpaceDocumentView: NSView{
             contentFrame.persistContent(documentId: documentId)
         }
     }
+	
+	@IBAction func switchToNextTab(_ sender: NSMenuItem) {
+		topNiFrame?.selectNextTab()
+	}
+	
+	@IBAction func switchToPrevTab(_ sender: NSMenuItem) {
+		topNiFrame?.selectNextTab(goFwd: false)
+	}
 }

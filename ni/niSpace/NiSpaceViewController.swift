@@ -3,6 +3,7 @@
 import Cocoa
 import Carbon.HIToolbox
 import PostHog
+import AppKit
 
 class NiSpaceViewController: NSViewController{
     
@@ -228,4 +229,19 @@ class NiSpaceViewController: NSViewController{
 		return nil
 	}
     
+	func switchToNextTab(_ sender: NSMenuItem) {
+		if(homeViewShown){
+			__NSBeep()
+			return
+		}
+		niDocument.myView.switchToNextTab(sender)
+	}
+	
+	func switchToPrevTab(_ sender: NSMenuItem) {
+		if(homeViewShown){
+			__NSBeep()
+			return
+		}
+		niDocument.myView.switchToPrevTab(sender)
+	}
 }
