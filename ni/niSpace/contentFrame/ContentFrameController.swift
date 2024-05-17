@@ -21,7 +21,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
     private var selectedTabModel: Int = -1
 	private(set) var aTabIsInEditingMode: Bool = false
 	private var tabs: [TabViewModel] = []
-	private var viewState: NiConentFrameState = .expanded
+	var viewState: NiConentFrameState = .expanded
 		
 	/*
 	 * MARK: init & view loading here
@@ -110,7 +110,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	/*
 	 * MARK: minimizing and maximizing
 	 */
-	private func minimizeSelf(){
+	func minimizeSelf(){
 		updateTabViewModel()
 		let minimizedView = loadMinimizedView()
 		
@@ -293,6 +293,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 			
 			expandedCFView?.cfTabHeadCollection.reloadData()
 		}else if( selectedTabModel == 0 && self.tabs.count == 1){
+			myView.niParentDoc?.removeNiFrame(self)
 			view.removeFromSuperview()
 		}else if( selectedTabModel == 0 && 1 < self.tabs.count){
 			let toDeletePos = selectedTabModel

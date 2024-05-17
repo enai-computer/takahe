@@ -215,6 +215,18 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		getNiSpaceViewController()?.switchToPrevTab(sender)
 	}
 	
+	@IBAction func switchToNextWindow(_ sender: NSMenuItem) {
+		getNiSpaceViewController()?.switchToNextWindow(sender)
+	}
+	
+	@IBAction func switchToPrevWindow(_ sender: NSMenuItem) {
+		getNiSpaceViewController()?.switchToPrevWindow(sender)
+	}
+	
+	@IBAction func minimizeCF(_ sender: NSMenuItem) {
+		getNiSpaceViewController()?.toggleMinimizeOnTopCF(sender)
+	}
+	
 	private func getNiSpaceViewController() -> NiSpaceViewController?{
 		let window = NSApplication.shared.keyWindow
 		if (window != nil && window is DefaultWindow){

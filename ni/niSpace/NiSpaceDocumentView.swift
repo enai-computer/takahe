@@ -115,11 +115,52 @@ class NiSpaceDocumentView: NSView{
         }
     }
 	
-	@IBAction func switchToNextTab(_ sender: NSMenuItem) {
+	func switchToNextTab(_ sender: NSMenuItem) {
 		topNiFrame?.selectNextTab()
 	}
 	
-	@IBAction func switchToPrevTab(_ sender: NSMenuItem) {
+	func switchToPrevTab(_ sender: NSMenuItem) {
 		topNiFrame?.selectNextTab(goFwd: false)
+	}
+	
+	func toggleMinimizeOnTopCF(_ sender: NSMenuItem){
+		if(topNiFrame?.viewState == .minimised){
+			topNiFrame?.minimizedToExpanded()
+		}else{
+			topNiFrame?.minimizeSelf()
+		}
+	}
+	
+	func switchToNextCF(goFwd: Bool = true){
+		let (currentPos, orderedCFs) = cfOrdered()
+		
+		var nxtContentFrame: Int =  if(goFwd){
+			currentPos + 1
+		}else{
+			currentPos - 1
+		}
+				
+		// cycles to first and last Window...
+		if(nxtContentFrame < 0){
+			nxtContentFrame = orderedCFs.count - 1
+		}
+		
+		if((orderedCFs.count - 1) < nxtContentFrame){
+			nxtContentFrame = 0
+		}
+		
+		setTopNiFrame(orderedCFs[nxtContentFrame])
+	}
+	
+	private func cfOrdered() -> (Int, [ContentFrameController]){
+		let orderedCFs = contentFrameControllers.sorted {
+			return $0.view.frame.origin.y <= $1.view.frame.origin.y
+		}
+		let currentPos: Int = if(topNiFrame != nil){
+			orderedCFs.firstIndex(of: topNiFrame!) ?? -1
+		} else{
+			-1
+		}
+		return (currentPos, orderedCFs)
 	}
 }

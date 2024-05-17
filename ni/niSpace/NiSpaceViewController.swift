@@ -244,4 +244,28 @@ class NiSpaceViewController: NSViewController{
 		}
 		niDocument.myView.switchToPrevTab(sender)
 	}
+	
+	func toggleMinimizeOnTopCF(_ sender: NSMenuItem) {
+		if(homeViewShown){
+			__NSBeep()
+			return
+		}
+		niDocument.myView.toggleMinimizeOnTopCF(sender)
+	}
+	
+	func switchToNextWindow(_ sender: NSMenuItem) {
+		if(homeViewShown){
+			__NSBeep()
+			return
+		}
+		niDocument.myView.switchToNextCF()
+	}
+	
+	func switchToPrevWindow(_ sender: NSMenuItem) {
+		if(homeViewShown){
+			__NSBeep()
+			return
+		}
+		niDocument.myView.switchToNextCF(goFwd: false)
+	}
 }

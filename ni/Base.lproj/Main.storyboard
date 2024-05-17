@@ -265,7 +265,7 @@
                                     <items>
                                         <menuItem title="Minimize" keyEquivalent="m" id="PD8-3W-6zL">
                                             <connections>
-                                                <action selector="performMiniaturize:" target="Ady-hI-5gd" id="zxg-d5-aiu"/>
+                                                <action selector="minimizeCF:" target="Voe-Tx-rLC" id="BzL-cG-R9F"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem title="Zoom" id="OB7-bi-6pp">
@@ -291,6 +291,16 @@ GQ
                                             <modifierMask key="keyEquivalentModifierMask" shift="YES" control="YES"/>
                                             <connections>
                                                 <action selector="switchToPrevTab:" target="Voe-Tx-rLC" id="sEk-zw-h0F"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Show Previous Window" keyEquivalent="" allowsKeyEquivalentWhenHidden="YES" id="EZL-Cj-Fcv">
+                                            <connections>
+                                                <action selector="switchToPrevWindow:" target="Voe-Tx-rLC" id="KnZ-de-KOb"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Show Next Window" keyEquivalent="" allowsKeyEquivalentWhenHidden="YES" id="mmN-BH-r9l">
+                                            <connections>
+                                                <action selector="switchToNextWindow:" target="Voe-Tx-rLC" id="kNd-l5-1L3"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="9gg-5U-bxU"/>
