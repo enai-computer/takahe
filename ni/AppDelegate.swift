@@ -206,5 +206,24 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	func allowedToSaveSpace(_ spaceID: UUID) -> Bool{
 		return !dontStoreSpace.contains(spaceID)
 	}
+	
+	@IBAction func switchToNextTab(_ sender: NSMenuItem) {
+		getNiSpaceViewController()?.switchToNextTab(sender)
+	}
+	
+	@IBAction func switchToPrevTab(_ sender: NSMenuItem) {
+		getNiSpaceViewController()?.switchToPrevTab(sender)
+	}
+	
+	private func getNiSpaceViewController() -> NiSpaceViewController?{
+		let window = NSApplication.shared.keyWindow
+		if (window != nil && window is DefaultWindow){
+			if let controller = window!.contentViewController as? NiSpaceViewController{
+				return controller
+			}
+		}
+		return nil
+	}
+	
 }
 
