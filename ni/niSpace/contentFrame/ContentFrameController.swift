@@ -306,6 +306,24 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		}
 	}
 	
+	func selectNextTab(goFwd: Bool = true){
+		var nxtTab: Int = if(goFwd){
+			self.selectedTabModel + 1
+		}else{
+			self.selectedTabModel - 1
+		}
+		
+		// cycles to first and last tab...
+		if(nxtTab < 0){
+			nxtTab = self.tabs.count - 1
+		}
+		
+		if((self.tabs.count - 1) < nxtTab){
+			nxtTab = 0
+		}
+		selectTab(at: nxtTab)
+	}
+	
 	func selectTab(at: Int, mouseDownEvent: NSEvent? = nil){
 		
 		//No tab switching while CF is not active
@@ -397,7 +415,27 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 				return
 			}
 		}
+		
+		if(event.modifierFlags.contains(.control)){
+			if(event.keyCode == kVK_Tab && event.modifierFlags.contains(.shift)){
+				selectNextTab(goFwd: false)
+				return
+			}
+			if(event.keyCode == kVK_Tab){
+				selectNextTab()
+				return
+			}
+		}
+		
 		nextResponder?.keyDown(with: event)
+	}
+	
+	@IBAction func switchToNextTab(_ sender: NSMenuItem) {
+		selectNextTab()
+	}
+	
+	@IBAction func switchToPrevTab(_ sender: NSMenuItem) {
+		selectNextTab(goFwd: false)
 	}
 	
 	/*

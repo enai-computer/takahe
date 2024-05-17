@@ -57,6 +57,7 @@
 		CDA639562BF50596001941DE /* welcomeConfig.json in Resources */ = {isa = PBXBuildFile; fileRef = CDA639552BF50596001941DE /* welcomeConfig.json */; };
 		CDA639582BF508FF001941DE /* WelcomeSpaceGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA639572BF508FF001941DE /* WelcomeSpaceGenerator.swift */; };
 		CDB06B612AF84E1F008DB8FF /* NiSpaceDocumentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB06B602AF84E1F008DB8FF /* NiSpaceDocumentView.swift */; };
+		CDD212B52BF7600A009F95C4 /* NiTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD212B42BF7600A009F95C4 /* NiTabView.swift */; };
 		CDD6B9392B152A8000C6144D /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD6B9382B152A8000C6144D /* Storage.swift */; };
 		CDD6B93E2B152D3F00C6144D /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = CDD6B93D2B152D3F00C6144D /* SQLite */; };
 		CDD6B9402B169F7700C6144D /* DocumentTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD6B93F2B169F7700C6144D /* DocumentTable.swift */; };
@@ -125,6 +126,7 @@
 		CDA639572BF508FF001941DE /* WelcomeSpaceGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeSpaceGenerator.swift; sourceTree = "<group>"; };
 		CDB06B602AF84E1F008DB8FF /* NiSpaceDocumentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiSpaceDocumentView.swift; sourceTree = "<group>"; };
 		CDBC33F82BDBC896000EEF3D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		CDD212B42BF7600A009F95C4 /* NiTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiTabView.swift; sourceTree = "<group>"; };
 		CDD6B9382B152A8000C6144D /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		CDD6B93F2B169F7700C6144D /* DocumentTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentTable.swift; sourceTree = "<group>"; };
 		CDD6B9422B16A14300C6144D /* ContentTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentTable.swift; sourceTree = "<group>"; };
@@ -207,6 +209,7 @@
 				CD6317F02BC53A9600434D56 /* cfOverlay.swift */,
 				CD5A04CE2BEA42EB004CC3AA /* cfUtils.swift */,
 				CD5A04D02BEA78E4004CC3AA /* CFBaseView.swift */,
+				CDD212B42BF7600A009F95C4 /* NiTabView.swift */,
 			);
 			path = contentFrame;
 			sourceTree = "<group>";
@@ -454,6 +457,7 @@
 				CD6317E12BC3F11000434D56 /* NiUserInputError.swift in Sources */,
 				CD66CE332B1F819E0006BB98 /* NiWebView.swift in Sources */,
 				CDD6B9562B1C326A00C6144D /* ContentFrameController.swift in Sources */,
+				CDD212B52BF7600A009F95C4 /* NiTabView.swift in Sources */,
 				A1E41BFF2ACB6B1300338417 /* FrameGenerator.swift in Sources */,
 				CD19BC962BC7E5BF002AF14E /* HomeViewUtils.swift in Sources */,
 				A1B8E6AB2AAFB5EC00AC6566 /* ni.xcdatamodeld in Sources */,

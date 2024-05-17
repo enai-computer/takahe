@@ -88,6 +88,7 @@ class NiSpaceDocumentController: NSViewController{
 		
 		return CGPoint(x: (x_center-x_dist_to_center), y: (y_center - y_dist_to_center))
 	}
+	
 	/*
 	 * MARK: - load and store space document here
 	 */

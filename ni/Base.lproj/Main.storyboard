@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22689"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22690"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -10,9 +10,9 @@
                 <application id="hnw-xV-0zn" sceneMemberID="viewController">
                     <menu key="mainMenu" title="Main Menu" systemMenu="main" id="AYu-sK-qS6">
                         <items>
-                            <menuItem title="ni" id="1Xt-HY-uBw">
+                            <menuItem title="Enai" id="1Xt-HY-uBw">
                                 <modifierMask key="keyEquivalentModifierMask"/>
-                                <menu key="submenu" title="ni" systemMenu="apple" id="uQy-DD-JDr">
+                                <menu key="submenu" title="Enai" systemMenu="apple" id="uQy-DD-JDr">
                                     <items>
                                         <menuItem title="About ni" id="5kV-Vb-QxS">
                                             <modifierMask key="keyEquivalentModifierMask"/>
@@ -249,6 +249,59 @@
                                     </items>
                                 </menu>
                             </menuItem>
+                            <menuItem title="Space" id="PPq-VN-v9P">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <menu key="submenu" title="Space" id="Wbq-EM-CZq">
+                                    <items>
+                                        <menuItem title=" " id="puB-jb-cYL">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                        </menuItem>
+                                    </items>
+                                </menu>
+                            </menuItem>
+                            <menuItem title="Window" id="LgF-00-PUw">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <menu key="submenu" title="Window" systemMenu="window" id="6KZ-oK-aV0">
+                                    <items>
+                                        <menuItem title="Minimize" keyEquivalent="m" id="PD8-3W-6zL">
+                                            <connections>
+                                                <action selector="performMiniaturize:" target="Ady-hI-5gd" id="zxg-d5-aiu"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Zoom" id="OB7-bi-6pp">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="performZoom:" target="Ady-hI-5gd" id="xGG-KH-eHv"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Show Next Tab" allowsKeyEquivalentWhenHidden="YES" id="W2d-eI-LYY">
+                                            <string key="keyEquivalent" base64-UTF8="YES">
+CQ
+</string>
+                                            <modifierMask key="keyEquivalentModifierMask" control="YES"/>
+                                            <connections>
+                                                <action selector="switchToNextTab:" target="Ady-hI-5gd" id="Kwo-mE-mhj"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Show Previous Tab" allowsKeyEquivalentWhenHidden="YES" id="WqA-9q-aRY">
+                                            <string key="keyEquivalent" base64-UTF8="YES">
+GQ
+</string>
+                                            <modifierMask key="keyEquivalentModifierMask" shift="YES" control="YES"/>
+                                            <connections>
+                                                <action selector="switchToPrevTab:" target="Ady-hI-5gd" id="IV5-Vf-7Kg"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="9gg-5U-bxU"/>
+                                        <menuItem title="Bring All to Front" id="GwR-80-iha">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="arrangeInFront:" target="Ady-hI-5gd" id="WMr-mm-hV1"/>
+                                            </connections>
+                                        </menuItem>
+                                    </items>
+                                </menu>
+                            </menuItem>
                             <menuItem title="Help" id="wpr-3q-Mcd">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="Help" systemMenu="help" id="F2S-fz-NVQ">
@@ -280,7 +333,7 @@
                     <window key="window" title="Enai" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" hasShadow="NO" visibleAtLaunch="NO" appearanceType="aqua" animationBehavior="default" titlebarAppearsTransparent="YES" titleVisibility="hidden" id="IQv-IB-iLA" customClass="DefaultWindow" customModule="ni" customModuleProvider="target">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" fullSizeContentView="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-                        <rect key="contentRect" x="196" y="240" width="800" height="500"/>
+                        <rect key="contentRect" x="196" y="240" width="1600" height="900"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
                         <connections>
                             <outlet property="delegate" destination="B8D-0N-5wS" id="68U-o9-lWu"/>
