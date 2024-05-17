@@ -43,7 +43,8 @@
                                     </subviews>
                                     <color key="backgroundColor" name="SandLight4"/>
                                 </clipView>
-                                <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="aVi-Gl-lD4">
+                                <edgeInsets key="scrollerInsets" left="0.0" right="0.0" top="0.0" bottom="-3"/>
+                                <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="aVi-Gl-lD4" customClass="NiScroller" customModule="ni" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="14" width="801" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
