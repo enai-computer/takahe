@@ -293,6 +293,11 @@ GQ
                                                 <action selector="switchToPrevTab:" target="Voe-Tx-rLC" id="sEk-zw-h0F"/>
                                             </connections>
                                         </menuItem>
+                                        <menuItem title="New Tab" keyEquivalent="t" allowsKeyEquivalentWhenHidden="YES" id="otw-RH-2ev">
+                                            <connections>
+                                                <action selector="createNewTab:" target="Voe-Tx-rLC" id="Nbw-il-mMI"/>
+                                            </connections>
+                                        </menuItem>
                                         <menuItem title="Show Previous Window" keyEquivalent="" allowsKeyEquivalentWhenHidden="YES" id="EZL-Cj-Fcv">
                                             <connections>
                                                 <action selector="switchToPrevWindow:" target="Voe-Tx-rLC" id="KnZ-de-KOb"/>

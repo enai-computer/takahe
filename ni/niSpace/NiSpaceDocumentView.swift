@@ -123,6 +123,10 @@ class NiSpaceDocumentView: NSView{
 		topNiFrame?.selectNextTab(goFwd: false)
 	}
 	
+	func createNewTab(){
+		topNiFrame?.openAndEditEmptyTab()
+	}
+	
 	func toggleMinimizeOnTopCF(_ sender: NSMenuItem){
 		if(topNiFrame?.viewState == .minimised){
 			topNiFrame?.minimizedToExpanded()

@@ -11,6 +11,7 @@ import Cocoa
 class NiActionImage: NSImageView{
 	
 	var mouseDownFunction: ((NSEvent) -> Void)?
+	var mouseDownInActiveFunction: ((NSEvent) -> Void)?
 	var isActiveFunction: (() -> Bool)?
 
 	required init?(coder: NSCoder) {
@@ -22,33 +23,26 @@ class NiActionImage: NSImageView{
 	
 	override func mouseDown(with event: NSEvent) {
 		//if is not active - don't change color
-		if(isActiveFunction != nil){
-			if(!isActiveFunction!()){
-				return
-			}
+		if(isActiveFunction != nil && !isActiveFunction!()){
+			mouseDownInActiveFunction?(event)
+			return
 		}
-		if (mouseDownFunction != nil){
-			mouseDownFunction!(event)
-		}
+		mouseDownFunction?(event)
 	}
 	
 	override func mouseEntered(with event: NSEvent) {
 		//if is not active - don't change color
-		if(isActiveFunction != nil){
-			if(!isActiveFunction!()){
-				return
-			}
+		if(isActiveFunction != nil && !isActiveFunction!()){
+			return
 		}
 		self.contentTintColor = NSColor(.birkin)
 	}
 	
 	override func mouseExited(with event: NSEvent) {
 		//if is not active - don't change color
-		if(isActiveFunction != nil){
-			if(!isActiveFunction!()){
-				self.tintInactive()
-				return
-			}
+		if(isActiveFunction != nil && !isActiveFunction!()){
+			self.tintInactive()
+			return
 		}
 		self.tintActive()
 	}

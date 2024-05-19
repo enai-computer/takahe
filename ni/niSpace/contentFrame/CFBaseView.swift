@@ -35,6 +35,13 @@ class CFBaseView: NSBox{
 		return frameIsActive
 	}
 	
+	func activateContentFrame(with event: NSEvent){
+		if !frameIsActive{
+			niParentDoc?.setTopNiFrame(myController!)
+			return
+		}
+	}
+	
 	func repositionView(_ xDiff: Double, _ yDiff: Double) {
 		
 		let docW = self.niParentDoc!.frame.size.width

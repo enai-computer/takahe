@@ -46,21 +46,27 @@ class ContentFrameView: CFBaseView{
 	func initAfterViewLoad(){
 		closeButton.mouseDownFunction = clickedCloseButton
 		closeButton.isActiveFunction = self.isFrameActive
+		closeButton.mouseDownInActiveFunction = activateContentFrame
 		
 		maximizeButton.mouseDownFunction = fillOrRetractView
 		maximizeButton.isActiveFunction = self.isFrameActive
+		maximizeButton.mouseDownInActiveFunction = activateContentFrame
 		
 		minimizeButton.mouseDownFunction = clickedMinimizeButton
 		minimizeButton.isActiveFunction = self.isFrameActive
+		minimizeButton.mouseDownInActiveFunction = activateContentFrame
 		
 		addTabButton.mouseDownFunction = addTabClicked
 		addTabButton.isActiveFunction = self.isFrameActive
+		addTabButton.mouseDownInActiveFunction = activateContentFrame
 		
 		contentBackButton.mouseDownFunction = backButtonClicked
 		contentBackButton.isActiveFunction = backButtonIsActive
+		contentBackButton.mouseDownInActiveFunction = activateContentFrame
 		
 		contentForwardButton.mouseDownFunction = forwardButtonClicked
 		contentForwardButton.isActiveFunction = fwdButtonIsActive
+		contentBackButton.mouseDownInActiveFunction = activateContentFrame
 	}
     
     func createNewTab(tabView: NiWebView) -> Int{

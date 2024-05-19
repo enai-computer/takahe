@@ -220,6 +220,11 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	}
 	
 	func openAndEditEmptyTab(){
+		if(viewState == .minimised){
+			__NSBeep()
+			return
+		}
+		
 		let pos = openEmptyTab()
 		//needs to happen a frame later as otherwise the cursor will not jump into the editing mode
 		DispatchQueue.main.async {

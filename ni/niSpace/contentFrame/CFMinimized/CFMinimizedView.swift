@@ -24,9 +24,11 @@ class CFMinimizedView: CFBaseView{
 		
 		closeButton.mouseDownFunction = closeButtonClicked
 		closeButton.isActiveFunction = self.isFrameActive
+		closeButton.mouseDownInActiveFunction = activateContentFrame
 		
 		maximizeButton.mouseDownFunction = maximizeButtonClicked
 		maximizeButton.isActiveFunction = self.isFrameActive
+		maximizeButton.mouseDownInActiveFunction = activateContentFrame
 	}
 	
 	override func isOnBoarder(_ cursorLocation: CGPoint) -> CFBaseView.OnBorder {

@@ -215,6 +215,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		getNiSpaceViewController()?.switchToPrevTab(sender)
 	}
 	
+	@IBAction func createNewTab(_ sender: NSMenuItem) {
+		getNiSpaceViewController()?.createNewTab(sender)
+	}
+	
 	@IBAction func switchToNextWindow(_ sender: NSMenuItem) {
 		getNiSpaceViewController()?.switchToNextWindow(sender)
 	}

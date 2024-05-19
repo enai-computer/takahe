@@ -237,6 +237,14 @@ class NiSpaceViewController: NSViewController{
 		niDocument.myView.switchToNextTab(sender)
 	}
 	
+	func createNewTab(_ sender: NSMenuItem) {
+		if(homeViewShown){
+			__NSBeep()
+			return
+		}
+		niDocument.myView.createNewTab()
+	}
+	
 	func switchToPrevTab(_ sender: NSMenuItem) {
 		if(homeViewShown){
 			__NSBeep()
