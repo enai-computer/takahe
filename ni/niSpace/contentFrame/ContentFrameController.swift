@@ -288,29 +288,35 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	}
 	
 	func closeSelectedTab(){
+		var deletedTabModel: TabViewModel?
+		
 		if(0 < selectedTabModel){
 			let toDeletePos = selectedTabModel
 			selectedTabModel -= 1
 			
 			expandedCFView?.deleteSelectedTab(at: toDeletePos)
-			self.tabs.remove(at: toDeletePos)
+			deletedTabModel = self.tabs.remove(at: toDeletePos)
 			
 			selectTab(at: selectedTabModel)
 			
 			expandedCFView?.cfTabHeadCollection.reloadData()
 		}else if( selectedTabModel == 0 && self.tabs.count == 1){
+			deletedTabModel = self.tabs.remove(at: selectedTabModel)
+			
 			myView.niParentDoc?.removeNiFrame(self)
 			view.removeFromSuperview()
 		}else if( selectedTabModel == 0 && 1 < self.tabs.count){
 			let toDeletePos = selectedTabModel
 			
 			expandedCFView?.deleteSelectedTab(at: toDeletePos)
-			self.tabs.remove(at: toDeletePos)
+			deletedTabModel = self.tabs.remove(at: toDeletePos)
 			
 			selectTab(at: selectedTabModel)
 			
 			expandedCFView?.cfTabHeadCollection.reloadData()
 		}
+		
+		ContentTable.delete(id: deletedTabModel!.contentId)	//TODO: remove tab data here
 	}
 	
 	func selectNextTab(goFwd: Bool = true){

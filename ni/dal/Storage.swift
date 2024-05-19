@@ -35,6 +35,7 @@ class Storage{
             // create parent directory inside application support if it doesn’t exist
             try FileManager.default.createDirectory(atPath: path, withIntermediateDirectories: true, attributes: nil)
             spacesDB = try Connection(path + DB_SPACES)
+			spacesDB.foreignKeys = true
             try createSpacesTablesIfNotExist(db: spacesDB)
         }catch{
             print("Failed to init SQLight.")
