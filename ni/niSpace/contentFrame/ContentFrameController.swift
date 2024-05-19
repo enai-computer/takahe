@@ -166,6 +166,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		
 		self.expandedCFView!.niParentDoc?.setTopNiFrame(self)
 		
+		sharedLoadViewSetters()
 	}
 	
 	func recreateExpandedCFView() {
