@@ -10,7 +10,6 @@ import WebKit
 
 
 func getNewWebView(owner: ContentFrameController, contentId: UUID, urlReq: URLRequest, frame: NSRect) -> NiWebView {
-
 	let wkView = NiWebView(contentId: contentId, owner: owner, frame: frame)
 	wkView.load(urlReq)
 	wkView.navigationDelegate = owner

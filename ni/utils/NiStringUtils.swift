@@ -14,10 +14,15 @@ func urlOrSearchUrl(from dirtyInput: String) throws -> URL{
 		return try createWebUrl(from: greyInput)
 	}
 	
-	let encodedSearchTerm = greyInput.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
-	let urlSearch = "https://www.google.com/search?q=" + encodedSearchTerm!
+	let urlSearch = searchUrl(from: greyInput)
 	guard let url = URL(string: urlSearch) else {throw NiUserInputError.invalidSearch(url: urlSearch)}
 	return url
+}
+
+func searchUrl(from query: String) -> String{
+	let encodedSearchTerm = query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+	let urlSearch = "https://www.google.com/search?q=" + encodedSearchTerm!
+	return urlSearch
 }
 
 func createWebUrl(from urlDirty: String) throws -> URL{

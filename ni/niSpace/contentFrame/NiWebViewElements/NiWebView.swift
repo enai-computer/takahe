@@ -44,6 +44,7 @@ class NiWebView: WKWebView{
         
         // Hacky do nothing, if not a link
         if(menu.items[0].title != "Open Link"){
+			replaceSearchWithGoogleAction(menu)
             return
         }
 		
@@ -56,12 +57,30 @@ class NiWebView: WKWebView{
         menu.items = [niOpenInNewTab]
     }
     
+	private func replaceSearchWithGoogleAction(_ menu: NSMenu){
+		for item in menu.items{
+			if(item.title == "Search with Google"){
+				item.action = #selector(runGoogleSearch(_:))
+				item.target = self
+			}
+		}
+	}
+	
 	//function for right click open link in new tab
     @objc func openLinkInNewTab(_ sender: AnyObject) {
-            if let url = GlobalScriptMessageHandler.instance.contextMenu_href {
-                owner.openWebsiteInNewTab(url)
-            }
-        }
+		if let url = GlobalScriptMessageHandler.instance.contextMenu_href {
+			owner.openWebsiteInNewTab(url)
+		}
+	}
+	
+	
+	//function for right click open link in new tab
+	@objc func runGoogleSearch(_ sender: AnyObject) {
+		if let selectedText = GlobalScriptMessageHandler.instance.contextMenu_selectedText {
+			let url = searchUrl(from: selectedText)
+			owner.openWebsiteInNewTab(url)
+		}
+	}
     
     func setActive(){
 		overlay?.removeFromSuperview()
@@ -82,7 +101,9 @@ class NiWebView: WKWebView{
 		}
 		nextResponder?.keyDown(with: event)
 	}
+	
 }
+
 
 
 class GlobalScriptMessageHandler: NSObject, WKScriptMessageHandler {
@@ -96,6 +117,7 @@ class GlobalScriptMessageHandler: NSObject, WKScriptMessageHandler {
     public private(set) var contextMenu_hrefNodeName: String?
     public private(set) var contextMenu_hrefNodeId: String?
     public private(set) var contextMenu_href: String?
+	public private(set) var contextMenu_selectedText: String?
     
     static private var WHOLE_PAGE_SCRIPT = """
         window.oncontextmenu = (event) => {
@@ -103,6 +125,7 @@ class GlobalScriptMessageHandler: NSObject, WKScriptMessageHandler {
 
             var href = target.href
             var parentElement = target
+            var selectedText = window.getSelection().toString()
             while (href == null && parentElement.parentElement != null) {
                 parentElement = parentElement.parentElement
                 href = parentElement.href
@@ -117,7 +140,8 @@ class GlobalScriptMessageHandler: NSObject, WKScriptMessageHandler {
                 id: target.id,
                 hrefNodeName: parentElement?.nodeName,
                 hrefId: parentElement?.id,
-                href
+                href,
+                selectedText
             });
         }
         """
@@ -151,6 +175,7 @@ class GlobalScriptMessageHandler: NSObject, WKScriptMessageHandler {
             contextMenu_hrefNodeName = body["hrefNodeName"] as? String
             contextMenu_hrefNodeId = body["hrefId"] as? String
             contextMenu_href = body["href"] as? String
+			contextMenu_selectedText = body["selectedText"] as? String
         }
     }
 }
