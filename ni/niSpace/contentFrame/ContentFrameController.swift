@@ -150,7 +150,12 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		//position
 		//TODO: ensure it's not out of bounds?
 		expandedCFView!.frame.origin.y = self.view.frame.origin.y
-		expandedCFView!.frame.origin.x = self.view.frame.origin.x + self.view.frame.width - expandedCFView!.frame.width
+		
+		var newXorigin = self.view.frame.origin.x + self.view.frame.width - expandedCFView!.frame.width
+		if(newXorigin < 0){
+			newXorigin = self.view.frame.origin.x
+		}
+		expandedCFView!.frame.origin.x = newXorigin
 		if(self.view.layer != nil){
 			expandedCFView!.layer?.zPosition = self.view.layer!.zPosition
 		}

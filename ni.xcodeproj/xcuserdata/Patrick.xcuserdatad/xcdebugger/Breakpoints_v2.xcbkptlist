@@ -62,8 +62,8 @@
             filePath = "ni/niSpace/contentFrame/ContentFrameController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "258"
-            endingLineNumber = "258"
+            startingLineNumber = "263"
+            endingLineNumber = "263"
             landmarkName = "openWebsiteInNewTab(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -98,52 +98,6 @@
             endingLineNumber = "49"
             landmarkName = "delete(id:)"
             landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "C8C7AEA7-AAD3-428E-894D-86D582A8BB63"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ni/dal/Storage.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "39"
-            endingLineNumber = "39"
-            landmarkName = "init()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "C8C7AEA7-AAD3-428E-894D-86D582A8BB63 - 20d98329db027f0"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "ni.Storage.() -&gt; ni.Storage.init() -&gt; ni.Storage"
-                  moduleName = "ni"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Patrick/Workbench/takahe/ni/dal/Storage.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "38"
-                  endingLineNumber = "38">
-               </Location>
-               <Location
-                  uuid = "C8C7AEA7-AAD3-428E-894D-86D582A8BB63 - 20d98329db027d7"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "ni.Storage.() -&gt; ni.Storage.init() -&gt; ni.Storage"
-                  moduleName = "ni"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Patrick/Workbench/takahe/ni/dal/Storage.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "39"
-                  endingLineNumber = "39">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
