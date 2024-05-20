@@ -117,14 +117,6 @@
             </connections>
             <point key="canvasLocation" x="-652" y="-653.5"/>
         </box>
-        <menu id="ENN-UI-hRR">
-            <items>
-                <menuItem title="open link in new tab" id="Eii-G0-fjD">
-                    <modifierMask key="keyEquivalentModifierMask"/>
-                </menuItem>
-            </items>
-            <point key="canvasLocation" x="-816.5" y="-966.5"/>
-        </menu>
     </objects>
     <resources>
         <image name="arrowLeft" width="24" height="24"/>

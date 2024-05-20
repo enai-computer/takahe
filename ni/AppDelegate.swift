@@ -1,6 +1,7 @@
 //  Created on 11.09.23.
 
 import Cocoa
+import Carbon.HIToolbox
 import PostHog
 
 @main
@@ -27,6 +28,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		PostHogSDK.shared.setup(postHogConfig)
 		
 		applicationStarted = Date()
+		
+		setLocalKeyListeners()
     }
 		
     func applicationWillTerminate(_ aNotification: Notification) {
@@ -220,11 +223,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	}
 	
 	@IBAction func switchToNextWindow(_ sender: NSMenuItem) {
-		getNiSpaceViewController()?.switchToNextWindow(sender)
+		getNiSpaceViewController()?.switchToNextWindow()
 	}
 	
 	@IBAction func switchToPrevWindow(_ sender: NSMenuItem) {
-		getNiSpaceViewController()?.switchToPrevWindow(sender)
+		getNiSpaceViewController()?.switchToPrevWindow()
 	}
 	
 	@IBAction func minimizeCF(_ sender: NSMenuItem) {
@@ -241,5 +244,18 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		return nil
 	}
 	
+	private func setLocalKeyListeners(){
+		NSEvent.addLocalMonitorForEvents(matching: .keyDown, handler: {(event: NSEvent) in
+			if(event.modifierFlags.contains(.command) && event.keyCode == kVK_LeftArrow){
+				self.getNiSpaceViewController()?.switchToPrevWindow()
+				return nil
+			}
+			if(event.modifierFlags.contains(.command) && event.keyCode == kVK_RightArrow){
+				self.getNiSpaceViewController()?.switchToNextWindow()
+				return nil
+			}
+			return event
+		})
+	}
 }
 

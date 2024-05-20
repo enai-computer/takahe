@@ -10,7 +10,8 @@ class NiSpaceViewController: NSViewController{
 	private(set) var spaceLoaded: Bool = false
 	var homeViewShown: Bool = false
     private var niSpaceName: String
-
+	var spaceMenu: NiSpaceMenuController?
+	
 	//header elements here:
 	@IBOutlet var header: NSBox!
 	@IBOutlet var time: NSTextField!
@@ -125,6 +126,15 @@ class NiSpaceViewController: NSViewController{
 		niDocument.reloadTabOfTopCF()
 	}
 	
+	private func showSpaceMenu(_ event: NSEvent){
+		if(spaceMenu != nil){
+			return
+		}
+		spaceMenu = NiSpaceMenuController(owner: self)
+		spaceMenu!.loadAndPositionView(position: event.locationInWindow, screenWidth: view.frame.width, screenHeight: view.frame.height)
+		view.addSubview(spaceMenu!.view)
+	}
+	
 	/*
 	 * MARK: - mouse and key events here
 	 */
@@ -132,9 +142,9 @@ class NiSpaceViewController: NSViewController{
 		let cursorPos = self.view.convert(event.locationInWindow, from: nil)
 		if(!homeViewShown && NSPointInRect(cursorPos, header.frame)){
 			returnToHome()
-		}else{
-			nextResponder?.mouseDown(with: event)
+			return
 		}
+		showSpaceMenu(event)
 	}
 	
 	override func keyDown(with event: NSEvent) {
@@ -261,7 +271,7 @@ class NiSpaceViewController: NSViewController{
 		niDocument.myView.toggleMinimizeOnTopCF(sender)
 	}
 	
-	func switchToNextWindow(_ sender: NSMenuItem) {
+	func switchToNextWindow() {
 		if(homeViewShown){
 			__NSBeep()
 			return
@@ -269,7 +279,7 @@ class NiSpaceViewController: NSViewController{
 		niDocument.myView.switchToNextCF()
 	}
 	
-	func switchToPrevWindow(_ sender: NSMenuItem) {
+	func switchToPrevWindow() {
 		if(homeViewShown){
 			__NSBeep()
 			return
