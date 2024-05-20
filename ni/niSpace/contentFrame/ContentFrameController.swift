@@ -142,9 +142,17 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		}
 	}
 	
-	func minimizedToExpanded(_ selectTabAt: Int = -1){
+	func minimizedToExpanded(_ shallSelectTabAt: Int = -1){
+		//We need to clear the data here, otherwise we'll produce a faulty TabHeadCollection
+		if( 0 <= shallSelectTabAt){
+			for (i, t) in tabs.enumerated(){
+				tabs[i].isSelected = false
+			}
+		}
+		var tabSelectedInModel: Int = 0
+		
 		if(expandedCFView == nil){
-			recreateExpandedCFView()
+			tabSelectedInModel = recreateExpandedCFView()
 			expandedCFView?.setFrameOwner(self.myView.niParentDoc)
 		}
 		//position
@@ -165,8 +173,10 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		self.view = expandedCFView!
 		
 		self.viewState = .expanded
-		if(0 <= selectTabAt){
-			forceSelectTab(at: selectTabAt)
+		if(0 <= shallSelectTabAt){
+			forceSelectTab(at: shallSelectTabAt)
+		}else{
+			forceSelectTab(at: tabSelectedInModel)
 		}
 		
 		self.expandedCFView!.niParentDoc?.setTopNiFrame(self)
@@ -174,17 +184,20 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		sharedLoadViewSetters()
 	}
 	
-	func recreateExpandedCFView() {
+	func recreateExpandedCFView() -> Int {
 		loadExpandedView()
+		var selectedTabPos: Int = 0
+		
 		for i in tabs.indices{
 			let wview = getNewWebView(owner: self, frame: expandedCFView!.frame ,cleanUrl: tabs[i].url, contentId: tabs[i].contentId)
 			tabs[i].webView = wview
 			tabs[i].position = expandedCFView!.createNewTab(tabView: wview)
 			wview.tabHeadPosition = tabs[i].position
 			if(tabs[i].isSelected){
-				selectedTabModel = i
+				selectedTabPos = i
 			}
 		}
+		return selectedTabPos
 	}
 	
 	/*

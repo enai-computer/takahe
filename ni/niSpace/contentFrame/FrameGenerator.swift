@@ -100,20 +100,32 @@ func initPositionAndSize(maxWidth: CGFloat, contentFrame: NiContentFrameModel) -
 
 func niCFTabModelToTabViewModel(tabs: [NiCFTabModel]) -> [TabViewModel]{
 	var activeTabSet: Bool = false
+	var tabPositionCorrectionNeeded = false
 	var tabViews: [TabViewModel] = []
 	
 	for tabModel in tabs {
 		let record = CachedWebTable.fetchCachedWebsite(contentId: tabModel.id)
-		var tabView = TabViewModel(contentId: tabModel.id, title: record.title, url: record.url)
+		var tabView = TabViewModel(contentId: tabModel.id, title: record.title, url: record.url, position: tabModel.position)
+		
+		if(tabModel.position < 0 || tabs.count <= tabModel.position){
+			tabPositionCorrectionNeeded = true
+		}
 		
 		if(tabModel.active && !activeTabSet){
 			tabView.isSelected = true
+			activeTabSet = true
 		}else{
 			tabView.isSelected = false
 		}
 		tabView.state = WebViewState(rawValue: tabModel.contentState)!
 
 		tabViews.append(tabView)
+	}
+	
+	if(tabPositionCorrectionNeeded){
+		for (i, tViewModel) in tabViews.enumerated(){
+			tabViews[i].position = i
+		}
 	}
 	
 	return tabViews
