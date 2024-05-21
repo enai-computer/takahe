@@ -144,7 +144,9 @@ class NiSpaceViewController: NSViewController{
 			returnToHome()
 			return
 		}
-		showSpaceMenu(event)
+		if(!homeViewShown){
+			showSpaceMenu(event)
+		}
 	}
 	
 	override func keyDown(with event: NSEvent) {
