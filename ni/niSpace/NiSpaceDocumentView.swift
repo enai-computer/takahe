@@ -154,6 +154,16 @@ class NiSpaceDocumentView: NSView{
 		}
 		
 		setTopNiFrame(orderedCFs[nxtContentFrame])
+		
+		if(!NSPointInRect(topNiFrame!.view.frame.origin, visibleRect)){
+			var scrollToPoint = topNiFrame!.view.frame.origin
+			if(50.0 < scrollToPoint.y){
+				scrollToPoint.y = scrollToPoint.y - 40.0
+			}else{
+				scrollToPoint.y = 0
+			}
+			scroll(scrollToPoint)
+		}
 	}
 	
 	private func cfOrdered() -> (Int, [ContentFrameController]){
