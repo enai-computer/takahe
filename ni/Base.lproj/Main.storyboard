@@ -249,16 +249,6 @@
                                     </items>
                                 </menu>
                             </menuItem>
-                            <menuItem title="Space" id="PPq-VN-v9P">
-                                <modifierMask key="keyEquivalentModifierMask"/>
-                                <menu key="submenu" title="Space" id="Wbq-EM-CZq">
-                                    <items>
-                                        <menuItem title=" " id="puB-jb-cYL">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                        </menuItem>
-                                    </items>
-                                </menu>
-                            </menuItem>
                             <menuItem title="Window" id="LgF-00-PUw">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="Window" systemMenu="window" id="6KZ-oK-aV0">

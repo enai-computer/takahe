@@ -5,12 +5,12 @@
 			"state": "expanded",
 			"tabs": [
 				{
-					"title": "Welcome",
-					"url": "https://enai.notion.site/Welcome-to-your-new-life-108a451f1b3d4e21b55d9ac385c72638"
+					"title": "Welcome to Enai",
+					"url": "https://enai.notion.site/Welcome-to-Enai-2fcd5d82f9d54b98880913b0c0c61226"
 				},
 				{
 					"title": "Enai - A New Interface",
-					"url": "enai.io"
+					"url": "https://enai.io/"
 				}
 			]
 		},
@@ -19,12 +19,58 @@
 			"state": "minimised",
 			"tabs": [
 				{
-					"title": "Augmenting Human Intellect: A Conceptual Framework ",
-					"url": "https://www.dougengelbart.org/pubs/augment-3906.html"
+					"title": "As We May Think - Wikipedia",
+					"url": "https://en.wikipedia.org/wiki/As_We_May_Think"
 				},
 				{
-					"title": "A few words on Doug Engelbart",
-					"url": "https://worrydream.com/Engelbart/"
+					"title": "As We May Think - The Atlantic",
+					"url": "https://web.archive.org/web/20120822122558/http://www.theatlantic.com/magazine/archive/1945/07/as-we-may-think/303881/?single_page=true"
+				},
+				{
+					"title": "The Mother of All Demos",
+					"url": "https://invention.si.edu/mother-all-demos"
+				},
+				{
+					"title": "Hypertext",
+					"url": "https://en.wikipedia.org/wiki/Hypertext"
+				},
+				{
+					"title": "Hummingbird Futures",
+					"url": "https://www.cabinetmagazine.org/issues/13/rosenberg2.php"
+				},
+				{
+					"title": " David Bowie predicted in 1999 the impact of the Internet in BBC ",
+					"url": "https://www.youtube.com/watch?v=8tCC9yxUIdw"
+				},
+				{
+					"title": "The Shallows: What the Internet Is Doing to Our Brains",
+					"url": "https://www.goodreads.com/en/book/show/9778945"
+				},
+				{
+					"title": "Barry Katz: The history and philosophy of design in Silicon Valley and beyond",
+					"url": "https://designbetterpodcast.com/p/barry-katz"
+				}
+			]
+		},
+		{
+			"windowName": "",
+			"state": "minimised",
+			"tabs": [
+				{
+					"title": "Information overload",
+					"url": "https://en.wikipedia.org/wiki/Information_overload"
+				},
+				{
+					"title": "Capacity theory",
+					"url": "https://en.wikipedia.org/wiki/Capacity_theory"
+				},
+				{
+					"title": "In Praise of Idleness",
+					"url": "https://harpers.org/archive/1932/10/in-praise-of-idleness/"
+				},
+				{
+					"title": "Pioneering Psychologist William James on Attention, Multitasking, and the Mental Habit That Sets Great Minds Apart",
+					"url": "https://www.themarginalian.org/2016/03/25/william-james-attention/"
 				}
 			]
 		}
