@@ -46,11 +46,14 @@ func getNewWebView(owner: ContentFrameController, frame: NSRect, dirtyUrl: Strin
 }
 
 func getNewWebView(owner: ContentFrameController, frame: NSRect, cleanUrl: String, contentId: UUID) -> NiWebView{
-	let url = URL(string: cleanUrl)!
-	if(url.scheme!.hasPrefix("file")){
+	let url = URL(string: cleanUrl)
+	if(url == nil){
+		return getNewWebView(owner: owner, frame: frame, dirtyUrl: cleanUrl, contentId: contentId)
+	}
+	if(url!.scheme!.hasPrefix("file")){
 		return getNewWebView(owner: owner, contentId: contentId, frame: frame, fileUrl: url)
 	}
-	let urlReq = URLRequest(url: url)
+	let urlReq = URLRequest(url: url!)
 	return ni.getNewWebView(owner: owner, contentId: contentId, urlReq: urlReq, frame: frame)
 }
 

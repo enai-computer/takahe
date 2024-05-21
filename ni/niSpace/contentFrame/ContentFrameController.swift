@@ -291,7 +291,6 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 			//open: implement proper methodology to end editing a URL, before closing a tab
 			//otherwise we'll run into an index out of bounds issue
 		}else {
-			updateWVTabHeadPos(from: at+1)
 			closeSelectedTab()
 		}
 	}
@@ -306,6 +305,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	}
 	
 	func closeSelectedTab(){
+		updateWVTabHeadPos(from: selectedTabModel+1)
 		var deletedTabModel: TabViewModel?
 		
 		if(0 < selectedTabModel){
@@ -334,7 +334,8 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 			expandedCFView?.cfTabHeadCollection.reloadData()
 		}
 		
-		ContentTable.delete(id: deletedTabModel!.contentId)	//TODO: remove tab data here
+		ContentTable.delete(id: deletedTabModel!.contentId)
+		deletedTabModel?.webView = nil
 	}
 	
 	func selectNextTab(goFwd: Bool = true){
@@ -478,6 +479,11 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	 */
 	func webView(_ webView: WKWebView, didFinish: WKNavigation!){
 		guard let wv = webView as? NiWebView else{return}
+		
+		//check if tab was closed by the time this callback happens
+		if(tabs.count <= wv.tabHeadPosition || tabs[wv.tabHeadPosition].webView != wv){
+			return
+		}
 		
 		wv.retries = 0
 		
