@@ -28,7 +28,13 @@ func searchUrl(from query: String) -> String{
 func createWebUrl(from urlDirty: String) throws -> URL{
 	let urlClean: String
 	if(urlDirty.hasPrefix("http")){
-		urlClean = urlDirty
+		if(urlDirty.hasPrefix("https")){
+			urlClean = urlDirty
+		}else{
+			let endIndex = urlDirty.index(urlDirty.startIndex, offsetBy: 5)
+			let range: Range<String.Index> = urlDirty.startIndex..<endIndex
+			urlClean = urlDirty.replacingOccurrences(of: "http", with: "https", range: range)
+		}
 	}else{
 		urlClean = "https://".appending(urlDirty)
 	}

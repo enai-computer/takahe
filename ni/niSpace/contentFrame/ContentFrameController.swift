@@ -423,7 +423,11 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	}
 	
 	func setTabIcon(at: Int, icon: NSImage?){
-		tabs[at].icon = icon
+		//We need this check due to the async nature of setting tabIcons.
+		//It may be that the tab is already closed by the time we fetched the icon
+		if(at < tabs.count && 0 <= at){
+			tabs[at].icon = icon
+		}
 	}
 	
 	
