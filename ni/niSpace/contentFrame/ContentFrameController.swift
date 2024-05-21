@@ -20,7 +20,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
     private(set) var expandedCFView: ContentFrameView? = nil
     private var selectedTabModel: Int = -1
 	private(set) var aTabIsInEditingMode: Bool = false
-	private var tabs: [TabViewModel] = []
+	private(set) var tabs: [TabViewModel] = []
 	var viewState: NiConentFrameState = .expanded
 		
 	/*
@@ -251,11 +251,16 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		}
 	}
 	
-	func openWebsiteInNewTab(urlStr: String, contentId: UUID, tabName: String, webContentState: WebViewState? = nil) -> Int{
+	func openWebsiteInNewTab(urlStr: String, contentId: UUID, tabName: String, webContentState: WebViewState? = nil, openNextTo: Int = -1) -> Int{
 		let niWebView = getNewWebView(owner: self, frame: expandedCFView!.frame, dirtyUrl: urlStr, contentId: contentId)
+		let viewPosition = expandedCFView!.createNewTab(tabView: niWebView, openNextTo: openNextTo)
+		
+		if(0 <= openNextTo){
+			updateWVTabHeadPos(from: viewPosition, moveLeft: false)
+		}
 		
 		var tabHeadModel = TabViewModel(contentId: contentId)
-		tabHeadModel.position = expandedCFView!.createNewTab(tabView: niWebView)
+		tabHeadModel.position = viewPosition
 		tabHeadModel.webView = niWebView
 		tabHeadModel.webView!.tabHeadPosition = tabHeadModel.position
 		if(webContentState != nil){
@@ -264,16 +269,29 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 			tabHeadModel.state = .loading
 		}
 		
-		self.tabs.append(tabHeadModel)
-		
-		selectTab(at: tabHeadModel.position)
+		if(0 <= openNextTo){
+			self.tabs.insert(tabHeadModel, at: viewPosition)
+		}else{
+			self.tabs.append(tabHeadModel)
+		}
 		
 		return tabHeadModel.position
     }
 	
-    func openWebsiteInNewTab(_ urlStr: String){
+	func openWebsiteInNewTab(_ urlStr: String, shallSelectTab: Bool = true, openNextToSelectedTab: Bool = false){
         let id = UUID()
-        _ = openWebsiteInNewTab(urlStr: urlStr, contentId: id, tabName: "")
+		let pos = if(openNextToSelectedTab){
+			openWebsiteInNewTab(urlStr: urlStr, contentId: id, tabName: "", openNextTo: selectedTabModel)
+		}else{
+			openWebsiteInNewTab(urlStr: urlStr, contentId: id, tabName: "")
+		}
+		
+		if(shallSelectTab){
+			selectTab(at: pos)
+		}else{
+			expandedCFView?.cfTabHeadCollection.reloadData()
+			expandedCFView?.cfTabHeadCollection.scrollToItems(at: Set(arrayLiteral: IndexPath(item: pos, section: 0)), scrollPosition: .nearestVerticalEdge)
+		}
     }
 	
 	func loadWebsite(_ url: URL, forTab at: Int){
@@ -295,11 +313,17 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		}
 	}
 	
-	private func updateWVTabHeadPos(from: Int){
+	private func updateWVTabHeadPos(from: Int, moveLeft: Bool = true){
 		var toUpdate = from
 		
 		while toUpdate < tabs.count{
-			tabs[toUpdate].webView?.tabHeadPosition = (toUpdate - 1)
+			if(moveLeft){
+				tabs[toUpdate].position = (toUpdate - 1)
+				tabs[toUpdate].webView?.tabHeadPosition = (toUpdate - 1)
+			}else{
+				tabs[toUpdate].position = (toUpdate + 1)
+				tabs[toUpdate].webView?.tabHeadPosition = (toUpdate + 1)
+			}
 			toUpdate += 1
 		}
 	}
@@ -395,8 +419,24 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		tabs[selectedTabModel].isSelected = true
 	}
 	
+	func toggleEditSelectedTab(){
+		if(self.viewState == .minimised){
+			__NSBeep()
+			return
+		}
+		if(aTabIsInEditingMode){
+			endEditingTabUrl()
+		}else{
+			editTabUrl(at: selectedTabModel)
+		}
+	}
+	
 	@MainActor
 	func editTabUrl(at: Int){
+		if(at < 0){
+			__NSBeep()
+			return
+		}
 		self.aTabIsInEditingMode = true
 		tabs[at].inEditingMode = true
 		expandedCFView?.cfTabHeadCollection.reloadData()
@@ -510,10 +550,12 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	}
 	
 	func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+		
+		//open in new tab, comand clicked on link
 		if(navigationAction.modifierFlags == .command){
 			let urlStr = navigationAction.request.url?.absoluteString
 			if(urlStr != nil && !urlStr!.isEmpty){
-				self.openWebsiteInNewTab(urlStr!)
+				self.openWebsiteInNewTab(urlStr!, shallSelectTab: false, openNextToSelectedTab: true)
 				decisionHandler(WKNavigationActionPolicy.cancel)
 				return
 			}
@@ -527,7 +569,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		if(navigationAction.targetFrame == nil){
 			let urlStr = navigationAction.request.url?.absoluteString
 			if(urlStr != nil && !urlStr!.isEmpty){
-				self.openWebsiteInNewTab(urlStr!)
+				self.openWebsiteInNewTab(urlStr!, openNextToSelectedTab: true)
 			}
 		}
 		return nil

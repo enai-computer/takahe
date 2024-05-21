@@ -69,18 +69,25 @@ class ContentFrameView: CFBaseView{
 		contentBackButton.mouseDownInActiveFunction = activateContentFrame
 	}
     
-    func createNewTab(tabView: NiWebView) -> Int{
-
-        let tabViewPos = niContentTabView.numberOfTabViewItems
-        let tabViewItem = NSTabViewItem()
-
-        tabViewItem.view = tabView
-
-		//FIXME: function below creates issues
-		niContentTabView.addTabViewItem(tabViewItem)
-
+	/** Appends a new tab at the end, or after the given openNextTo position.
+	 
+	 If the caller sets openNextTo it is their responsability to update the underlying viewModel
+	 */
+    func createNewTab(tabView: NiWebView, openNextTo: Int = -1) -> Int{
+		let tabViewPos: Int
+		let tabViewItem = NSTabViewItem()
+		tabViewItem.view = tabView
+		
+		//check that open nextTo is set and within bounds (e.g. not the last element)
+		if(openNextTo < 0 || (myController!.tabs.count - 1) <= openNextTo){
+			tabViewPos = niContentTabView.numberOfTabViewItems
+			niContentTabView.addTabViewItem(tabViewItem)
+		}else{
+			tabViewPos = openNextTo + 1
+			niContentTabView.insertTabViewItem(tabViewItem, at: tabViewPos)
+		}
+		
 		setWebViewObservers(tabView: tabView)
-        
         return tabViewPos
     }
     

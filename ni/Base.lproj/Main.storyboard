@@ -44,6 +44,11 @@
                                                 <action selector="redo:" target="Ady-hI-5gd" id="zhz-Pq-ade"/>
                                             </connections>
                                         </menuItem>
+                                        <menuItem title="Start Editing" keyEquivalent="e" id="zef-UY-zrK">
+                                            <connections>
+                                                <action selector="toggleEditMode:" target="Voe-Tx-rLC" id="yZU-gF-76m"/>
+                                            </connections>
+                                        </menuItem>
                                         <menuItem isSeparatorItem="YES" id="sFn-A0-7lR"/>
                                         <menuItem title="Cut" keyEquivalent="x" id="f85-hn-j07">
                                             <connections>

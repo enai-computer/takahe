@@ -211,15 +211,19 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	}
 	
 	@IBAction func switchToNextTab(_ sender: NSMenuItem) {
-		getNiSpaceViewController()?.switchToNextTab(sender)
+		getNiSpaceViewController()?.switchToNextTab()
 	}
 	
 	@IBAction func switchToPrevTab(_ sender: NSMenuItem) {
-		getNiSpaceViewController()?.switchToPrevTab(sender)
+		getNiSpaceViewController()?.switchToPrevTab()
 	}
 	
 	@IBAction func createNewTab(_ sender: NSMenuItem) {
-		getNiSpaceViewController()?.createNewTab(sender)
+		getNiSpaceViewController()?.createNewTab()
+	}
+	
+	@IBAction func toggleEditMode(_ sender: NSMenuItem){
+		getNiSpaceViewController()?.toggleEditMode()
 	}
 	
 	@IBAction func switchToNextWindow(_ sender: NSMenuItem) {
@@ -252,6 +256,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 			}
 			if(event.modifierFlags.contains(.command) && event.keyCode == kVK_RightArrow){
 				self.getNiSpaceViewController()?.switchToNextWindow()
+				return nil
+			}
+			if(event.modifierFlags.contains(.control) && event.modifierFlags.contains(.shift) && event.keyCode == kVK_Tab){
+				self.getNiSpaceViewController()?.switchToPrevTab()
+				return nil
+			}
+			if(event.modifierFlags.contains(.control) && event.keyCode == kVK_Tab){
+				self.getNiSpaceViewController()?.switchToNextTab()
 				return nil
 			}
 			return event

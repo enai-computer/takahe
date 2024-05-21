@@ -115,16 +115,20 @@ class NiSpaceDocumentView: NSView{
         }
     }
 	
-	func switchToNextTab(_ sender: NSMenuItem) {
+	func switchToNextTab() {
 		topNiFrame?.selectNextTab()
 	}
 	
-	func switchToPrevTab(_ sender: NSMenuItem) {
+	func switchToPrevTab() {
 		topNiFrame?.selectNextTab(goFwd: false)
 	}
 	
 	func createNewTab(){
 		topNiFrame?.openAndEditEmptyTab()
+	}
+	
+	func toggleEditMode(){
+		topNiFrame?.toggleEditSelectedTab()
 	}
 	
 	func toggleMinimizeOnTopCF(_ sender: NSMenuItem){

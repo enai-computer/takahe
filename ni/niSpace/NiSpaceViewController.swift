@@ -241,15 +241,15 @@ class NiSpaceViewController: NSViewController{
 		return nil
 	}
     
-	func switchToNextTab(_ sender: NSMenuItem) {
+	func switchToNextTab() {
 		if(homeViewShown){
 			__NSBeep()
 			return
 		}
-		niDocument.myView.switchToNextTab(sender)
+		niDocument.myView.switchToNextTab()
 	}
 	
-	func createNewTab(_ sender: NSMenuItem) {
+	func createNewTab() {
 		if(homeViewShown){
 			__NSBeep()
 			return
@@ -257,12 +257,20 @@ class NiSpaceViewController: NSViewController{
 		niDocument.myView.createNewTab()
 	}
 	
-	func switchToPrevTab(_ sender: NSMenuItem) {
+	func switchToPrevTab() {
 		if(homeViewShown){
 			__NSBeep()
 			return
 		}
-		niDocument.myView.switchToPrevTab(sender)
+		niDocument.myView.switchToPrevTab()
+	}
+	
+	func toggleEditMode(){
+		if(homeViewShown){
+			__NSBeep()
+			return
+		}
+		niDocument.myView.toggleEditMode()
 	}
 	
 	func toggleMinimizeOnTopCF(_ sender: NSMenuItem) {

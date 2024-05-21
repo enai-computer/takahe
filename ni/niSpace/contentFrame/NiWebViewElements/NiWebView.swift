@@ -69,12 +69,12 @@ class NiWebView: WKWebView{
 	//function for right click open link in new tab
     @objc func openLinkInNewTab(_ sender: AnyObject) {
 		if let url = GlobalScriptMessageHandler.instance.contextMenu_href {
-			owner.openWebsiteInNewTab(url)
+			owner.openWebsiteInNewTab(url, shallSelectTab: false, openNextToSelectedTab: true)
 		}
 	}
 	
 	
-	//function for right click open link in new tab
+	//function for right click - search google
 	@objc func runGoogleSearch(_ sender: AnyObject) {
 		if let selectedText = GlobalScriptMessageHandler.instance.contextMenu_selectedText {
 			let url = searchUrl(from: selectedText)
