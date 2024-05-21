@@ -20,7 +20,7 @@
                         <rect key="frame" x="10" y="100" width="240" height="40"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <subviews>
-                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" id="Quu-Gs-SKl">
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="Quu-Gs-SKl">
                                 <rect key="frame" x="8" y="8" width="116" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" refusesFirstResponder="YES" title="Open a Window" id="dNf-IV-10q">
@@ -29,8 +29,8 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" id="cgA-rm-jFI">
-                                <rect key="frame" x="200" y="8" width="35" height="22"/>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="cgA-rm-jFI">
+                                <rect key="frame" x="190" y="8" width="35" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" refusesFirstResponder="YES" title="⌘ N" id="DQl-i8-Itl">
                                     <font key="font" size="16" name="Sohne-Buch"/>
@@ -44,7 +44,7 @@
                         <rect key="frame" x="10" y="55" width="240" height="40"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <subviews>
-                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" id="sYa-6D-Jbh">
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="sYa-6D-Jbh">
                                 <rect key="frame" x="8" y="8" width="198" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" enabled="NO" refusesFirstResponder="YES" title="Write a Note (coming soon)" id="Myn-0o-Tqj">
@@ -59,7 +59,7 @@
                         <rect key="frame" x="10" y="10" width="240" height="40"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <subviews>
-                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" id="jyq-sx-xqx">
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="jyq-sx-xqx">
                                 <rect key="frame" x="8" y="8" width="230" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" enabled="NO" refusesFirstResponder="YES" title="Upload an Image (coming soon)" id="Nvl-3j-t7S">
