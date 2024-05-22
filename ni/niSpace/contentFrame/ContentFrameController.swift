@@ -23,6 +23,9 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	private(set) var tabs: [TabViewModel] = []
 	var viewState: NiConentFrameState = .expanded
 		
+	private var closeCancelled = false
+	
+	
 	/*
 	 * MARK: init & view loading here
 	 */
@@ -95,6 +98,63 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	}
 	
 	/*
+	 * MARK: close Window
+	 */
+	
+	/** triggers close animation and displays undo button
+	 
+	runs following steps:
+	1. fade out current view
+	2. display undo button
+	   * if clicked "undo button": cancel deletion
+	   * if "undo" ignored: clean up and remove this controller plus view from hierarchy
+	 */
+	func triggerCloseProcess(with event: NSEvent){
+		fadeout()
+		loadAndDisplaySoftDeletedView(event.locationInWindow)
+		
+	}
+	
+	private func loadAndDisplaySoftDeletedView(_ cursorLocation: CGPoint) {
+		let softDeletedView = (NSView.loadFromNib(nibName: "CFSoftDeletedView", owner: self) as! CFSoftDeletedView)
+		softDeletedView.setSelfController(self)
+		softDeletedView.initAfterViewLoad()
+		
+		var undoOrigin = cursorLocation
+		undoOrigin.y = view.superview!.visibleRect.origin.y + view.superview!.visibleRect.height - cursorLocation.y
+		softDeletedView.frame.origin = undoOrigin
+		self.view.superview?.addSubview(softDeletedView)
+	}
+	
+	private func fadeout(){
+		NSAnimationContext.runAnimationGroup({ context in
+			context.duration = 0.8
+			self.view.animator().alphaValue = 0.0
+		}, completionHandler: {
+			self.view.isHidden = true
+			self.view.alphaValue = 1.0
+		})
+	}
+	
+	func cancelCloseProcess(){
+		self.closeCancelled = true
+		fadeIn()
+	}
+	
+	private func fadeIn(){
+		self.view.isHidden = false
+		self.view.alphaValue = 1.0
+	}
+	
+	func confirmClose(){
+		if(self.closeCancelled){
+			self.closeCancelled = false
+			return
+		}
+		myView.closedContentFrameCleanUp()
+	}
+	
+	/*
 	 * MARK: passToView Functions
 	 */
 	func toggleActive(){
@@ -145,7 +205,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	func minimizedToExpanded(_ shallSelectTabAt: Int = -1){
 		//We need to clear the data here, otherwise we'll produce a faulty TabHeadCollection
 		if( 0 <= shallSelectTabAt){
-			for (i, t) in tabs.enumerated(){
+			for (i, _) in tabs.enumerated(){
 				tabs[i].isSelected = false
 			}
 		}
@@ -644,6 +704,12 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	/*
 	 * MARK: - store and load here
 	 */
+	
+	func contentFrameGotRemoved(){
+		for tab in tabs {
+			ContentTable.delete(id: tab.contentId)
+		}
+	}
 	
 	func persistContent(documentId: UUID){
 		for tab in tabs {

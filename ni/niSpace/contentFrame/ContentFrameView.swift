@@ -156,11 +156,6 @@ class ContentFrameView: CFBaseView{
     /*
      *  MARK: - mouse down events here:
      */
-	func clickedCloseButton(with event: NSEvent){
-		niParentDoc?.removeNiFrame(myController!)
-		removeFromSuperview()
-	}
-	
 	func clickedMinimizeButton(with event: NSEvent){
 		guard let myController = nextResponder as? ContentFrameController else{return}
 		myController.minimizeClicked(event)

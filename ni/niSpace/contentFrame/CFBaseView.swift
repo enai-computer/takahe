@@ -42,6 +42,16 @@ class CFBaseView: NSBox{
 		}
 	}
 	
+	func clickedCloseButton(with event: NSEvent){
+		myController!.triggerCloseProcess(with: event)
+	}
+	
+	func closedContentFrameCleanUp(){
+		myController!.contentFrameGotRemoved()
+		niParentDoc?.removeNiFrame(myController!)
+		removeFromSuperview()
+	}
+	
 	func repositionView(_ xDiff: Double, _ yDiff: Double) {
 		
 		let docW = self.niParentDoc!.frame.size.width

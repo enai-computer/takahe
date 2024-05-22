@@ -22,7 +22,7 @@ class CFMinimizedView: CFBaseView{
 	func initAfterViewLoad(nrOfItems: Int){
 		frame.size.height = Double(nrOfItems) * 39.0 + 36.0
 		
-		closeButton.mouseDownFunction = closeButtonClicked
+		closeButton.mouseDownFunction = clickedCloseButton
 		closeButton.isActiveFunction = self.isFrameActive
 		closeButton.mouseDownInActiveFunction = activateContentFrame
 		
@@ -38,11 +38,7 @@ class CFMinimizedView: CFBaseView{
 		return .no
 	}
 	
-	func closeButtonClicked(with event: NSEvent){
-		niParentDoc?.removeNiFrame(myController!)
-		removeFromSuperview()
-		return
-	}
+
 	
 	func maximizeButtonClicked(with event: NSEvent){
 		guard let myController = nextResponder as? ContentFrameController else{return}

@@ -32,6 +32,8 @@
 		CD1FAAF12BFCA9BA00C781AC /* niTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1FAAF02BFCA9BA00C781AC /* niTests.swift */; };
 		CD1FAAF72BFCA9C100C781AC /* NiStringUtilsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD69D02F2BFCA54C002386D0 /* NiStringUtilsTests.swift */; };
 		CD3362162BFDFF97004DBAFB /* SpaceTopbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD3362152BFDFF97004DBAFB /* SpaceTopbar.swift */; };
+		CD33621F2BFE0DD0004DBAFB /* CFSoftDeletedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD33621E2BFE0DD0004DBAFB /* CFSoftDeletedView.swift */; };
+		CD3362212BFE0DDC004DBAFB /* CFSoftDeletedView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD3362202BFE0DDC004DBAFB /* CFSoftDeletedView.xib */; };
 		CD42CEC92BDA48180039814D /* NiScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD42CEC82BDA48180039814D /* NiScrollView.swift */; };
 		CD53ACC02BCEE0ED00D5912B /* emptyTab.html in Resources */ = {isa = PBXBuildFile; fileRef = CD53ACBF2BCEE0ED00D5912B /* emptyTab.html */; };
 		CD5A04C62BEA2B96004CC3AA /* CFMinimizedView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD5A04C52BEA2B96004CC3AA /* CFMinimizedView.xib */; };
@@ -118,6 +120,8 @@
 		CD1FAAEE2BFCA9BA00C781AC /* niTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = niTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD1FAAF02BFCA9BA00C781AC /* niTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = niTests.swift; sourceTree = "<group>"; };
 		CD3362152BFDFF97004DBAFB /* SpaceTopbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpaceTopbar.swift; sourceTree = "<group>"; };
+		CD33621E2BFE0DD0004DBAFB /* CFSoftDeletedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CFSoftDeletedView.swift; sourceTree = "<group>"; };
+		CD3362202BFE0DDC004DBAFB /* CFSoftDeletedView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CFSoftDeletedView.xib; sourceTree = "<group>"; };
 		CD42CEC82BDA48180039814D /* NiScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiScrollView.swift; sourceTree = "<group>"; };
 		CD53ACBF2BCEE0ED00D5912B /* emptyTab.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = emptyTab.html; sourceTree = "<group>"; };
 		CD5A04C52BEA2B96004CC3AA /* CFMinimizedView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CFMinimizedView.xib; sourceTree = "<group>"; };
@@ -233,6 +237,7 @@
 		A1E41BFD2ACB684F00338417 /* contentFrame */ = {
 			isa = PBXGroup;
 			children = (
+				CD3362172BFE0CCF004DBAFB /* CFSoftDeleted */,
 				CD5A04C92BEA3C5E004CC3AA /* CFMinimized */,
 				CD7578352BBD9FD100293930 /* NiContentFrameHead */,
 				CD66CE312B1F7AFF0006BB98 /* NiWebViewElements */,
@@ -254,6 +259,15 @@
 				CD1FAAF02BFCA9BA00C781AC /* niTests.swift */,
 			);
 			path = niUnitTests;
+			sourceTree = "<group>";
+		};
+		CD3362172BFE0CCF004DBAFB /* CFSoftDeleted */ = {
+			isa = PBXGroup;
+			children = (
+				CD33621E2BFE0DD0004DBAFB /* CFSoftDeletedView.swift */,
+				CD3362202BFE0DDC004DBAFB /* CFSoftDeletedView.xib */,
+			);
+			path = CFSoftDeleted;
 			sourceTree = "<group>";
 		};
 		CD5A04C92BEA3C5E004CC3AA /* CFMinimized */ = {
@@ -506,6 +520,7 @@
 				CD7578472BC000F200293930 /* ContentFrameTabHead.xib in Resources */,
 				CD5A04CB2BEA3CC7004CC3AA /* CFMinimizedStackItem.xib in Resources */,
 				CDDBCB2F2BD8FA4D00E7B187 /* errorLoading.html in Resources */,
+				CD3362212BFE0DDC004DBAFB /* CFSoftDeletedView.xib in Resources */,
 				A1E41BF62ACB533400338417 /* ContentFrameView.xib in Resources */,
 				CD53ACC02BCEE0ED00D5912B /* emptyTab.html in Resources */,
 				CD1160CC2BD286ED00345E3E /* emptyTab-1.jpg in Resources */,
@@ -574,6 +589,7 @@
 				CD5A04D12BEA78E4004CC3AA /* CFBaseView.swift in Sources */,
 				CD06A9BA2BF79EF500312256 /* NiScroller.swift in Sources */,
 				CD7578372BBDA98700293930 /* ContentFrameHeadView.swift in Sources */,
+				CD33621F2BFE0DD0004DBAFB /* CFSoftDeletedView.swift in Sources */,
 				CD6752AB2BFB88770008A227 /* NiSpaceMenuItemView.swift in Sources */,
 				CD6752A12BFB56DC0008A227 /* NiSpaceMenuView.swift in Sources */,
 				A14E8F272AD5EAF800409DDF /* NiSpaceView.swift in Sources */,
