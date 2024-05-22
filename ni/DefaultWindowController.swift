@@ -32,4 +32,7 @@ class DefaultWindowController: NSWindowController, NSWindowDelegate{
 		}
 	}
 
+	func windowWillClose(_ notification: Notification) {
+		NSApplication.shared.terminate(nil)
+	}
 }
