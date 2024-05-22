@@ -169,6 +169,12 @@ class ContentFrameTabHead: NSCollectionViewItem, NSTextFieldDelegate {
 			removeEditingStyle()
 			self.tabHeadTitle.disableEditing(title: viewModel.webView?.title ?? viewModel.title)
 		}
+		
+		if(viewModel.isSelected){
+			self.tabHeadTitle.textColor = NSColor.sandLight12
+		}else{
+			self.tabHeadTitle.textColor = NSColor.sandLight11
+		}
 	}
 	
 	func loadWebsite(url: URL) {

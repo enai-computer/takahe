@@ -46,7 +46,6 @@ class ContentFrameTabHeadTextNode: NSTextField{
 		
 		self.isEditable = false
 		self.isSelectable = false
-		self.textColor = NSColor(.textDark)
 		self.backgroundColor = NSColor(.transparent)
 		self.drawsBackground = false
 	}
