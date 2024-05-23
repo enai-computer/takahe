@@ -24,7 +24,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	var viewState: NiConentFrameState = .expanded
 		
 	private var closeCancelled = false
-	
+	private(set) var closeTriggered = false
 	
 	/*
 	 * MARK: init & view loading here
@@ -112,7 +112,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	func triggerCloseProcess(with event: NSEvent){
 		fadeout()
 		loadAndDisplaySoftDeletedView(event.locationInWindow)
-		
+		closeTriggered = true
 	}
 	
 	private func loadAndDisplaySoftDeletedView(_ cursorLocation: CGPoint) {
@@ -138,6 +138,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	
 	func cancelCloseProcess(){
 		self.closeCancelled = true
+		self.closeTriggered = false
 		fadeIn()
 	}
 	
@@ -149,6 +150,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	func confirmClose(){
 		if(self.closeCancelled){
 			self.closeCancelled = false
+			self.closeTriggered = false
 			return
 		}
 		myView.closedContentFrameCleanUp()
@@ -705,20 +707,29 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	 * MARK: - store and load here
 	 */
 	
-	func contentFrameGotRemoved(){
+	func purgePersistetContent(){
 		for tab in tabs {
 			ContentTable.delete(id: tab.contentId)
 		}
 	}
 	
 	func persistContent(documentId: UUID){
+		if(closeTriggered){
+			return
+		}
 		for tab in tabs {
 			let url = tab.webView?.url?.absoluteString ?? tab.url
 			CachedWebTable.upsert(documentId: documentId, id: tab.contentId, title: tab.title, url: url)
 		}
 	}
 	
-	func toNiContentFrameModel() -> (model: NiDocumentObjectModel, nrOfTabs: Int, state: NiConentFrameState){
+	func toNiContentFrameModel() -> (model: NiDocumentObjectModel?, nrOfTabs: Int, state: NiConentFrameState?){
+		
+		//do nothing, as we are in the deletion process
+		if(closeTriggered){
+			purgePersistetContent()
+			return (model: nil,  nrOfTabs: 0, state: nil)
+		}
 		
 		var children: [NiCFTabModel] = []
 		

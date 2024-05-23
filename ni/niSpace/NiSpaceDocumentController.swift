@@ -156,11 +156,13 @@ class NiSpaceDocumentController: NSViewController{
 		for cfController in myView.contentFrameControllers {
 			let modelData = cfController.toNiContentFrameModel()
 			
-			children.append(modelData.model)
+			if (modelData.model != nil){
+				children.append(modelData.model!)
+			}
 			nrOfTabsInSpace += modelData.nrOfTabs
 			if(modelData.state == .minimised){
 				analyticsMinimized += 1
-			}else{
+			}else if(modelData.state == .expanded){
 				analyticsExpanded += 1
 			}
 		}

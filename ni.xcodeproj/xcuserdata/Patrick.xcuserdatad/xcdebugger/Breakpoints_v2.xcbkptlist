@@ -14,8 +14,8 @@
             filePath = "ni/niSpace/contentFrame/ContentFrameController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "377"
-            endingLineNumber = "377"
+            startingLineNumber = "379"
+            endingLineNumber = "379"
             landmarkName = "updateWVTabHeadPos(from:moveLeft:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -30,8 +30,8 @@
             filePath = "ni/niSpace/contentFrame/ContentFrameController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "315"
-            endingLineNumber = "315"
+            startingLineNumber = "317"
+            endingLineNumber = "317"
             landmarkName = "openWebsiteInNewTab(urlStr:contentId:tabName:webContentState:openNextTo:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -46,8 +46,8 @@
             filePath = "ni/niSpace/contentFrame/ContentFrameController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "343"
-            endingLineNumber = "343"
+            startingLineNumber = "345"
+            endingLineNumber = "345"
             landmarkName = "openWebsiteInNewTab(_:shallSelectTab:openNextToSelectedTab:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -62,8 +62,8 @@
             filePath = "ni/niSpace/contentFrame/ContentFrameController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "352"
-            endingLineNumber = "352"
+            startingLineNumber = "354"
+            endingLineNumber = "354"
             landmarkName = "openWebsiteInNewTab(_:shallSelectTab:openNextToSelectedTab:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -78,8 +78,8 @@
             filePath = "ni/niSpace/contentFrame/ContentFrameController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "664"
-            endingLineNumber = "664"
+            startingLineNumber = "666"
+            endingLineNumber = "666"
             landmarkName = "collectionView(_:itemForRepresentedObjectAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -110,8 +110,8 @@
             filePath = "ni/niSpace/contentFrame/NiContentFrameHead/ContentFrameTabHead.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "163"
-            endingLineNumber = "163"
+            startingLineNumber = "162"
+            endingLineNumber = "162"
             landmarkName = "setText(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -126,8 +126,8 @@
             filePath = "ni/niSpace/contentFrame/NiContentFrameHead/ContentFrameTabHead.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "169"
-            endingLineNumber = "169"
+            startingLineNumber = "168"
+            endingLineNumber = "168"
             landmarkName = "setText(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -174,9 +174,41 @@
             filePath = "ni/niSpace/contentFrame/ContentFrameController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "154"
-            endingLineNumber = "154"
+            startingLineNumber = "156"
+            endingLineNumber = "156"
             landmarkName = "confirmClose()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "CB9ACC1C-3782-4C66-AD86-786B5D22510D"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ni/niSpace/contentFrame/ContentFrameController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "151"
+            endingLineNumber = "151"
+            landmarkName = "confirmClose()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1C805B5B-CFC8-4EB5-BA1B-4D1ED5337F00"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ni/niSpace/contentFrame/ContentFrameController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "140"
+            endingLineNumber = "140"
+            landmarkName = "cancelCloseProcess()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
