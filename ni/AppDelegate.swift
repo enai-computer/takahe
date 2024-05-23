@@ -116,19 +116,19 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		let minInactive = (Date().timeIntervalSinceReferenceDate - lastActive!.timeIntervalSinceReferenceDate) / 60
 		var userSentBackHome = false
 		
-		if(min_inactive_switch_to_home < minInactive){
-			let window = getDefaultWindow(notification)
-			if (window != nil){
-				if let controller = window!.contentViewController as? NiSpaceViewController{
-					//saved when going inactive. No need to do it again here
-					controller.returnToHome(saveCurrentSpace: false)
-				}
-			}else{
-				print("no window found")
-			}
-			userSentBackHome = true
-		}
-		
+//		if(min_inactive_switch_to_home < minInactive){
+//			let window = getDefaultWindow(notification)
+//			if (window != nil){
+//				if let controller = window!.contentViewController as? NiSpaceViewController{
+//					//saved when going inactive. No need to do it again here
+//					controller.returnToHome(saveCurrentSpace: false)
+//				}
+//			}else{
+//				print("no window found")
+//			}
+//			userSentBackHome = true
+//		}
+//		
 		PostHogSDK.shared.capture("Application_became_active", properties: ["time_inactive_mins": minInactive, "sent_back_home": userSentBackHome])
 	}
 	
