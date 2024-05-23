@@ -52,9 +52,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" id="yLB-kD-fbD">
-                                <rect key="frame" x="1430" y="9" width="40" height="18"/>
+                                <rect key="frame" x="1390" y="9" width="80" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" refusesFirstResponder="YES" title="14:00" id="q69-4k-xlx">
+                                <textFieldCell key="cell" lineBreakMode="clipping" refusesFirstResponder="YES" allowsUndo="NO" alignment="right" title="10:00 AM" id="q69-4k-xlx">
                                     <font key="font" size="15" name="Sohne-Buch"/>
                                     <color key="textColor" name="SandDark5"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
