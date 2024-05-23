@@ -11,14 +11,17 @@ import SwiftUI
 class HomeViewController: NSHostingController<HomeView>{
 	private let presentingController: NiSpaceViewController
 	
+	let w: CGFloat
+	let h: CGFloat
+	
 	init(presentingController: NiSpaceViewController) {
 		self.presentingController = presentingController
 
 		let wrapper = ControllerWrapper()
 		
 		//TODO: fix sizing options
-		let w = presentingController.view.frame.width - 100
-		let h = presentingController.view.frame.height - 50
+		w = presentingController.view.frame.width - 100
+		h = presentingController.view.frame.height - 50
 		
 
 		super.init(rootView: HomeView(wrapper, width: w, height: h))
@@ -31,30 +34,11 @@ class HomeViewController: NSHostingController<HomeView>{
 		view.frame.size.width = w
 		view.frame.size.height = h
 		view.frame.origin.x = presentingController.view.frame.origin.x + 50
+		
 	}
 	
 	@MainActor required dynamic init?(coder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
-	}
-	
-	func resizeSubview(){
-		let wrapper = ControllerWrapper()
-		
-		//TODO: fix sizing options
-		let w = presentingController.view.frame.width - 100
-		let h = presentingController.view.frame.height - 50
-		
-
-		rootView = HomeView(wrapper, width: w, height: h)
-		
-		wrapper.hostingController = self
-		
-		preferredContentSize = NSSize(width: w, height: h)
-		sizingOptions = .preferredContentSize
-		
-		view.frame.size.width = w
-		view.frame.size.height = h
-		view.frame.origin.x = presentingController.view.frame.origin.x + 50
 	}
 	
 	func show(animate: Bool = true) {
