@@ -110,6 +110,10 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	   * if "undo" ignored: clean up and remove this controller plus view from hierarchy
 	 */
 	func triggerCloseProcess(with event: NSEvent){
+		//stops double click, as it will have unwanted side effects
+		if(closeTriggered){
+			return
+		}
 		fadeout()
 		loadAndDisplaySoftDeletedView(event.locationInWindow)
 		closeTriggered = true
@@ -122,7 +126,11 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		
 		var undoOrigin = cursorLocation
 		undoOrigin.y = view.superview!.visibleRect.origin.y + view.superview!.visibleRect.height - cursorLocation.y
+		if(view.superview!.frame.width < (undoOrigin.x + softDeletedView.frame.width)){
+			undoOrigin.x = undoOrigin.x - softDeletedView.frame.width
+		}
 		softDeletedView.frame.origin = undoOrigin
+		softDeletedView.layer?.zPosition = self.view.layer!.zPosition
 		self.view.superview?.addSubview(softDeletedView)
 	}
 	
@@ -131,6 +139,9 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 			context.duration = 0.8
 			self.view.animator().alphaValue = 0.0
 		}, completionHandler: {
+			if(self.closeCancelled || !self.closeTriggered){
+				return
+			}
 			self.view.isHidden = true
 			self.view.alphaValue = 1.0
 		})

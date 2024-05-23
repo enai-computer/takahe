@@ -16,6 +16,10 @@ class CFSoftDeletedView: NSBox {
 		self.myController = con
 	}
 	
+	override func prepareForReuse() {
+		myController = nil
+	}
+	
 	func initAfterViewLoad(){
 		wantsLayer = true
 		layer?.cornerRadius = 10
