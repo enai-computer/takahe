@@ -10,6 +10,8 @@ import Cocoa
 class CFSoftDeletedView: NSBox {
 
 	var myController: ContentFrameController? = nil
+	private var animationTriggered: Bool = false
+	
 	@IBOutlet var undoIcon: NSImageView!
 	
 	func setSelfController(_ con: ContentFrameController){
@@ -30,15 +32,6 @@ class CFSoftDeletedView: NSBox {
 		
 		let hoverEffectTrackingArea = NSTrackingArea(rect: frame, options: [.mouseEnteredAndExited, .activeInKeyWindow], owner: self, userInfo: nil)
 		addTrackingArea(hoverEffectTrackingArea)
-		
-		NSAnimationContext.runAnimationGroup({ context in
-			context.duration = 5.0
-			self.animator().alphaValue = 0.0
-		}, completionHandler: {
-			self.myController!.confirmClose()
-			self.myController = nil
-			self.removeFromSuperview()
-		})
 	}
 	
 	override func mouseEntered(with event: NSEvent) {
@@ -49,10 +42,25 @@ class CFSoftDeletedView: NSBox {
 	override func mouseExited(with event: NSEvent) {
 		undoIcon.contentTintColor = NSColor.sandLight11
 		layer?.speed = 1.0
+		triggerAnimation()
 	}
 	
 	override func mouseDown(with event: NSEvent) {
 		myController!.cancelCloseProcess()
 		removeFromSuperview()
+	}
+	
+	private func triggerAnimation(){
+		if(animationTriggered){
+			return
+		}
+		NSAnimationContext.runAnimationGroup({ context in
+			context.duration = 5.0
+			self.animator().alphaValue = 0.0
+		}, completionHandler: {
+			self.myController?.confirmClose()
+			self.myController = nil
+			self.removeFromSuperview()
+		})
 	}
 }

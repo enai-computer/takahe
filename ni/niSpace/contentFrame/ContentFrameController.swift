@@ -115,20 +115,17 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 			return
 		}
 		fadeout()
-		loadAndDisplaySoftDeletedView(event.locationInWindow)
+		loadAndDisplaySoftDeletedView(topRightCorner: CGPoint(x: view.frame.maxX, y: view.frame.minY))
 		closeTriggered = true
 	}
 	
-	private func loadAndDisplaySoftDeletedView(_ cursorLocation: CGPoint) {
+	private func loadAndDisplaySoftDeletedView(topRightCorner: CGPoint) {
 		let softDeletedView = (NSView.loadFromNib(nibName: "CFSoftDeletedView", owner: self) as! CFSoftDeletedView)
 		softDeletedView.setSelfController(self)
 		softDeletedView.initAfterViewLoad()
 		
-		var undoOrigin = cursorLocation
-		undoOrigin.y = view.superview!.visibleRect.origin.y + view.superview!.visibleRect.height - cursorLocation.y
-		if(view.superview!.frame.width < (undoOrigin.x + softDeletedView.frame.width)){
-			undoOrigin.x = undoOrigin.x - softDeletedView.frame.width
-		}
+		var undoOrigin = topRightCorner
+		undoOrigin.x = undoOrigin.x - softDeletedView.frame.width
 		softDeletedView.frame.origin = undoOrigin
 		softDeletedView.layer?.zPosition = self.view.layer!.zPosition
 		self.view.superview?.addSubview(softDeletedView)
@@ -136,7 +133,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	
 	private func fadeout(){
 		NSAnimationContext.runAnimationGroup({ context in
-			context.duration = 0.8
+			context.duration = 0.5
 			self.view.animator().alphaValue = 0.0
 		}, completionHandler: {
 			if(self.closeCancelled || !self.closeTriggered){

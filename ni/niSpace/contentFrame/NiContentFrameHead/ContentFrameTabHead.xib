@@ -6,7 +6,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner" customClass="ContentFrameTabHead" customModule="ni" customModuleProvider="target">
+        <customObject id="-2" userLabel="File's Owner">
             <connections>
                 <outlet property="closeButton" destination="05Y-AR-Re4" id="l5a-ZI-0wV"/>
                 <outlet property="image" destination="kUC-5D-ehC" id="393-3i-ZGb"/>

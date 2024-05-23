@@ -136,7 +136,6 @@ class ContentFrameTabHead: NSCollectionViewItem, NSTextFieldDelegate {
 	}
     
 	private func setIcon(_ viewModel: TabViewModel){
-
 		if(viewModel.icon != nil){
 			setIcon(img: viewModel.icon!)
 			return
