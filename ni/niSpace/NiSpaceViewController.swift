@@ -9,6 +9,7 @@ class NiSpaceViewController: NSViewController{
     
 	private(set) var spaceLoaded: Bool = false
 	var homeViewShown: Bool = false
+	private var homeViewController: HomeViewController? = nil
     private var niSpaceName: String
 	var spaceMenu: NiSpaceMenuController?
 	
@@ -56,14 +57,19 @@ class NiSpaceViewController: NSViewController{
 		super.viewDidAppear()
 		
 		if(!spaceLoaded){
-			let hostingController = HomeViewController(presentingController: self)
-			hostingController.show()
+			homeViewController = HomeViewController(presentingController: self)
+			homeViewController?.show()
 		}
 	}
- 
 	
 	override func viewWillDisappear() {
 		removeAutoUpdatingTime()
+	}
+	
+	func resizeSubViews(){
+		if(homeViewShown){
+			homeViewController?.resizeSubview()
+		}
 	}
 	
 	func setHeaderStyle(){

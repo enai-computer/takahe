@@ -142,6 +142,11 @@ class NiSpaceDocumentView: NSView{
 	func switchToNextCF(goFwd: Bool = true){
 		let (currentPos, orderedCFs) = cfOrdered()
 		
+		if(orderedCFs.isEmpty){
+			__NSBeep()
+			return
+		}
+		
 		var nxtContentFrame: Int =  if(goFwd){
 			currentPos + 1
 		}else{
@@ -155,6 +160,11 @@ class NiSpaceDocumentView: NSView{
 		
 		if((orderedCFs.count - 1) < nxtContentFrame){
 			nxtContentFrame = 0
+		}
+		
+		if(nxtContentFrame < 0){
+			__NSBeep()
+			return
 		}
 		
 		setTopNiFrame(orderedCFs[nxtContentFrame])

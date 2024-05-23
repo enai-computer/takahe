@@ -27,6 +27,7 @@ class DefaultWindowController: NSWindowController, NSWindowDelegate{
 			if(prevScreenSize != nil && prevScreenSize!.width != windowObj.frame.size.width){
 				guard let spaceViewController = contentViewController as? NiSpaceViewController else {return}
 				spaceViewController.returnToHomeAndForceReload()
+				spaceViewController.resizeSubViews()
 			}
 			prevScreenSize = windowObj.frame.size
 		}
