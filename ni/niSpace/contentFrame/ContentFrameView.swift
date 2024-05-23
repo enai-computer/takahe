@@ -457,6 +457,7 @@ class ContentFrameView: CFBaseView{
 		}
 		self.frame = previousCFSize!
 		previousCFSize = nil
+		recalcDragArea()
 	}
 	
 	func fillView(with event: NSEvent){
