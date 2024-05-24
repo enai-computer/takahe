@@ -96,7 +96,7 @@ class NiDocumentModel: Codable{
 // MARK: - Content Frame _Tab_ Model:
 
 enum NiCFTabContentType: String, Codable{
-    case web    //to come: pdf, img ...
+    case web, note    //to come: pdf, img ...
 }
 
 struct NiCFTabModel: Codable{
@@ -111,7 +111,7 @@ struct NiCFTabModel: Codable{
 // MARK: -  Content Frame Model:
 
 enum NiConentFrameState: String, Codable {
-    case minimised, expanded, fullscreen
+    case minimised, expanded, frameless, fullscreen
 }
 
 struct NiContentFrameModel: Codable{

@@ -33,7 +33,7 @@ class DocumentIdContentIdTable{
                 )
             )
         }catch{
-            print("Failed insert into DocumentIdContentIdTable")
+//            print("Failed insert into DocumentIdContentIdTable")
         }
     }
 }
