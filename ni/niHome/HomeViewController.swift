@@ -1,74 +1,72 @@
-//Created on 12.10.23
+//
+//  HomeViewController.swift
+//  ni
+//
+//  Created by Patrick Lukas on 15/4/24.
+//
 
 import Cocoa
+import SwiftUI
 
-class HomeViewController: NSViewController, NSTableViewDataSource, NSTableViewDelegate{
+class HomeViewController: NSHostingController<HomeView>{
+	private let presentingController: NiSpaceViewController
+	
+	let w: CGFloat
+	let h: CGFloat
+	
+	init(presentingController: NiSpaceViewController) {
+		self.presentingController = presentingController
 
-    
-    private var lstOfDocuments: [NiDocumentMetaData] = [NiDocumentMetaData]()
-    @IBAction func mainSearch(_ searchField: NSSearchField) {
+		let wrapper = ControllerWrapper()
+		
+		//TODO: fix sizing options
+		w = presentingController.view.frame.width - 100
+		h = presentingController.view.frame.height - 50
+		
 
-    }
-  
-    @IBAction func openNewSpace(_ sender: NSButton) {
-        let appDelegate = NSApp.delegate as! AppDelegate
-        appDelegate.switchToNewSpace()
-    }
-    
-    override func loadView() {
-        self.view = NSView.loadFromNib(nibName: "HomeView", owner: self)!
-        super.view.wantsLayer = true
-        super.view.layer?.backgroundColor = NSColor(.sandLight1).cgColor
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        lstOfDocuments = DocumentTable.fetchListofDocs()
-    }
-    
-    override func viewDidAppear() {
-        if (NSApplication.shared.presentationOptions.contains(.fullScreen)){
-            return
-        }
-        (NSClassFromString("NSApplication")?.value(forKeyPath: "sharedApplication.windows") as? [AnyObject])?.first?.perform(#selector(NSWindow.toggleFullScreen(_:)))
-    }
+		super.init(rootView: HomeView(wrapper, width: w, height: h))
+		
+		wrapper.hostingController = self
+		
+		preferredContentSize = NSSize(width: w, height: h)
+		sizingOptions = .preferredContentSize
+		
+		view.frame.size.width = w
+		view.frame.size.height = h
+		view.frame.origin.x = presentingController.view.frame.origin.x + 50
+		
+	}
+	
+	@MainActor required dynamic init?(coder: NSCoder) {
+		fatalError("init(coder:) has not been implemented")
+	}
+	
+	func show(animate: Bool = true) {
+		presentingController.present(self, animator: HomeViewAnimator(animate: animate))
+		presentingController.homeViewShown = true
+	}
+	
+	func openNewSpace(name: String){
+		presentingController.niDocument.myView.isHidden = false
+		presentingController.createSpace(name: name)
+		presentingController.homeViewShown = false
+		presentingController.dismiss(self)
+	}
+	
+	func openExistingSpace(spaceId: UUID, name: String){
+		presentingController.niDocument.myView.isHidden = false
+		presentingController.loadSpace(niSpaceID: spaceId, name: name)
+		presentingController.homeViewShown = false
+		presentingController.dismiss(self)
+	}
 
-    override var representedObject: Any? {
-        didSet {
-        // Update the view, if already loaded.
-        }
-    }
-    
-    func numberOfRows(in tableView: NSTableView) -> Int {
-        return lstOfDocuments.count
-    }
-  
-    func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView?{
-        
-        let cv = NiTableCellView()
-        cv.setData(data: lstOfDocuments[row])
+	func tryHide(){
+		if(presentingController.spaceLoaded){
+			presentingController.niDocument.myView.isHidden = false
+			presentingController.homeViewShown = false
+			presentingController.dismiss(self)
+		}
+	}
+	
 
-        return cv
-    }
-
-    
-}
-
-class NiTableCellView: NSView{
-    
-    private var data: NiDocumentMetaData? = nil
-    
-    func setData(data: NiDocumentMetaData){
-        self.data = data
-        let label = NSTextField(labelWithString: (data.name ?? "nameless"))
-        self.addSubview(label)
-        
-    }
-    
-    override func mouseDown(with event: NSEvent) {
-        if (event.clickCount == 2){
-            let appDelegate = NSApp.delegate as! AppDelegate
-            appDelegate.loadExistingSpace(niSpaceID: data!.id, name: data!.name!)
-        }
-    }
 }

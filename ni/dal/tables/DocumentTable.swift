@@ -8,17 +8,18 @@
 import SQLite
 import Cocoa
 
-struct NiDocumentMetaData{
-    let id: UUID
-    var name: String?
-    var updatedAt: Date
+struct NiDocumentViewModel: Hashable{
+    let id: UUID?
+    var name: String
+    var updatedAt: Date?
+	var isSelected: Bool = false
 }
 
 class DocumentTable{
         
     static let table = Table("document")
     static let id = Expression<UUID>("id")
-    static let name = Expression<String?>("name")
+    static let name = Expression<String>("name")
     static let owner = Expression<UUID?>("owner")
     static let shared = Expression<Bool>("shared")
     static let createdAt = Expression<Double>("created_at")
@@ -57,16 +58,23 @@ class DocumentTable{
         }
     }
     
-    static func fetchListofDocs(limit: Int = 10) -> [NiDocumentMetaData]{
-        var res: [NiDocumentMetaData] = []
-        
+    static func fetchListofDocs(limit: Int = 50) -> [NiDocumentViewModel]{
+        var res: [NiDocumentViewModel] = []
+		var containsWelcomeSpace: Bool = false
         do{
-            for record in try Storage.db.spacesDB.prepare(table.select(id, name, updatedAt).limit(limit).order(updatedAt.desc)){
-                res.append(NiDocumentMetaData(id: try record.get(id), name: try record.get(name), updatedAt: Date(timeIntervalSince1970: try record.get(updatedAt))))
-            }
+			for record in try Storage.db.spacesDB.prepare(table.select(id, name, updatedAt).limit(limit).order(updatedAt.desc)){
+				res.append(NiDocumentViewModel(id: try record.get(id), name: try record.get(name), updatedAt: Date(timeIntervalSince1970: try record.get(updatedAt))))
+				if(try record.get(id) == WelcomeSpaceGenerator.WELCOME_SPACE_ID){
+					containsWelcomeSpace = true
+				}
+			}
         }catch{
             print("Failed to fetch List of last used Docs or a column: \(error)")
         }
+		
+		if(!containsWelcomeSpace){
+			res.append(NiDocumentViewModel(id: WelcomeSpaceGenerator.WELCOME_SPACE_ID, name: WelcomeSpaceGenerator.WELCOME_SPACE_NAME))
+		}
         return res
     }
     

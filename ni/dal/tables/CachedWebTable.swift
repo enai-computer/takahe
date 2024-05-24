@@ -50,14 +50,25 @@ class CachedWebTable{
         DocumentIdContentIdTable.insert(documentId: documentId, contentId: id)
     }
     
-    static func fetchURL(contentId: UUID) -> String{
+    static func fetchCachedWebsite(contentId: UUID) -> CachedWebsite{
         do{
-            for record in try Storage.db.spacesDB.prepare(table.select(url).filter(self.contentId == contentId)){
-                return try record.get(url)
+            for record in try Storage.db.spacesDB.prepare(
+                table.join(ContentTable.table, on: self.contentId==ContentTable.id)
+                    .select(url, ContentTable.title).filter(self.contentId == contentId)
+            ){
+                return try CachedWebsite(
+                    url: record.get(url),
+                    title: record.get(ContentTable.title) ?? ""
+                )
             }
         }catch{
-            print("failed to fetch url for content \(contentId) with error: \(error)")
+            debugPrint("failed to fetch url for content \(contentId) with error: \(error)")
         }
-        return "https://enai.io"
+        return CachedWebsite(url: "https://enai.io", title: "ni")
     }
+}
+
+struct CachedWebsite{
+    let url: String
+    let title: String
 }

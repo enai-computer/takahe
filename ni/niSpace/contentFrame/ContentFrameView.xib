@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22690"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner"/>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <userDefaultsController representsSharedInstance="YES" id="Vcb-fX-N4R"/>
+        <box wantsLayer="YES" boxType="custom" borderWidth="5" cornerRadius="10" title="Box" id="kXm-wH-PdA" customClass="ContentFrameView" customModule="ni" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="1066" height="635"/>
+            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+            <view key="contentView" id="2ff-RG-I27">
+                <rect key="frame" x="5" y="5" width="1056" height="625"/>
+                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                <subviews>
+                    <customView id="Pdl-B9-RoX" customClass="ContentFrameHeadView" customModule="ni" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="591" width="1056" height="34"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                        <subviews>
+                            <scrollView wantsLayer="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasVerticalScroller="NO" usesPredominantAxisScrolling="NO" verticalScrollElasticity="none" id="AwF-3w-n4g">
+                                <rect key="frame" x="94" y="4" width="811" height="30"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <clipView key="contentView" drawsBackground="NO" id="PQx-Md-yMS">
+                                    <rect key="frame" x="0.0" y="0.0" width="811" height="30"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <collectionView id="wB8-UP-dFY">
+                                            <rect key="frame" x="0.0" y="0.0" width="811" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" heightSizable="YES"/>
+                                            <collectionViewFlowLayout key="collectionViewLayout" minimumInteritemSpacing="16" scrollDirection="horizontal" id="Wti-La-5hp">
+                                                <size key="itemSize" width="195" height="30"/>
+                                            </collectionViewFlowLayout>
+                                            <color key="primaryBackgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <connections>
+                                                <outlet property="dataSource" destination="-2" id="sD7-CD-z1v"/>
+                                                <outlet property="delegate" destination="-2" id="WJe-Po-RtO"/>
+                                            </connections>
+                                        </collectionView>
+                                    </subviews>
+                                    <color key="backgroundColor" name="SandLight4"/>
+                                </clipView>
+                                <edgeInsets key="scrollerInsets" left="0.0" right="0.0" top="0.0" bottom="-3"/>
+                                <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="aVi-Gl-lD4" customClass="NiScroller" customModule="ni" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="17" width="801" height="16"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                                <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="cGw-ix-zoM">
+                                    <rect key="frame" x="-100" y="-100" width="15" height="143"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                            </scrollView>
+                            <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tOm-Uf-Gpz">
+                                <rect key="frame" x="905" y="0.0" width="65" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" heightSizable="YES"/>
+                            </customView>
+                            <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rcT-6J-b1L" userLabel="back-button" customClass="NiActionImage" customModule="ni" customModuleProvider="target">
+                                <rect key="frame" x="6" y="7" width="24" height="24"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <imageCell key="cell" alignment="left" animates="YES" imageScaling="proportionallyDown" image="arrowLeft" id="T7D-RU-6Pz"/>
+                            </imageView>
+                            <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eFl-A6-f9y" userLabel="forward-button" customClass="NiActionImage" customModule="ni" customModuleProvider="target">
+                                <rect key="frame" x="30" y="7" width="24" height="24"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <imageCell key="cell" alignment="left" animates="YES" imageScaling="proportionallyDown" image="arrowRight" id="i8b-xK-NTA"/>
+                            </imageView>
+                            <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GMe-PK-SX5" userLabel="Add Button" customClass="NiActionImage" customModule="ni" customModuleProvider="target">
+                                <rect key="frame" x="54" y="7" width="24" height="24"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <imageCell key="cell" alignment="left" animates="YES" imageScaling="proportionallyDown" image="plus" id="GM5-6m-UKQ"/>
+                            </imageView>
+                            <imageView autoresizesSubviews="NO" id="Utx-ML-7oY" userLabel="Close CF Button" customClass="NiActionImage" customModule="ni" customModuleProvider="target">
+                                <rect key="frame" x="1024" y="7" width="24" height="24"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                                <imageCell key="cell" alignment="left" imageAlignment="topRight" image="close" id="1Vu-cP-tyr"/>
+                            </imageView>
+                            <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rUD-4M-Tk9" customClass="NiActionImage" customModule="ni" customModuleProvider="target">
+                                <rect key="frame" x="1000" y="7" width="24" height="24"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                                <imageCell key="cell" alignment="left" animates="YES" imageScaling="proportionallyDown" image="minimize" id="ysI-fW-YS0"/>
+                            </imageView>
+                            <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SHD-m6-fVV" customClass="NiActionImage" customModule="ni" customModuleProvider="target">
+                                <rect key="frame" x="976" y="7" width="24" height="24"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                                <imageCell key="cell" alignment="left" animates="YES" imageScaling="proportionallyDown" image="maximize" id="Qze-9W-rWF"/>
+                            </imageView>
+                        </subviews>
+                    </customView>
+                    <tabView fixedFrame="YES" type="noTabsNoBorder" translatesAutoresizingMaskIntoConstraints="NO" id="d8b-7o-70b">
+                        <rect key="frame" x="0.0" y="0.0" width="1056" height="591"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </tabView>
+                </subviews>
+            </view>
+            <shadow key="shadow" blurRadius="6">
+                <size key="offset" width="2" height="-4"/>
+                <color key="color" red="0.4392156862745098" green="0.43529411764705883" blue="0.42745098039215684" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="displayP3"/>
+            </shadow>
+            <color key="borderColor" name="SandLight4"/>
+            <color key="fillColor" name="SandLight4"/>
+            <connections>
+                <outlet property="addTabButton" destination="GMe-PK-SX5" id="bBG-vF-gtC"/>
+                <outlet property="cfHeadDragArea" destination="tOm-Uf-Gpz" id="gz4-6o-F78"/>
+                <outlet property="cfHeadView" destination="Pdl-B9-RoX" id="S8d-c6-NIZ"/>
+                <outlet property="cfTabHeadCollection" destination="wB8-UP-dFY" id="Q9l-en-w4j"/>
+                <outlet property="closeButton" destination="Utx-ML-7oY" id="B7l-wf-zmC"/>
+                <outlet property="contentBackButton" destination="rcT-6J-b1L" id="fyG-GL-z9e"/>
+                <outlet property="contentForwardButton" destination="eFl-A6-f9y" id="4v5-Pf-dIF"/>
+                <outlet property="maximizeButton" destination="SHD-m6-fVV" id="65o-nQ-Ejc"/>
+                <outlet property="minimizeButton" destination="rUD-4M-Tk9" id="hfN-ZF-CcN"/>
+                <outlet property="niContentTabView" destination="d8b-7o-70b" id="rDA-Fc-OHT"/>
+                <outlet property="tabHeadsScrollContainer" destination="AwF-3w-n4g" id="p4y-TZ-TIK"/>
+            </connections>
+            <point key="canvasLocation" x="-652" y="-653.5"/>
+        </box>
+    </objects>
+    <resources>
+        <image name="arrowLeft" width="24" height="24"/>
+        <image name="arrowRight" width="24" height="24"/>
+        <image name="close" width="24" height="24"/>
+        <image name="maximize" width="24" height="24"/>
+        <image name="minimize" width="24" height="24"/>
+        <image name="plus" width="24" height="24"/>
+        <namedColor name="SandLight4">
+            <color red="0.93333333333333335" green="0.93333333333333335" blue="0.92549019607843142" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

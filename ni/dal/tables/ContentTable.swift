@@ -43,4 +43,13 @@ class ContentTable{
             print("Failed to insert into ContentTable")
         }
     }
+	
+	static func delete(id: UUID){
+		do{
+			let record = table.filter(self.id == id)
+			try Storage.db.spacesDB.run(record.delete())
+		} catch {
+			print("Failed to delete content from the content table with id: \(id)")
+		}
+	}
 }
