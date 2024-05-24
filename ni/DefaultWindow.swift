@@ -39,6 +39,7 @@ class DefaultWindow: NSWindow{
 			default:
 				break
 		}
+		super.keyDown(with: event)
 	}
 	
 	override func cancelOperation(_ sender: Any?) {
