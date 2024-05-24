@@ -64,7 +64,7 @@ class CachedWebTable{
         }catch{
             debugPrint("failed to fetch url for content \(contentId) with error: \(error)")
         }
-        return CachedWebsite(url: "https://enai.io", title: "ni")
+        return CachedWebsite(url: "https://enai.io", title: "Enai")
     }
 }
 

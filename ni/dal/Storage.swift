@@ -50,6 +50,7 @@ class Storage{
         try ContentTable.create(db: db)
         try CachedWebTable.create(db: db)
         try DocumentIdContentIdTable.create(db: db)
+		try NoteTable.create(db: db)
     }
     
 

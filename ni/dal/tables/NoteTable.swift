@@ -1,0 +1,66 @@
+//
+//  NoteTable.swift
+//  ni
+//
+//  Created by Patrick Lukas on 24/5/24.
+//
+
+import Cocoa
+import SQLite
+
+class NoteTable{
+	
+	static let table = Table("user_notes")
+	static let contentId = Expression<UUID>("content_id")
+	static let updatedAt = Expression<Double>("updated_at")
+	static let rawText = Expression<String?>("raw_text")
+	
+	static func create(db: Connection) throws{
+		try db.run(table.create(ifNotExists: true){ t in
+			t.column(contentId, primaryKey: true)
+			t.column(updatedAt)
+			t.column(rawText)
+			t.foreignKey(contentId, references: ContentTable.table, ContentTable.id, delete: .cascade)
+		})
+	}
+	
+	static func upsert(documentId: UUID, id: UUID, title: String?, rawText: String){
+		ContentTable.insert(id: id, type: "note", title: title)
+		
+		do{
+			try Storage.db.spacesDB.run(
+				table.upsert(
+					self.contentId <- id,
+					self.rawText <- rawText,
+					self.updatedAt <- Date().timeIntervalSince1970,
+					onConflictOf: self.contentId
+				)
+			)
+		}catch{
+			print("failed to insert into note table")
+		}
+		DocumentIdContentIdTable.insert(documentId: documentId, contentId: id)
+	}
+	
+	static func fetchNote(contentId: UUID) -> NoteDataModel{
+		do{
+			for record in try Storage.db.spacesDB.prepare(
+				table.join(ContentTable.table, on: self.contentId==ContentTable.id)
+					.select(rawText, ContentTable.title).filter(self.contentId == contentId)
+			){
+				return try NoteDataModel(
+					title: record.get(ContentTable.title) ?? "",
+					rawText: record.get(rawText) ?? ""
+				)
+			}
+		}catch{
+			debugPrint("failed to fetch note for content \(contentId) with error: \(error)")
+		}
+		return NoteDataModel(title: "", rawText: "")
+	}
+}
+
+struct NoteDataModel{
+	let title: String
+	let rawText: String
+}
