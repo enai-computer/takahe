@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Cocoa
+import Carbon.HIToolbox
 
 let stdCorner = RectangleCornerRadii(
 	topLeading: 5,
@@ -196,13 +197,13 @@ struct RightSide: View {
 			updateSelectedPos(selectedRow: selection!)
 		}
 		
-		if (nsEvent.keyCode == 125){	//down
+		if (nsEvent.keyCode == kVK_DownArrow){	//down
 			handleKeyDown()
-		}else if (nsEvent.keyCode == 126){	//up
+		}else if (nsEvent.keyCode == kVK_UpArrow){	//up
 			handleKeyUp()
-		}else if(nsEvent.keyCode == 53){	//ESC
+		}else if(nsEvent.keyCode == kVK_Escape){	//ESC
 			clearInput()
-		}else if(nsEvent.keyCode == 36){	//enter
+		}else if(nsEvent.keyCode == kVK_Return || nsEvent.keyCode == kVK_ANSI_KeypadEnter){	//enter
 			switchToSpace()
 		}
 	}

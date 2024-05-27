@@ -99,7 +99,22 @@ class NiWebView: WKWebView{
 			self.reload()
 			return
 		}
-		nextResponder?.keyDown(with: event)
+
+		if(viewIsActive 
+		   && event.modifierFlags.isDisjoint(with: EventUtils.ModifierFlagsWithoutFunction)
+		   && (
+			event.keyCode == kVK_LeftArrow
+			|| event.keyCode == kVK_RightArrow
+			|| event.keyCode == kVK_UpArrow
+			|| event.keyCode == kVK_DownArrow
+		   )){
+			return
+		}
+		super.keyDown(with: event)
+	}
+	
+	override func cancelOperation(_ sender: Any?) {
+		return
 	}
 	
 }
