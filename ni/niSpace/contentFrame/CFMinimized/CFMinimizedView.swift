@@ -38,7 +38,6 @@ class CFMinimizedView: CFBaseView{
 		return .no
 	}
 	
-
 	
 	func maximizeButtonClicked(with event: NSEvent){
 		guard let myController = nextResponder as? ContentFrameController else{return}

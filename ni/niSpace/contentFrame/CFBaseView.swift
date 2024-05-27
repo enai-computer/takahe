@@ -61,6 +61,10 @@ class CFBaseView: NSBox{
 	func isOnBoarder(_ cursorLocation: CGPoint) -> OnBorder{
 		let cAA = CFConstants.cornerActionAreaMargin
 		
+		if (NSPointInRect(cursorLocation, getTopBorderActionArea())) {
+			return .top
+		}
+		
 		if (NSPointInRect(cursorLocation, getTopLeftCornerActionAreaVertical()) || NSPointInRect(cursorLocation, getTopLeftCornerActionAreaHorizontal())){
 			return .topLeft
 		}

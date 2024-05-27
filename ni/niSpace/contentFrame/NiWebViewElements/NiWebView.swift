@@ -12,7 +12,7 @@ import WebKit
 
 
 
-class NiWebView: WKWebView{
+class NiWebView: WKWebView, CFElement{
     
     private let owner: ContentFrameController
     let contentId: UUID
@@ -84,6 +84,7 @@ class NiWebView: WKWebView{
     
     func setActive(){
 		overlay?.removeFromSuperview()
+		overlay = nil
         viewIsActive = true
     }
     

@@ -12,8 +12,27 @@ class CFFramelessView: CFBaseView {
 	override var minFrameHeight: CGFloat {return 50.0}
 	override var minFrameWidth: CGFloat {return 80.0}
 	
+	private var overlay: NSView?
+	
 	override func toggleActive(){
 		frameIsActive = !frameIsActive
+		
+		let myView = contentView as? CFElement
+		
+		if(frameIsActive){
+			overlay?.removeFromSuperview()
+			overlay = nil
+			self.borderColor = NSColor.birkin
+			
+			myView?.setActive()
+		}else{
+			overlay = cfOverlay(frame: self.frame, nxtResponder: self)
+			addSubview(overlay!)
+			window?.makeFirstResponder(overlay)
+			self.borderColor = NSColor.transparent
+			
+			myView?.setInactive()
+		}
 	}
 	
 	func setContentView(view: NSView){
@@ -37,6 +56,10 @@ class CFFramelessView: CFBaseView {
 		cursorOnBorder = isOnBoarder(cursorPos)
 		if cursorOnBorder != .no{
 			cursorDownPoint = event.locationInWindow
+		}
+		
+		if cursorOnBorder == .top{
+			NSCursor.closedHand.push()
 		}
 	}
 	
@@ -91,6 +114,32 @@ class CFFramelessView: CFBaseView {
 			case .rightSide:
 				resizeOwnFrame(horizontalDistanceDragged, 0)
 		default: return
+		}
+	}
+	
+	override func resetCursorRects() {
+		if(frameIsActive){
+			//otherwise hand opens while dragging
+			if(cursorDownPoint == .zero){
+				addCursorRect(getTopBorderActionArea(), cursor: NSCursor.openHand)
+			}
+			addCursorRect(getRightSideBorderActionArea(), cursor: niLeftRightCursor)
+			addCursorRect(getLeftSideBorderActionArea(), cursor: niLeftRightCursor)
+			addCursorRect(getBottomBorderActionArea(), cursor: niUpDownCursor)
+			
+			//Corners Top
+			addCursorRect(getTopLeftCornerActionAreaVertical(), cursor: niDiagonalCursor)
+			addCursorRect(getTopLeftCornerActionAreaHorizontal(), cursor: niDiagonalCursor)
+			
+			addCursorRect(getTopRightCornerActionAreaVertical(), cursor: niDiagonalFlippedCursor)
+			addCursorRect(getTopRightCornerActionAreaHorizontal(), cursor: niDiagonalFlippedCursor)
+			
+			//Corners Bottom
+			addCursorRect(getBottomRightCornerActionAreaVertical(), cursor: niDiagonalCursor)
+			addCursorRect(getBottomRightCornerActionAreaHorizontal(), cursor: niDiagonalCursor)
+			
+			addCursorRect(getBottomLeftCornerActionAreaVertical(), cursor: niDiagonalFlippedCursor)
+			addCursorRect(getBottomLeftCornerActionAreaHorizontal(), cursor: niDiagonalFlippedCursor)
 		}
 	}
 }

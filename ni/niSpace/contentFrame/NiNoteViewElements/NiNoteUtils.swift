@@ -9,8 +9,18 @@ import Cocoa
 
 func getNewNoteView(frame: NSRect) -> NiNoteView{
 	let view = NiNoteView(frame: frame)
-	view.backgroundColor = NSColor(.transparent)
+	
+	view.backgroundColor = NSColor.sandLight2
 	view.insertionPointColor = NSColor.birkin
+	view.importsGraphics = false
+	view.allowsImageEditing = false
+	view.displaysLinkToolTips = false
+	view.usesFindBar = false
+	view.usesFindPanel = false
+	view.usesFontPanel = false
+	view.isRichText = false
+	view.font = NSFont(name: "Sohne-Buch", size: 16.0)
+	view.textColor = NSColor.sandDark7
 	
 	return view
 }
