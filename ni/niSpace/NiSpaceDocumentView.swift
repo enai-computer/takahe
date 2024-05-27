@@ -124,7 +124,7 @@ class NiSpaceDocumentView: NSView{
 	}
 	
 	func createNewTab(){
-		topNiFrame?.openAndEditEmptyTab()
+		topNiFrame?.openAndEditEmptyWebTab()
 	}
 	
 	func toggleEditMode(){

@@ -73,7 +73,7 @@ class ContentFrameView: CFBaseView{
 	 
 	 If the caller sets openNextTo it is their responsability to update the underlying viewModel
 	 */
-    func createNewTab(tabView: NiWebView, openNextTo: Int = -1) -> Int{
+	override func createNewTab(tabView: NSView, openNextTo: Int = -1) -> Int{
 		let tabViewPos: Int
 		let tabViewItem = NSTabViewItem()
 		tabViewItem.view = tabView
@@ -87,11 +87,12 @@ class ContentFrameView: CFBaseView{
 			niContentTabView.insertTabViewItem(tabViewItem, at: tabViewPos)
 		}
 		
+		//TODO: set guard to call only on webViews
 		setWebViewObservers(tabView: tabView)
         return tabViewPos
     }
     
-	private func setWebViewObservers(tabView: NiWebView){
+	private func setWebViewObservers(tabView: NSView){
 		tabView.addObserver(self, forKeyPath: "canGoBack", options: [.initial, .new], context: nil)
 		tabView.addObserver(self, forKeyPath: "canGoForward", options: [.initial, .new], context: nil)
 	}
@@ -163,7 +164,7 @@ class ContentFrameView: CFBaseView{
 	
 	func addTabClicked(with event: NSEvent){
 		if let cfc = self.nextResponder as? ContentFrameController{
-			cfc.openAndEditEmptyTab()
+			cfc.openAndEditEmptyWebTab()
 		}
 	}
 	

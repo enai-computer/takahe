@@ -41,9 +41,9 @@ class NiSpaceMenuController: NSViewController{
 		view.layer?.cornerCurve = .continuous
 		
 		myView.uploadAnImage.isEnabled = false
-		myView.writeANote.isEnabled = false
 		
 		myView.openAWindow.mouseDownFunction = openAWindow
+		myView.writeANote.mouseDownFunction = createANote
 	}
 	
 	override func viewDidAppear() {
@@ -67,5 +67,9 @@ class NiSpaceMenuController: NSViewController{
 	
 	func openAWindow(with event: NSEvent){
 		parentController.openEmptyCF()
+	}
+	
+	func createANote(with event: NSEvent){
+		parentController.createANote(positioned: event.locationInWindow)
 	}
 }

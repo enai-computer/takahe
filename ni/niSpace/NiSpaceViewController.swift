@@ -114,6 +114,10 @@ class NiSpaceViewController: NSViewController{
 		niDocument.openEmptyCF()
 	}
 	
+	func createANote(positioned relavtiveTo: CGPoint? = nil){
+		niDocument.openEmptyCF(viewState: .frameless, initialTabType: .note, positioned: relavtiveTo)
+	}
+	
 	func closeTabOfTopCF(){
 		niDocument.closeTabOfTopCF()
 	}

@@ -93,6 +93,13 @@ class CFBaseView: NSBox{
 	func toggleActive(){
 		preconditionFailure("This method must be overridden")
 	}
+
+	/** will return -1 if view does not have tabs
+	 
+	 */
+	func createNewTab(tabView: NSView, openNextTo: Int = -1) -> Int{
+		preconditionFailure("This method must be overridden")
+	}
 	
 	enum OnBorder{
 		case no, topLeft, top, topRight, bottomLeft, bottom, bottomRight, leftSide, rightSide
