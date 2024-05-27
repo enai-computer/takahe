@@ -18,4 +18,26 @@ class NiNoteView: NSTextView, CFContentItem {
 		self.isEditable = false
 		self.isSelectable = false
 	}
+	
+	override func cancelOperation(_ sender: Any?) {
+		return
+	}
+	
+	func getText() -> String? {
+		return self.textStorage?.string
+	}
+	
+	func getTitle() -> String? {
+		let note = getText()
+		if(note == nil || note!.isEmpty){
+			return nil
+		}
+		let endOfFirstLine = note!.firstIndex(of: "\n")
+		if(endOfFirstLine == nil){
+			return nil
+		}
+		
+		let firstLine = note![..<endOfFirstLine!]
+		return String(firstLine)
+	}
 }

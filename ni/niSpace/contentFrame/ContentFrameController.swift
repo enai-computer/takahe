@@ -334,11 +334,12 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	}
 	
 	func openNoteInNewTab(contentId: UUID = UUID(), tabTitle: String? = nil, content: String? = nil){
-		let noteView = ni.getNewNoteView(frame: self.view.frame)
+		let noteView = ni.getNewNoteView(parentView: self.view, frame: self.view.frame)
 		
 		var tabHeadModel = TabViewModel(contentId: contentId, type: .note, isSelected: true)
 		tabHeadModel.position = 0
 		tabHeadModel.view = noteView
+		self.tabs.append(tabHeadModel)
 		
 		noteView.string = content ?? ""
 		
@@ -759,7 +760,13 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 				let url = tab.webView?.url?.absoluteString ?? tab.url
 				CachedWebTable.upsert(documentId: documentId, id: tab.contentId, title: tab.title, url: url)
 			}
-			//TODO: handle note
+			if(tab.type == .note){
+				let txt = tab.noteView?.getText()
+				let title = tab.noteView?.getTitle()
+				if(txt != nil){
+					NoteTable.upsert(documentId: documentId, id: tab.contentId, title: title, rawText: txt!)
+				}
+			}
 		}
 	}
 	
@@ -774,7 +781,9 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		var children: [NiCFTabModel] = []
 		
 		for (i, tab) in tabs.enumerated(){
-			if(tab.type == .web){
+			if(tab.type == .web
+			   || (tab.type == .note && tab.noteView?.getText() != nil)
+			){
 				children.append(
 					NiCFTabModel(
 						id: tab.contentId,
@@ -785,7 +794,6 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 					)
 				)
 			}
-			//TODO: add if type note and note has content
 		}
 		
 		if(children.isEmpty){

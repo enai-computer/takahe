@@ -7,7 +7,7 @@
 
 import Cocoa
 
-func getNewNoteView(frame: NSRect) -> NiNoteView{
+func getNewNoteView(parentView: NSView, frame: NSRect) -> NiNoteView{
 	let view = NiNoteView(frame: frame)
 	
 	view.backgroundColor = NSColor.sandLight2
@@ -19,6 +19,8 @@ func getNewNoteView(frame: NSRect) -> NiNoteView{
 	view.usesFindPanel = false
 	view.usesFontPanel = false
 	view.isRichText = false
+	view.isVerticallyResizable = false
+	view.isHorizontallyResizable = false
 	view.font = NSFont(name: "Sohne-Buch", size: 16.0)
 	view.textColor = NSColor.sandDark7
 	
