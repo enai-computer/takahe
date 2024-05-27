@@ -10,4 +10,5 @@ import Foundation
 protocol CFContentItem{
 	func setActive() -> Void
 	func setInactive() -> Void
+	func cancelOperation(_ sender: Any?) -> Void
 }
