@@ -423,6 +423,10 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	}
 	
 	func closeSelectedTab(){
+		if(viewState != .expanded){
+			return
+		}
+		
 		updateWVTabHeadPos(from: selectedTabModel+1)
 		var deletedTabModel: TabViewModel?
 		
@@ -477,7 +481,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	func selectTab(at: Int, mouseDownEvent: NSEvent? = nil){
 		
 		//No tab switching while CF is not active
-		if(!self.expandedCFView!.frameIsActive){
+		if(self.expandedCFView == nil || !self.expandedCFView!.frameIsActive){
 			if(mouseDownEvent != nil){
 				nextResponder?.mouseDown(with: mouseDownEvent!)
 			}
