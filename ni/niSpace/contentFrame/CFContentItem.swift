@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol CFElement{
+protocol CFContentItem{
 	func setActive() -> Void
 	func setInactive() -> Void
 }

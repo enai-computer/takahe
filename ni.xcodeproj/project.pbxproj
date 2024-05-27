@@ -65,7 +65,7 @@
 		CD8873742BCD235300007BE9 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8873732BCD235300007BE9 /* HomeViewController.swift */; };
 		CD8873782BCD649800007BE9 /* TimeUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8873772BCD649800007BE9 /* TimeUtils.swift */; };
 		CD8D2B082C00C7A100C44C1D /* NoteTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8D2B072C00C7A100C44C1D /* NoteTable.swift */; };
-		CD9B96BC2C04C8EE00998CE2 /* CFElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9B96BB2C04C8EE00998CE2 /* CFElement.swift */; };
+		CD9B96BC2C04C8EE00998CE2 /* CFContentItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9B96BB2C04C8EE00998CE2 /* CFContentItem.swift */; };
 		CDA639562BF50596001941DE /* welcomeConfig.json in Resources */ = {isa = PBXBuildFile; fileRef = CDA639552BF50596001941DE /* welcomeConfig.json */; };
 		CDA639582BF508FF001941DE /* WelcomeSpaceGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA639572BF508FF001941DE /* WelcomeSpaceGenerator.swift */; };
 		CDB06B612AF84E1F008DB8FF /* NiSpaceDocumentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB06B602AF84E1F008DB8FF /* NiSpaceDocumentView.swift */; };
@@ -160,7 +160,7 @@
 		CD8873732BCD235300007BE9 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		CD8873772BCD649800007BE9 /* TimeUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeUtils.swift; sourceTree = "<group>"; };
 		CD8D2B072C00C7A100C44C1D /* NoteTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteTable.swift; sourceTree = "<group>"; };
-		CD9B96BB2C04C8EE00998CE2 /* CFElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CFElement.swift; sourceTree = "<group>"; };
+		CD9B96BB2C04C8EE00998CE2 /* CFContentItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CFContentItem.swift; sourceTree = "<group>"; };
 		CDA639552BF50596001941DE /* welcomeConfig.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = welcomeConfig.json; sourceTree = "<group>"; };
 		CDA639572BF508FF001941DE /* WelcomeSpaceGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeSpaceGenerator.swift; sourceTree = "<group>"; };
 		CDB06B602AF84E1F008DB8FF /* NiSpaceDocumentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiSpaceDocumentView.swift; sourceTree = "<group>"; };
@@ -264,7 +264,7 @@
 				CD6317F02BC53A9600434D56 /* cfOverlay.swift */,
 				CD5A04CE2BEA42EB004CC3AA /* cfUtils.swift */,
 				CD5A04D02BEA78E4004CC3AA /* CFBaseView.swift */,
-				CD9B96BB2C04C8EE00998CE2 /* CFElement.swift */,
+				CD9B96BB2C04C8EE00998CE2 /* CFContentItem.swift */,
 			);
 			path = contentFrame;
 			sourceTree = "<group>";
@@ -599,7 +599,7 @@
 				CDD6B9562B1C326A00C6144D /* ContentFrameController.swift in Sources */,
 				A1E41BFF2ACB6B1300338417 /* FrameGenerator.swift in Sources */,
 				CD19BC962BC7E5BF002AF14E /* HomeViewUtils.swift in Sources */,
-				CD9B96BC2C04C8EE00998CE2 /* CFElement.swift in Sources */,
+				CD9B96BC2C04C8EE00998CE2 /* CFContentItem.swift in Sources */,
 				A1B8E6AB2AAFB5EC00AC6566 /* ni.xcdatamodeld in Sources */,
 				CD680F7F2BC7DF59008D495D /* HomeView.swift in Sources */,
 				A14E8F292AD5EB1600409DDF /* NiSpaceViewController.swift in Sources */,
