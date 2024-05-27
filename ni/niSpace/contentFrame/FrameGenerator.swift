@@ -5,8 +5,8 @@ import WebKit
 
 let maxWidthMargin: CGFloat = 30.0
 
-func openEmptyContentFrame() -> ContentFrameController{
-	let frameController = ContentFrameController(viewState: .expanded, tabsModel: nil)
+func openEmptyContentFrame(viewState: NiConentFrameState = .expanded) -> ContentFrameController{
+	let frameController = ContentFrameController(viewState: viewState, tabsModel: nil)
 	frameController.loadView()
 	return frameController
 }
@@ -49,7 +49,7 @@ func reopenContentFrameWithOutPositioning(screenWidth: CGFloat, contentFrameStat
 	for (i, tab) in tabViewModels.enumerated(){
 
 		if(tab.state == .empty ){
-			_ = frameController.openEmptyTab(tab.contentId)
+			_ = frameController.openEmptyWebTab(tab.contentId)
 		}else{
 			_ = frameController.openWebsiteInNewTab(urlStr: tab.url, contentId: tab.contentId, tabName: tab.title, webContentState: tab.state)
 		}
@@ -105,7 +105,7 @@ func niCFTabModelToTabViewModel(tabs: [NiCFTabModel]) -> [TabViewModel]{
 	
 	for tabModel in tabs {
 		let record = CachedWebTable.fetchCachedWebsite(contentId: tabModel.id)
-		var tabView = TabViewModel(contentId: tabModel.id, title: record.title, url: record.url, position: tabModel.position)
+		var tabView = TabViewModel(contentId: tabModel.id, type: .web, title: record.title, url: record.url, position: tabModel.position)
 		
 		if(tabModel.position < 0 || tabs.count <= tabModel.position){
 			tabPositionCorrectionNeeded = true
@@ -117,7 +117,7 @@ func niCFTabModelToTabViewModel(tabs: [NiCFTabModel]) -> [TabViewModel]{
 		}else{
 			tabView.isSelected = false
 		}
-		tabView.state = WebViewState(rawValue: tabModel.contentState)!
+		tabView.state = TabViewModelState(rawValue: tabModel.contentState)!
 
 		tabViews.append(tabView)
 	}

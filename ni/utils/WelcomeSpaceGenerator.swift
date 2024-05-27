@@ -66,6 +66,7 @@ class WelcomeSpaceGenerator{
 			
 			let tabModel = TabViewModel(
 				contentId: UUID(),
+				type: .web,
 				title: tab.title,
 				url: tab.url,
 				state: .loading,

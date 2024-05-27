@@ -82,6 +82,11 @@
 		CDDBCB2E2BD8FA4C00E7B187 /* errorLoading-1.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = CDDBCB2C2BD8FA4C00E7B187 /* errorLoading-1.jpeg */; };
 		CDDBCB2F2BD8FA4D00E7B187 /* errorLoading.html in Resources */ = {isa = PBXBuildFile; fileRef = CDDBCB2D2BD8FA4C00E7B187 /* errorLoading.html */; };
 		CDE76C1C2BC6989000CE9513 /* TabViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE76C1B2BC6989000CE9513 /* TabViewModel.swift */; };
+		CDFA8CFB2C03B9AE00882722 /* CFFramelessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDFA8CFA2C03B9AE00882722 /* CFFramelessView.swift */; };
+		CDFA8CFD2C03B9D000882722 /* CFFramelessView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDFA8CFC2C03B9D000882722 /* CFFramelessView.xib */; };
+		CDFA8CFF2C04815C00882722 /* EventUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDFA8CFE2C04815C00882722 /* EventUtils.swift */; };
+		CDFA8D022C0492F400882722 /* NiNoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDFA8D012C0492F400882722 /* NiNoteView.swift */; };
+		CDFA8D042C04931600882722 /* NiNoteUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDFA8D032C04931600882722 /* NiNoteUtils.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -171,6 +176,11 @@
 		CDDBCB2C2BD8FA4C00E7B187 /* errorLoading-1.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "errorLoading-1.jpeg"; sourceTree = "<group>"; };
 		CDDBCB2D2BD8FA4C00E7B187 /* errorLoading.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = errorLoading.html; sourceTree = "<group>"; };
 		CDE76C1B2BC6989000CE9513 /* TabViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewModel.swift; sourceTree = "<group>"; };
+		CDFA8CFA2C03B9AE00882722 /* CFFramelessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CFFramelessView.swift; sourceTree = "<group>"; };
+		CDFA8CFC2C03B9D000882722 /* CFFramelessView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CFFramelessView.xib; sourceTree = "<group>"; };
+		CDFA8CFE2C04815C00882722 /* EventUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventUtils.swift; sourceTree = "<group>"; };
+		CDFA8D012C0492F400882722 /* NiNoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiNoteView.swift; sourceTree = "<group>"; };
+		CDFA8D032C04931600882722 /* NiNoteUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiNoteUtils.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -239,9 +249,11 @@
 		A1E41BFD2ACB684F00338417 /* contentFrame */ = {
 			isa = PBXGroup;
 			children = (
-				CD3362172BFE0CCF004DBAFB /* CFSoftDeleted */,
+				CDFA8D002C0492A100882722 /* NiNoteViewElements */,
+				CDFA8CF92C03B95F00882722 /* CFFrameless */,
 				CD5A04C92BEA3C5E004CC3AA /* CFMinimized */,
 				CD7578352BBD9FD100293930 /* NiContentFrameHead */,
+				CD3362172BFE0CCF004DBAFB /* CFSoftDeleted */,
 				CD66CE312B1F7AFF0006BB98 /* NiWebViewElements */,
 				A1E41BF52ACB533400338417 /* ContentFrameView.xib */,
 				A1E41BF92ACB57EF00338417 /* ContentFrameView.swift */,
@@ -335,6 +347,7 @@
 				CD5B15392BDFBFE40030F017 /* NiActionImage.swift */,
 				CD1552462BE9286D00A59AE9 /* SwiftUIUtils.swift */,
 				CDD87ECF2BF23C650045B84B /* NiCursorUtils.swift */,
+				CDFA8CFE2C04815C00882722 /* EventUtils.swift */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -419,6 +432,24 @@
 				CDD6B9512B1BFE8B00C6144D /* NiDocumentModel.swift */,
 			);
 			path = models;
+			sourceTree = "<group>";
+		};
+		CDFA8CF92C03B95F00882722 /* CFFrameless */ = {
+			isa = PBXGroup;
+			children = (
+				CDFA8CFA2C03B9AE00882722 /* CFFramelessView.swift */,
+				CDFA8CFC2C03B9D000882722 /* CFFramelessView.xib */,
+			);
+			path = CFFrameless;
+			sourceTree = "<group>";
+		};
+		CDFA8D002C0492A100882722 /* NiNoteViewElements */ = {
+			isa = PBXGroup;
+			children = (
+				CDFA8D012C0492F400882722 /* NiNoteView.swift */,
+				CDFA8D032C04931600882722 /* NiNoteUtils.swift */,
+			);
+			path = NiNoteViewElements;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -534,6 +565,7 @@
 				CD19BC942BC7E404002AF14E /* HomeAssets.xcassets in Resources */,
 				CD5A04C62BEA2B96004CC3AA /* CFMinimizedView.xib in Resources */,
 				CD6317EE2BC4852300434D56 /* soehne-buch.ttf in Resources */,
+				CDFA8CFD2C03B9D000882722 /* CFFramelessView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -574,9 +606,11 @@
 				CDE76C1C2BC6989000CE9513 /* TabViewModel.swift in Sources */,
 				CDD6B9402B169F7700C6144D /* DocumentTable.swift in Sources */,
 				CDD6B9452B16A1A200C6144D /* CachedWebTable.swift in Sources */,
+				CDFA8D022C0492F400882722 /* NiNoteView.swift in Sources */,
 				CDD6B9392B152A8000C6144D /* Storage.swift in Sources */,
 				CD42CEC92BDA48180039814D /* NiScrollView.swift in Sources */,
 				CDA639582BF508FF001941DE /* WelcomeSpaceGenerator.swift in Sources */,
+				CDFA8CFF2C04815C00882722 /* EventUtils.swift in Sources */,
 				CDDBCB2B2BD7C23E00E7B187 /* NiSpaceDocumentController.swift in Sources */,
 				CDD6B9472B16A29100C6144D /* DocumentIdContentIdTable.swift in Sources */,
 				CD66CE382B1FD26A0006BB98 /* NiStringUtils.swift in Sources */,
@@ -591,6 +625,7 @@
 				CD6752A92BFB79AD0008A227 /* NiSpaceMenuController.swift in Sources */,
 				CD6317E32BC3F18300434D56 /* NiBadTypeError.swift in Sources */,
 				CD5A04D12BEA78E4004CC3AA /* CFBaseView.swift in Sources */,
+				CDFA8CFB2C03B9AE00882722 /* CFFramelessView.swift in Sources */,
 				CD06A9BA2BF79EF500312256 /* NiScroller.swift in Sources */,
 				CD7578372BBDA98700293930 /* ContentFrameHeadView.swift in Sources */,
 				CD33621F2BFE0DD0004DBAFB /* CFSoftDeletedView.swift in Sources */,
@@ -599,6 +634,7 @@
 				A14E8F272AD5EAF800409DDF /* NiSpaceView.swift in Sources */,
 				CD5A04CD2BEA3CD0004CC3AA /* CFMinimizedStackItem.swift in Sources */,
 				CD19BC992BC81A46002AF14E /* PredictiveTextFieldView.swift in Sources */,
+				CDFA8D042C04931600882722 /* NiNoteUtils.swift in Sources */,
 				CD5A04C82BEA2BBF004CC3AA /* CFMinimizedView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

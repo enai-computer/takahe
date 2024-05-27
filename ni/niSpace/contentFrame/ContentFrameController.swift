@@ -45,6 +45,8 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
     override func loadView() {
 		if(viewState == .minimised){
 			loadAndDisplayMinimizedView()
+		}else if(viewState == .frameless){
+			loadAndDisplayFramelessView()
 		}else{
 			loadAndDisplayDefaultView()
 		}
@@ -63,6 +65,16 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 
 		expandedCFView!.cfHeadView.wantsLayer = true
 		expandedCFView!.cfHeadView.layer?.backgroundColor = NSColor(.sandLight4).cgColor
+	}
+	
+	private func loadAndDisplayFramelessView(){
+		self.view = loadFramelessView()
+	}
+	
+	private func loadFramelessView() -> CFBaseView{
+		let framelessView = (NSView.loadFromNib(nibName: "CFFramelessView", owner: self) as! CFFramelessView)
+		framelessView.setSelfController(self)
+		return framelessView
 	}
 	
 	private func loadAndDisplayMinimizedView(){
@@ -260,7 +272,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		
 		for i in tabs.indices{
 			let wview = getNewWebView(owner: self, frame: expandedCFView!.frame ,cleanUrl: tabs[i].url, contentId: tabs[i].contentId)
-			tabs[i].webView = wview
+			tabs[i].view = wview
 			tabs[i].position = expandedCFView!.createNewTab(tabView: wview)
 			wview.tabHeadPosition = tabs[i].position
 			if(tabs[i].isSelected){
@@ -294,12 +306,12 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	/*
 	 * MARK: opening tabs
 	 */
-	func openEmptyTab(_ contentId: UUID = UUID()) -> Int{
+	func openEmptyWebTab(_ contentId: UUID = UUID()) -> Int{
 		let niWebView = ni.getNewWebView(owner: self, contentId: contentId, frame: expandedCFView!.frame, fileUrl: nil)
 		
-		var tabHeadModel = TabViewModel(contentId: UUID())
+		var tabHeadModel = TabViewModel(contentId: contentId, type: .web)
 		tabHeadModel.position = expandedCFView!.createNewTab(tabView: niWebView)
-		tabHeadModel.webView = niWebView
+		tabHeadModel.view = niWebView
 		tabHeadModel.webView!.tabHeadPosition = tabHeadModel.position
 		self.tabs.append(tabHeadModel)
 		
@@ -308,20 +320,32 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		return tabHeadModel.position
 	}
 	
-	func openAndEditEmptyTab(){
-		if(viewState == .minimised){
+	func openAndEditEmptyWebTab(){
+		if(viewState == .minimised || viewState == .frameless){
 			__NSBeep()
 			return
 		}
 		
-		let pos = openEmptyTab()
+		let pos = openEmptyWebTab()
 		//needs to happen a frame later as otherwise the cursor will not jump into the editing mode
 		DispatchQueue.main.async {
 			self.editTabUrl(at: pos)
 		}
 	}
 	
-	func openWebsiteInNewTab(urlStr: String, contentId: UUID, tabName: String, webContentState: WebViewState? = nil, openNextTo: Int = -1) -> Int{
+	func openNoteInNewTab(contentId: UUID = UUID(), tabTitle: String? = nil, content: String? = nil){
+		let noteView = ni.getNewNoteView(frame: self.view.frame)
+		
+		var tabHeadModel = TabViewModel(contentId: contentId, type: .note)
+		tabHeadModel.position = 0
+		tabHeadModel.view = noteView
+		
+		noteView.string = content ?? ""
+		
+		_ = myView.createNewTab(tabView: noteView)
+	}
+	
+	func openWebsiteInNewTab(urlStr: String, contentId: UUID, tabName: String, webContentState: TabViewModelState? = nil, openNextTo: Int = -1) -> Int{
 		let niWebView = getNewWebView(owner: self, frame: expandedCFView!.frame, dirtyUrl: urlStr, contentId: contentId)
 		let viewPosition = expandedCFView!.createNewTab(tabView: niWebView, openNextTo: openNextTo)
 		
@@ -329,9 +353,9 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 			updateWVTabHeadPos(from: viewPosition, moveLeft: false)
 		}
 		
-		var tabHeadModel = TabViewModel(contentId: contentId)
+		var tabHeadModel = TabViewModel(contentId: contentId, type: .web)
 		tabHeadModel.position = viewPosition
-		tabHeadModel.webView = niWebView
+		tabHeadModel.view = niWebView
 		tabHeadModel.webView!.tabHeadPosition = tabHeadModel.position
 		if(webContentState != nil){
 			tabHeadModel.state = webContentState!
@@ -429,7 +453,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		}
 		
 		ContentTable.delete(id: deletedTabModel!.contentId)
-		deletedTabModel?.webView = nil
+		deletedTabModel?.view = nil
 	}
 	
 	func selectNextTab(goFwd: Bool = true){
@@ -554,7 +578,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		
 		if(event.modifierFlags.contains(.command)){
 			if(event.keyCode == kVK_ANSI_T){
-				openAndEditEmptyTab()
+				openAndEditEmptyWebTab()
 				return
 			}else if(event.keyCode == kVK_ANSI_W){
 				closeSelectedTab()
@@ -745,7 +769,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 			children.append(
 				NiCFTabModel(
 					id: tab.contentId,
-					contentType: NiCFTabContentType.web,
+					contentType: TabContentType.web,
 					contentState: tab.state.rawValue,
 					active: tab.isSelected,
 					position: i

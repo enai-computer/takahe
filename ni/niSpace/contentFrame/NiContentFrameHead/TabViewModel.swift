@@ -8,18 +8,22 @@
 import Cocoa
 import Foundation
 
-enum WebViewState: String{
+enum TabViewModelState: String{
 	case empty, error, loading, loaded, cached
 }
 
 struct TabViewModel{
 	let contentId: UUID
-	
+	let type: TabContentType
+
 	var title: String = ""
 	var url: String = ""
-	var state: WebViewState = .empty
-	var webView: NiWebView?
+	var state: TabViewModelState = .empty
 	var icon: NSImage?
+	
+	var view: NSView?
+	var webView: NiWebView? {return self.view as? NiWebView? ?? nil}
+	var noteView: NiNoteView? {return self.view as? NiNoteView ?? nil}
 	
 	var position: Int = -1
 	var isSelected: Bool = false

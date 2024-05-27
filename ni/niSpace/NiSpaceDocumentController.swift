@@ -13,6 +13,8 @@ class NiSpaceDocumentController: NSViewController{
 	var myView: NiSpaceDocumentView {return self.view as! NiSpaceDocumentView}
 	
 	private let defaultCFSize: CGSize = CGSize(width: 1250, height: 730)
+	private let defaultNoteSize: CGSize = CGSize(width: 400, height: 300)
+	
 	static let EMPTY_SPACE_ID: UUID = UUID(uuidString: "00000000-0000-0000-0000-000000000000")!
 	
 	private let niSpaceName: String
@@ -46,16 +48,36 @@ class NiSpaceDocumentController: NSViewController{
 	/**
 	 Do not use before view is loaded, as CF View size gets calculated by the visibleRect
 	*/
-	func openEmptyCF(){
-		let controller = openEmptyContentFrame()
+	func openEmptyCF(viewState: NiConentFrameState = .expanded, 
+					 initialTabType: TabContentType = .web,
+					 positioned relavtiveTo: CGPoint? = nil
+	){
+		let controller = openEmptyContentFrame(viewState: viewState)
 		let newCFView = controller.myView
-		newCFView.frame.size = defaultCFSize
-		newCFView.frame.origin = calculateOrigin(for: controller.view.frame)
-		newCFView.setFrameOwner(myView)
 		
+		//TODO: set location & size dependent on viewState
+		if(initialTabType == .note){
+			newCFView.frame.size = defaultNoteSize
+		}else{
+			newCFView.frame.size = defaultCFSize
+		}
+		
+		if(relavtiveTo == nil){
+			newCFView.frame.origin = calculateExpandedViewOrigin(for: controller.view.frame)
+		}else{
+			newCFView.frame.origin = calculateOrigin(for: controller.view.frame, relativeTo: relavtiveTo!)
+		}
+		
+		newCFView.setFrameOwner(myView)
 		myView.addNiFrame(controller)
 		
-		controller.openAndEditEmptyTab()
+		//TODO: set inital tab type bassed on passed parameter
+		if(initialTabType == .web){
+			controller.openAndEditEmptyWebTab()
+		}else if(initialTabType == .note){
+			controller.openNoteInNewTab()
+		}
+
 	}
 	
 	func closeTabOfTopCF(){
@@ -66,7 +88,12 @@ class NiSpaceDocumentController: NSViewController{
 		myView.topNiFrame?.reloadSelectedTab()
 	}
 	
-	private func calculateOrigin(for frame: NSRect) -> CGPoint{
+	private func calculateOrigin(for frame: NSRect, relativeTo: CGPoint) -> CGPoint{
+		//TODO: calc out of bounds etc
+		return CGPoint(x: relativeTo.x, y: relativeTo.y)
+	}
+	
+	private func calculateExpandedViewOrigin(for frame: NSRect) -> CGPoint{
 		let viewSize = view.visibleRect.size
 		
 		let x_center: Double
