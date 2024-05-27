@@ -23,6 +23,9 @@ class CFBaseView: NSBox{
 	var cursorOnBorder: OnBorder = .no
 	var cursorDownPoint: CGPoint  = .zero
 	
+	var minFrameHeight: CGFloat { return 150.0}
+	var minFrameWidth: CGFloat { return 350.0}
+	
 	func setFrameOwner(_ owner: NiSpaceDocumentView!){
 		self.niParentDoc = owner
 	}
@@ -152,24 +155,23 @@ class CFBaseView: NSBox{
 			nsize.height -= yDiff
 		}
 		
-		
 		//enforcing min CF size
-		if(nsize.height < 150){
-			nsize.height = 150
+		if(nsize.height < minFrameHeight){
+			nsize.height = minFrameHeight
 		}
-		if(nsize.width < 350){
-			nsize.width = 350
+		if(nsize.width < minFrameWidth){
+			nsize.width = minFrameWidth
 		}
-		
-		self.setFrameSize(nsize)
-		
-		if(invertX){
+
+		//doesn't move if size did not change
+		if(invertX && frame.size.width != nsize.width){
 			self.frame.origin.x += xDiff
 		}
 		
-		if(invertY){
+		if(invertY && frame.size.height != nsize.height){
 			self.frame.origin.y -= yDiff
 		}
+		self.setFrameSize(nsize)
 	}
 	
 	/*

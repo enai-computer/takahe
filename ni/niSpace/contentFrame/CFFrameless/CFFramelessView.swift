@@ -9,6 +9,9 @@ import Cocoa
 
 class CFFramelessView: CFBaseView {
 	
+	override var minFrameHeight: CGFloat {return 50.0}
+	override var minFrameWidth: CGFloat {return 80.0}
+	
 	override func toggleActive(){
 		frameIsActive = !frameIsActive
 	}
@@ -20,12 +23,6 @@ class CFFramelessView: CFBaseView {
 	override func createNewTab(tabView: NSView, openNextTo: Int = -1) -> Int{
 		self.contentView = tabView
 		return -1
-	}
-	
-	override func isOnBoarder(_ cursorLocation: CGPoint) -> OnBorder{
-		let cAA = CFConstants.cornerActionAreaMargin
-		
-		return .no
 	}
 	
 	override func mouseDown(with event: NSEvent) {
