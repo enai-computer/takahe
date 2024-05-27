@@ -17,7 +17,7 @@ class CFFramelessView: CFBaseView {
 	override func toggleActive(){
 		frameIsActive = !frameIsActive
 		
-		let myView = contentView as? CFElement
+		let myView = contentView as? CFContentItem
 		
 		if(frameIsActive){
 			overlay?.removeFromSuperview()

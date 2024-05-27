@@ -375,7 +375,7 @@ class ContentFrameView: CFBaseView{
     override func toggleActive(){
 
         frameIsActive = !frameIsActive
-        let webView = niContentTabView.selectedTabViewItem?.view as? CFElement	//a new content frame will not have a webView yet
+        let webView = niContentTabView.selectedTabViewItem?.view as? CFContentItem	//a new content frame will not have a webView yet
         
         if frameIsActive{
             self.layer?.borderColor = NSColor(.sandLight4).cgColor

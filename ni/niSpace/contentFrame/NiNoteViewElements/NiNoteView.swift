@@ -7,7 +7,7 @@
 
 import Cocoa
 
-class NiNoteView: NSTextView, CFElement {
+class NiNoteView: NSTextView, CFContentItem {
 	
 	func setActive() {
 		self.isEditable = true

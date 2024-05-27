@@ -12,7 +12,7 @@ import WebKit
 
 
 
-class NiWebView: WKWebView, CFElement{
+class NiWebView: WKWebView, CFContentItem{
     
     private let owner: ContentFrameController
     let contentId: UUID
