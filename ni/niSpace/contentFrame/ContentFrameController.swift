@@ -336,7 +336,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	func openNoteInNewTab(contentId: UUID = UUID(), tabTitle: String? = nil, content: String? = nil){
 		let noteView = ni.getNewNoteView(frame: self.view.frame)
 		
-		var tabHeadModel = TabViewModel(contentId: contentId, type: .note)
+		var tabHeadModel = TabViewModel(contentId: contentId, type: .note, isSelected: true)
 		tabHeadModel.position = 0
 		tabHeadModel.view = noteView
 		
@@ -754,8 +754,12 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 			return
 		}
 		for tab in tabs {
-			let url = tab.webView?.url?.absoluteString ?? tab.url
-			CachedWebTable.upsert(documentId: documentId, id: tab.contentId, title: tab.title, url: url)
+			if(tab.type == .web){
+				//TODO: add guard rails to not enter empty tab
+				let url = tab.webView?.url?.absoluteString ?? tab.url
+				CachedWebTable.upsert(documentId: documentId, id: tab.contentId, title: tab.title, url: url)
+			}
+			//TODO: handle note
 		}
 	}
 	
@@ -770,17 +774,23 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		var children: [NiCFTabModel] = []
 		
 		for (i, tab) in tabs.enumerated(){
-			children.append(
-				NiCFTabModel(
-					id: tab.contentId,
-					contentType: TabContentType.web,
-					contentState: tab.state.rawValue,
-					active: tab.isSelected,
-					position: i
+			if(tab.type == .web){
+				children.append(
+					NiCFTabModel(
+						id: tab.contentId,
+						contentType: tab.type,
+						contentState: tab.state.rawValue,
+						active: tab.isSelected,
+						position: i
+					)
 				)
-			)
+			}
+			//TODO: add if type note and note has content
 		}
 		
+		if(children.isEmpty){
+			return (model: nil,  nrOfTabs: 0, state: nil)
+		}
 		
 		//FIXME: this does not work :cry:
 		let posInStack = Int(view.layer!.zPosition)
@@ -798,7 +808,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 				children: children
 			)
 		)
-		
+
 		return (model: model, nrOfTabs: children.count, state: self.viewState)
 	}
 }
