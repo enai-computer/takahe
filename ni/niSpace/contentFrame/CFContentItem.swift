@@ -12,6 +12,7 @@ enum FollowOnAction{
 }
 
 protocol CFContentItem{
+	var viewIsActive: Bool {get}
 	func setActive() -> Void
 	func setInactive() -> FollowOnAction
 	func cancelOperation(_ sender: Any?) -> Void

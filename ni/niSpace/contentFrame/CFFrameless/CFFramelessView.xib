@@ -13,7 +13,7 @@
             <rect key="frame" x="0.0" y="0.0" width="400" height="300"/>
             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
             <view key="contentView" id="qcw-Ay-qn3">
-                <rect key="frame" x="2" y="2" width="396" height="296"/>
+                <rect key="frame" x="0.0" y="2" width="397" height="296"/>
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             </view>
             <color key="borderColor" name="transparent"/>
