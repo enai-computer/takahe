@@ -7,8 +7,12 @@
 
 import Foundation
 
+enum FollowOnAction{
+	case nothing, removeSelf
+}
+
 protocol CFContentItem{
 	func setActive() -> Void
-	func setInactive() -> Void
+	func setInactive() -> FollowOnAction
 	func cancelOperation(_ sender: Any?) -> Void
 }

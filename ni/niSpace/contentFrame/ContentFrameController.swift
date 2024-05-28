@@ -334,7 +334,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	}
 	
 	func openNoteInNewTab(contentId: UUID = UUID(), tabTitle: String? = nil, content: String? = nil){
-		let noteView = ni.getNewNoteView(parentView: self.view, frame: self.view.frame)
+		let noteView = ni.getNewNoteView(owner: self, parentView: self.view, frame: self.view.frame)
 		
 		var tabHeadModel = TabViewModel(contentId: contentId, type: .note, isSelected: true)
 		tabHeadModel.position = 0
