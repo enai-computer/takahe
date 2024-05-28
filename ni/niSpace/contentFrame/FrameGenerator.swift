@@ -28,10 +28,8 @@ func reopenContentFrame(screenWidth: CGFloat, contentFrame: NiContentFrameModel,
 
 func reopenContentFrameWithOutPositioning(screenWidth: CGFloat, contentFrameState: NiConentFrameState, tabViewModels: [TabViewModel]) -> ContentFrameController {
     
-	var activeTab: Int = -1
-	
 	let frameController = if(contentFrameState == .minimised){
-		ContentFrameController(viewState: contentFrameState, tabsModel: tabViewModels)
+		ContentFrameController(viewState: contentFrameState)
 	}else{
 		// we are not adding tabViewModel here as opening up a tab down there does that.
 		//FIXME: clean up that tech debt
@@ -44,28 +42,41 @@ func reopenContentFrameWithOutPositioning(screenWidth: CGFloat, contentFrameStat
 		return frameController
 	}
 	
+	openCFTabs(for: frameController, with: tabViewModels)
+	
+    return frameController
+}
+
+func openCFTabs(for controller: ContentFrameController, with tabViewModels: [TabViewModel]){
+	if(controller.viewState == .frameless){
+		if(0 < tabViewModels.count){
+			let tab = tabViewModels[0]
+			if(tab.type == .note){
+				controller.openNoteInNewTab(contentId: tab.contentId, tabTitle: tab.title, content: tab.content)
+			}
+		}
+		return
+	}
+	
+	var activeTab: Int = -1
 	//loading tabs
 	//TODO: refactor,- set TabModel and let the content controllerreopen the tabs
 	for (i, tab) in tabViewModels.enumerated(){
-
-		if(tab.state == .empty ){
-			_ = frameController.openEmptyWebTab(tab.contentId)
+		if(tab.state == .empty && tab.type == .web){
+			_ = controller.openEmptyWebTab(tab.contentId)
+		}else if(tab.type == .web){
+			_ = controller.openWebsiteInNewTab(urlStr: tab.content, contentId: tab.contentId, tabName: tab.title, webContentState: tab.state)
 		}else{
-			_ = frameController.openWebsiteInNewTab(urlStr: tab.url, contentId: tab.contentId, tabName: tab.title, webContentState: tab.state)
+			//Everything else is not supported
+			preconditionFailure("type: \(tab.type) is not supported in a tabbed contentFrame.")
 		}
-		
-		//Clean-up after 1st of July 2024,-
-		//existing users have all their tabs active by default
-		//once all users updated to 0.1.4 Build 7 or later and opened and stored all spaces at least once
 		if(tab.isSelected){
 			activeTab = i
 		}
-    }
-	if(0 <= activeTab){
-		frameController.forceSelectTab(at: activeTab)
 	}
-	
-    return frameController
+	if(0 <= activeTab){
+		controller.forceSelectTab(at: activeTab)
+	}
 }
 
 /** Resizing here, in case the CFs are out of bounds on reload on a smaller screen
@@ -104,9 +115,7 @@ func niCFTabModelToTabViewModel(tabs: [NiCFTabModel]) -> [TabViewModel]{
 	var tabViews: [TabViewModel] = []
 	
 	for tabModel in tabs {
-		let record = CachedWebTable.fetchCachedWebsite(contentId: tabModel.id)
-		var tabView = TabViewModel(contentId: tabModel.id, type: .web, title: record.title, url: record.url, position: tabModel.position)
-		
+		var tabView = getTabViewModel(for: tabModel.id, ofType: tabModel.contentType, positioned: tabModel.position)
 		if(tabModel.position < 0 || tabs.count <= tabModel.position){
 			tabPositionCorrectionNeeded = true
 		}
@@ -129,6 +138,33 @@ func niCFTabModelToTabViewModel(tabs: [NiCFTabModel]) -> [TabViewModel]{
 	}
 	
 	return tabViews
+}
+
+func getTabViewModel(for id: UUID, ofType type: TabContentType, positioned at: Int) -> TabViewModel{
+	var tabView: TabViewModel
+	if(type == .web){
+		let record = CachedWebTable.fetchCachedWebsite(contentId: id)
+		tabView = TabViewModel(
+			contentId: id,
+			type: type,
+			title: record.title,
+			content: record.url,
+			position: at
+		)
+	}else if(type == .note){
+		let record = NoteTable.fetchNote(contentId: id)
+		tabView = TabViewModel(
+			contentId: id,
+			type: type,
+			title: record.title,
+			content: record.rawText,
+			position: at
+		)
+	}else{
+		preconditionFailure("unsupported type")
+	}
+
+	return tabView
 }
 
 

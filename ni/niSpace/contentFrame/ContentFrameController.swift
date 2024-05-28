@@ -271,7 +271,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		var selectedTabPos: Int = 0
 		
 		for i in tabs.indices{
-			let wview = getNewWebView(owner: self, frame: expandedCFView!.frame ,cleanUrl: tabs[i].url, contentId: tabs[i].contentId)
+			let wview = getNewWebView(owner: self, frame: expandedCFView!.frame ,cleanUrl: tabs[i].content, contentId: tabs[i].contentId)
 			tabs[i].view = wview
 			tabs[i].position = expandedCFView!.createNewTab(tabView: wview)
 			wview.tabHeadPosition = tabs[i].position
@@ -292,7 +292,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 					tabs[i].title = tabs[i].webView!.title!
 				}
 				if(tabs[i].webView!.url != nil){
-					tabs[i].url = tabs[i].webView!.url!.absoluteString
+					tabs[i].content = tabs[i].webView!.url!.absoluteString
 				}
 			}
 			if(i == selectedTabModel){
@@ -457,7 +457,10 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 			expandedCFView?.cfTabHeadCollection.reloadData()
 		}
 		
-		ContentTable.delete(id: deletedTabModel!.contentId)
+		if(deletedTabModel != nil){
+			ContentTable.delete(id: deletedTabModel!.contentId)
+		}
+
 		deletedTabModel?.view = nil
 	}
 	
@@ -633,7 +636,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		if(self.tabs[wv.tabHeadPosition].state != .empty && self.tabs[wv.tabHeadPosition].state != .error ){
 			self.tabs[wv.tabHeadPosition].state = .loaded
 			if(wv.url != nil){
-				self.tabs[wv.tabHeadPosition].url = wv.url!.absoluteString
+				self.tabs[wv.tabHeadPosition].content = wv.url!.absoluteString
 			}
 			expandedCFView?.cfTabHeadCollection.reloadItems(at: Set(arrayLiteral: IndexPath(item: wv.tabHeadPosition, section: 0)))
 		}
@@ -757,7 +760,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		for tab in tabs {
 			if(tab.type == .web){
 				//TODO: add guard rails to not enter empty tab
-				let url = tab.webView?.url?.absoluteString ?? tab.url
+				let url = tab.webView?.url?.absoluteString ?? tab.content
 				CachedWebTable.upsert(documentId: documentId, id: tab.contentId, title: tab.title, url: url)
 			}
 			if(tab.type == .note){

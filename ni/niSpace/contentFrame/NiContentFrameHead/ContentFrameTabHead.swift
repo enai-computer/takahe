@@ -161,7 +161,7 @@ class ContentFrameTabHead: NSCollectionViewItem, NSTextFieldDelegate {
 			if(viewModel.state == .empty || viewModel.state == .error){
 				self.tabHeadTitle.enableEditing(urlStr: "")
 			}else{
-				self.tabHeadTitle.enableEditing(urlStr: viewModel.webView?.url?.absoluteString ?? viewModel.url)
+				self.tabHeadTitle.enableEditing(urlStr: viewModel.webView?.url?.absoluteString ?? viewModel.content)
 			}
 		}else{
 			removeEditingStyle()

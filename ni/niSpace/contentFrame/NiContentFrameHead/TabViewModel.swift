@@ -17,7 +17,7 @@ struct TabViewModel{
 	let type: TabContentType
 
 	var title: String = ""
-	var url: String = ""
+	var content: String = ""
 	var state: TabViewModelState = .empty
 	var icon: NSImage?
 	

@@ -21,8 +21,15 @@ func getNewNoteView(parentView: NSView, frame: NSRect) -> NiNoteView{
 	view.isRichText = false
 	view.isVerticallyResizable = false
 	view.isHorizontallyResizable = false
+//	view.translatesAutoresizingMaskIntoConstraints = false
+	
 	view.font = NSFont(name: "Sohne-Buch", size: 16.0)
 	view.textColor = NSColor.sandDark7
+	
+//	view.leadingAnchor.constraint(equalTo: parentView.leadingAnchor).isActive = true
+//	view.trailingAnchor.constraint(equalTo: parentView.trailingAnchor).isActive = true
+//	view.topAnchor.constraint(equalTo: parentView.topAnchor).isActive = true
+//	view.bottomAnchor.constraint(equalTo: parentView.bottomAnchor).isActive = true
 	
 	return view
 }
