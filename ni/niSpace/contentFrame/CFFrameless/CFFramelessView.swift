@@ -11,27 +11,22 @@ class CFFramelessView: CFBaseView {
 	
 	override var minFrameHeight: CGFloat {return 50.0}
 	override var minFrameWidth: CGFloat {return 80.0}
-	
-	private var overlay: NSView?
-	
+		
 	override func toggleActive(){
 		frameIsActive = !frameIsActive
 		
 		let myView = contentView as? CFContentItem
 		
 		if(frameIsActive){
-			overlay?.removeFromSuperview()
-			overlay = nil
 			self.borderColor = NSColor.birkin
 			
 			myView?.setActive()
 		}else{
-			overlay = cfOverlay(frame: self.frame, nxtResponder: self)
-			addSubview(overlay!)
-			window?.makeFirstResponder(overlay)
 			self.borderColor = NSColor.transparent
 			
-			myView?.setInactive()
+			if(myView?.setInactive() == .removeSelf){
+				myController?.confirmClose()
+			}
 		}
 	}
 	

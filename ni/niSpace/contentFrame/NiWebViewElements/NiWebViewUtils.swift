@@ -10,7 +10,7 @@ import WebKit
 
 
 func getNewWebView(owner: ContentFrameController, contentId: UUID, urlReq: URLRequest, frame: NSRect) -> NiWebView {
-	let wkView = NiWebView(contentId: contentId, owner: owner, frame: frame)
+	let wkView = NiWebView(owner: owner, frame: frame)
 	wkView.load(urlReq)
 	wkView.navigationDelegate = owner
 	wkView.uiDelegate = owner
@@ -19,7 +19,7 @@ func getNewWebView(owner: ContentFrameController, contentId: UUID, urlReq: URLRe
 }
 
 func getNewWebView(owner: ContentFrameController, contentId: UUID, frame: NSRect, fileUrl: URL? = nil) -> NiWebView {
-	let niWebView = NiWebView(contentId: contentId, owner: owner, frame: frame)
+	let niWebView = NiWebView(owner: owner, frame: frame)
 	niWebView.uiDelegate = owner
 	
 	let localHTMLurl = if(fileUrl == nil) {

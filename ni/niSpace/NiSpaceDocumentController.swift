@@ -13,7 +13,7 @@ class NiSpaceDocumentController: NSViewController{
 	var myView: NiSpaceDocumentView {return self.view as! NiSpaceDocumentView}
 	
 	private let defaultCFSize: CGSize = CGSize(width: 1250, height: 730)
-	private let defaultNoteSize: CGSize = CGSize(width: 400, height: 300)
+	private let defaultNoteSize: CGSize = CGSize(width: 300, height: 200)
 	
 	static let EMPTY_SPACE_ID: UUID = UUID(uuidString: "00000000-0000-0000-0000-000000000000")!
 	

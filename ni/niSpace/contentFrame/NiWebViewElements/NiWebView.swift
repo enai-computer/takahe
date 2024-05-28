@@ -15,7 +15,6 @@ import WebKit
 class NiWebView: WKWebView, CFContentItem{
     
     private let owner: ContentFrameController
-    let contentId: UUID
     private(set) var viewIsActive: Bool = true
 	var tabHeadPosition: Int = -1
 	var retries: Int = 0
@@ -23,9 +22,8 @@ class NiWebView: WKWebView, CFContentItem{
 	// overlays own view to deactivate clicks and visualise deactivation state
 	private var overlay: NSView?
 	
-    init(contentId: UUID, owner: ContentFrameController, frame: NSRect) {
+    init(owner: ContentFrameController, frame: NSRect) {
         
-        self.contentId = contentId
         self.owner = owner
 		
 		let wvConfig = generateWKWebViewConfiguration()
@@ -88,11 +86,12 @@ class NiWebView: WKWebView, CFContentItem{
         viewIsActive = true
     }
     
-	func setInactive(){
+	func setInactive() -> FollowOnAction{
 		overlay = cfOverlay(frame: self.frame, nxtResponder: owner.view)
 		addSubview(overlay!)
 		window?.makeFirstResponder(overlay)
 		viewIsActive = false
+		return .nothing
 	}
 	
 	override func keyDown(with event: NSEvent) {

@@ -115,7 +115,14 @@ class NiSpaceViewController: NSViewController{
 	}
 	
 	func createANote(positioned relavtiveTo: CGPoint? = nil){
-		niDocument.openEmptyCF(viewState: .frameless, initialTabType: .note, positioned: relavtiveTo)
+		var noteOrigin: CGPoint?
+		if(spaceMenu != nil){
+			noteOrigin = spaceMenu!.view.frame.origin
+			noteOrigin!.y = niScrollView.documentView!.visibleRect.size.height - spaceMenu!.view.frame.origin.y - spaceMenu!.view.frame.height
+		}else{
+			noteOrigin = relavtiveTo
+		}
+		niDocument.openEmptyCF(viewState: .frameless, initialTabType: .note, positioned: noteOrigin)
 	}
 	
 	func closeTabOfTopCF(){
