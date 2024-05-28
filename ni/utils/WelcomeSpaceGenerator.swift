@@ -68,7 +68,7 @@ class WelcomeSpaceGenerator{
 				contentId: UUID(),
 				type: .web,
 				title: tab.title,
-				url: tab.url,
+				content: tab.url,
 				state: .loading,
 				position: i,
 				isSelected: active

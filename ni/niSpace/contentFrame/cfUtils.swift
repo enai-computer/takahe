@@ -14,7 +14,7 @@ func genMinimizedStackItems(tabs: [TabViewModel], owner: Any?) -> [CFMinimizedSt
 	
 	for tab in tabs {
 		let itemView = (NSView.loadFromNib(nibName: "CFMinimizedStackItem", owner: owner) as! CFMinimizedStackItem)
-		let url = tab.webView?.url?.absoluteString ?? tab.url
+		let url = tab.webView?.url?.absoluteString ?? tab.content
 		itemView.setItemData(position: tab.position, title: tab.title, icon: tab.icon, urlStr: url)
 		stackItems.append(itemView)
 	}
