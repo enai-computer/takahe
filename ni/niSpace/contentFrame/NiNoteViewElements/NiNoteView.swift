@@ -11,25 +11,20 @@ import Carbon.HIToolbox
 class NiNoteView: NSTextView, CFContentItem {
 	
 	private var overlay: NSView?
-	private let owner: ContentFrameController
-	
-	init(owner: ContentFrameController, frame: NSRect){
-		self.owner = owner
-		super.init(frame: frame, textContainer: nil)
-	}
-	
-	required init?(coder: NSCoder) {
-		fatalError("init(coder:) has not been implemented")
-	}
+	var owner: ContentFrameController?
 	
 	func setActive() {
 		overlay?.removeFromSuperview()
 		overlay = nil
 		self.isEditable = true
 		self.isSelectable = true
+		
+		setStyling()
 	}
 	
 	func setInactive() -> FollowOnAction{
+		setStyling()
+		
 		self.isEditable = false
 		self.isSelectable = false
 		let content = getText()
@@ -44,8 +39,15 @@ class NiNoteView: NSTextView, CFContentItem {
 		return .nothing
 	}
 	
+	private func setStyling(){
+		self.wantsLayer = true
+		self.backgroundColor = NSColor.sandLight3
+		self.layer?.cornerRadius = 5
+		self.layer?.cornerCurve = .continuous
+	}
+	
 	override func cancelOperation(_ sender: Any?) {
-		delegate?.textShouldEndEditing?(self)
+		_ = delegate?.textShouldEndEditing?(self)
 		return
 	}
 	
@@ -59,7 +61,7 @@ class NiNoteView: NSTextView, CFContentItem {
 	override func keyDown(with event: NSEvent) {
 		if(event.keyCode == kVK_Delete || event.keyCode == kVK_ForwardDelete){
 			if(!isEditable){
-				owner.triggerCloseProcess(with: event)
+				owner?.triggerCloseProcess(with: event)
 			}
 		}
 		if(event.keyCode == kVK_Escape){

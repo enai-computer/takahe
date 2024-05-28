@@ -74,6 +74,8 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	private func loadFramelessView() -> CFBaseView{
 		let framelessView = (NSView.loadFromNib(nibName: "CFFramelessView", owner: self) as! CFFramelessView)
 		framelessView.setSelfController(self)
+		framelessView.wantsLayer = true
+		framelessView.layer?.backgroundColor = NSColor.sandLight3.cgColor
 		return framelessView
 	}
 	
@@ -341,9 +343,9 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		tabHeadModel.view = noteView
 		self.tabs.append(tabHeadModel)
 		
-		noteView.string = content ?? ""
-		
 		_ = myView.createNewTab(tabView: noteView)
+		myView.window?.makeFirstResponder(noteView)
+		noteView.string = content ?? ""
 	}
 	
 	func openWebsiteInNewTab(urlStr: String, contentId: UUID, tabName: String, webContentState: TabViewModelState? = nil, openNextTo: Int = -1) -> Int{

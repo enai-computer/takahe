@@ -8,7 +8,8 @@
 import Cocoa
 
 func getNewNoteView(owner: ContentFrameController, parentView: NSView, frame: NSRect) -> NiNoteView{
-	let view = NiNoteView(owner: owner, frame: frame)
+	let view = NiNoteView(frame: frame)	//owner: owner,
+	view.owner = owner
 	
 	view.backgroundColor = NSColor.sandLight2
 	view.insertionPointColor = NSColor.birkin

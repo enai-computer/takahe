@@ -22,7 +22,7 @@ class CFFramelessView: CFBaseView {
 			
 			myView?.setActive()
 		}else{
-			self.borderColor = NSColor.transparent
+			self.borderColor = NSColor.sandLight3
 			
 			if(myView?.setInactive() == .removeSelf){
 				myController?.confirmClose()
