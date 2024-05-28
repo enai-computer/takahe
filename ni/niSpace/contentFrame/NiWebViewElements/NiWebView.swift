@@ -15,7 +15,7 @@ import WebKit
 class NiWebView: WKWebView, CFContentItem{
     
     private let owner: ContentFrameController
-    private(set) var viewIsActive: Bool = true
+    private(set) var viewIsActive: Bool = true	
 	var tabHeadPosition: Int = -1
 	var retries: Int = 0
 	

@@ -11,7 +11,8 @@ func getNewNoteView(owner: ContentFrameController, parentView: NSView, frame: NS
 	let view = NiNoteView(frame: frame)	//owner: owner,
 	view.owner = owner
 	
-	view.backgroundColor = NSColor.sandLight2
+	view.textContainerInset = NSSize(width: 6.0, height: 6.0)
+	view.backgroundColor = NSColor.sandLight3
 	view.insertionPointColor = NSColor.birkin
 	view.importsGraphics = false
 	view.allowsImageEditing = false
@@ -22,15 +23,9 @@ func getNewNoteView(owner: ContentFrameController, parentView: NSView, frame: NS
 	view.isRichText = false
 	view.isVerticallyResizable = false
 	view.isHorizontallyResizable = false
-//	view.translatesAutoresizingMaskIntoConstraints = false
 	
 	view.font = NSFont(name: "Sohne-Buch", size: 16.0)
 	view.textColor = NSColor.sandDark7
-	
-//	view.leadingAnchor.constraint(equalTo: parentView.leadingAnchor).isActive = true
-//	view.trailingAnchor.constraint(equalTo: parentView.trailingAnchor).isActive = true
-//	view.topAnchor.constraint(equalTo: parentView.topAnchor).isActive = true
-//	view.bottomAnchor.constraint(equalTo: parentView.bottomAnchor).isActive = true
 	
 	return view
 }

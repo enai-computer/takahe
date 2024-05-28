@@ -12,14 +12,16 @@ class NiNoteView: NSTextView, CFContentItem {
 	
 	private var overlay: NSView?
 	var owner: ContentFrameController?
+	var parentView: CFFramelessView? {return superview as? CFFramelessView }
+	var viewIsActive: Bool {return isEditable}
 	
 	func setActive() {
 		overlay?.removeFromSuperview()
 		overlay = nil
-		self.isEditable = true
 		self.isSelectable = true
 		
 		setStyling()
+		window?.makeFirstResponder(self)
 	}
 	
 	func setInactive() -> FollowOnAction{
@@ -39,6 +41,16 @@ class NiNoteView: NSTextView, CFContentItem {
 		return .nothing
 	}
 	
+	func startEditing(){
+		self.isEditable = true
+		parentView?.removeBorder()
+	}
+	
+	func stopEditing(){
+		self.isEditable = false
+		parentView?.setBorder()
+	}
+	
 	private func setStyling(){
 		self.wantsLayer = true
 		self.backgroundColor = NSColor.sandLight3
@@ -52,21 +64,37 @@ class NiNoteView: NSTextView, CFContentItem {
 	}
 	
 	override func mouseDown(with event: NSEvent) {
-		if(!isEditable){
-			isEditable = true
+		if(!isEditable && event.clickCount == 2){
+			startEditing()
+		}else if(!isEditable && event.clickCount == 1){
+			nextResponder?.mouseDown(with: event)
+			return
 		}
 		super.mouseDown(with: event)
+	}
+	
+	override func mouseDragged(with event: NSEvent) {
+		if(!isEditable){
+			nextResponder?.mouseDragged(with: event)
+			return
+		}
+		super.mouseDragged(with: event)
 	}
 	
 	override func keyDown(with event: NSEvent) {
 		if(event.keyCode == kVK_Delete || event.keyCode == kVK_ForwardDelete){
 			if(!isEditable){
 				owner?.triggerCloseProcess(with: event)
+				return
 			}
 		}
-		if(event.keyCode == kVK_Escape){
-			self.isEditable = false
+		if(event.keyCode == kVK_Escape && isEditable){
+			stopEditing()
 			return
+		}
+		
+		if(!isEditable){
+			startEditing()
 		}
 		super.keyDown(with: event)
 	}

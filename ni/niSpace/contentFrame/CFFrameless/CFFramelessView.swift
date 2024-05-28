@@ -11,23 +11,29 @@ class CFFramelessView: CFBaseView {
 	
 	override var minFrameHeight: CGFloat {return 50.0}
 	override var minFrameWidth: CGFloat {return 80.0}
-		
+	var myView: CFContentItem? {return contentView as? CFContentItem}
+	
 	override func toggleActive(){
 		frameIsActive = !frameIsActive
-		
-		let myView = contentView as? CFContentItem
-		
+	
 		if(frameIsActive){
-			self.borderColor = NSColor.birkin
-			
+			setBorder()
 			myView?.setActive()
 		}else{
-			self.borderColor = NSColor.sandLight3
+			removeBorder()
 			
 			if(myView?.setInactive() == .removeSelf){
 				myController?.confirmClose()
 			}
 		}
+	}
+	
+	func removeBorder(){
+		self.borderColor = NSColor.sandLight3
+	}
+	
+	func setBorder(){
+		self.borderColor = NSColor.birkin
 	}
 	
 	func setContentView(view: NSView){
@@ -49,11 +55,10 @@ class CFFramelessView: CFBaseView {
 		
 		//enable drag and drop niFrame to new postion and resizing
 		cursorOnBorder = isOnBoarder(cursorPos)
-		if cursorOnBorder != .no{
-			cursorDownPoint = event.locationInWindow
-		}
+		cursorDownPoint = event.locationInWindow
 		
-		if cursorOnBorder == .top{
+		
+		if (cursorOnBorder == .top){
 			NSCursor.closedHand.push()
 		}
 	}
@@ -64,7 +69,7 @@ class CFFramelessView: CFBaseView {
 			return
 		}
 		
-		if cursorOnBorder == .top{
+		if (cursorOnBorder == .top){
 			NSCursor.pop()
 		}
 
@@ -81,9 +86,6 @@ class CFFramelessView: CFBaseView {
 			return
 		}
 		
-		if cursorOnBorder == OnBorder.no{
-			return
-		}
 		let currCursorPoint = event.locationInWindow
 		let horizontalDistanceDragged = currCursorPoint.x - cursorDownPoint.x
 		let verticalDistanceDragged = currCursorPoint.y - cursorDownPoint.y
@@ -94,8 +96,6 @@ class CFFramelessView: CFBaseView {
 		switch cursorOnBorder {
 			case .topLeft:
 				resizeOwnFrame(horizontalDistanceDragged, verticalDistanceDragged, cursorLeftSide: true, cursorTop: true)
-			case .top:
-				repositionView(horizontalDistanceDragged, verticalDistanceDragged)
 			case .topRight:
 				resizeOwnFrame(horizontalDistanceDragged, verticalDistanceDragged, cursorTop: true)
 			case .bottomLeft:
@@ -108,7 +108,8 @@ class CFFramelessView: CFBaseView {
 				resizeOwnFrame(horizontalDistanceDragged, 0, cursorLeftSide: true)
 			case .rightSide:
 				resizeOwnFrame(horizontalDistanceDragged, 0)
-		default: return
+		default: 
+				repositionView(horizontalDistanceDragged, verticalDistanceDragged)
 		}
 	}
 	
