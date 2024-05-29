@@ -97,6 +97,15 @@ class NiDocumentModel: Codable{
 
 enum TabContentType: String, Codable{
     case web, note    //to come: pdf, img ...
+	
+	func toDescriptiveName()->String{
+		switch (self){
+			case .web:
+				return "website"
+			case .note:
+				return "note"
+		}
+	}
 }
 
 struct NiCFTabModel: Codable{
