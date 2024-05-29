@@ -9,6 +9,8 @@ import Cocoa
 import SQLite
 
 private let DB_SPACES = "/spaces.sqlite3"
+private let DATA_FOLDER = "/data-0"
+private let IMG_FOLDER = "/img-0"
 var CUSTOM_STORAGE_LOCATION: String? = nil
 
 class Storage{
@@ -16,6 +18,7 @@ class Storage{
 	
     static let db = Storage()
     let spacesDB: Connection
+	private var path: String?
 
     private init(){
 		let argPos = CommandLine.arguments.firstIndex(of: "-niLocalStorage")
@@ -23,7 +26,7 @@ class Storage{
 			CUSTOM_STORAGE_LOCATION = CommandLine.arguments[(argPos!+1)]
 		}
 				
-		let path = if(CUSTOM_STORAGE_LOCATION == nil){
+		path = if(CUSTOM_STORAGE_LOCATION == nil){
 			NSSearchPathForDirectoriesInDomains(
 				.applicationSupportDirectory, .userDomainMask, true
 			).first! + "/" + Bundle.main.bundleIdentifier!
@@ -33,8 +36,8 @@ class Storage{
         
         do {
             // create parent directory inside application support if it doesn’t exist
-            try FileManager.default.createDirectory(atPath: path, withIntermediateDirectories: true, attributes: nil)
-            spacesDB = try Connection(path + DB_SPACES)
+            try FileManager.default.createDirectory(atPath: path!, withIntermediateDirectories: true, attributes: nil)
+            spacesDB = try Connection(path! + DB_SPACES)
 			spacesDB.foreignKeys = true
             try createSpacesTablesIfNotExist(db: spacesDB)
         }catch{
