@@ -95,6 +95,7 @@ class NiNoteView: NSTextView, CFContentItem {
 		
 		if(!isEditable){
 			startEditing()
+			moveToEndOfDocument(nil)
 		}
 		super.keyDown(with: event)
 	}
