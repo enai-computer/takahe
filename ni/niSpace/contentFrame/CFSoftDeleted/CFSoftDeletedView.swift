@@ -12,6 +12,7 @@ class CFSoftDeletedView: NSBox {
 	var myController: ContentFrameController? = nil
 	private var animationTriggered: Bool = false
 	
+	@IBOutlet var messageBox: NSTextField!
 	@IBOutlet var undoIcon: NSImageView!
 	
 	func setSelfController(_ con: ContentFrameController){
@@ -22,7 +23,7 @@ class CFSoftDeletedView: NSBox {
 		myController = nil
 	}
 	
-	func initAfterViewLoad(){
+	func initAfterViewLoad(_ itemName: String = "group"){
 		wantsLayer = true
 		layer?.cornerRadius = 10
 		layer?.cornerCurve = .continuous
@@ -32,6 +33,9 @@ class CFSoftDeletedView: NSBox {
 		
 		let hoverEffectTrackingArea = NSTrackingArea(rect: frame, options: [.mouseEnteredAndExited, .activeInKeyWindow], owner: self, userInfo: nil)
 		addTrackingArea(hoverEffectTrackingArea)
+		
+		messageBox.stringValue = "restore closed \(itemName)"
+		triggerAnimation()
 	}
 	
 	override func mouseEntered(with event: NSEvent) {
@@ -42,7 +46,6 @@ class CFSoftDeletedView: NSBox {
 	override func mouseExited(with event: NSEvent) {
 		undoIcon.contentTintColor = NSColor.sandLight11
 		layer?.speed = 1.0
-		triggerAnimation()
 	}
 	
 	override func mouseDown(with event: NSEvent) {
