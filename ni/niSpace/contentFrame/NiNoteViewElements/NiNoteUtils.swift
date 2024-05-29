@@ -23,6 +23,7 @@ func getNewNoteView(owner: ContentFrameController, parentView: NSView, frame: NS
 	view.isRichText = false
 	view.isVerticallyResizable = false
 	view.isHorizontallyResizable = false
+	view.isEditable = false
 	
 	view.font = NSFont(name: "Sohne-Buch", size: 16.0)
 	view.textColor = NSColor.sandDark7

@@ -137,7 +137,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		let softDeletedView = (NSView.loadFromNib(nibName: "CFSoftDeletedView", owner: self) as! CFSoftDeletedView)
 		softDeletedView.setSelfController(self)
 		if(1 == tabs.count){
-			softDeletedView.initAfterViewLoad(tabs[0].type.rawValue)
+			softDeletedView.initAfterViewLoad(tabs[0].type.toDescriptiveName())
 		}else{
 			softDeletedView.initAfterViewLoad()
 		}
@@ -349,6 +349,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		self.tabs.append(tabHeadModel)
 		
 		_ = myView.createNewTab(tabView: noteView)
+		noteView.startEditing()
 		myView.window?.makeFirstResponder(noteView)
 		noteView.string = content ?? ""
 	}
