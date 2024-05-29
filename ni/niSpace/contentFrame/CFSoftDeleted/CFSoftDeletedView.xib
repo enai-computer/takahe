@@ -16,7 +16,7 @@
                 <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" textCompletion="NO" id="RHD-0Z-mPv">
                     <rect key="frame" x="12" y="6" width="142" height="23"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <textFieldCell key="cell" lineBreakMode="clipping" refusesFirstResponder="YES" allowsUndo="NO" alignment="left" title="restore closed group" id="Jq1-oH-gFs">
+                    <textFieldCell key="cell" lineBreakMode="clipping" refusesFirstResponder="YES" allowsUndo="NO" alignment="left" id="Jq1-oH-gFs">
                         <font key="font" size="15" name="Sohne-Buch"/>
                         <color key="textColor" name="SandLight11"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -29,6 +29,7 @@
                 </imageView>
             </subviews>
             <connections>
+                <outlet property="messageBox" destination="RHD-0Z-mPv" id="JVR-43-2Ai"/>
                 <outlet property="undoIcon" destination="F4u-Ng-WkG" id="rYi-xV-okj"/>
             </connections>
             <point key="canvasLocation" x="139" y="-36"/>

@@ -136,7 +136,12 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	private func loadAndDisplaySoftDeletedView(topRightCorner: CGPoint) {
 		let softDeletedView = (NSView.loadFromNib(nibName: "CFSoftDeletedView", owner: self) as! CFSoftDeletedView)
 		softDeletedView.setSelfController(self)
-		softDeletedView.initAfterViewLoad()
+		if(1 == tabs.count){
+			softDeletedView.initAfterViewLoad(tabs[0].type.rawValue)
+		}else{
+			softDeletedView.initAfterViewLoad()
+		}
+		
 		
 		var undoOrigin = topRightCorner
 		undoOrigin.x = undoOrigin.x - softDeletedView.frame.width
