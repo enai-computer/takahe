@@ -15,8 +15,7 @@ var CUSTOM_STORAGE_LOCATION: String? = nil
 
 class Storage{
 
-	
-    static let db = Storage()
+    static let instance = Storage()
     let spacesDB: Connection
 	private var path: String?
 
@@ -56,5 +55,13 @@ class Storage{
 		try NoteTable.create(db: db)
     }
     
-
+	func genFileUrl(for id: UUID, ofType type: TabContentType = .img) -> URL{
+		if(type == .img){
+			return URL(
+				fileURLWithPath: path! + DATA_FOLDER + IMG_FOLDER + "/\(id).png",
+				isDirectory: false
+			)
+		}
+		preconditionFailure("functionality is not implemented")
+	}
 }

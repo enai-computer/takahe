@@ -25,10 +25,10 @@ class NoteTable{
 	}
 	
 	static func upsert(documentId: UUID, id: UUID, title: String?, rawText: String){
-		ContentTable.insert(id: id, type: "note", title: title)
+		ContentTable.upsert(id: id, type: "note", title: title)
 		
 		do{
-			try Storage.db.spacesDB.run(
+			try Storage.instance.spacesDB.run(
 				table.upsert(
 					self.contentId <- id,
 					self.rawText <- rawText,
@@ -44,13 +44,13 @@ class NoteTable{
 	
 	static func fetchNote(contentId: UUID) -> NoteDataModel{
 		do{
-			for record in try Storage.db.spacesDB.prepare(
+			for record in try Storage.instance.spacesDB.prepare(
 				table.join(ContentTable.table, on: self.contentId==ContentTable.id)
 					.select(rawText, ContentTable.title).filter(self.contentId == contentId)
 			){
 				return try NoteDataModel(
 					title: record.get(ContentTable.title) ?? "",
-					rawText: record.get(rawText) ?? ""
+					rawText: record.get(self.rawText) ?? ""
 				)
 			}
 		}catch{

@@ -43,7 +43,7 @@ class DocumentTable{
     
     static func upsertDoc(id: UUID, name: String, document: String?){
         do{
-            try Storage.db.spacesDB.run(
+            try Storage.instance.spacesDB.run(
                 table.upsert(
                     self.id <- id,
                     self.name <- name,
@@ -62,7 +62,7 @@ class DocumentTable{
         var res: [NiDocumentViewModel] = []
 		var containsWelcomeSpace: Bool = false
         do{
-			for record in try Storage.db.spacesDB.prepare(table.select(id, name, updatedAt).limit(limit).order(updatedAt.desc)){
+			for record in try Storage.instance.spacesDB.prepare(table.select(id, name, updatedAt).limit(limit).order(updatedAt.desc)){
 				res.append(NiDocumentViewModel(id: try record.get(id), name: try record.get(name), updatedAt: Date(timeIntervalSince1970: try record.get(updatedAt))))
 				if(try record.get(id) == WelcomeSpaceGenerator.WELCOME_SPACE_ID){
 					containsWelcomeSpace = true
@@ -80,7 +80,7 @@ class DocumentTable{
     
     static func fetchDocumentModel(id: UUID) -> String?{
         do{
-            for record in try Storage.db.spacesDB.prepare(table.select(document).filter(self.id == id)){
+            for record in try Storage.instance.spacesDB.prepare(table.select(document).filter(self.id == id)){
                 return try record.get(document)
             }
         }catch{
