@@ -66,6 +66,8 @@
 		CD8873782BCD649800007BE9 /* TimeUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8873772BCD649800007BE9 /* TimeUtils.swift */; };
 		CD8D2B082C00C7A100C44C1D /* NoteTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8D2B072C00C7A100C44C1D /* NoteTable.swift */; };
 		CD9B96BC2C04C8EE00998CE2 /* CFContentItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9B96BB2C04C8EE00998CE2 /* CFContentItem.swift */; };
+		CD9B96BF2C0733E700998CE2 /* NiImgView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9B96BE2C0733E700998CE2 /* NiImgView.swift */; };
+		CD9B96C12C0733F800998CE2 /* NiImgViewUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9B96C02C0733F800998CE2 /* NiImgViewUtils.swift */; };
 		CDA639562BF50596001941DE /* welcomeConfig.json in Resources */ = {isa = PBXBuildFile; fileRef = CDA639552BF50596001941DE /* welcomeConfig.json */; };
 		CDA639582BF508FF001941DE /* WelcomeSpaceGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA639572BF508FF001941DE /* WelcomeSpaceGenerator.swift */; };
 		CDB06B612AF84E1F008DB8FF /* NiSpaceDocumentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB06B602AF84E1F008DB8FF /* NiSpaceDocumentView.swift */; };
@@ -161,6 +163,8 @@
 		CD8873772BCD649800007BE9 /* TimeUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeUtils.swift; sourceTree = "<group>"; };
 		CD8D2B072C00C7A100C44C1D /* NoteTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteTable.swift; sourceTree = "<group>"; };
 		CD9B96BB2C04C8EE00998CE2 /* CFContentItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CFContentItem.swift; sourceTree = "<group>"; };
+		CD9B96BE2C0733E700998CE2 /* NiImgView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiImgView.swift; sourceTree = "<group>"; };
+		CD9B96C02C0733F800998CE2 /* NiImgViewUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiImgViewUtils.swift; sourceTree = "<group>"; };
 		CDA639552BF50596001941DE /* welcomeConfig.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = welcomeConfig.json; sourceTree = "<group>"; };
 		CDA639572BF508FF001941DE /* WelcomeSpaceGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeSpaceGenerator.swift; sourceTree = "<group>"; };
 		CDB06B602AF84E1F008DB8FF /* NiSpaceDocumentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiSpaceDocumentView.swift; sourceTree = "<group>"; };
@@ -251,6 +255,7 @@
 		A1E41BFD2ACB684F00338417 /* contentFrame */ = {
 			isa = PBXGroup;
 			children = (
+				CD9B96BD2C0733C800998CE2 /* NiImgViewElements */,
 				CD66CE312B1F7AFF0006BB98 /* NiWebViewElements */,
 				CDFA8D002C0492A100882722 /* NiNoteViewElements */,
 				CDFA8CF92C03B95F00882722 /* CFFrameless */,
@@ -377,6 +382,15 @@
 				CD06A9B92BF79EF500312256 /* NiScroller.swift */,
 			);
 			path = NiContentFrameHead;
+			sourceTree = "<group>";
+		};
+		CD9B96BD2C0733C800998CE2 /* NiImgViewElements */ = {
+			isa = PBXGroup;
+			children = (
+				CD9B96BE2C0733E700998CE2 /* NiImgView.swift */,
+				CD9B96C02C0733F800998CE2 /* NiImgViewUtils.swift */,
+			);
+			path = NiImgViewElements;
 			sourceTree = "<group>";
 		};
 		CDB06B5B2AF81CB6008DB8FF /* niSpace */ = {
@@ -601,6 +615,7 @@
 				CD19BC962BC7E5BF002AF14E /* HomeViewUtils.swift in Sources */,
 				CD9B96BC2C04C8EE00998CE2 /* CFContentItem.swift in Sources */,
 				A1B8E6AB2AAFB5EC00AC6566 /* ni.xcdatamodeld in Sources */,
+				CD9B96C12C0733F800998CE2 /* NiImgViewUtils.swift in Sources */,
 				CD680F7F2BC7DF59008D495D /* HomeView.swift in Sources */,
 				A14E8F292AD5EB1600409DDF /* NiSpaceViewController.swift in Sources */,
 				CDD6B9522B1BFE8B00C6144D /* NiDocumentModel.swift in Sources */,
@@ -620,6 +635,7 @@
 				CD66CE382B1FD26A0006BB98 /* NiStringUtils.swift in Sources */,
 				CD8873782BCD649800007BE9 /* TimeUtils.swift in Sources */,
 				CD3362162BFDFF97004DBAFB /* SpaceTopbar.swift in Sources */,
+				CD9B96BF2C0733E700998CE2 /* NiImgView.swift in Sources */,
 				CD1160CA2BD27B9E00345E3E /* NiWebViewUtils.swift in Sources */,
 				CDD87ED02BF23C650045B84B /* NiCursorUtils.swift in Sources */,
 				CD1552472BE9286D00A59AE9 /* SwiftUIUtils.swift in Sources */,
@@ -813,7 +829,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = "0.1.6 --- 2024-05-24 - Kondo";
+				CURRENT_PROJECT_VERSION = "0.1.6 --- 2024-05-29.1 - Kondo";
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = SNXQ3BDQ5V;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -846,7 +862,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = "0.1.6 --- 2024-05-24 - Kondo";
+				CURRENT_PROJECT_VERSION = "0.1.6 --- 2024-05-29.1 - Kondo";
 				DEAD_CODE_STRIPPING = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
