@@ -13,18 +13,21 @@ class CFFramelessView: CFBaseView {
 	override var minFrameWidth: CGFloat {return 80.0}
 	var myView: CFContentItem? {return contentView as? CFContentItem}
 	
+	private var hoverEffect: NSTrackingArea? = nil
+	
 	override func toggleActive(){
 		frameIsActive = !frameIsActive
 	
 		if(frameIsActive){
-			setBorder()
 			myView?.setActive()
+			updateTrackingAreas()
+			setBorder()
 		}else{
-			removeBorder()
-			
 			if(myView?.setInactive() == .removeSelf){
 				myController?.confirmClose()
 			}
+			updateTrackingAreas()
+			removeBorder()
 		}
 	}
 	
@@ -78,6 +81,18 @@ class CFFramelessView: CFBaseView {
 		deactivateDocumentResize = false
 		//TODO: look for a cleaner solution,- this is called here so the hand icon switches from closed to open
 		resetCursorRects()
+	}
+	
+	override func mouseEntered(with event: NSEvent) {
+		if(!frameIsActive){
+			borderColor = NSColor.birkinLight
+		}
+	}
+	
+	override func mouseExited(with event: NSEvent) {
+		if(!frameIsActive){
+			removeBorder()
+		}
 	}
 	
 	override func mouseDragged(with event: NSEvent) {
@@ -136,6 +151,20 @@ class CFFramelessView: CFBaseView {
 			
 			addCursorRect(getBottomLeftCornerActionAreaVertical(), cursor: niDiagonalFlippedCursor)
 			addCursorRect(getBottomLeftCornerActionAreaHorizontal(), cursor: niDiagonalFlippedCursor)
+		}
+	}
+	
+	override func updateTrackingAreas() {
+		if let trackingArea = self.hoverEffect{
+			removeTrackingArea(trackingArea)
+		}
+		
+		if(!frameIsActive){
+			hoverEffect = NSTrackingArea(rect: bounds,
+										 options: [.activeInKeyWindow, .mouseEnteredAndExited],
+										 owner: self,
+										 userInfo: nil)
+			addTrackingArea(hoverEffect!)
 		}
 	}
 }
