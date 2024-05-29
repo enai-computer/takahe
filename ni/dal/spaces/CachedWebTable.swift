@@ -32,10 +32,10 @@ class CachedWebTable{
     }
     
     static func upsert(documentId: UUID, id: UUID, title: String?, url: String){
-        ContentTable.insert(id: id, type: "web", title: title)
+        ContentTable.upsert(id: id, type: "web", title: title)
         
         do{
-            try Storage.db.spacesDB.run(
+            try Storage.instance.spacesDB.run(
                 table.upsert(
                     self.contentId <- id,
                     self.url <- url,
@@ -52,7 +52,7 @@ class CachedWebTable{
     
     static func fetchCachedWebsite(contentId: UUID) -> CachedWebsite{
         do{
-            for record in try Storage.db.spacesDB.prepare(
+            for record in try Storage.instance.spacesDB.prepare(
                 table.join(ContentTable.table, on: self.contentId==ContentTable.id)
                     .select(url, ContentTable.title).filter(self.contentId == contentId)
             ){

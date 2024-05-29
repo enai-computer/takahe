@@ -28,15 +28,40 @@ class ContentTable{
             t.column(refCounter, defaultValue: 1)
         })
     }
+	
+	static func contains(id: UUID) -> Bool {
+		do{
+			let q = table.where(self.id == id)
+			for r in try Storage.instance.spacesDB.prepare(q){
+				return true
+			}
+		}catch{
+			print("Failed to run select on ContentTable")
+		}
+		return false
+	}
     
-    static func insert(id: UUID, type: String, title: String?){
+	static func fetchURL(for id: UUID) -> String?{
+		do{
+			let q = table.where(self.id == id)
+			for r in try Storage.instance.spacesDB.prepare(q){
+				return try r.get(self.localStorageLocation)
+			}
+		}catch{
+			print("Failed to run select on ContentTable")
+		}
+		return nil
+	}
+	
+    static func upsert(id: UUID, type: String, title: String?){
         do{
-            try Storage.db.spacesDB.run(
-                table.insert(
+            try Storage.instance.spacesDB.run(
+                table.upsert(
                     self.id <- id,
                     self.title <- title,
                     self.type <- type,
-                    self.updatedAt <- Date().timeIntervalSince1970
+                    self.updatedAt <- Date().timeIntervalSince1970,
+					onConflictOf: self.id
                 )
             )
         }catch{
@@ -44,10 +69,27 @@ class ContentTable{
         }
     }
 	
+	static func upsert(id: UUID, type: String, title: String?, fileUrl: String){
+		do{
+			try Storage.instance.spacesDB.run(
+				table.upsert(
+					self.id <- id,
+					self.title <- title,
+					self.type <- type,
+					self.localStorageLocation <- fileUrl,
+					self.updatedAt <- Date().timeIntervalSince1970,
+					onConflictOf: self.id
+				)
+			)
+		}catch{
+			print("Failed to insert into ContentTable")
+		}
+	}
+	
 	static func delete(id: UUID){
 		do{
 			let record = table.filter(self.id == id)
-			try Storage.db.spacesDB.run(record.delete())
+			try Storage.instance.spacesDB.run(record.delete())
 		} catch {
 			print("Failed to delete content from the content table with id: \(id)")
 		}
