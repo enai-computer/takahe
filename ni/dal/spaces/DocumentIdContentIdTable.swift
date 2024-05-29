@@ -26,7 +26,7 @@ class DocumentIdContentIdTable{
     
     static func insert(documentId: UUID, contentId: UUID){
         do{
-            try Storage.db.spacesDB.run(
+            try Storage.instance.spacesDB.run(
                 table.insert(
                     self.documentId <- documentId,
                     self.contentId <- contentId
