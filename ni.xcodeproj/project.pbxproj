@@ -412,13 +412,13 @@
 		CDD6B9342B1527B700C6144D /* dal */ = {
 			isa = PBXGroup;
 			children = (
-				CDD6B9412B169FC300C6144D /* tables */,
+				CDD6B9412B169FC300C6144D /* spaces */,
 				CDD6B9382B152A8000C6144D /* Storage.swift */,
 			);
 			path = dal;
 			sourceTree = "<group>";
 		};
-		CDD6B9412B169FC300C6144D /* tables */ = {
+		CDD6B9412B169FC300C6144D /* spaces */ = {
 			isa = PBXGroup;
 			children = (
 				CDD6B93F2B169F7700C6144D /* DocumentTable.swift */,
@@ -427,7 +427,7 @@
 				CDD6B9462B16A29100C6144D /* DocumentIdContentIdTable.swift */,
 				CD8D2B072C00C7A100C44C1D /* NoteTable.swift */,
 			);
-			path = tables;
+			path = spaces;
 			sourceTree = "<group>";
 		};
 		CDD6B94A2B19469000C6144D /* niHome */ = {
