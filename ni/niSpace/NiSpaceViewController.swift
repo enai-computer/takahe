@@ -23,11 +23,13 @@ class NiSpaceViewController: NSViewController{
 	init(){
 		self.niSpaceName = ""
 		super.init(nibName: nil, bundle: nil)
+		view.registerForDraggedTypes([.png, .tiff])
 	}
 	
 	init(niSpaceID: UUID, niSpaceName: String) {
 		self.niSpaceName = niSpaceName
 		super.init(nibName: nil, bundle: nil)
+		view.registerForDraggedTypes([.png, .tiff])
 	}
 	
 	required init?(coder: NSCoder) {

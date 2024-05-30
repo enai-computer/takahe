@@ -9,6 +9,7 @@ import Cocoa
 import SQLite
 
 private let DB_SPACES = "/spaces.sqlite3"
+private let DB_CACHE = "/niCache.sqlite3"
 private let DATA_FOLDER = "/data-0"
 private let IMG_FOLDER = "/img-0"
 var CUSTOM_STORAGE_LOCATION: String? = nil
@@ -17,6 +18,7 @@ class Storage{
 
     static let instance = Storage()
     let spacesDB: Connection
+	let cacheDB: Connection
 	private var path: String?
 
     private init(){
@@ -37,7 +39,11 @@ class Storage{
 			Storage.createDirsIfNotExist(basepath: path!)
             spacesDB = try Connection(path! + DB_SPACES)
 			spacesDB.foreignKeys = true
-            try createSpacesTablesIfNotExist(db: spacesDB)
+			try Storage.createSpacesTablesIfNotExist(db: spacesDB)
+			
+			cacheDB = try Connection(path! + DB_CACHE)
+			cacheDB.foreignKeys = true
+			try Storage.createCacheDBIfNotExist(db: cacheDB)
         }catch{
             print("Failed to init SQLight.")
             //TODO: try to send crash report
@@ -58,7 +64,7 @@ class Storage{
 		}
 	}
 	
-    private func createSpacesTablesIfNotExist(db: Connection) throws{
+    private static func createSpacesTablesIfNotExist(db: Connection) throws {
         try DocumentTable.create(db: db)
         try ContentTable.create(db: db)
         try CachedWebTable.create(db: db)
@@ -66,6 +72,10 @@ class Storage{
 		try NoteTable.create(db: db)
     }
     
+	private static func createCacheDBIfNotExist(db: Connection) throws {
+		
+	}
+	
 	func genFileUrl(for id: UUID, ofType type: TabContentType = .img) -> URL{
 		if(type == .img){
 			return URL(
