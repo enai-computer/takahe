@@ -34,8 +34,7 @@ class Storage{
 		}
         
         do {
-            // create parent directory inside application support if it doesn’t exist
-            try FileManager.default.createDirectory(atPath: path!, withIntermediateDirectories: true, attributes: nil)
+			Storage.createDirsIfNotExist(basepath: path!)
             spacesDB = try Connection(path! + DB_SPACES)
 			spacesDB.foreignKeys = true
             try createSpacesTablesIfNotExist(db: spacesDB)
@@ -46,6 +45,18 @@ class Storage{
         }
 
     }
+	
+	private static func createDirsIfNotExist(basepath: String){
+		do{
+			// creates directories inside container / application support if it doesn’t exist
+			try FileManager.default.createDirectory(atPath: basepath, withIntermediateDirectories: true, attributes: nil)
+			
+			try FileManager.default.createDirectory(atPath: basepath + DATA_FOLDER + IMG_FOLDER, withIntermediateDirectories: true, attributes: nil)
+		}catch{
+			print("Failed to init nessary Directories.")
+			exit(EXIT_FAILURE)
+		}
+	}
 	
     private func createSpacesTablesIfNotExist(db: Connection) throws{
         try DocumentTable.create(db: db)
@@ -58,7 +69,7 @@ class Storage{
 	func genFileUrl(for id: UUID, ofType type: TabContentType = .img) -> URL{
 		if(type == .img){
 			return URL(
-				fileURLWithPath: path! + DATA_FOLDER + IMG_FOLDER + "/\(id).png",
+				fileURLWithPath: path! + DATA_FOLDER + IMG_FOLDER + "/\(id).jpg",
 				isDirectory: false
 			)
 		}

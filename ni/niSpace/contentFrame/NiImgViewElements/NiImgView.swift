@@ -7,7 +7,7 @@
 
 import Cocoa
 
-class NiImgView: NSImage, CFContentItem{
+class NiImgView: NSImageView, CFContentItem{
 	
 	var viewIsActive: Bool = false
 	
@@ -17,7 +17,7 @@ class NiImgView: NSImage, CFContentItem{
 		return .nothing
 	}
 	
-	func cancelOperation(_ sender: Any?) {
+	override func cancelOperation(_ sender: Any?) {
 		return
 	}
 	

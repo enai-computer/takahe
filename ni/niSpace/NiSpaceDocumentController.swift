@@ -48,16 +48,20 @@ class NiSpaceDocumentController: NSViewController{
 	/**
 	 Do not use before view is loaded, as CF View size gets calculated by the visibleRect
 	*/
-	func openEmptyCF(viewState: NiConentFrameState = .expanded, 
+	@discardableResult
+	func openEmptyCF(viewState: NiConentFrameState = .expanded,
 					 initialTabType: TabContentType = .web,
-					 positioned relavtiveTo: CGPoint? = nil
-	){
+					 positioned relavtiveTo: CGPoint? = nil,
+					 size: CGSize? = nil
+	) -> ContentFrameController {
 		let controller = openEmptyContentFrame(viewState: viewState)
 		let newCFView = controller.myView
 		
 		//TODO: set location & size dependent on viewState
-		if(initialTabType == .note){
+		if(initialTabType == .note && size == nil){
 			newCFView.frame.size = defaultNoteSize
+		}else if(size != nil){
+			newCFView.frame.size = size!
 		}else{
 			newCFView.frame.size = defaultCFSize
 		}
@@ -77,7 +81,7 @@ class NiSpaceDocumentController: NSViewController{
 		}else if(initialTabType == .note){
 			controller.openNoteInNewTab()
 		}
-
+		return controller
 	}
 	
 	func closeTabOfTopCF(){

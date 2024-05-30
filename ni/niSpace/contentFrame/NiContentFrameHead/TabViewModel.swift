@@ -24,6 +24,7 @@ struct TabViewModel{
 	var view: NSView?
 	var webView: NiWebView? {return self.view as? NiWebView? ?? nil}
 	var noteView: NiNoteView? {return self.view as? NiNoteView ?? nil}
+	var imgView: NiImgView? {return self.view as? NiImgView ?? nil}
 	
 	var position: Int = -1
 	var isSelected: Bool = false

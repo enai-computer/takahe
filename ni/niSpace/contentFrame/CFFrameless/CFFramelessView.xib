@@ -13,20 +13,20 @@
             <rect key="frame" x="0.0" y="0.0" width="400" height="300"/>
             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
             <view key="contentView" id="qcw-Ay-qn3">
-                <rect key="frame" x="0.0" y="2" width="397" height="296"/>
+                <rect key="frame" x="2" y="2" width="396" height="296"/>
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             </view>
-            <color key="borderColor" name="transparent"/>
+            <color key="borderColor" name="IntAerospaceOrange"/>
             <color key="fillColor" name="SandLight3"/>
             <point key="canvasLocation" x="-169" y="455"/>
         </box>
     </objects>
     <resources>
+        <namedColor name="IntAerospaceOrange">
+            <color red="1" green="0.30980392156862746" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="SandLight3">
             <color red="0.95294117647058818" green="0.95294117647058818" blue="0.94901960784313721" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="transparent">
-            <color red="1" green="1" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

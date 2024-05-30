@@ -7,16 +7,18 @@
 
 import Cocoa
 import SQLite
+import PNG
 
 class ImgDal{
 	
-	static func insert(documentId: UUID, id: UUID, title: String?, img: NSImage) async {
+	static func insert(documentId: UUID, id: UUID, title: String?, img: NSImage) {
 		if(ContentTable.contains(id: id)){
 			return
 		}
-		
+	
 		let imgRep = img.representations[0] as? NSBitmapImageRep
-		if let rawImg = imgRep?.representation(using: .png, properties:[:]){
+		//FIXME: start using png at some point. But we need to figure out compression for that
+		if let rawImg = imgRep?.representation(using: .jpeg, properties:[:]){
 			let fUrl: URL = Storage.instance.genFileUrl(for: id)
 			do{
 				try rawImg.write(to: fUrl, options: .withoutOverwriting)
