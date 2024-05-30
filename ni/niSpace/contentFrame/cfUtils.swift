@@ -28,11 +28,3 @@ func genMinimizedStackItems(tabs: [TabViewModel], owner: Any?) -> [CFMinimizedSt
 
 	return stackItems
 }
-
-func fetchFavIcon(url: URL) async throws -> NSImage?{
-	return try await FaviconFinder(url: url)
-			.fetchFaviconURLs()
-			.download()
-			.largest().image?.image
-}
-

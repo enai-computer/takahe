@@ -28,6 +28,8 @@
 		CD1552472BE9286D00A59AE9 /* SwiftUIUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1552462BE9286D00A59AE9 /* SwiftUIUtils.swift */; };
 		CD18530B2C087E2D001FE566 /* LZ77 in Frameworks */ = {isa = PBXBuildFile; productRef = CD18530A2C087E2D001FE566 /* LZ77 */; };
 		CD18530D2C087E2D001FE566 /* PNG in Frameworks */ = {isa = PBXBuildFile; productRef = CD18530C2C087E2D001FE566 /* PNG */; };
+		CD1853112C08D22A001FE566 /* FaviconProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1853102C08D22A001FE566 /* FaviconProvider.swift */; };
+		CD1853132C08D972001FE566 /* FaviconCacheTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1853122C08D972001FE566 /* FaviconCacheTable.swift */; };
 		CD19BC942BC7E404002AF14E /* HomeAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CD19BC932BC7E404002AF14E /* HomeAssets.xcassets */; };
 		CD19BC962BC7E5BF002AF14E /* HomeViewUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD19BC952BC7E5BF002AF14E /* HomeViewUtils.swift */; };
 		CD19BC992BC81A46002AF14E /* PredictiveTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD19BC982BC81A46002AF14E /* PredictiveTextFieldView.swift */; };
@@ -126,6 +128,8 @@
 		CD1160C92BD27B9E00345E3E /* NiWebViewUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiWebViewUtils.swift; sourceTree = "<group>"; };
 		CD1160CB2BD286EC00345E3E /* emptyTab-1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "emptyTab-1.jpg"; sourceTree = "<group>"; };
 		CD1552462BE9286D00A59AE9 /* SwiftUIUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIUtils.swift; sourceTree = "<group>"; };
+		CD1853102C08D22A001FE566 /* FaviconProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaviconProvider.swift; sourceTree = "<group>"; };
+		CD1853122C08D972001FE566 /* FaviconCacheTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaviconCacheTable.swift; sourceTree = "<group>"; };
 		CD19BC932BC7E404002AF14E /* HomeAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = HomeAssets.xcassets; sourceTree = "<group>"; };
 		CD19BC952BC7E5BF002AF14E /* HomeViewUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewUtils.swift; sourceTree = "<group>"; };
 		CD19BC982BC81A46002AF14E /* PredictiveTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictiveTextFieldView.swift; sourceTree = "<group>"; };
@@ -241,6 +245,7 @@
 				CD00B81D2BE4EE230079CF71 /* niDebug.entitlements */,
 				CDBC33F82BDBC896000EEF3D /* Info.plist */,
 				CDD6B94F2B1BFE6500C6144D /* models */,
+				CD18530F2C08D1FD001FE566 /* provider */,
 				CDD6B9342B1527B700C6144D /* dal */,
 				CDD6B94A2B19469000C6144D /* niHome */,
 				CDB06B5B2AF81CB6008DB8FF /* niSpace */,
@@ -278,6 +283,22 @@
 				CD9B96BB2C04C8EE00998CE2 /* CFContentItem.swift */,
 			);
 			path = contentFrame;
+			sourceTree = "<group>";
+		};
+		CD18530E2C08C1FF001FE566 /* cacheDB */ = {
+			isa = PBXGroup;
+			children = (
+				CD1853122C08D972001FE566 /* FaviconCacheTable.swift */,
+			);
+			path = cacheDB;
+			sourceTree = "<group>";
+		};
+		CD18530F2C08D1FD001FE566 /* provider */ = {
+			isa = PBXGroup;
+			children = (
+				CD1853102C08D22A001FE566 /* FaviconProvider.swift */,
+			);
+			path = provider;
 			sourceTree = "<group>";
 		};
 		CD1FAAEF2BFCA9BA00C781AC /* niUnitTests */ = {
@@ -418,13 +439,14 @@
 		CDD6B9342B1527B700C6144D /* dal */ = {
 			isa = PBXGroup;
 			children = (
-				CDD6B9412B169FC300C6144D /* spaces */,
+				CD18530E2C08C1FF001FE566 /* cacheDB */,
+				CDD6B9412B169FC300C6144D /* spacesDB */,
 				CDD6B9382B152A8000C6144D /* Storage.swift */,
 			);
 			path = dal;
 			sourceTree = "<group>";
 		};
-		CDD6B9412B169FC300C6144D /* spaces */ = {
+		CDD6B9412B169FC300C6144D /* spacesDB */ = {
 			isa = PBXGroup;
 			children = (
 				CDD6B93F2B169F7700C6144D /* DocumentTable.swift */,
@@ -434,7 +456,7 @@
 				CD8D2B072C00C7A100C44C1D /* NoteTable.swift */,
 				CD9B96C32C075B8A00998CE2 /* ImgDal.swift */,
 			);
-			path = spaces;
+			path = spacesDB;
 			sourceTree = "<group>";
 		};
 		CDD6B94A2B19469000C6144D /* niHome */ = {
@@ -643,6 +665,7 @@
 				CDFA8CFF2C04815C00882722 /* EventUtils.swift in Sources */,
 				CDDBCB2B2BD7C23E00E7B187 /* NiSpaceDocumentController.swift in Sources */,
 				CDD6B9472B16A29100C6144D /* DocumentIdContentIdTable.swift in Sources */,
+				CD1853112C08D22A001FE566 /* FaviconProvider.swift in Sources */,
 				CD66CE382B1FD26A0006BB98 /* NiStringUtils.swift in Sources */,
 				CD8873782BCD649800007BE9 /* TimeUtils.swift in Sources */,
 				CD3362162BFDFF97004DBAFB /* SpaceTopbar.swift in Sources */,
@@ -665,6 +688,7 @@
 				A14E8F272AD5EAF800409DDF /* NiSpaceView.swift in Sources */,
 				CD5A04CD2BEA3CD0004CC3AA /* CFMinimizedStackItem.swift in Sources */,
 				CD19BC992BC81A46002AF14E /* PredictiveTextFieldView.swift in Sources */,
+				CD1853132C08D972001FE566 /* FaviconCacheTable.swift in Sources */,
 				CDFA8D042C04931600882722 /* NiNoteUtils.swift in Sources */,
 				CD5A04C82BEA2BBF004CC3AA /* CFMinimizedView.swift in Sources */,
 			);
