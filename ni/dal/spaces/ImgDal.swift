@@ -30,15 +30,17 @@ class ImgDal{
 		}
 	}
 
-	static func fetchImg(id: UUID, callback: ((NSImage)->Void)) async {
+	static func fetchImg(id: UUID, callback: ((NSImage)->Void)? = nil) -> NSImage? {
 		if let urlString = ContentTable.fetchURL(for: id){
 			if let fUrl = URL(string: urlString){
 				if(fUrl.isFileURL){
 					if let img = NSImage(contentsOf: fUrl){
-						callback(img)
+						//callback(img)
+						return img
 					}
 				}
 			}
 		}
+		return nil
 	}
 }

@@ -64,3 +64,12 @@ extension String {
     return (self.count > maxLength) ? self.prefix(maxLength) + trailing : self
   }
 }
+
+func hasImgExtension(_ path: String) -> Bool {
+	let suffixes: [String] = [".tiff", ".png", ".jpeg", "jpg"]
+	
+	if(suffixes.contains(where: path.hasSuffix)){
+		return true
+	}
+	return false
+}
