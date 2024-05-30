@@ -340,6 +340,17 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		}
 	}
 	
+	func openImgInNewTab(contentId: UUID = UUID(), tabTitle: String? = nil, content: NSImage){
+		let imgView = ni.getNewImgView(owner: self, parentView: self.view, img: content)
+		
+		var tabHeadModel = TabViewModel(contentId: contentId, type: .img, isSelected: true)
+		tabHeadModel.position = 0
+		tabHeadModel.view = imgView
+		self.tabs.append(tabHeadModel)
+		
+		_ = myView.createNewTab(tabView: imgView)
+	}
+	
 	func openNoteInNewTab(contentId: UUID = UUID(), tabTitle: String? = nil, content: String? = nil){
 		let noteView = ni.getNewNoteView(owner: self, parentView: self.view, frame: self.view.frame)
 		
@@ -778,6 +789,11 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 					NoteTable.upsert(documentId: documentId, id: tab.contentId, title: title, rawText: txt!)
 				}
 			}
+			if(tab.type == .img){
+				if let img = tab.imgView?.image{
+					ImgDal.insert(documentId: documentId, id: tab.contentId, title: "", img: img)
+				}
+			}
 		}
 	}
 	
@@ -794,6 +810,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		for (i, tab) in tabs.enumerated(){
 			if(tab.type == .web
 			   || (tab.type == .note && tab.noteView?.getText() != nil)
+			   || tab.type == .img
 			){
 				children.append(
 					NiCFTabModel(

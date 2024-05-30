@@ -1,5 +1,5 @@
 {
-  "originHash" : "79a23eb2cbb7d5f0b1969acd376cc2fc005944c4edcd05c8d7f5f1c200157a3e",
+  "originHash" : "d9dc816a677bbaad31963ddb5fdf6841d8ab3f081cf957b856f42bd83cc2936b",
   "pins" : [
     {
       "identity" : "faviconfinder",
@@ -17,6 +17,24 @@
       "state" : {
         "revision" : "d127599034e08f12f340e5e2da13090a894d55d6",
         "version" : "3.2.4"
+      }
+    },
+    {
+      "identity" : "swift-hash",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/tayloraswift/swift-hash",
+      "state" : {
+        "revision" : "c7ba0cde5eb63042c2196b02b65a770101c1ac11",
+        "version" : "0.5.0"
+      }
+    },
+    {
+      "identity" : "swift-png",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/tayloraswift/swift-png",
+      "state" : {
+        "revision" : "14a720bfcf1b0660dc63979d55d218babc8d651f",
+        "version" : "4.4.2"
       }
     },
     {

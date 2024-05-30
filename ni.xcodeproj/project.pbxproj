@@ -26,6 +26,8 @@
 		CD1160CA2BD27B9E00345E3E /* NiWebViewUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1160C92BD27B9E00345E3E /* NiWebViewUtils.swift */; };
 		CD1160CC2BD286ED00345E3E /* emptyTab-1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CD1160CB2BD286EC00345E3E /* emptyTab-1.jpg */; };
 		CD1552472BE9286D00A59AE9 /* SwiftUIUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1552462BE9286D00A59AE9 /* SwiftUIUtils.swift */; };
+		CD18530B2C087E2D001FE566 /* LZ77 in Frameworks */ = {isa = PBXBuildFile; productRef = CD18530A2C087E2D001FE566 /* LZ77 */; };
+		CD18530D2C087E2D001FE566 /* PNG in Frameworks */ = {isa = PBXBuildFile; productRef = CD18530C2C087E2D001FE566 /* PNG */; };
 		CD19BC942BC7E404002AF14E /* HomeAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CD19BC932BC7E404002AF14E /* HomeAssets.xcassets */; };
 		CD19BC962BC7E5BF002AF14E /* HomeViewUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD19BC952BC7E5BF002AF14E /* HomeViewUtils.swift */; };
 		CD19BC992BC81A46002AF14E /* PredictiveTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD19BC982BC81A46002AF14E /* PredictiveTextFieldView.swift */; };
@@ -196,7 +198,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CD18530D2C087E2D001FE566 /* PNG in Frameworks */,
 				CDD6B93E2B152D3F00C6144D /* SQLite in Frameworks */,
+				CD18530B2C087E2D001FE566 /* LZ77 in Frameworks */,
 				CD75784A2BC0207E00293930 /* FaviconFinder in Frameworks */,
 				CD1160C82BD142D100345E3E /* WebURL in Frameworks */,
 				CD0589372BE1837B00E9A01E /* PostHog in Frameworks */,
@@ -493,6 +497,8 @@
 				CD7578492BC0207E00293930 /* FaviconFinder */,
 				CD1160C72BD142D100345E3E /* WebURL */,
 				CD0589362BE1837B00E9A01E /* PostHog */,
+				CD18530A2C087E2D001FE566 /* LZ77 */,
+				CD18530C2C087E2D001FE566 /* PNG */,
 			);
 			productName = ni;
 			productReference = A1B8E6A22AAFB5EC00AC6566 /* ni.app */;
@@ -549,6 +555,7 @@
 				CD7578482BC0207E00293930 /* XCRemoteSwiftPackageReference "FaviconFinder" */,
 				CD1160C62BD142D100345E3E /* XCRemoteSwiftPackageReference "swift-url" */,
 				CD0589352BE1837B00E9A01E /* XCRemoteSwiftPackageReference "posthog-ios" */,
+				CD1853092C087E2D001FE566 /* XCRemoteSwiftPackageReference "swift-png" */,
 			);
 			productRefGroup = A1B8E6A32AAFB5EC00AC6566 /* Products */;
 			projectDirPath = "";
@@ -983,6 +990,14 @@
 				minimumVersion = 0.4.1;
 			};
 		};
+		CD1853092C087E2D001FE566 /* XCRemoteSwiftPackageReference "swift-png" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/tayloraswift/swift-png";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.4.2;
+			};
+		};
 		CD7578482BC0207E00293930 /* XCRemoteSwiftPackageReference "FaviconFinder" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/will-lumley/FaviconFinder.git";
@@ -1003,6 +1018,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = CD1160C62BD142D100345E3E /* XCRemoteSwiftPackageReference "swift-url" */;
 			productName = WebURL;
+		};
+		CD18530A2C087E2D001FE566 /* LZ77 */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CD1853092C087E2D001FE566 /* XCRemoteSwiftPackageReference "swift-png" */;
+			productName = LZ77;
+		};
+		CD18530C2C087E2D001FE566 /* PNG */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CD1853092C087E2D001FE566 /* XCRemoteSwiftPackageReference "swift-png" */;
+			productName = PNG;
 		};
 		CD7578492BC0207E00293930 /* FaviconFinder */ = {
 			isa = XCSwiftPackageProductDependency;

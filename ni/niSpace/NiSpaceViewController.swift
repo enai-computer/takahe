@@ -61,6 +61,46 @@ class NiSpaceViewController: NSViewController{
 		}
 	}
  
+	@IBAction func paste(_ sender: NSMenuItem){
+		if let pasteboardItem = NSPasteboard.general.pasteboardItems?[0]{
+			if let img = loadImg(from: pasteboardItem){
+				let pos = view.window!.mouseLocationOutsideOfEventStream
+				pasteImage(image: img, positioned: pos)
+			}
+		}
+	}
+	
+	private func loadImg(from item: NSPasteboardItem) -> NSImage?{
+		let type = getPasteboardItemType(for: item)
+		if(type == .png || type == .tiff){
+			return NSImage(pasteboard: NSPasteboard.general)
+		}else if(type == .fileURL){
+			let fileUrl = String(decoding: item.data(forType: NSPasteboard.PasteboardType.fileURL)!, as: UTF8.self)
+			return NSImage(byReferencingFile: fileUrl)
+		}
+		return nil
+	}
+	
+	private func getPasteboardItemType(for item: NSPasteboardItem) -> NSPasteboard.PasteboardType?{
+		//order is not garanteed, we'd prefer png or tiff pasteboard over fileURL
+		var containsFileURL: Bool = false
+		for t in item.types{
+			switch(t){
+				case .fileURL:
+					containsFileURL = true
+				case .png:
+					return .png
+				case .tiff:
+					return .tiff
+				default:
+					break
+			}
+		}
+		if(containsFileURL){
+			return .fileURL
+		}
+		return nil
+	}
 	
 	override func viewWillDisappear() {
 		removeAutoUpdatingTime()
@@ -112,6 +152,55 @@ class NiSpaceViewController: NSViewController{
 	
 	func openEmptyCF(){
 		niDocument.openEmptyCF()
+	}
+	
+	func pasteImage(image: NSImage, positioned at: CGPoint){
+		let targetSize = imgSizing(image.size)
+		image.size = targetSize
+		let cfController = niDocument.openEmptyCF(viewState: .frameless, initialTabType: .img, positioned: at, size: targetSize)
+		cfController.openImgInNewTab(content: image)
+	}
+	
+	private func imgSizing(_ initSize: CGSize) -> CGSize{
+		var size = initSize
+		let ratio = initSize.width/initSize.height
+		
+		//FIXME: clean-up
+		if(size.width < 50.0){
+			size.width = 50.0
+			
+			if(ratio != 0.0){
+				size.height = 50.0 / ratio
+			}else{
+				size.height = 50.0
+			}
+		}
+		if(500.0 < size.width){
+			size.width = 500.0
+			if(ratio != 0.0){
+				size.height = 500.0 / ratio
+			}else{
+				size.height = 500.0
+			}
+		}
+		if(size.height < 50.0){
+			size.height = 50.0
+			
+			if(ratio != 0.0){
+				size.width = 50.0 * ratio
+			}else{
+				size.width = 50.0
+			}
+		}
+		if(500.0 < size.height){
+			size.height = 500.0
+			if(ratio != 0.0){
+				size.width = 500.0 * ratio
+			}else{
+				size.width = 50.0
+			}
+		}
+		return size
 	}
 	
 	func createANote(positioned relavtiveTo: CGPoint? = nil){
