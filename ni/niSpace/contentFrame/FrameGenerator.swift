@@ -53,6 +53,8 @@ func openCFTabs(for controller: ContentFrameController, with tabViewModels: [Tab
 			let tab = tabViewModels[0]
 			if(tab.type == .note){
 				controller.openNoteInNewTab(contentId: tab.contentId, tabTitle: tab.title, content: tab.content)
+			}else if(tab.type == .img && tab.icon != nil){
+				controller.openImgInNewTab(contentId: tab.contentId, tabTitle: tab.title, content:  tab.icon!)
 			}
 		}
 		return
@@ -132,7 +134,7 @@ func niCFTabModelToTabViewModel(tabs: [NiCFTabModel]) -> [TabViewModel]{
 	}
 	
 	if(tabPositionCorrectionNeeded){
-		for (i, tViewModel) in tabViews.enumerated(){
+		for (i, _) in tabViews.enumerated(){
 			tabViews[i].position = i
 		}
 	}
@@ -159,6 +161,13 @@ func getTabViewModel(for id: UUID, ofType type: TabContentType, positioned at: I
 			title: record.title,
 			content: record.rawText,
 			position: at
+		)
+	}else if(type == .img){
+		let img = ImgDal.fetchImg(id: id)
+		tabView = TabViewModel(
+			contentId: id,
+			type: type,
+			icon: img
 		)
 	}else{
 		preconditionFailure("unsupported type")

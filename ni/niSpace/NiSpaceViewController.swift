@@ -75,8 +75,22 @@ class NiSpaceViewController: NSViewController{
 		if(type == .png || type == .tiff){
 			return NSImage(pasteboard: NSPasteboard.general)
 		}else if(type == .fileURL){
-			let fileUrl = String(decoding: item.data(forType: NSPasteboard.PasteboardType.fileURL)!, as: UTF8.self)
-			return NSImage(byReferencingFile: fileUrl)
+			if let fileUrl = getImgfileURL(from: item){
+				return NSImage(contentsOf: fileUrl)
+			}
+		}
+		return nil
+	}
+	
+	private func getImgfileURL(from item: NSPasteboardItem) -> URL?{
+		if let pasteBoardFileUrl = item.data(
+			forType: NSPasteboard.PasteboardType.fileURL
+		){
+			let fileStr = String(decoding: pasteBoardFileUrl, as: UTF8.self)
+			if(hasImgExtension(fileStr)){
+				let fileUrl = URL(string: fileStr)
+				return fileUrl
+			}
 		}
 		return nil
 	}
@@ -169,35 +183,34 @@ class NiSpaceViewController: NSViewController{
 		if(size.width < 50.0){
 			size.width = 50.0
 			
-			if(ratio != 0.0){
-				size.height = 50.0 / ratio
-			}else{
+			if(ratio.isZero || ratio.isNaN){
 				size.height = 50.0
+			}else{
+				size.height = 50.0 / ratio
 			}
 		}
 		if(500.0 < size.width){
 			size.width = 500.0
-			if(ratio != 0.0){
-				size.height = 500.0 / ratio
-			}else{
+			if(ratio.isZero || ratio.isNaN){
 				size.height = 500.0
+			}else{
+				size.height = 500.0 / ratio
 			}
 		}
 		if(size.height < 50.0){
 			size.height = 50.0
-			
-			if(ratio != 0.0){
-				size.width = 50.0 * ratio
-			}else{
+			if(ratio.isZero || ratio.isNaN){
 				size.width = 50.0
+			}else{
+				size.width = 50.0 * ratio
 			}
 		}
 		if(500.0 < size.height){
 			size.height = 500.0
-			if(ratio != 0.0){
-				size.width = 500.0 * ratio
-			}else{
+			if(ratio.isZero || ratio.isNaN){
 				size.width = 50.0
+			}else{
+				size.width = 500.0 * ratio
 			}
 		}
 		return size
