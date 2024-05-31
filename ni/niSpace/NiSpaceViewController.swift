@@ -184,35 +184,34 @@ class NiSpaceViewController: NSViewController{
 		//FIXME: clean-up
 		if(size.width < 50.0){
 			size.width = 50.0
-			
-			if(ratio.isZero || ratio.isNaN){
-				size.height = 50.0
-			}else{
+			if(ratio.isNormal){
 				size.height = 50.0 / ratio
+			}else{
+				size.height = 50.0
 			}
 		}
 		if(500.0 < size.width){
 			size.width = 500.0
-			if(ratio.isZero || ratio.isNaN){
-				size.height = 500.0
-			}else{
+			if(ratio.isNormal){
 				size.height = 500.0 / ratio
+			}else{
+				size.height = 500.0
 			}
 		}
 		if(size.height < 50.0){
 			size.height = 50.0
-			if(ratio.isZero || ratio.isNaN){
-				size.width = 50.0
-			}else{
+			if(ratio.isNormal){
 				size.width = 50.0 * ratio
+			}else{
+				size.width = 50.0
 			}
 		}
 		if(500.0 < size.height){
 			size.height = 500.0
-			if(ratio.isZero || ratio.isNaN){
-				size.width = 50.0
-			}else{
+			if(ratio.isNormal){
 				size.width = 500.0 * ratio
+			}else{
+				size.width = 50.0
 			}
 		}
 		return size

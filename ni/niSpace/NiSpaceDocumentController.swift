@@ -81,6 +81,11 @@ class NiSpaceDocumentController: NSViewController{
 		}else if(initialTabType == .note){
 			controller.openNoteInNewTab()
 		}
+		
+		if(initialTabType == .img){
+			controller.myView.fixedFrameRatio = true
+		}
+		
 		return controller
 	}
 	
