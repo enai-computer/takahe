@@ -16,6 +16,7 @@ class ContentTable{
     static let type = Expression<String>("type")
     static let updatedAt = Expression<Double>("updated_at")
     static let localStorageLocation = Expression<String?>("local_storage_location")
+	static let sourceUrl = Expression<String?>("source_url")
     static let refCounter = Expression<Int>("ref_counter")
     
     static func create(db: Connection) throws {
@@ -27,6 +28,8 @@ class ContentTable{
             t.column(localStorageLocation)
             t.column(refCounter, defaultValue: 1)
         })
+		//all other columns got added with the migration scripts
+		// sourceUrl is the first one and got added with version 1
     }
 	
 	static func contains(id: UUID) -> Bool {
@@ -69,7 +72,7 @@ class ContentTable{
         }
     }
 	
-	static func upsert(id: UUID, type: String, title: String?, fileUrl: String){
+	static func upsert(id: UUID, type: String, title: String?, fileUrl: String, source: String?){
 		do{
 			try Storage.instance.spacesDB.run(
 				table.upsert(
@@ -77,6 +80,7 @@ class ContentTable{
 					self.title <- title,
 					self.type <- type,
 					self.localStorageLocation <- fileUrl,
+					self.sourceUrl <- source,
 					self.updatedAt <- Date().timeIntervalSince1970,
 					onConflictOf: self.id
 				)

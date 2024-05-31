@@ -10,14 +10,14 @@ import SQLite
 
 class ImgDal{
 	
-	static func insert(documentId: UUID, id: UUID, title: String?, img: NSImage) {
+	static func insert(documentId: UUID, id: UUID, title: String?, img: NSImage, source: String?) {
 		if(ContentTable.contains(id: id)){
 			return
 		}
 	
 		let fUrl: URL = Storage.instance.genFileUrl(for: id, ofType: .spaceImg)
 		if(writeImgToDisk(fUrl: fUrl, img: img)){
-			ContentTable.upsert(id: id, type: "img", title: title, fileUrl: fUrl.absoluteString)
+			ContentTable.upsert(id: id, type: "img", title: title, fileUrl: fUrl.absoluteString, source: source)
 			DocumentIdContentIdTable.insert(documentId: documentId, contentId: id)
 		}else{
 			print("Failed to write image to disk with Title: \(title ?? "")")

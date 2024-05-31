@@ -47,6 +47,7 @@ class Storage{
             spacesDB = try Connection(path! + DB_SPACES)
 			spacesDB.foreignKeys = true
 			try Storage.createSpacesTablesIfNotExist(db: spacesDB)
+			try Storage.runSpacesMigrations(db: spacesDB)
 			
 			cacheDB = try Connection(path! + DB_CACHE)
 			cacheDB.foreignKeys = true
@@ -81,6 +82,13 @@ class Storage{
 		try NoteTable.create(db: db)
     }
     
+	private static func runSpacesMigrations(db: Connection) throws{
+		if(db.userVersion! < 1){
+			try db.run(ContentTable.table.addColumn(ContentTable.sourceUrl))
+			db.userVersion = 1
+		}
+	}
+	
 	private static func createCacheDBIfNotExist(db: Connection) throws {
 		try FaviconCacheTable.create(db: db)
 	}

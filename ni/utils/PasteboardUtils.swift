@@ -21,6 +21,46 @@ extension NSPasteboard{
 		return nil
 	}
 	
+	func tryGetName() -> String?{
+		if let pasteboardItem = self.pasteboardItems?[0]{
+			if(pasteboardItem.types.contains(.URL)){
+				if let urlBytes = pasteboardItem.data(forType: .URL){
+					return getFileName(from: urlBytes)
+				}
+			}
+			if(pasteboardItem.types.contains(.fileURL)){
+				if let urlBytes = pasteboardItem.data(forType: .fileURL){
+					return getFileName(from: urlBytes)
+				}
+			}
+		}
+		return nil
+	}
+	
+	func tryGetFileURL() -> String?{
+		if let pasteboardItem = self.pasteboardItems?[0]{
+			if(pasteboardItem.types.contains(.fileURL)){
+				if let urlBytes = pasteboardItem.data(forType: .fileURL){
+					return String(decoding: urlBytes, as: UTF8.self)
+				}
+			}
+		}
+		return nil
+	}
+	
+	private func getFileName(from urlBytes: Data) -> String?{
+		let urlStr = String(decoding: urlBytes, as: UTF8.self)
+		if let url = URL(string: urlStr){
+			if let fullName = url.pathComponents.last{
+				if let lastDot = fullName.lastIndex(of: "."){
+					return fullName.substring(to: lastDot)
+				}
+				return fullName
+			}
+		}
+		return nil
+	}
+	
 	private func loadImg(from item: NSPasteboardItem) -> NSImage?{
 		let type = getPasteboardItemType(for: item)
 		if(type == .png || type == .tiff){

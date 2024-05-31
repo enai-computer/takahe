@@ -340,10 +340,13 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		}
 	}
 	
-	func openImgInNewTab(contentId: UUID = UUID(), tabTitle: String? = nil, content: NSImage){
+	func openImgInNewTab(contentId: UUID = UUID(), tabTitle: String? = nil, content: NSImage, source: String? = nil){
 		let imgView = ni.getNewImgView(owner: self, parentView: self.view, img: content)
 		
-		var tabHeadModel = TabViewModel(contentId: contentId, type: .img, isSelected: true)
+		var tabHeadModel = TabViewModel(contentId: contentId, type: .img, source: source, isSelected: true)
+		if let title = tabTitle{
+			tabHeadModel.title = title
+		}
 		tabHeadModel.position = 0
 		tabHeadModel.view = imgView
 		self.tabs.append(tabHeadModel)
@@ -791,7 +794,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 			}
 			if(tab.type == .img){
 				if let img = tab.imgView?.image{
-					ImgDal.insert(documentId: documentId, id: tab.contentId, title: "", img: img)
+					ImgDal.insert(documentId: documentId, id: tab.contentId, title: tab.title, img: img, source: tab.source)
 				}
 			}
 		}
