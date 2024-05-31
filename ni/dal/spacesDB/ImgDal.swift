@@ -7,7 +7,6 @@
 
 import Cocoa
 import SQLite
-import PNG
 
 class ImgDal{
 	
