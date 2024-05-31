@@ -66,8 +66,10 @@ class NiSpaceViewController: NSViewController{
 	@IBAction func paste(_ sender: NSMenuItem){
 		if let pasteboardItem = NSPasteboard.general.pasteboardItems?[0]{
 			if let img = NSPasteboard.general.getImage(){
+				let title = NSPasteboard.general.tryGetName()
+				let source = NSPasteboard.general.tryGetFileURL()
 				let pos = view.window!.mouseLocationOutsideOfEventStream
-				pasteImage(image: img, positioned: pos)
+				pasteImage(image: img, positioned: pos, title: title, source: source)
 			}
 		}
 	}
@@ -124,11 +126,11 @@ class NiSpaceViewController: NSViewController{
 		niDocument.openEmptyCF()
 	}
 	
-	func pasteImage(image: NSImage, positioned at: CGPoint){
+	func pasteImage(image: NSImage, positioned at: CGPoint, title: String?, source: String?){
 		let targetSize = imgSizing(image.size)
 		image.size = targetSize
 		let cfController = niDocument.openEmptyCF(viewState: .frameless, initialTabType: .img, positioned: at, size: targetSize)
-		cfController.openImgInNewTab(content: image)
+		cfController.openImgInNewTab(tabTitle: title, content: image, source: source)
 	}
 	
 	private func imgSizing(_ initSize: CGSize) -> CGSize{

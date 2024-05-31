@@ -18,6 +18,7 @@ struct TabViewModel{
 
 	var title: String = ""
 	var content: String = ""
+	var source: String?
 	var state: TabViewModelState = .empty
 	var icon: NSImage?
 	

@@ -26,7 +26,6 @@ class CachedWebTable{
             t.column(updatedAt)
             t.column(cache)
             t.column(htmlWebsite)
-//            t.column(history)
             t.foreignKey(contentId, references: ContentTable.table, ContentTable.id, delete: .cascade)
         })
     }

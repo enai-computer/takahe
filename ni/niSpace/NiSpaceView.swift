@@ -11,15 +11,11 @@ class NiSpaceView: NSView{
 	
 	override func draggingEnded(_ sender: any NSDraggingInfo) {
 		
-		//TODO: continue here
-		print("oh no")
 		guard let controller = nextResponder as? NiSpaceViewController else {return}
-		//get IMG from here:
-		sender.draggingPasteboard
+		guard let img = sender.draggingPasteboard.getImage() else {return}
+		let title = sender.draggingPasteboard.tryGetName()
+		let source = (sender.draggingSource as! NiWebView).url?.absoluteString
 		
-		//get location where to position here
-		sender.draggingLocation
-		
-//		controller.pasteImage(image: <#T##NSImage#>, positioned: <#T##CGPoint#>)
+		controller.pasteImage(image: img, positioned: sender.draggingLocation, title: title, source: source)
 	}
 }
