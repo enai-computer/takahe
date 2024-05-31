@@ -23,13 +23,18 @@ func reopenContentFrame(screenWidth: CGFloat, contentFrame: NiContentFrameModel,
 		maxWidth: (screenWidth - maxWidthMargin),
 		contentFrame: contentFrame
 	)
+	
+	if(controller.tabs.count != tabViewModels.count){
+		preconditionFailure("Tabs not generated correctly. Contentframe is missing tabs")
+	}
+	
 	return controller
 }
 
 func reopenContentFrameWithOutPositioning(screenWidth: CGFloat, contentFrameState: NiConentFrameState, tabViewModels: [TabViewModel]) -> ContentFrameController {
     
 	let frameController = if(contentFrameState == .minimised){
-		ContentFrameController(viewState: contentFrameState)
+		ContentFrameController(viewState: contentFrameState, tabsModel: tabViewModels)
 	}else{
 		// we are not adding tabViewModel here as opening up a tab down there does that.
 		//FIXME: clean up that tech debt
