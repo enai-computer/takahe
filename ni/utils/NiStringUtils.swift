@@ -66,9 +66,10 @@ extension String {
 }
 
 func hasImgExtension(_ path: String) -> Bool {
+	let cleanPath = path.lowercased()
 	let suffixes: [String] = [".tiff", ".png", ".jpeg", "jpg"]
 	
-	if(suffixes.contains(where: path.hasSuffix)){
+	if(suffixes.contains(where: cleanPath.hasSuffix)){
 		return true
 	}
 	return false

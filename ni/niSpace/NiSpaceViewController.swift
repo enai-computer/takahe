@@ -65,57 +65,11 @@ class NiSpaceViewController: NSViewController{
  
 	@IBAction func paste(_ sender: NSMenuItem){
 		if let pasteboardItem = NSPasteboard.general.pasteboardItems?[0]{
-			if let img = loadImg(from: pasteboardItem){
+			if let img = NSPasteboard.general.getImage(){
 				let pos = view.window!.mouseLocationOutsideOfEventStream
 				pasteImage(image: img, positioned: pos)
 			}
 		}
-	}
-	
-	private func loadImg(from item: NSPasteboardItem) -> NSImage?{
-		let type = getPasteboardItemType(for: item)
-		if(type == .png || type == .tiff){
-			return NSImage(pasteboard: NSPasteboard.general)
-		}else if(type == .fileURL){
-			if let fileUrl = getImgfileURL(from: item){
-				return NSImage(contentsOf: fileUrl)
-			}
-		}
-		return nil
-	}
-	
-	private func getImgfileURL(from item: NSPasteboardItem) -> URL?{
-		if let pasteBoardFileUrl = item.data(
-			forType: NSPasteboard.PasteboardType.fileURL
-		){
-			let fileStr = String(decoding: pasteBoardFileUrl, as: UTF8.self)
-			if(hasImgExtension(fileStr)){
-				let fileUrl = URL(string: fileStr)
-				return fileUrl
-			}
-		}
-		return nil
-	}
-	
-	private func getPasteboardItemType(for item: NSPasteboardItem) -> NSPasteboard.PasteboardType?{
-		//order is not garanteed, we'd prefer png or tiff pasteboard over fileURL
-		var containsFileURL: Bool = false
-		for t in item.types{
-			switch(t){
-				case .fileURL:
-					containsFileURL = true
-				case .png:
-					return .png
-				case .tiff:
-					return .tiff
-				default:
-					break
-			}
-		}
-		if(containsFileURL){
-			return .fileURL
-		}
-		return nil
 	}
 	
 	override func viewWillDisappear() {
