@@ -17,12 +17,8 @@ class FaviconProvider{
 		do{
 			let url = URL(string: urlStr)!
 			guard let host = url.host() else { return nil}
-			if let storageLocation = FaviconCacheTable.fetchIconLocation(domain: host){
-				if let fUrl = URL(string: storageLocation){
-					if let cachedIcon = fetchImgFromDisk(fUrl){
-						return cachedIcon
-					}
-				}
+			if let cachedIcon = tryFetchFromCache(host){
+				return cachedIcon
 			}
 			
 			if let icon = try await getFromWeb(url){
@@ -31,6 +27,17 @@ class FaviconProvider{
 			}
 		}catch{
 			print(error)
+		}
+		return nil
+	}
+	
+	private func tryFetchFromCache(_ host: String) -> NSImage? {
+		if let storageLocation = FaviconCacheTable.fetchIconLocation(domain: host){
+			if let fUrl = URL(string: storageLocation){
+				if let cachedIcon = fetchImgFromDisk(fUrl){
+					return cachedIcon
+				}
+			}
 		}
 		return nil
 	}
