@@ -16,29 +16,19 @@ class ImgDal{
 			return
 		}
 	
-		let imgRep = img.representations[0] as? NSBitmapImageRep
-		//FIXME: start using png at some point. But we need to figure out compression for that
-		if let rawImg = imgRep?.representation(using: .jpeg, properties:[:]){
-			let fUrl: URL = Storage.instance.genFileUrl(for: id)
-			do{
-				try rawImg.write(to: fUrl, options: .withoutOverwriting)
-				ContentTable.upsert(id: id, type: "img", title: title, fileUrl: fUrl.absoluteString)
-				DocumentIdContentIdTable.insert(documentId: documentId, contentId: id)
-			}catch{
-				print(error)
-			}
+		let fUrl: URL = Storage.instance.genFileUrl(for: id, ofType: .spaceImg)
+		if(writeImgToDisk(fUrl: fUrl, img: img)){
+			ContentTable.upsert(id: id, type: "img", title: title, fileUrl: fUrl.absoluteString)
+			DocumentIdContentIdTable.insert(documentId: documentId, contentId: id)
+		}else{
+			print("Failed to write image to disk with Title: \(title ?? "")")
 		}
 	}
 
 	static func fetchImg(id: UUID, callback: ((NSImage)->Void)? = nil) -> NSImage? {
 		if let urlString = ContentTable.fetchURL(for: id){
 			if let fUrl = URL(string: urlString){
-				if(fUrl.isFileURL){
-					if let img = NSImage(contentsOf: fUrl){
-						//callback(img)
-						return img
-					}
-				}
+				return fetchImgFromDisk(fUrl)
 			}
 		}
 		return nil

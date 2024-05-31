@@ -14,15 +14,32 @@ class FaviconProvider{
 	private init(){}
 	
 	func fetchIcon(_ urlStr: String) async -> NSImage?{
-		
-		
 		do{
 			let url = URL(string: urlStr)!
-			return try await getFromWeb(url)
+			guard let host = url.host() else { return nil}
+			if let storageLocation = FaviconCacheTable.fetchIconLocation(domain: host){
+				if let fUrl = URL(string: storageLocation){
+					if let cachedIcon = fetchImgFromDisk(fUrl){
+						return cachedIcon
+					}
+				}
+			}
+			
+			if let icon = try await getFromWeb(url){
+				cacheIcon(icon, domain: host)
+				return icon
+			}
 		}catch{
 			print(error)
 		}
 		return nil
+	}
+	
+	private func cacheIcon(_ img: NSImage, domain: String){
+		let fUrl = Storage.instance.genFileUrl(for: UUID(), ofType: .favIcon)
+		if(writeImgToDisk(fUrl: fUrl, img: img)){
+			FaviconCacheTable.upsert(domain: domain, storageLocation: fUrl.absoluteString)
+		}
 	}
 	
 	private func getFromWeb(_ url: URL) async throws -> NSImage?{
