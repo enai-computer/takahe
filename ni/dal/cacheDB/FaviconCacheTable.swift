@@ -38,4 +38,15 @@ class FaviconCacheTable{
 		}
 	}
 	
+	static func fetchIconLocation(domain: String) -> String?{
+		do{
+			let q = table.where(self.domain == domain)
+			for r in try Storage.instance.cacheDB.prepare(q){
+				return try r.get(self.storageLocation)
+			}
+		}catch{
+			print("Failed to run select on ContentTable")
+		}
+		return nil
+	}
 }

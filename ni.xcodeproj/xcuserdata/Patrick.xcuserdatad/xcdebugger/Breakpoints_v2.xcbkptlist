@@ -116,7 +116,7 @@
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "F0D0F043-B530-47A7-8282-86EBBB73193A - eb023707f37c7c61"
+                  uuid = "F0D0F043-B530-47A7-8282-86EBBB73193A - eb023707f37c7c23"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -126,11 +126,11 @@
                   urlString = "file:///Users/Patrick/Workbench/takahe/ni/niSpace/NiSpaceViewController.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "69"
-                  endingLineNumber = "69">
+                  startingLineNumber = "67"
+                  endingLineNumber = "67">
                </Location>
                <Location
-                  uuid = "F0D0F043-B530-47A7-8282-86EBBB73193A - eb023707f37c7c61"
+                  uuid = "F0D0F043-B530-47A7-8282-86EBBB73193A - eb023707f37c7c23"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -140,8 +140,8 @@
                   urlString = "file:///Users/Patrick/Workbench/takahe/ni/niSpace/NiSpaceViewController.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "69"
-                  endingLineNumber = "69">
+                  startingLineNumber = "67"
+                  endingLineNumber = "67">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -162,7 +162,7 @@
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "D4A7D686-073C-408D-8FB1-2FD938A9CCE5 - eb023707f37c7c86"
+                  uuid = "D4A7D686-073C-408D-8FB1-2FD938A9CCE5 - eb023707f37c7c40"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -172,11 +172,11 @@
                   urlString = "file:///Users/Patrick/Workbench/takahe/ni/niSpace/NiSpaceViewController.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "70"
-                  endingLineNumber = "70">
+                  startingLineNumber = "68"
+                  endingLineNumber = "68">
                </Location>
                <Location
-                  uuid = "D4A7D686-073C-408D-8FB1-2FD938A9CCE5 - eb023707f37c7c86"
+                  uuid = "D4A7D686-073C-408D-8FB1-2FD938A9CCE5 - eb023707f37c7c40"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -186,8 +186,8 @@
                   urlString = "file:///Users/Patrick/Workbench/takahe/ni/niSpace/NiSpaceViewController.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "70"
-                  endingLineNumber = "70">
+                  startingLineNumber = "68"
+                  endingLineNumber = "68">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -445,6 +445,38 @@
             startingLineNumber = "8"
             endingLineNumber = "8"
             landmarkName = "draggingEntered(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B72E2DF2-CAF4-4697-B5DD-4EFE0046ACD3"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "niUnitTests/NiStringUtilsTests.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "19"
+            endingLineNumber = "19"
+            landmarkName = "testURL()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "13A0EA3B-0053-4029-9F91-3F62FFAF4F66"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "niUnitTests/NiStringUtilsTests.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "24"
+            endingLineNumber = "24"
+            landmarkName = "testURLfunctionality()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

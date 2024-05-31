@@ -16,4 +16,13 @@ final class NiStringUtilsTests: XCTestCase{
 		XCTAssertTrue(url.absoluteStringWithoutScheme?.contains("https") == false)
 	}
 	
+	func testURLfunctionality() throws{
+		let url = try createWebUrl(from: "http://google.com/?query=http")
+		print(url.baseURL?.absoluteString)
+		
+		let url2 = URL(string: "https://drive.google.com/sadkjfn?nil=d&d=d")
+		print(url2?.baseURL?.absoluteString)
+		XCTAssertTrue(true)
+	}
+	
 }
