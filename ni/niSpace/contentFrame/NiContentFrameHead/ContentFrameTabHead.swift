@@ -143,7 +143,7 @@ class ContentFrameTabHead: NSCollectionViewItem, NSTextFieldDelegate {
 		
 		Task {
 			if(viewModel.webView?.url?.absoluteString != nil){
-				let img = try await FaviconProvider.instance.fetchIcon( viewModel.webView!.url!.absoluteString)
+				let img = await FaviconProvider.instance.fetchIcon( viewModel.webView!.url!.absoluteString)
 				parentController?.setTabIcon(at: tabPosition, icon: img)
 				self.setIcon(img: img)
 			}
