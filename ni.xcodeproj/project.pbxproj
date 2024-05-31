@@ -26,8 +26,6 @@
 		CD1160CA2BD27B9E00345E3E /* NiWebViewUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1160C92BD27B9E00345E3E /* NiWebViewUtils.swift */; };
 		CD1160CC2BD286ED00345E3E /* emptyTab-1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CD1160CB2BD286EC00345E3E /* emptyTab-1.jpg */; };
 		CD1552472BE9286D00A59AE9 /* SwiftUIUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1552462BE9286D00A59AE9 /* SwiftUIUtils.swift */; };
-		CD18530B2C087E2D001FE566 /* LZ77 in Frameworks */ = {isa = PBXBuildFile; productRef = CD18530A2C087E2D001FE566 /* LZ77 */; };
-		CD18530D2C087E2D001FE566 /* PNG in Frameworks */ = {isa = PBXBuildFile; productRef = CD18530C2C087E2D001FE566 /* PNG */; };
 		CD1853112C08D22A001FE566 /* FaviconProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1853102C08D22A001FE566 /* FaviconProvider.swift */; };
 		CD1853132C08D972001FE566 /* FaviconCacheTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1853122C08D972001FE566 /* FaviconCacheTable.swift */; };
 		CD1853152C09C210001FE566 /* DalUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1853142C09C210001FE566 /* DalUtils.swift */; };
@@ -204,9 +202,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CD18530D2C087E2D001FE566 /* PNG in Frameworks */,
 				CDD6B93E2B152D3F00C6144D /* SQLite in Frameworks */,
-				CD18530B2C087E2D001FE566 /* LZ77 in Frameworks */,
 				CD75784A2BC0207E00293930 /* FaviconFinder in Frameworks */,
 				CD1160C82BD142D100345E3E /* WebURL in Frameworks */,
 				CD0589372BE1837B00E9A01E /* PostHog in Frameworks */,
@@ -522,8 +518,6 @@
 				CD7578492BC0207E00293930 /* FaviconFinder */,
 				CD1160C72BD142D100345E3E /* WebURL */,
 				CD0589362BE1837B00E9A01E /* PostHog */,
-				CD18530A2C087E2D001FE566 /* LZ77 */,
-				CD18530C2C087E2D001FE566 /* PNG */,
 			);
 			productName = ni;
 			productReference = A1B8E6A22AAFB5EC00AC6566 /* ni.app */;
@@ -868,7 +862,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = "0.1.6 --- 2024-05-29.1 - Kondo";
+				CURRENT_PROJECT_VERSION = "0.1.6 --- 2024-05-31.1 - Kondo";
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = SNXQ3BDQ5V;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -901,7 +895,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = "0.1.6 --- 2024-05-29.1 - Kondo";
+				CURRENT_PROJECT_VERSION = "0.1.6 --- 2024-05-31.1 - Kondo";
 				DEAD_CODE_STRIPPING = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -1046,16 +1040,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = CD1160C62BD142D100345E3E /* XCRemoteSwiftPackageReference "swift-url" */;
 			productName = WebURL;
-		};
-		CD18530A2C087E2D001FE566 /* LZ77 */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = CD1853092C087E2D001FE566 /* XCRemoteSwiftPackageReference "swift-png" */;
-			productName = LZ77;
-		};
-		CD18530C2C087E2D001FE566 /* PNG */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = CD1853092C087E2D001FE566 /* XCRemoteSwiftPackageReference "swift-png" */;
-			productName = PNG;
 		};
 		CD7578492BC0207E00293930 /* FaviconFinder */ = {
 			isa = XCSwiftPackageProductDependency;
