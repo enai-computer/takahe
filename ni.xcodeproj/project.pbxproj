@@ -282,6 +282,7 @@
 				CD5A04CE2BEA42EB004CC3AA /* cfUtils.swift */,
 				CD5A04D02BEA78E4004CC3AA /* CFBaseView.swift */,
 				CD9B96BB2C04C8EE00998CE2 /* CFContentItem.swift */,
+				CD06A9B92BF79EF500312256 /* NiScroller.swift */,
 			);
 			path = contentFrame;
 			sourceTree = "<group>";
@@ -409,7 +410,6 @@
 				CD7578452BC000F200293930 /* ContentFrameTabHead.xib */,
 				CD75784B2BC065FB00293930 /* ContentFrameTabHeadTextNode.swift */,
 				CDE76C1B2BC6989000CE9513 /* TabViewModel.swift */,
-				CD06A9B92BF79EF500312256 /* NiScroller.swift */,
 			);
 			path = NiContentFrameHead;
 			sourceTree = "<group>";
