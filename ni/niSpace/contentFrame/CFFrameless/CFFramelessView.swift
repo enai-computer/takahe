@@ -71,6 +71,8 @@ class CFFramelessView: CFBaseView {
 		if !frameIsActive{
 			niParentDoc?.setTopNiFrame(myController!)
 			return
+			//FIXME: work on single click drag and drop
+			//not exiting function here, to click and drag without another click
 		}
 		
 		let cursorPos = self.convert(event.locationInWindow, from: nil)
