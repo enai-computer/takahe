@@ -6,6 +6,7 @@
 //
 
 import Cocoa
+import Carbon.HIToolbox
 
 class CFFramelessView: CFBaseView {
 	
@@ -45,7 +46,19 @@ class CFFramelessView: CFBaseView {
 	
 	override func createNewTab(tabView: NSView, openNextTo: Int = -1) -> Int{
 		self.contentView = tabView
+		self.contentView?.layer?.cornerCurve = .continuous
+		self.contentView?.layer?.cornerRadius  = 5.0
 		return -1
+	}
+	
+	override func keyDown(with event: NSEvent) {
+		if(event.keyCode == kVK_Delete || event.keyCode == kVK_ForwardDelete){
+			if(frameIsActive){
+				myView?.owner?.triggerCloseProcess(with: event)
+				return
+			}
+		}
+		super.keyDown(with: event)
 	}
 	
 	override func mouseDown(with event: NSEvent) {

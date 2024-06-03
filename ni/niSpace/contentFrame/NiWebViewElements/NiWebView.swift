@@ -14,8 +14,8 @@ import WebKit
 
 class NiWebView: WKWebView, CFContentItem{
     
-    private let owner: ContentFrameController
-    private(set) var viewIsActive: Bool = true	
+    var owner: ContentFrameController?
+    private(set) var viewIsActive: Bool = true
 	var tabHeadPosition: Int = -1
 	var retries: Int = 0
 	
@@ -67,7 +67,7 @@ class NiWebView: WKWebView, CFContentItem{
 	//function for right click open link in new tab
     @objc func openLinkInNewTab(_ sender: AnyObject) {
 		if let url = GlobalScriptMessageHandler.instance.contextMenu_href {
-			owner.openWebsiteInNewTab(url, shallSelectTab: false, openNextToSelectedTab: true)
+			owner?.openWebsiteInNewTab(url, shallSelectTab: false, openNextToSelectedTab: true)
 		}
 	}
 	
@@ -76,7 +76,7 @@ class NiWebView: WKWebView, CFContentItem{
 	@objc func runGoogleSearch(_ sender: AnyObject) {
 		if let selectedText = GlobalScriptMessageHandler.instance.contextMenu_selectedText {
 			let url = searchUrl(from: selectedText)
-			owner.openWebsiteInNewTab(url)
+			owner?.openWebsiteInNewTab(url)
 		}
 	}
     
@@ -87,7 +87,7 @@ class NiWebView: WKWebView, CFContentItem{
     }
     
 	func setInactive() -> FollowOnAction{
-		overlay = cfOverlay(frame: self.frame, nxtResponder: owner.view)
+		overlay = cfOverlay(frame: self.frame, nxtResponder: owner!.view)
 		addSubview(overlay!)
 		window?.makeFirstResponder(overlay)
 		viewIsActive = false

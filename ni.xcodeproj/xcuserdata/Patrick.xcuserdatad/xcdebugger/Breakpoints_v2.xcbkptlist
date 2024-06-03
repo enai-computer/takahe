@@ -16,8 +16,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "85"
             endingLineNumber = "85"
-            landmarkName = "NiNoteView"
-            landmarkType = "3">
+            landmarkName = "keyDown(with:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -46,8 +46,8 @@
             filePath = "ni/niSpace/contentFrame/CFFrameless/CFFramelessView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "162"
-            endingLineNumber = "162"
+            startingLineNumber = "175"
+            endingLineNumber = "175"
             landmarkName = "updateTrackingAreas()"
             landmarkType = "7">
          </BreakpointContent>
@@ -104,7 +104,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "F0D0F043-B530-47A7-8282-86EBBB73193A"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ni/niSpace/NiSpaceViewController.swift"
@@ -114,43 +114,13 @@
             endingLineNumber = "67"
             landmarkName = "paste(_:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "F0D0F043-B530-47A7-8282-86EBBB73193A - eb023707f37c7c23"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "ni.NiSpaceViewController.paste(__C.NSMenuItem) -&gt; ()"
-                  moduleName = "ni"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Patrick/Workbench/takahe/ni/niSpace/NiSpaceViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "67"
-                  endingLineNumber = "67">
-               </Location>
-               <Location
-                  uuid = "F0D0F043-B530-47A7-8282-86EBBB73193A - eb023707f37c7c23"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "ni.NiSpaceViewController.paste(__C.NSMenuItem) -&gt; ()"
-                  moduleName = "ni"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Patrick/Workbench/takahe/ni/niSpace/NiSpaceViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "67"
-                  endingLineNumber = "67">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "D4A7D686-073C-408D-8FB1-2FD938A9CCE5"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ni/niSpace/NiSpaceViewController.swift"
@@ -160,43 +130,13 @@
             endingLineNumber = "68"
             landmarkName = "paste(_:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "D4A7D686-073C-408D-8FB1-2FD938A9CCE5 - eb023707f37c7c40"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "ni.NiSpaceViewController.paste(__C.NSMenuItem) -&gt; ()"
-                  moduleName = "ni"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Patrick/Workbench/takahe/ni/niSpace/NiSpaceViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "68"
-                  endingLineNumber = "68">
-               </Location>
-               <Location
-                  uuid = "D4A7D686-073C-408D-8FB1-2FD938A9CCE5 - eb023707f37c7c40"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "ni.NiSpaceViewController.paste(__C.NSMenuItem) -&gt; ()"
-                  moduleName = "ni"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Patrick/Workbench/takahe/ni/niSpace/NiSpaceViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "68"
-                  endingLineNumber = "68">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "AD249AA0-FA2A-412B-8988-34CDAF7ACE22"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ni/niSpace/NiSpaceViewController.swift"
@@ -234,8 +174,8 @@
             filePath = "ni/niSpace/contentFrame/ContentFrameController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "344"
-            endingLineNumber = "344"
+            startingLineNumber = "346"
+            endingLineNumber = "346"
             landmarkName = "openImgInNewTab(contentId:tabTitle:content:source:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -266,8 +206,8 @@
             filePath = "ni/niSpace/contentFrame/CFFrameless/CFFramelessView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "47"
-            endingLineNumber = "47"
+            startingLineNumber = "48"
+            endingLineNumber = "48"
             landmarkName = "createNewTab(tabView:openNextTo:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -298,8 +238,8 @@
             filePath = "ni/niSpace/contentFrame/ContentFrameController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "795"
-            endingLineNumber = "795"
+            startingLineNumber = "810"
+            endingLineNumber = "810"
             landmarkName = "persistContent(documentId:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -394,8 +334,8 @@
             filePath = "ni/niSpace/contentFrame/ContentFrameController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "786"
-            endingLineNumber = "786"
+            startingLineNumber = "801"
+            endingLineNumber = "801"
             landmarkName = "persistContent(documentId:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -436,7 +376,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "E161B88B-EB3F-402A-BD5F-956C3E205278"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ni/niSpace/NiSpaceView.swift"
@@ -468,7 +408,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "DDFE3866-6CF8-4304-B3C3-1C9EA2AB5F14"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ni/utils/PasteboardUtils.swift"
@@ -478,43 +418,13 @@
             endingLineNumber = "27"
             landmarkName = "tryGetName()"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "DDFE3866-6CF8-4304-B3C3-1C9EA2AB5F14 - 620ee0d31a55e57f"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__C.NSPasteboard.tryGetName() -&gt; Swift.Optional&lt;Swift.String&gt;"
-                  moduleName = "ni"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Patrick/Workbench/takahe/ni/utils/PasteboardUtils.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "27"
-                  endingLineNumber = "27">
-               </Location>
-               <Location
-                  uuid = "DDFE3866-6CF8-4304-B3C3-1C9EA2AB5F14 - 620ee0d31a55e57f"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__C.NSPasteboard.tryGetName() -&gt; Swift.Optional&lt;Swift.String&gt;"
-                  moduleName = "ni"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Patrick/Workbench/takahe/ni/utils/PasteboardUtils.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "27"
-                  endingLineNumber = "27">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "3D4D5588-5E04-494A-9371-6F1AC357E88F"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ni/utils/PasteboardUtils.swift"
@@ -524,36 +434,102 @@
             endingLineNumber = "53"
             landmarkName = "getFileName(from:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "3D4D5588-5E04-494A-9371-6F1AC357E88F - 65bb108b2f0b7aa"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__C.NSPasteboard.getFileName(from: Foundation.Data) -&gt; Swift.Optional&lt;Swift.String&gt;"
-                  moduleName = "ni"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Patrick/Workbench/takahe/ni/utils/PasteboardUtils.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "42"
-                  endingLineNumber = "42">
-               </Location>
-               <Location
-                  uuid = "3D4D5588-5E04-494A-9371-6F1AC357E88F - 65bb108b2f0b7aa"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__C.NSPasteboard.getFileName(from: Foundation.Data) -&gt; Swift.Optional&lt;Swift.String&gt;"
-                  moduleName = "ni"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Patrick/Workbench/takahe/ni/utils/PasteboardUtils.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "42"
-                  endingLineNumber = "42">
-               </Location>
-            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "FC65D5C0-38FE-43C5-84A2-23F0CE43B803"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ni/niSpace/contentFrame/NiImgViewElements/NiImgView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "30"
+            endingLineNumber = "30"
+            landmarkName = "mouseDown(with:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "FAB54539-0C5C-48F2-B4B6-DDC4E1298938"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ni/niSpace/contentFrame/ContentFrameController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "425"
+            endingLineNumber = "425"
+            landmarkName = "openSourceWebsite()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "33317FDD-3A9B-4758-9FA8-336FF0C9C54B"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ni/niSpace/contentFrame/NiImgViewElements/NiImgView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "39"
+            endingLineNumber = "39"
+            landmarkName = "keyDown(with:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "99B33CE4-ED21-43F6-B701-0D3C5B464B19"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ni/niSpace/contentFrame/CFFrameless/CFFramelessView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "55"
+            endingLineNumber = "55"
+            landmarkName = "keyDown(with:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "3B1D8275-19B1-4F08-88C6-E5ED6D0A06C7"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ni/niSpace/contentFrame/ContentFrameController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "424"
+            endingLineNumber = "424"
+            landmarkName = "openSourceWebsite()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5D47AC9B-CE07-4856-9B8A-BC9E933250BF"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ni/niSpace/contentFrame/NiImgViewElements/NiImgView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "26"
+            endingLineNumber = "26"
+            landmarkName = "NiImgView"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

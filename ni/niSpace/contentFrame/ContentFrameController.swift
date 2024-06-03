@@ -75,6 +75,8 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		let framelessView = (NSView.loadFromNib(nibName: "CFFramelessView", owner: self) as! CFFramelessView)
 		framelessView.setSelfController(self)
 		framelessView.wantsLayer = true
+		framelessView.layer?.cornerRadius = 5.0
+		framelessView.layer?.cornerCurve = .continuous
 		framelessView.layer?.backgroundColor = NSColor.sandLight3.cgColor
 		return framelessView
 	}
@@ -416,6 +418,18 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		
 		tabs[at].state = .loading
 		tabs[at].webView?.load(urlReq)
+	}
+	
+	func openSourceWebsite(){
+		if(selectedTabModel == -1){selectedTabModel = 0}
+		if(tabs.count < selectedTabModel){return}
+		if(tabs[selectedTabModel].type != .img){return}
+		guard let sourceURL = tabs[selectedTabModel].source else{return}
+		if(!sourceURL.starts(with: "http")){return}
+		
+		guard let docController = myView.niParentDoc?.nextResponder as? NiSpaceDocumentController else {return}
+		let newCF = docController.openEmptyCF(openInitalTab: false)
+		newCF.openWebsiteInNewTab(sourceURL, shallSelectTab: true)
 	}
 	
 	/*
@@ -772,6 +786,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	func purgePersistetContent(){
 		for tab in tabs {
 			ContentTable.delete(id: tab.contentId)
+			//TODO: add image  when deleted
 		}
 	}
 	

@@ -172,10 +172,12 @@ func getTabViewModel(for id: UUID, ofType type: TabContentType, positioned at: I
 			position: at
 		)
 	}else if(type == .img){
-		let img = ImgDal.fetchImg(id: id)
+		let (title, img, sourceUrl) = ImgDal.fetchImgWMetaData(id: id) ?? (nil, nil, nil)
 		tabView = TabViewModel(
 			contentId: id,
 			type: type,
+			title: title ?? "",
+			source: sourceUrl,
 			icon: img
 		)
 	}else{

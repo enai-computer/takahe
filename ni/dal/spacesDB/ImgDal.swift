@@ -24,12 +24,17 @@ class ImgDal{
 		}
 	}
 
-	static func fetchImg(id: UUID, callback: ((NSImage)->Void)? = nil) -> NSImage? {
-		if let urlString = ContentTable.fetchURL(for: id){
-			if let fUrl = URL(string: urlString){
-				return fetchImgFromDisk(fUrl)
-			}
+	/** returns title, image, sourceURL
+	 
+	 */
+	static func fetchImgWMetaData(id: UUID, callback: ((NSImage)->Void)? = nil) -> (String?, NSImage?, String?)? {
+		let (urlString, title, sourceUrl) = ContentTable.fetchURLTitleSource(for: id) ?? (nil, nil, nil)
+		if(urlString == nil){return nil}
+		
+		if let fUrl = URL(string: urlString!){
+			return (title, fetchImgFromDisk(fUrl), sourceUrl)
 		}
+		
 		return nil
 	}
 }
