@@ -13,6 +13,7 @@ class NiSpaceMenuController: NSViewController{
 	
 	private var outOfBoundsMonitor: Any?
 	private var parentController: NiSpaceViewController
+	private var pasteBoardType: NiPasteboardContent?
 	
 	init(owner: NiSpaceViewController){
 		self.parentController = owner
@@ -40,10 +41,12 @@ class NiSpaceMenuController: NSViewController{
 		view.layer?.cornerRadius = 10.0
 		view.layer?.cornerCurve = .continuous
 		
-		myView.uploadAnImage.isEnabled = false
+		self.pasteBoardType = NSPasteboard.general.containsImgOrText()
+		myView.updatePasteMenuItem(for: pasteBoardType!)
 		
 		myView.openAWindow.mouseDownFunction = openAWindow
 		myView.writeANote.mouseDownFunction = createANote
+		myView.uploadAnImage.mouseDownFunction = pasteImgOrTxt
 	}
 	
 	override func viewDidAppear() {
@@ -71,5 +74,18 @@ class NiSpaceMenuController: NSViewController{
 	
 	func createANote(with event: NSEvent){
 		parentController.createANote(positioned: event.locationInWindow)
+	}
+	
+	func pasteImgOrTxt(with event: NSEvent){
+		
+		if(pasteBoardType! == .image){
+			guard let img = NSPasteboard.general.getImage() else {return}
+			let title = NSPasteboard.general.tryGetName()
+			parentController.pasteImage(image: img, positioned: event.locationInWindow, title: title, source: nil)
+		}
+		else if(pasteBoardType! == .txt){
+			let txt = NSPasteboard.general.tryGetText()
+			parentController.createANote(positioned: event.locationInWindow, with: txt)
+		}
 	}
 }

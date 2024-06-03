@@ -53,7 +53,8 @@ class NiSpaceDocumentController: NSViewController{
 					 initialTabType: TabContentType = .web,
 					 openInitalTab: Bool = true,
 					 positioned relavtiveTo: CGPoint? = nil,
-					 size: CGSize? = nil
+					 size: CGSize? = nil,
+					 content: String? = nil
 	) -> ContentFrameController {
 		let controller = openEmptyContentFrame(viewState: viewState)
 		let newCFView = controller.myView
@@ -80,7 +81,7 @@ class NiSpaceDocumentController: NSViewController{
 		if(initialTabType == .web && openInitalTab){
 			controller.openAndEditEmptyWebTab()
 		}else if(initialTabType == .note){
-			controller.openNoteInNewTab()
+			controller.openNoteInNewTab(content: content)
 		}
 		
 		if(initialTabType == .img){

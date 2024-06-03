@@ -7,6 +7,10 @@
 
 import Cocoa
 
+enum NiPasteboardContent{
+	case empty, image, txt
+}
+
 extension NSPasteboard{
 	
 	/** returns nil if no image or fileURL to an image was found on pasteboard.
@@ -46,6 +50,39 @@ extension NSPasteboard{
 			}
 		}
 		return nil
+	}
+	
+	func tryGetText() -> String?{
+		if let pasteboardItem = self.pasteboardItems?[0]{
+			if(pasteboardItem.types.contains(.string)){
+				if let urlBytes = pasteboardItem.data(forType: .string){
+					return String(decoding: urlBytes, as: UTF8.self)
+				}
+			}
+		}
+		return nil
+	}
+	
+	func containsImgOrText() -> NiPasteboardContent{
+		if let item = self.pasteboardItems?[0]{
+			var containsText: Bool = false
+			for t in item.types{
+				switch(t){
+					case .png:
+						return .image
+					case .tiff:
+						return .image
+					case .rtf, .html, .multipleTextSelection, .tabularText, .string:
+						containsText = true
+					default:
+						break
+				}
+			}
+			if containsText{
+				return .txt
+			}
+		}
+		return .empty
 	}
 	
 	private func getFileName(from urlBytes: Data) -> String?{
