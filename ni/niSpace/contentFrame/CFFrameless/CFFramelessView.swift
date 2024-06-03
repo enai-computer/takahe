@@ -12,7 +12,7 @@ class CFFramelessView: CFBaseView {
 	
 	override var minFrameHeight: CGFloat {return 50.0}
 	override var minFrameWidth: CGFloat {return 80.0}
-	var myView: CFContentItem? {return contentView as? CFContentItem}
+	var myItem: CFContentItem?
 	
 	private var hoverEffect: NSTrackingArea? = nil
 	
@@ -20,11 +20,11 @@ class CFFramelessView: CFBaseView {
 		frameIsActive = !frameIsActive
 	
 		if(frameIsActive){
-			myView?.setActive()
+			myItem?.setActive()
 			updateTrackingAreas()
 			setBorder()
 		}else{
-			if(myView?.setInactive() == .removeSelf){
+			if(myItem?.setInactive() == .removeSelf){
 				myController?.confirmClose()
 			}
 			updateTrackingAreas()
@@ -40,12 +40,18 @@ class CFFramelessView: CFBaseView {
 		self.borderColor = NSColor.birkin
 	}
 	
-	func setContentView(view: NSView){
-		self.contentView = view
+	func setContentItem(item: CFContentItem){
+		self.myItem = item
 	}
 	
+	/** If the passed view does not confirm to CFContentItem, you have to call setContentItem speratly!
+	 
+	 */
 	override func createNewTab(tabView: NSView, openNextTo: Int = -1) -> Int{
 		self.contentView = tabView
+		if let item = tabView as? CFContentItem{
+			setContentItem(item: item)
+		}
 		self.contentView?.layer?.cornerCurve = .continuous
 		self.contentView?.layer?.cornerRadius  = 5.0
 		return -1
@@ -54,7 +60,7 @@ class CFFramelessView: CFBaseView {
 	override func keyDown(with event: NSEvent) {
 		if(event.keyCode == kVK_Delete || event.keyCode == kVK_ForwardDelete){
 			if(frameIsActive){
-				myView?.owner?.triggerCloseProcess(with: event)
+				myItem?.owner?.triggerCloseProcess(with: event)
 				return
 			}
 		}

@@ -6,7 +6,6 @@
 //
 
 import Cocoa
-import Carbon.HIToolbox
 
 class NiNoteItem: NSViewController, CFContentItem {
 	
@@ -16,20 +15,33 @@ class NiNoteItem: NSViewController, CFContentItem {
 	var viewIsActive: Bool {return txtDocView.isEditable}
 	
 	var scrollView: NSScrollView
-	private var txtDocView: NSTextView
+	private var txtDocView: NiNoteView
 	
-	required init() {
-		scrollView = NSTextView.scrollableTextView()
-		self.txtDocView = scrollView.documentView as! NSTextView
-//		let txtStorage = TextStorage(editorAttributes: Mar)
+	required init(frame: NSRect) {
+		scrollView = NSScrollView(frame: frame)
+		let noteView = NiNoteView(frame: frame)
+		self.txtDocView = noteView
+		
+		scrollView.documentView = noteView
+
+		let txtStorage = NSTextStorage(string: "")
+		txtStorage.addLayoutManager(txtDocView.layoutManager!)
+		
 		super.init(nibName: nil, bundle: nil)
+		
+		noteView.myController = self
 	}
 	
 	required init?(coder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
 	}
 	
-	override func viewDidLoad() {
+	override func loadView() {
+		configureTxtDocView()
+		configureScrollView()
+	}
+	
+	private func configureTxtDocView(){
 		txtDocView.backgroundColor = NSColor.sandLight3
 		txtDocView.insertionPointColor = NSColor.birkin
 		txtDocView.importsGraphics = false
@@ -39,12 +51,35 @@ class NiNoteItem: NSViewController, CFContentItem {
 		txtDocView.usesFindPanel = false
 		txtDocView.usesFontPanel = false
 		txtDocView.isRichText = false
-		txtDocView.isVerticallyResizable = false
+		txtDocView.isVerticallyResizable = true
 		txtDocView.isHorizontallyResizable = false
 		txtDocView.isEditable = false
 	
 		txtDocView.font = NSFont(name: "Sohne-Buch", size: 16.0)
 		txtDocView.textColor = NSColor.sandDark7
+		txtDocView.frame.size.width = scrollView.frame.width
+		txtDocView.translatesAutoresizingMaskIntoConstraints = false
+		NSLayoutConstraint.activate([
+			txtDocView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+			txtDocView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+			txtDocView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
+			
+			txtDocView.topAnchor.constraint(greaterThanOrEqualTo: scrollView.topAnchor),
+			txtDocView.topAnchor.constraint(greaterThanOrEqualTo: scrollView.bottomAnchor),
+			txtDocView.heightAnchor.constraint(greaterThanOrEqualTo: scrollView.heightAnchor)
+		])
+		txtDocView.isVerticalContentSizeConstraintActive = false
+	}
+	
+	private func configureScrollView(){
+		let scrollerPos: NSRect = NSRect(x: scrollView.frame.width - 2.0, y: 0, width: 2.0, height: scrollView.frame.height)
+		scrollView.hasVerticalScroller = true
+		scrollView.verticalScroller = NiScroller(frame: scrollerPos, isVertical: true)
+		scrollView.verticalScrollElasticity = .allowed
+		scrollView.horizontalScroller = nil
+		scrollView.hasHorizontalScroller = false
+		scrollView.horizontalScrollElasticity = .none
+		scrollView.autohidesScrollers = true
 	}
 	
 	func setActive() {
@@ -53,7 +88,7 @@ class NiNoteItem: NSViewController, CFContentItem {
 		txtDocView.isSelectable = true
 		
 		setStyling()
-		txtDocView.window?.makeFirstResponder(self)
+		scrollView.window?.makeFirstResponder(txtDocView)
 	}
 	
 	func setInactive() -> FollowOnAction{
@@ -66,9 +101,9 @@ class NiNoteItem: NSViewController, CFContentItem {
 			return .removeSelf
 		}
 		
-		overlay = cfOverlay(frame: scrollView.frame, nxtResponder: self.nextResponder)
-		view.addSubview(overlay!)
-		view.window?.makeFirstResponder(overlay)
+		overlay = cfOverlay(frame: scrollView.frame, nxtResponder: self.parentView)
+		txtDocView.addSubview(overlay!)
+		txtDocView.window?.makeFirstResponder(overlay)
 		
 		return .nothing
 	}
@@ -94,47 +129,6 @@ class NiNoteItem: NSViewController, CFContentItem {
 		txtDocView.layer?.cornerCurve = .continuous
 	}
 	
-	override func cancelOperation(_ sender: Any?) {
-		_ = txtDocView.delegate?.textShouldEndEditing?(txtDocView)
-		return
-	}
-	
-	override func mouseDown(with event: NSEvent) {
-		if(!txtDocView.isEditable && event.clickCount == 2){
-			startEditing()
-		}else if(!txtDocView.isEditable && event.clickCount == 1){
-			nextResponder?.mouseDown(with: event)
-			return
-		}
-		super.mouseDown(with: event)
-	}
-	
-	override func mouseDragged(with event: NSEvent) {
-		if(!txtDocView.isEditable){
-			nextResponder?.mouseDragged(with: event)
-			return
-		}
-		super.mouseDragged(with: event)
-	}
-	
-	override func keyDown(with event: NSEvent) {
-		if(event.keyCode == kVK_Delete || event.keyCode == kVK_ForwardDelete){
-			if(!txtDocView.isEditable){
-				owner?.triggerCloseProcess(with: event)
-				return
-			}
-		}
-		if(event.keyCode == kVK_Escape && txtDocView.isEditable){
-			stopEditing()
-			return
-		}
-		
-		if(!txtDocView.isEditable){
-			startEditing()
-			moveToEndOfDocument(nil)
-		}
-		super.keyDown(with: event)
-	}
 	
 	func getText() -> String? {
 		return txtDocView.textStorage?.string.trimmingCharacters(in: .whitespaces)
