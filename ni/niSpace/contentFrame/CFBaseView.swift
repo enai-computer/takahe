@@ -100,7 +100,7 @@ class CFBaseView: NSBox{
 		preconditionFailure("This method must be overridden")
 	}
 
-	/** will return -1 if view does not have tabs
+	/** Will return -1 if view does not have tabs.
 	 
 	 */
 	func createNewTab(tabView: NSView, openNextTo: Int = -1) -> Int{

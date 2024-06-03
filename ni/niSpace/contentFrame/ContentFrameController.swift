@@ -16,6 +16,7 @@ import FaviconFinder
 class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelegate, NSCollectionViewDataSource, NSCollectionViewDelegate, NSCollectionViewDelegateFlowLayout{
     
 	var myView: CFBaseView {return self.view as! CFBaseView}
+	var framelessView: CFFramelessView? {return self.view as? CFFramelessView}
 	
     private(set) var expandedCFView: ContentFrameView? = nil
     private var selectedTabModel: Int = -1
@@ -365,6 +366,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		self.tabs.append(tabHeadModel)
 		
 		_ = myView.createNewTab(tabView: noteItem.scrollView)
+		framelessView?.setContentItem(item: noteItem)
 		noteItem.startEditing()
 		myView.window?.makeFirstResponder(noteItem)
 		noteItem.setText(content ?? "")

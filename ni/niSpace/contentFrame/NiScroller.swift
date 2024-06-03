@@ -9,7 +9,17 @@ import Cocoa
 
 class NiScroller: NSScroller{
 	
+	private let isVertical: Bool
+	
+	init(frame frameRect: NSRect, isVertical: Bool) {
+		self.isVertical = isVertical
+		super.init(frame: frameRect)
+		self.alphaValue = 0.0
+		
+	}
+	
 	required init?(coder: NSCoder) {
+		self.isVertical = false
 		super.init(coder: coder)
 		self.alphaValue = 0.0
 	}
@@ -26,10 +36,14 @@ class NiScroller: NSScroller{
 	
 	override func drawKnob() {
 		NSColor.birkin.setFill()
-		var frame = rect(for: .knob)
-		frame.origin.y = 0
-		frame.size.height = 2.0
-		NSBezierPath.init(roundedRect: frame, xRadius: 1, yRadius: 1).fill()
+		var knobFrame = rect(for: .knob)
+		if(!isVertical){
+			knobFrame.origin.y = 0
+			knobFrame.size.height = 2.0
+		}else{
+			knobFrame.size.width = 2.0
+		}
+		NSBezierPath.init(roundedRect: knobFrame, xRadius: 1, yRadius: 1).fill()
 	}
 	
 	override class func scrollerWidth(for controlSize: NSControl.ControlSize, scrollerStyle: NSScroller.Style) -> CGFloat {
