@@ -29,6 +29,24 @@ class NiNoteItem: NSViewController, CFContentItem {
 		fatalError("init(coder:) has not been implemented")
 	}
 	
+	override func viewDidLoad() {
+		txtDocView.backgroundColor = NSColor.sandLight3
+		txtDocView.insertionPointColor = NSColor.birkin
+		txtDocView.importsGraphics = false
+		txtDocView.allowsImageEditing = false
+		txtDocView.displaysLinkToolTips = false
+		txtDocView.usesFindBar = false
+		txtDocView.usesFindPanel = false
+		txtDocView.usesFontPanel = false
+		txtDocView.isRichText = false
+		txtDocView.isVerticallyResizable = false
+		txtDocView.isHorizontallyResizable = false
+		txtDocView.isEditable = false
+	
+		txtDocView.font = NSFont(name: "Sohne-Buch", size: 16.0)
+		txtDocView.textColor = NSColor.sandDark7
+	}
+	
 	func setActive() {
 		overlay?.removeFromSuperview()
 		overlay = nil
@@ -63,6 +81,10 @@ class NiNoteItem: NSViewController, CFContentItem {
 	func stopEditing(){
 		txtDocView.isEditable = false
 		parentView?.setBorder()
+	}
+	
+	func setText(_ content: String){
+		txtDocView.string = content
 	}
 	
 	private func setStyling(){
