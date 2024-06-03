@@ -130,7 +130,7 @@ class NiSpaceViewController: NSViewController{
 		let targetSize = imgSizing(image.size)
 		image.size = targetSize
 		var position = at
-		position.y = niScrollView.documentView!.visibleRect.size.height - position.y
+		position.y = niScrollView.documentView!.visibleRect.size.height - position.y + niScrollView.documentView!.visibleRect.origin.y
 		let cfController = niDocument.openEmptyCF(viewState: .frameless, initialTabType: .img, positioned: position, size: targetSize)
 		cfController.openImgInNewTab(tabTitle: title, content: image, source: source)
 	}
