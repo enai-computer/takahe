@@ -44,11 +44,15 @@ class ContentTable{
 		return false
 	}
     
-	static func fetchURL(for id: UUID) -> String?{
+	static func fetchURLTitleSource(for id: UUID) -> (String?, String?, String?)?{
 		do{
 			let q = table.where(self.id == id)
 			for r in try Storage.instance.spacesDB.prepare(q){
-				return try r.get(self.localStorageLocation)
+				return try (
+					r.get(self.localStorageLocation),
+					r.get(self.title),
+					r.get(self.sourceUrl)
+					)
 			}
 		}catch{
 			print("Failed to run select on ContentTable")

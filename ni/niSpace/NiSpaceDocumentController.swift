@@ -51,6 +51,7 @@ class NiSpaceDocumentController: NSViewController{
 	@discardableResult
 	func openEmptyCF(viewState: NiConentFrameState = .expanded,
 					 initialTabType: TabContentType = .web,
+					 openInitalTab: Bool = true,
 					 positioned relavtiveTo: CGPoint? = nil,
 					 size: CGSize? = nil
 	) -> ContentFrameController {
@@ -76,7 +77,7 @@ class NiSpaceDocumentController: NSViewController{
 		myView.addNiFrame(controller)
 		
 		//TODO: set inital tab type bassed on passed parameter
-		if(initialTabType == .web){
+		if(initialTabType == .web && openInitalTab){
 			controller.openAndEditEmptyWebTab()
 		}else if(initialTabType == .note){
 			controller.openNoteInNewTab()

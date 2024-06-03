@@ -12,6 +12,7 @@ enum FollowOnAction{
 }
 
 protocol CFContentItem{
+	var owner: ContentFrameController? {get}
 	var viewIsActive: Bool {get}
 	func setActive() -> Void
 	func setInactive() -> FollowOnAction
