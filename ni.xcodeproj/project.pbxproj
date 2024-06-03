@@ -94,7 +94,7 @@
 		CDFA8CFB2C03B9AE00882722 /* CFFramelessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDFA8CFA2C03B9AE00882722 /* CFFramelessView.swift */; };
 		CDFA8CFD2C03B9D000882722 /* CFFramelessView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDFA8CFC2C03B9D000882722 /* CFFramelessView.xib */; };
 		CDFA8CFF2C04815C00882722 /* EventUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDFA8CFE2C04815C00882722 /* EventUtils.swift */; };
-		CDFA8D022C0492F400882722 /* NiNoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDFA8D012C0492F400882722 /* NiNoteView.swift */; };
+		CDFA8D022C0492F400882722 /* NiNoteItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDFA8D012C0492F400882722 /* NiNoteItem.swift */; };
 		CDFA8D042C04931600882722 /* NiNoteUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDFA8D032C04931600882722 /* NiNoteUtils.swift */; };
 /* End PBXBuildFile section */
 
@@ -197,7 +197,7 @@
 		CDFA8CFA2C03B9AE00882722 /* CFFramelessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CFFramelessView.swift; sourceTree = "<group>"; };
 		CDFA8CFC2C03B9D000882722 /* CFFramelessView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CFFramelessView.xib; sourceTree = "<group>"; };
 		CDFA8CFE2C04815C00882722 /* EventUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventUtils.swift; sourceTree = "<group>"; };
-		CDFA8D012C0492F400882722 /* NiNoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiNoteView.swift; sourceTree = "<group>"; };
+		CDFA8D012C0492F400882722 /* NiNoteItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiNoteItem.swift; sourceTree = "<group>"; };
 		CDFA8D032C04931600882722 /* NiNoteUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiNoteUtils.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -497,7 +497,7 @@
 		CDFA8D002C0492A100882722 /* NiNoteViewElements */ = {
 			isa = PBXGroup;
 			children = (
-				CDFA8D012C0492F400882722 /* NiNoteView.swift */,
+				CDFA8D012C0492F400882722 /* NiNoteItem.swift */,
 				CDFA8D032C04931600882722 /* NiNoteUtils.swift */,
 			);
 			path = NiNoteViewElements;
@@ -663,7 +663,7 @@
 				CDE76C1C2BC6989000CE9513 /* TabViewModel.swift in Sources */,
 				CDD6B9402B169F7700C6144D /* DocumentTable.swift in Sources */,
 				CDD6B9452B16A1A200C6144D /* CachedWebTable.swift in Sources */,
-				CDFA8D022C0492F400882722 /* NiNoteView.swift in Sources */,
+				CDFA8D022C0492F400882722 /* NiNoteItem.swift in Sources */,
 				CDD6B9392B152A8000C6144D /* Storage.swift in Sources */,
 				CD42CEC92BDA48180039814D /* NiScrollView.swift in Sources */,
 				CDA639582BF508FF001941DE /* WelcomeSpaceGenerator.swift in Sources */,

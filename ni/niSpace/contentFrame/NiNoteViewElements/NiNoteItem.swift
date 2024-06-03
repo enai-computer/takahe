@@ -8,65 +8,79 @@
 import Cocoa
 import Carbon.HIToolbox
 
-class NiNoteView: NSTextView, CFContentItem {
+class NiNoteItem: NSViewController, CFContentItem {
 	
 	private var overlay: NSView?
 	var owner: ContentFrameController?
-	var parentView: CFFramelessView? {return superview as? CFFramelessView }
-	var viewIsActive: Bool {return isEditable}
+	var parentView: CFFramelessView? {return scrollView.superview as? CFFramelessView }
+	var viewIsActive: Bool {return txtDocView.isEditable}
+	
+	var scrollView: NSScrollView
+	private var txtDocView: NSTextView
+	
+	required init() {
+		scrollView = NSTextView.scrollableTextView()
+		self.txtDocView = scrollView.documentView as! NSTextView
+//		let txtStorage = TextStorage(editorAttributes: Mar)
+		super.init(nibName: nil, bundle: nil)
+	}
+	
+	required init?(coder: NSCoder) {
+		fatalError("init(coder:) has not been implemented")
+	}
 	
 	func setActive() {
 		overlay?.removeFromSuperview()
 		overlay = nil
-		self.isSelectable = true
+		txtDocView.isSelectable = true
 		
 		setStyling()
-		window?.makeFirstResponder(self)
+		txtDocView.window?.makeFirstResponder(self)
 	}
 	
 	func setInactive() -> FollowOnAction{
 		setStyling()
 		
-		self.isEditable = false
-		self.isSelectable = false
+		txtDocView.isEditable = false
+		txtDocView.isSelectable = false
 		let content = getText()
 		if(content == nil || content!.isEmpty){
 			return .removeSelf
 		}
 		
-		overlay = cfOverlay(frame: self.frame, nxtResponder: self.nextResponder)
-		self.addSubview(overlay!)
-		window?.makeFirstResponder(overlay)
+		overlay = cfOverlay(frame: scrollView.frame, nxtResponder: self.nextResponder)
+		view.addSubview(overlay!)
+		view.window?.makeFirstResponder(overlay)
 		
 		return .nothing
 	}
 	
 	func startEditing(){
-		self.isEditable = true
+		txtDocView.isEditable = true
 		parentView?.removeBorder()
 	}
 	
 	func stopEditing(){
-		self.isEditable = false
+		txtDocView.isEditable = false
 		parentView?.setBorder()
 	}
 	
 	private func setStyling(){
-		self.wantsLayer = true
-		self.backgroundColor = NSColor.sandLight3
-		self.layer?.cornerRadius = 5
-		self.layer?.cornerCurve = .continuous
+		txtDocView.wantsLayer = true
+		txtDocView.backgroundColor = NSColor.sandLight3
+		txtDocView.layer?.cornerRadius = 5
+		txtDocView.layer?.cornerCurve = .continuous
 	}
 	
 	override func cancelOperation(_ sender: Any?) {
-		_ = delegate?.textShouldEndEditing?(self)
+		_ = txtDocView.delegate?.textShouldEndEditing?(txtDocView)
 		return
 	}
 	
 	override func mouseDown(with event: NSEvent) {
-		if(!isEditable && event.clickCount == 2){
+		if(!txtDocView.isEditable && event.clickCount == 2){
 			startEditing()
-		}else if(!isEditable && event.clickCount == 1){
+		}else if(!txtDocView.isEditable && event.clickCount == 1){
 			nextResponder?.mouseDown(with: event)
 			return
 		}
@@ -74,7 +88,7 @@ class NiNoteView: NSTextView, CFContentItem {
 	}
 	
 	override func mouseDragged(with event: NSEvent) {
-		if(!isEditable){
+		if(!txtDocView.isEditable){
 			nextResponder?.mouseDragged(with: event)
 			return
 		}
@@ -83,17 +97,17 @@ class NiNoteView: NSTextView, CFContentItem {
 	
 	override func keyDown(with event: NSEvent) {
 		if(event.keyCode == kVK_Delete || event.keyCode == kVK_ForwardDelete){
-			if(!isEditable){
+			if(!txtDocView.isEditable){
 				owner?.triggerCloseProcess(with: event)
 				return
 			}
 		}
-		if(event.keyCode == kVK_Escape && isEditable){
+		if(event.keyCode == kVK_Escape && txtDocView.isEditable){
 			stopEditing()
 			return
 		}
 		
-		if(!isEditable){
+		if(!txtDocView.isEditable){
 			startEditing()
 			moveToEndOfDocument(nil)
 		}
@@ -101,7 +115,7 @@ class NiNoteView: NSTextView, CFContentItem {
 	}
 	
 	func getText() -> String? {
-		return self.textStorage?.string.trimmingCharacters(in: .whitespaces)
+		return txtDocView.textStorage?.string.trimmingCharacters(in: .whitespaces)
 	}
 	
 	func getTitle() -> String? {

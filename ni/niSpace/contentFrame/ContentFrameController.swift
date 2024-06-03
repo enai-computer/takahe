@@ -281,7 +281,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		
 		for i in tabs.indices{
 			let wview = getNewWebView(owner: self, frame: expandedCFView!.frame ,cleanUrl: tabs[i].content, contentId: tabs[i].contentId)
-			tabs[i].view = wview
+			tabs[i].viewItem = wview
 			tabs[i].position = expandedCFView!.createNewTab(tabView: wview)
 			wview.tabHeadPosition = tabs[i].position
 			if(tabs[i].isSelected){
@@ -320,7 +320,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		
 		var tabHeadModel = TabViewModel(contentId: contentId, type: .web)
 		tabHeadModel.position = expandedCFView!.createNewTab(tabView: niWebView)
-		tabHeadModel.view = niWebView
+		tabHeadModel.viewItem = niWebView
 		tabHeadModel.webView!.tabHeadPosition = tabHeadModel.position
 		self.tabs.append(tabHeadModel)
 		
@@ -350,7 +350,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 			tabHeadModel.title = title
 		}
 		tabHeadModel.position = 0
-		tabHeadModel.view = imgView
+		tabHeadModel.viewItem = imgView
 		self.tabs.append(tabHeadModel)
 		
 		_ = myView.createNewTab(tabView: imgView)
@@ -361,13 +361,13 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		
 		var tabHeadModel = TabViewModel(contentId: contentId, type: .note, isSelected: true)
 		tabHeadModel.position = 0
-		tabHeadModel.view = noteView
+		tabHeadModel.viewItem = noteView
 		self.tabs.append(tabHeadModel)
 		
-		_ = myView.createNewTab(tabView: noteView)
+		_ = myView.createNewTab(tabView: noteView.scrollView)
 		noteView.startEditing()
 		myView.window?.makeFirstResponder(noteView)
-		noteView.string = content ?? ""
+//		noteView.string = content ?? ""
 	}
 	
 	func openWebsiteInNewTab(urlStr: String, contentId: UUID, tabName: String, webContentState: TabViewModelState? = nil, openNextTo: Int = -1) -> Int{
@@ -380,7 +380,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		
 		var tabHeadModel = TabViewModel(contentId: contentId, type: .web)
 		tabHeadModel.position = viewPosition
-		tabHeadModel.view = niWebView
+		tabHeadModel.viewItem = niWebView
 		tabHeadModel.webView!.tabHeadPosition = tabHeadModel.position
 		if(webContentState != nil){
 			tabHeadModel.state = webContentState!
@@ -497,7 +497,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 			ContentTable.delete(id: deletedTabModel!.contentId)
 		}
 
-		deletedTabModel?.view = nil
+		deletedTabModel?.viewItem = nil
 	}
 	
 	func selectNextTab(goFwd: Bool = true){

@@ -22,10 +22,10 @@ struct TabViewModel{
 	var state: TabViewModelState = .empty
 	var icon: NSImage?
 	
-	var view: NSView?
-	var webView: NiWebView? {return self.view as? NiWebView? ?? nil}
-	var noteView: NiNoteView? {return self.view as? NiNoteView ?? nil}
-	var imgView: NiImgView? {return self.view as? NiImgView ?? nil}
+	var viewItem: CFContentItem?
+	var webView: NiWebView? {return self.viewItem as? NiWebView? ?? nil}
+	var noteView: NiNoteItem? {return self.viewItem as? NiNoteItem ?? nil}
+	var imgView: NiImgView? {return self.viewItem as? NiImgView ?? nil}
 	
 	var position: Int = -1
 	var isSelected: Bool = false
