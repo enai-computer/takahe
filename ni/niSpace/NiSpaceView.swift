@@ -5,7 +5,6 @@ import Cocoa
 class NiSpaceView: NSView{
  
 	override func draggingEntered(_ sender: any NSDraggingInfo) -> NSDragOperation {
-//		return .copy
 		return .generic
 	}
 	

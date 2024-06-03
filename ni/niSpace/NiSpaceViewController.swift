@@ -129,7 +129,9 @@ class NiSpaceViewController: NSViewController{
 	func pasteImage(image: NSImage, positioned at: CGPoint, title: String?, source: String?){
 		let targetSize = imgSizing(image.size)
 		image.size = targetSize
-		let cfController = niDocument.openEmptyCF(viewState: .frameless, initialTabType: .img, positioned: at, size: targetSize)
+		var position = at
+		position.y = niScrollView.documentView!.visibleRect.size.height - position.y
+		let cfController = niDocument.openEmptyCF(viewState: .frameless, initialTabType: .img, positioned: position, size: targetSize)
 		cfController.openImgInNewTab(tabTitle: title, content: image, source: source)
 	}
 	
@@ -173,7 +175,7 @@ class NiSpaceViewController: NSViewController{
 		return size
 	}
 	
-	func createANote(positioned relavtiveTo: CGPoint? = nil){
+	func createANote(positioned relavtiveTo: CGPoint? = nil, with content: String? = nil){
 		var noteOrigin: CGPoint?
 		if(spaceMenu != nil){
 			noteOrigin = spaceMenu!.view.frame.origin
@@ -181,7 +183,7 @@ class NiSpaceViewController: NSViewController{
 		}else{
 			noteOrigin = relavtiveTo
 		}
-		niDocument.openEmptyCF(viewState: .frameless, initialTabType: .note, positioned: noteOrigin)
+		niDocument.openEmptyCF(viewState: .frameless, initialTabType: .note, positioned: noteOrigin, content: content)
 	}
 	
 	func closeTabOfTopCF(){
