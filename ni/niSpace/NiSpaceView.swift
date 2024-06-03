@@ -5,6 +5,8 @@ import Cocoa
 class NiSpaceView: NSView{
  
 	override func draggingEntered(_ sender: any NSDraggingInfo) -> NSDragOperation {
+		//tried .copy, .generic, .move, .every
+		//TODO: find a way to stop recoil back to source
 		return .generic
 	}
 	
@@ -12,6 +14,7 @@ class NiSpaceView: NSView{
 		
 		guard let controller = nextResponder as? NiSpaceViewController else {return}
 		guard let img = sender.draggingPasteboard.getImage() else {return}
+
 		let title = sender.draggingPasteboard.tryGetName()
 		let source = (sender.draggingSource as! NiWebView).url?.absoluteString
 		
