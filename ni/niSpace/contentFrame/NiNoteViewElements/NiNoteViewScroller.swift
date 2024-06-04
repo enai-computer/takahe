@@ -1,34 +1,43 @@
 //
-//  NiScroller.swift
+//  NiNoteViewScroller.swift
 //  ni
 //
-//  Created by Patrick Lukas on 17/5/24.
+//  Created by Patrick Lukas on 4/6/24.
 //
 
 import Cocoa
 
-class NiScroller: NSScroller{
+class NiNoteViewScroller: NSScroller{
 
+	private var hideKnob = true
+
+	override init(frame frameRect: NSRect) {
+		super.init(frame: frameRect)
+	}
+	
 	required init?(coder: NSCoder) {
-		super.init(coder: coder)
-		self.alphaValue = 0.0
+		fatalError("init(coder:) has not been implemented")
 	}
 	
 	override func draw(_ dirtyRect: NSRect) {
 		super.draw(dirtyRect)
-		if(isHidden){
-			return
-		}
+
 		NSColor.sandLight4.setFill()
 		dirtyRect.fill()
+
 		self.drawKnob()
 	}
 	
 	override func drawKnob() {
-		NSColor.birkin.setFill()
+		if(hideKnob){
+			NSColor.sandLight4.setFill()
+		}else{
+			NSColor.birkin.setFill()
+		}
+		
 		var knobFrame = rect(for: .knob)
-		knobFrame.origin.y = 0
-		knobFrame.size.height = 2.0
+		knobFrame.origin.x = 0
+		knobFrame.size.width = 2.0
 		NSBezierPath.init(roundedRect: knobFrame, xRadius: 1, yRadius: 1).fill()
 	}
 	
@@ -42,10 +51,21 @@ class NiScroller: NSScroller{
 	}
 	
 	override func mouseEntered(with event: NSEvent) {
-		self.alphaValue = 1.0
+		unhide()
 	}
 	
 	override func mouseExited(with event: NSEvent) {
-		self.alphaValue = 0.0
+		hide()
+	}
+	
+	func unhide(){
+		hideKnob = false
+		//needsDisplay is on purpose not called,
+		//as we want to show the scroller only when used
+	}
+	
+	func hide(){
+		hideKnob = true
+		needsDisplay = true
 	}
 }

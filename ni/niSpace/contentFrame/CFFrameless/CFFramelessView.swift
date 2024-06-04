@@ -20,9 +20,9 @@ class CFFramelessView: CFBaseView {
 		frameIsActive = !frameIsActive
 	
 		if(frameIsActive){
-			myItem?.setActive()
 			updateTrackingAreas()
 			setBorder()
+			myItem?.setActive()
 		}else{
 			if(myItem?.setInactive() == .removeSelf){
 				myController?.confirmClose()
