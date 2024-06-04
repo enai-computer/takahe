@@ -22,6 +22,7 @@ class NiNoteItem: NSViewController, CFContentItem {
 		let noteView = NiNoteView(frame: frame)
 		self.txtDocView = noteView
 		
+		scrollView.contentInsets = NSEdgeInsets(top: 4.0, left: 4.0, bottom: 4.0, right: 4.0)
 		scrollView.documentView = noteView
 
 		let txtStorage = NSTextStorage(string: "")
@@ -55,8 +56,15 @@ class NiNoteItem: NSViewController, CFContentItem {
 		txtDocView.isHorizontallyResizable = false
 		txtDocView.isEditable = false
 	
+		txtDocView.backgroundColor = .transparent
 		txtDocView.font = NSFont(name: "Sohne-Buch", size: 16.0)
 		txtDocView.textColor = NSColor.sandDark7
+		txtDocView.wantsLayer = true
+		if let radius = parentView?.layer?.cornerRadius{
+			txtDocView.layer?.cornerRadius = radius
+		}
+		txtDocView.layer?.cornerCurve = .continuous
+		
 		txtDocView.frame.size.width = scrollView.frame.width
 		txtDocView.translatesAutoresizingMaskIntoConstraints = false
 		NSLayoutConstraint.activate([
@@ -80,6 +88,13 @@ class NiNoteItem: NSViewController, CFContentItem {
 		scrollView.hasHorizontalScroller = false
 		scrollView.horizontalScrollElasticity = .none
 		scrollView.autohidesScrollers = true
+		
+		scrollView.backgroundColor = .transparent
+		scrollView.wantsLayer = true
+		if let radius = parentView?.layer?.cornerRadius{
+			scrollView.layer?.cornerRadius = radius
+		}
+		scrollView.layer?.cornerCurve = .continuous
 	}
 	
 	func setActive() {

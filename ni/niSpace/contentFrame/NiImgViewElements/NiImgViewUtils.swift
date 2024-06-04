@@ -13,5 +13,12 @@ func getNewImgView(owner: ContentFrameController, parentView: NSView, img: NSIma
 	view.autoresizesSubviews = true
 	view.imageScaling = .scaleProportionallyUpOrDown
 	view.animates = false
+	
+	view.wantsLayer = true
+	if let radius = parentView.layer?.cornerRadius{
+		view.layer?.cornerRadius = radius
+	}
+	view.layer?.cornerCurve = .continuous
+	
 	return view
 }
