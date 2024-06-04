@@ -34,10 +34,22 @@ class CFFramelessView: CFBaseView {
 	
 	func removeBorder(){
 		self.borderColor = NSColor.sandLight3
+		shadow = nil
+	}
+	
+	func removeBorderAddDropShadow(){
+		borderColor = NSColor.sandLight3
+		wantsLayer = true
+		shadow = NSShadow()
+		layer?.shadowOffset = CGSize(width: 2.0, height: -4.0)
+		layer?.shadowColor = NSColor.shadow.cgColor
+		layer?.shadowRadius = 6.0
+		layer?.shadowOpacity = 1.0
 	}
 	
 	func setBorder(){
 		self.borderColor = NSColor.birkin
+		shadow = nil
 	}
 	
 	func setContentItem(item: CFContentItem){
@@ -71,8 +83,6 @@ class CFFramelessView: CFBaseView {
 		if !frameIsActive{
 			niParentDoc?.setTopNiFrame(myController!)
 			return
-			//FIXME: work on single click drag and drop
-			//not exiting function here, to click and drag without another click
 		}
 		
 		let cursorPos = self.convert(event.locationInWindow, from: nil)
