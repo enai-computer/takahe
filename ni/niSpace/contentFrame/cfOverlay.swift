@@ -38,7 +38,6 @@ class cfOverlay: NSView{
 	}
 	
 	override func mouseDragged(with event: NSEvent) {
-		
 	}
 	
 	override func mouseEntered(with event: NSEvent) {

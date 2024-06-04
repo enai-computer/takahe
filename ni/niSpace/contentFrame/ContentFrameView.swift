@@ -5,12 +5,6 @@ import Carbon.HIToolbox
 import WebKit
 import QuartzCore
 
-struct CFConstants {
-    // const needed for resizing:
-    static let actionAreaMargin: CGFloat = 6
-    static let cornerActionAreaMargin: CGFloat = 32
- }
-
 
 class ContentFrameView: CFBaseView{
     

@@ -27,6 +27,13 @@ class CFBaseView: NSBox{
 	var minFrameHeight: CGFloat { return 150.0}
 	var minFrameWidth: CGFloat { return 350.0}
 	
+	struct CFConstants {
+		// const needed for resizing:
+		static let actionAreaMargin: CGFloat = 8.0
+		static let cornerActionAreaMargin: CGFloat = 24.0
+	 }
+
+	
 	func setFrameOwner(_ owner: NiSpaceDocumentView!){
 		self.niParentDoc = owner
 	}

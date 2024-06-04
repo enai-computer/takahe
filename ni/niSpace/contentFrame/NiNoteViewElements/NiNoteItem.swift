@@ -110,7 +110,7 @@ class NiNoteItem: NSViewController, CFContentItem {
 	
 	func startEditing(){
 		txtDocView.isEditable = true
-		parentView?.removeBorder()
+		parentView?.removeBorderAddDropShadow()
 	}
 	
 	func stopEditing(){
