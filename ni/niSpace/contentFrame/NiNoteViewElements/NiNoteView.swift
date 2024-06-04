@@ -14,6 +14,28 @@ class NiNoteView: NSTextView{
 	
 	override var acceptsFirstResponder: Bool {return true}
 	
+	//copied from here: https://stackoverflow.com/questions/2654580/how-to-resize-nstextview-according-to-its-content
+	var heightConstraint: NSLayoutConstraint?
+	var contentSize: CGSize {
+		get {
+			guard let layoutManager = layoutManager, let textContainer = textContainer else {
+				return .zero
+			}
+
+			layoutManager.ensureLayout(for: textContainer)
+			return layoutManager.usedRect(for: textContainer).size
+		}
+	}
+	
+	// Adjust the height constraint. You can call this method manually if you programmatically change the text.
+	func updateHeight(){
+		let nHeight = self.contentSize.height + textContainerInset.height * 2
+		if(frame.size.height < nHeight){
+			heightConstraint?.constant = nHeight
+			frame.size.height = nHeight
+		}
+	}
+	
 	override func cancelOperation(_ sender: Any?) {
 		_ = delegate?.textShouldEndEditing?(self)
 		return

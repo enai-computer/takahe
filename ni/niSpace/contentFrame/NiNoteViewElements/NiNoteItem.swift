@@ -22,7 +22,6 @@ class NiNoteItem: NSViewController, CFContentItem {
 		let noteView = NiNoteView(frame: frame)
 		self.txtDocView = noteView
 		
-		scrollView.contentInsets = NSEdgeInsets(top: 4.0, left: 4.0, bottom: 4.0, right: 4.0)
 		scrollView.documentView = noteView
 
 		let txtStorage = NSTextStorage(string: "")
@@ -55,8 +54,9 @@ class NiNoteItem: NSViewController, CFContentItem {
 		txtDocView.isVerticallyResizable = true
 		txtDocView.isHorizontallyResizable = false
 		txtDocView.isEditable = false
-	
-		txtDocView.backgroundColor = .transparent
+		txtDocView.textContainerInset = NSSize(width: 8.0, height: 8.0)
+		
+		txtDocView.backgroundColor = NSColor.sandLight3
 		txtDocView.font = NSFont(name: "Sohne-Buch", size: 16.0)
 		txtDocView.textColor = NSColor.sandDark7
 		txtDocView.wantsLayer = true
@@ -68,29 +68,32 @@ class NiNoteItem: NSViewController, CFContentItem {
 		txtDocView.frame.size.width = scrollView.frame.width
 		txtDocView.translatesAutoresizingMaskIntoConstraints = false
 		NSLayoutConstraint.activate([
-			txtDocView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
-			txtDocView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+			txtDocView.leftAnchor.constraint(equalTo: scrollView.leftAnchor),
+			txtDocView.rightAnchor.constraint(equalTo: scrollView.rightAnchor),
 			txtDocView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
 			
 			txtDocView.topAnchor.constraint(greaterThanOrEqualTo: scrollView.topAnchor),
-			txtDocView.topAnchor.constraint(greaterThanOrEqualTo: scrollView.bottomAnchor),
+			txtDocView.bottomAnchor.constraint(lessThanOrEqualTo: scrollView.bottomAnchor),
 			txtDocView.heightAnchor.constraint(greaterThanOrEqualTo: scrollView.heightAnchor)
 		])
+		
 		txtDocView.isVerticalContentSizeConstraintActive = false
 	}
 	
 	private func configureScrollView(){
 		let scrollerPos: NSRect = NSRect(x: scrollView.frame.width - 2.0, y: 0, width: 2.0, height: scrollView.frame.height)
 		scrollView.hasVerticalScroller = true
-		scrollView.verticalScroller = NiScroller(frame: scrollerPos, isVertical: true)
+		scrollView.verticalScroller = NiNoteViewScroller(frame: scrollerPos)
 		scrollView.verticalScrollElasticity = .allowed
 		scrollView.horizontalScroller = nil
 		scrollView.hasHorizontalScroller = false
 		scrollView.horizontalScrollElasticity = .none
 		scrollView.autohidesScrollers = true
+		scrollView.scrollerInsets = NSEdgeInsets(top: 0.0, left: 0.0, bottom: 0.0, right: 0.0)
 		
-		scrollView.backgroundColor = .transparent
 		scrollView.wantsLayer = true
+		scrollView.layer?.backgroundColor = NSColor.sandLight3.cgColor
+		
 		if let radius = parentView?.layer?.cornerRadius{
 			scrollView.layer?.cornerRadius = radius
 		}
@@ -104,6 +107,8 @@ class NiNoteItem: NSViewController, CFContentItem {
 		
 		setStyling()
 		scrollView.window?.makeFirstResponder(txtDocView)
+		
+		parentView?.removeBorderAddDropShadow()
 	}
 	
 	func setInactive() -> FollowOnAction{
@@ -135,6 +140,7 @@ class NiNoteItem: NSViewController, CFContentItem {
 	
 	func setText(_ content: String){
 		txtDocView.string = content
+		txtDocView.updateHeight()
 	}
 	
 	private func setStyling(){
