@@ -146,36 +146,6 @@
             endingLineNumber = "228"
             landmarkName = "mouseDown(with:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "D78C21D5-05E3-462F-9F57-BF785DF8F456 - e412560d415d9f01"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "ni.NiSpaceViewController.mouseDown(with: __C.NSEvent) -&gt; ()"
-                  moduleName = "ni"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Patrick/Workbench/takahe/ni/niSpace/NiSpaceViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "228"
-                  endingLineNumber = "228">
-               </Location>
-               <Location
-                  uuid = "D78C21D5-05E3-462F-9F57-BF785DF8F456 - e412560d415d9f01"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "ni.NiSpaceViewController.mouseDown(with: __C.NSEvent) -&gt; ()"
-                  moduleName = "ni"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Patrick/Workbench/takahe/ni/niSpace/NiSpaceViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "228"
-                  endingLineNumber = "228">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy

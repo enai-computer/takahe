@@ -72,7 +72,7 @@ class DocumentTable{
             print("Failed to fetch List of last used Docs or a column: \(error)")
         }
 		
-		if(!containsWelcomeSpace){
+		if(!containsWelcomeSpace && res.count < limit){
 			res.append(NiDocumentViewModel(id: WelcomeSpaceGenerator.WELCOME_SPACE_ID, name: WelcomeSpaceGenerator.WELCOME_SPACE_NAME))
 		}
         return res
