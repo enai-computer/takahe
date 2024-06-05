@@ -212,11 +212,23 @@ class NiSpaceViewController: NSViewController{
 	 */
 	override func mouseDown(with event: NSEvent) {
 		let cursorPos = self.view.convert(event.locationInWindow, from: nil)
-		if(!homeViewShown && NSPointInRect(cursorPos, header.frame)){
+		if(homeViewShown){
+			return
+		}
+		
+		if(NSPointInRect(cursorPos, header.frame)){
 			returnToHome()
 			return
 		}
-		if(!homeViewShown){
+		if(event.clickCount == 1){
+			showSpaceMenu(event)
+		}
+		
+		if(event.clickCount == 2){
+			if let menuView = spaceMenu?.view as? NSView {
+				menuView.removeFromSuperview()
+			}
+			spaceMenu = nil
 			showSpaceMenu(event)
 		}
 	}

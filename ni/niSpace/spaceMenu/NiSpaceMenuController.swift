@@ -64,7 +64,9 @@ class NiSpaceMenuController: NSViewController{
 		}
 		//needs to happen after the event was processed by the whole responder chain
 		DispatchQueue.main.async {
-			self.parentController.spaceMenu = nil
+			if(self.parentController.spaceMenu == self){
+				self.parentController.spaceMenu = nil
+			}
 		}
 	}
 	
