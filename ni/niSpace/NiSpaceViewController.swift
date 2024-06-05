@@ -266,11 +266,41 @@ class NiSpaceViewController: NSViewController{
 		spaceLoaded = true
 		
 		//Needs to happen here, as we rely on the visible view for size
+		addNoteToEmptySpace(niDocument: niDocument)
 		niDocument.openEmptyCF()
 		niScrollView.documentView = niDocument.view
 		
 		PostHogSDK.shared.capture("Space_created")
 		_ = (NSApplication.shared.delegate as! AppDelegate).spaceLoadedSinceStart(spaceId)
+	}
+	
+	private func addNoteToEmptySpace(niDocument: NiSpaceDocumentController){
+		if let message = loadNoteMessage(){
+			niDocument.openEmptyCF(
+				viewState: .frameless,
+				initialTabType: .note,
+				positioned: NSPoint(x: 30.0, y: 90.0),
+				size: CGSize(width: 650.0, height: 370.0),
+				content: message
+			)
+		}
+	}
+	
+	private func loadNoteMessage() -> String?{
+		do{
+			let path = Bundle.main.url(forResource: "NewSpaceNote", withExtension: "json")
+			let jsonDoc = NSData(contentsOf: path!)
+			let jsonDecoder = JSONDecoder()
+			let docModel = try jsonDecoder.decode(WelcomeNoteDataModel.self, from: jsonDoc! as Data)
+			return docModel.message
+		}catch{
+			print(error)
+		}
+		return nil
+	}
+	
+	struct WelcomeNoteDataModel: Codable{
+		var message: String
 	}
 	
 	func loadSpace(niSpaceID id: UUID, name: String){

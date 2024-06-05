@@ -1,0 +1,3 @@
+{
+	"message": "Click anywhere on the canvas to \n- Open a new window\n- ⁠Write a note\n- ⁠Paste from clipboard\n\n— Windows —\nCreate a new window:                            ⌘ N\nMinimize window:                                    ⌘ M\nSwitch to previous / next window:    ⌘ ← / ⌘ →\n\n— Tabs —\nReload current Website:                       ⌘ R\nClose a Tab:                                                ⌘ W\nCreate a Tab:                                              ⌘ T\nSwitch to previous / next Tab:            ⌃ ⇧ ⇥ / ⌃ ⇥       (control, shift, tab) / (control, tab)"
+}
