@@ -21,8 +21,31 @@
                         <rect key="frame" x="0.0" y="591" width="1056" height="34"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <subviews>
+                            <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tOm-Uf-Gpz">
+                                <rect key="frame" x="905" y="0.0" width="65" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" heightSizable="YES"/>
+                            </customView>
+                            <customView id="v2T-OE-fnp" customClass="CFGroupButton" customModule="ni" customModuleProvider="target">
+                                <rect key="frame" x="7" y="7" width="24" height="24"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            </customView>
+                            <imageView horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" id="rcT-6J-b1L" userLabel="back-button" customClass="NiActionImage" customModule="ni" customModuleProvider="target">
+                                <rect key="frame" x="31" y="7" width="24" height="24"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <imageCell key="cell" alignment="left" animates="YES" imageScaling="proportionallyDown" image="arrowLeft" id="T7D-RU-6Pz"/>
+                            </imageView>
+                            <imageView horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" id="eFl-A6-f9y" userLabel="forward-button" customClass="NiActionImage" customModule="ni" customModuleProvider="target">
+                                <rect key="frame" x="55" y="7" width="24" height="24"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <imageCell key="cell" alignment="left" animates="YES" imageScaling="proportionallyDown" image="arrowRight" id="i8b-xK-NTA"/>
+                            </imageView>
+                            <imageView horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" id="GMe-PK-SX5" userLabel="Add Button" customClass="NiActionImage" customModule="ni" customModuleProvider="target">
+                                <rect key="frame" x="79" y="7" width="24" height="24"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <imageCell key="cell" alignment="left" animates="YES" imageScaling="proportionallyDown" image="plus" id="GM5-6m-UKQ"/>
+                            </imageView>
                             <scrollView wantsLayer="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasVerticalScroller="NO" usesPredominantAxisScrolling="NO" verticalScrollElasticity="none" id="AwF-3w-n4g">
-                                <rect key="frame" x="118" y="4" width="787" height="30"/>
+                                <rect key="frame" x="108" y="4" width="787" height="30"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <clipView key="contentView" drawsBackground="NO" id="PQx-Md-yMS">
                                     <rect key="frame" x="0.0" y="0.0" width="787" height="30"/>
@@ -53,46 +76,30 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
-                            <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tOm-Uf-Gpz">
-                                <rect key="frame" x="905" y="0.0" width="65" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" heightSizable="YES"/>
-                            </customView>
-                            <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rcT-6J-b1L" userLabel="back-button" customClass="NiActionImage" customModule="ni" customModuleProvider="target">
-                                <rect key="frame" x="31" y="7" width="24" height="24"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <imageCell key="cell" alignment="left" animates="YES" imageScaling="proportionallyDown" image="arrowLeft" id="T7D-RU-6Pz"/>
-                            </imageView>
-                            <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eFl-A6-f9y" userLabel="forward-button" customClass="NiActionImage" customModule="ni" customModuleProvider="target">
-                                <rect key="frame" x="55" y="7" width="24" height="24"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <imageCell key="cell" alignment="left" animates="YES" imageScaling="proportionallyDown" image="arrowRight" id="i8b-xK-NTA"/>
-                            </imageView>
-                            <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GMe-PK-SX5" userLabel="Add Button" customClass="NiActionImage" customModule="ni" customModuleProvider="target">
-                                <rect key="frame" x="79" y="7" width="24" height="24"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <imageCell key="cell" alignment="left" animates="YES" imageScaling="proportionallyDown" image="plus" id="GM5-6m-UKQ"/>
-                            </imageView>
-                            <imageView autoresizesSubviews="NO" id="Utx-ML-7oY" userLabel="Close CF Button" customClass="NiActionImage" customModule="ni" customModuleProvider="target">
-                                <rect key="frame" x="1024" y="7" width="24" height="24"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                                <imageCell key="cell" alignment="left" imageAlignment="topRight" image="close" id="1Vu-cP-tyr"/>
-                            </imageView>
-                            <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rUD-4M-Tk9" customClass="NiActionImage" customModule="ni" customModuleProvider="target">
-                                <rect key="frame" x="1000" y="7" width="24" height="24"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                                <imageCell key="cell" alignment="left" animates="YES" imageScaling="proportionallyDown" image="minimize" id="ysI-fW-YS0"/>
-                            </imageView>
-                            <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SHD-m6-fVV" customClass="NiActionImage" customModule="ni" customModuleProvider="target">
+                            <imageView id="SHD-m6-fVV" customClass="NiActionImage" customModule="ni" customModuleProvider="target">
                                 <rect key="frame" x="976" y="7" width="24" height="24"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                 <imageCell key="cell" alignment="left" animates="YES" imageScaling="proportionallyDown" image="maximize" id="Qze-9W-rWF"/>
                             </imageView>
-                            <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FU1-2i-Htj" customClass="NiActionImage" customModule="ni" customModuleProvider="target">
-                                <rect key="frame" x="7" y="7" width="24" height="24"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <imageCell key="cell" alignment="left" animates="YES" imageScaling="proportionallyDown" image="groupIcon" id="9JT-Sf-Z2i"/>
+                            <imageView id="rUD-4M-Tk9" customClass="NiActionImage" customModule="ni" customModuleProvider="target">
+                                <rect key="frame" x="1000" y="7" width="24" height="24"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                                <imageCell key="cell" alignment="left" animates="YES" imageScaling="proportionallyDown" image="minimize" id="ysI-fW-YS0"/>
+                            </imageView>
+                            <imageView autoresizesSubviews="NO" ambiguous="YES" id="Utx-ML-7oY" userLabel="Close CF Button" customClass="NiActionImage" customModule="ni" customModuleProvider="target">
+                                <rect key="frame" x="1024" y="7" width="24" height="24"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                                <imageCell key="cell" alignment="left" imageAlignment="topRight" image="close" id="1Vu-cP-tyr"/>
                             </imageView>
                         </subviews>
+                        <constraints>
+                            <constraint firstItem="GMe-PK-SX5" firstAttribute="left" secondItem="eFl-A6-f9y" secondAttribute="left" id="Ax5-Wx-BFO"/>
+                            <constraint firstItem="rcT-6J-b1L" firstAttribute="left" secondItem="v2T-OE-fnp" secondAttribute="right" id="Gs0-fD-7vM"/>
+                            <constraint firstItem="SHD-m6-fVV" firstAttribute="right" secondItem="rUD-4M-Tk9" secondAttribute="right" id="LUW-7X-4L5"/>
+                            <constraint firstItem="rUD-4M-Tk9" firstAttribute="right" secondItem="Utx-ML-7oY" secondAttribute="right" id="jlH-WG-Q4a"/>
+                            <constraint firstItem="eFl-A6-f9y" firstAttribute="left" secondItem="rcT-6J-b1L" secondAttribute="left" id="npo-Ac-PoM"/>
+                            <constraint firstItem="AwF-3w-n4g" firstAttribute="left" secondItem="GMe-PK-SX5" secondAttribute="left" id="wvP-0N-mSr"/>
+                        </constraints>
                     </customView>
                     <tabView fixedFrame="YES" type="noTabsNoBorder" translatesAutoresizingMaskIntoConstraints="NO" id="d8b-7o-70b">
                         <rect key="frame" x="0.0" y="0.0" width="1056" height="591"/>
@@ -109,13 +116,13 @@
             <color key="fillColor" name="SandLight4"/>
             <connections>
                 <outlet property="addTabButton" destination="GMe-PK-SX5" id="bBG-vF-gtC"/>
+                <outlet property="cfGroupButton" destination="v2T-OE-fnp" id="2oz-LR-692"/>
                 <outlet property="cfHeadDragArea" destination="tOm-Uf-Gpz" id="gz4-6o-F78"/>
                 <outlet property="cfHeadView" destination="Pdl-B9-RoX" id="S8d-c6-NIZ"/>
                 <outlet property="cfTabHeadCollection" destination="wB8-UP-dFY" id="Q9l-en-w4j"/>
                 <outlet property="closeButton" destination="Utx-ML-7oY" id="B7l-wf-zmC"/>
                 <outlet property="contentBackButton" destination="rcT-6J-b1L" id="fyG-GL-z9e"/>
                 <outlet property="contentForwardButton" destination="eFl-A6-f9y" id="4v5-Pf-dIF"/>
-                <outlet property="groupButton" destination="FU1-2i-Htj" id="RGE-4m-bSy"/>
                 <outlet property="maximizeButton" destination="SHD-m6-fVV" id="65o-nQ-Ejc"/>
                 <outlet property="minimizeButton" destination="rUD-4M-Tk9" id="hfN-ZF-CcN"/>
                 <outlet property="niContentTabView" destination="d8b-7o-70b" id="rDA-Fc-OHT"/>
@@ -128,7 +135,6 @@
         <image name="arrowLeft" width="24" height="24"/>
         <image name="arrowRight" width="24" height="24"/>
         <image name="close" width="24" height="24"/>
-        <image name="groupIcon" width="24" height="24"/>
         <image name="maximize" width="24" height="24"/>
         <image name="minimize" width="24" height="24"/>
         <image name="plus" width="24" height="24"/>

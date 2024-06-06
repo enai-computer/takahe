@@ -19,6 +19,7 @@
 		A1E41BFA2ACB57EF00338417 /* ContentFrameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E41BF92ACB57EF00338417 /* ContentFrameView.swift */; };
 		A1E41BFF2ACB6B1300338417 /* FrameGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E41BFE2ACB6B1300338417 /* FrameGenerator.swift */; };
 		A1F33E2E2AB7299500E2E7CD /* DefaultWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F33E2D2AB7299500E2E7CD /* DefaultWindow.swift */; };
+		CD04974C2C120ABE00C44021 /* CFGroupButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD04974B2C120ABE00C44021 /* CFGroupButton.swift */; };
 		CD0589372BE1837B00E9A01E /* PostHog in Frameworks */ = {isa = PBXBuildFile; productRef = CD0589362BE1837B00E9A01E /* PostHog */; };
 		CD06A9BA2BF79EF500312256 /* NiScroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD06A9B92BF79EF500312256 /* NiScroller.swift */; };
 		CD0FA1C12BDBE2BA0065313B /* Inter-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CD0FA1C02BDBE2BA0065313B /* Inter-Regular.ttf */; };
@@ -137,6 +138,7 @@
 		A1E41BFE2ACB6B1300338417 /* FrameGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrameGenerator.swift; sourceTree = "<group>"; };
 		A1F33E2D2AB7299500E2E7CD /* DefaultWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultWindow.swift; sourceTree = "<group>"; };
 		CD00B81D2BE4EE230079CF71 /* niDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = niDebug.entitlements; sourceTree = "<group>"; };
+		CD04974B2C120ABE00C44021 /* CFGroupButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CFGroupButton.swift; sourceTree = "<group>"; };
 		CD06A9B92BF79EF500312256 /* NiScroller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiScroller.swift; sourceTree = "<group>"; };
 		CD0FA1C02BDBE2BA0065313B /* Inter-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Regular.ttf"; sourceTree = "<group>"; };
 		CD1160C92BD27B9E00345E3E /* NiWebViewUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiWebViewUtils.swift; sourceTree = "<group>"; };
@@ -310,6 +312,7 @@
 				CD5A04D02BEA78E4004CC3AA /* CFBaseView.swift */,
 				CD9B96BB2C04C8EE00998CE2 /* CFContentItem.swift */,
 				CD06A9B92BF79EF500312256 /* NiScroller.swift */,
+				CD04974B2C120ABE00C44021 /* CFGroupButton.swift */,
 			);
 			path = contentFrame;
 			sourceTree = "<group>";
@@ -722,6 +725,7 @@
 				CDB06B612AF84E1F008DB8FF /* NiSpaceDocumentView.swift in Sources */,
 				CDD6B9432B16A14300C6144D /* ContentTable.swift in Sources */,
 				CDE76C1C2BC6989000CE9513 /* TabViewModel.swift in Sources */,
+				CD04974C2C120ABE00C44021 /* CFGroupButton.swift in Sources */,
 				CDD6B9402B169F7700C6144D /* DocumentTable.swift in Sources */,
 				CDD6B9452B16A1A200C6144D /* CachedWebTable.swift in Sources */,
 				CD23EBFB2C0F72FF00A2ACD9 /* Cook.swift in Sources */,

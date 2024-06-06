@@ -23,7 +23,8 @@ class ContentFrameView: CFBaseView{
 	@IBOutlet var cfHeadDragArea: NSView!
 	@IBOutlet var minimizeButton: NiActionImage!
 	@IBOutlet var maximizeButton: NiActionImage!
-	@IBOutlet var groupButton: NiActionImage?
+	@IBOutlet var cfGroupButton: CFGroupButton!
+	
 	
 	//TabView
 	@IBOutlet var niContentTabView: NSTabView!
@@ -62,10 +63,11 @@ class ContentFrameView: CFBaseView{
 		contentForwardButton.mouseDownFunction = forwardButtonClicked
 		contentForwardButton.isActiveFunction = fwdButtonIsActive
 		contentBackButton.mouseDownInActiveFunction = activateContentFrame
-		
-		groupButton?.mouseDownFunction = clickedGourpButton
-		groupButton?.isActiveFunction = self.isFrameActive
-		groupButton?.mouseDownInActiveFunction = activateContentFrame
+
+		//TODO: init groupButton here:
+//		groupButton?.mouseDownFunction = clickedGourpButton
+//		groupButton?.isActiveFunction = self.isFrameActive
+//		groupButton?.mouseDownInActiveFunction = activateContentFrame
 	}
     
 	func renameGroup(){
