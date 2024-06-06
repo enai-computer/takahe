@@ -114,7 +114,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 			return
 		}
 		let minInactive = (Date().timeIntervalSinceReferenceDate - lastActive!.timeIntervalSinceReferenceDate) / 60
-		var userSentBackHome = false
+		let userSentBackHome = false
 		
 //		if(min_inactive_switch_to_home < minInactive){
 //			let window = getDefaultWindow(notification)
