@@ -10,7 +10,21 @@ import Cocoa
 class NiMenuItemView: NSView{
 	
 	@IBOutlet var title: NSTextField!
-	var isEnabled = true
+	private var isEnabledStorage = true
+	var isEnabled: Bool{
+		set {
+			guard isEnabledStorage != newValue else {return}
+			isEnabledStorage = newValue
+			if(newValue){
+				title.textColor = NSColor.sandLight12
+			}else{
+				title.textColor = NSColor.sandLight8
+			}
+		}
+		get{
+			isEnabledStorage
+		}
+	}
 	var mouseDownFunction: ((NSEvent) -> Void)?
 	
 	override func updateTrackingAreas() {
@@ -40,6 +54,7 @@ class NiMenuItemView: NSView{
 			return
 		}
 		mouseDownFunction?(event)
-		superview?.superview?.removeFromSuperview()
+		window?.orderOut(nil)
+		window?.close()
 	}
 }
