@@ -40,7 +40,7 @@ class CFMinimizedStackItem: NSView{
 			tabIcon.image = icon
 		}else if(urlStr != nil && !urlStr!.isEmpty){
 			Task {
-				if let img = try await FaviconProvider.instance.fetchIcon(urlStr!){
+				if let img = await FaviconProvider.instance.fetchIcon(urlStr!){
 					self.setIcon(img)
 				}
 			}

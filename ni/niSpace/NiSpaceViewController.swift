@@ -64,13 +64,11 @@ class NiSpaceViewController: NSViewController{
 	}
  
 	@IBAction func paste(_ sender: NSMenuItem){
-		if let pasteboardItem = NSPasteboard.general.pasteboardItems?[0]{
-			if let img = NSPasteboard.general.getImage(){
-				let title = NSPasteboard.general.tryGetName()
-				let source = NSPasteboard.general.tryGetFileURL()
-				let pos = view.window!.mouseLocationOutsideOfEventStream
-				pasteImage(image: img, positioned: pos, title: title, source: source)
-			}
+		if let img = NSPasteboard.general.getImage(){
+			let title = NSPasteboard.general.tryGetName()
+			let source = NSPasteboard.general.tryGetFileURL()
+			let pos = view.window!.mouseLocationOutsideOfEventStream
+			pasteImage(image: img, positioned: pos, title: title, source: source)
 		}
 	}
 	

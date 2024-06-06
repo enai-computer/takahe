@@ -11,7 +11,7 @@
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <box wantsLayer="YES" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" misplaced="YES" boxType="custom" borderWidth="0.0" cornerRadius="10" title="MenuBox" titlePosition="noTitle" id="Nq9-Lm-9qj" customClass="NiMenuView" customModule="ni" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="260" height="60"/>
-            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
             <view key="contentView" id="HMR-tM-uId">
                 <rect key="frame" x="0.0" y="0.0" width="260" height="60"/>
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

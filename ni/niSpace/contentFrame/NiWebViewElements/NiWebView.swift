@@ -86,6 +86,7 @@ class NiWebView: WKWebView, CFContentItem{
         viewIsActive = true
     }
     
+	@discardableResult
 	func setInactive() -> FollowOnAction{
 		overlay = cfOverlay(frame: self.frame, nxtResponder: owner!.view)
 		addSubview(overlay!)

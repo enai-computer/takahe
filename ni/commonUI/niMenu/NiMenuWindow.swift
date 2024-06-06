@@ -16,9 +16,11 @@ class NiMenuWindow: NSPanel {
 	init(origin: NSPoint, menuItems: [NiMenuItemViewModel]){
 		niDelegate = NiMenuWindowDelegate()
 		let size = NiMenuWindow.calcSize(menuItems.count)
+		var adjustedOrigin = origin
+		adjustedOrigin.y = origin.y - size.height
 		super.init(
 			contentRect: NSRect(
-				origin: origin,
+				origin: adjustedOrigin,
 				size: size
 			),
 			styleMask: NiMenuWindow.getStyleMask(),
