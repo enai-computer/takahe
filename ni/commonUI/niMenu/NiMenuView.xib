@@ -16,7 +16,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="260" height="60"/>
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
-                    <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="5" horizontalStackHuggingPriority="250" verticalStackHuggingPriority="1000" fixedFrame="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xGj-L7-x4G">
+                    <stackView autoresizesSubviews="NO" distribution="fillEqually" orientation="vertical" alignment="leading" spacing="5" horizontalStackHuggingPriority="250" verticalStackHuggingPriority="250" fixedFrame="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xGj-L7-x4G">
                         <rect key="frame" x="10" y="10" width="240" height="40"/>
                         <autoresizingMask key="autoresizingMask" heightSizable="YES"/>
                     </stackView>

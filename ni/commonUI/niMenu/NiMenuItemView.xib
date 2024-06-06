@@ -11,10 +11,10 @@
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customView id="c22-O7-iKe" customClass="NiMenuItemView" customModule="ni" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="240" height="40"/>
-            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
             <subviews>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" textCompletion="NO" id="q8A-fu-mJB">
-                    <rect key="frame" x="8" y="8" width="150" height="22"/>
+                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" textCompletion="NO" id="q8A-fu-mJB">
+                    <rect key="frame" x="8" y="8" width="192" height="22"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" lineBreakMode="clipping" enabled="NO" refusesFirstResponder="YES" allowsUndo="NO" title="Write a note" id="EKI-vR-Bu6">
                         <font key="font" size="16" name="Sohne-Buch"/>
