@@ -115,6 +115,27 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	}
 	
 	/*
+	 * MARK: drop down menu
+	 */
+	func showDropdown(with event: NSEvent){
+		loadAndDisplayDropdownMenu()
+	}
+	
+	private func loadAndDisplayDropdownMenu(){
+		let dropDownController = CFDropdownController()
+		dropDownController.loadView()
+		positionDropdownMenu(dropDownController.view)
+		self.myView.addSubview(dropDownController.view)
+	}
+	
+	private func positionDropdownMenu(_ ddView: NSView){
+		if let refernceView = expandedCFView {
+			ddView.frame.origin.y = refernceView.cfHeadView.frame.origin.y - ddView.frame.height
+			ddView.frame.origin.x = refernceView.cfHeadView.frame.origin.x + refernceView.groupButton.frame.origin.x
+		}
+	}
+	
+	/*
 	 * MARK: close Window
 	 */
 	

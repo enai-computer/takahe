@@ -22,14 +22,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <subviews>
                             <scrollView wantsLayer="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasVerticalScroller="NO" usesPredominantAxisScrolling="NO" verticalScrollElasticity="none" id="AwF-3w-n4g">
-                                <rect key="frame" x="94" y="4" width="811" height="30"/>
+                                <rect key="frame" x="118" y="4" width="787" height="30"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <clipView key="contentView" drawsBackground="NO" id="PQx-Md-yMS">
-                                    <rect key="frame" x="0.0" y="0.0" width="811" height="30"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="787" height="30"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <collectionView id="wB8-UP-dFY">
-                                            <rect key="frame" x="0.0" y="0.0" width="811" height="30"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="787" height="30"/>
                                             <autoresizingMask key="autoresizingMask" heightSizable="YES"/>
                                             <collectionViewFlowLayout key="collectionViewLayout" minimumInteritemSpacing="16" scrollDirection="horizontal" id="Wti-La-5hp">
                                                 <size key="itemSize" width="195" height="30"/>
@@ -45,7 +45,7 @@
                                 </clipView>
                                 <edgeInsets key="scrollerInsets" left="0.0" right="0.0" top="0.0" bottom="-3"/>
                                 <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="aVi-Gl-lD4" customClass="NiScroller" customModule="ni" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="17" width="801" height="16"/>
+                                    <rect key="frame" x="0.0" y="17" width="777" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="cGw-ix-zoM">
@@ -58,17 +58,17 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" heightSizable="YES"/>
                             </customView>
                             <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rcT-6J-b1L" userLabel="back-button" customClass="NiActionImage" customModule="ni" customModuleProvider="target">
-                                <rect key="frame" x="6" y="7" width="24" height="24"/>
+                                <rect key="frame" x="31" y="7" width="24" height="24"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <imageCell key="cell" alignment="left" animates="YES" imageScaling="proportionallyDown" image="arrowLeft" id="T7D-RU-6Pz"/>
                             </imageView>
                             <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eFl-A6-f9y" userLabel="forward-button" customClass="NiActionImage" customModule="ni" customModuleProvider="target">
-                                <rect key="frame" x="30" y="7" width="24" height="24"/>
+                                <rect key="frame" x="55" y="7" width="24" height="24"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <imageCell key="cell" alignment="left" animates="YES" imageScaling="proportionallyDown" image="arrowRight" id="i8b-xK-NTA"/>
                             </imageView>
                             <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GMe-PK-SX5" userLabel="Add Button" customClass="NiActionImage" customModule="ni" customModuleProvider="target">
-                                <rect key="frame" x="54" y="7" width="24" height="24"/>
+                                <rect key="frame" x="79" y="7" width="24" height="24"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <imageCell key="cell" alignment="left" animates="YES" imageScaling="proportionallyDown" image="plus" id="GM5-6m-UKQ"/>
                             </imageView>
@@ -86,6 +86,11 @@
                                 <rect key="frame" x="976" y="7" width="24" height="24"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                 <imageCell key="cell" alignment="left" animates="YES" imageScaling="proportionallyDown" image="maximize" id="Qze-9W-rWF"/>
+                            </imageView>
+                            <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FU1-2i-Htj" customClass="NiActionImage" customModule="ni" customModuleProvider="target">
+                                <rect key="frame" x="7" y="7" width="24" height="24"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <imageCell key="cell" alignment="left" animates="YES" imageScaling="proportionallyDown" image="groupIcon" id="9JT-Sf-Z2i"/>
                             </imageView>
                         </subviews>
                     </customView>
@@ -110,6 +115,7 @@
                 <outlet property="closeButton" destination="Utx-ML-7oY" id="B7l-wf-zmC"/>
                 <outlet property="contentBackButton" destination="rcT-6J-b1L" id="fyG-GL-z9e"/>
                 <outlet property="contentForwardButton" destination="eFl-A6-f9y" id="4v5-Pf-dIF"/>
+                <outlet property="groupButton" destination="FU1-2i-Htj" id="RGE-4m-bSy"/>
                 <outlet property="maximizeButton" destination="SHD-m6-fVV" id="65o-nQ-Ejc"/>
                 <outlet property="minimizeButton" destination="rUD-4M-Tk9" id="hfN-ZF-CcN"/>
                 <outlet property="niContentTabView" destination="d8b-7o-70b" id="rDA-Fc-OHT"/>
@@ -122,6 +128,7 @@
         <image name="arrowLeft" width="24" height="24"/>
         <image name="arrowRight" width="24" height="24"/>
         <image name="close" width="24" height="24"/>
+        <image name="groupIcon" width="24" height="24"/>
         <image name="maximize" width="24" height="24"/>
         <image name="minimize" width="24" height="24"/>
         <image name="plus" width="24" height="24"/>
