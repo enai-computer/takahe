@@ -117,9 +117,11 @@ class NiWebView: WKWebView, CFContentItem{
 		return
 	}
 	
+//	override func mouseDown(with event: NSEvent) {
+//		print("clicked into WebView")
+//	}
+//	
 }
-
-
 
 class GlobalScriptMessageHandler: NSObject, WKScriptMessageHandler {
     /**

@@ -16,6 +16,7 @@ class CFDropdownController: NSViewController{
 		view = (NSView.loadFromNib(nibName: "CFDropdownView", owner: self) as! CFDropdownView)
 		
 		myView?.nameGroup.mouseDownFunction = nameThisGroup
+		myView?.moveToSpace.isEnabled = false
 	}
 	
 	override func viewDidAppear() {
