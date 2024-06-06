@@ -123,10 +123,6 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	}
 	
 	private func loadAndDisplayDropdownMenu(){
-		//		let dropDownController = CFDropdownController()
-		//		dropDownController.loadView()
-		//		positionDropdownMenu(dropDownController.view)
-		//		self.myView.addSubview(dropDownController.view)
 		let o = positionDropdownMenu()
 		let items = [
 			NiMenuItemViewModel(title: "Name this window", isEnabled: true, mouseDownFunction: nil),
@@ -139,11 +135,19 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	private func positionDropdownMenu() -> NSPoint {
 		if let refernceView = expandedCFView {
 			let pInView = NSPoint(
-				x: refernceView.cfHeadView.frame.origin.x + refernceView.groupButton.frame.origin.x,
+				x: refernceView.cfHeadView.frame.origin.x + (refernceView.groupButton?.frame.origin.x ?? 0.0),
 				y: refernceView.cfHeadView.frame.origin.y)
 			return self.view.convert(pInView, to: nil)
 		}
 		return NSPoint(x: 0.0, y: 0.0)
+	}
+	
+	/*
+	 * MARK: rename group here
+	 */
+	func renameGroup(event: NSEvent){
+		guard viewState == .expanded else {return}
+		expandedCFView?.renameGroup()
 	}
 	
 	/*

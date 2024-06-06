@@ -10,9 +10,9 @@ import Cocoa
 class NiMenuWindowDelegate: NSObject, NSWindowDelegate{
 	
 	func windowDidResignKey(_ notification: Notification) {
-//		if let window = notification.object as? NiMenuWindow{
-//			window.orderOut(nil)
-//			window.close()
-//		}
+		if let window = notification.object as? NiMenuWindow{
+			window.orderOut(nil)
+			window.close()
+		}
 	}
 }

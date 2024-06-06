@@ -51,5 +51,8 @@ class NiMenuWindow: NSPanel {
 		return .borderless
 	}
 	
-
+	override func cancelOperation(_ sender: Any?) {
+		orderOut(nil)
+		close()
+	}
 }
