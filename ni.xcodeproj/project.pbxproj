@@ -41,7 +41,10 @@
 		CD3362162BFDFF97004DBAFB /* SpaceTopbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD3362152BFDFF97004DBAFB /* SpaceTopbar.swift */; };
 		CD33621F2BFE0DD0004DBAFB /* CFSoftDeletedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD33621E2BFE0DD0004DBAFB /* CFSoftDeletedView.swift */; };
 		CD3362212BFE0DDC004DBAFB /* CFSoftDeletedView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD3362202BFE0DDC004DBAFB /* CFSoftDeletedView.xib */; };
+		CD3BF3D02C10A133003DA615 /* NewSpaceNote.json in Resources */ = {isa = PBXBuildFile; fileRef = CD3BF3CF2C10A133003DA615 /* NewSpaceNote.json */; };
 		CD42CEC92BDA48180039814D /* NiScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD42CEC82BDA48180039814D /* NiScrollView.swift */; };
+		CD4F6C6C2C10710F000EF1B0 /* CFDropdownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4F6C6B2C10710F000EF1B0 /* CFDropdownView.swift */; };
+		CD4F6C6E2C107203000EF1B0 /* CFDropdownView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD4F6C6D2C107203000EF1B0 /* CFDropdownView.xib */; };
 		CD53ACC02BCEE0ED00D5912B /* emptyTab.html in Resources */ = {isa = PBXBuildFile; fileRef = CD53ACBF2BCEE0ED00D5912B /* emptyTab.html */; };
 		CD5A04C62BEA2B96004CC3AA /* CFMinimizedView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD5A04C52BEA2B96004CC3AA /* CFMinimizedView.xib */; };
 		CD5A04C82BEA2BBF004CC3AA /* CFMinimizedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5A04C72BEA2BBF004CC3AA /* CFMinimizedView.swift */; };
@@ -79,6 +82,7 @@
 		CD9B96C42C075B8A00998CE2 /* ImgDal.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9B96C32C075B8A00998CE2 /* ImgDal.swift */; };
 		CDA639562BF50596001941DE /* welcomeConfig.json in Resources */ = {isa = PBXBuildFile; fileRef = CDA639552BF50596001941DE /* welcomeConfig.json */; };
 		CDA639582BF508FF001941DE /* WelcomeSpaceGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA639572BF508FF001941DE /* WelcomeSpaceGenerator.swift */; };
+		CDABE6422C10B15400BB4E85 /* CFDropdownController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDABE6412C10B15400BB4E85 /* CFDropdownController.swift */; };
 		CDB06B612AF84E1F008DB8FF /* NiSpaceDocumentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB06B602AF84E1F008DB8FF /* NiSpaceDocumentView.swift */; };
 		CDD6B9392B152A8000C6144D /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD6B9382B152A8000C6144D /* Storage.swift */; };
 		CDD6B93E2B152D3F00C6144D /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = CDD6B93D2B152D3F00C6144D /* SQLite */; };
@@ -147,7 +151,10 @@
 		CD3362152BFDFF97004DBAFB /* SpaceTopbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpaceTopbar.swift; sourceTree = "<group>"; };
 		CD33621E2BFE0DD0004DBAFB /* CFSoftDeletedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CFSoftDeletedView.swift; sourceTree = "<group>"; };
 		CD3362202BFE0DDC004DBAFB /* CFSoftDeletedView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CFSoftDeletedView.xib; sourceTree = "<group>"; };
+		CD3BF3CF2C10A133003DA615 /* NewSpaceNote.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = NewSpaceNote.json; sourceTree = "<group>"; };
 		CD42CEC82BDA48180039814D /* NiScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiScrollView.swift; sourceTree = "<group>"; };
+		CD4F6C6B2C10710F000EF1B0 /* CFDropdownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CFDropdownView.swift; sourceTree = "<group>"; };
+		CD4F6C6D2C107203000EF1B0 /* CFDropdownView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CFDropdownView.xib; sourceTree = "<group>"; };
 		CD53ACBF2BCEE0ED00D5912B /* emptyTab.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = emptyTab.html; sourceTree = "<group>"; };
 		CD5A04C52BEA2B96004CC3AA /* CFMinimizedView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CFMinimizedView.xib; sourceTree = "<group>"; };
 		CD5A04C72BEA2BBF004CC3AA /* CFMinimizedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CFMinimizedView.swift; sourceTree = "<group>"; };
@@ -185,6 +192,7 @@
 		CD9B96C32C075B8A00998CE2 /* ImgDal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImgDal.swift; sourceTree = "<group>"; };
 		CDA639552BF50596001941DE /* welcomeConfig.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = welcomeConfig.json; sourceTree = "<group>"; };
 		CDA639572BF508FF001941DE /* WelcomeSpaceGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeSpaceGenerator.swift; sourceTree = "<group>"; };
+		CDABE6412C10B15400BB4E85 /* CFDropdownController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CFDropdownController.swift; sourceTree = "<group>"; };
 		CDB06B602AF84E1F008DB8FF /* NiSpaceDocumentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiSpaceDocumentView.swift; sourceTree = "<group>"; };
 		CDBC33F82BDBC896000EEF3D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		CDD6B9382B152A8000C6144D /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
@@ -280,6 +288,7 @@
 				CD5A04C92BEA3C5E004CC3AA /* CFMinimized */,
 				CD7578352BBD9FD100293930 /* NiContentFrameHead */,
 				CD3362172BFE0CCF004DBAFB /* CFSoftDeleted */,
+				CD4F6C6A2C1070A9000EF1B0 /* CFDropDown */,
 				A1E41BF52ACB533400338417 /* ContentFrameView.xib */,
 				A1E41BF92ACB57EF00338417 /* ContentFrameView.swift */,
 				CDD6B9552B1C326A00C6144D /* ContentFrameController.swift */,
@@ -328,6 +337,16 @@
 			path = CFSoftDeleted;
 			sourceTree = "<group>";
 		};
+		CD4F6C6A2C1070A9000EF1B0 /* CFDropDown */ = {
+			isa = PBXGroup;
+			children = (
+				CD4F6C6B2C10710F000EF1B0 /* CFDropdownView.swift */,
+				CD4F6C6D2C107203000EF1B0 /* CFDropdownView.xib */,
+				CDABE6412C10B15400BB4E85 /* CFDropdownController.swift */,
+			);
+			path = CFDropDown;
+			sourceTree = "<group>";
+		};
 		CD5A04C92BEA3C5E004CC3AA /* CFMinimized */ = {
 			isa = PBXGroup;
 			children = (
@@ -357,6 +376,7 @@
 				CDDBCB2C2BD8FA4C00E7B187 /* errorLoading-1.jpeg */,
 				CDDBCB2D2BD8FA4C00E7B187 /* errorLoading.html */,
 				CD6317E72BC484E100434D56 /* fonts */,
+				CD3BF3CF2C10A133003DA615 /* NewSpaceNote.json */,
 			);
 			path = assets;
 			sourceTree = "<group>";
@@ -611,6 +631,7 @@
 				CDDBCB2E2BD8FA4C00E7B187 /* errorLoading-1.jpeg in Resources */,
 				A1B8E6B02AAFB5EF00AC6566 /* Main.storyboard in Resources */,
 				CD6317EC2BC4852300434D56 /* soehne-dreiviertelfett.ttf in Resources */,
+				CD3BF3D02C10A133003DA615 /* NewSpaceNote.json in Resources */,
 				CD6317EF2BC4852300434D56 /* soehne-kraftig.ttf in Resources */,
 				CD7578472BC000F200293930 /* ContentFrameTabHead.xib in Resources */,
 				CD5A04CB2BEA3CC7004CC3AA /* CFMinimizedStackItem.xib in Resources */,
@@ -626,6 +647,7 @@
 				CD19BC942BC7E404002AF14E /* HomeAssets.xcassets in Resources */,
 				CD5A04C62BEA2B96004CC3AA /* CFMinimizedView.xib in Resources */,
 				CD6317EE2BC4852300434D56 /* soehne-buch.ttf in Resources */,
+				CD4F6C6E2C107203000EF1B0 /* CFDropdownView.xib in Resources */,
 				CDFA8CFD2C03B9D000882722 /* CFFramelessView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -665,6 +687,7 @@
 				CD680F7F2BC7DF59008D495D /* HomeView.swift in Sources */,
 				A14E8F292AD5EB1600409DDF /* NiSpaceViewController.swift in Sources */,
 				CDD6B9522B1BFE8B00C6144D /* NiDocumentModel.swift in Sources */,
+				CD4F6C6C2C10710F000EF1B0 /* CFDropdownView.swift in Sources */,
 				CD9B96C42C075B8A00998CE2 /* ImgDal.swift in Sources */,
 				A1F33E2E2AB7299500E2E7CD /* DefaultWindow.swift in Sources */,
 				CDB06B612AF84E1F008DB8FF /* NiSpaceDocumentView.swift in Sources */,
@@ -687,6 +710,7 @@
 				CD3362162BFDFF97004DBAFB /* SpaceTopbar.swift in Sources */,
 				CD9B96BF2C0733E700998CE2 /* NiImgView.swift in Sources */,
 				CD1160CA2BD27B9E00345E3E /* NiWebViewUtils.swift in Sources */,
+				CDABE6422C10B15400BB4E85 /* CFDropdownController.swift in Sources */,
 				CDD87ED02BF23C650045B84B /* NiCursorUtils.swift in Sources */,
 				CD1552472BE9286D00A59AE9 /* SwiftUIUtils.swift in Sources */,
 				CDDBCB292BD6AE6900E7B187 /* HomeViewAnimator.swift in Sources */,
@@ -882,7 +906,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = "0.1.6 --- 2024-06-05.1 - Kondo";
+				CURRENT_PROJECT_VERSION = "0.1.6 --- 2024-06-05.2 - Kondo";
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = SNXQ3BDQ5V;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -915,7 +939,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = "0.1.6 --- 2024-06-05.1 - Kondo";
+				CURRENT_PROJECT_VERSION = "0.1.6 --- 2024-06-05.2 - Kondo";
 				DEAD_CODE_STRIPPING = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;

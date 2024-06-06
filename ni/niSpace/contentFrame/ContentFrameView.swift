@@ -23,6 +23,7 @@ class ContentFrameView: CFBaseView{
 	@IBOutlet var cfHeadDragArea: NSView!
 	@IBOutlet var minimizeButton: NiActionImage!
 	@IBOutlet var maximizeButton: NiActionImage!
+	@IBOutlet var groupButton: NiActionImage!
 	
 	//TabView
 	@IBOutlet var niContentTabView: NSTabView!
@@ -61,6 +62,10 @@ class ContentFrameView: CFBaseView{
 		contentForwardButton.mouseDownFunction = forwardButtonClicked
 		contentForwardButton.isActiveFunction = fwdButtonIsActive
 		contentBackButton.mouseDownInActiveFunction = activateContentFrame
+		
+		groupButton.mouseDownFunction = clickedGourpButton
+		groupButton.isActiveFunction = self.isFrameActive
+		groupButton.mouseDownInActiveFunction = activateContentFrame
 	}
     
 	/** Appends a new tab at the end, or after the given openNextTo position.
