@@ -125,7 +125,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	private func loadAndDisplayDropdownMenu(){
 		let o = positionDropdownMenu()
 		let items = [
-			NiMenuItemViewModel(title: "Name this window", isEnabled: true, mouseDownFunction: nil),
+			NiMenuItemViewModel(title: "Name this window", isEnabled: true, mouseDownFunction: renameGroup),
 			NiMenuItemViewModel(title: "Pin to the menu", isEnabled: false, mouseDownFunction: nil),
 			NiMenuItemViewModel(title: "Move to another space", isEnabled: false, mouseDownFunction: nil)
 		]
@@ -135,7 +135,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	private func positionDropdownMenu() -> NSPoint {
 		if let refernceView = expandedCFView {
 			let pInView = NSPoint(
-				x: refernceView.cfHeadView.frame.origin.x + (refernceView.cfGroupButton.frame.origin.x ?? 0.0),
+				x: refernceView.cfHeadView.frame.origin.x + (refernceView.cfGroupButton.frame.origin.x),
 				y: refernceView.cfHeadView.frame.origin.y)
 			return self.view.convert(pInView, to: nil)
 		}

@@ -14,6 +14,14 @@ class NiActionImage: NSImageView{
 	var mouseDownInActiveFunction: ((NSEvent) -> Void)?
 	var isActiveFunction: (() -> Bool)?
 
+	init(image: NSImage){
+		super.init(frame: NSRect(origin: CGPoint(x: 0.0, y: 0.0), size: image.size))
+		self.image = image
+		
+		let hoverEffect = NSTrackingArea.init(rect: self.bounds, options: [.mouseEnteredAndExited, .activeInKeyWindow], owner: self, userInfo: nil)
+		self.addTrackingArea(hoverEffect)
+	}
+	
 	required init?(coder: NSCoder) {
 		super.init(coder: coder)
 		

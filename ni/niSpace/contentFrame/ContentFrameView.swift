@@ -40,6 +40,10 @@ class ContentFrameView: CFBaseView{
     }
 	
 	func initAfterViewLoad(){
+		niContentTabView.wantsLayer = true
+		niContentTabView.layer?.cornerRadius = 10.0
+		niContentTabView.layer?.cornerCurve = .continuous
+		
 		closeButton.mouseDownFunction = clickedCloseButton
 		closeButton.isActiveFunction = self.isFrameActive
 		closeButton.mouseDownInActiveFunction = activateContentFrame
@@ -65,13 +69,20 @@ class ContentFrameView: CFBaseView{
 		contentBackButton.mouseDownInActiveFunction = activateContentFrame
 
 		//TODO: init groupButton here:
+		cfGroupButton.initButton(
+			mouseDownFunction: clickedGourpButton,
+			mouseDownInActiveFunction: activateContentFrame,
+			isActiveFunction: self.isFrameActive
+		)
+		cfGroupButton.setView()
+		cfHeadView.layout()
 //		groupButton?.mouseDownFunction = clickedGourpButton
 //		groupButton?.isActiveFunction = self.isFrameActive
 //		groupButton?.mouseDownInActiveFunction = activateContentFrame
 	}
     
 	func renameGroup(){
-		
+		cfGroupButton.displayEditField()
 	}
 	
 	/** Appends a new tab at the end, or after the given openNextTo position.

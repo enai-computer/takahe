@@ -21,38 +21,46 @@
                         <rect key="frame" x="0.0" y="591" width="1056" height="34"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <subviews>
-                            <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tOm-Uf-Gpz">
-                                <rect key="frame" x="905" y="0.0" width="65" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" heightSizable="YES"/>
-                            </customView>
-                            <customView id="v2T-OE-fnp" customClass="CFGroupButton" customModule="ni" customModuleProvider="target">
+                            <customView horizontalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" placeholderIntrinsicWidth="24" placeholderIntrinsicHeight="24" translatesAutoresizingMaskIntoConstraints="NO" id="v2T-OE-fnp" customClass="CFGroupButton" customModule="ni" customModuleProvider="target">
                                 <rect key="frame" x="7" y="7" width="24" height="24"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="24" id="Aiv-VW-yvz"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="24" id="CKo-8U-wiq"/>
+                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="200" id="OyI-0b-7H9"/>
+                                </constraints>
                             </customView>
-                            <imageView horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" id="rcT-6J-b1L" userLabel="back-button" customClass="NiActionImage" customModule="ni" customModuleProvider="target">
+                            <imageView horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="rcT-6J-b1L" userLabel="back-button" customClass="NiActionImage" customModule="ni" customModuleProvider="target">
                                 <rect key="frame" x="31" y="7" width="24" height="24"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="24" id="Qru-Us-vsd"/>
+                                    <constraint firstAttribute="height" constant="24" id="ncl-NF-Ham"/>
+                                </constraints>
                                 <imageCell key="cell" alignment="left" animates="YES" imageScaling="proportionallyDown" image="arrowLeft" id="T7D-RU-6Pz"/>
                             </imageView>
-                            <imageView horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" id="eFl-A6-f9y" userLabel="forward-button" customClass="NiActionImage" customModule="ni" customModuleProvider="target">
+                            <imageView horizontalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="eFl-A6-f9y" userLabel="forward-button" customClass="NiActionImage" customModule="ni" customModuleProvider="target">
                                 <rect key="frame" x="55" y="7" width="24" height="24"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="24" id="CUe-ot-mHq"/>
+                                    <constraint firstAttribute="height" constant="24" id="opl-qh-fYC"/>
+                                </constraints>
                                 <imageCell key="cell" alignment="left" animates="YES" imageScaling="proportionallyDown" image="arrowRight" id="i8b-xK-NTA"/>
                             </imageView>
-                            <imageView horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" id="GMe-PK-SX5" userLabel="Add Button" customClass="NiActionImage" customModule="ni" customModuleProvider="target">
+                            <imageView horizontalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="GMe-PK-SX5" userLabel="Add Button" customClass="NiActionImage" customModule="ni" customModuleProvider="target">
                                 <rect key="frame" x="79" y="7" width="24" height="24"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="24" id="PRg-NH-sRo"/>
+                                    <constraint firstAttribute="width" constant="24" id="zk9-fz-wvJ"/>
+                                </constraints>
                                 <imageCell key="cell" alignment="left" animates="YES" imageScaling="proportionallyDown" image="plus" id="GM5-6m-UKQ"/>
                             </imageView>
-                            <scrollView wantsLayer="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasVerticalScroller="NO" usesPredominantAxisScrolling="NO" verticalScrollElasticity="none" id="AwF-3w-n4g">
-                                <rect key="frame" x="108" y="4" width="787" height="30"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                <clipView key="contentView" drawsBackground="NO" id="PQx-Md-yMS">
-                                    <rect key="frame" x="0.0" y="0.0" width="787" height="30"/>
+                            <scrollView wantsLayer="YES" horizontalHuggingPriority="1000" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="1000" ambiguous="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasVerticalScroller="NO" usesPredominantAxisScrolling="NO" verticalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="AwF-3w-n4g">
+                                <rect key="frame" x="103" y="4" width="808" height="30"/>
+                                <clipView key="contentView" ambiguous="YES" drawsBackground="NO" id="PQx-Md-yMS">
+                                    <rect key="frame" x="0.0" y="0.0" width="808" height="30"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <collectionView id="wB8-UP-dFY">
-                                            <rect key="frame" x="0.0" y="0.0" width="787" height="30"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="808" height="30"/>
                                             <autoresizingMask key="autoresizingMask" heightSizable="YES"/>
                                             <collectionViewFlowLayout key="collectionViewLayout" minimumInteritemSpacing="16" scrollDirection="horizontal" id="Wti-La-5hp">
                                                 <size key="itemSize" width="195" height="30"/>
@@ -66,9 +74,13 @@
                                     </subviews>
                                     <color key="backgroundColor" name="SandLight4"/>
                                 </clipView>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="YBx-UI-k7o"/>
+                                    <constraint firstAttribute="height" constant="30" id="ovj-6g-owR"/>
+                                </constraints>
                                 <edgeInsets key="scrollerInsets" left="0.0" right="0.0" top="0.0" bottom="-3"/>
                                 <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="aVi-Gl-lD4" customClass="NiScroller" customModule="ni" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="17" width="777" height="16"/>
+                                    <rect key="frame" x="0.0" y="17" width="794" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="cGw-ix-zoM">
@@ -76,29 +88,50 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
-                            <imageView id="SHD-m6-fVV" customClass="NiActionImage" customModule="ni" customModuleProvider="target">
+                            <customView horizontalHuggingPriority="1000" horizontalCompressionResistancePriority="250" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tOm-Uf-Gpz">
+                                <rect key="frame" x="911" y="0.0" width="65" height="34"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="65" id="Fjp-D0-eyC"/>
+                                    <constraint firstAttribute="height" constant="34" id="XkU-IF-Kh7"/>
+                                </constraints>
+                            </customView>
+                            <imageView horizontalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="SHD-m6-fVV" customClass="NiActionImage" customModule="ni" customModuleProvider="target">
                                 <rect key="frame" x="976" y="7" width="24" height="24"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                 <imageCell key="cell" alignment="left" animates="YES" imageScaling="proportionallyDown" image="maximize" id="Qze-9W-rWF"/>
                             </imageView>
-                            <imageView id="rUD-4M-Tk9" customClass="NiActionImage" customModule="ni" customModuleProvider="target">
+                            <imageView horizontalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="rUD-4M-Tk9" customClass="NiActionImage" customModule="ni" customModuleProvider="target">
                                 <rect key="frame" x="1000" y="7" width="24" height="24"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                 <imageCell key="cell" alignment="left" animates="YES" imageScaling="proportionallyDown" image="minimize" id="ysI-fW-YS0"/>
                             </imageView>
-                            <imageView autoresizesSubviews="NO" ambiguous="YES" id="Utx-ML-7oY" userLabel="Close CF Button" customClass="NiActionImage" customModule="ni" customModuleProvider="target">
+                            <imageView autoresizesSubviews="NO" horizontalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="Utx-ML-7oY" userLabel="Close CF Button" customClass="NiActionImage" customModule="ni" customModuleProvider="target">
                                 <rect key="frame" x="1024" y="7" width="24" height="24"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="24" id="3py-ZL-w11"/>
+                                </constraints>
                                 <imageCell key="cell" alignment="left" imageAlignment="topRight" image="close" id="1Vu-cP-tyr"/>
                             </imageView>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="GMe-PK-SX5" firstAttribute="left" secondItem="eFl-A6-f9y" secondAttribute="left" id="Ax5-Wx-BFO"/>
-                            <constraint firstItem="rcT-6J-b1L" firstAttribute="left" secondItem="v2T-OE-fnp" secondAttribute="right" id="Gs0-fD-7vM"/>
-                            <constraint firstItem="SHD-m6-fVV" firstAttribute="right" secondItem="rUD-4M-Tk9" secondAttribute="right" id="LUW-7X-4L5"/>
-                            <constraint firstItem="rUD-4M-Tk9" firstAttribute="right" secondItem="Utx-ML-7oY" secondAttribute="right" id="jlH-WG-Q4a"/>
-                            <constraint firstItem="eFl-A6-f9y" firstAttribute="left" secondItem="rcT-6J-b1L" secondAttribute="left" id="npo-Ac-PoM"/>
-                            <constraint firstItem="AwF-3w-n4g" firstAttribute="left" secondItem="GMe-PK-SX5" secondAttribute="left" id="wvP-0N-mSr"/>
+                            <constraint firstItem="tOm-Uf-Gpz" firstAttribute="right" secondItem="SHD-m6-fVV" secondAttribute="left" id="102-mU-5Ll"/>
+                            <constraint firstItem="AwF-3w-n4g" firstAttribute="top" secondItem="Pdl-B9-RoX" secondAttribute="top" id="1Wv-68-5yR"/>
+                            <constraint firstItem="eFl-A6-f9y" firstAttribute="top" secondItem="Pdl-B9-RoX" secondAttribute="top" constant="3" id="1iY-YS-jeA"/>
+                            <constraint firstItem="Utx-ML-7oY" firstAttribute="top" secondItem="Pdl-B9-RoX" secondAttribute="top" constant="3" id="1yd-v9-Fbz"/>
+                            <constraint firstItem="SHD-m6-fVV" firstAttribute="right" secondItem="rUD-4M-Tk9" secondAttribute="left" id="3ES-od-0HN"/>
+                            <constraint firstItem="rcT-6J-b1L" firstAttribute="top" secondItem="Pdl-B9-RoX" secondAttribute="top" constant="3" id="6ki-Qu-KbA"/>
+                            <constraint firstItem="GMe-PK-SX5" firstAttribute="left" secondItem="eFl-A6-f9y" secondAttribute="right" id="Ax5-Wx-BFO"/>
+                            <constraint firstItem="AwF-3w-n4g" firstAttribute="right" secondItem="tOm-Uf-Gpz" secondAttribute="left" priority="750" id="CXg-eV-RIV"/>
+                            <constraint firstItem="v2T-OE-fnp" firstAttribute="left" secondItem="Pdl-B9-RoX" secondAttribute="left" constant="7" id="Ffw-UY-sXN"/>
+                            <constraint firstItem="rUD-4M-Tk9" firstAttribute="top" secondItem="Pdl-B9-RoX" secondAttribute="top" constant="3" id="HJx-Wj-TxC"/>
+                            <constraint firstItem="SHD-m6-fVV" firstAttribute="top" secondItem="Pdl-B9-RoX" secondAttribute="top" constant="3" id="LdH-IC-d60"/>
+                            <constraint firstItem="AwF-3w-n4g" firstAttribute="top" secondItem="Pdl-B9-RoX" secondAttribute="top" id="PLV-2w-Lrv"/>
+                            <constraint firstItem="v2T-OE-fnp" firstAttribute="top" secondItem="Pdl-B9-RoX" secondAttribute="top" constant="3" id="TIM-W7-RSI"/>
+                            <constraint firstItem="GMe-PK-SX5" firstAttribute="top" secondItem="Pdl-B9-RoX" secondAttribute="top" constant="3" id="U8r-Un-cNq"/>
+                            <constraint firstAttribute="right" secondItem="Utx-ML-7oY" secondAttribute="right" constant="8" id="ioS-Gz-gBg"/>
+                            <constraint firstItem="rUD-4M-Tk9" firstAttribute="right" secondItem="Utx-ML-7oY" secondAttribute="left" id="jlH-WG-Q4a"/>
+                            <constraint firstItem="tOm-Uf-Gpz" firstAttribute="top" secondItem="Pdl-B9-RoX" secondAttribute="top" id="k7l-cR-3QT"/>
+                            <constraint firstItem="eFl-A6-f9y" firstAttribute="left" secondItem="rcT-6J-b1L" secondAttribute="right" id="npo-Ac-PoM"/>
+                            <constraint firstItem="rcT-6J-b1L" firstAttribute="left" secondItem="v2T-OE-fnp" secondAttribute="right" id="sEr-n6-hse"/>
+                            <constraint firstItem="AwF-3w-n4g" firstAttribute="left" secondItem="GMe-PK-SX5" secondAttribute="right" id="wvP-0N-mSr"/>
                         </constraints>
                     </customView>
                     <tabView fixedFrame="YES" type="noTabsNoBorder" translatesAutoresizingMaskIntoConstraints="NO" id="d8b-7o-70b">
