@@ -23,11 +23,15 @@ class CFGroupButton: NSView, NSTextFieldDelegate{
 		self.mouseDownFunction = mouseDownFunction
 		self.mouseDownInActiveFunction = mouseDownInActiveFunction
 		self.isActiveFunction = isActiveFunction
+		
 	}
 	
-	func setView(_ title: String? = nil){
+	func setView(title: String? = nil){
 		if(title == nil || title!.isEmpty){
 			displayIcon()
+		}else{
+			loadAndDisplayTxtField()
+			groupTitle?.stringValue = title!
 		}
 		let hoverEffect = NSTrackingArea.init(rect: self.bounds, options: [.mouseEnteredAndExited, .activeInKeyWindow], owner: self, userInfo: nil)
 		self.addTrackingArea(hoverEffect)
@@ -48,11 +52,7 @@ class CFGroupButton: NSView, NSTextFieldDelegate{
 		groupIcon?.removeFromSuperview()
 		
 		if(groupTitle == nil){
-			groupTitle = genTextField()
-			self.frame.size.width = 202.0
-			self.frame.size.height = 30.0
-			self.frame.origin.x = 0.0
-			addSubview(groupTitle!)
+			loadAndDisplayTxtField()
 		}
 		
 		groupTitle!.isEditable = true
@@ -80,6 +80,14 @@ class CFGroupButton: NSView, NSTextFieldDelegate{
 		layer?.cornerRadius = 5.0
 		layer?.borderColor = NSColor.birkin.cgColor
 		layer?.borderWidth = 1.0
+	}
+	
+	private func loadAndDisplayTxtField(){
+		groupTitle = genTextField()
+		self.frame.size.width = 202.0
+		self.frame.size.height = 30.0
+		self.frame.origin.x = 0.0
+		addSubview(groupTitle!)
 	}
 	
 	private func genTextField() -> NiTextField{
