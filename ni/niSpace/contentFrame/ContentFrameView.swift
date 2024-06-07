@@ -39,7 +39,7 @@ class ContentFrameView: CFBaseView{
         super.init(coder: coder)
     }
 	
-	func initAfterViewLoad(){
+	func initAfterViewLoad(_ groupName: String?){
 		niContentTabView.wantsLayer = true
 		niContentTabView.layer?.cornerRadius = 10.0
 		niContentTabView.layer?.cornerCurve = .continuous
@@ -74,7 +74,7 @@ class ContentFrameView: CFBaseView{
 			mouseDownInActiveFunction: activateContentFrame,
 			isActiveFunction: self.isFrameActive
 		)
-		cfGroupButton.setView()
+		cfGroupButton.setView(title: groupName)
 		cfHeadView.layout()
 //		groupButton?.mouseDownFunction = clickedGourpButton
 //		groupButton?.isActiveFunction = self.isFrameActive
