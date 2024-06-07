@@ -6,7 +6,7 @@ import WebKit
 let maxWidthMargin: CGFloat = 30.0
 
 func openEmptyContentFrame(viewState: NiConentFrameState = .expanded) -> ContentFrameController{
-	let frameController = ContentFrameController(viewState: viewState, tabsModel: nil)
+	let frameController = ContentFrameController(viewState: viewState, groupName: nil, tabsModel: nil)
 	frameController.loadView()
 	return frameController
 }
@@ -16,7 +16,8 @@ func reopenContentFrame(screenWidth: CGFloat, contentFrame: NiContentFrameModel,
 	let controller = reopenContentFrameWithOutPositioning(
 		screenWidth: screenWidth,
 		contentFrameState: contentFrame.state,
-		tabViewModels: tabViewModels
+		tabViewModels: tabViewModels,
+		groupName: contentFrame.name
 	)
 	//positioning
 	controller.view.frame = initPositionAndSize(
@@ -31,14 +32,21 @@ func reopenContentFrame(screenWidth: CGFloat, contentFrame: NiContentFrameModel,
 	return controller
 }
 
-func reopenContentFrameWithOutPositioning(screenWidth: CGFloat, contentFrameState: NiConentFrameState, tabViewModels: [TabViewModel]) -> ContentFrameController {
+func reopenContentFrameWithOutPositioning(
+	screenWidth: CGFloat,
+	contentFrameState: NiConentFrameState,
+	tabViewModels: [TabViewModel],
+	groupName: String?
+) -> ContentFrameController {
     
 	let frameController = if(contentFrameState == .minimised){
-		ContentFrameController(viewState: contentFrameState, tabsModel: tabViewModels)
+		ContentFrameController(viewState: contentFrameState,
+							   groupName: groupName,
+							   tabsModel: tabViewModels)
 	}else{
 		// we are not adding tabViewModel here as opening up a tab down there does that.
 		//FIXME: clean up that tech debt
-		ContentFrameController(viewState: contentFrameState)
+		ContentFrameController(viewState: contentFrameState, groupName: groupName)
 	}
 
     frameController.loadView()

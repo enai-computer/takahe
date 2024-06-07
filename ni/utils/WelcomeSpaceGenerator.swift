@@ -37,7 +37,12 @@ class WelcomeSpaceGenerator{
 		
 		for window in model.windows {
 			let tabs = urlStrsToNiCFTabModel(tabs: window.tabs)
-			let cfController = reopenContentFrameWithOutPositioning(screenWidth: screenSize.width, contentFrameState: window.state, tabViewModels: tabs)
+			let cfController = reopenContentFrameWithOutPositioning(
+				screenWidth: screenSize.width,
+				contentFrameState: window.state,
+				tabViewModels: tabs,
+				groupName: window.windowName
+			)
 			//position <- expanded one in the center with some room on the left: minimized CFs vertiacal with some space between each other
 			cfController.view.frame = positionWindow(
 				screenSize,
@@ -118,7 +123,7 @@ struct WelcomeSpaceTabModel: Codable{
 }
 
 struct WelcomeSpaceWindowModel: Codable{
-	var windowName: String
+	var windowName: String?
 	var state: NiConentFrameState
 	var tabs: [WelcomeSpaceTabModel]
 }

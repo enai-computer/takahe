@@ -28,12 +28,15 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	private var closeCancelled = false
 	private(set) var closeTriggered = false
 	
+	private var groupName: String?
+	
+	
 	/*
 	 * MARK: init & view loading here
 	 */
-	init(viewState: NiConentFrameState, tabsModel: [TabViewModel]? = nil){
+	init(viewState: NiConentFrameState, groupName: String?, tabsModel: [TabViewModel]? = nil){
 		self.viewState = viewState
-		
+		self.groupName = groupName
 		if(tabsModel != nil){
 			self.tabs = tabsModel!
 		}
@@ -884,6 +887,8 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 			return (model: nil,  nrOfTabs: 0, state: nil)
 		}
 		
+		self.groupName = expandedCFView?.cfGroupButton.getName()
+		
 		//FIXME: this does not work :cry:
 		let posInStack = Int(view.layer!.zPosition)
 		let model = NiDocumentObjectModel(
@@ -897,7 +902,8 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 					x: NiCoordinate(px: view.frame.origin.x),
 					y: NiCoordinate(px: view.frame.origin.y)
 				),
-				children: children
+				children: children,
+				name: self.groupName
 			)
 		)
 
