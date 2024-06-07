@@ -20,6 +20,7 @@
 		A1E41BFF2ACB6B1300338417 /* FrameGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E41BFE2ACB6B1300338417 /* FrameGenerator.swift */; };
 		A1F33E2E2AB7299500E2E7CD /* DefaultWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F33E2D2AB7299500E2E7CD /* DefaultWindow.swift */; };
 		CD04974C2C120ABE00C44021 /* CFGroupButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD04974B2C120ABE00C44021 /* CFGroupButton.swift */; };
+		CD04974E2C12FA4A00C44021 /* NiTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD04974D2C12FA4A00C44021 /* NiTextField.swift */; };
 		CD0589372BE1837B00E9A01E /* PostHog in Frameworks */ = {isa = PBXBuildFile; productRef = CD0589362BE1837B00E9A01E /* PostHog */; };
 		CD06A9BA2BF79EF500312256 /* NiScroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD06A9B92BF79EF500312256 /* NiScroller.swift */; };
 		CD0FA1C12BDBE2BA0065313B /* Inter-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CD0FA1C02BDBE2BA0065313B /* Inter-Regular.ttf */; };
@@ -139,6 +140,7 @@
 		A1F33E2D2AB7299500E2E7CD /* DefaultWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultWindow.swift; sourceTree = "<group>"; };
 		CD00B81D2BE4EE230079CF71 /* niDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = niDebug.entitlements; sourceTree = "<group>"; };
 		CD04974B2C120ABE00C44021 /* CFGroupButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CFGroupButton.swift; sourceTree = "<group>"; };
+		CD04974D2C12FA4A00C44021 /* NiTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiTextField.swift; sourceTree = "<group>"; };
 		CD06A9B92BF79EF500312256 /* NiScroller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiScroller.swift; sourceTree = "<group>"; };
 		CD0FA1C02BDBE2BA0065313B /* Inter-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Regular.ttf"; sourceTree = "<group>"; };
 		CD1160C92BD27B9E00345E3E /* NiWebViewUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiWebViewUtils.swift; sourceTree = "<group>"; };
@@ -459,6 +461,7 @@
 			isa = PBXGroup;
 			children = (
 				CDABE6442C11C4BA00BB4E85 /* niMenu */,
+				CD04974D2C12FA4A00C44021 /* NiTextField.swift */,
 			);
 			path = commonUI;
 			sourceTree = "<group>";
@@ -759,6 +762,7 @@
 				CD781E752C0E1B6E00D02F55 /* NiNoteView.swift in Sources */,
 				CD7578372BBDA98700293930 /* ContentFrameHeadView.swift in Sources */,
 				CD33621F2BFE0DD0004DBAFB /* CFSoftDeletedView.swift in Sources */,
+				CD04974E2C12FA4A00C44021 /* NiTextField.swift in Sources */,
 				CD6752AB2BFB88770008A227 /* NiSpaceMenuItemView.swift in Sources */,
 				CD6752A12BFB56DC0008A227 /* NiSpaceMenuView.swift in Sources */,
 				A14E8F272AD5EAF800409DDF /* NiSpaceView.swift in Sources */,
