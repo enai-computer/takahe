@@ -131,11 +131,6 @@ struct NiContentFrameModel: Codable{
     var width: NiCoordinate
     var position: NiViewPosition
     var children: [NiCFTabModel]
-    
-//    enum ContentFrameModelKeys: String, CodingKey {
-//        case state, height, width, position, children
-//    }
-    
-    
+	var name: String?
 }
 

@@ -113,5 +113,9 @@ class CFGroupButton: NSView, NSTextFieldDelegate{
 		}
 		groupTitle?.textColor = NSColor.sandLight11
 	}
+	
+	func getName() -> String?{
+		return groupTitle?.stringValue
+	}
 }
 
