@@ -91,7 +91,7 @@
                             <customView ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tOm-Uf-Gpz">
                                 <rect key="frame" x="911" y="0.0" width="65" height="34"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="65" id="Fjp-D0-eyC"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="10" id="Fjp-D0-eyC"/>
                                     <constraint firstAttribute="height" constant="34" id="XkU-IF-Kh7"/>
                                 </constraints>
                             </customView>

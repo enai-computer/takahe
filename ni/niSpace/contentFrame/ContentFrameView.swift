@@ -25,6 +25,8 @@ class ContentFrameView: CFBaseView{
 	@IBOutlet var maximizeButton: NiActionImage!
 	@IBOutlet var cfGroupButton: CFGroupButton!
 	
+	private var cfHeadDragAreaWidthConstraint: NSLayoutConstraint?
+	private var niContentTabViewWidthConstraint: NSLayoutConstraint?
 	
 	//TabView
 	@IBOutlet var niContentTabView: NSTabView!
@@ -313,14 +315,14 @@ class ContentFrameView: CFBaseView{
 		let tabHCollectionWidth = tabHScrollWidth
 		let originX = tabHeadsScrollContainer.frame.origin.x + tabHScrollWidth
 		
-		var w = maximizeButton.frame.minX - originX
+		var dragAreaWidth = maximizeButton.frame.minX - originX
 		var diffToMin = 0.0
-		if(w < 30.0){
-			diffToMin = 30.0 - w
-			w = 30.0
+		if(dragAreaWidth < 30.0){
+			diffToMin = 30.0 - dragAreaWidth
+			dragAreaWidth = 30.0
 		}
 		cfHeadDragArea.frame.origin.x = originX - diffToMin
-		cfHeadDragArea.frame.size.width = w
+		cfHeadDragArea.frame.size.width = dragAreaWidth
 		
 		if(cfHeadDragArea.frame.origin.x < (tabHScrollWidth + tabHeadsScrollContainer.frame.origin.x)){
 			tabHScrollWidth = cfHeadDragArea.frame.origin.x - tabHeadsScrollContainer.frame.origin.x
@@ -328,6 +330,37 @@ class ContentFrameView: CFBaseView{
 		tabHeadsScrollContainer.frame.size.width = tabHScrollWidth
 		tabHeadsScrollContainer.documentView?.frame.size.width = tabHCollectionWidth
 		latestNrOfTabs = nrOfTabs
+		
+		if(cfHeadDragAreaWidthConstraint != nil){
+			cfHeadDragArea.removeConstraint(cfHeadDragAreaWidthConstraint!)
+		}
+		if(niContentTabViewWidthConstraint != nil){
+			niContentTabView.removeConstraint(niContentTabViewWidthConstraint!)
+		}
+		setCfHeadDragAreaWidthConstraint(width: dragAreaWidth)
+		cfHeadDragArea.addConstraint(cfHeadDragAreaWidthConstraint!)
+		
+		setNiContentTabViewWidthConstraint(width: tabHScrollWidth)
+		niContentTabView.addConstraint(niContentTabViewWidthConstraint!)
+	}
+	
+	private func setNiContentTabViewWidthConstraint(width: CGFloat){
+		niContentTabViewWidthConstraint = NSLayoutConstraint(
+			item: self.niContentTabView!,
+			attribute: .width, relatedBy: .equal,
+			toItem: nil, attribute: .notAnAttribute,
+			multiplier: 1.0,
+			constant: width)
+	}
+	
+	private func setCfHeadDragAreaWidthConstraint(width: CGFloat){
+		cfHeadDragAreaWidthConstraint = NSLayoutConstraint(
+			item: self.cfHeadDragArea!,
+			attribute: .width, relatedBy: .equal,
+			toItem: nil, attribute: .notAnAttribute,
+			multiplier: 1.0,
+			constant: width
+		)
 	}
 	
 	func recalcDragArea(){
@@ -415,18 +448,7 @@ class ContentFrameView: CFBaseView{
 		addTabButton.tintInactive()
 		minimizeButton.tintInactive()
 		maximizeButton.tintInactive()
-//		let currentSize = niContentTabView.frame.size
-//		var nsize = currentSize
-//		nsize.height += cfHeadView.frame.height
-//		niContentTabView.setFrameSize(nsize)
-		
-//		cfHeadView.removeFromSuperview()
-//		NSLayoutConstraint.activate([
-//			niContentTabView.topAnchor.constraint(equalTo: self.topAnchor)
-//			
-//		])
-//		niContentTabView.heightAnchor.constraint(equalTo: self.heightAnchor).isActive = true
-//		layout()
+		cfGroupButton.tintInactive()
 	}
 	
 	private func showHeader(){
@@ -435,15 +457,7 @@ class ContentFrameView: CFBaseView{
 		addTabButton.tintActive()
 		minimizeButton.tintActive()
 		maximizeButton.tintActive()
-//		let currentSize = niContentTabView.frame.size
-//		var nsize = currentSize
-//		
-//		nsize.height -= cfHeadView.frame.height
-//		niContentTabView.setFrameSize(nsize)
-		
-//		addSubview(cfHeadView)
-//		layoutSubtreeIfNeeded()
-//		layout()
+		cfGroupButton.tintActive()
 	}
     
 }

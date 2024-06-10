@@ -88,6 +88,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	
 	private func loadAndDisplayMinimizedView(){
 		let minimizedView = loadMinimizedView()
+		minimizedView.cfGroupButton.setView(title: groupName)
 		self.view = minimizedView
 		sharedLoadViewSetters()
 	}
@@ -128,7 +129,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	}
 	
 	private func loadAndDisplayDropdownMenu(){
-		let o = positionDropdownMenu()
+		let menuOrigin = positionDropdownMenu()
 		var editNameItem: NiMenuItemViewModel? = nil
 		var optionalMenuItem: NiMenuItemViewModel? = nil
 		if(viewState == .expanded){
@@ -144,23 +145,27 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 			NiMenuItemViewModel(title: "Pin to the menu", isEnabled: false, mouseDownFunction: nil),
 			NiMenuItemViewModel(title: "Move to another space", isEnabled: false, mouseDownFunction: nil)
 		]
-		NiMenuWindow(origin: o, dirtyMenuItems: items).makeKeyAndOrderFront(nil)
+		let menuWin = NiMenuWindow(
+			origin: menuOrigin,
+			dirtyMenuItems: items,
+			currentScreen: view.window!.screen!
+		)
+		menuWin.makeKeyAndOrderFront(nil)
 	}
 	
 	private func positionDropdownMenu() -> NSPoint {
-		
 		if(viewState == .expanded){
 			if let refernceView = expandedCFView {
 				let pInView = NSPoint(
 					x: refernceView.cfHeadView.frame.origin.x + (refernceView.cfGroupButton.frame.origin.x),
-					y: refernceView.cfHeadView.frame.origin.y)
-				return self.view.convert(pInView, to: nil)
+					y: refernceView.cfHeadView.frame.origin.y + 10.0)
+				return self.view.convert(pInView, to: view.window?.contentView)
 			}
 		}else if(viewState == .minimised){
 			if let minimizedView = self.view as? CFMinimizedView{
 				var pInView = minimizedView.frame.origin
-				pInView.y -= minimizedView.frame.height
-				return self.view.superview!.convert(pInView, to: nil)
+//				pInView.y -= minimizedView.frame.height
+				return self.view.superview!.convert(pInView, to: view.window?.contentView)
 			}
 		}
 		
@@ -908,7 +913,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 			return (model: nil,  nrOfTabs: 0, state: nil)
 		}
 		
-		self.groupName = expandedCFView?.cfGroupButton.getName()
+		updateGroupName()
 		
 		//FIXME: this does not work :cry:
 		let posInStack = Int(view.layer!.zPosition)
@@ -929,5 +934,16 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		)
 
 		return (model: model, nrOfTabs: children.count, state: self.viewState)
+	}
+	
+	private func updateGroupName() {
+		if (viewState == .expanded){
+			self.groupName = expandedCFView?.cfGroupButton.getName()
+		}
+		if (viewState == .minimised){
+			if let minimizedView = self.view as? CFMinimizedView{
+				self.groupName = minimizedView.cfGroupButton.getName()
+			}
+		}
 	}
 }

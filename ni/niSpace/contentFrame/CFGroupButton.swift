@@ -15,8 +15,12 @@ class CFGroupButton: NSView, NSTextFieldDelegate{
 	
 	private var groupIcon: NiActionImage?
 	private var groupTitle: NSTextField?
-	
 	private var preEditString: String?
+	
+	private var iconWidthConstraint: NSLayoutConstraint?
+	private var titleWidthConstraint: NSLayoutConstraint?
+	
+	private let groupTitleMargin = 7.0
 	
 	func initButton(mouseDownFunction: ((NSEvent) -> Void)?,
 					mouseDownInActiveFunction: ((NSEvent) -> Void)?,
@@ -34,14 +38,23 @@ class CFGroupButton: NSView, NSTextFieldDelegate{
 		}else if(groupTitle == nil){
 			loadAndDisplayTxtField()
 			groupTitle?.stringValue = title!
+			setWidthConstraintToTitle()
+			groupTitle?.textColor = NSColor.sandLight11
+			dropIcon()
+		}else{
+			groupTitle?.stringValue = title!
+			setWidthConstraintToTitle()
+			groupTitle?.textColor = NSColor.sandLight11
+			dropIcon()
 		}
 		let hoverEffect = NSTrackingArea.init(rect: self.bounds, options: [.mouseEnteredAndExited, .activeInKeyWindow], owner: self, userInfo: nil)
 		self.addTrackingArea(hoverEffect)
 	}
-	
+		
 	func displayIcon() {
 		guard groupIcon == nil else {
 			addSubview(groupIcon!)
+			setWidthConstraintToIcon()
 			return
 		}
 		let icon = NiActionImage(image: NSImage.groupIcon)
@@ -49,9 +62,8 @@ class CFGroupButton: NSView, NSTextFieldDelegate{
 		icon.mouseDownInActiveFunction = mouseDownInActiveFunction
 		icon.isActiveFunction = isActiveFunction
 		addSubview(icon)
-		self.frame.size = icon.frame.size
-		
 		groupIcon = icon
+		setWidthConstraintToIcon()
 	}
 	
 	func menuClickStartsEditing(with event: NSEvent){
@@ -67,17 +79,17 @@ class CFGroupButton: NSView, NSTextFieldDelegate{
 		
 		groupTitle!.isEditable = true
 		groupTitle?.isSelectable = true
-		groupTitle!.frame.origin = NSPoint(x: 7.0, y: 0.0)
+		groupTitle?.refusesFirstResponder = false
+		groupTitle!.frame.origin = NSPoint(x: groupTitleMargin, y: 0.0)
 		styleEditing()
-	}
-	
-	func controlTextDidBeginEditing(_ obj: Notification){
+		
 		preEditString = groupTitle?.stringValue ?? ""
 	}
 	
 	func controlTextDidEndEditing(_ obj: Notification){
 		groupTitle?.isEditable = false
 		groupTitle?.isSelectable = false
+		groupTitle?.refusesFirstResponder = true
 		styleEndEditing()
 		updateTrackingAreas()
 		
@@ -87,7 +99,9 @@ class CFGroupButton: NSView, NSTextFieldDelegate{
 		}
 		if(groupTitle!.stringValue.isEmpty){
 			dropTitle()
+			return
 		}
+		setWidthConstraintToTitle()
 	}
 	
 	private func getUIMenuStr() -> String{
@@ -135,6 +149,11 @@ class CFGroupButton: NSView, NSTextFieldDelegate{
 			return
 		}
 		groupTitle?.stringValue = preEditString!
+		setWidthConstraintToTitle()
+	}
+	
+	private func dropIcon(){
+		groupIcon?.removeFromSuperview()
 	}
 	
 	private func dropTitle(){
@@ -156,6 +175,8 @@ class CFGroupButton: NSView, NSTextFieldDelegate{
 		layer?.cornerRadius = 5.0
 		layer?.borderColor = NSColor.birkin.cgColor
 		layer?.borderWidth = 1.0
+		groupTitle?.textColor = NSColor.sandLight12
+		setWidthConstraintToTitle(editMode: true)
 	}
 	
 	private func loadAndDisplayTxtField(){
@@ -185,7 +206,7 @@ class CFGroupButton: NSView, NSTextFieldDelegate{
 	
 	override func mouseEntered(with event: NSEvent) {
 		//if is not active - don't change color
-		if((isActiveFunction != nil && !isActiveFunction!()) || groupTitle == nil){
+		if((isActiveFunction != nil && !isActiveFunction!()) || groupTitle == nil || groupTitle!.isEditable){
 			return
 		}
 		groupTitle?.textColor = NSColor.birkin
@@ -193,7 +214,7 @@ class CFGroupButton: NSView, NSTextFieldDelegate{
 	
 	override func mouseExited(with event: NSEvent) {
 		//if is not active - don't change color
-		if((isActiveFunction != nil && !isActiveFunction!()) || groupTitle == nil){
+		if((isActiveFunction != nil && !isActiveFunction!()) || groupTitle == nil || groupTitle!.isEditable){
 			return
 		}
 		groupTitle?.textColor = NSColor.sandLight11
@@ -202,5 +223,77 @@ class CFGroupButton: NSView, NSTextFieldDelegate{
 	func getName() -> String?{
 		return groupTitle?.stringValue
 	}
+	
+	/*
+	 * MARK: width constraints
+	 */
+	private func getIconWidthConstraint() -> NSLayoutConstraint{
+		return NSLayoutConstraint(
+			item: self,
+			attribute: .width, relatedBy: .equal,
+			toItem: nil,
+			attribute: .notAnAttribute,
+			multiplier: 1.0,
+			constant: groupIcon?.frame.width ?? 24.0
+		)
+	}
+	
+	private func getTitleWidthConstraint(_ editMode: Bool) -> NSLayoutConstraint{
+		var width: CGFloat = if(editMode){
+			155.0
+		}else{
+			groupTitle?.fittingSize.width ?? 155.0
+		}
+		if(width.isZero || 155.0 < width){
+			width = 155.0
+		}
+		if (groupTitle != nil){
+			groupTitle!.frame.size.width = width
+		}
+		width += groupTitleMargin
+		return NSLayoutConstraint(
+			item: self,
+			attribute: .width, relatedBy: .equal,
+			toItem: nil,
+			attribute: .notAnAttribute,
+			multiplier: 1.0,
+			constant: width
+		)
+	}
+	
+	private func setWidthConstraintToIcon(){
+		if(titleWidthConstraint != nil){
+			removeConstraint(titleWidthConstraint!)
+			titleWidthConstraint = nil
+		}
+		if(iconWidthConstraint == nil){
+			iconWidthConstraint = getIconWidthConstraint()
+		}
+		removeConstraint(iconWidthConstraint!)
+		addConstraint(iconWidthConstraint!)
+	}
+	
+	private func setWidthConstraintToTitle(editMode: Bool = false){
+		if(iconWidthConstraint != nil){
+			removeConstraint(iconWidthConstraint!)
+		}
+		if(titleWidthConstraint != nil){
+			removeConstraint(titleWidthConstraint!)
+		}
+		//Title Width needs to be recalced based on number of Chars
+		titleWidthConstraint = getTitleWidthConstraint(editMode)
+		addConstraint(titleWidthConstraint!)
+	}
+	
+	func tintInactive(){
+		groupIcon?.tintInactive()
+		groupTitle?.textColor = NSColor(.sandLight8)
+	}
+	
+	func tintActive(){
+		groupIcon?.tintActive()
+		groupTitle?.textColor = NSColor(.sandLight11)
+	}
+	
 }
 

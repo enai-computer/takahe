@@ -12,24 +12,27 @@ class NiMenuWindow: NSPanel {
 	private let niDelegate: NiMenuWindowDelegate
 	override var canBecomeKey: Bool {return true}
 	override var canBecomeMain: Bool {return false}
+	private var screenToDisplayOn: NSScreen?
+//	override var screen: NSScreen? {return screenToDisplayOn}
 	
-	init(origin: NSPoint, dirtyMenuItems: [NiMenuItemViewModel?]){
+	
+	init(origin: NSPoint, dirtyMenuItems: [NiMenuItemViewModel?], currentScreen: NSScreen){
 		niDelegate = NiMenuWindowDelegate()
+		
+		screenToDisplayOn = currentScreen
 		
 		let cleanMenuItems = NiMenuWindow.removeNilValues(items: dirtyMenuItems)
 		let size = NiMenuWindow.calcSize(cleanMenuItems.count)
 		var adjustedOrigin = origin
 		adjustedOrigin.y = origin.y - size.height
+		let frameRect = NiMenuWindow.rectForScreen(NSRect(origin: adjustedOrigin, size: size), screen: currentScreen)
 		super.init(
-			contentRect: NSRect(
-				origin: adjustedOrigin,
-				size: size
-			),
+			contentRect: frameRect,
 			styleMask: NiMenuWindow.getStyleMask(),
 			backing: .buffered,
 			defer: true
-//			screen: .main
 		)
+		
 		titleVisibility = .hidden
 		titlebarAppearsTransparent = true
 		delegate = niDelegate
@@ -38,6 +41,18 @@ class NiMenuWindow: NSPanel {
 		hasShadow = true
 		isOpaque = false
 		backgroundColor = NSColor.clear
+		
+	}
+	
+	private static func rectForScreen(_ frameRect: NSRect, screen: NSScreen) -> NSRect {
+		let frameOrigin = NSPoint(
+			x: screen.frame.origin.x + frameRect.origin.x,
+			y: screen.frame.origin.y + frameRect.origin.y)
+		return NSRect(origin: frameOrigin, size: frameRect.size)
+	}
+	
+	override func setFrameOrigin(_ point: NSPoint){
+		super.setFrameOrigin(screenToDisplayOn!.frame.origin)
 	}
 	
 	private static func removeNilValues(items: [NiMenuItemViewModel?]) -> [NiMenuItemViewModel]{

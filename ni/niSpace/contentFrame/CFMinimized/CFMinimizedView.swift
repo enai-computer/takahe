@@ -46,6 +46,10 @@ class CFMinimizedView: CFBaseView{
 		return .no
 	}
 	
+//	private func dragArea() -> NSRect{
+//		let width = cfHeadView.frame.width - cfGroupButton.frame.width
+//		return NSRect(x: cfGroupButton.frame.maxX, y: 0.0, width: width, height: cfHeadView.frame.height)
+//	}
 	
 	func maximizeButtonClicked(with event: NSEvent){
 		guard let myController = nextResponder as? ContentFrameController else{return}
@@ -108,10 +112,12 @@ class CFMinimizedView: CFBaseView{
 		if frameIsActive{
 			closeButton.tintActive()
 			maximizeButton.tintActive()
+			cfGroupButton.tintActive()
 			self.resetCursorRects()
 		}else{
 			closeButton.tintInactive()
 			maximizeButton.tintInactive()
+			cfGroupButton.tintInactive()
 			self.discardCursorRects()
 		}
 	}
@@ -126,7 +132,7 @@ class CFMinimizedView: CFBaseView{
 	}
 	
 	private func getDragCursorRect() -> NSRect{
-		let width = cfHeadView.frame.width - closeButton.frame.width - maximizeButton.frame.width
-		return NSRect(x: 0.0, y: cfHeadView.frame.origin.y, width: width, height: cfHeadView.frame.height)
+		let width = cfHeadView.frame.width - closeButton.frame.width - maximizeButton.frame.width - cfGroupButton.frame.width
+		return NSRect(x: cfGroupButton.frame.maxX, y: cfHeadView.frame.origin.y, width: width, height: cfHeadView.frame.height)
 	}
 }
