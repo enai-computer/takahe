@@ -13,10 +13,8 @@ class NiMenuWindow: NSPanel {
 	override var canBecomeKey: Bool {return true}
 	override var canBecomeMain: Bool {return false}
 	private var screenToDisplayOn: NSScreen?
-//	override var screen: NSScreen? {return screenToDisplayOn}
 	
-	
-	init(origin: NSPoint, dirtyMenuItems: [NiMenuItemViewModel?], currentScreen: NSScreen){
+	init(origin: NSPoint, dirtyMenuItems: [NiMenuItemViewModel?], currentScreen: NSScreen, adjustOrigin: Bool = true){
 		niDelegate = NiMenuWindowDelegate()
 		
 		screenToDisplayOn = currentScreen
@@ -24,7 +22,9 @@ class NiMenuWindow: NSPanel {
 		let cleanMenuItems = NiMenuWindow.removeNilValues(items: dirtyMenuItems)
 		let size = NiMenuWindow.calcSize(cleanMenuItems.count)
 		var adjustedOrigin = origin
-		adjustedOrigin.y = origin.y - size.height
+		if(adjustOrigin){
+			adjustedOrigin.y = origin.y - size.height
+		}
 		let frameRect = NiMenuWindow.rectForScreen(NSRect(origin: adjustedOrigin, size: size), screen: currentScreen)
 		super.init(
 			contentRect: frameRect,
@@ -49,10 +49,6 @@ class NiMenuWindow: NSPanel {
 			x: screen.frame.origin.x + frameRect.origin.x,
 			y: screen.frame.origin.y + frameRect.origin.y)
 		return NSRect(origin: frameOrigin, size: frameRect.size)
-	}
-	
-	override func setFrameOrigin(_ point: NSPoint){
-		super.setFrameOrigin(screenToDisplayOn!.frame.origin)
 	}
 	
 	private static func removeNilValues(items: [NiMenuItemViewModel?]) -> [NiMenuItemViewModel]{
