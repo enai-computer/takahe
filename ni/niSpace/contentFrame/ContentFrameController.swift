@@ -132,6 +132,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		let menuOrigin = positionDropdownMenu()
 		var editNameItem: NiMenuItemViewModel? = nil
 		var optionalMenuItem: NiMenuItemViewModel? = nil
+		var adjustOrigin = true
 		if(viewState == .expanded){
 			editNameItem = expandedCFView!.cfGroupButton.getNameTileMenuItem()
 			optionalMenuItem = expandedCFView!.cfGroupButton.getRemoveTitleMenuItem()
@@ -139,6 +140,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 			let minimizedView = self.view as! CFMinimizedView
 			editNameItem = minimizedView.cfGroupButton.getNameTileMenuItem()
 			optionalMenuItem = minimizedView.cfGroupButton.getRemoveTitleMenuItem()
+			adjustOrigin = false
 		}
 		
 		let items = [ editNameItem, optionalMenuItem,
@@ -148,7 +150,8 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		let menuWin = NiMenuWindow(
 			origin: menuOrigin,
 			dirtyMenuItems: items,
-			currentScreen: view.window!.screen!
+			currentScreen: view.window!.screen!,
+			adjustOrigin: adjustOrigin
 		)
 		menuWin.makeKeyAndOrderFront(nil)
 	}
@@ -164,7 +167,8 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		}else if(viewState == .minimised){
 			if let minimizedView = self.view as? CFMinimizedView{
 				var pInView = minimizedView.frame.origin
-//				pInView.y -= minimizedView.frame.height
+				pInView.x -= 7.0
+				pInView.y += 5.0
 				return self.view.superview!.convert(pInView, to: view.window?.contentView)
 			}
 		}
