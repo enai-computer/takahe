@@ -21,12 +21,12 @@
                         <rect key="frame" x="0.0" y="591" width="1056" height="34"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <subviews>
-                            <customView horizontalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" placeholderIntrinsicWidth="24" placeholderIntrinsicHeight="24" translatesAutoresizingMaskIntoConstraints="NO" id="v2T-OE-fnp" customClass="CFGroupButton" customModule="ni" customModuleProvider="target">
+                            <customView horizontalHuggingPriority="1000" horizontalCompressionResistancePriority="250" placeholderIntrinsicWidth="24" placeholderIntrinsicHeight="24" translatesAutoresizingMaskIntoConstraints="NO" id="v2T-OE-fnp" customClass="CFGroupButton" customModule="ni" customModuleProvider="target">
                                 <rect key="frame" x="7" y="7" width="24" height="24"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="24" id="Aiv-VW-yvz"/>
+                                    <constraint firstAttribute="height" constant="24" id="Aiv-VW-yvz"/>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="24" id="CKo-8U-wiq"/>
-                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="200" id="OyI-0b-7H9"/>
+                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="155" id="OyI-0b-7H9"/>
                                 </constraints>
                             </customView>
                             <imageView horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="rcT-6J-b1L" userLabel="back-button" customClass="NiActionImage" customModule="ni" customModuleProvider="target">
@@ -88,7 +88,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
-                            <customView horizontalHuggingPriority="1000" horizontalCompressionResistancePriority="250" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tOm-Uf-Gpz">
+                            <customView ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tOm-Uf-Gpz">
                                 <rect key="frame" x="911" y="0.0" width="65" height="34"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="65" id="Fjp-D0-eyC"/>

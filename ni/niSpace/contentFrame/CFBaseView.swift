@@ -57,7 +57,7 @@ class CFBaseView: NSBox{
 		myController!.triggerCloseProcess(with: event)
 	}
 	
-	func clickedGourpButton(with event: NSEvent){
+	func clickedGroupButton(with event: NSEvent){
 		myController!.showDropdown(with: event)
 	}
 	

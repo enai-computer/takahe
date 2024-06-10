@@ -10,6 +10,7 @@ import Cocoa
 class CFMinimizedView: CFBaseView{
 	
 	
+	@IBOutlet var cfGroupButton: CFGroupButton!
 	@IBOutlet var cfHeadView: NSView!
 	@IBOutlet var listOfTabs: NSStackView?
 	@IBOutlet var maximizeButton: NiActionImage!
@@ -19,7 +20,7 @@ class CFMinimizedView: CFBaseView{
 		super.init(coder: coder)
 	}
 	
-	func initAfterViewLoad(nrOfItems: Int){
+	func initAfterViewLoad(nrOfItems: Int, groupName: String?){
 		frame.size.height = Double(nrOfItems) * 39.0 + 36.0
 		
 		closeButton.mouseDownFunction = clickedCloseButton
@@ -29,6 +30,13 @@ class CFMinimizedView: CFBaseView{
 		maximizeButton.mouseDownFunction = maximizeButtonClicked
 		maximizeButton.isActiveFunction = self.isFrameActive
 		maximizeButton.mouseDownInActiveFunction = activateContentFrame
+		
+		cfGroupButton.initButton(
+			mouseDownFunction: clickedGroupButton,
+			mouseDownInActiveFunction: activateContentFrame,
+			isActiveFunction: self.isFrameActive
+		)
+		cfGroupButton.setView(title: groupName)
 	}
 	
 	override func isOnBoarder(_ cursorLocation: CGPoint) -> CFBaseView.OnBorder {

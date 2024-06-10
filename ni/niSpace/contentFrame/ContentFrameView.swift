@@ -35,6 +35,8 @@ class ContentFrameView: CFBaseView{
 	
 	private var previousCFSize: NSRect? = nil
 	
+	override var minFrameWidth: CGFloat { return 575.0}
+	
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
@@ -68,23 +70,15 @@ class ContentFrameView: CFBaseView{
 		contentForwardButton.isActiveFunction = fwdButtonIsActive
 		contentBackButton.mouseDownInActiveFunction = activateContentFrame
 
-		//TODO: init groupButton here:
 		cfGroupButton.initButton(
-			mouseDownFunction: clickedGourpButton,
+			mouseDownFunction: clickedGroupButton,
 			mouseDownInActiveFunction: activateContentFrame,
 			isActiveFunction: self.isFrameActive
 		)
 		cfGroupButton.setView(title: groupName)
 		cfHeadView.layout()
-//		groupButton?.mouseDownFunction = clickedGourpButton
-//		groupButton?.isActiveFunction = self.isFrameActive
-//		groupButton?.mouseDownInActiveFunction = activateContentFrame
 	}
     
-	func renameGroup(){
-		cfGroupButton.displayEditField()
-	}
-	
 	/** Appends a new tab at the end, or after the given openNextTo position.
 	 
 	 If the caller sets openNextTo it is their responsability to update the underlying viewModel

@@ -102,7 +102,9 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		let stackItems = genMinimizedStackItems(tabs: tabs, owner: self)
 		minimizedView.listOfTabs?.setViews(stackItems, in: .top)
 
-		minimizedView.initAfterViewLoad(nrOfItems: stackItems.count)
+		//FIXME: clean up tech debt and do some binding here
+		groupName = expandedCFView?.cfGroupButton.getName() ?? groupName
+		minimizedView.initAfterViewLoad(nrOfItems: stackItems.count, groupName: groupName)
 		
 		self.viewState = .minimised
 		
@@ -127,30 +129,42 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	
 	private func loadAndDisplayDropdownMenu(){
 		let o = positionDropdownMenu()
-		let items = [
-			NiMenuItemViewModel(title: "Name this window", isEnabled: true, mouseDownFunction: renameGroup),
+		var editNameItem: NiMenuItemViewModel? = nil
+		var optionalMenuItem: NiMenuItemViewModel? = nil
+		if(viewState == .expanded){
+			editNameItem = expandedCFView!.cfGroupButton.getNameTileMenuItem()
+			optionalMenuItem = expandedCFView!.cfGroupButton.getRemoveTitleMenuItem()
+		}else if(viewState == .minimised){
+			let minimizedView = self.view as! CFMinimizedView
+			editNameItem = minimizedView.cfGroupButton.getNameTileMenuItem()
+			optionalMenuItem = minimizedView.cfGroupButton.getRemoveTitleMenuItem()
+		}
+		
+		let items = [ editNameItem, optionalMenuItem,
 			NiMenuItemViewModel(title: "Pin to the menu", isEnabled: false, mouseDownFunction: nil),
 			NiMenuItemViewModel(title: "Move to another space", isEnabled: false, mouseDownFunction: nil)
 		]
-		NiMenuWindow(origin: o, menuItems: items).makeKeyAndOrderFront(nil)
+		NiMenuWindow(origin: o, dirtyMenuItems: items).makeKeyAndOrderFront(nil)
 	}
 	
 	private func positionDropdownMenu() -> NSPoint {
-		if let refernceView = expandedCFView {
-			let pInView = NSPoint(
-				x: refernceView.cfHeadView.frame.origin.x + (refernceView.cfGroupButton.frame.origin.x),
-				y: refernceView.cfHeadView.frame.origin.y)
-			return self.view.convert(pInView, to: nil)
+		
+		if(viewState == .expanded){
+			if let refernceView = expandedCFView {
+				let pInView = NSPoint(
+					x: refernceView.cfHeadView.frame.origin.x + (refernceView.cfGroupButton.frame.origin.x),
+					y: refernceView.cfHeadView.frame.origin.y)
+				return self.view.convert(pInView, to: nil)
+			}
+		}else if(viewState == .minimised){
+			if let minimizedView = self.view as? CFMinimizedView{
+				var pInView = minimizedView.frame.origin
+				pInView.y -= minimizedView.frame.height
+				return self.view.superview!.convert(pInView, to: nil)
+			}
 		}
+		
 		return NSPoint(x: 0.0, y: 0.0)
-	}
-	
-	/*
-	 * MARK: rename group here
-	 */
-	func renameGroup(event: NSEvent){
-		guard viewState == .expanded else {return}
-		expandedCFView?.renameGroup()
 	}
 	
 	/*
@@ -274,6 +288,11 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	}
 	
 	func minimizedToExpanded(_ shallSelectTabAt: Int = -1){
+		
+		if let minimizedView = self.view as? CFMinimizedView{
+			groupName = minimizedView.cfGroupButton.getName()
+		}
+		
 		//We need to clear the data here, otherwise we'll produce a faulty TabHeadCollection
 		if( 0 <= shallSelectTabAt){
 			for (i, _) in tabs.enumerated(){
@@ -302,6 +321,8 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		//replace
 		self.view.superview?.replaceSubview(self.view, with: expandedCFView!)
 		self.view = expandedCFView!
+		
+		expandedCFView?.cfGroupButton.setView(title: groupName)
 		
 		self.viewState = .expanded
 		if(0 <= shallSelectTabAt){
