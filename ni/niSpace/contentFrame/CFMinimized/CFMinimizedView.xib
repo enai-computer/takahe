@@ -20,9 +20,11 @@
                         <rect key="frame" x="0.0" y="228" width="253" height="36"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <subviews>
-                            <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XBa-fO-QLJ" customClass="CFGroupButton" customModule="ni" customModuleProvider="target">
+                            <customView ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XBa-fO-QLJ" customClass="CFGroupButton" customModule="ni" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="7" width="24" height="24"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="155" id="MLD-v5-bNr"/>
+                                </constraints>
                             </customView>
                             <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wU3-64-xsG" customClass="NiActionImage" customModule="ni" customModuleProvider="target">
                                 <rect key="frame" x="201" y="7" width="24" height="24"/>
@@ -35,6 +37,9 @@
                                 <imageCell key="cell" alignment="left" animates="YES" imageScaling="proportionallyDown" image="close" id="we1-TF-fUo"/>
                             </imageView>
                         </subviews>
+                        <constraints>
+                            <constraint firstItem="XBa-fO-QLJ" firstAttribute="left" secondItem="c22-O7-iKe" secondAttribute="left" id="UnW-gL-Meg"/>
+                        </constraints>
                     </customView>
                     <stackView autoresizesSubviews="NO" distribution="fillEqually" orientation="vertical" alignment="leading" spacing="1" horizontalStackHuggingPriority="250" verticalStackHuggingPriority="249.99998474121094" fixedFrame="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="v3S-NA-oVt">
                         <rect key="frame" x="0.0" y="0.0" width="254" height="228"/>
