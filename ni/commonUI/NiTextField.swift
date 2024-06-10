@@ -6,13 +6,14 @@
 //
 
 import Cocoa
+import Foundation
 
 class NiTextField: NSTextField{
 	
 	override init(frame frameRect: NSRect) {
 		super.init(frame: frameRect)
 		
-		font = NSFont(name: "Sohne-Buch", size: 16.0)
+		font = NSFont(name: "Sohne-Buch", size: 13.0)
 		textColor = NSColor.sandLight12
 		backgroundColor = NSColor.transparent
 		isBezeled = false
@@ -20,6 +21,7 @@ class NiTextField: NSTextField{
 		focusRingType = .none
 		importsGraphics = false
 		lineBreakMode = .byTruncatingTail
+		alignment = .left
 	}
 	
 	required init?(coder: NSCoder) {
@@ -34,6 +36,11 @@ class NiTextField: NSTextField{
 	}
 	
 	override func cancelOperation(_ sender: Any?) {
+		let notification = Notification(
+			name: NSTextField.textDidEndEditingNotification,
+			object: nil,
+			userInfo: ["NSTextMovement": NSTextMovement.cancel])
+		delegate?.controlTextDidEndEditing?(notification)
 		return
 	}
 	

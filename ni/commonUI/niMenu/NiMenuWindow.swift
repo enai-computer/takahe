@@ -13,9 +13,11 @@ class NiMenuWindow: NSPanel {
 	override var canBecomeKey: Bool {return true}
 	override var canBecomeMain: Bool {return false}
 	
-	init(origin: NSPoint, menuItems: [NiMenuItemViewModel]){
+	init(origin: NSPoint, dirtyMenuItems: [NiMenuItemViewModel?]){
 		niDelegate = NiMenuWindowDelegate()
-		let size = NiMenuWindow.calcSize(menuItems.count)
+		
+		let cleanMenuItems = NiMenuWindow.removeNilValues(items: dirtyMenuItems)
+		let size = NiMenuWindow.calcSize(cleanMenuItems.count)
 		var adjustedOrigin = origin
 		adjustedOrigin.y = origin.y - size.height
 		super.init(
@@ -31,11 +33,22 @@ class NiMenuWindow: NSPanel {
 		titleVisibility = .hidden
 		titlebarAppearsTransparent = true
 		delegate = niDelegate
-		contentViewController = NiMenuViewController(menuItems: menuItems, size: size)
+		contentViewController = NiMenuViewController(menuItems: cleanMenuItems, size: size)
 		
 		hasShadow = true
 		isOpaque = false
 		backgroundColor = NSColor.clear
+	}
+	
+	private static func removeNilValues(items: [NiMenuItemViewModel?]) -> [NiMenuItemViewModel]{
+		var cleanItems: [NiMenuItemViewModel] = []
+		for item in items{
+			if(item == nil){
+				continue
+			}
+			cleanItems.append(item!)
+		}
+		return cleanItems
 	}
 	
 	private static func calcSize(_ nrOfItems: Int) -> CGSize{
