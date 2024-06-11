@@ -71,7 +71,7 @@ func openCFTabs(for controller: ContentFrameController, with tabViewModels: [Tab
 			if(tab.type == .note){
 				controller.openNoteInNewTab(contentId: tab.contentId, tabTitle: tab.title, content: tab.content)
 			}else if(tab.type == .img && tab.icon != nil){
-				controller.openImgInNewTab(contentId: tab.contentId, tabTitle: tab.title, content:  tab.icon!)
+				controller.openImgInNewTab(contentId: tab.contentId, tabTitle: tab.title, content: tab.icon!, source: tab.source)
 			}
 		}
 		return
