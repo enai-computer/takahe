@@ -104,12 +104,12 @@ class ContentFrameTabHead: NSCollectionViewItem, NSTextFieldDelegate {
 		if(self.isSelected){
 			return
 		}
-		view.layer?.backgroundColor = NSColor(.sandLight6).cgColor
+		view.layer?.backgroundColor = NSColor(.sand6).cgColor
 	}
 	
 	private func setBackground(){
 		if(self.isSelected){
-			view.layer?.backgroundColor = NSColor(.sandLight1).cgColor
+			view.layer?.backgroundColor = NSColor(.sand1).cgColor
 			activateCloseButton()
 		}else{
 			view.layer?.backgroundColor = NSColor(.transparent).cgColor
@@ -120,7 +120,7 @@ class ContentFrameTabHead: NSCollectionViewItem, NSTextFieldDelegate {
 	private func activateCloseButton(){
 		closeButton.isEnabled = true
 		closeButton.isHidden = false
-		closeButton.contentTintColor = NSColor(.sandLight9)
+		closeButton.contentTintColor = NSColor(.sand9)
 	}
 	
 	private func hideCloseButton(){
@@ -165,9 +165,9 @@ class ContentFrameTabHead: NSCollectionViewItem, NSTextFieldDelegate {
 		}
 		
 		if(viewModel.isSelected){
-			self.tabHeadTitle.textColor = NSColor.sandLight12
+			self.tabHeadTitle.textColor = NSColor.sand12
 		}else{
-			self.tabHeadTitle.textColor = NSColor.sandLight11
+			self.tabHeadTitle.textColor = NSColor.sand11
 		}
 	}
 	

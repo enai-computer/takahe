@@ -22,7 +22,7 @@ class NiNoteViewScroller: NSScroller{
 	override func draw(_ dirtyRect: NSRect) {
 		super.draw(dirtyRect)
 
-		NSColor.sandLight4.setFill()
+		NSColor.sand4.setFill()
 		dirtyRect.fill()
 
 		self.drawKnob()
@@ -30,7 +30,7 @@ class NiNoteViewScroller: NSScroller{
 	
 	override func drawKnob() {
 		if(hideKnob){
-			NSColor.sandLight4.setFill()
+			NSColor.sand4.setFill()
 		}else{
 			NSColor.birkin.setFill()
 		}

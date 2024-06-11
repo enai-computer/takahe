@@ -28,8 +28,8 @@ class CFSoftDeletedView: NSBox {
 		layer?.cornerRadius = 10
 		layer?.cornerCurve = .continuous
 		layer?.borderWidth = 5
-		layer?.borderColor = NSColor(.sandLight4).cgColor
-		layer?.backgroundColor = NSColor(.sandLight4).cgColor
+		layer?.borderColor = NSColor(.sand4).cgColor
+		layer?.backgroundColor = NSColor(.sand4).cgColor
 		
 		let hoverEffectTrackingArea = NSTrackingArea(rect: frame, options: [.mouseEnteredAndExited, .activeInKeyWindow], owner: self, userInfo: nil)
 		addTrackingArea(hoverEffectTrackingArea)
@@ -44,7 +44,7 @@ class CFSoftDeletedView: NSBox {
 	}
 	
 	override func mouseExited(with event: NSEvent) {
-		undoIcon.contentTintColor = NSColor.sandLight11
+		undoIcon.contentTintColor = NSColor.sand11
 		layer?.speed = 1.0
 	}
 	

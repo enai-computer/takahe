@@ -18,9 +18,6 @@ final class RoundedRectView: NSView {
 		let windowPath = NSBezierPath()
 		let backgroundPath = NSBezierPath(roundedRect: backgroundRect, xRadius: cornerRadius, yRadius: cornerRadius)
 		windowPath.append(backgroundPath)
-
-//		NSColor.sandLight2.setFill()
-//		windowPath.fill()
 	}
 
 	override var frame: NSRect {

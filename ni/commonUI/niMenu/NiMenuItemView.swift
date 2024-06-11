@@ -16,9 +16,9 @@ class NiMenuItemView: NSView{
 			guard isEnabledStorage != newValue else {return}
 			isEnabledStorage = newValue
 			if(newValue){
-				title.textColor = NSColor.sandLight12
+				title.textColor = NSColor.sand12
 			}else{
-				title.textColor = NSColor.sandLight8
+				title.textColor = NSColor.sand8
 			}
 		}
 		get{
@@ -37,7 +37,7 @@ class NiMenuItemView: NSView{
 			return
 		}
 		wantsLayer = true
-		layer?.backgroundColor = NSColor.sandLight4.cgColor
+		layer?.backgroundColor = NSColor.sand4.cgColor
 		layer?.cornerRadius = 8.0
 		layer?.cornerCurve = .continuous
 	}
@@ -46,7 +46,7 @@ class NiMenuItemView: NSView{
 		if(!isEnabled){
 			return
 		}
-		layer?.backgroundColor = NSColor.sandLight2.cgColor
+		layer?.backgroundColor = NSColor.sand2.cgColor
 	}
 	
 	override func mouseDown(with event: NSEvent) {

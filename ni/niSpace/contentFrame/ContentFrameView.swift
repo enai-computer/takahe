@@ -146,18 +146,18 @@ class ContentFrameView: CFBaseView{
 	@MainActor
 	private func setBackButtonTint(_ canGoBack: Bool = false){
 		if(canGoBack){
-			self.contentBackButton.contentTintColor = NSColor(.sandLight11)
+			self.contentBackButton.contentTintColor = NSColor(.sand11)
 		}else{
-			self.contentBackButton.contentTintColor = NSColor(.sandLight8)
+			self.contentBackButton.contentTintColor = NSColor(.sand8)
 		}
 	}
 	
 	@MainActor
 	private func setForwardButtonTint(_ canGoFwd: Bool = false){
 		if(canGoFwd){
-			self.contentForwardButton.contentTintColor = NSColor(.sandLight11)
+			self.contentForwardButton.contentTintColor = NSColor(.sand11)
 		}else{
-			self.contentForwardButton.contentTintColor = NSColor(.sandLight8)
+			self.contentForwardButton.contentTintColor = NSColor(.sand8)
 		}
 	}
 	
@@ -421,9 +421,9 @@ class ContentFrameView: CFBaseView{
         let webView = niContentTabView.selectedTabViewItem?.view as? CFContentItem	//a new content frame will not have a webView yet
         
         if frameIsActive{
-            self.layer?.borderColor = NSColor(.sandLight4).cgColor
-			self.layer?.backgroundColor = NSColor(.sandLight4).cgColor
-			cfHeadView.layer?.backgroundColor = NSColor(.sandLight4).cgColor
+            self.layer?.borderColor = NSColor(.sand4).cgColor
+			self.layer?.backgroundColor = NSColor(.sand4).cgColor
+			cfHeadView.layer?.backgroundColor = NSColor(.sand4).cgColor
 			self.layer?.shadowOpacity = 1.0
             
 			showHeader()
@@ -431,9 +431,9 @@ class ContentFrameView: CFBaseView{
 			self.resetCursorRects()
 
         }else{
-            self.layer?.borderColor = NSColor(.sandLight3).cgColor
-			self.layer?.backgroundColor = NSColor(.sandLight3).cgColor
-			cfHeadView.layer?.backgroundColor = NSColor(.sandLight3).cgColor
+            self.layer?.borderColor = NSColor(.sand3).cgColor
+			self.layer?.backgroundColor = NSColor(.sand3).cgColor
+			cfHeadView.layer?.backgroundColor = NSColor(.sand3).cgColor
 			self.layer?.shadowOpacity = 0.0
 			
 			hideHeader()

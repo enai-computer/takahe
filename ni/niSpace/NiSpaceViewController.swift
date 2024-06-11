@@ -41,7 +41,7 @@ class NiSpaceViewController: NSViewController{
 		addChild(niDocument)
 		
 		self.view.wantsLayer = true
-		self.view.layer?.backgroundColor = NSColor(.sandLight1).cgColor
+		self.view.layer?.backgroundColor = NSColor(.sand1).cgColor
 		
 		time.stringValue = getLocalisedTime()
 		spaceName.stringValue = niSpaceName
@@ -82,8 +82,8 @@ class NiSpaceViewController: NSViewController{
 		header.contentView?.layer?.cornerCurve = .continuous
 		header.contentView?.layer?.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
 		header.contentView?.layer?.masksToBounds = true
-		header.contentView?.layer?.backgroundColor = NSColor(.sandLight2).cgColor
-		header.contentView?.layer?.borderColor = NSColor(.sandLight2).cgColor
+		header.contentView?.layer?.backgroundColor = NSColor(.sand2).cgColor
+		header.contentView?.layer?.borderColor = NSColor(.sand2).cgColor
 		header.contentView?.layer?.borderWidth = 5
 	}
         

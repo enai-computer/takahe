@@ -17,7 +17,7 @@ class CFMinimizedStackItem: NSView{
 		super.init(coder: coder)
 		
 		self.wantsLayer = true
-		layer?.backgroundColor = NSColor(.sandLight3).cgColor
+		layer?.backgroundColor = NSColor(.sand3).cgColor
 		
 		let hoverEffectTrackingArea = NSTrackingArea(rect: self.frame, options: [.mouseEnteredAndExited, .activeInKeyWindow], owner: self, userInfo: nil)
 		self.addTrackingArea(hoverEffectTrackingArea)
@@ -58,13 +58,13 @@ class CFMinimizedStackItem: NSView{
 	}
 	
 	override func mouseEntered(with event: NSEvent) {
-		layer?.backgroundColor = NSColor(.sandLight1).cgColor
-		tabTitle.textColor = NSColor(.sandLight12)
+		layer?.backgroundColor = NSColor(.sand1).cgColor
+		tabTitle.textColor = NSColor(.sand12)
 	}
 	
 	override func mouseExited(with event: NSEvent) {
-		layer?.backgroundColor = NSColor(.sandLight3).cgColor
-		tabTitle.textColor = NSColor(.sandLight11)
+		layer?.backgroundColor = NSColor(.sand3).cgColor
+		tabTitle.textColor = NSColor(.sand11)
 	}
 	
 }

@@ -47,12 +47,12 @@ struct HomeView: View {
 				LeftSide()
 					.frame(width: (self.width*(3/8)), height: self.height)
 					.scaledToFit()
-					.background(Color.leftSideBackground)
+					.background(Color.sand1)
 				RightSide(controllerWrapper, inNamespace: homeViewNameSpace, listOfSpaces: lstOfSpaces)
 					.frame(width: (self.width*(5/8)), height: self.height)
 					.scaledToFit()
 					.padding(.leading, 20)
-					.background(Color.rightSideBackground)
+					.background(Color.sand3)
 					.prefersDefaultFocus(in: homeViewNameSpace)
 					.focused($focusedField, equals: .field)
 			}
@@ -61,7 +61,7 @@ struct HomeView: View {
 		.clipShape(
 			RoundedCornersShape(radius: 30.0, corners: [.bottomLeft, .bottomRight])
 		)
-		.shadow(color: .homeViewShadow, radius: 10.0, x: 2, y: 4)
+		.shadow(color: .shadow, radius: 10.0, x: 2, y: 4)
 		.onAppear {
 		  self.focusedField = .field
 	  }
@@ -76,7 +76,7 @@ struct LeftSide: View {
 				Spacer()
 				Text("\(getWelcomeMessage()), \(NSUserName())")
 					.font(.custom("Sohne-Kraftig", size: 28))
-					.foregroundStyle(.sandLight11)
+					.foregroundStyle(.sand11)
 					.padding(.trailing, 100)
 			}
 			Spacer()
@@ -140,7 +140,7 @@ struct RightSide: View {
 				.prefersDefaultFocus(in: homeViewNameSpace)
 			}.background(
 				RoundedRectangle(cornerRadius: 16, style: .continuous)
-			 .foregroundStyle(Color.sandLight1)
+			 .foregroundStyle(Color.sand1)
 			 .frame(minHeight: 64)
 			)
 			.padding([.leading, .trailing], 60.0)
@@ -370,11 +370,11 @@ struct SuggestionRow: View {
 				.if(data.id == selected?.id){
 					$0.foregroundColor(.intAerospaceOrange)
 				} else: {
-					$0.foregroundColor(.sandLight9)
+					$0.foregroundColor(.sand9)
 				}
 				.padding([.trailing], 8.0)
 			Text(getSpaceTitle())
-				.foregroundStyle(.sandLight11)
+				.foregroundStyle(.sand11)
 				.font(.custom("Sohne-Buch", size: 18))
 			Spacer()
 		}
@@ -419,7 +419,7 @@ struct SuggestionRow: View {
 
 struct BackgroundView: View {
 	var body: some View {
-		Color.textSelectedBackground
+		Color.sand5
 			.clipShape(RoundedRectangle(cornerSize: CGSize(width: 5, height: 5), style: .continuous))
 	}
 }

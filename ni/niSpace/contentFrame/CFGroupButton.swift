@@ -39,12 +39,12 @@ class CFGroupButton: NSView, NSTextFieldDelegate{
 			loadAndDisplayTxtField()
 			groupTitle?.stringValue = title!
 			setWidthConstraintToTitle()
-			groupTitle?.textColor = NSColor.sandLight11
+			groupTitle?.textColor = NSColor.sand11
 			dropIcon()
 		}else{
 			groupTitle?.stringValue = title!
 			setWidthConstraintToTitle()
-			groupTitle?.textColor = NSColor.sandLight11
+			groupTitle?.textColor = NSColor.sand11
 			dropIcon()
 		}
 		let hoverEffect = NSTrackingArea.init(rect: self.bounds, options: [.mouseEnteredAndExited, .activeInKeyWindow], owner: self, userInfo: nil)
@@ -163,19 +163,19 @@ class CFGroupButton: NSView, NSTextFieldDelegate{
 	}
 
 	private func styleEndEditing(){
-		groupTitle?.textColor = NSColor.sandLight11
+		groupTitle?.textColor = NSColor.sand11
 		layer?.backgroundColor = NSColor.transparent.cgColor
 		layer?.borderWidth = 0.0
 	}
 	
 	private func styleEditing(){
 		wantsLayer = true
-		layer?.backgroundColor = NSColor.sandLight2.cgColor
+		layer?.backgroundColor = NSColor.sand2.cgColor
 		layer?.cornerCurve = .continuous
 		layer?.cornerRadius = 5.0
 		layer?.borderColor = NSColor.birkin.cgColor
 		layer?.borderWidth = 1.0
-		groupTitle?.textColor = NSColor.sandLight12
+		groupTitle?.textColor = NSColor.sand12
 		setWidthConstraintToTitle(editMode: true)
 	}
 	
@@ -217,7 +217,7 @@ class CFGroupButton: NSView, NSTextFieldDelegate{
 		if((isActiveFunction != nil && !isActiveFunction!()) || groupTitle == nil || groupTitle!.isEditable){
 			return
 		}
-		groupTitle?.textColor = NSColor.sandLight11
+		groupTitle?.textColor = NSColor.sand11
 	}
 	
 	func getName() -> String?{
@@ -287,12 +287,12 @@ class CFGroupButton: NSView, NSTextFieldDelegate{
 	
 	func tintInactive(){
 		groupIcon?.tintInactive()
-		groupTitle?.textColor = NSColor(.sandLight10)
+		groupTitle?.textColor = NSColor(.sand10)
 	}
 	
 	func tintActive(){
 		groupIcon?.tintActive()
-		groupTitle?.textColor = NSColor(.sandLight11)
+		groupTitle?.textColor = NSColor(.sand11)
 	}
 	
 }

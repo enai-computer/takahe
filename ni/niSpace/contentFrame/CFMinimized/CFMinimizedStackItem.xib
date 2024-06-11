@@ -23,7 +23,7 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES"/>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" refusesFirstResponder="YES" allowsUndo="NO" placeholderString="tab title" id="EXq-0x-EkO">
                         <font key="font" size="16" name="Sohne-Buch"/>
-                        <color key="textColor" name="SandLight11"/>
+                        <color key="textColor" name="sand11"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
@@ -37,7 +37,7 @@
     </objects>
     <resources>
         <image name="NSApplicationIcon" width="32" height="32"/>
-        <namedColor name="SandLight11">
+        <namedColor name="sand11">
             <color red="0.4392156862745098" green="0.43529411764705883" blue="0.42352941176470588" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>

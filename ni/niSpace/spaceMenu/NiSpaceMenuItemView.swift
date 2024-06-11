@@ -22,7 +22,7 @@ class NiSpaceMenuItemView: NSView{
 			return
 		}
 		wantsLayer = true
-		layer?.backgroundColor = NSColor.sandLight4.cgColor
+		layer?.backgroundColor = NSColor.sand4.cgColor
 		layer?.cornerRadius = 8.0
 		layer?.cornerCurve = .continuous
 	}
@@ -31,7 +31,7 @@ class NiSpaceMenuItemView: NSView{
 		if(!isEnabled){
 			return
 		}
-		layer?.backgroundColor = NSColor.sandLight2.cgColor
+		layer?.backgroundColor = NSColor.sand2.cgColor
 	}
 	
 	override func mouseDown(with event: NSEvent) {

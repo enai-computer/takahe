@@ -42,7 +42,7 @@ class NiNoteItem: NSViewController, CFContentItem {
 	}
 	
 	private func configureTxtDocView(){
-		txtDocView.backgroundColor = NSColor.sandLight3
+		txtDocView.backgroundColor = NSColor.sand3
 		txtDocView.insertionPointColor = NSColor.birkin
 		txtDocView.importsGraphics = false
 		txtDocView.allowsImageEditing = false
@@ -56,9 +56,9 @@ class NiNoteItem: NSViewController, CFContentItem {
 		txtDocView.isEditable = false
 		txtDocView.textContainerInset = NSSize(width: 8.0, height: 8.0)
 		
-		txtDocView.backgroundColor = NSColor.sandLight3
+		txtDocView.backgroundColor = NSColor.sand3
 		txtDocView.font = NSFont(name: "Sohne-Buch", size: 16.0)
-		txtDocView.textColor = NSColor.sandDark7
+		txtDocView.textColor = NSColor.sand115
 		txtDocView.wantsLayer = true
 		if let radius = parentView?.layer?.cornerRadius{
 			txtDocView.layer?.cornerRadius = radius
@@ -92,7 +92,7 @@ class NiNoteItem: NSViewController, CFContentItem {
 		scrollView.scrollerInsets = NSEdgeInsets(top: 0.0, left: 0.0, bottom: 0.0, right: 0.0)
 		
 		scrollView.wantsLayer = true
-		scrollView.layer?.backgroundColor = NSColor.sandLight3.cgColor
+		scrollView.layer?.backgroundColor = NSColor.sand3.cgColor
 		
 		if let radius = parentView?.layer?.cornerRadius{
 			scrollView.layer?.cornerRadius = radius
@@ -145,7 +145,7 @@ class NiNoteItem: NSViewController, CFContentItem {
 	
 	private func setStyling(){
 		txtDocView.wantsLayer = true
-		txtDocView.backgroundColor = NSColor.sandLight3
+		txtDocView.backgroundColor = NSColor.sand3
 		txtDocView.layer?.cornerRadius = 5
 		txtDocView.layer?.cornerCurve = .continuous
 	}

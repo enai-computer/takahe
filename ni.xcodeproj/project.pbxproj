@@ -33,7 +33,6 @@
 		CD1853152C09C210001FE566 /* DalUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1853142C09C210001FE566 /* DalUtils.swift */; };
 		CD1853172C09D623001FE566 /* DoubleUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1853162C09D623001FE566 /* DoubleUtils.swift */; };
 		CD1853192C09EA96001FE566 /* PasteboardUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1853182C09EA96001FE566 /* PasteboardUtils.swift */; };
-		CD19BC942BC7E404002AF14E /* HomeAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CD19BC932BC7E404002AF14E /* HomeAssets.xcassets */; };
 		CD19BC962BC7E5BF002AF14E /* HomeViewUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD19BC952BC7E5BF002AF14E /* HomeViewUtils.swift */; };
 		CD19BC992BC81A46002AF14E /* PredictiveTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD19BC982BC81A46002AF14E /* PredictiveTextFieldView.swift */; };
 		CD1A72BE2C0F582500A63109 /* NiNoteViewScroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1A72BD2C0F582500A63109 /* NiNoteViewScroller.swift */; };
@@ -151,7 +150,6 @@
 		CD1853142C09C210001FE566 /* DalUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DalUtils.swift; sourceTree = "<group>"; };
 		CD1853162C09D623001FE566 /* DoubleUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleUtils.swift; sourceTree = "<group>"; };
 		CD1853182C09EA96001FE566 /* PasteboardUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasteboardUtils.swift; sourceTree = "<group>"; };
-		CD19BC932BC7E404002AF14E /* HomeAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = HomeAssets.xcassets; sourceTree = "<group>"; };
 		CD19BC952BC7E5BF002AF14E /* HomeViewUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewUtils.swift; sourceTree = "<group>"; };
 		CD19BC982BC81A46002AF14E /* PredictiveTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictiveTextFieldView.swift; sourceTree = "<group>"; };
 		CD1A72BD2C0F582500A63109 /* NiNoteViewScroller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiNoteViewScroller.swift; sourceTree = "<group>"; };
@@ -527,7 +525,6 @@
 			isa = PBXGroup;
 			children = (
 				CD680F7E2BC7DF59008D495D /* HomeView.swift */,
-				CD19BC932BC7E404002AF14E /* HomeAssets.xcassets */,
 				CD19BC952BC7E5BF002AF14E /* HomeViewUtils.swift */,
 				CD19BC982BC81A46002AF14E /* PredictiveTextFieldView.swift */,
 				CDDBCB282BD6AE6900E7B187 /* HomeViewAnimator.swift */,
@@ -677,7 +674,6 @@
 				CDA639562BF50596001941DE /* welcomeConfig.json in Resources */,
 				CD6317ED2BC4852300434D56 /* soehne-leicht.ttf in Resources */,
 				A14E8F252AD5EADF00409DDF /* NiSpaceView.xib in Resources */,
-				CD19BC942BC7E404002AF14E /* HomeAssets.xcassets in Resources */,
 				CD5A04C62BEA2B96004CC3AA /* CFMinimizedView.xib in Resources */,
 				CDABE64C2C11C5BC00BB4E85 /* NiMenuView.xib in Resources */,
 				CD6317EE2BC4852300434D56 /* soehne-buch.ttf in Resources */,
