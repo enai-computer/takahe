@@ -287,7 +287,7 @@ class CFGroupButton: NSView, NSTextFieldDelegate{
 	
 	func tintInactive(){
 		groupIcon?.tintInactive()
-		groupTitle?.textColor = NSColor(.sandLight8)
+		groupTitle?.textColor = NSColor(.sandLight10)
 	}
 	
 	func tintActive(){

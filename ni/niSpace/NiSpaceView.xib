@@ -64,7 +64,7 @@
                                 <rect key="frame" x="62" y="9" width="420" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" enabled="NO" refusesFirstResponder="YES" allowsUndo="NO" title="SpaceName" id="ioC-6E-T33">
-                                    <font key="font" size="15" name="Sohne-Buch"/>
+                                    <font key="font" size="15" name="Sohne-Kraftig"/>
                                     <color key="textColor" name="SandDark8"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
