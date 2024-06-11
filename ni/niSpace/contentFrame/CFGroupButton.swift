@@ -20,7 +20,10 @@ class CFGroupButton: NSView, NSTextFieldDelegate{
 	private var iconWidthConstraint: NSLayoutConstraint?
 	private var titleWidthConstraint: NSLayoutConstraint?
 	
+	private var hoverEffect: NSTrackingArea?
+	
 	private let groupTitleMargin = 7.0
+	private let groupTitleOriginY = 2.0
 	
 	func initButton(mouseDownFunction: ((NSEvent) -> Void)?,
 					mouseDownInActiveFunction: ((NSEvent) -> Void)?,
@@ -29,9 +32,8 @@ class CFGroupButton: NSView, NSTextFieldDelegate{
 		self.mouseDownFunction = mouseDownFunction
 		self.mouseDownInActiveFunction = mouseDownInActiveFunction
 		self.isActiveFunction = isActiveFunction
-		
 	}
-	
+
 	func setView(title: String? = nil){
 		if(title == nil || title!.isEmpty){
 			displayIcon()
@@ -47,14 +49,21 @@ class CFGroupButton: NSView, NSTextFieldDelegate{
 			groupTitle?.textColor = NSColor.sand11
 			dropIcon()
 		}
-		let hoverEffect = NSTrackingArea.init(rect: self.bounds, options: [.mouseEnteredAndExited, .activeInKeyWindow], owner: self, userInfo: nil)
-		self.addTrackingArea(hoverEffect)
 	}
-		
+	
+	override func updateTrackingAreas() {
+		if(hoverEffect != nil){
+			self.removeTrackingArea(hoverEffect!)
+		}
+		hoverEffect = NSTrackingArea.init(rect: self.bounds, options: [.mouseEnteredAndExited, .activeInKeyWindow], owner: self, userInfo: nil)
+		self.addTrackingArea(hoverEffect!)
+	}
+	
 	func displayIcon() {
 		guard groupIcon == nil else {
 			addSubview(groupIcon!)
 			setWidthConstraintToIcon()
+			triggerLayoutConstraintUpdate()
 			return
 		}
 		let icon = NiActionImage(image: NSImage.groupIcon)
@@ -80,13 +89,15 @@ class CFGroupButton: NSView, NSTextFieldDelegate{
 		groupTitle!.isEditable = true
 		groupTitle?.isSelectable = true
 		groupTitle?.refusesFirstResponder = false
-		groupTitle!.frame.origin = NSPoint(x: groupTitleMargin, y: 0.0)
+		groupTitle!.frame.origin = NSPoint(x: groupTitleMargin, y: groupTitleOriginY)
 		styleEditing()
 		
 		preEditString = groupTitle?.stringValue ?? ""
+		window?.makeFirstResponder(groupTitle)
 	}
 	
 	func controlTextDidEndEditing(_ obj: Notification){
+		groupTitle?.currentEditor()?.selectedRange = NSMakeRange(0, 0)
 		groupTitle?.isEditable = false
 		groupTitle?.isSelectable = false
 		groupTitle?.refusesFirstResponder = true
@@ -95,10 +106,14 @@ class CFGroupButton: NSView, NSTextFieldDelegate{
 		
 		if(obj.userInfo?["NSTextMovement"] as? NSTextMovement == NSTextMovement.cancel){
 			revertChanges()
+			updateTrackingAreas()
+			//needs to be called here, otherwise we'll not react to mouse down events
+			window?.makeFirstResponder(self)
 			return
 		}
 		if(groupTitle!.stringValue.isEmpty){
 			dropTitle()
+			updateTrackingAreas()
 			return
 		}
 		setWidthConstraintToTitle()
@@ -182,12 +197,19 @@ class CFGroupButton: NSView, NSTextFieldDelegate{
 	private func loadAndDisplayTxtField(){
 		groupTitle = genTextField()
 		self.frame.size.width = 202.0
-		self.frame.origin.x = 0.0
 		addSubview(groupTitle!)
+		triggerLayoutConstraintUpdate()
+	}
+	
+	private func triggerLayoutConstraintUpdate(){
+		if let cfView = superview?.superview?.superview as? ContentFrameView{
+			cfView.updateGroupButtonLeftConstraint()
+			cfView.cfHeadView.layout()
+		}
 	}
 	
 	private func genTextField() -> NiTextField{
-		let field = NiTextField(frame: NSRect(x: 0.0, y: 2.0, width: 150.0, height: 20.0))
+		let field = NiTextField(frame: NSRect(x: groupTitleMargin, y: groupTitleOriginY, width: 150.0, height: 20.0))
 		field.refusesFirstResponder = true
 		field.placeholderString = "Name this window"
 		field.delegate = self

@@ -25,6 +25,7 @@ class ContentFrameView: CFBaseView{
 	
 	private var cfHeadDragAreaWidthConstraint: NSLayoutConstraint?
 	private var niContentTabViewWidthConstraint: NSLayoutConstraint?
+	private var groupButtonLeftConstraint: NSLayoutConstraint?
 	
 	//TabView
 	@IBOutlet var niContentTabView: NSTabView!
@@ -78,6 +79,9 @@ class ContentFrameView: CFBaseView{
 			isActiveFunction: self.isFrameActive
 		)
 		cfGroupButton.setView(title: groupName)
+		
+		updateGroupButtonLeftConstraint()
+		
 		cfHeadView.layout()
 	}
     
@@ -370,6 +374,35 @@ class ContentFrameView: CFBaseView{
 			toItem: nil, attribute: .notAnAttribute,
 			multiplier: 1.0,
 			constant: width
+		)
+	}
+	
+	/** .
+	 
+	 layout() has to be called on cfHeadView after calling this function
+	 */
+	func updateGroupButtonLeftConstraint(){
+		if(groupButtonLeftConstraint != nil){
+			cfHeadView.removeConstraint(groupButtonLeftConstraint!)
+		}
+		groupButtonLeftConstraint = getLeftCfGroupButtonConstraint(showsTitle: cfGroupButton.hasTitle())
+		cfHeadView.addConstraint(groupButtonLeftConstraint!)
+	}
+	
+	private func getLeftCfGroupButtonConstraint(showsTitle: Bool = false) -> NSLayoutConstraint{
+		let constant: CGFloat = if(showsTitle){
+			0.0
+		}else{
+			7.0
+		}
+		return NSLayoutConstraint(
+			item: self.cfGroupButton!,
+			attribute: .left,
+			relatedBy: .equal,
+			toItem: self.cfHeadView!,
+			attribute: .left,
+			multiplier: 1.0,
+			constant: constant
 		)
 	}
 	
