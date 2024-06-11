@@ -161,14 +161,14 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 			if let refernceView = expandedCFView {
 				let pInView = NSPoint(
 					x: refernceView.cfHeadView.frame.origin.x + (refernceView.cfGroupButton.frame.origin.x),
-					y: refernceView.cfHeadView.frame.origin.y + 10.0)
+					y: refernceView.cfHeadView.frame.origin.y + 16.0)
 				return self.view.convert(pInView, to: view.window?.contentView)
 			}
 		}else if(viewState == .minimised){
 			if let minimizedView = self.view as? CFMinimizedView{
 				var pInView = minimizedView.frame.origin
 				pInView.x -= 7.0
-				pInView.y += 5.0
+				pInView.y += 13.0
 				return self.view.superview!.convert(pInView, to: view.window?.contentView)
 			}
 		}

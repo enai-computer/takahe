@@ -38,10 +38,9 @@ class NiMenuWindow: NSPanel {
 		delegate = niDelegate
 		contentViewController = NiMenuViewController(menuItems: cleanMenuItems, size: size)
 		
-		hasShadow = true
+		hasShadow = false
 		isOpaque = false
 		backgroundColor = NSColor.clear
-		
 	}
 	
 	private static func rectForScreen(_ frameRect: NSRect, screen: NSScreen) -> NSRect {
@@ -64,9 +63,9 @@ class NiMenuWindow: NSPanel {
 	
 	private static func calcSize(_ nrOfItems: Int) -> CGSize{
 		let h = if(nrOfItems == 1){
-			40.0 + 20.0 + 10.0
+			40.0 + 20.0 + 20.0	//item + padding + shadow
 		}else{
-			40.0 * Double(nrOfItems) + 20.0 + 5.0 * Double(nrOfItems - 1) + 10.0
+			40.0 * Double(nrOfItems) + 20.0 + 5.0 * Double(nrOfItems - 1) + 20.0
 		}
 		return CGSize(width: 280.0, height: h)
 	}

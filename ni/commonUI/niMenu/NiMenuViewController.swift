@@ -27,8 +27,8 @@ class NiMenuViewController: NSViewController{
 		let myView = (NSView.loadFromNib(nibName: "NiMenuView", owner: self) as! NiMenuView)
 		let menuItems = genMenuItemViews(items: items)
 		myView.lstOfMenuItems.setViews(menuItems, in: .top)
-		myView.frame.origin = NSPoint(x: 5.0, y: 5.0)
-		myView.frame.size.height = wSize.height - 5.0
+		myView.frame.origin = NSPoint(x: 10.0, y: 13.0)
+		myView.frame.size.height = wSize.height - 20.0
 		view = RoundedRectView(frame: NSRect(origin: CGPoint(x: 0.0, y: 0.0), size: wSize))
 		view.addSubview(myView)
 	}
