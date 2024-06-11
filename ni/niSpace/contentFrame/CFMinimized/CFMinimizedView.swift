@@ -23,6 +23,13 @@ class CFMinimizedView: CFBaseView{
 	func initAfterViewLoad(nrOfItems: Int, groupName: String?){
 		frame.size.height = Double(nrOfItems) * 39.0 + 36.0
 		
+		self.wantsLayer = true
+		self.layer?.shadowColor = NSColor.sand9.cgColor
+		self.layer?.shadowOffset = CGSize(width: 0.0, height: 0.0)
+		self.layer?.shadowOpacity = 1.0
+		self.layer?.shadowRadius = 1.0
+		self.layer?.masksToBounds = false
+		
 		closeButton.mouseDownFunction = clickedCloseButton
 		closeButton.isActiveFunction = self.isFrameActive
 		closeButton.mouseDownInActiveFunction = activateContentFrame
@@ -45,11 +52,6 @@ class CFMinimizedView: CFBaseView{
 		}
 		return .no
 	}
-	
-//	private func dragArea() -> NSRect{
-//		let width = cfHeadView.frame.width - cfGroupButton.frame.width
-//		return NSRect(x: cfGroupButton.frame.maxX, y: 0.0, width: width, height: cfHeadView.frame.height)
-//	}
 	
 	func maximizeButtonClicked(with event: NSEvent){
 		guard let myController = nextResponder as? ContentFrameController else{return}
@@ -119,6 +121,15 @@ class CFMinimizedView: CFBaseView{
 			maximizeButton.tintInactive()
 			cfGroupButton.tintInactive()
 			self.discardCursorRects()
+		}
+		retinitItems(frameIsActive)
+	}
+	
+	private func retinitItems(_ frameIsActive: Bool){
+		for item in listOfTabs!.views{
+			if let itemView = item as? CFMinimizedStackItem{
+				itemView.updateTextTint(frameIsActive)
+			}
 		}
 	}
 	

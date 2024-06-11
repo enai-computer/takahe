@@ -13,6 +13,9 @@ class CFMinimizedStackItem: NSView{
 	@IBOutlet var tabTitle: NSTextField!
 	private(set) var tabPosition: Int = -1
 	
+	private var txtActiveColor: NSColor = NSColor(.sand12)
+	private var txtInactiveColor: NSColor = NSColor(.sand11)
+	
 	required init?(coder: NSCoder) {
 		super.init(coder: coder)
 		
@@ -59,12 +62,23 @@ class CFMinimizedStackItem: NSView{
 	
 	override func mouseEntered(with event: NSEvent) {
 		layer?.backgroundColor = NSColor(.sand1).cgColor
-		tabTitle.textColor = NSColor(.sand12)
+		tabTitle.textColor = txtActiveColor
 	}
 	
 	override func mouseExited(with event: NSEvent) {
 		layer?.backgroundColor = NSColor(.sand3).cgColor
-		tabTitle.textColor = NSColor(.sand11)
+		tabTitle.textColor = txtInactiveColor
 	}
-	
+
+	func updateTextTint(_ frameIsActive: Bool){
+		if(frameIsActive){
+			txtActiveColor = NSColor(.sand12)
+			txtInactiveColor = NSColor(.sand11)
+			tabTitle.textColor = NSColor(.sand11)
+		}else{
+			txtActiveColor = NSColor(.sand11)
+			txtInactiveColor = NSColor(.sand10)
+			tabTitle.textColor = NSColor(.sand10)
+		}
+	}
 }
