@@ -26,7 +26,7 @@ class CFMinimizedView: CFBaseView{
 		self.wantsLayer = true
 		self.layer?.shadowColor = NSColor.sand9.cgColor
 		self.layer?.shadowOffset = CGSize(width: 0.0, height: 0.0)
-		self.layer?.shadowOpacity = 1.0
+		self.layer?.shadowOpacity = 0.5
 		self.layer?.shadowRadius = 1.0
 		self.layer?.masksToBounds = false
 		
