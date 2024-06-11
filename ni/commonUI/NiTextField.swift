@@ -13,7 +13,7 @@ class NiTextField: NSTextField{
 	override init(frame frameRect: NSRect) {
 		super.init(frame: frameRect)
 		
-		font = NSFont(name: "Sohne-Buch", size: 13.0)
+		font = NSFont(name: "Sohne-Kraftig", size: 14.0)
 		textColor = NSColor.sandLight12
 		backgroundColor = NSColor.transparent
 		isBezeled = false
