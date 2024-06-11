@@ -458,7 +458,7 @@ class ContentFrameView: CFBaseView{
 		
 		self.layer?.shadowColor = NSColor.sand9.cgColor
 		self.layer?.shadowOffset = CGSize(width: 0.0, height: 0.0)
-		self.layer?.shadowOpacity = 0.8
+		self.layer?.shadowOpacity = 0.6
 		self.layer?.shadowRadius = 4.0
 		self.layer?.masksToBounds = false
 
@@ -467,9 +467,9 @@ class ContentFrameView: CFBaseView{
 		self.dropShadow2 = CALayer(layer: self.layer!)
 		self.dropShadow2.shadowPath = NSBezierPath(rect: bounds).cgPath
 		self.dropShadow2.shadowColor = NSColor.sand9.cgColor
-		self.dropShadow2.shadowOffset = CGSize(width: 10.0, height: -10.0)
-		self.dropShadow2.shadowOpacity = 0.5
-		self.dropShadow2.shadowRadius = 40.0
+		self.dropShadow2.shadowOffset = CGSize(width: 5.0, height: -5.0)
+		self.dropShadow2.shadowOpacity = 0.3
+		self.dropShadow2.shadowRadius = 30.0
 		self.dropShadow2.masksToBounds = false
 
 		self.layer?.insertSublayer(self.dropShadow2, at: 0)
