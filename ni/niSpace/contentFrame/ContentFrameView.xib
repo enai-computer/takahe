@@ -141,10 +141,6 @@
                     </tabView>
                 </subviews>
             </view>
-            <shadow key="shadow" blurRadius="6">
-                <size key="offset" width="2" height="-4"/>
-                <color key="color" red="0.4392156862745098" green="0.43529411764705883" blue="0.42745098039215684" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="displayP3"/>
-            </shadow>
             <color key="borderColor" name="sand4"/>
             <color key="fillColor" name="sand4"/>
             <connections>

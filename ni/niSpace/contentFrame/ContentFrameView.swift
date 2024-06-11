@@ -7,9 +7,7 @@ import QuartzCore
 
 
 class ContentFrameView: CFBaseView{
-    
-//    private(set) var frameIsActive: Bool = false
-    
+        
 	//Header
 	@IBOutlet var cfHeadView: ContentFrameHeadView!
 	@IBOutlet var cfTabHeadCollection: NSCollectionView!
@@ -38,6 +36,8 @@ class ContentFrameView: CFBaseView{
 	private var previousCFSize: NSRect? = nil
 	
 	override var minFrameWidth: CGFloat { return 575.0}
+	
+	private var dropShadow2 = CALayer()
 	
     required init?(coder: NSCoder) {
         super.init(coder: coder)
@@ -81,6 +81,16 @@ class ContentFrameView: CFBaseView{
 		cfHeadView.layout()
 	}
     
+	override func layout() {
+		super.layout()
+		
+		if(frameIsActive){
+			shadowActive()
+		}else{
+			shadowInActive()
+		}
+	}
+	
 	/** Appends a new tab at the end, or after the given openNextTo position.
 	 
 	 If the caller sets openNextTo it is their responsability to update the underlying viewModel
@@ -424,7 +434,7 @@ class ContentFrameView: CFBaseView{
             self.layer?.borderColor = NSColor(.sand4).cgColor
 			self.layer?.backgroundColor = NSColor(.sand4).cgColor
 			cfHeadView.layer?.backgroundColor = NSColor(.sand4).cgColor
-			self.layer?.shadowOpacity = 1.0
+			shadowActive()
             
 			showHeader()
             webView?.setActive()
@@ -434,13 +444,42 @@ class ContentFrameView: CFBaseView{
             self.layer?.borderColor = NSColor(.sand3).cgColor
 			self.layer?.backgroundColor = NSColor(.sand3).cgColor
 			cfHeadView.layer?.backgroundColor = NSColor(.sand3).cgColor
-			self.layer?.shadowOpacity = 0.0
+			shadowInActive()
 			
 			hideHeader()
-            webView?.setInactive()
+            _ = webView?.setInactive()
 			self.discardCursorRects()
         }
     }
+	
+	private func shadowActive(){
+		self.dropShadow2 = CALayer(layer: self.layer)
+		self.clipsToBounds = true
+		
+		self.layer?.shadowColor = NSColor.sand9.cgColor
+		self.layer?.shadowOffset = CGSize(width: 10.0, height: -10.0)
+		self.layer?.shadowOpacity = 0.7
+		self.layer?.shadowRadius = 40
+		self.layer?.masksToBounds = false
+
+		self.dropShadow2.shadowColor = NSColor.sand9.cgColor
+		self.dropShadow2.shadowOffset = CGSize(width: 0.0, height: 0.0)
+		self.dropShadow2.shadowOpacity = 0.8
+		self.dropShadow2.shadowRadius = 2
+		self.dropShadow2.masksToBounds = false
+
+		self.layer?.insertSublayer(self.dropShadow2, at: 0)
+	}
+	
+	private func shadowInActive(){
+		self.dropShadow2.removeFromSuperlayer()
+		
+		self.layer?.shadowColor = NSColor.sand9.cgColor
+		self.layer?.shadowOffset = CGSize(width: 0.0, height: 0.0)
+		self.layer?.shadowOpacity = 1.0
+		self.layer?.shadowRadius = 1.0
+		self.layer?.masksToBounds = false
+	}
 	
 	private func hideHeader(){
 		updateFwdBackTint()
