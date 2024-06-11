@@ -69,7 +69,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		self.expandedCFView?.initAfterViewLoad(groupName)
 
 		expandedCFView!.cfHeadView.wantsLayer = true
-		expandedCFView!.cfHeadView.layer?.backgroundColor = NSColor(.sandLight4).cgColor
+		expandedCFView!.cfHeadView.layer?.backgroundColor = NSColor(.sand4).cgColor
 	}
 	
 	private func loadAndDisplayFramelessView(){
@@ -82,7 +82,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		framelessView.wantsLayer = true
 		framelessView.layer?.cornerRadius = 5.0
 		framelessView.layer?.cornerCurve = .continuous
-		framelessView.layer?.backgroundColor = NSColor.sandLight3.cgColor
+		framelessView.layer?.backgroundColor = NSColor.sand3.cgColor
 		return framelessView
 	}
 	
@@ -117,8 +117,8 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		self.view.layer?.cornerRadius = 10
 		self.view.layer?.cornerCurve = .continuous
 		self.view.layer?.borderWidth = 5
-		self.view.layer?.borderColor = NSColor(.sandLight4).cgColor
-		self.view.layer?.backgroundColor = NSColor(.sandLight4).cgColor
+		self.view.layer?.borderColor = NSColor(.sand4).cgColor
+		self.view.layer?.backgroundColor = NSColor(.sand4).cgColor
 	}
 	
 	/*

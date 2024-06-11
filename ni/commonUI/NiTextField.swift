@@ -14,7 +14,7 @@ class NiTextField: NSTextField{
 		super.init(frame: frameRect)
 		
 		font = NSFont(name: "Sohne-Kraftig", size: 14.0)
-		textColor = NSColor.sandLight12
+		textColor = NSColor.sand12
 		backgroundColor = NSColor.transparent
 		isBezeled = false
 		drawsBackground = false

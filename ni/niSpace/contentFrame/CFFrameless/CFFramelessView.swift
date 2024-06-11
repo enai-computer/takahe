@@ -33,12 +33,12 @@ class CFFramelessView: CFBaseView {
 	}
 	
 	func removeBorder(){
-		self.borderColor = NSColor.sandLight3
+		self.borderColor = NSColor.sand3
 		shadow = nil
 	}
 	
 	func removeBorderAddDropShadow(){
-		borderColor = NSColor.sandLight3
+		borderColor = NSColor.sand3
 		wantsLayer = true
 		shadow = NSShadow()
 		layer?.shadowOffset = CGSize(width: 2.0, height: -4.0)

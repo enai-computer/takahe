@@ -19,7 +19,7 @@ class NiScroller: NSScroller{
 		if(isHidden){
 			return
 		}
-		NSColor.sandLight4.setFill()
+		NSColor.sand4.setFill()
 		dirtyRect.fill()
 		self.drawKnob()
 	}

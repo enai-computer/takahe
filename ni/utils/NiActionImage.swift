@@ -56,11 +56,11 @@ class NiActionImage: NSImageView{
 	}
 	
 	func tintInactive(){
-		self.contentTintColor = NSColor(.sandLight8)
+		self.contentTintColor = NSColor(.sand8)
 	}
 	
 	func tintActive(){
-		self.contentTintColor = NSColor(.sandLight11)
+		self.contentTintColor = NSColor(.sand11)
 	}
 	
 	override func prepareForReuse() {

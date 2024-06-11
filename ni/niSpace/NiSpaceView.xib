@@ -33,7 +33,7 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" name="SandLight2"/>
+                        <color key="backgroundColor" name="sand2"/>
                     </clipView>
                     <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="9PI-SI-Oxx">
                         <rect key="frame" x="-100" y="-100" width="792" height="15"/>
@@ -56,7 +56,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" refusesFirstResponder="YES" allowsUndo="NO" alignment="right" title="10:00 AM" id="q69-4k-xlx">
                                     <font key="font" size="15" name="Sohne-Buch"/>
-                                    <color key="textColor" name="SandDark5"/>
+                                    <color key="textColor" name="sand115"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
@@ -65,7 +65,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" enabled="NO" refusesFirstResponder="YES" allowsUndo="NO" title="SpaceName" id="ioC-6E-T33">
                                     <font key="font" size="15" name="Sohne-Kraftig"/>
-                                    <color key="textColor" name="SandDark8"/>
+                                    <color key="textColor" name="sand115"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
@@ -104,13 +104,10 @@
         <namedColor name="IntAerospaceOrange">
             <color red="1" green="0.30980392156862746" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <namedColor name="SandDark5">
-            <color red="0.1803921568627451" green="0.1803921568627451" blue="0.16862745098039217" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="SandDark8">
+        <namedColor name="sand115">
             <color red="0.31764705882352939" green="0.31372549019607843" blue="0.29411764705882354" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <namedColor name="SandLight2">
+        <namedColor name="sand2">
             <color red="0.97647058823529409" green="0.97647058823529409" blue="0.97254901960784312" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>

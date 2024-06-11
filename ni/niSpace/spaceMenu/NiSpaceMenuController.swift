@@ -37,7 +37,7 @@ class NiSpaceMenuController: NSViewController{
 		}
 		view.frame.origin = CGPoint(x: originX, y: originY)
 		view.wantsLayer = true
-		view.layer?.backgroundColor = NSColor.sandLight2.cgColor
+		view.layer?.backgroundColor = NSColor.sand2.cgColor
 		view.layer?.cornerRadius = 10.0
 		view.layer?.cornerCurve = .continuous
 		

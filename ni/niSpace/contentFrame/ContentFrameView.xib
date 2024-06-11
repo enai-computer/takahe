@@ -72,7 +72,7 @@
                                             </connections>
                                         </collectionView>
                                     </subviews>
-                                    <color key="backgroundColor" name="SandLight4"/>
+                                    <color key="backgroundColor" name="sand4"/>
                                 </clipView>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="YBx-UI-k7o"/>
@@ -145,8 +145,8 @@
                 <size key="offset" width="2" height="-4"/>
                 <color key="color" red="0.4392156862745098" green="0.43529411764705883" blue="0.42745098039215684" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="displayP3"/>
             </shadow>
-            <color key="borderColor" name="SandLight4"/>
-            <color key="fillColor" name="SandLight4"/>
+            <color key="borderColor" name="sand4"/>
+            <color key="fillColor" name="sand4"/>
             <connections>
                 <outlet property="addTabButton" destination="GMe-PK-SX5" id="bBG-vF-gtC"/>
                 <outlet property="cfGroupButton" destination="v2T-OE-fnp" id="2oz-LR-692"/>
@@ -171,7 +171,7 @@
         <image name="maximize" width="24" height="24"/>
         <image name="minimize" width="24" height="24"/>
         <image name="plus" width="24" height="24"/>
-        <namedColor name="SandLight4">
+        <namedColor name="sand4">
             <color red="0.93333333333333335" green="0.93333333333333335" blue="0.92549019607843142" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
