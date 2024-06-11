@@ -20,21 +20,21 @@
                         <rect key="frame" x="10" y="100" width="240" height="40"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <subviews>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="Quu-Gs-SKl">
+                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" id="Quu-Gs-SKl">
                                 <rect key="frame" x="8" y="8" width="113" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" refusesFirstResponder="YES" title="Open a window" id="dNf-IV-10q">
                                     <font key="font" size="16" name="Sohne-Buch"/>
-                                    <color key="textColor" name="SandLight12"/>
+                                    <color key="textColor" name="sand12"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="cgA-rm-jFI">
+                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" id="cgA-rm-jFI">
                                 <rect key="frame" x="190" y="8" width="35" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" refusesFirstResponder="YES" title="⌘ N" id="DQl-i8-Itl">
                                     <font key="font" size="16" name="Sohne-Buch"/>
-                                    <color key="textColor" name="SandLight11"/>
+                                    <color key="textColor" name="sand11"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
@@ -44,12 +44,12 @@
                         <rect key="frame" x="10" y="55" width="240" height="40"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <subviews>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="sYa-6D-Jbh">
+                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" id="sYa-6D-Jbh">
                                 <rect key="frame" x="8" y="8" width="90" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" enabled="NO" refusesFirstResponder="YES" title="Write a note" id="Myn-0o-Tqj">
                                     <font key="font" size="16" name="Sohne-Buch"/>
-                                    <color key="textColor" name="SandLight12"/>
+                                    <color key="textColor" name="sand12"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
@@ -59,12 +59,12 @@
                         <rect key="frame" x="10" y="10" width="240" height="40"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <subviews>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="jyq-sx-xqx">
+                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" id="jyq-sx-xqx">
                                 <rect key="frame" x="8" y="8" width="141" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" enabled="NO" refusesFirstResponder="YES" title="Paste image or text" id="Nvl-3j-t7S">
                                     <font key="font" size="16" name="Sohne-Buch"/>
-                                    <color key="textColor" name="SandLight12"/>
+                                    <color key="textColor" name="sand12"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
@@ -77,7 +77,7 @@
                 <color key="color" red="0.4392156862745098" green="0.43529411764705883" blue="0.42745098039215684" alpha="0.29999999999999999" colorSpace="calibratedRGB"/>
             </shadow>
             <color key="borderColor" name="transparent"/>
-            <color key="fillColor" name="SandLight2"/>
+            <color key="fillColor" name="sand2"/>
             <connections>
                 <outlet property="openAWindow" destination="EMw-tg-L2d" id="A8Y-WT-zDE"/>
                 <outlet property="pasteImgORtxt" destination="jyq-sx-xqx" id="2eX-2h-hHC"/>
@@ -88,13 +88,13 @@
         </box>
     </objects>
     <resources>
-        <namedColor name="SandLight11">
+        <namedColor name="sand11">
             <color red="0.4392156862745098" green="0.43529411764705883" blue="0.42352941176470588" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <namedColor name="SandLight12">
+        <namedColor name="sand12">
             <color red="0.10588235294117647" green="0.10588235294117647" blue="0.094117647058823528" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <namedColor name="SandLight2">
+        <namedColor name="sand2">
             <color red="0.97647058823529409" green="0.97647058823529409" blue="0.97254901960784312" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="transparent">
