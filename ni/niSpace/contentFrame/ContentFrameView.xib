@@ -21,7 +21,7 @@
                         <rect key="frame" x="0.0" y="591" width="1056" height="34"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <subviews>
-                            <customView horizontalHuggingPriority="1000" horizontalCompressionResistancePriority="250" placeholderIntrinsicWidth="24" placeholderIntrinsicHeight="24" translatesAutoresizingMaskIntoConstraints="NO" id="v2T-OE-fnp" customClass="CFGroupButton" customModule="ni" customModuleProvider="target">
+                            <customView horizontalHuggingPriority="1000" horizontalCompressionResistancePriority="250" ambiguous="YES" placeholderIntrinsicWidth="24" placeholderIntrinsicHeight="24" translatesAutoresizingMaskIntoConstraints="NO" id="v2T-OE-fnp" customClass="CFGroupButton" customModule="ni" customModuleProvider="target">
                                 <rect key="frame" x="7" y="7" width="24" height="24"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="24" id="Aiv-VW-yvz"/>
@@ -29,7 +29,7 @@
                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="155" id="OyI-0b-7H9"/>
                                 </constraints>
                             </customView>
-                            <imageView horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="rcT-6J-b1L" userLabel="back-button" customClass="NiActionImage" customModule="ni" customModuleProvider="target">
+                            <imageView horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rcT-6J-b1L" userLabel="back-button" customClass="NiActionImage" customModule="ni" customModuleProvider="target">
                                 <rect key="frame" x="36" y="7" width="24" height="24"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="24" id="Qru-Us-vsd"/>
@@ -37,7 +37,7 @@
                                 </constraints>
                                 <imageCell key="cell" alignment="left" animates="YES" imageScaling="proportionallyDown" image="arrowLeft" id="T7D-RU-6Pz"/>
                             </imageView>
-                            <imageView horizontalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="eFl-A6-f9y" userLabel="forward-button" customClass="NiActionImage" customModule="ni" customModuleProvider="target">
+                            <imageView horizontalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eFl-A6-f9y" userLabel="forward-button" customClass="NiActionImage" customModule="ni" customModuleProvider="target">
                                 <rect key="frame" x="60" y="7" width="24" height="24"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="24" id="CUe-ot-mHq"/>
@@ -45,7 +45,7 @@
                                 </constraints>
                                 <imageCell key="cell" alignment="left" animates="YES" imageScaling="proportionallyDown" image="arrowRight" id="i8b-xK-NTA"/>
                             </imageView>
-                            <imageView horizontalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="GMe-PK-SX5" userLabel="Add Button" customClass="NiActionImage" customModule="ni" customModuleProvider="target">
+                            <imageView horizontalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GMe-PK-SX5" userLabel="Add Button" customClass="NiActionImage" customModule="ni" customModuleProvider="target">
                                 <rect key="frame" x="86" y="7" width="24" height="24"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="24" id="PRg-NH-sRo"/>
@@ -120,7 +120,6 @@
                             <constraint firstItem="rcT-6J-b1L" firstAttribute="top" secondItem="Pdl-B9-RoX" secondAttribute="top" constant="3" id="6ki-Qu-KbA"/>
                             <constraint firstItem="GMe-PK-SX5" firstAttribute="left" secondItem="eFl-A6-f9y" secondAttribute="right" constant="2" id="Ax5-Wx-BFO"/>
                             <constraint firstItem="AwF-3w-n4g" firstAttribute="right" secondItem="tOm-Uf-Gpz" secondAttribute="left" priority="750" id="CXg-eV-RIV"/>
-                            <constraint firstItem="v2T-OE-fnp" firstAttribute="left" secondItem="Pdl-B9-RoX" secondAttribute="left" constant="7" id="Ffw-UY-sXN"/>
                             <constraint firstItem="rUD-4M-Tk9" firstAttribute="top" secondItem="Pdl-B9-RoX" secondAttribute="top" constant="3" id="HJx-Wj-TxC"/>
                             <constraint firstItem="SHD-m6-fVV" firstAttribute="top" secondItem="Pdl-B9-RoX" secondAttribute="top" constant="3" id="LdH-IC-d60"/>
                             <constraint firstItem="AwF-3w-n4g" firstAttribute="top" secondItem="Pdl-B9-RoX" secondAttribute="top" id="PLV-2w-Lrv"/>

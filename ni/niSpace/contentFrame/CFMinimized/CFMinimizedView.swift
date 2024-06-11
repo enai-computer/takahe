@@ -16,6 +16,8 @@ class CFMinimizedView: CFBaseView{
 	@IBOutlet var maximizeButton: NiActionImage!
 	@IBOutlet var closeButton: NiActionImage!
 	
+	private var groupButtonLeftConstraint: NSLayoutConstraint?
+	
 	required init?(coder: NSCoder) {
 		super.init(coder: coder)
 	}
