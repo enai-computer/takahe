@@ -34,6 +34,7 @@ struct HomeView: View {
 	let controllerWrapper: ControllerWrapper
 	let width: CGFloat
 	let height: CGFloat
+	@Environment (\.colorScheme) var colourScheme: ColorScheme
 	
 	init(_ controllerWrapper: ControllerWrapper, width: CGFloat, height: CGFloat){
 		self.controllerWrapper = controllerWrapper
@@ -57,6 +58,7 @@ struct HomeView: View {
 					.focused($focusedField, equals: .field)
 			}
 		}
+		.preferredColorScheme(colourScheme)
 		.frame(width: width, height: height)
 		.clipShape(
 			RoundedCornersShape(radius: 30.0, corners: [.bottomLeft, .bottomRight])
