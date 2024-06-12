@@ -9,7 +9,7 @@ import Cocoa
 import Foundation
 
 enum TabViewModelState: String{
-	case empty, error, loading, loaded, cached
+	case empty, error, notLoaded, loading, loaded, cached
 }
 
 struct TabViewModel{

@@ -867,8 +867,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		}
 		for tab in tabs {
 			if(tab.type == .web){
-				//TODO: add guard rails to not enter empty tab
-				let url = tab.webView?.url?.absoluteString ?? tab.content
+				let url = getTabUrl(for: tab)
 				CachedWebTable.upsert(documentId: documentId, id: tab.contentId, title: tab.title, url: url)
 			}
 			if(tab.type == .note){
@@ -884,6 +883,13 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 				}
 			}
 		}
+	}
+	
+	private func getTabUrl(for tab: TabViewModel) -> String{
+		if(tab.state == .loaded){
+			return tab.webView?.getCurrentURL() ?? tab.content
+		}
+		return tab.content
 	}
 	
 	func toNiContentFrameModel() -> (model: NiDocumentObjectModel?, nrOfTabs: Int, state: NiConentFrameState?){
