@@ -6,7 +6,7 @@
 //
 
 import Cocoa
-
+//    NiSearchResultViewItem
 class NiSearchResultViewItem: NSCollectionViewItem {
 
 	@IBOutlet var resultTitle: NSTextField!

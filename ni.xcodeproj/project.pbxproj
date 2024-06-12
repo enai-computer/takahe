@@ -52,6 +52,7 @@
 		CD5A04CF2BEA42EB004CC3AA /* cfUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5A04CE2BEA42EB004CC3AA /* cfUtils.swift */; };
 		CD5A04D12BEA78E4004CC3AA /* CFBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5A04D02BEA78E4004CC3AA /* CFBaseView.swift */; };
 		CD5B153A2BDFBFE40030F017 /* NiActionImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5B15392BDFBFE40030F017 /* NiActionImage.swift */; };
+		CD5F7DFD2C19E9B000ADC860 /* NiPaletteWindowDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5F7DFC2C19E9B000ADC860 /* NiPaletteWindowDelegate.swift */; };
 		CD6317E12BC3F11000434D56 /* NiUserInputError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6317E02BC3F11000434D56 /* NiUserInputError.swift */; };
 		CD6317E32BC3F18300434D56 /* NiBadTypeError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6317E22BC3F18300434D56 /* NiBadTypeError.swift */; };
 		CD6317EC2BC4852300434D56 /* soehne-dreiviertelfett.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CD6317E82BC4852300434D56 /* soehne-dreiviertelfett.ttf */; };
@@ -99,6 +100,14 @@
 		CDD6B9472B16A29100C6144D /* DocumentIdContentIdTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD6B9462B16A29100C6144D /* DocumentIdContentIdTable.swift */; };
 		CDD6B9522B1BFE8B00C6144D /* NiDocumentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD6B9512B1BFE8B00C6144D /* NiDocumentModel.swift */; };
 		CDD6B9562B1C326A00C6144D /* ContentFrameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD6B9552B1C326A00C6144D /* ContentFrameController.swift */; };
+		CDD7D3362C198A930038E6F9 /* NiPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD7D3352C198A930038E6F9 /* NiPalette.swift */; };
+		CDD7D3392C198BBE0038E6F9 /* NiSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD7D3382C198BBE0038E6F9 /* NiSearchController.swift */; };
+		CDD7D33B2C198BE00038E6F9 /* NiSearchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDD7D33A2C198BE00038E6F9 /* NiSearchView.xib */; };
+		CDD7D3402C19924F0038E6F9 /* NiSearchResultViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD7D33E2C19924F0038E6F9 /* NiSearchResultViewItem.swift */; };
+		CDD7D3412C19924F0038E6F9 /* NiSearchResultViewItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDD7D33F2C19924F0038E6F9 /* NiSearchResultViewItem.xib */; };
+		CDD7D3472C19986F0038E6F9 /* NiSearchResultViewItemRightIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD7D3462C19986F0038E6F9 /* NiSearchResultViewItemRightIcon.swift */; };
+		CDD7D3492C19AD7D0038E6F9 /* NSPanelUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD7D3482C19AD7D0038E6F9 /* NSPanelUtils.swift */; };
+		CDD7D34B2C19B20C0038E6F9 /* NiPaletteContentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD7D34A2C19B20C0038E6F9 /* NiPaletteContentController.swift */; };
 		CDD87ED02BF23C650045B84B /* NiCursorUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD87ECF2BF23C650045B84B /* NiCursorUtils.swift */; };
 		CDDBCB292BD6AE6900E7B187 /* HomeViewAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDDBCB282BD6AE6900E7B187 /* HomeViewAnimator.swift */; };
 		CDDBCB2B2BD7C23E00E7B187 /* NiSpaceDocumentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDDBCB2A2BD7C23E00E7B187 /* NiSpaceDocumentController.swift */; };
@@ -169,6 +178,7 @@
 		CD5A04CE2BEA42EB004CC3AA /* cfUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cfUtils.swift; sourceTree = "<group>"; };
 		CD5A04D02BEA78E4004CC3AA /* CFBaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CFBaseView.swift; sourceTree = "<group>"; };
 		CD5B15392BDFBFE40030F017 /* NiActionImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiActionImage.swift; sourceTree = "<group>"; };
+		CD5F7DFC2C19E9B000ADC860 /* NiPaletteWindowDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiPaletteWindowDelegate.swift; sourceTree = "<group>"; };
 		CD6317E02BC3F11000434D56 /* NiUserInputError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiUserInputError.swift; sourceTree = "<group>"; };
 		CD6317E22BC3F18300434D56 /* NiBadTypeError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiBadTypeError.swift; sourceTree = "<group>"; };
 		CD6317E82BC4852300434D56 /* soehne-dreiviertelfett.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "soehne-dreiviertelfett.ttf"; sourceTree = "<group>"; };
@@ -216,6 +226,14 @@
 		CDD6B9462B16A29100C6144D /* DocumentIdContentIdTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentIdContentIdTable.swift; sourceTree = "<group>"; };
 		CDD6B9512B1BFE8B00C6144D /* NiDocumentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiDocumentModel.swift; sourceTree = "<group>"; };
 		CDD6B9552B1C326A00C6144D /* ContentFrameController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentFrameController.swift; sourceTree = "<group>"; };
+		CDD7D3352C198A930038E6F9 /* NiPalette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiPalette.swift; sourceTree = "<group>"; };
+		CDD7D3382C198BBE0038E6F9 /* NiSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiSearchController.swift; sourceTree = "<group>"; };
+		CDD7D33A2C198BE00038E6F9 /* NiSearchView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NiSearchView.xib; sourceTree = "<group>"; };
+		CDD7D33E2C19924F0038E6F9 /* NiSearchResultViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiSearchResultViewItem.swift; sourceTree = "<group>"; };
+		CDD7D33F2C19924F0038E6F9 /* NiSearchResultViewItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NiSearchResultViewItem.xib; sourceTree = "<group>"; };
+		CDD7D3462C19986F0038E6F9 /* NiSearchResultViewItemRightIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiSearchResultViewItemRightIcon.swift; sourceTree = "<group>"; };
+		CDD7D3482C19AD7D0038E6F9 /* NSPanelUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSPanelUtils.swift; sourceTree = "<group>"; };
+		CDD7D34A2C19B20C0038E6F9 /* NiPaletteContentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiPaletteContentController.swift; sourceTree = "<group>"; };
 		CDD87ECF2BF23C650045B84B /* NiCursorUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiCursorUtils.swift; sourceTree = "<group>"; };
 		CDDBCB282BD6AE6900E7B187 /* HomeViewAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewAnimator.swift; sourceTree = "<group>"; };
 		CDDBCB2A2BD7C23E00E7B187 /* NiSpaceDocumentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiSpaceDocumentController.swift; sourceTree = "<group>"; };
@@ -277,6 +295,7 @@
 				CDD6B94F2B1BFE6500C6144D /* models */,
 				CDD6B9342B1527B700C6144D /* dal */,
 				CDD6B94A2B19469000C6144D /* niHome */,
+				CDD7D3342C198A080038E6F9 /* niPalette */,
 				CDB06B5B2AF81CB6008DB8FF /* niSpace */,
 				CDABE6432C11C49100BB4E85 /* commonUI */,
 				CD6317E62BC4845100434D56 /* assets */,
@@ -419,6 +438,7 @@
 				CDFA8CFE2C04815C00882722 /* EventUtils.swift */,
 				CD1853162C09D623001FE566 /* DoubleUtils.swift */,
 				CD1853182C09EA96001FE566 /* PasteboardUtils.swift */,
+				CDD7D3482C19AD7D0038E6F9 /* NSPanelUtils.swift */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -458,6 +478,7 @@
 		CDABE6432C11C49100BB4E85 /* commonUI */ = {
 			isa = PBXGroup;
 			children = (
+				CDD7D3372C198B760038E6F9 /* niSearchView */,
 				CDABE6442C11C4BA00BB4E85 /* niMenu */,
 				CD04974D2C12FA4A00C44021 /* NiTextField.swift */,
 			);
@@ -539,6 +560,28 @@
 				CDD6B9512B1BFE8B00C6144D /* NiDocumentModel.swift */,
 			);
 			path = models;
+			sourceTree = "<group>";
+		};
+		CDD7D3342C198A080038E6F9 /* niPalette */ = {
+			isa = PBXGroup;
+			children = (
+				CDD7D3352C198A930038E6F9 /* NiPalette.swift */,
+				CDD7D34A2C19B20C0038E6F9 /* NiPaletteContentController.swift */,
+				CD5F7DFC2C19E9B000ADC860 /* NiPaletteWindowDelegate.swift */,
+			);
+			path = niPalette;
+			sourceTree = "<group>";
+		};
+		CDD7D3372C198B760038E6F9 /* niSearchView */ = {
+			isa = PBXGroup;
+			children = (
+				CDD7D3382C198BBE0038E6F9 /* NiSearchController.swift */,
+				CDD7D33A2C198BE00038E6F9 /* NiSearchView.xib */,
+				CDD7D33E2C19924F0038E6F9 /* NiSearchResultViewItem.swift */,
+				CDD7D33F2C19924F0038E6F9 /* NiSearchResultViewItem.xib */,
+				CDD7D3462C19986F0038E6F9 /* NiSearchResultViewItemRightIcon.swift */,
+			);
+			path = niSearchView;
 			sourceTree = "<group>";
 		};
 		CDFA8CF92C03B95F00882722 /* CFFrameless */ = {
@@ -664,9 +707,11 @@
 				CD3BF3D02C10A133003DA615 /* NewSpaceNote.json in Resources */,
 				CD6317EF2BC4852300434D56 /* soehne-kraftig.ttf in Resources */,
 				CD7578472BC000F200293930 /* ContentFrameTabHead.xib in Resources */,
+				CDD7D33B2C198BE00038E6F9 /* NiSearchView.xib in Resources */,
 				CD5A04CB2BEA3CC7004CC3AA /* CFMinimizedStackItem.xib in Resources */,
 				CDDBCB2F2BD8FA4D00E7B187 /* errorLoading.html in Resources */,
 				CD3362212BFE0DDC004DBAFB /* CFSoftDeletedView.xib in Resources */,
+				CDD7D3412C19924F0038E6F9 /* NiSearchResultViewItem.xib in Resources */,
 				A1E41BF62ACB533400338417 /* ContentFrameView.xib in Resources */,
 				CD53ACC02BCEE0ED00D5912B /* emptyTab.html in Resources */,
 				CD1160CC2BD286ED00345E3E /* emptyTab-1.jpg in Resources */,
@@ -711,6 +756,7 @@
 				A1E41BFF2ACB6B1300338417 /* FrameGenerator.swift in Sources */,
 				CD19BC962BC7E5BF002AF14E /* HomeViewUtils.swift in Sources */,
 				CD6D280E2C11DC7A0009732A /* NiMenuViewController.swift in Sources */,
+				CDD7D34B2C19B20C0038E6F9 /* NiPaletteContentController.swift in Sources */,
 				CD6D280C2C11D6DA0009732A /* NiMenuWindowDelegate.swift in Sources */,
 				CD9B96BC2C04C8EE00998CE2 /* CFContentItem.swift in Sources */,
 				A1B8E6AB2AAFB5EC00AC6566 /* ni.xcdatamodeld in Sources */,
@@ -730,7 +776,9 @@
 				CD23EBFB2C0F72FF00A2ACD9 /* Cook.swift in Sources */,
 				CDFA8D022C0492F400882722 /* NiNoteItem.swift in Sources */,
 				CDD6B9392B152A8000C6144D /* Storage.swift in Sources */,
+				CDD7D3472C19986F0038E6F9 /* NiSearchResultViewItemRightIcon.swift in Sources */,
 				CD42CEC92BDA48180039814D /* NiScrollView.swift in Sources */,
+				CDD7D3392C198BBE0038E6F9 /* NiSearchController.swift in Sources */,
 				CDA639582BF508FF001941DE /* WelcomeSpaceGenerator.swift in Sources */,
 				CDFA8CFF2C04815C00882722 /* EventUtils.swift in Sources */,
 				CD1A72BE2C0F582500A63109 /* NiNoteViewScroller.swift in Sources */,
@@ -743,7 +791,9 @@
 				CD3362162BFDFF97004DBAFB /* SpaceTopbar.swift in Sources */,
 				CD9B96BF2C0733E700998CE2 /* NiImgView.swift in Sources */,
 				CD1160CA2BD27B9E00345E3E /* NiWebViewUtils.swift in Sources */,
+				CDD7D3492C19AD7D0038E6F9 /* NSPanelUtils.swift in Sources */,
 				CDD87ED02BF23C650045B84B /* NiCursorUtils.swift in Sources */,
+				CD5F7DFD2C19E9B000ADC860 /* NiPaletteWindowDelegate.swift in Sources */,
 				CD6D28102C11EE7E0009732A /* RoundedRectView.swift in Sources */,
 				CD1552472BE9286D00A59AE9 /* SwiftUIUtils.swift in Sources */,
 				CDDBCB292BD6AE6900E7B187 /* HomeViewAnimator.swift in Sources */,
@@ -754,10 +804,12 @@
 				CD5A04D12BEA78E4004CC3AA /* CFBaseView.swift in Sources */,
 				CDABE6462C11C4FE00BB4E85 /* NiMenuWindow.swift in Sources */,
 				CDFA8CFB2C03B9AE00882722 /* CFFramelessView.swift in Sources */,
+				CDD7D3402C19924F0038E6F9 /* NiSearchResultViewItem.swift in Sources */,
 				CD06A9BA2BF79EF500312256 /* NiScroller.swift in Sources */,
 				CD781E752C0E1B6E00D02F55 /* NiNoteView.swift in Sources */,
 				CD7578372BBDA98700293930 /* ContentFrameHeadView.swift in Sources */,
 				CD33621F2BFE0DD0004DBAFB /* CFSoftDeletedView.swift in Sources */,
+				CDD7D3362C198A930038E6F9 /* NiPalette.swift in Sources */,
 				CD04974E2C12FA4A00C44021 /* NiTextField.swift in Sources */,
 				CD6752AB2BFB88770008A227 /* NiSpaceMenuItemView.swift in Sources */,
 				CD6752A12BFB56DC0008A227 /* NiSpaceMenuView.swift in Sources */,
