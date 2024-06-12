@@ -168,6 +168,7 @@ func getTabViewModel(for id: UUID, ofType type: TabContentType, positioned at: I
 			type: type,
 			title: record.title,
 			content: record.url,
+			state: .notLoaded,
 			position: at
 		)
 	}else if(type == .note){

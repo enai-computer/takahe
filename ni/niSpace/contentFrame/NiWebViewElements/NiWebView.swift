@@ -11,7 +11,6 @@ import Carbon.HIToolbox
 import WebKit
 
 
-
 class NiWebView: WKWebView, CFContentItem{
     
     var owner: ContentFrameController?
@@ -36,8 +35,6 @@ class NiWebView: WKWebView, CFContentItem{
         fatalError("init(coder:) has not been implemented")
     }
     
-
-	
     override func willOpenMenu(_ menu: NSMenu, with event: NSEvent) {
         
         // Hacky do nothing, if not a link
@@ -55,6 +52,13 @@ class NiWebView: WKWebView, CFContentItem{
         menu.items = [niOpenInNewTab]
     }
     
+	func getCurrentURL() -> String? {
+		if let urlStr = url?.absoluteString as? String{
+			return urlStr
+		}
+		return nil
+	}
+	
 	private func replaceSearchWithGoogleAction(_ menu: NSMenu){
 		for item in menu.items{
 			if(item.title == "Search with Google"){
