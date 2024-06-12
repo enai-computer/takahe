@@ -25,7 +25,7 @@ class NiMenuWindow: NSPanel {
 		if(adjustOrigin){
 			adjustedOrigin.y = origin.y - size.height
 		}
-		let frameRect = NiMenuWindow.rectForScreen(NSRect(origin: adjustedOrigin, size: size), screen: currentScreen)
+		let frameRect = NSPanel.rectForScreen(NSRect(origin: adjustedOrigin, size: size), screen: currentScreen)
 		super.init(
 			contentRect: frameRect,
 			styleMask: NiMenuWindow.getStyleMask(),
@@ -41,13 +41,6 @@ class NiMenuWindow: NSPanel {
 		hasShadow = false
 		isOpaque = false
 		backgroundColor = NSColor.clear
-	}
-	
-	private static func rectForScreen(_ frameRect: NSRect, screen: NSScreen) -> NSRect {
-		let frameOrigin = NSPoint(
-			x: screen.frame.origin.x + frameRect.origin.x,
-			y: screen.frame.origin.y + frameRect.origin.y)
-		return NSRect(origin: frameOrigin, size: frameRect.size)
 	}
 	
 	private static func removeNilValues(items: [NiMenuItemViewModel?]) -> [NiMenuItemViewModel]{

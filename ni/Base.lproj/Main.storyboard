@@ -20,11 +20,23 @@
                                                 <action selector="orderFrontStandardAboutPanel:" target="Ady-hI-5gd" id="Exp-CZ-Vem"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Preferences…" keyEquivalent="," id="BOF-NM-1cW"/>
+                                        <menuItem title="Preferences…" enabled="NO" keyEquivalent="," id="BOF-NM-1cW"/>
                                         <menuItem isSeparatorItem="YES" id="kCx-OE-vgT"/>
                                         <menuItem title="Quit Enai" keyEquivalent="q" allowsKeyEquivalentWhenHidden="YES" id="4sb-4s-VLi">
                                             <connections>
                                                 <action selector="terminate:" target="Ady-hI-5gd" id="Te7-pn-YzF"/>
+                                            </connections>
+                                        </menuItem>
+                                    </items>
+                                </menu>
+                            </menuItem>
+                            <menuItem title="Spaces" id="QsW-bh-wWK">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <menu key="submenu" title="Spaces" id="91g-UA-7Gm">
+                                    <items>
+                                        <menuItem title="Switch space" keyEquivalent="/" id="ob7-Wm-vPT">
+                                            <connections>
+                                                <action selector="showPalette:" target="Voe-Tx-rLC" id="sYa-tJ-lFW"/>
                                             </connections>
                                         </menuItem>
                                     </items>
@@ -253,9 +265,9 @@
                                     </items>
                                 </menu>
                             </menuItem>
-                            <menuItem title="Window" id="LgF-00-PUw">
+                            <menuItem title="Windows" id="LgF-00-PUw">
                                 <modifierMask key="keyEquivalentModifierMask"/>
-                                <menu key="submenu" title="Window" systemMenu="window" id="6KZ-oK-aV0">
+                                <menu key="submenu" title="Windows" systemMenu="window" id="6KZ-oK-aV0">
                                     <items>
                                         <menuItem title="Minimize" keyEquivalent="m" id="PD8-3W-6zL">
                                             <connections>
@@ -266,6 +278,12 @@
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="performZoom:" target="Ady-hI-5gd" id="xGG-KH-eHv"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="ygb-Ah-VV6"/>
+                                        <menuItem title="Print…" keyEquivalent="p" id="6vn-0L-bSa">
+                                            <connections>
+                                                <action selector="print:" target="Ady-hI-5gd" id="Qpj-Tq-gTM"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="vka-e7-PtF"/>

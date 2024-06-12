@@ -13,18 +13,25 @@ class NiSearchController: NSViewController, NSCollectionViewDataSource, NSTextFi
 	@IBOutlet var searchResultsScrollContainer: NSScrollView!
 	@IBOutlet var searchResultsCollection: NSCollectionView!
 	
+	override func loadView() {
+		super.loadView()
+	}
+	
 	override func viewDidLoad() {
         super.viewDidLoad()
-        // Do view setup here.
+		view.wantsLayer = true
+		view.layer?.backgroundColor = NSColor.birkin.cgColor
     }
 	
 	
 	func collectionView(_ collectionView: NSCollectionView, numberOfItemsInSection section: Int) -> Int {
-		<#code#>
+		//TODO: build me
+		return 0
 	}
 	
 	func collectionView(_ collectionView: NSCollectionView, itemForRepresentedObjectAt indexPath: IndexPath) -> NSCollectionViewItem {
-		<#code#>
+		let item = collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier("NiSearchResultViewItem"), for: indexPath)
+		return item
 	}
 	
     
