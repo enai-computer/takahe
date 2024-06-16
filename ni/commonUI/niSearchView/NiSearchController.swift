@@ -56,29 +56,25 @@ class NiSearchController: NSViewController, NSCollectionViewDataSource, NSCollec
 	}
 	
 	func control(_ control: NSControl, textView: NSTextView, doCommandBy commandSelector: Selector) -> Bool {
-		 if commandSelector == #selector(moveUp(_:)) {
+		if commandSelector == #selector(NSTextView.moveUp) {
 			 moveSelection(direction: .prev)
 			 return true
-		 } else if commandSelector == #selector(moveDown(_:)) {
+		} else if commandSelector == #selector(NSTextView.moveDown) {
 			 moveSelection(direction: .next)
 			 return true
-		 } else if commandSelector == #selector(insertNewline(_:)) {
+		} else if commandSelector == #selector(NSTextView.insertNewline) {
 			 
 			 return true
 		 }
 		 return false
 	}
 	
+	override func moveUp(_ sender: Any?) {
+		return
+	}
 
 	func controlTextDidEndEditing(_ obj: Notification) {
-		if(obj.userInfo?["NSTextMovement"] as? NSTextMovement == NSTextMovement.down){
-			
-			return
-		}
-		if(obj.userInfo?["NSTextMovement"] as? NSTextMovement == NSTextMovement.return){
-			//TODO: open selected space
-			return
-		}
+
 		//Cancel
 		if(obj.userInfo?["NSTextMovement"] as? NSTextMovement == NSTextMovement.cancel){
 			if let txt = (obj.object as? NSTextField)?.stringValue{
