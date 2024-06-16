@@ -6,6 +6,7 @@
 //
 
 import Cocoa
+import Carbon.HIToolbox
 
 class NiSearchController: NSViewController, NSCollectionViewDataSource, NSCollectionViewDelegateFlowLayout, NSTextFieldDelegate, NSControlTextEditingDelegate {
 
@@ -63,14 +64,43 @@ class NiSearchController: NSViewController, NSCollectionViewDataSource, NSCollec
 			 moveSelection(direction: .next)
 			 return true
 		} else if commandSelector == #selector(NSTextView.insertNewline) {
-			openSelectedSpace()
+			openSpace()
 			return true
+		} else if commandSelector == NSSelectorFromString("noop:") {
+			if let event = view.window?.currentEvent{
+				handleNoopCommand(with: event)
+				return true
+			}
+			return false
 		}
 		return false
 	}
 	
-	private func openSelectedSpace(){
-		if let selectedItem = searchResultsCollection.item(at: selectedPosition) as? NiSearchResultViewItem{
+	private func handleNoopCommand(with event: NSEvent){
+		if(event.modifierFlags.contains(.command)){
+			switch Int(event.keyCode){
+				case kVK_ANSI_1:
+					openSpace(1)
+				case kVK_ANSI_2:
+					openSpace(2)
+				case kVK_ANSI_3:
+					openSpace(3)
+				case kVK_ANSI_4:
+					openSpace(4)
+				case kVK_ANSI_5:
+					openSpace(5)
+				default:
+					return
+			}
+		}
+	}
+	
+	private func openSpace(_ selected: Int? = nil){
+		var selectedPos: Int? = selected
+		if(selectedPos == nil){
+			selectedPos = selectedPosition
+		}
+		if let selectedItem = searchResultsCollection.item(at: selectedPos!) as? NiSearchResultViewItem{
 			selectedItem.openSpaceAndTryRemoveWindow()
 		}
 	}
