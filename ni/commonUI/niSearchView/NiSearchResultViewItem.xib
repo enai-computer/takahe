@@ -37,9 +37,9 @@
                         </textFieldCell>
                     </textField>
                     <customView horizontalCompressionResistancePriority="1000" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="G6o-tn-ihA" customClass="NiSearchResultViewItemRightIcon" customModule="ni" customModuleProvider="target">
-                        <rect key="frame" x="515" y="12" width="26" height="23"/>
+                        <rect key="frame" x="515" y="12" width="30" height="23"/>
                         <constraints>
-                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="26" id="Bwt-h4-Q7k"/>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="30" id="Bwt-h4-Q7k"/>
                             <constraint firstAttribute="height" constant="23" id="zOz-Xa-loa"/>
                         </constraints>
                     </customView>
@@ -51,6 +51,7 @@
             </view>
             <point key="canvasLocation" x="235" y="-101"/>
         </box>
+        <collectionViewItem id="M34-kY-xC8" customClass="NiSearchResultViewItem" customModule="ni" customModuleProvider="target"/>
     </objects>
     <resources>
         <image name="SpaceIcon" width="24" height="24"/>

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SQLite
 
 
 /** Named after Captain James Cook
@@ -18,19 +19,12 @@ class Cook{
 	//TBD:
 	func search(){}
 	
-	func searchSpaces(typedChars: String, maxNrOfResults: Int = 10, excludeWelcomeSpaceGeneration: Bool = true) -> [NiDocumentViewModel]{
+	func searchSpaces(typedChars: String?, maxNrOfResults: Int? = nil, excludeWelcomeSpaceGeneration: Bool = true) -> [NiDocumentViewModel]{
 		var res: [NiDocumentViewModel] = []
 		var containsWelcomeSpace: Bool = excludeWelcomeSpaceGeneration
 		do{
 			for record in try Storage.instance.spacesDB.prepare(
-				DocumentTable.table.select(
-					DocumentTable.id,
-					DocumentTable.name,
-					DocumentTable.updatedAt
-				)
-				.filter(DocumentTable.name .like("%\(typedChars)%"))
-				.limit(maxNrOfResults)
-				.order(DocumentTable.updatedAt.desc)
+				buildSearchQuery(typedChars: typedChars, maxNrOfResults: maxNrOfResults)
 			){
 				res.append(
 					NiDocumentViewModel(
@@ -53,5 +47,20 @@ class Cook{
 			res.append(NiDocumentViewModel(id: WelcomeSpaceGenerator.WELCOME_SPACE_ID, name: WelcomeSpaceGenerator.WELCOME_SPACE_NAME))
 		}
 		return res
+	}
+	
+	private func buildSearchQuery(typedChars: String?, maxNrOfResults: Int? = nil) -> Table{
+		var query = DocumentTable.table.select(
+			DocumentTable.id,
+			DocumentTable.name,
+			DocumentTable.updatedAt
+		)
+		if(typedChars != nil){
+			query = query.filter(DocumentTable.name .like("%\(typedChars!)%"))
+		}
+		if(maxNrOfResults != nil){
+			query = query.limit(maxNrOfResults!)
+		}
+		return query
 	}
 }

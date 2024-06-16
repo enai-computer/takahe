@@ -18,7 +18,8 @@ class NiPalette: NSPanel {
 	
 	init(){
 		let mainWindow = NSApplication.shared.mainWindow!
-		let frameRect = NSPanel.rectForScreen(NSRect(origin: NSPoint(x: 0.0, y: 0.0), size: mainWindow.frame.size), screen: mainWindow.screen!)
+		let paletteRect = NiPalette.calcPaletteRect(mainWindow.frame.size)
+		let frameRect = NSPanel.rectForScreen(paletteRect, screen: mainWindow.screen!)
 		
 		niDelegate = NiPaletteWindowDelegate()
 		
@@ -31,14 +32,31 @@ class NiPalette: NSPanel {
 		
 		titleVisibility = .hidden
 		titlebarAppearsTransparent = true
-		delegate = niDelegate
-		contentViewController = NiPaletteContentController(windowSize: frameRect)
+//		delegate = niDelegate
+		contentViewController = NiPaletteContentController(paletteSize: paletteRect.size)
 		
 		hasShadow = false
 		isOpaque = false
 		backgroundColor = NSColor.clear
 		
 		setBlurOnMainWindow(mainWindow)
+	}
+	
+	private static func calcPaletteRect(_ screenSize: NSSize) -> NSRect{
+		let w = 586.0
+		let h = 426.0
+		
+		//center on x
+		let distToLeftBorder = (screenSize.width - w) / 2
+		//18% down from top
+		let distToBottomBorder = screenSize.height - (screenSize.height * 0.18024) - h
+		
+		return NSRect(
+			x: distToLeftBorder,
+			y: distToBottomBorder,
+			width: w,
+			height: h
+		)
 	}
 	
 	private func setBlurOnMainWindow(_ mainWindow: NSWindow){
