@@ -57,6 +57,8 @@ class Cook{
 		)
 		if(typedChars != nil){
 			query = query.filter(DocumentTable.name .like("%\(typedChars!)%"))
+		}else{
+			query = query.order(DocumentTable.updatedAt.desc)
 		}
 		if(maxNrOfResults != nil){
 			query = query.limit(maxNrOfResults!)
