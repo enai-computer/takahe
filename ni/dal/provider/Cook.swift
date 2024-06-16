@@ -19,7 +19,7 @@ class Cook{
 	//TBD:
 	func search(){}
 	
-	func searchSpaces(typedChars: String?, maxNrOfResults: Int? = nil, excludeWelcomeSpaceGeneration: Bool = true) -> [NiDocumentViewModel]{
+	func searchSpaces(typedChars: String?, maxNrOfResults: Int? = nil, excludeWelcomeSpaceGeneration: Bool = true, giveCreateNewSpaceOption: Bool = false) -> [NiDocumentViewModel]{
 		var res: [NiDocumentViewModel] = []
 		var containsWelcomeSpace: Bool = excludeWelcomeSpaceGeneration
 		do{
@@ -45,6 +45,9 @@ class Cook{
 		
 		if(!containsWelcomeSpace){
 			res.append(NiDocumentViewModel(id: WelcomeSpaceGenerator.WELCOME_SPACE_ID, name: WelcomeSpaceGenerator.WELCOME_SPACE_NAME))
+		}
+		if(giveCreateNewSpaceOption && typedChars != nil && !typedChars!.isEmpty){
+			res.append(NiDocumentViewModel(id: NiSpaceDocumentController.EMPTY_SPACE_ID, name: "Create a new space"))
 		}
 		return res
 	}

@@ -43,13 +43,13 @@ class NiSearchController: NSViewController, NSCollectionViewDataSource, NSCollec
 	}
 	
 	private func updateResultSet(){
-		searchResults = Cook.instance.searchSpaces(typedChars: nil)
+		searchResults = Cook.instance.searchSpaces(typedChars: nil, excludeWelcomeSpaceGeneration: false)
 		resetSelection()
 	}
 	
 	func controlTextDidChange(_ obj: Notification) {
-		if let txt = (obj.object as? NSTextField)?.stringValue{
-			searchResults = Cook.instance.searchSpaces(typedChars: txt)
+		if let dirtyTxt = (obj.object as? NSTextField)?.stringValue{
+			searchResults = Cook.instance.searchSpaces(typedChars: dirtyTxt, giveCreateNewSpaceOption: true)
 			searchResultsCollection.reloadData()
 			resetSelection()
 		}
@@ -63,31 +63,20 @@ class NiSearchController: NSViewController, NSCollectionViewDataSource, NSCollec
 			 moveSelection(direction: .next)
 			 return true
 		} else if commandSelector == #selector(NSTextView.insertNewline) {
-			 
-			 return true
-		 }
-		 return false
+			openSelectedSpace()
+			return true
+		}
+		return false
 	}
 	
-	override func moveUp(_ sender: Any?) {
-		return
+	private func openSelectedSpace(){
+		if let selectedItem = searchResultsCollection.item(at: selectedPosition) as? NiSearchResultViewItem{
+			selectedItem.openSpaceAndTryRemoveWindow()
+		}
 	}
 
 	func controlTextDidEndEditing(_ obj: Notification) {
-
-		//Cancel
-		if(obj.userInfo?["NSTextMovement"] as? NSTextMovement == NSTextMovement.cancel){
-			if let txt = (obj.object as? NSTextField)?.stringValue{
-				if(txt.isEmpty){
-					if let paletteWindow = view.window as? NiPalette{
-						paletteWindow.removeSelf()
-						return
-					}
-				}
-				searchField.stringValue = ""
-			}
-			return
-		}
+		return
 	}
 	
 	private func resetSelection(){
@@ -151,7 +140,13 @@ class NiSearchController: NSViewController, NSCollectionViewDataSource, NSCollec
 	}
 	
 	override func cancelOperation(_ sender: Any?) {
-		print("HI")
+		if(searchField.stringValue.isEmpty){
+			if let paletteWindow = view.window as? NiPalette{
+				paletteWindow.removeSelf()
+				return
+			}
+		}
+		searchField.stringValue = ""
 	}
     
 }

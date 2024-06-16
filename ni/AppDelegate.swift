@@ -46,7 +46,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
 	func applicationWillResignActive(_ notification: Notification) {
-		let window = NSApplication.shared.keyWindow
+		let window = NSApplication.shared.mainWindow
 		if (window != nil && window is DefaultWindow){
 			if let controller = window!.contentViewController as? NiSpaceViewController{
 				controller.storeCurrentSpace()
@@ -90,7 +90,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	
     func applicationShouldTerminate(_ sender: NSApplication) -> NSApplication.TerminateReply {
         // Save changes in the application's managed object context before the application terminates.
-		let window = NSApplication.shared.keyWindow
+		let window = NSApplication.shared.mainWindow
 		if (window != nil && window is DefaultWindow){
 			if let controller = window!.contentViewController as? NiSpaceViewController{
 				controller.storeCurrentSpace()
@@ -146,12 +146,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	}
 	
 	@IBAction func showPalette(_ sender: NSMenuItem) {
+		
+		//TODO: make async
+		getNiSpaceViewController()?.storeCurrentSpace()
+		
 		let	palette = NiPalette()
 		palette.makeKeyAndOrderFront(nil)
 	}
 	
 	private func getNiSpaceViewController() -> NiSpaceViewController?{
-		if let window = NSApplication.shared.keyWindow as? DefaultWindow{
+		if let window = NSApplication.shared.mainWindow as? DefaultWindow{
 			if let controller = window.contentViewController as? NiSpaceViewController{
 				return controller
 			}

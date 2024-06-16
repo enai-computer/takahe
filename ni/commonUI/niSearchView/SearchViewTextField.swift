@@ -1,0 +1,25 @@
+//
+//  SearchViewTextField.swift
+//  ni
+//
+//  Created by Patrick Lukas on 16/6/24.
+//
+
+import Cocoa
+
+//Testing so key commands do not pass through to the next window.
+//TODO: remove if unneeded
+class SearchViewTextField: NSTextField{
+	
+	override func moveUp(_ sender: Any?) {
+		return
+	}
+	
+//	override func sendAction(_ action: Selector?, to target: Any?) -> Bool {
+//		super.sendAction(action, to: target)
+//	}
+	
+//	override func cancelOperation(_ sender: Any?) {
+//		return
+//	}
+}
