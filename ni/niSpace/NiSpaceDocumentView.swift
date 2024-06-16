@@ -20,7 +20,7 @@ class NiSpaceDocumentView: NSView{
 	init(height: CGFloat? = nil){
 		var frameSize = NSRect()
 		
-		let window = NSApplication.shared.keyWindow!
+		let window = NSApplication.shared.mainWindow!
 		frameSize.size.width = window.frame.width
 		
 		if(height == nil){
@@ -34,7 +34,7 @@ class NiSpaceDocumentView: NSView{
 	
     required init(coder: NSCoder) {
         super.init(coder: coder)!
-        let window = NSApplication.shared.keyWindow
+        let window = NSApplication.shared.mainWindow
 		if(window != nil){
 			self.frame.size.height = window!.frame.height * (1+EMPTYSPACEFACTOR)
 		}
@@ -48,7 +48,7 @@ class NiSpaceDocumentView: NSView{
 		//otherwise we reposition the ContentFrames within the document
 		self.allowSubViewResize = false
 		
-        let window = NSApplication.shared.keyWindow!
+        let window = NSApplication.shared.mainWindow!
         self.frame.size.height += window.frame.height * EMPTYSPACEFACTOR
     }
 	

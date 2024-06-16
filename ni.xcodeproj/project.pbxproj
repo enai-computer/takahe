@@ -54,6 +54,7 @@
 		CD5B153A2BDFBFE40030F017 /* NiActionImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5B15392BDFBFE40030F017 /* NiActionImage.swift */; };
 		CD5F7DFD2C19E9B000ADC860 /* NiPaletteWindowDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5F7DFC2C19E9B000ADC860 /* NiPaletteWindowDelegate.swift */; };
 		CD5F7DFF2C1EF06300ADC860 /* DataModelUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5F7DFE2C1EF06300ADC860 /* DataModelUtils.swift */; };
+		CD5F7E012C1EFE7300ADC860 /* SearchViewTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5F7E002C1EFE7300ADC860 /* SearchViewTextField.swift */; };
 		CD6317E12BC3F11000434D56 /* NiUserInputError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6317E02BC3F11000434D56 /* NiUserInputError.swift */; };
 		CD6317E32BC3F18300434D56 /* NiBadTypeError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6317E22BC3F18300434D56 /* NiBadTypeError.swift */; };
 		CD6317EC2BC4852300434D56 /* soehne-dreiviertelfett.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CD6317E82BC4852300434D56 /* soehne-dreiviertelfett.ttf */; };
@@ -181,6 +182,7 @@
 		CD5B15392BDFBFE40030F017 /* NiActionImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiActionImage.swift; sourceTree = "<group>"; };
 		CD5F7DFC2C19E9B000ADC860 /* NiPaletteWindowDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiPaletteWindowDelegate.swift; sourceTree = "<group>"; };
 		CD5F7DFE2C1EF06300ADC860 /* DataModelUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModelUtils.swift; sourceTree = "<group>"; };
+		CD5F7E002C1EFE7300ADC860 /* SearchViewTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewTextField.swift; sourceTree = "<group>"; };
 		CD6317E02BC3F11000434D56 /* NiUserInputError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiUserInputError.swift; sourceTree = "<group>"; };
 		CD6317E22BC3F18300434D56 /* NiBadTypeError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiBadTypeError.swift; sourceTree = "<group>"; };
 		CD6317E82BC4852300434D56 /* soehne-dreiviertelfett.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "soehne-dreiviertelfett.ttf"; sourceTree = "<group>"; };
@@ -583,6 +585,7 @@
 				CDD7D33E2C19924F0038E6F9 /* NiSearchResultViewItem.swift */,
 				CDD7D33F2C19924F0038E6F9 /* NiSearchResultViewItem.xib */,
 				CDD7D3462C19986F0038E6F9 /* NiSearchResultViewItemRightIcon.swift */,
+				CD5F7E002C1EFE7300ADC860 /* SearchViewTextField.swift */,
 			);
 			path = niSearchView;
 			sourceTree = "<group>";
@@ -811,6 +814,7 @@
 				CDD7D3402C19924F0038E6F9 /* NiSearchResultViewItem.swift in Sources */,
 				CD06A9BA2BF79EF500312256 /* NiScroller.swift in Sources */,
 				CD781E752C0E1B6E00D02F55 /* NiNoteView.swift in Sources */,
+				CD5F7E012C1EFE7300ADC860 /* SearchViewTextField.swift in Sources */,
 				CD7578372BBDA98700293930 /* ContentFrameHeadView.swift in Sources */,
 				CD33621F2BFE0DD0004DBAFB /* CFSoftDeletedView.swift in Sources */,
 				CDD7D3362C198A930038E6F9 /* NiPalette.swift in Sources */,
