@@ -53,6 +53,7 @@
 		CD5A04D12BEA78E4004CC3AA /* CFBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5A04D02BEA78E4004CC3AA /* CFBaseView.swift */; };
 		CD5B153A2BDFBFE40030F017 /* NiActionImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5B15392BDFBFE40030F017 /* NiActionImage.swift */; };
 		CD5F7DFD2C19E9B000ADC860 /* NiPaletteWindowDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5F7DFC2C19E9B000ADC860 /* NiPaletteWindowDelegate.swift */; };
+		CD5F7DFF2C1EF06300ADC860 /* DataModelUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5F7DFE2C1EF06300ADC860 /* DataModelUtils.swift */; };
 		CD6317E12BC3F11000434D56 /* NiUserInputError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6317E02BC3F11000434D56 /* NiUserInputError.swift */; };
 		CD6317E32BC3F18300434D56 /* NiBadTypeError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6317E22BC3F18300434D56 /* NiBadTypeError.swift */; };
 		CD6317EC2BC4852300434D56 /* soehne-dreiviertelfett.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CD6317E82BC4852300434D56 /* soehne-dreiviertelfett.ttf */; };
@@ -179,6 +180,7 @@
 		CD5A04D02BEA78E4004CC3AA /* CFBaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CFBaseView.swift; sourceTree = "<group>"; };
 		CD5B15392BDFBFE40030F017 /* NiActionImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiActionImage.swift; sourceTree = "<group>"; };
 		CD5F7DFC2C19E9B000ADC860 /* NiPaletteWindowDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiPaletteWindowDelegate.swift; sourceTree = "<group>"; };
+		CD5F7DFE2C1EF06300ADC860 /* DataModelUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModelUtils.swift; sourceTree = "<group>"; };
 		CD6317E02BC3F11000434D56 /* NiUserInputError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiUserInputError.swift; sourceTree = "<group>"; };
 		CD6317E22BC3F18300434D56 /* NiBadTypeError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiBadTypeError.swift; sourceTree = "<group>"; };
 		CD6317E82BC4852300434D56 /* soehne-dreiviertelfett.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "soehne-dreiviertelfett.ttf"; sourceTree = "<group>"; };
@@ -439,6 +441,7 @@
 				CD1853162C09D623001FE566 /* DoubleUtils.swift */,
 				CD1853182C09EA96001FE566 /* PasteboardUtils.swift */,
 				CDD7D3482C19AD7D0038E6F9 /* NSPanelUtils.swift */,
+				CD5F7DFE2C1EF06300ADC860 /* DataModelUtils.swift */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -769,6 +772,7 @@
 				A1F33E2E2AB7299500E2E7CD /* DefaultWindow.swift in Sources */,
 				CDB06B612AF84E1F008DB8FF /* NiSpaceDocumentView.swift in Sources */,
 				CDD6B9432B16A14300C6144D /* ContentTable.swift in Sources */,
+				CD5F7DFF2C1EF06300ADC860 /* DataModelUtils.swift in Sources */,
 				CDE76C1C2BC6989000CE9513 /* TabViewModel.swift in Sources */,
 				CD04974C2C120ABE00C44021 /* CFGroupButton.swift in Sources */,
 				CDD6B9402B169F7700C6144D /* DocumentTable.swift in Sources */,
