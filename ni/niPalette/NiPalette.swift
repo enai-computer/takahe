@@ -61,6 +61,7 @@ class NiPalette: NSPanel, NiSearchWindowProtocol {
 	
 	private func setBlurOnMainWindow(_ mainWindow: NSWindow){
 		blurView = NSView(frame: mainWindow.frame)
+		blurView?.frame.origin = CGPoint(x: 0.0, y: 0.0)
 		blurView!.wantsLayer = true
 		blurView!.layer?.backgroundColor = NSColor.clear.cgColor
 		blurView!.layer?.masksToBounds = true
