@@ -129,10 +129,8 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	}
 	
 	private func loadAndDisplayDropdownMenu(){
-		let menuOrigin = positionDropdownMenu()
 		var editNameItem: NiMenuItemViewModel? = nil
 		var optionalMenuItem: NiMenuItemViewModel? = nil
-		var adjustOrigin = true
 		if(viewState == .expanded){
 			editNameItem = expandedCFView!.cfGroupButton.getNameTileMenuItem()
 			optionalMenuItem = expandedCFView!.cfGroupButton.getRemoveTitleMenuItem()
@@ -140,40 +138,49 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 			let minimizedView = self.view as! CFMinimizedView
 			editNameItem = minimizedView.cfGroupButton.getNameTileMenuItem()
 			optionalMenuItem = minimizedView.cfGroupButton.getRemoveTitleMenuItem()
-			adjustOrigin = false
 		}
 		
 		let items = [ editNameItem, optionalMenuItem,
-			NiMenuItemViewModel(title: "Pin to the menu", isEnabled: false, mouseDownFunction: nil),
-			NiMenuItemViewModel(title: "Move to another space", isEnabled: false, mouseDownFunction: nil)
+			NiMenuItemViewModel(title: "Pin to the menu (soon)", isEnabled: false, mouseDownFunction: nil),
+			NiMenuItemViewModel(title: "Move to another space (soon)", isEnabled: false, mouseDownFunction: nil)
 		]
+		let (menuOrigin, popsDownwards) = positionDropdownMenu(NiMenuWindow.calcSize(items.count).height)
 		let menuWin = NiMenuWindow(
 			origin: menuOrigin,
 			dirtyMenuItems: items,
 			currentScreen: view.window!.screen!,
-			adjustOrigin: adjustOrigin
+			adjustOrigin: popsDownwards
 		)
 		menuWin.makeKeyAndOrderFront(nil)
 	}
 	
-	private func positionDropdownMenu() -> NSPoint {
+	private func positionDropdownMenu(_ predictedHight: CGFloat) -> (NSPoint, Bool) {
 		if(viewState == .expanded){
 			if let refernceView = expandedCFView {
 				let pInView = NSPoint(
 					x: refernceView.cfHeadView.frame.origin.x + (refernceView.cfGroupButton.frame.origin.x),
 					y: refernceView.cfHeadView.frame.origin.y + 16.0)
-				return self.view.convert(pInView, to: view.window?.contentView)
+				return (self.view.convert(pInView, to: view.window?.contentView), true)
 			}
 		}else if(viewState == .minimised){
 			if let minimizedView = self.view as? CFMinimizedView{
 				var pInView = minimizedView.frame.origin
 				pInView.x -= 7.0
 				pInView.y += 13.0
-				return self.view.superview!.convert(pInView, to: view.window?.contentView)
+				let globalPointUp = self.view.superview!.convert(pInView, to: view.window?.contentView)
+				
+				//pops up out of bounds/ opens downwards
+				if(view.superview!.visibleRect.maxY < (globalPointUp.y + predictedHight)){
+					pInView = minimizedView.frame.origin
+					pInView.y += 30.0
+					return (self.view.superview!.convert(pInView, to: view.window?.contentView), true)
+				}else{
+					return (globalPointUp, false)
+				}
 			}
 		}
 		
-		return NSPoint(x: 0.0, y: 0.0)
+		return (NSPoint(x: 0.0, y: 0.0), false)
 	}
 	
 	/*
