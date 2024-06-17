@@ -27,6 +27,7 @@ class NiSearchController: NSViewController, NSCollectionViewDataSource, NSCollec
 		view.wantsLayer = true
 		stlyeSearchField()
 		stlyeSearchFieldBox()
+		styleSearchResultsScrollContainer()
 		updateResultSet()
     }
 	
@@ -43,8 +44,16 @@ class NiSearchController: NSViewController, NSCollectionViewDataSource, NSCollec
 		searchFieldBox.layer?.cornerCurve = .continuous
 	}
 	
+	private func styleSearchResultsScrollContainer(){
+		searchResultsScrollContainer.wantsLayer = true
+		searchResultsScrollContainer.layer?.backgroundColor = NSColor.sand8T20.cgColor
+		searchResultsScrollContainer.layer?.cornerRadius = 4.0
+		searchResultsScrollContainer.layer?.cornerCurve = .continuous
+	}
+	
 	private func updateResultSet(){
 		searchResults = Cook.instance.searchSpaces(typedChars: nil, excludeWelcomeSpaceGeneration: false)
+		searchResultsCollection.reloadData()
 		resetSelection()
 	}
 	
@@ -114,6 +123,10 @@ class NiSearchController: NSViewController, NSCollectionViewDataSource, NSCollec
 			selectedItem.select()
 		}
 		selectedPosition = 0
+		
+		if(6 < searchResults.count){
+			searchResultsCollection.scrollToItems(at: Set(arrayLiteral: IndexPath(item: selectedPosition, section: 0)), scrollPosition: .centeredVertically)
+		}
 	}
 	
 	private func moveSelection(direction: LinkedListDirection){
@@ -177,6 +190,7 @@ class NiSearchController: NSViewController, NSCollectionViewDataSource, NSCollec
 			}
 		}
 		searchField.stringValue = ""
+		updateResultSet()
 	}
     
 }

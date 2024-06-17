@@ -94,6 +94,7 @@
 		CDABE64C2C11C5BC00BB4E85 /* NiMenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDABE64B2C11C5BC00BB4E85 /* NiMenuView.xib */; };
 		CDABE64E2C11C63500BB4E85 /* NiMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDABE64D2C11C63500BB4E85 /* NiMenuView.swift */; };
 		CDB06B612AF84E1F008DB8FF /* NiSpaceDocumentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB06B602AF84E1F008DB8FF /* NiSpaceDocumentView.swift */; };
+		CDB549D12C2020C90038FB30 /* NiSearchViewScroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB549D02C2020C90038FB30 /* NiSearchViewScroller.swift */; };
 		CDD6B9392B152A8000C6144D /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD6B9382B152A8000C6144D /* Storage.swift */; };
 		CDD6B93E2B152D3F00C6144D /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = CDD6B93D2B152D3F00C6144D /* SQLite */; };
 		CDD6B9402B169F7700C6144D /* DocumentTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD6B93F2B169F7700C6144D /* DocumentTable.swift */; };
@@ -222,6 +223,7 @@
 		CDABE64B2C11C5BC00BB4E85 /* NiMenuView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NiMenuView.xib; sourceTree = "<group>"; };
 		CDABE64D2C11C63500BB4E85 /* NiMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiMenuView.swift; sourceTree = "<group>"; };
 		CDB06B602AF84E1F008DB8FF /* NiSpaceDocumentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiSpaceDocumentView.swift; sourceTree = "<group>"; };
+		CDB549D02C2020C90038FB30 /* NiSearchViewScroller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiSearchViewScroller.swift; sourceTree = "<group>"; };
 		CDBC33F82BDBC896000EEF3D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		CDD6B9382B152A8000C6144D /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		CDD6B93F2B169F7700C6144D /* DocumentTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentTable.swift; sourceTree = "<group>"; };
@@ -586,6 +588,7 @@
 				CDD7D33F2C19924F0038E6F9 /* NiSearchResultViewItem.xib */,
 				CDD7D3462C19986F0038E6F9 /* NiSearchResultViewItemRightIcon.swift */,
 				CD5F7E002C1EFE7300ADC860 /* SearchViewTextField.swift */,
+				CDB549D02C2020C90038FB30 /* NiSearchViewScroller.swift */,
 			);
 			path = niSearchView;
 			sourceTree = "<group>";
@@ -785,6 +788,7 @@
 				CDD6B9392B152A8000C6144D /* Storage.swift in Sources */,
 				CDD7D3472C19986F0038E6F9 /* NiSearchResultViewItemRightIcon.swift in Sources */,
 				CD42CEC92BDA48180039814D /* NiScrollView.swift in Sources */,
+				CDB549D12C2020C90038FB30 /* NiSearchViewScroller.swift in Sources */,
 				CDD7D3392C198BBE0038E6F9 /* NiSearchController.swift in Sources */,
 				CDA639582BF508FF001941DE /* WelcomeSpaceGenerator.swift in Sources */,
 				CDFA8CFF2C04815C00882722 /* EventUtils.swift in Sources */,
