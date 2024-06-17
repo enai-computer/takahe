@@ -32,7 +32,7 @@ class NiPalette: NSPanel {
 		
 		titleVisibility = .hidden
 		titlebarAppearsTransparent = true
-//		delegate = niDelegate
+		delegate = niDelegate
 		contentViewController = NiPaletteContentController(paletteSize: paletteRect.size)
 		
 		hasShadow = false
