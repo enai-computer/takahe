@@ -263,7 +263,7 @@ class NiSpaceViewController: NSViewController{
 				viewState: .frameless,
 				initialTabType: .note,
 				positioned: NSPoint(x: 30.0, y: 90.0),
-				size: CGSize(width: 650.0, height: 370.0),
+				size: CGSize(width: 540.0, height: 460.0),
 				content: message
 			)
 		}
