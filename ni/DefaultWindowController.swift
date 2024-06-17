@@ -20,7 +20,7 @@ class DefaultWindowController: NSWindowController, NSWindowDelegate{
 	}
 	
 	func windowDidEnterFullScreen(_ notification: Notification){
-		let homeView = NiHomeWindow(windowToAppearOn: window!)
+		let homeView = NiHomeWindow(windowToAppearOn: self.window!)
 		homeView.makeKeyAndOrderFront(nil)
 	}
 	

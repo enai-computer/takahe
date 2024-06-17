@@ -10,6 +10,7 @@
             <connections>
                 <outlet property="leftSide" destination="8gY-Mf-CWh" id="9Iz-Oq-cbZ"/>
                 <outlet property="rightSide" destination="yGh-k4-h8P" id="yLB-Md-Jww"/>
+                <outlet property="time" destination="Ncd-cK-ofU" id="TmJ-eu-hfA"/>
                 <outlet property="view" destination="GZf-Vp-zmU" id="yuT-SM-gLc"/>
                 <outlet property="welcomeTxt" destination="ERP-Od-vPj" id="50k-hX-hFu"/>
             </connections>
@@ -27,7 +28,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="598" height="900"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ERP-Od-vPj">
+                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ERP-Od-vPj">
                                 <rect key="frame" x="98" y="611" width="400" height="36"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" refusesFirstResponder="YES" allowsUndo="NO" alignment="right" title="Good morning, Alice" id="ieM-7X-FTC">
@@ -41,6 +42,17 @@
                     <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yGh-k4-h8P" userLabel="right side">
                         <rect key="frame" x="598" y="0.0" width="1002" height="900"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" textCompletion="NO" contentType="date-time" translatesAutoresizingMaskIntoConstraints="NO" id="Ncd-cK-ofU">
+                                <rect key="frame" x="890" y="20" width="80" height="24"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" refusesFirstResponder="YES" allowsUndo="NO" alignment="right" title="10:00 am" id="q0I-Dy-J22">
+                                    <font key="font" size="18" name="Sohne-Buch"/>
+                                    <color key="textColor" name="sand12"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
                     </customView>
                 </subviews>
             </view>
@@ -52,6 +64,9 @@
     <resources>
         <namedColor name="sand11">
             <color red="0.4392156862745098" green="0.43529411764705883" blue="0.42352941176470588" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="sand12">
+            <color red="0.10588235294117647" green="0.10588235294117647" blue="0.094117647058823528" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="transparent">
             <color red="1" green="1" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
