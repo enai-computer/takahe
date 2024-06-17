@@ -17,12 +17,11 @@ class NiHomeWindow: NSPanel, NiSearchWindowProtocol{
 
 	init(windowToAppearOn: NSWindow){
 		let homeViewRect = NiHomeWindow.calcHomeViewRect(windowToAppearOn.frame.size)
-		let frameRect = NSPanel.rectForScreen(windowToAppearOn.frame, screen: windowToAppearOn.screen!)
-		
+
 		niDelegate = NiHomeWindowDelegate()
 		
 		super.init(
-			contentRect: frameRect,
+			contentRect: windowToAppearOn.frame,
 			styleMask: .borderless,
 			backing: .buffered,
 			defer: true
