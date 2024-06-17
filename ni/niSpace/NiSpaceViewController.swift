@@ -98,23 +98,11 @@ class NiSpaceViewController: NSViewController{
 	}
     
 	func returnToHome(saveCurrentSpace: Bool = true) {
-		//already at home
-		if(homeViewShown){
-			return
-		}
 		if(saveCurrentSpace){
 			storeCurrentSpace()
 		}
-		niDocument.myView.isHidden = true
-//		let hostingController = HomeViewController(presentingController: self)
-//		hostingController.show(animate: saveCurrentSpace)
-//		let homeView = NiHomeWindow()
-//		homeView.makeKeyAndOrderFront(nil)
-	}
-	
-	func returnToHomeAndForceReload(){
-		returnToHome()
-		spaceLoaded = false
+		let	palette = NiPalette()
+		palette.makeKeyAndOrderFront(nil)
 	}
 	
 	func openEmptyCF(){
