@@ -16,7 +16,7 @@
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
-        <box boxType="custom" borderWidth="0.0" title="HomeView" titlePosition="noTitle" id="GZf-Vp-zmU">
+        <box wantsLayer="YES" boxType="custom" borderWidth="0.0" title="HomeView" titlePosition="noTitle" id="GZf-Vp-zmU">
             <rect key="frame" x="0.0" y="0.0" width="1600" height="900"/>
             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
             <view key="contentView" id="Nho-ab-NVK">
@@ -24,11 +24,11 @@
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
                     <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8gY-Mf-CWh" userLabel="left side">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="900"/>
+                        <rect key="frame" x="0.0" y="0.0" width="598" height="900"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ERP-Od-vPj">
-                                <rect key="frame" x="100" y="611" width="400" height="36"/>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ERP-Od-vPj">
+                                <rect key="frame" x="98" y="611" width="400" height="36"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" refusesFirstResponder="YES" allowsUndo="NO" alignment="right" title="Good morning, Alice" id="ieM-7X-FTC">
                                     <font key="font" size="28" name="Sohne-Kraftig"/>
@@ -39,7 +39,7 @@
                         </subviews>
                     </customView>
                     <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yGh-k4-h8P" userLabel="right side">
-                        <rect key="frame" x="600" y="0.0" width="1000" height="900"/>
+                        <rect key="frame" x="598" y="0.0" width="1002" height="900"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" heightSizable="YES"/>
                     </customView>
                 </subviews>

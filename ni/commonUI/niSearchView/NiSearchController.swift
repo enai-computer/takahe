@@ -67,7 +67,7 @@ class NiSearchController: NSViewController, NSCollectionViewDataSource, NSCollec
 		}else if(style == .homeView){
 			searchField.placeholderAttributedString = NSAttributedString(string: "What would you like to do?", attributes: attrs as [NSAttributedString.Key : Any])
 		}
-
+		searchField.focusRingType = .none
 	}
 	
 	private func stlyeSearchFieldBox(){
