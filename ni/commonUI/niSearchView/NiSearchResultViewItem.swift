@@ -14,12 +14,15 @@ class NiSearchResultViewItem: NSCollectionViewItem {
 	
 	private var spaceId: UUID?
 	private var keySelected: Bool = false
+	private var birkinHighlight: NSView? = nil
 	
     override func viewDidLoad() {
         super.viewDidLoad()
         
 		view.wantsLayer = true
 		view.layer?.backgroundColor = NSColor.sand1T80.cgColor
+		view.layer?.cornerCurve = .continuous
+		view.layer?.cornerRadius = 4.0
 		
 		let hoverEffectTrackingArea = NSTrackingArea(rect: view.frame, options: [.mouseEnteredAndExited, .activeInKeyWindow], owner: self, userInfo: nil)
 		view.addTrackingArea(hoverEffectTrackingArea)
@@ -38,16 +41,17 @@ class NiSearchResultViewItem: NSCollectionViewItem {
 	}
 	
 	func select(){
-//		NSColor.birkin.setFill()
-//		let r = NSRect(origin: NSPoint(x: 0.0, y: 0.0), size: CGSize(width: 20, height: view.frame.height))
-//		r.fill()
+		birkinHighlight = getBirkinView()
+		view.addSubview(birkinHighlight!)
 		keySelected = true
-		view.layer?.backgroundColor = NSColor.birkinLight.cgColor
+		view.layer?.backgroundColor = NSColor.sand1.cgColor
 		resultTitle.textColor = NSColor.sand12
 		rightSideElement.select()
 	}
 	
 	func deselect(){
+		birkinHighlight?.removeFromSuperview()
+		birkinHighlight = nil
 		keySelected = false
 		view.layer?.backgroundColor = NSColor.sand1T80.cgColor
 		resultTitle.textColor = NSColor.sand115
@@ -62,8 +66,9 @@ class NiSearchResultViewItem: NSCollectionViewItem {
 		if(spaceId == nil){return}
 		if let spaceViewController = NSApplication.shared.mainWindow?.contentViewController as? NiSpaceViewController{
 			if(spaceId == NiSpaceDocumentController.EMPTY_SPACE_ID){
-				//TODO: fetch name from textField
-//				spaceViewController.createSpace(name: )
+				if let spaceName = getEnteredSearchText()?.trimmingCharacters(in: .whitespaces){
+					spaceViewController.createSpace(name: spaceName)
+				}
 			}else{
 				spaceViewController.loadSpace(niSpaceID: spaceId!, name: resultTitle.stringValue)
 			}
@@ -71,6 +76,17 @@ class NiSearchResultViewItem: NSCollectionViewItem {
 		if let paletteWindow = view.window as? NiPalette{
 			paletteWindow.removeSelf()
 		}
+	}
+	
+	private func getEnteredSearchText() -> String?{
+		var nxtResp = nextResponder
+		while nxtResp != nil{
+			if let searchCont = nxtResp as? NiSearchController {
+				return searchCont.searchField.stringValue
+			}
+			nxtResp = nxtResp?.nextResponder
+		}
+		return nil
 	}
 	
 	override func mouseExited(with event: NSEvent) {
@@ -83,5 +99,13 @@ class NiSearchResultViewItem: NSCollectionViewItem {
 		if(keySelected){return}
 		view.layer?.backgroundColor = NSColor.sand1.cgColor
 		resultTitle.textColor = NSColor.sand12
+	}
+	
+	private func getBirkinView() -> NSView{
+		let birkinFrame = NSRect(origin: NSPoint(x: 0.0, y: 0.0), size: CGSize(width: 4, height: view.frame.height))
+		let birkinRect = NSView(frame: birkinFrame)
+		birkinRect.wantsLayer = true
+		birkinRect.layer?.backgroundColor = NSColor.birkin.cgColor
+		return birkinRect
 	}
 }

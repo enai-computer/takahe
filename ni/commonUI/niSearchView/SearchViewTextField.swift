@@ -19,7 +19,14 @@ class SearchViewTextField: NSTextField{
 //		super.sendAction(action, to: target)
 //	}
 	
-//	override func cancelOperation(_ sender: Any?) {
-//		return
-//	}
+	override func cancelOperation(_ sender: Any?) {
+		var nxtResp = nextResponder
+		while nxtResp != nil{
+			if(nxtResp is NiSearchController){
+				nxtResp?.cancelOperation(sender)
+				return
+			}
+			nxtResp = nxtResp?.nextResponder
+		}
+	}
 }
