@@ -17,7 +17,7 @@ class DefaultWindowController: NSWindowController, NSWindowDelegate{
 //		for family: String in NSFontManager.shared.availableFonts{
 //			print(family)
 //		}
-    }
+	}
 	
 	func windowDidEnterFullScreen(_ notification: Notification){
 		let homeView = NiHomeWindow(windowToAppearOn: window!)

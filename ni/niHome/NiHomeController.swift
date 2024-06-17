@@ -45,20 +45,30 @@ class NiHomeController: NSViewController {
 		positionAndDisplaySearchView()
 	}
 	
+	override func viewDidLayout() {
+		super.viewDidLayout()
+		self.addShadow()
+	}
+	
 	private func styleHomeView(){
 		view.layer?.cornerCurve = .continuous
 		view.layer?.cornerRadius = 30.0
 		view.layer?.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
-		
-		view.layer?.shadowColor = NSColor.sand11.cgColor
-		view.layer?.shadowOffset = CGSize(width: 0.0, height: 0.0)
-		view.layer?.shadowOpacity = 0.15
-		view.layer?.shadowRadius = 4.0
-		view.layer?.shadowPath = roundedCornersPath(in: view.bounds,
+		view.layer?.masksToBounds = true
+	}
+	
+	private func addShadow(){
+		let shadowView = RoundedRectView(frame: viewFrame)
+		shadowView.wantsLayer = true
+		shadowView.clipsToBounds = false
+		shadowView.layer?.shadowColor = NSColor.sand11.cgColor
+		shadowView.layer?.shadowOffset = CGSize(width: 0.0, height: 0.0)
+		shadowView.layer?.shadowOpacity = 0.15
+		shadowView.layer?.shadowRadius = 4.0
+		shadowView.layer?.shadowPath = roundedCornersPath(in: view.bounds,
 													having: [.bottomLeft, .bottomRight],
 													with: 30.0)
-		
-		self.dropShadow2 = CALayer(layer: self.view.layer!)
+		self.dropShadow2 = CALayer(layer: shadowView.layer!)
 		self.dropShadow2.shadowPath = NSBezierPath(rect: view.bounds).cgPath
 		self.dropShadow2.shadowColor = NSColor.sand11.cgColor
 		self.dropShadow2.shadowOffset = CGSize(width: 2.0, height: -4.0)
@@ -66,7 +76,8 @@ class NiHomeController: NSViewController {
 		self.dropShadow2.shadowRadius = 10.0
 		self.dropShadow2.masksToBounds = false
 
-		view.layer?.insertSublayer(self.dropShadow2, at: 0)
+		shadowView.layer?.insertSublayer(self.dropShadow2, at: 0)
+		self.view.superview?.addSubview(shadowView, positioned: .below, relativeTo: self.view)
 	}
 	
 	private func positionAndDisplaySearchView(){
@@ -80,7 +91,7 @@ class NiHomeController: NSViewController {
 	}
 	
 	private func setWelcomeMessage(){
-		welcomeTxt.stringValue = "\(getWelcomeMessage()) \(NSUserName())"
+		welcomeTxt.stringValue = "\(getWelcomeMessage()), \(NSUserName())"
 	}
 	
 	private func styleLeftSide(){
