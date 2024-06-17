@@ -58,8 +58,11 @@ class NiSpaceViewController: NSViewController{
 		super.viewDidAppear()
 		
 		if(!spaceLoaded){
-			let hostingController = HomeViewController(presentingController: self)
-			hostingController.show()
+//			let hostingController = HomeViewController(presentingController: self)
+//			hostingController.show()
+			let sc = view.window!.screen!
+			let homeView = NiHomeWindow(screenToAppearOn: sc)
+			homeView.makeKeyAndOrderFront(nil)
 		}
 	}
  
@@ -111,8 +114,10 @@ class NiSpaceViewController: NSViewController{
 			storeCurrentSpace()
 		}
 		niDocument.myView.isHidden = true
-		let hostingController = HomeViewController(presentingController: self)
-		hostingController.show(animate: saveCurrentSpace)
+//		let hostingController = HomeViewController(presentingController: self)
+//		hostingController.show(animate: saveCurrentSpace)
+//		let homeView = NiHomeWindow()
+//		homeView.makeKeyAndOrderFront(nil)
 	}
 	
 	func returnToHomeAndForceReload(){
