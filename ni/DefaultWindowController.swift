@@ -20,16 +20,19 @@ class DefaultWindowController: NSWindowController, NSWindowDelegate{
     }
 	
 	func windowDidChangeScreen(_ notification: Notification) {
-		guard let windowObj = notification.object as? NSWindow else{return}
+//		guard let windowObj = notification.object as? NSWindow else{return}
+//		
+//		if(prevScreenSize != windowObj.frame.size){
+////			print("screen size changed, from: \(prevScreenSize) to \(windowObj.frame.size)")
+//			if(prevScreenSize != nil && prevScreenSize!.width != windowObj.frame.size.width){
+//				guard let spaceViewController = contentViewController as? NiSpaceViewController else {return}
+//				spaceViewController.returnToHomeAndForceReload()
+//			}
+//			prevScreenSize = windowObj.frame.size
+//		}
 		
-		if(prevScreenSize != windowObj.frame.size){
-//			print("screen size changed, from: \(prevScreenSize) to \(windowObj.frame.size)")
-			if(prevScreenSize != nil && prevScreenSize!.width != windowObj.frame.size.width){
-				guard let spaceViewController = contentViewController as? NiSpaceViewController else {return}
-				spaceViewController.returnToHomeAndForceReload()
-			}
-			prevScreenSize = windowObj.frame.size
-		}
+		let homeView = NiHomeWindow(windowToAppearOn: window!)
+		homeView.makeKeyAndOrderFront(nil)
 	}
 
 	func windowWillClose(_ notification: Notification) {

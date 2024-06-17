@@ -8,7 +8,7 @@
 import Cocoa
 import Carbon.HIToolbox
 
-class NiPalette: NSPanel {
+class NiPalette: NSPanel, NiSearchWindowProtocol {
 	
 	private let niDelegate: NiPaletteWindowDelegate
 	override var canBecomeKey: Bool {return true}
