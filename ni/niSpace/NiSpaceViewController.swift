@@ -56,14 +56,6 @@ class NiSpaceViewController: NSViewController{
 	
 	override func viewDidAppear() {
 		super.viewDidAppear()
-		
-		if(!spaceLoaded){
-//			let hostingController = HomeViewController(presentingController: self)
-//			hostingController.show()
-			let sc = view.window!.screen!
-			let homeView = NiHomeWindow(screenToAppearOn: sc)
-			homeView.makeKeyAndOrderFront(nil)
-		}
 	}
  
 	@IBAction func paste(_ sender: NSMenuItem){

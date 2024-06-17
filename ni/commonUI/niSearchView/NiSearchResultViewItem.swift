@@ -73,7 +73,7 @@ class NiSearchResultViewItem: NSCollectionViewItem {
 				spaceViewController.loadSpace(niSpaceID: spaceId!, name: resultTitle.stringValue)
 			}
 		}
-		if let paletteWindow = view.window as? NiPalette{
+		if let paletteWindow = view.window as? NiSearchWindowProtocol{
 			paletteWindow.removeSelf()
 		}
 	}
