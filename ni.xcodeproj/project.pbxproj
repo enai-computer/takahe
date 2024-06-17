@@ -122,6 +122,7 @@
 		CDF0DD222C202BCD006C4EF4 /* NiHomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF0DD212C202BCD006C4EF4 /* NiHomeController.swift */; };
 		CDF0DD242C202BDB006C4EF4 /* NiHomeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDF0DD232C202BDB006C4EF4 /* NiHomeView.xib */; };
 		CDF0DD262C2045C8006C4EF4 /* NiSearchWindowProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF0DD252C2045C8006C4EF4 /* NiSearchWindowProtocol.swift */; };
+		CDF0DD282C20549F006C4EF4 /* NiEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF0DD272C20549F006C4EF4 /* NiEmptyView.swift */; };
 		CDFA8CFB2C03B9AE00882722 /* CFFramelessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDFA8CFA2C03B9AE00882722 /* CFFramelessView.swift */; };
 		CDFA8CFD2C03B9D000882722 /* CFFramelessView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDFA8CFC2C03B9D000882722 /* CFFramelessView.xib */; };
 		CDFA8CFF2C04815C00882722 /* EventUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDFA8CFE2C04815C00882722 /* EventUtils.swift */; };
@@ -256,6 +257,7 @@
 		CDF0DD212C202BCD006C4EF4 /* NiHomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiHomeController.swift; sourceTree = "<group>"; };
 		CDF0DD232C202BDB006C4EF4 /* NiHomeView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NiHomeView.xib; sourceTree = "<group>"; };
 		CDF0DD252C2045C8006C4EF4 /* NiSearchWindowProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiSearchWindowProtocol.swift; sourceTree = "<group>"; };
+		CDF0DD272C20549F006C4EF4 /* NiEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiEmptyView.swift; sourceTree = "<group>"; };
 		CDFA8CFA2C03B9AE00882722 /* CFFramelessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CFFramelessView.swift; sourceTree = "<group>"; };
 		CDFA8CFC2C03B9D000882722 /* CFFramelessView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CFFramelessView.xib; sourceTree = "<group>"; };
 		CDFA8CFE2C04815C00882722 /* EventUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventUtils.swift; sourceTree = "<group>"; };
@@ -456,6 +458,7 @@
 				CD1853182C09EA96001FE566 /* PasteboardUtils.swift */,
 				CDD7D3482C19AD7D0038E6F9 /* NSPanelUtils.swift */,
 				CD5F7DFE2C1EF06300ADC860 /* DataModelUtils.swift */,
+				CDF0DD272C20549F006C4EF4 /* NiEmptyView.swift */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -846,6 +849,7 @@
 				CD6752A12BFB56DC0008A227 /* NiSpaceMenuView.swift in Sources */,
 				A14E8F272AD5EAF800409DDF /* NiSpaceView.swift in Sources */,
 				CD5A04CD2BEA3CD0004CC3AA /* CFMinimizedStackItem.swift in Sources */,
+				CDF0DD282C20549F006C4EF4 /* NiEmptyView.swift in Sources */,
 				CD1853172C09D623001FE566 /* DoubleUtils.swift in Sources */,
 				CD19BC992BC81A46002AF14E /* PredictiveTextFieldView.swift in Sources */,
 				CD1853132C08D972001FE566 /* FaviconCacheTable.swift in Sources */,

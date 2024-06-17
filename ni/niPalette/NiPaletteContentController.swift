@@ -14,7 +14,7 @@ class NiPaletteContentController: NSViewController{
 	
 	init(paletteSize: NSSize) {
 		self.paletteSize = paletteSize
-		searchController = NiSearchController(nibName: NSNib.Name("NiSearchView"), bundle: Bundle.main)
+		searchController = NiSearchController(style: .palette)
 		super.init(nibName: nil, bundle: nil)
 	}
 	

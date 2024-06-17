@@ -17,6 +17,8 @@ class DefaultWindowController: NSWindowController, NSWindowDelegate{
 //		for family: String in NSFontManager.shared.availableFonts{
 //			print(family)
 //		}
+		let homeView = NiHomeWindow(windowToAppearOn: window!)
+		homeView.makeKeyAndOrderFront(nil)
     }
 	
 	func windowDidChangeScreen(_ notification: Notification) {
@@ -31,8 +33,7 @@ class DefaultWindowController: NSWindowController, NSWindowDelegate{
 //			prevScreenSize = windowObj.frame.size
 //		}
 		
-		let homeView = NiHomeWindow(windowToAppearOn: window!)
-		homeView.makeKeyAndOrderFront(nil)
+
 	}
 
 	func windowWillClose(_ notification: Notification) {
