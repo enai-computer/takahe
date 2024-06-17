@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22690"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="NiHomeController" customModule="ni" customModuleProvider="target">
+            <connections>
+                <outlet property="leftSide" destination="8gY-Mf-CWh" id="9Iz-Oq-cbZ"/>
+                <outlet property="rightSide" destination="yGh-k4-h8P" id="yLB-Md-Jww"/>
+                <outlet property="time" destination="Ncd-cK-ofU" id="TmJ-eu-hfA"/>
+                <outlet property="view" destination="GZf-Vp-zmU" id="yuT-SM-gLc"/>
+                <outlet property="welcomeTxt" destination="ERP-Od-vPj" id="50k-hX-hFu"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <box wantsLayer="YES" boxType="custom" borderWidth="0.0" title="HomeView" titlePosition="noTitle" id="GZf-Vp-zmU">
+            <rect key="frame" x="0.0" y="0.0" width="1600" height="900"/>
+            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+            <view key="contentView" id="Nho-ab-NVK">
+                <rect key="frame" x="0.0" y="0.0" width="1600" height="900"/>
+                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                <subviews>
+                    <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8gY-Mf-CWh" userLabel="left side">
+                        <rect key="frame" x="0.0" y="0.0" width="598" height="900"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ERP-Od-vPj">
+                                <rect key="frame" x="98" y="611" width="400" height="36"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" refusesFirstResponder="YES" allowsUndo="NO" alignment="right" title="Good morning, Alice" id="ieM-7X-FTC">
+                                    <font key="font" size="28" name="Sohne-Kraftig"/>
+                                    <color key="textColor" name="sand11"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
+                    </customView>
+                    <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yGh-k4-h8P" userLabel="right side">
+                        <rect key="frame" x="598" y="0.0" width="1002" height="900"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" textCompletion="NO" contentType="date-time" translatesAutoresizingMaskIntoConstraints="NO" id="Ncd-cK-ofU">
+                                <rect key="frame" x="890" y="20" width="80" height="24"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" refusesFirstResponder="YES" allowsUndo="NO" alignment="right" title="10:00 am" id="q0I-Dy-J22">
+                                    <font key="font" size="18" name="Sohne-Buch"/>
+                                    <color key="textColor" name="sand12"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
+                    </customView>
+                </subviews>
+            </view>
+            <color key="borderColor" name="transparent"/>
+            <color key="fillColor" name="transparent"/>
+            <point key="canvasLocation" x="151" y="101"/>
+        </box>
+    </objects>
+    <resources>
+        <namedColor name="sand11">
+            <color red="0.4392156862745098" green="0.43529411764705883" blue="0.42352941176470588" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="sand12">
+            <color red="0.10588235294117647" green="0.10588235294117647" blue="0.094117647058823528" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="transparent">
+            <color red="1" green="1" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

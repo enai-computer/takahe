@@ -56,11 +56,6 @@ class NiSpaceViewController: NSViewController{
 	
 	override func viewDidAppear() {
 		super.viewDidAppear()
-		
-		if(!spaceLoaded){
-			let hostingController = HomeViewController(presentingController: self)
-			hostingController.show()
-		}
 	}
  
 	@IBAction func paste(_ sender: NSMenuItem){
@@ -103,21 +98,11 @@ class NiSpaceViewController: NSViewController{
 	}
     
 	func returnToHome(saveCurrentSpace: Bool = true) {
-		//already at home
-		if(homeViewShown){
-			return
-		}
 		if(saveCurrentSpace){
 			storeCurrentSpace()
 		}
-		niDocument.myView.isHidden = true
-		let hostingController = HomeViewController(presentingController: self)
-		hostingController.show(animate: saveCurrentSpace)
-	}
-	
-	func returnToHomeAndForceReload(){
-		returnToHome()
-		spaceLoaded = false
+		let	palette = NiPalette()
+		palette.makeKeyAndOrderFront(nil)
 	}
 	
 	func openEmptyCF(){

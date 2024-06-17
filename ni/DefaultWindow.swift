@@ -47,9 +47,7 @@ class DefaultWindow: NSWindow{
 	}
 	
 	override func toggleToolbarShown(_ sender: Any?) {
-		//do nothing
-		var i = 0
-		i += 1
+		return
 	}
 	
 	func handleCMD_N(){

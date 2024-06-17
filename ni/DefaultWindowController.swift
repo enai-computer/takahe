@@ -17,19 +17,15 @@ class DefaultWindowController: NSWindowController, NSWindowDelegate{
 //		for family: String in NSFontManager.shared.availableFonts{
 //			print(family)
 //		}
-    }
+	}
+	
+	func windowDidEnterFullScreen(_ notification: Notification){
+		let homeView = NiHomeWindow(windowToAppearOn: self.window!)
+		homeView.makeKeyAndOrderFront(nil)
+	}
 	
 	func windowDidChangeScreen(_ notification: Notification) {
-		guard let windowObj = notification.object as? NSWindow else{return}
-		
-		if(prevScreenSize != windowObj.frame.size){
-//			print("screen size changed, from: \(prevScreenSize) to \(windowObj.frame.size)")
-			if(prevScreenSize != nil && prevScreenSize!.width != windowObj.frame.size.width){
-				guard let spaceViewController = contentViewController as? NiSpaceViewController else {return}
-				spaceViewController.returnToHomeAndForceReload()
-			}
-			prevScreenSize = windowObj.frame.size
-		}
+		//TODO: build proper logic for resizing (& recognizing screen switiching properly :/, as the build in MAC logic get's triggered too often)
 	}
 
 	func windowWillClose(_ notification: Notification) {

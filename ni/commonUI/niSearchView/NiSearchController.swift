@@ -8,6 +8,10 @@
 import Cocoa
 import Carbon.HIToolbox
 
+enum NiSearchViewStyle{
+	case palette, homeView
+}
+
 class NiSearchController: NSViewController, NSCollectionViewDataSource, NSCollectionViewDelegateFlowLayout, NSTextFieldDelegate, NSControlTextEditingDelegate {
 
 	@IBOutlet var searchField: NSTextField!
@@ -17,6 +21,16 @@ class NiSearchController: NSViewController, NSCollectionViewDataSource, NSCollec
 	
 	private var selectedPosition: Int = 0
 	private var searchResults: [NiDocumentViewModel] = []
+	private let style: NiSearchViewStyle
+	
+	init(style: NiSearchViewStyle){
+		self.style = style
+		super.init(nibName: NSNib.Name("NiSearchView"), bundle: Bundle.main)
+	}
+	
+	required init?(coder: NSCoder) {
+		fatalError("init(coder:) has not been implemented")
+	}
 	
 	override func loadView() {
 		super.loadView()
@@ -24,17 +38,36 @@ class NiSearchController: NSViewController, NSCollectionViewDataSource, NSCollec
 	
 	override func viewDidLoad() {
         super.viewDidLoad()
-		view.wantsLayer = true
+		
+		stlyeSelf()
 		stlyeSearchField()
 		stlyeSearchFieldBox()
 		styleSearchResultsScrollContainer()
 		updateResultSet()
     }
 	
+	private func stlyeSelf(){
+		view.wantsLayer = true
+		
+		if(style == .palette){return}
+		
+		view.layer?.borderColor = NSColor.clear.cgColor
+		view.layer?.backgroundColor = NSColor.clear.cgColor
+		if let myView = view as? NSBox{
+			myView.fillColor = NSColor.clear
+			myView.borderColor = NSColor.clear
+		}
+	}
+	
 	private func stlyeSearchField(){
 		let attrs = [NSAttributedString.Key.foregroundColor: NSColor.sand11,
 					 NSAttributedString.Key.font: NSFont(name: "Sohne-Buch", size: 21.0)]
-		searchField.placeholderAttributedString = NSAttributedString(string: "What's next?", attributes: attrs as [NSAttributedString.Key : Any])
+		if(style == .palette){
+			searchField.placeholderAttributedString = NSAttributedString(string: "What's next?", attributes: attrs as [NSAttributedString.Key : Any])
+		}else if(style == .homeView){
+			searchField.placeholderAttributedString = NSAttributedString(string: "What would you like to do?", attributes: attrs as [NSAttributedString.Key : Any])
+		}
+		searchField.focusRingType = .none
 	}
 	
 	private func stlyeSearchFieldBox(){
@@ -45,6 +78,10 @@ class NiSearchController: NSViewController, NSCollectionViewDataSource, NSCollec
 	}
 	
 	private func styleSearchResultsScrollContainer(){
+		if(style == .homeView){
+			searchResultsScrollContainer.frame.size.height -= 15.0
+			return
+		}
 		searchResultsScrollContainer.wantsLayer = true
 		searchResultsScrollContainer.layer?.backgroundColor = NSColor.sand8T20.cgColor
 		searchResultsScrollContainer.layer?.cornerRadius = 4.0
@@ -164,7 +201,11 @@ class NiSearchController: NSViewController, NSCollectionViewDataSource, NSCollec
 		let viewItem = collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier("NiSearchResultViewItem"), for: indexPath)
 		guard let resultView = viewItem as? NiSearchResultViewItem else {return viewItem}
 		let dataItem = searchResults[indexPath.item]
-		resultView.configureView(dataItem.name, spaceId: dataItem.id, position: indexPath.item)
+		resultView.configureView(
+			dataItem.name,
+			spaceId: dataItem.id,
+			position: indexPath.item,
+			style: self.style)
 		
 		return resultView
 	}
@@ -179,7 +220,10 @@ class NiSearchController: NSViewController, NSCollectionViewDataSource, NSCollec
 	
 	func collectionView(_ collectionView: NSCollectionView, layout collectionViewLayout: NSCollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> NSSize {
 	
-		return NSSize(width: 556.0, height: 47.0)
+		if(self.style == .palette){
+			return NSSize(width: 556.0, height: 47.0)
+		}
+		return NSSize(width: 648.0, height: 47.0)
 	}
 	
 	override func cancelOperation(_ sender: Any?) {

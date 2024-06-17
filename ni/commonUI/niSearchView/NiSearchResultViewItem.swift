@@ -15,6 +15,7 @@ class NiSearchResultViewItem: NSCollectionViewItem {
 	private var spaceId: UUID?
 	private var keySelected: Bool = false
 	private var birkinHighlight: NSView? = nil
+	private var style: NiSearchViewStyle? = nil
 	
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,11 +29,16 @@ class NiSearchResultViewItem: NSCollectionViewItem {
 		view.addTrackingArea(hoverEffectTrackingArea)
     }
     
-	func configureView(_ title: String, spaceId: UUID?, position: Int){
+	func configureView(_ title: String, spaceId: UUID?, position: Int, style: NiSearchViewStyle){
 		resultTitle.stringValue = title
 		self.spaceId = spaceId
+		self.style = style
 
 		self.rightSideElement.configureElement(position)
+		
+		if(style == .homeView){
+			view.layer?.backgroundColor = NSColor.clear.cgColor
+		}
 	}
 	
 	override func prepareForReuse() {
@@ -41,11 +47,14 @@ class NiSearchResultViewItem: NSCollectionViewItem {
 	}
 	
 	func select(){
-		birkinHighlight = getBirkinView()
-		view.addSubview(birkinHighlight!)
+		if(style == .palette){
+			birkinHighlight = getBirkinView()
+			view.addSubview(birkinHighlight!)
+			view.layer?.backgroundColor = NSColor.sand1.cgColor
+			resultTitle.textColor = NSColor.sand12
+		}
+
 		keySelected = true
-		view.layer?.backgroundColor = NSColor.sand1.cgColor
-		resultTitle.textColor = NSColor.sand12
 		rightSideElement.select()
 	}
 	
@@ -53,8 +62,11 @@ class NiSearchResultViewItem: NSCollectionViewItem {
 		birkinHighlight?.removeFromSuperview()
 		birkinHighlight = nil
 		keySelected = false
-		view.layer?.backgroundColor = NSColor.sand1T80.cgColor
-		resultTitle.textColor = NSColor.sand115
+		
+		if(style == .palette){
+			view.layer?.backgroundColor = NSColor.sand1T80.cgColor
+			resultTitle.textColor = NSColor.sand115
+		}
 		rightSideElement.deselect()
 	}
 	
@@ -73,7 +85,7 @@ class NiSearchResultViewItem: NSCollectionViewItem {
 				spaceViewController.loadSpace(niSpaceID: spaceId!, name: resultTitle.stringValue)
 			}
 		}
-		if let paletteWindow = view.window as? NiPalette{
+		if let paletteWindow = view.window as? NiSearchWindowProtocol{
 			paletteWindow.removeSelf()
 		}
 	}
@@ -90,13 +102,17 @@ class NiSearchResultViewItem: NSCollectionViewItem {
 	}
 	
 	override func mouseExited(with event: NSEvent) {
-		if(keySelected){return}
-		view.layer?.backgroundColor = NSColor.sand1T80.cgColor
+		if(keySelected && style == .palette){return}
+		if(style == .palette){
+			view.layer?.backgroundColor = NSColor.sand1T80.cgColor
+		}else{
+			view.layer?.backgroundColor = NSColor.transparent.cgColor
+		}
 		resultTitle.textColor = NSColor.sand115
 	}
 	
 	override func mouseEntered(with event: NSEvent) {
-		if(keySelected){return}
+		if(keySelected && style == .palette){return}
 		view.layer?.backgroundColor = NSColor.sand1.cgColor
 		resultTitle.textColor = NSColor.sand12
 	}

@@ -28,7 +28,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		PostHogSDK.shared.setup(postHogConfig)
 		
 		applicationStarted = Date()
-		
 		setLocalKeyListeners()
     }
 		
@@ -46,9 +45,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
 	func applicationWillResignActive(_ notification: Notification) {
-		let window = NSApplication.shared.mainWindow
-		if (window != nil && window is DefaultWindow){
-			if let controller = window!.contentViewController as? NiSpaceViewController{
+		if let window = NSApplication.shared.mainWindow as? DefaultWindow{
+			if let controller = window.contentViewController as? NiSpaceViewController{
 				controller.storeCurrentSpace()
 			}
 		}
@@ -146,10 +144,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	}
 	
 	@IBAction func showPalette(_ sender: NSMenuItem) {
+		if (NSApplication.shared.keyWindow is NiHomeWindow){
+			return
+		}
 		
 		//TODO: make async
 		getNiSpaceViewController()?.storeCurrentSpace()
-		
 		let	palette = NiPalette()
 		palette.makeKeyAndOrderFront(nil)
 	}
