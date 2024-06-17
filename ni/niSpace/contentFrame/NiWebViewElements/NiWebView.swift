@@ -52,6 +52,10 @@ class NiWebView: WKWebView, CFContentItem{
         menu.items = [niOpenInNewTab]
     }
     
+	func spaceClosed(){
+		self.pauseAllMediaPlayback()
+	}
+	
 	func getCurrentURL() -> String? {
 		if let urlStr = url?.absoluteString as? String{
 			return urlStr

@@ -20,16 +20,15 @@ class CFFramelessView: CFBaseView {
 		frameIsActive = !frameIsActive
 	
 		if(frameIsActive){
-			updateTrackingAreas()
 			setBorder()
 			myItem?.setActive()
 		}else{
 			if(myItem?.setInactive() == .removeSelf){
 				myController?.confirmClose()
 			}
-			updateTrackingAreas()
 			removeBorder()
 		}
+		updateTrackingAreas()
 	}
 	
 	func removeBorder(){
