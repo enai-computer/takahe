@@ -16,8 +16,8 @@ class NiHomeWindow: NSPanel, NiSearchWindowProtocol{
 	override var canBecomeMain: Bool {return false}
 
 	init(windowToAppearOn: NSWindow){
-		let homeViewRect = NiHomeWindow.calcRect(windowToAppearOn.frame.size)
-		let frameRect = NSPanel.rectForScreen(homeViewRect, screen: windowToAppearOn.screen!)
+		let homeViewRect = NiHomeWindow.calcHomeViewRect(windowToAppearOn.frame.size)
+		let frameRect = NSPanel.rectForScreen(windowToAppearOn.frame, screen: windowToAppearOn.screen!)
 		
 		niDelegate = NiHomeWindowDelegate()
 		
@@ -31,14 +31,15 @@ class NiHomeWindow: NSPanel, NiSearchWindowProtocol{
 		titleVisibility = .hidden
 		titlebarAppearsTransparent = true
 		delegate = niDelegate
-		contentViewController = NiHomeController(frame: frameRect)
-		
+		contentViewController = NiEmptyView(viewFrame: windowToAppearOn.frame,
+											contentController: NiHomeController(frame: homeViewRect))
+
 		hasShadow = false
-		isOpaque = true
+		isOpaque = false
 		backgroundColor = NSColor.clear
 	}
 	
-	private static func calcRect(_ screenSize: NSSize) -> NSRect{
+	private static func calcHomeViewRect(_ screenSize: NSSize) -> NSRect{
 		let selfSize = CGSize(
 			width: (screenSize.width - 100.0),
 			height: (screenSize.height - 83.0))
