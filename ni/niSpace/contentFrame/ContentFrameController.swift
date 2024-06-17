@@ -963,4 +963,14 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 			}
 		}
 	}
+	
+	func deinitSelf(){
+		for t in tabs{
+			t.viewItem?.spaceClosed()
+		}
+		tabs = []
+		expandedCFView = nil
+		groupName = nil
+		view.removeFromSuperview()
+	}
 }

@@ -308,18 +308,26 @@ class NiSpaceViewController: NSViewController{
 		}
 		
 		addChild(spaceDoc)
+		var oldDocController: NiSpaceDocumentController = niDocument
 		transition(from: niDocument, to: spaceDoc, options: [.crossfade])
-
-		niDocument = spaceDoc
-		niScrollView.documentView = spaceDoc.view
+		
+		self.niDocument = spaceDoc
+		self.niScrollView.documentView = spaceDoc.view
 		if(scrollTo != nil){
-			niScrollView.scroll(niScrollView.contentView, to: scrollTo!)
+			self.niScrollView.scroll(self.niScrollView.contentView, to: scrollTo!)
 		}
-
-		spaceLoaded = true
+		self.spaceLoaded = true
+		
+		deinitOldDocument(for: oldDocController)
 		
 		let nrOfTimesLoaded = (NSApplication.shared.delegate as! AppDelegate).spaceLoadedSinceStart(id)
 		PostHogSDK.shared.capture("Space_loaded", properties: ["loaded_since_AppStart": nrOfTimesLoaded])
+	}
+	
+	private func deinitOldDocument(for doc: NiSpaceDocumentController){
+		for conFrame in doc.myView.contentFrameControllers{
+			conFrame.deinitSelf()
+		}
 	}
 
 	private func loadStoredSpace(niSpaceID: UUID) -> NiDocumentObjectModel?{
