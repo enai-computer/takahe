@@ -117,6 +117,10 @@
 		CDDBCB2E2BD8FA4C00E7B187 /* errorLoading-1.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = CDDBCB2C2BD8FA4C00E7B187 /* errorLoading-1.jpeg */; };
 		CDDBCB2F2BD8FA4D00E7B187 /* errorLoading.html in Resources */ = {isa = PBXBuildFile; fileRef = CDDBCB2D2BD8FA4C00E7B187 /* errorLoading.html */; };
 		CDE76C1C2BC6989000CE9513 /* TabViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE76C1B2BC6989000CE9513 /* TabViewModel.swift */; };
+		CDF0DD1E2C202A52006C4EF4 /* NiHomeWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF0DD1D2C202A52006C4EF4 /* NiHomeWindow.swift */; };
+		CDF0DD202C202B71006C4EF4 /* NiHomeWindowDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF0DD1F2C202B71006C4EF4 /* NiHomeWindowDelegate.swift */; };
+		CDF0DD222C202BCD006C4EF4 /* NiHomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF0DD212C202BCD006C4EF4 /* NiHomeController.swift */; };
+		CDF0DD242C202BDB006C4EF4 /* NiHomeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDF0DD232C202BDB006C4EF4 /* NiHomeView.xib */; };
 		CDFA8CFB2C03B9AE00882722 /* CFFramelessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDFA8CFA2C03B9AE00882722 /* CFFramelessView.swift */; };
 		CDFA8CFD2C03B9D000882722 /* CFFramelessView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDFA8CFC2C03B9D000882722 /* CFFramelessView.xib */; };
 		CDFA8CFF2C04815C00882722 /* EventUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDFA8CFE2C04815C00882722 /* EventUtils.swift */; };
@@ -246,6 +250,10 @@
 		CDDBCB2C2BD8FA4C00E7B187 /* errorLoading-1.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "errorLoading-1.jpeg"; sourceTree = "<group>"; };
 		CDDBCB2D2BD8FA4C00E7B187 /* errorLoading.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = errorLoading.html; sourceTree = "<group>"; };
 		CDE76C1B2BC6989000CE9513 /* TabViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewModel.swift; sourceTree = "<group>"; };
+		CDF0DD1D2C202A52006C4EF4 /* NiHomeWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiHomeWindow.swift; sourceTree = "<group>"; };
+		CDF0DD1F2C202B71006C4EF4 /* NiHomeWindowDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiHomeWindowDelegate.swift; sourceTree = "<group>"; };
+		CDF0DD212C202BCD006C4EF4 /* NiHomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiHomeController.swift; sourceTree = "<group>"; };
+		CDF0DD232C202BDB006C4EF4 /* NiHomeView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NiHomeView.xib; sourceTree = "<group>"; };
 		CDFA8CFA2C03B9AE00882722 /* CFFramelessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CFFramelessView.swift; sourceTree = "<group>"; };
 		CDFA8CFC2C03B9D000882722 /* CFFramelessView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CFFramelessView.xib; sourceTree = "<group>"; };
 		CDFA8CFE2C04815C00882722 /* EventUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventUtils.swift; sourceTree = "<group>"; };
@@ -557,6 +565,10 @@
 				CD19BC982BC81A46002AF14E /* PredictiveTextFieldView.swift */,
 				CDDBCB282BD6AE6900E7B187 /* HomeViewAnimator.swift */,
 				CD8873732BCD235300007BE9 /* HomeViewController.swift */,
+				CDF0DD1D2C202A52006C4EF4 /* NiHomeWindow.swift */,
+				CDF0DD1F2C202B71006C4EF4 /* NiHomeWindowDelegate.swift */,
+				CDF0DD212C202BCD006C4EF4 /* NiHomeController.swift */,
+				CDF0DD232C202BDB006C4EF4 /* NiHomeView.xib */,
 			);
 			path = niHome;
 			sourceTree = "<group>";
@@ -723,6 +735,7 @@
 				CDD7D3412C19924F0038E6F9 /* NiSearchResultViewItem.xib in Resources */,
 				A1E41BF62ACB533400338417 /* ContentFrameView.xib in Resources */,
 				CD53ACC02BCEE0ED00D5912B /* emptyTab.html in Resources */,
+				CDF0DD242C202BDB006C4EF4 /* NiHomeView.xib in Resources */,
 				CD1160CC2BD286ED00345E3E /* emptyTab-1.jpg in Resources */,
 				CD6752A72BFB76BC0008A227 /* NiSpaceMenuView.xib in Resources */,
 				CDA639562BF50596001941DE /* welcomeConfig.json in Resources */,
@@ -762,6 +775,7 @@
 				CD6317E12BC3F11000434D56 /* NiUserInputError.swift in Sources */,
 				CD66CE332B1F819E0006BB98 /* NiWebView.swift in Sources */,
 				CDD6B9562B1C326A00C6144D /* ContentFrameController.swift in Sources */,
+				CDF0DD1E2C202A52006C4EF4 /* NiHomeWindow.swift in Sources */,
 				A1E41BFF2ACB6B1300338417 /* FrameGenerator.swift in Sources */,
 				CD19BC962BC7E5BF002AF14E /* HomeViewUtils.swift in Sources */,
 				CD6D280E2C11DC7A0009732A /* NiMenuViewController.swift in Sources */,
@@ -780,6 +794,7 @@
 				CDD6B9432B16A14300C6144D /* ContentTable.swift in Sources */,
 				CD5F7DFF2C1EF06300ADC860 /* DataModelUtils.swift in Sources */,
 				CDE76C1C2BC6989000CE9513 /* TabViewModel.swift in Sources */,
+				CDF0DD202C202B71006C4EF4 /* NiHomeWindowDelegate.swift in Sources */,
 				CD04974C2C120ABE00C44021 /* CFGroupButton.swift in Sources */,
 				CDD6B9402B169F7700C6144D /* DocumentTable.swift in Sources */,
 				CDD6B9452B16A1A200C6144D /* CachedWebTable.swift in Sources */,
@@ -806,6 +821,7 @@
 				CDD87ED02BF23C650045B84B /* NiCursorUtils.swift in Sources */,
 				CD5F7DFD2C19E9B000ADC860 /* NiPaletteWindowDelegate.swift in Sources */,
 				CD6D28102C11EE7E0009732A /* RoundedRectView.swift in Sources */,
+				CDF0DD222C202BCD006C4EF4 /* NiHomeController.swift in Sources */,
 				CD1552472BE9286D00A59AE9 /* SwiftUIUtils.swift in Sources */,
 				CDDBCB292BD6AE6900E7B187 /* HomeViewAnimator.swift in Sources */,
 				CD8D2B082C00C7A100C44C1D /* NoteTable.swift in Sources */,
@@ -1006,7 +1022,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = "0.1.6 --- 2024-06-11.1 - Kondo";
+				CURRENT_PROJECT_VERSION = "0.1.6 --- 2024-06-17.1 - Kondo";
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = SNXQ3BDQ5V;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -1039,7 +1055,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = "0.1.6 --- 2024-06-11.1 - Kondo";
+				CURRENT_PROJECT_VERSION = "0.1.6 --- 2024-06-17.1 - Kondo";
 				DEAD_CODE_STRIPPING = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
