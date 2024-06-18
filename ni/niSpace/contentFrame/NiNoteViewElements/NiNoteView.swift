@@ -68,4 +68,9 @@ class NiNoteView: NSTextView{
 		}
 		super.keyDown(with: event)
 	}
+	
+	override func layout() {
+		super.layout()
+		frame.size.height = contentSize.height + 20.0
+	}
 }
