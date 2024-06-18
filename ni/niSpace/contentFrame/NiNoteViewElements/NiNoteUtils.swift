@@ -7,8 +7,8 @@
 
 import Cocoa
 
-func getNewNoteItem(owner: ContentFrameController, parentView: NSView, frame: NSRect) -> NiNoteItem{
-	let item = NiNoteItem(frame: frame)	//owner: owner,
+func getNewNoteItem(owner: ContentFrameController, parentView: NSView, frame: NSRect, text: String? = nil) -> NiNoteItem{
+	let item = NiNoteItem(frame: frame, initText: text)	//owner: owner,
 	item.owner = owner
 	item.loadView()
 	return item

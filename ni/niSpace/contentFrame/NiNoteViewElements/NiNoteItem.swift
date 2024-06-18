@@ -17,14 +17,18 @@ class NiNoteItem: NSViewController, CFContentItem {
 	var scrollView: NSScrollView
 	private var txtDocView: NiNoteView
 	
-	required init(frame: NSRect) {
+	required init(frame: NSRect, initText: String?) {
 		scrollView = NSScrollView(frame: frame)
 		let noteView = NiNoteView(frame: frame)
 		self.txtDocView = noteView
 		
 		scrollView.documentView = noteView
 
-		let txtStorage = NSTextStorage(string: "")
+		let txtStorage = if(initText == nil){
+			NSTextStorage(string: "")
+		}else{
+			NSTextStorage(string: initText!)
+		}
 		txtStorage.addLayoutManager(txtDocView.layoutManager!)
 		
 		super.init(nibName: nil, bundle: nil)
@@ -78,6 +82,10 @@ class NiNoteItem: NSViewController, CFContentItem {
 		])
 		
 		txtDocView.isVerticalContentSizeConstraintActive = false
+		
+		if(txtDocView.frame.height < txtDocView.contentSize.height){
+			txtDocView.frame.size.height = txtDocView.contentSize.height + 20.0
+		}
 	}
 	
 	private func configureScrollView(){
@@ -120,6 +128,7 @@ class NiNoteItem: NSViewController, CFContentItem {
 		
 		txtDocView.isEditable = false
 		txtDocView.isSelectable = false
+		txtDocView.setSelectedRange(NSRange(location: 0, length: 0))
 		let content = getText()
 		if(content == nil || content!.isEmpty){
 			return .removeSelf
@@ -139,12 +148,6 @@ class NiNoteItem: NSViewController, CFContentItem {
 	
 	func stopEditing(){
 		txtDocView.isEditable = false
-		parentView?.setBorder()
-	}
-	
-	func setText(_ content: String){
-		txtDocView.string = content
-		txtDocView.updateHeight()
 	}
 	
 	private func setStyling(){

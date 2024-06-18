@@ -434,7 +434,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	}
 	
 	func openNoteInNewTab(contentId: UUID = UUID(), tabTitle: String? = nil, content: String? = nil){
-		let noteItem = ni.getNewNoteItem(owner: self, parentView: self.view, frame: self.view.frame)
+		let noteItem = ni.getNewNoteItem(owner: self, parentView: self.view, frame: self.view.frame, text: content)
 		
 		var tabHeadModel = TabViewModel(contentId: contentId, type: .note, isSelected: true)
 		tabHeadModel.position = 0
@@ -445,7 +445,6 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		framelessView?.setContentItem(item: noteItem)
 		noteItem.startEditing()
 		myView.window?.makeFirstResponder(noteItem)
-		noteItem.setText(content ?? "")
 	}
 	
 	func openWebsiteInNewTab(urlStr: String, contentId: UUID, tabName: String, webContentState: TabViewModelState? = nil, openNextTo: Int = -1) -> Int{
