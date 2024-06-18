@@ -67,9 +67,10 @@ func getCouldNotLoadWebViewURL() -> URL{
 
 func generateWKWebViewConfiguration() -> WKWebViewConfiguration{
 	let wvConfig = WKWebViewConfiguration()
-//	wvConfig.mediaTypesRequiringUserActionForPlayback = .all
 	wvConfig.upgradeKnownHostsToHTTPS = true
 	wvConfig.applicationNameForUserAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.4.1 Safari/605.1.15"
+	wvConfig.allowsAirPlayForMediaPlayback = true
+	wvConfig.preferences.isElementFullscreenEnabled = true
 	return wvConfig
 }
 

@@ -613,10 +613,22 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 			return
 		}
 		
+		if let activeWebView = tabs[selectedTabModel].webView{
+			self.closeFullScreenPlayback(activeWebView)
+		}
+		
 		forceSelectTab(at: at)
 		
 		expandedCFView?.cfTabHeadCollection.reloadData()
 		expandedCFView?.cfTabHeadCollection.scrollToItems(at: Set(arrayLiteral: IndexPath(item: at, section: 0)), scrollPosition: .nearestVerticalEdge)
+	}
+	
+	
+	//Stopping fullscreen playback, as it otherwise would create empty balck desktop, after switching tabs
+	private func closeFullScreenPlayback(_ niWebView: NiWebView) {
+		Task{
+			niWebView.closeAllMediaPresentations()
+		}
 	}
 	
 	/// skipps all checks ensuring UI consistency. Does not reload the TabHead Collection View

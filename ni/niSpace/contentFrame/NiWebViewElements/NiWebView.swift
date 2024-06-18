@@ -29,6 +29,8 @@ class NiWebView: WKWebView, CFContentItem{
         
         super.init(frame: frame, configuration: wvConfig)
         GlobalScriptMessageHandler.instance.ensureHandles(configuration: self.configuration)
+		
+		self.allowsBackForwardNavigationGestures = true
     }
     
     required init?(coder: NSCoder) {
