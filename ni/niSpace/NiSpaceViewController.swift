@@ -308,7 +308,7 @@ class NiSpaceViewController: NSViewController{
 		}
 		
 		addChild(spaceDoc)
-		var oldDocController: NiSpaceDocumentController = niDocument
+		let oldDocController: NiSpaceDocumentController = niDocument
 		transition(from: niDocument, to: spaceDoc, options: [.crossfade])
 		
 		self.niDocument = spaceDoc

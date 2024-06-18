@@ -34,6 +34,7 @@ class NiNoteItem: NSViewController, CFContentItem {
 		super.init(nibName: nil, bundle: nil)
 		
 		noteView.myController = self
+		view = scrollView
 	}
 	
 	required init?(coder: NSCoder) {
@@ -43,6 +44,7 @@ class NiNoteItem: NSViewController, CFContentItem {
 	override func loadView() {
 		configureTxtDocView()
 		configureScrollView()
+		scrollView.documentView?.translatesAutoresizingMaskIntoConstraints = false
 	}
 	
 	private func configureTxtDocView(){
@@ -77,14 +79,10 @@ class NiNoteItem: NSViewController, CFContentItem {
 			txtDocView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
 			
 			txtDocView.topAnchor.constraint(greaterThanOrEqualTo: scrollView.topAnchor),
-			txtDocView.bottomAnchor.constraint(lessThanOrEqualTo: scrollView.bottomAnchor),
-			txtDocView.heightAnchor.constraint(greaterThanOrEqualTo: scrollView.heightAnchor)
 		])
-		
-		txtDocView.isVerticalContentSizeConstraintActive = false
-		
+			
 		if(txtDocView.frame.height < txtDocView.contentSize.height){
-			txtDocView.frame.size.height = txtDocView.contentSize.height + 20.0
+			txtDocView.frame.size.height = txtDocView.contentSize.height
 		}
 	}
 	
@@ -106,6 +104,7 @@ class NiNoteItem: NSViewController, CFContentItem {
 			scrollView.layer?.cornerRadius = radius
 		}
 		scrollView.layer?.cornerCurve = .continuous
+		
 	}
 	
 	func setActive() {
