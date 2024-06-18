@@ -131,8 +131,8 @@ class CFBaseView: NSBox{
 		let docHeight = self.niParentDoc!.frame.size.height
 		
 		//checks for out of bounds
-		if(frame.origin.x + xDiff < 0){
-			frame.origin.x = 0
+		if(frame.origin.x + xDiff < maxZero(-(frame.width - minContentFrameExposure))){
+			//Do nothing FIXME: clean up method
 		}else if (frame.origin.x + xDiff + minContentFrameExposure < docW){
 			frame.origin.x += xDiff
 		}else if (xDiff < 0){ //moving to the left getting the Frame out of bounds
@@ -154,6 +154,13 @@ class CFBaseView: NSBox{
 		}else{
 			frame.origin.y -= yDiff
 		}
+	}
+	
+	private func maxZero(_ v: CGFloat) -> CGFloat{
+		if(0.0 < v){
+			return .zero
+		}
+		return v
 	}
 	
 	func resizeOwnFrame(_ xDiff: Double, _ yDiff: Double, cursorLeftSide invertX: Bool = false, cursorTop invertY: Bool = false){
