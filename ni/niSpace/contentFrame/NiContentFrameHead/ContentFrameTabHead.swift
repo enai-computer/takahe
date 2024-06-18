@@ -6,6 +6,7 @@
 //
 
 import Cocoa
+import Carbon.HIToolbox
 
 class ContentFrameTabHead: NSCollectionViewItem, NSTextFieldDelegate {
 
@@ -52,6 +53,23 @@ class ContentFrameTabHead: NSCollectionViewItem, NSTextFieldDelegate {
 		return true
 	}
 
+	func control(_ control: NSControl, textView: NSTextView, doCommandBy commandSelector: Selector) -> Bool {
+		if commandSelector == NSSelectorFromString("noop:") {
+			if let event = view.window?.currentEvent{
+				return handleNoopCommand(with: event)
+			}
+		}
+		return false
+	}
+	
+	private func handleNoopCommand(with event: NSEvent) -> Bool{
+		if(event.modifierFlags.contains(.command) && event.keyCode == kVK_ANSI_W){
+			nextResponder?.keyDown(with: event)
+			return true
+		}
+		return false
+	}
+	
 	func controlTextDidEndEditing(_ notification: Notification) {
 		//needed as this is called on CollectionItem reload. idk why :O
 		if(!inEditingMode){
