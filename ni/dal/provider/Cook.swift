@@ -47,6 +47,13 @@ class Cook{
 			res.append(NiDocumentViewModel(id: WelcomeSpaceGenerator.WELCOME_SPACE_ID, name: WelcomeSpaceGenerator.WELCOME_SPACE_NAME))
 		}
 		if(giveCreateNewSpaceOption && typedChars != nil && !typedChars!.isEmpty){
+			//FIXME: hacky sorting solution
+			res = res.sorted{
+				if($1.name.lowercased().starts(with: typedChars!.lowercased())){
+					return false
+				}
+				return true
+			}
 			res.append(NiDocumentViewModel(id: NiSpaceDocumentController.EMPTY_SPACE_ID, name: "Create a new space"))
 		}
 		return res

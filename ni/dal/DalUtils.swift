@@ -6,6 +6,7 @@
 //
 
 import Cocoa
+import SQLite
 
 /** returns false if failed
 	
@@ -34,3 +35,28 @@ func fetchImgFromDisk(_ fUrl: URL) -> NSImage? {
 	}
 	return nil
 }
+
+
+/* returning Insert example: https://github.com/stephencelis/SQLite.swift/issues/1221#issuecomment-1732594273
+ extension Insert {
+	 func returning(_ columns: [Expression<Int64>]) -> Insert {
+		 var template = self.template
+		 let bindings = self.bindings
+		 
+		 template.append(" RETURNING ")
+		 template.append(columns.map { column in column.expression.template }.joined(separator: ", "))
+		 
+		 let insert = Insert(template, bindings)
+		 
+		 return insert
+	 }
+ }
+ 
+ ...
+ 
+ let insert = table1.insert(...).returning([col1, col2])
+
+ if let results = try? db().prepareRowIterator(insert.template, bindings: insert.bindings) {
+	// handle results as usual
+ }
+ */
