@@ -431,6 +431,11 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		self.tabs.append(tabHeadModel)
 		
 		_ = myView.createNewTab(tabView: imgView)
+		//FIXME: dirty hack to ensure first responder status after space load
+		//(needed so the delete key works consistently)
+		DispatchQueue.main.async {
+			imgView.setActive()
+		}
 	}
 	
 	func openNoteInNewTab(contentId: UUID = UUID(), tabTitle: String? = nil, content: String? = nil){
@@ -613,9 +618,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 			return
 		}
 		
-		if let activeWebView = tabs[selectedTabModel].webView{
-			self.closeFullScreenPlayback(activeWebView)
-		}
+		tryCloseFullScreenPlayback()
 		
 		forceSelectTab(at: at)
 		
@@ -625,9 +628,14 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	
 	
 	//Stopping fullscreen playback, as it otherwise would create empty balck desktop, after switching tabs
-	private func closeFullScreenPlayback(_ niWebView: NiWebView) {
-		Task{
-			niWebView.closeAllMediaPresentations()
+	private func tryCloseFullScreenPlayback() {
+		if(selectedTabModel < 0 || (tabs.count-1) <= selectedTabModel){
+			return
+		}
+		if let activeWebView = tabs[selectedTabModel].webView{
+			Task{
+				activeWebView.closeAllMediaPresentations()
+			}
 		}
 	}
 	
