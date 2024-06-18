@@ -72,10 +72,20 @@ extension NSPasteboard{
 						return .image
 					case .tiff:
 						return .image
+					case .fileURL:
+						if let pasteBoardFileUrl = item.data(
+							forType: NSPasteboard.PasteboardType.fileURL
+						){
+							let fileStr = String(decoding: pasteBoardFileUrl, as: UTF8.self)
+							if(hasImgExtension(fileStr)){
+								return .image
+							}
+						}
+						continue
 					case .rtf, .html, .multipleTextSelection, .tabularText, .string:
 						containsText = true
 					default:
-						break
+						continue
 				}
 			}
 			if containsText{
