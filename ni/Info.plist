@@ -8,12 +8,14 @@
 	<false/>
 	<key>NSSupportsAutomaticTermination</key>
 	<false/>
+	<key>ATSApplicationFontsPath</key>
+	<string></string>
 	<key>UIAppFonts</key>
 	<array>
-		<string>soehne-dreiviertelfett.ttf</string>
-		<string>soehne-buch.ttf</string>
-		<string>soehne-leicht.ttf</string>
-		<string>soehne-kraftig.ttf</string>
+		<string>sohne-dreiviertelfett.ttf</string>
+		<string>sohne-buch.ttf</string>
+		<string>sohne-leicht.ttf</string>
+		<string>sohne-kraftig.ttf</string>
 		<string>Inter-Regular.ttf</string>
 	</array>
 </dict>

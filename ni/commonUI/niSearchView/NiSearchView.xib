@@ -31,7 +31,7 @@
                             <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="69S-1x-KUI" customClass="SearchViewTextField" customModule="ni" customModuleProvider="target">
                                 <rect key="frame" x="46" y="15" width="485" height="28"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" placeholderString="What's next?" id="eQk-5F-QMg">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" id="eQk-5F-QMg">
                                     <font key="font" size="21" name="Sohne-Buch"/>
                                     <color key="textColor" name="sand12"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
