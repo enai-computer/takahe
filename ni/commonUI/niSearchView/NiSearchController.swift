@@ -43,8 +43,12 @@ class NiSearchController: NSViewController, NSCollectionViewDataSource, NSCollec
 		stlyeSearchField()
 		stlyeSearchFieldBox()
 		styleSearchResultsScrollContainer()
-		updateResultSet()
     }
+	
+	override func viewWillAppear() {
+		super.viewWillAppear()
+		updateResultSet()
+	}
 	
 	private func stlyeSelf(){
 		view.wantsLayer = true
@@ -89,7 +93,12 @@ class NiSearchController: NSViewController, NSCollectionViewDataSource, NSCollec
 	}
 	
 	private func updateResultSet(){
-		searchResults = Cook.instance.searchSpaces(typedChars: nil, excludeWelcomeSpaceGeneration: false)
+		if(view.window is NiPalette){
+			searchResults = Cook.instance.searchSpaces(typedChars: nil, excludeWelcomeSpaceGeneration: false)
+			searchResults.removeFirst()
+		}else{
+			searchResults = Cook.instance.searchSpaces(typedChars: nil, excludeWelcomeSpaceGeneration: false)
+		}
 		searchResultsCollection.reloadData()
 		resetSelection()
 	}
