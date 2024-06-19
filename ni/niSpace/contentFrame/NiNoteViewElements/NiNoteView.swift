@@ -74,5 +74,10 @@ class NiNoteView: NSTextView{
 		if(frame.height < contentSize.height){
 			frame.size.height = contentSize.height + 20.0
 		}
+		if let sView = superview{
+			if(frame.height < sView.frame.height){
+				frame.size.height = sView.frame.height
+			}
+		}
 	}
 }

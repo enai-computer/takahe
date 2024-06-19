@@ -197,4 +197,13 @@ class CFFramelessView: CFBaseView {
 			addTrackingArea(hoverEffect!)
 		}
 	}
+	
+	override func resizeOwnFrame(_ xDiff: Double, _ yDiff: Double, cursorLeftSide invertX: Bool = false, cursorTop invertY: Bool = false) {
+		super.resizeOwnFrame(xDiff, yDiff, cursorLeftSide: invertX, cursorTop: invertY)
+		
+		//called so that we don't get white space below a short note
+		if let noteItem = myItem as? NiNoteItem{
+			noteItem.resizeContent()
+		}
+	}
 }
