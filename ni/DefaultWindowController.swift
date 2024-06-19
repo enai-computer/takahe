@@ -14,9 +14,9 @@ class DefaultWindowController: NSWindowController, NSWindowDelegate{
 		contentViewController = NiSpaceViewController()
 
 		//HELP: in case you need to know the fonts
-		for family: String in NSFontManager.shared.availableFonts{
-			print(family)
-		}
+//		for family: String in NSFontManager.shared.availableFonts{
+//			print(family)
+//		}
 	}
 	
 	func windowDidEnterFullScreen(_ notification: Notification){

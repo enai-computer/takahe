@@ -8,7 +8,6 @@ import AppKit
 class NiSpaceViewController: NSViewController{
     
 	private(set) var spaceLoaded: Bool = false
-	var homeViewShown: Bool = false
     private var niSpaceName: String
 	var spaceMenu: NiSpaceMenuController?
 	
@@ -186,6 +185,7 @@ class NiSpaceViewController: NSViewController{
 			return
 		}
 		spaceMenu = NiSpaceMenuController(owner: self)
+		spaceMenu!.loadView()
 		spaceMenu!.loadAndPositionView(position: event.locationInWindow, screenWidth: view.frame.width, screenHeight: view.frame.height)
 		view.addSubview(spaceMenu!.view)
 	}
@@ -194,10 +194,8 @@ class NiSpaceViewController: NSViewController{
 	 * MARK: - mouse and key events here
 	 */
 	override func mouseDown(with event: NSEvent) {
+		//TODO: ignore key down when HomeView is shown
 		let cursorPos = self.view.convert(event.locationInWindow, from: nil)
-		if(homeViewShown){
-			return
-		}
 		
 		if(NSPointInRect(cursorPos, header.frame)){
 			returnToHome()
@@ -347,58 +345,30 @@ class NiSpaceViewController: NSViewController{
 	}
     
 	func switchToNextTab() {
-		if(homeViewShown){
-			__NSBeep()
-			return
-		}
 		niDocument.myView.switchToNextTab()
 	}
 	
 	func createNewTab() {
-		if(homeViewShown){
-			__NSBeep()
-			return
-		}
 		niDocument.myView.createNewTab()
 	}
 	
 	func switchToPrevTab() {
-		if(homeViewShown){
-			__NSBeep()
-			return
-		}
 		niDocument.myView.switchToPrevTab()
 	}
 	
 	func toggleEditMode(){
-		if(homeViewShown){
-			__NSBeep()
-			return
-		}
 		niDocument.myView.toggleEditMode()
 	}
 	
 	func toggleMinimizeOnTopCF(_ sender: NSMenuItem) {
-		if(homeViewShown){
-			__NSBeep()
-			return
-		}
 		niDocument.myView.toggleMinimizeOnTopCF(sender)
 	}
 	
 	func switchToNextWindow() {
-		if(homeViewShown){
-			__NSBeep()
-			return
-		}
 		niDocument.myView.switchToNextCF()
 	}
 	
 	func switchToPrevWindow() {
-		if(homeViewShown){
-			__NSBeep()
-			return
-		}
 		niDocument.myView.switchToNextCF(goFwd: false)
 	}
 }
