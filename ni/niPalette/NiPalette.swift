@@ -38,7 +38,6 @@ class NiPalette: NSPanel, NiSearchWindowProtocol {
 		hasShadow = false
 		isOpaque = false
 		backgroundColor = NSColor.clear
-		
 		setBlurOnMainWindow(mainWindow)
 	}
 	
