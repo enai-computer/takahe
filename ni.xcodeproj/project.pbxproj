@@ -55,10 +55,10 @@
 		CD5F7E012C1EFE7300ADC860 /* SearchViewTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5F7E002C1EFE7300ADC860 /* SearchViewTextField.swift */; };
 		CD6317E12BC3F11000434D56 /* NiUserInputError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6317E02BC3F11000434D56 /* NiUserInputError.swift */; };
 		CD6317E32BC3F18300434D56 /* NiBadTypeError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6317E22BC3F18300434D56 /* NiBadTypeError.swift */; };
-		CD6317EC2BC4852300434D56 /* soehne-dreiviertelfett.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CD6317E82BC4852300434D56 /* soehne-dreiviertelfett.ttf */; };
-		CD6317ED2BC4852300434D56 /* soehne-leicht.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CD6317E92BC4852300434D56 /* soehne-leicht.ttf */; };
-		CD6317EE2BC4852300434D56 /* soehne-buch.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CD6317EA2BC4852300434D56 /* soehne-buch.ttf */; };
-		CD6317EF2BC4852300434D56 /* soehne-kraftig.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CD6317EB2BC4852300434D56 /* soehne-kraftig.ttf */; };
+		CD6317EC2BC4852300434D56 /* sohne-dreiviertelfett.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CD6317E82BC4852300434D56 /* sohne-dreiviertelfett.ttf */; };
+		CD6317ED2BC4852300434D56 /* sohne-leicht.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CD6317E92BC4852300434D56 /* sohne-leicht.ttf */; };
+		CD6317EE2BC4852300434D56 /* sohne-buch.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CD6317EA2BC4852300434D56 /* sohne-buch.ttf */; };
+		CD6317EF2BC4852300434D56 /* sohne-kraftig.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CD6317EB2BC4852300434D56 /* sohne-kraftig.ttf */; };
 		CD6317F12BC53A9600434D56 /* cfOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6317F02BC53A9600434D56 /* cfOverlay.swift */; };
 		CD66CE332B1F819E0006BB98 /* NiWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD66CE322B1F819E0006BB98 /* NiWebView.swift */; };
 		CD66CE382B1FD26A0006BB98 /* NiStringUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD66CE372B1FD26A0006BB98 /* NiStringUtils.swift */; };
@@ -185,10 +185,10 @@
 		CD5F7E002C1EFE7300ADC860 /* SearchViewTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewTextField.swift; sourceTree = "<group>"; };
 		CD6317E02BC3F11000434D56 /* NiUserInputError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiUserInputError.swift; sourceTree = "<group>"; };
 		CD6317E22BC3F18300434D56 /* NiBadTypeError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiBadTypeError.swift; sourceTree = "<group>"; };
-		CD6317E82BC4852300434D56 /* soehne-dreiviertelfett.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "soehne-dreiviertelfett.ttf"; sourceTree = "<group>"; };
-		CD6317E92BC4852300434D56 /* soehne-leicht.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "soehne-leicht.ttf"; sourceTree = "<group>"; };
-		CD6317EA2BC4852300434D56 /* soehne-buch.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "soehne-buch.ttf"; sourceTree = "<group>"; };
-		CD6317EB2BC4852300434D56 /* soehne-kraftig.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "soehne-kraftig.ttf"; sourceTree = "<group>"; };
+		CD6317E82BC4852300434D56 /* sohne-dreiviertelfett.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "sohne-dreiviertelfett.ttf"; sourceTree = "<group>"; };
+		CD6317E92BC4852300434D56 /* sohne-leicht.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "sohne-leicht.ttf"; sourceTree = "<group>"; };
+		CD6317EA2BC4852300434D56 /* sohne-buch.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "sohne-buch.ttf"; sourceTree = "<group>"; };
+		CD6317EB2BC4852300434D56 /* sohne-kraftig.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "sohne-kraftig.ttf"; sourceTree = "<group>"; };
 		CD6317F02BC53A9600434D56 /* cfOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cfOverlay.swift; sourceTree = "<group>"; };
 		CD66CE322B1F819E0006BB98 /* NiWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiWebView.swift; sourceTree = "<group>"; };
 		CD66CE372B1FD26A0006BB98 /* NiStringUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiStringUtils.swift; sourceTree = "<group>"; };
@@ -417,10 +417,10 @@
 			isa = PBXGroup;
 			children = (
 				CD0FA1C02BDBE2BA0065313B /* Inter-Regular.ttf */,
-				CD6317EA2BC4852300434D56 /* soehne-buch.ttf */,
-				CD6317E82BC4852300434D56 /* soehne-dreiviertelfett.ttf */,
-				CD6317EB2BC4852300434D56 /* soehne-kraftig.ttf */,
-				CD6317E92BC4852300434D56 /* soehne-leicht.ttf */,
+				CD6317EA2BC4852300434D56 /* sohne-buch.ttf */,
+				CD6317E82BC4852300434D56 /* sohne-dreiviertelfett.ttf */,
+				CD6317EB2BC4852300434D56 /* sohne-kraftig.ttf */,
+				CD6317E92BC4852300434D56 /* sohne-leicht.ttf */,
 			);
 			path = fonts;
 			sourceTree = "<group>";
@@ -715,9 +715,9 @@
 				CD0FA1C12BDBE2BA0065313B /* Inter-Regular.ttf in Resources */,
 				CDDBCB2E2BD8FA4C00E7B187 /* errorLoading-1.jpeg in Resources */,
 				A1B8E6B02AAFB5EF00AC6566 /* Main.storyboard in Resources */,
-				CD6317EC2BC4852300434D56 /* soehne-dreiviertelfett.ttf in Resources */,
+				CD6317EC2BC4852300434D56 /* sohne-dreiviertelfett.ttf in Resources */,
 				CD3BF3D02C10A133003DA615 /* NewSpaceNote.json in Resources */,
-				CD6317EF2BC4852300434D56 /* soehne-kraftig.ttf in Resources */,
+				CD6317EF2BC4852300434D56 /* sohne-kraftig.ttf in Resources */,
 				CD7578472BC000F200293930 /* ContentFrameTabHead.xib in Resources */,
 				CDD7D33B2C198BE00038E6F9 /* NiSearchView.xib in Resources */,
 				CD5A04CB2BEA3CC7004CC3AA /* CFMinimizedStackItem.xib in Resources */,
@@ -730,11 +730,11 @@
 				CD1160CC2BD286ED00345E3E /* emptyTab-1.jpg in Resources */,
 				CD6752A72BFB76BC0008A227 /* NiSpaceMenuView.xib in Resources */,
 				CDA639562BF50596001941DE /* welcomeConfig.json in Resources */,
-				CD6317ED2BC4852300434D56 /* soehne-leicht.ttf in Resources */,
+				CD6317ED2BC4852300434D56 /* sohne-leicht.ttf in Resources */,
 				A14E8F252AD5EADF00409DDF /* NiSpaceView.xib in Resources */,
 				CD5A04C62BEA2B96004CC3AA /* CFMinimizedView.xib in Resources */,
 				CDABE64C2C11C5BC00BB4E85 /* NiMenuView.xib in Resources */,
-				CD6317EE2BC4852300434D56 /* soehne-buch.ttf in Resources */,
+				CD6317EE2BC4852300434D56 /* sohne-buch.ttf in Resources */,
 				CDFA8CFD2C03B9D000882722 /* CFFramelessView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1010,7 +1010,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = "0.1.6 --- 2024-06-18.2 - Kondo";
+				CURRENT_PROJECT_VERSION = "0.1.6 --- 2024-06-19.3 - Kondo";
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = SNXQ3BDQ5V;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -1043,7 +1043,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = "0.1.6 --- 2024-06-18.2 - Kondo";
+				CURRENT_PROJECT_VERSION = "0.1.6 --- 2024-06-19.3 - Kondo";
 				DEAD_CODE_STRIPPING = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
