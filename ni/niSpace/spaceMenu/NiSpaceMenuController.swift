@@ -42,7 +42,7 @@ class NiSpaceMenuController: NSViewController{
 		view.layer?.cornerCurve = .continuous
 		
 		self.pasteBoardType = NSPasteboard.general.containsImgOrText()
-		myView.updatePasteMenuItem(for: pasteBoardType!)
+		myView.updatePasteMenuItem(for: pasteBoardType)
 		
 		myView.openAWindow.mouseDownFunction = openAWindow
 		myView.writeANote.mouseDownFunction = createANote
