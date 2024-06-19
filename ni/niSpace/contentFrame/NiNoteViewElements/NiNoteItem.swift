@@ -78,12 +78,12 @@ class NiNoteItem: NSViewController, CFContentItem {
 			txtDocView.rightAnchor.constraint(equalTo: scrollView.rightAnchor),
 			txtDocView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
 			
-			txtDocView.topAnchor.constraint(greaterThanOrEqualTo: scrollView.topAnchor),
+			txtDocView.topAnchor.constraint(greaterThanOrEqualTo: scrollView.topAnchor)
 		])
 			
-		if(txtDocView.frame.height < txtDocView.contentSize.height){
-			txtDocView.frame.size.height = txtDocView.contentSize.height
-		}
+//		if(txtDocView.frame.height < txtDocView.contentSize.height){
+//			txtDocView.frame.size.height = txtDocView.contentSize.height
+//		}
 	}
 	
 	private func configureScrollView(){
@@ -105,6 +105,10 @@ class NiNoteItem: NSViewController, CFContentItem {
 		}
 		scrollView.layer?.cornerCurve = .continuous
 		
+	}
+	
+	func resizeContent(){
+		txtDocView.needsLayout = true
 	}
 	
 	func setActive() {
