@@ -13,6 +13,7 @@ func getNewImgView(owner: ContentFrameController, parentView: NSView, img: NSIma
 	view.autoresizesSubviews = true
 	view.imageScaling = .scaleProportionallyUpOrDown
 	view.animates = false
+	view.allowsCutCopyPaste = true
 	
 	view.wantsLayer = true
 	if let radius = parentView.layer?.cornerRadius{
