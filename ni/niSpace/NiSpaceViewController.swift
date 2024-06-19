@@ -185,7 +185,6 @@ class NiSpaceViewController: NSViewController{
 			return
 		}
 		spaceMenu = NiSpaceMenuController(owner: self)
-		spaceMenu!.loadView()
 		spaceMenu!.loadAndPositionView(position: event.locationInWindow, screenWidth: view.frame.width, screenHeight: view.frame.height)
 		view.addSubview(spaceMenu!.view)
 	}
