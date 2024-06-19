@@ -161,10 +161,10 @@ class NiSpaceViewController: NSViewController{
 	func createANote(positioned relavtiveTo: CGPoint? = nil, with content: String? = nil){
 		var noteOrigin: CGPoint?
 		if(spaceMenu != nil){
-			noteOrigin = spaceMenu!.view.frame.origin
-			noteOrigin!.y = niScrollView.documentView!.visibleRect.size.height - spaceMenu!.view.frame.origin.y - spaceMenu!.view.frame.height
-		}else{
-			noteOrigin = relavtiveTo
+			noteOrigin = niDocument.view.convert(spaceMenu!.view.frame.origin, from: view)
+			noteOrigin!.y -= spaceMenu!.view.frame.height
+		}else if(relavtiveTo != nil){
+			noteOrigin = niDocument.view.convert(relavtiveTo!, from: nil)
 		}
 		niDocument.openEmptyCF(viewState: .frameless, initialTabType: .note, positioned: noteOrigin, content: content)
 	}
