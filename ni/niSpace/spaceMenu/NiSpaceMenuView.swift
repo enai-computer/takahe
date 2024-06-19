@@ -14,8 +14,8 @@ class NiSpaceMenuView: NSBox {
 	@IBOutlet var uploadAnImage: NiSpaceMenuItemView!
 	@IBOutlet var pasteImgORtxt: NSTextField!
 	
-	func updatePasteMenuItem(for content: NiPasteboardContent){
-		if(content == .empty){
+	func updatePasteMenuItem(for content: NiPasteboardContent?){
+		if(content == nil || content == .empty){
 			pasteImgORtxt.textColor = NSColor.sand8
 			uploadAnImage.isEnabled = false
 		}else if(content == .image){
