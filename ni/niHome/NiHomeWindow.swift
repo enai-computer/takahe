@@ -36,6 +36,7 @@ class NiHomeWindow: NSPanel, NiSearchWindowProtocol{
 		hasShadow = false
 		isOpaque = false
 		backgroundColor = NSColor.clear
+		hidesOnDeactivate = false
 	}
 	
 	private static func calcHomeViewRect(_ screenSize: NSSize) -> NSRect{
