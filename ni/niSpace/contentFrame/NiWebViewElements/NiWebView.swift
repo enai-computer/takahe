@@ -183,6 +183,30 @@ class NiWebView: WKWebView, CFContentItem{
 	@IBAction func zoomReset(_ sender: NSMenuItem) {
 		(zoomLevel, self.pageZoom) = NiWebViewZoomLevels.defaultZoomLevel()
 	}
+	
+	@IBAction func performFindPanelAction(_ sender: NSMenuItem) {
+//		let findConfig = WKFindConfiguration()
+//		findConfig.caseSensitive = false
+//		findConfig.wraps = true
+//		findConfig.backwards = false
+//		self.find("audi", configuration: findConfig, completionHandler: handleFindResults)
+		
+		let viewPanelCon = NiWebViewFindPanel()
+		viewPanelCon.niWebView = self
+		addSubview(viewPanelCon.view)
+	}
+	
+	func performFind(_ search: String){
+		let findConfig = WKFindConfiguration()
+		findConfig.caseSensitive = false
+		findConfig.wraps = true
+		findConfig.backwards = false
+		self.find(search, configuration: findConfig, completionHandler: handleFindResults)
+	}
+	
+	func handleFindResults(_ result: WKFindResult){
+		print("result: \(result)")
+	}
 }
 
 class GlobalScriptMessageHandler: NSObject, WKScriptMessageHandler {
