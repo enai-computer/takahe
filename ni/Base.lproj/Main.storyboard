@@ -274,11 +274,28 @@
                                                 <action selector="minimizeCF:" target="Voe-Tx-rLC" id="BzL-cG-R9F"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Zoom" id="OB7-bi-6pp">
+                                        <menuItem title="Zoom" id="mrQ-b0-KRr">
                                             <modifierMask key="keyEquivalentModifierMask"/>
-                                            <connections>
-                                                <action selector="performZoom:" target="Ady-hI-5gd" id="xGG-KH-eHv"/>
-                                            </connections>
+                                            <menu key="submenu" title="Zoom" id="Swm-Cg-BQB">
+                                                <items>
+                                                    <menuItem title="Zoom In" keyEquivalent="+" id="sQV-GO-G8o">
+                                                        <connections>
+                                                            <action selector="zoomIn:" target="Ady-hI-5gd" id="iZK-Mq-vew"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem title="Zoom Out" keyEquivalent="-" id="w9X-Oz-FzH">
+                                                        <connections>
+                                                            <action selector="zoomOut:" target="Ady-hI-5gd" id="0l6-fC-vcq"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem isSeparatorItem="YES" id="Lvu-We-gvs"/>
+                                                    <menuItem title="Actual Size" keyEquivalent="0" id="sNh-bG-XnK">
+                                                        <connections>
+                                                            <action selector="zoomReset:" target="Ady-hI-5gd" id="nL7-AC-IbM"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                </items>
+                                            </menu>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="ygb-Ah-VV6"/>
                                         <menuItem title="Print…" keyEquivalent="p" id="6vn-0L-bSa">
