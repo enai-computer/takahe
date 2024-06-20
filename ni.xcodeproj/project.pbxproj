@@ -66,6 +66,7 @@
 		CD6D280C2C11D6DA0009732A /* NiMenuWindowDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6D280B2C11D6DA0009732A /* NiMenuWindowDelegate.swift */; };
 		CD6D280E2C11DC7A0009732A /* NiMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6D280D2C11DC7A0009732A /* NiMenuViewController.swift */; };
 		CD6D28102C11EE7E0009732A /* RoundedRectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6D280F2C11EE7E0009732A /* RoundedRectView.swift */; };
+		CD72B83F2C24714800104802 /* CAUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD72B83E2C24714800104802 /* CAUtils.swift */; };
 		CD7578372BBDA98700293930 /* ContentFrameHeadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7578362BBDA98700293930 /* ContentFrameHeadView.swift */; };
 		CD7578462BC000F200293930 /* ContentFrameTabHead.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7578442BC000F200293930 /* ContentFrameTabHead.swift */; };
 		CD7578472BC000F200293930 /* ContentFrameTabHead.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD7578452BC000F200293930 /* ContentFrameTabHead.xib */; };
@@ -194,6 +195,7 @@
 		CD6D280B2C11D6DA0009732A /* NiMenuWindowDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiMenuWindowDelegate.swift; sourceTree = "<group>"; };
 		CD6D280D2C11DC7A0009732A /* NiMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiMenuViewController.swift; sourceTree = "<group>"; };
 		CD6D280F2C11EE7E0009732A /* RoundedRectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedRectView.swift; sourceTree = "<group>"; };
+		CD72B83E2C24714800104802 /* CAUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CAUtils.swift; sourceTree = "<group>"; };
 		CD7578362BBDA98700293930 /* ContentFrameHeadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentFrameHeadView.swift; sourceTree = "<group>"; };
 		CD7578442BC000F200293930 /* ContentFrameTabHead.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentFrameTabHead.swift; sourceTree = "<group>"; };
 		CD7578452BC000F200293930 /* ContentFrameTabHead.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContentFrameTabHead.xib; sourceTree = "<group>"; };
@@ -442,6 +444,7 @@
 				CDD7D3482C19AD7D0038E6F9 /* NSPanelUtils.swift */,
 				CD5F7DFE2C1EF06300ADC860 /* DataModelUtils.swift */,
 				CDF0DD272C20549F006C4EF4 /* NiEmptyView.swift */,
+				CD72B83E2C24714800104802 /* CAUtils.swift */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -771,6 +774,7 @@
 				A1F33E2E2AB7299500E2E7CD /* DefaultWindow.swift in Sources */,
 				CDB06B612AF84E1F008DB8FF /* NiSpaceDocumentView.swift in Sources */,
 				CDD6B9432B16A14300C6144D /* ContentTable.swift in Sources */,
+				CD72B83F2C24714800104802 /* CAUtils.swift in Sources */,
 				CD5F7DFF2C1EF06300ADC860 /* DataModelUtils.swift in Sources */,
 				CDE76C1C2BC6989000CE9513 /* TabViewModel.swift in Sources */,
 				CDF0DD202C202B71006C4EF4 /* NiHomeWindowDelegate.swift in Sources */,

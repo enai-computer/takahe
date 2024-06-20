@@ -38,16 +38,20 @@ class NiSearchController: NSViewController, NSCollectionViewDataSource, NSCollec
 	
 	override func viewDidLoad() {
         super.viewDidLoad()
-		
-		stlyeSelf()
-		stlyeSearchField()
-		stlyeSearchFieldBox()
-		styleSearchResultsScrollContainer()
     }
 	
 	override func viewWillAppear() {
 		super.viewWillAppear()
 		updateResultSet()
+	}
+
+	override func viewWillLayout() {
+		stlyeSelf()
+		stlyeSearchField()
+		stlyeSearchFieldBox()
+		styleSearchResultsScrollContainer()
+		
+		super.viewWillLayout()
 	}
 	
 	private func stlyeSelf(){
@@ -86,10 +90,10 @@ class NiSearchController: NSViewController, NSCollectionViewDataSource, NSCollec
 			searchResultsScrollContainer.frame.size.height -= 15.0
 			return
 		}
-		searchResultsScrollContainer.wantsLayer = true
-		searchResultsScrollContainer.layer?.backgroundColor = NSColor.sand8T20.cgColor
-		searchResultsScrollContainer.layer?.cornerRadius = 4.0
-		searchResultsScrollContainer.layer?.cornerCurve = .continuous
+		searchResultsScrollContainer.contentView.wantsLayer = true
+		searchResultsScrollContainer.contentView.layer?.backgroundColor = NSColor.sand8T20.cgColor
+		searchResultsScrollContainer.contentView.layer?.cornerRadius = 4.0
+		searchResultsScrollContainer.contentView.layer?.cornerCurve = .continuous
 	}
 	
 	private func updateResultSet(){
@@ -228,11 +232,14 @@ class NiSearchController: NSViewController, NSCollectionViewDataSource, NSCollec
 	}
 	
 	func collectionView(_ collectionView: NSCollectionView, layout collectionViewLayout: NSCollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> NSSize {
+		return getCollectionViewItemSize()
+	}
 	
-		if(self.style == .palette){
-			return NSSize(width: 556.0, height: 47.0)
-		}
-		return NSSize(width: 648.0, height: 47.0)
+	private func getCollectionViewItemSize() -> NSSize{
+			if(self.style == .palette){
+				return NSSize(width: 556.0, height: 47.0)
+			}
+			return NSSize(width: 648.0, height: 47.0)
 	}
 	
 	override func cancelOperation(_ sender: Any?) {
@@ -245,5 +252,4 @@ class NiSearchController: NSViewController, NSCollectionViewDataSource, NSCollec
 		searchField.stringValue = ""
 		updateResultSet()
 	}
-    
 }
