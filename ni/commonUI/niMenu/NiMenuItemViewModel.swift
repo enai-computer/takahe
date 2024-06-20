@@ -12,5 +12,6 @@ struct NiMenuItemViewModel{
 	let title: String
 	let isEnabled: Bool
 	let mouseDownFunction: ((NSEvent) -> Void)?
+	var keyboardShortcut: String? = nil
 	
 }

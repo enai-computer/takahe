@@ -47,5 +47,9 @@ class NiImgView: NSImageView, CFContentItem{
 		}
 		super.keyDown(with: event)
 	}
+	
+	override func rightMouseDown(with event: NSEvent) {
+		return
+	}
 
 }

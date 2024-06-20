@@ -18,6 +18,6 @@ class NiSpaceView: NSView{
 		let title = sender.draggingPasteboard.tryGetName()
 		let source = (sender.draggingSource as! NiWebView).url?.absoluteString
 		
-		controller.pasteImage(image: img, positioned: sender.draggingLocation, title: title, source: source)
+		controller.pasteImage(image: img, screenPosition: sender.draggingLocation, title: title, source: source)
 	}
 }

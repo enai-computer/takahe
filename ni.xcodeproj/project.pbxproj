@@ -112,6 +112,7 @@
 		CDDBCB2E2BD8FA4C00E7B187 /* errorLoading-1.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = CDDBCB2C2BD8FA4C00E7B187 /* errorLoading-1.jpeg */; };
 		CDDBCB2F2BD8FA4D00E7B187 /* errorLoading.html in Resources */ = {isa = PBXBuildFile; fileRef = CDDBCB2D2BD8FA4C00E7B187 /* errorLoading.html */; };
 		CDE76C1C2BC6989000CE9513 /* TabViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE76C1B2BC6989000CE9513 /* TabViewModel.swift */; };
+		CDE88CAE2C2415AA000390A6 /* NiSpaceMenuPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE88CAD2C2415AA000390A6 /* NiSpaceMenuPopup.swift */; };
 		CDF0DD1E2C202A52006C4EF4 /* NiHomeWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF0DD1D2C202A52006C4EF4 /* NiHomeWindow.swift */; };
 		CDF0DD202C202B71006C4EF4 /* NiHomeWindowDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF0DD1F2C202B71006C4EF4 /* NiHomeWindowDelegate.swift */; };
 		CDF0DD222C202BCD006C4EF4 /* NiHomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF0DD212C202BCD006C4EF4 /* NiHomeController.swift */; };
@@ -242,6 +243,7 @@
 		CDDBCB2C2BD8FA4C00E7B187 /* errorLoading-1.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "errorLoading-1.jpeg"; sourceTree = "<group>"; };
 		CDDBCB2D2BD8FA4C00E7B187 /* errorLoading.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = errorLoading.html; sourceTree = "<group>"; };
 		CDE76C1B2BC6989000CE9513 /* TabViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewModel.swift; sourceTree = "<group>"; };
+		CDE88CAD2C2415AA000390A6 /* NiSpaceMenuPopup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiSpaceMenuPopup.swift; sourceTree = "<group>"; };
 		CDF0DD1D2C202A52006C4EF4 /* NiHomeWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiHomeWindow.swift; sourceTree = "<group>"; };
 		CDF0DD1F2C202B71006C4EF4 /* NiHomeWindowDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiHomeWindowDelegate.swift; sourceTree = "<group>"; };
 		CDF0DD212C202BCD006C4EF4 /* NiHomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiHomeController.swift; sourceTree = "<group>"; };
@@ -459,6 +461,7 @@
 				CD6752A62BFB76BC0008A227 /* NiSpaceMenuView.xib */,
 				CD6752A82BFB79AD0008A227 /* NiSpaceMenuController.swift */,
 				CD6752AA2BFB88770008A227 /* NiSpaceMenuItemView.swift */,
+				CDE88CAD2C2415AA000390A6 /* NiSpaceMenuPopup.swift */,
 			);
 			path = spaceMenu;
 			sourceTree = "<group>";
@@ -832,6 +835,7 @@
 				CD5A04CD2BEA3CD0004CC3AA /* CFMinimizedStackItem.swift in Sources */,
 				CDF0DD282C20549F006C4EF4 /* NiEmptyView.swift in Sources */,
 				CD1853172C09D623001FE566 /* DoubleUtils.swift in Sources */,
+				CDE88CAE2C2415AA000390A6 /* NiSpaceMenuPopup.swift in Sources */,
 				CD1853132C08D972001FE566 /* FaviconCacheTable.swift in Sources */,
 				CDABE64A2C11C54300BB4E85 /* NiMenuItemView.swift in Sources */,
 				CDFA8D042C04931600882722 /* NiNoteUtils.swift in Sources */,

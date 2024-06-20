@@ -10,6 +10,8 @@ import Cocoa
 class NiMenuItemView: NSView{
 	
 	@IBOutlet var title: NSTextField!
+	@IBOutlet var keyboardShortcut: NSTextField!
+	
 	private var isEnabledStorage = true
 	var isEnabled: Bool{
 		set {
@@ -19,6 +21,7 @@ class NiMenuItemView: NSView{
 				title.textColor = NSColor.sand12
 			}else{
 				title.textColor = NSColor.sand8
+				keyboardShortcut.isHidden = true
 			}
 		}
 		get{
@@ -26,6 +29,13 @@ class NiMenuItemView: NSView{
 		}
 	}
 	var mouseDownFunction: ((NSEvent) -> Void)?
+	
+	func setKeyboardshortcut(_ shortcut: String){
+		guard isEnabled else {return}
+		
+		keyboardShortcut.stringValue = shortcut
+		keyboardShortcut.isHidden = false
+	}
 	
 	override func updateTrackingAreas() {
 		let hoverEffect = NSTrackingArea.init(rect: bounds, options: [.mouseEnteredAndExited, .activeAlways], owner: self, userInfo: nil)
