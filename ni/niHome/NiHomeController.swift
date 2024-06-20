@@ -90,7 +90,7 @@ class NiHomeController: NSViewController {
 	
 	private func positionAndDisplaySearchView(){
 		searchController.view.frame.size = CGSize(width: 678.0, height: 450.0)
-		let posY = (welcomeTxt.frame.maxY - searchController.view.frame.height)
+		let posY = (welcomeTxt.frame.maxY - searchController.view.frame.height) + 23.0
 		let posX = rightSide.frame.origin.x + 100.0
 		searchController.view.frame.origin = CGPoint(x: posX, y: posY)
 		
