@@ -14,7 +14,8 @@ class NiPalette: NSPanel, NiSearchWindowProtocol {
 	override var canBecomeKey: Bool {return true}
 	override var canBecomeMain: Bool {return false}
 	
-	private var blurView: NSView?
+	private var windowBlurView: NSView?
+	private var paletteBlurView: NSView?
 	
 	init(){
 		let mainWindow = NSApplication.shared.mainWindow!
@@ -59,28 +60,40 @@ class NiPalette: NSPanel, NiSearchWindowProtocol {
 	}
 	
 	private func setBlurOnMainWindow(_ mainWindow: NSWindow){
-		blurView = NSView(frame: mainWindow.frame)
-		blurView?.frame.origin = CGPoint(x: 0.0, y: 0.0)
-		blurView!.wantsLayer = true
-		blurView!.layer?.backgroundColor = NSColor.clear.cgColor
-		blurView!.layer?.masksToBounds = true
-		blurView!.layerUsesCoreImageFilters = true
-		blurView!.layer?.needsDisplayOnBoundsChange = true
+		windowBlurView = NSView(frame: mainWindow.frame)
+		windowBlurView?.frame.origin = CGPoint(x: 0.0, y: 0.0)
+		windowBlurView!.wantsLayer = true
+		setupBlurOnView(windowBlurView!, inputRadius: 1.0, inputSaturation: 0.6)
+		
+		paletteBlurView = NSView(frame: self.frame)
+		paletteBlurView!.wantsLayer = true
+		setupBlurOnView(paletteBlurView!, inputRadius: 15.0, inputSaturation: 1.0)
+		paletteBlurView?.layer?.cornerRadius = 15.0
+		
+		mainWindow.contentView!.addSubview(windowBlurView!)
+		mainWindow.contentView!.addSubview(paletteBlurView!)
+		
+		windowBlurView!.layer?.needsDisplay()
+		paletteBlurView?.layer?.needsDisplay()
+	}
+
+	private func setupBlurOnView(_ blurView: NSView, inputRadius: CGFloat, inputSaturation: CGFloat){
+		blurView.layer?.backgroundColor = NSColor.clear.cgColor
+		blurView.layer?.masksToBounds = true
+		blurView.layerUsesCoreImageFilters = true
+		blurView.layer?.needsDisplayOnBoundsChange = true
 
 		let satFilter = CIFilter(name: "CIColorControls")!
 		satFilter.setDefaults()
-		satFilter.setValue(NSNumber(value: 0.6), forKey: "inputSaturation")
+		satFilter.setValue(NSNumber(value: inputSaturation), forKey: "inputSaturation")
 
 		let blurFilter = CIFilter(name: "CIGaussianBlur")!
 		blurFilter.setDefaults()
-		blurFilter.setValue(NSNumber(value: 1.0), forKey: "inputRadius")
+		blurFilter.setValue(NSNumber(value: inputRadius), forKey: "inputRadius")
 
-		blurView!.layer?.backgroundFilters = [satFilter, blurFilter]
-		mainWindow.contentView!.addSubview(blurView!)
-
-		blurView!.layer?.needsDisplay()
+		blurView.layer?.backgroundFilters = [satFilter, blurFilter]
 	}
-
+	
 	override func cancelOperation(_ sender: Any?) {
 		removeSelf()
 	}
@@ -92,8 +105,10 @@ class NiPalette: NSPanel, NiSearchWindowProtocol {
 	}
 	
 	func removeSelf(){
-		blurView?.removeFromSuperview()
-		blurView = nil
+		windowBlurView?.removeFromSuperview()
+		windowBlurView = nil
+		paletteBlurView?.removeFromSuperview()
+		paletteBlurView = nil
 		self.orderOut(nil)
 		self.close()
 	}
