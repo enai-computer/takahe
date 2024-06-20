@@ -13,7 +13,7 @@
             <rect key="frame" x="0.0" y="0.0" width="240" height="40"/>
             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
             <subviews>
-                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" textCompletion="NO" id="q8A-fu-mJB">
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" textCompletion="NO" id="q8A-fu-mJB">
                     <rect key="frame" x="8" y="8" width="219" height="22"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" lineBreakMode="clipping" enabled="NO" refusesFirstResponder="YES" allowsUndo="NO" title="Write a note" id="EKI-vR-Bu6">
@@ -22,14 +22,27 @@
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
+                <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" id="ClY-8r-lXp">
+                    <rect key="frame" x="190" y="8" width="35" height="22"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" refusesFirstResponder="YES" title="⌘ N" id="v3q-TH-Kxj">
+                        <font key="font" size="16" name="Sohne-Buch"/>
+                        <color key="textColor" name="sand11"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
             </subviews>
             <connections>
+                <outlet property="keyboardShortcut" destination="ClY-8r-lXp" id="M0a-hA-NJV"/>
                 <outlet property="title" destination="q8A-fu-mJB" id="ZKU-vI-a7l"/>
             </connections>
             <point key="canvasLocation" x="69" y="-36"/>
         </customView>
     </objects>
     <resources>
+        <namedColor name="sand11">
+            <color red="0.4392156862745098" green="0.43529411764705883" blue="0.42352941176470588" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="sand12">
             <color red="0.10588235294117647" green="0.10588235294117647" blue="0.094117647058823528" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

@@ -9,7 +9,6 @@ class NiSpaceViewController: NSViewController{
     
 	private(set) var spaceLoaded: Bool = false
     private var niSpaceName: String
-	var spaceMenu: NiSpaceMenuController?
 	
 	//header elements here:
 	@IBOutlet var header: NSBox!
@@ -62,7 +61,7 @@ class NiSpaceViewController: NSViewController{
 			let title = NSPasteboard.general.tryGetName()
 			let source = NSPasteboard.general.tryGetFileURL()
 			let pos = view.window!.mouseLocationOutsideOfEventStream
-			pasteImage(image: img, positioned: pos, title: title, source: source)
+			pasteImage(image: img, screenPosition: pos, title: title, source: source)
 		}
 	}
 	
@@ -108,12 +107,16 @@ class NiSpaceViewController: NSViewController{
 		niDocument.openEmptyCF()
 	}
 	
-	func pasteImage(image: NSImage, positioned at: CGPoint, title: String?, source: String?){
-		let targetSize = imgSizing(image.size)
-		image.size = targetSize
+	func pasteImage(image: NSImage, screenPosition at: CGPoint, title: String?, source: String?){
 		var position = at
 		position.y = niScrollView.documentView!.visibleRect.size.height - position.y + niScrollView.documentView!.visibleRect.origin.y
-		let cfController = niDocument.openEmptyCF(viewState: .frameless, initialTabType: .img, positioned: position, size: targetSize)
+		self.pasteImage(image: image, documentPosition: position, title: title, source: source)
+	}
+	
+	func pasteImage(image: NSImage, documentPosition at: CGPoint, title: String?, source: String?){
+		let targetSize = imgSizing(image.size)
+		image.size = targetSize
+		let cfController = niDocument.openEmptyCF(viewState: .frameless, initialTabType: .img, positioned: at, size: targetSize)
 		cfController.openImgInNewTab(tabTitle: title, content: image, source: source)
 	}
 	
@@ -157,15 +160,8 @@ class NiSpaceViewController: NSViewController{
 		return size
 	}
 	
-	func createANote(positioned relavtiveTo: CGPoint? = nil, with content: String? = nil){
-		var noteOrigin: CGPoint?
-		if(spaceMenu != nil){
-			noteOrigin = niDocument.view.convert(spaceMenu!.view.frame.origin, from: view)
-			noteOrigin!.y -= spaceMenu!.view.frame.height
-		}else if(relavtiveTo != nil){
-			noteOrigin = niDocument.view.convert(relavtiveTo!, from: nil)
-		}
-		niDocument.openEmptyCF(viewState: .frameless, initialTabType: .note, positioned: noteOrigin, content: content)
+	func createANote(positioned at: CGPoint, with content: String? = nil){
+		niDocument.openEmptyCF(viewState: .frameless, initialTabType: .note, positioned: at, content: content)
 	}
 	
 	func closeTabOfTopCF(){
@@ -181,12 +177,9 @@ class NiSpaceViewController: NSViewController{
 	}
 	
 	private func showSpaceMenu(_ event: NSEvent){
-		if(spaceMenu != nil){
-			return
-		}
-		spaceMenu = NiSpaceMenuController(owner: self)
-		spaceMenu!.loadAndPositionView(position: event.locationInWindow, screenWidth: view.frame.width, screenHeight: view.frame.height)
-		view.addSubview(spaceMenu!.view)
+		let pointOnDocument = niDocument.view.convert(event.locationInWindow, from: nil)
+		let popUpDelegate = NiSpaceMenuPopup(parentController: self, originInDocument: pointOnDocument)
+		_ = popUpDelegate.displayPopupWindow(event: event, screen: view.window!.screen!)
 	}
 	
 	/*
@@ -200,15 +193,14 @@ class NiSpaceViewController: NSViewController{
 			returnToHome()
 			return
 		}
-		if(event.clickCount == 1){
-			showSpaceMenu(event)
-		}
 		
 		if(event.clickCount == 2){
-			if let menuView = spaceMenu?.view as? NSView {
-				menuView.removeFromSuperview()
-			}
-			spaceMenu = nil
+			showSpaceMenu(event)
+		}
+	}
+	
+	override func rightMouseDown(with event: NSEvent) {
+		if(event.clickCount == 1){
 			showSpaceMenu(event)
 		}
 	}

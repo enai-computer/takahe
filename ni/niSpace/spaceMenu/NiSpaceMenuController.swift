@@ -62,12 +62,6 @@ class NiSpaceMenuController: NSViewController{
 		if(outOfBoundsMonitor != nil){
 			NSEvent.removeMonitor(outOfBoundsMonitor!)
 		}
-		//needs to happen after the event was processed by the whole responder chain
-		DispatchQueue.main.async {
-			if(self.parentController.spaceMenu == self){
-				self.parentController.spaceMenu = nil
-			}
-		}
 	}
 	
 	func openAWindow(with event: NSEvent){
@@ -83,7 +77,7 @@ class NiSpaceMenuController: NSViewController{
 		if(pasteBoardType! == .image){
 			guard let img = NSPasteboard.general.getImage() else {return}
 			let title = NSPasteboard.general.tryGetName()
-			parentController.pasteImage(image: img, positioned: event.locationInWindow, title: title, source: nil)
+			parentController.pasteImage(image: img, screenPosition: event.locationInWindow, title: title, source: nil)
 		}
 		else if(pasteBoardType! == .txt){
 			let txt = NSPasteboard.general.tryGetText()
