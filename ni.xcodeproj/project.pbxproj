@@ -62,10 +62,6 @@
 		CD6317F12BC53A9600434D56 /* cfOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6317F02BC53A9600434D56 /* cfOverlay.swift */; };
 		CD66CE332B1F819E0006BB98 /* NiWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD66CE322B1F819E0006BB98 /* NiWebView.swift */; };
 		CD66CE382B1FD26A0006BB98 /* NiStringUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD66CE372B1FD26A0006BB98 /* NiStringUtils.swift */; };
-		CD6752A12BFB56DC0008A227 /* NiSpaceMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6752A02BFB56DC0008A227 /* NiSpaceMenuView.swift */; };
-		CD6752A72BFB76BC0008A227 /* NiSpaceMenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD6752A62BFB76BC0008A227 /* NiSpaceMenuView.xib */; };
-		CD6752A92BFB79AD0008A227 /* NiSpaceMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6752A82BFB79AD0008A227 /* NiSpaceMenuController.swift */; };
-		CD6752AB2BFB88770008A227 /* NiSpaceMenuItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6752AA2BFB88770008A227 /* NiSpaceMenuItemView.swift */; };
 		CD6D280A2C11D5ED0009732A /* NiMenuItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6D28092C11D5ED0009732A /* NiMenuItemViewModel.swift */; };
 		CD6D280C2C11D6DA0009732A /* NiMenuWindowDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6D280B2C11D6DA0009732A /* NiMenuWindowDelegate.swift */; };
 		CD6D280E2C11DC7A0009732A /* NiMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6D280D2C11DC7A0009732A /* NiMenuViewController.swift */; };
@@ -193,10 +189,6 @@
 		CD6317F02BC53A9600434D56 /* cfOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cfOverlay.swift; sourceTree = "<group>"; };
 		CD66CE322B1F819E0006BB98 /* NiWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiWebView.swift; sourceTree = "<group>"; };
 		CD66CE372B1FD26A0006BB98 /* NiStringUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiStringUtils.swift; sourceTree = "<group>"; };
-		CD6752A02BFB56DC0008A227 /* NiSpaceMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiSpaceMenuView.swift; sourceTree = "<group>"; };
-		CD6752A62BFB76BC0008A227 /* NiSpaceMenuView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NiSpaceMenuView.xib; sourceTree = "<group>"; };
-		CD6752A82BFB79AD0008A227 /* NiSpaceMenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiSpaceMenuController.swift; sourceTree = "<group>"; };
-		CD6752AA2BFB88770008A227 /* NiSpaceMenuItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiSpaceMenuItemView.swift; sourceTree = "<group>"; };
 		CD69D02F2BFCA54C002386D0 /* NiStringUtilsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiStringUtilsTests.swift; sourceTree = "<group>"; };
 		CD6D28092C11D5ED0009732A /* NiMenuItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiMenuItemViewModel.swift; sourceTree = "<group>"; };
 		CD6D280B2C11D6DA0009732A /* NiMenuWindowDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiMenuWindowDelegate.swift; sourceTree = "<group>"; };
@@ -457,10 +449,6 @@
 		CD6752992BFB502A0008A227 /* spaceMenu */ = {
 			isa = PBXGroup;
 			children = (
-				CD6752A02BFB56DC0008A227 /* NiSpaceMenuView.swift */,
-				CD6752A62BFB76BC0008A227 /* NiSpaceMenuView.xib */,
-				CD6752A82BFB79AD0008A227 /* NiSpaceMenuController.swift */,
-				CD6752AA2BFB88770008A227 /* NiSpaceMenuItemView.swift */,
 				CDE88CAD2C2415AA000390A6 /* NiSpaceMenuPopup.swift */,
 			);
 			path = spaceMenu;
@@ -731,7 +719,6 @@
 				CD53ACC02BCEE0ED00D5912B /* emptyTab.html in Resources */,
 				CDF0DD242C202BDB006C4EF4 /* NiHomeView.xib in Resources */,
 				CD1160CC2BD286ED00345E3E /* emptyTab-1.jpg in Resources */,
-				CD6752A72BFB76BC0008A227 /* NiSpaceMenuView.xib in Resources */,
 				CDA639562BF50596001941DE /* welcomeConfig.json in Resources */,
 				CD6317ED2BC4852300434D56 /* sohne-leicht.ttf in Resources */,
 				A14E8F252AD5EADF00409DDF /* NiSpaceView.xib in Resources */,
@@ -816,7 +803,6 @@
 				CDF0DD222C202BCD006C4EF4 /* NiHomeController.swift in Sources */,
 				CD8D2B082C00C7A100C44C1D /* NoteTable.swift in Sources */,
 				CD7578462BC000F200293930 /* ContentFrameTabHead.swift in Sources */,
-				CD6752A92BFB79AD0008A227 /* NiSpaceMenuController.swift in Sources */,
 				CD6317E32BC3F18300434D56 /* NiBadTypeError.swift in Sources */,
 				CD5A04D12BEA78E4004CC3AA /* CFBaseView.swift in Sources */,
 				CDABE6462C11C4FE00BB4E85 /* NiMenuWindow.swift in Sources */,
@@ -829,8 +815,6 @@
 				CD33621F2BFE0DD0004DBAFB /* CFSoftDeletedView.swift in Sources */,
 				CDD7D3362C198A930038E6F9 /* NiPalette.swift in Sources */,
 				CD04974E2C12FA4A00C44021 /* NiTextField.swift in Sources */,
-				CD6752AB2BFB88770008A227 /* NiSpaceMenuItemView.swift in Sources */,
-				CD6752A12BFB56DC0008A227 /* NiSpaceMenuView.swift in Sources */,
 				A14E8F272AD5EAF800409DDF /* NiSpaceView.swift in Sources */,
 				CD5A04CD2BEA3CD0004CC3AA /* CFMinimizedStackItem.swift in Sources */,
 				CDF0DD282C20549F006C4EF4 /* NiEmptyView.swift in Sources */,
