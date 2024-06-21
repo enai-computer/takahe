@@ -40,7 +40,7 @@ func createWebUrl(from urlDirty: String) throws -> URL{
 
 //TODO: this needs to be checked against official specifications: https://url.spec.whatwg.org/
 func isValidWebUrl(url: String) -> Bool {
-	let urlRegEx = "^(https?://)?(www\\.)?([-a-z0-9]{1,63}\\.)*?[a-z0-9][-a-z0-9]{0,61}[a-z0-9]\\.[a-z]{2,6}(/[-\\w@\\+\\.~#\\?&/=%]*)?$"
+	let urlRegEx = "^(https?://)?(www\\.)?([-a-z0-9]{1,63}\\.)*?[-a-z0-9]{0,61}[a-z0-9]\\.[a-z]{2,6}(/[-\\w@\\+\\.~#\\?&/=%]*)?$"
 	let urlTest = NSPredicate(format:"SELF MATCHES %@", urlRegEx)
 	let result = urlTest.evaluate(with: url)
 	return result
