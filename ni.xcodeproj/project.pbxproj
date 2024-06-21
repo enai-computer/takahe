@@ -68,6 +68,7 @@
 		CD6D28102C11EE7E0009732A /* RoundedRectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6D280F2C11EE7E0009732A /* RoundedRectView.swift */; };
 		CD6DED8F2C24954500AA8BC4 /* NiWebViewFindPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6DED8D2C24954500AA8BC4 /* NiWebViewFindPanel.swift */; };
 		CD6DED902C24954500AA8BC4 /* NiWebViewFindPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD6DED8E2C24954500AA8BC4 /* NiWebViewFindPanel.xib */; };
+		CD6DED922C257A5000AA8BC4 /* NiActionLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6DED912C257A5000AA8BC4 /* NiActionLabel.swift */; };
 		CD72B83F2C24714800104802 /* CAUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD72B83E2C24714800104802 /* CAUtils.swift */; };
 		CD7578372BBDA98700293930 /* ContentFrameHeadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7578362BBDA98700293930 /* ContentFrameHeadView.swift */; };
 		CD7578462BC000F200293930 /* ContentFrameTabHead.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7578442BC000F200293930 /* ContentFrameTabHead.swift */; };
@@ -199,6 +200,7 @@
 		CD6D280F2C11EE7E0009732A /* RoundedRectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedRectView.swift; sourceTree = "<group>"; };
 		CD6DED8D2C24954500AA8BC4 /* NiWebViewFindPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiWebViewFindPanel.swift; sourceTree = "<group>"; };
 		CD6DED8E2C24954500AA8BC4 /* NiWebViewFindPanel.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NiWebViewFindPanel.xib; sourceTree = "<group>"; };
+		CD6DED912C257A5000AA8BC4 /* NiActionLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiActionLabel.swift; sourceTree = "<group>"; };
 		CD72B83E2C24714800104802 /* CAUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CAUtils.swift; sourceTree = "<group>"; };
 		CD7578362BBDA98700293930 /* ContentFrameHeadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentFrameHeadView.swift; sourceTree = "<group>"; };
 		CD7578442BC000F200293930 /* ContentFrameTabHead.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentFrameTabHead.swift; sourceTree = "<group>"; };
@@ -451,6 +453,7 @@
 				CD5F7DFE2C1EF06300ADC860 /* DataModelUtils.swift */,
 				CDF0DD272C20549F006C4EF4 /* NiEmptyView.swift */,
 				CD72B83E2C24714800104802 /* CAUtils.swift */,
+				CD6DED912C257A5000AA8BC4 /* NiActionLabel.swift */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -754,6 +757,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CD1853192C09EA96001FE566 /* PasteboardUtils.swift in Sources */,
+				CD6DED922C257A5000AA8BC4 /* NiActionLabel.swift in Sources */,
 				CD75784C2BC065FB00293930 /* ContentFrameTabHeadTextNode.swift in Sources */,
 				A1E41BFA2ACB57EF00338417 /* ContentFrameView.swift in Sources */,
 				CD6317F12BC53A9600434D56 /* cfOverlay.swift in Sources */,
