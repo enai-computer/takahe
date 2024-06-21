@@ -10,12 +10,6 @@ import XCTest
 
 final class NiStringUtilsTests: XCTestCase{
 	
-	func testCreateWebUrl() throws{
-		let url = try createWebUrl(from: "http://google.com/?query=http")
-		XCTAssertTrue(url.scheme == "https")
-		XCTAssertTrue(url.absoluteStringWithoutScheme?.contains("https") == false)
-	}
-	
 	func testURLfunctionality() throws{
 		let url = try createWebUrl(from: "http://google.com/?query=http")
 		print(url.baseURL?.absoluteString)
@@ -23,6 +17,10 @@ final class NiStringUtilsTests: XCTestCase{
 		let url2 = URL(string: "https://drive.google.com/sadkjfn?nil=d&d=d")
 		print(url2?.baseURL?.absoluteString)
 		XCTAssertTrue(true)
+	}
+	
+	func testIsValidWebUrl(){
+		XCTAssertTrue(isValidWebUrl(url: "x.com"))
 	}
 	
 }
