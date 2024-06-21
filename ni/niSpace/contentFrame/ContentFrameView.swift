@@ -39,6 +39,7 @@ class ContentFrameView: CFBaseView{
 	override var minFrameWidth: CGFloat { return 575.0}
 	
 	private var dropShadow2 = CALayer()
+	private var dropShadow3 = CALayer()
 	
     required init?(coder: NSCoder) {
         super.init(coder: coder)
@@ -489,27 +490,40 @@ class ContentFrameView: CFBaseView{
 		
 		self.clipsToBounds = false
 		
-		self.layer?.shadowColor = NSColor.sand9.cgColor
-		self.layer?.shadowOffset = CGSize(width: 0.0, height: 0.0)
-		self.layer?.shadowOpacity = 0.6
-		self.layer?.shadowRadius = 4.0
+		self.layer?.shadowColor = NSColor.sand115.cgColor
+		self.layer?.shadowOffset = CGSize(width: 0.0, height: -1.0)
+		self.layer?.shadowOpacity = 0.33
+		self.layer?.shadowRadius = 3.0
 		self.layer?.masksToBounds = false
 
 		self.dropShadow2.removeFromSuperlayer()
 		
 		self.dropShadow2 = CALayer(layer: self.layer!)
 		self.dropShadow2.shadowPath = NSBezierPath(rect: bounds).cgPath
-		self.dropShadow2.shadowColor = NSColor.sand9.cgColor
-		self.dropShadow2.shadowOffset = CGSize(width: 5.0, height: -5.0)
-		self.dropShadow2.shadowOpacity = 0.3
-		self.dropShadow2.shadowRadius = 30.0
+		self.dropShadow2.shadowColor = NSColor.sand115.cgColor
+		self.dropShadow2.shadowOffset = CGSize(width: 2.0, height: -4.0)
+		self.dropShadow2.shadowOpacity = 0.2
+		self.dropShadow2.shadowRadius = 6.0
 		self.dropShadow2.masksToBounds = false
 
 		self.layer?.insertSublayer(self.dropShadow2, at: 0)
+		
+		self.dropShadow3.removeFromSuperlayer()
+		
+		self.dropShadow3 = CALayer(layer: self.layer!)
+		self.dropShadow3.shadowPath = NSBezierPath(rect: bounds).cgPath
+		self.dropShadow3.shadowColor = NSColor.sand115.cgColor
+		self.dropShadow3.shadowOffset = CGSize(width: 4.0, height: -8.0)
+		self.dropShadow3.shadowOpacity = 0.2
+		self.dropShadow3.shadowRadius = 20.0
+		self.dropShadow3.masksToBounds = false
+
+		dropShadow2.insertSublayer(self.dropShadow3, at: 0)
 	}
 	
 	private func shadowInActive(){
 		self.dropShadow2.removeFromSuperlayer()
+		self.dropShadow3.removeFromSuperlayer()
 		
 		self.layer?.shadowColor = NSColor.sand9.cgColor
 		self.layer?.shadowOffset = CGSize(width: 0.0, height: 0.0)
