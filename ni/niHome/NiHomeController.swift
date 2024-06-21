@@ -12,7 +12,6 @@ class NiHomeController: NSViewController {
 	@IBOutlet var leftSide: NSView!
 	@IBOutlet var rightSide: NSView!
 	@IBOutlet var welcomeTxt: NSTextField!
-	@IBOutlet var time: NSTextField!
 	
 	private var searchController: NiSearchController
 	private let viewFrame: NSRect
@@ -40,8 +39,6 @@ class NiHomeController: NSViewController {
 		styleHomeView()
 		
 		setWelcomeMessage()
-		time.stringValue = getLocalisedTime()
-		setAutoUpdatingTime()
 		
 		styleLeftSide()
 		styleRightSide()
@@ -52,10 +49,6 @@ class NiHomeController: NSViewController {
 	override func viewDidLayout() {
 		super.viewDidLayout()
 		self.addShadow()
-	}
-	
-	override func viewWillDisappear() {
-		removeAutoUpdatingTime()
 	}
 	
 	private func styleHomeView(){
@@ -90,7 +83,7 @@ class NiHomeController: NSViewController {
 	
 	private func positionAndDisplaySearchView(){
 		searchController.view.frame.size = CGSize(width: 678.0, height: 450.0)
-		let posY = (welcomeTxt.frame.maxY - searchController.view.frame.height) + 23.0
+		let posY = (welcomeTxt.frame.maxY - searchController.view.frame.height) + 30.0
 		let posX = rightSide.frame.origin.x + 100.0
 		searchController.view.frame.origin = CGPoint(x: posX, y: posY)
 		
@@ -159,20 +152,5 @@ class NiHomeController: NSViewController {
 		static let bottomLeft = RectCorner(rawValue: 1 << 3)
 		
 		static let allCorners: RectCorner = [.topLeft, topRight, .bottomLeft, .bottomRight]
-	}
-
-	func setAutoUpdatingTime(){
-		Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(setDisplayedTime), userInfo: nil, repeats: true)
-	}
-	
-	func removeAutoUpdatingTime(){
-		Timer.cancelPreviousPerformRequests(withTarget: setDisplayedTime())
-	}
-	
-	@objc func setDisplayedTime(){
-		let currentTime = getLocalisedTime()
-		DispatchQueue.main.async {
-			self.time.stringValue = currentTime
-		}
 	}
 }
