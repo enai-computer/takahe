@@ -59,8 +59,27 @@ class NiWebViewFindPanel: NSViewController, NSTextFieldDelegate {
 		nxtFindButton.tintActive()
 		prevFindButton.tintActive()
 	}
+	
 	func controlTextDidEndEditing(_ obj: Notification){
 		niWebView?.performFind(searchField.stringValue, backwards: false)
+	}
+	
+	func control(_ control: NSControl, textView: NSTextView, doCommandBy commandSelector: Selector) -> Bool {
+		if commandSelector == #selector(NSTextView.insertNewline) {
+			if let currentEvent = NSApplication.shared.currentEvent{
+				if(currentEvent.modifierFlags.contains(.shift)){
+					niWebView?.performFind(searchField.stringValue, backwards: true)
+					return true
+				}
+			}
+			niWebView?.performFind(searchField.stringValue, backwards: false)
+			return true
+		}
+		return false
+	}
+	
+	override func cancelOperation(_ sender: Any?) {
+		removeSelf()
 	}
 	
 	func nxtButtonClicked(_ event: NSEvent){
