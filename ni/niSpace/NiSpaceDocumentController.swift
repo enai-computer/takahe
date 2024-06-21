@@ -12,8 +12,10 @@ class NiSpaceDocumentController: NSViewController{
 	
 	var myView: NiSpaceDocumentView {return self.view as! NiSpaceDocumentView}
 	
-	private let defaultCFSize: CGSize = CGSize(width: 1250, height: 730)
+	private let defaultCFSize: CGSize = CGSize(width: 1400, height: 880)
 	private let defaultNoteSize: CGSize = CGSize(width: 300, height: 200)
+	private let bufferToTop: CGFloat = 45.0
+	private let bufferToSides: CGFloat = 40.0
 	
 	static let EMPTY_SPACE_ID: UUID = UUID(uuidString: "00000000-0000-0000-0000-000000000000")!
 	
@@ -66,6 +68,9 @@ class NiSpaceDocumentController: NSViewController{
 			newCFView.frame.size = size!
 		}else{
 			newCFView.frame.size = defaultCFSize
+			if(view.frame.width < newCFView.frame.width){
+				newCFView.frame.size.width = view.frame.width - (bufferToSides * 2.0)
+			}
 		}
 		
 		if(relavtiveTo == nil){
@@ -124,7 +129,15 @@ class NiSpaceDocumentController: NSViewController{
 		let x_dist_to_center = frame.width / 2
 		let y_dist_to_center = frame.height / 2
 		
-		return CGPoint(x: (x_center-x_dist_to_center), y: (y_center - y_dist_to_center))
+		var yOrigin = (y_center - y_dist_to_center)
+		if(yOrigin < bufferToTop){
+			yOrigin = bufferToTop
+		}
+		var xOrigin = (x_center-x_dist_to_center)
+		if(xOrigin < bufferToSides){
+			xOrigin = bufferToSides
+		}
+		return CGPoint(x: xOrigin, y: yOrigin)
 	}
 	
 	/*
