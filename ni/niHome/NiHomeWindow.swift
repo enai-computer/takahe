@@ -31,7 +31,7 @@ class NiHomeWindow: NSPanel, NiSearchWindowProtocol{
 		titlebarAppearsTransparent = true
 		delegate = niDelegate
 		contentViewController = NiEmptyView(viewFrame: windowToAppearOn.frame,
-											contentController: NiHomeController(frame: homeViewRect))
+											contentController: NiHomeController(frame: windowToAppearOn.frame))
 
 		hasShadow = false
 		isOpaque = false

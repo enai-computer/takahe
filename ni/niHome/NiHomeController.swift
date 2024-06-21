@@ -36,7 +36,6 @@ class NiHomeController: NSViewController {
 		self.view.frame = viewFrame
 		
 		view.wantsLayer = true
-		styleHomeView()
 		
 		setWelcomeMessage()
 		
@@ -48,39 +47,8 @@ class NiHomeController: NSViewController {
 	
 	override func viewDidLayout() {
 		super.viewDidLayout()
-		self.addShadow()
 	}
-	
-	private func styleHomeView(){
-		view.layer?.cornerCurve = .continuous
-		view.layer?.cornerRadius = 30.0
-		view.layer?.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
-		view.layer?.masksToBounds = true
-	}
-	
-	private func addShadow(){
-		let shadowView = RoundedRectView(frame: viewFrame)
-		shadowView.wantsLayer = true
-		shadowView.clipsToBounds = false
-		shadowView.layer?.shadowColor = NSColor.sand11.cgColor
-		shadowView.layer?.shadowOffset = CGSize(width: 0.0, height: 0.0)
-		shadowView.layer?.shadowOpacity = 0.15
-		shadowView.layer?.shadowRadius = 4.0
-		shadowView.layer?.shadowPath = roundedCornersPath(in: view.bounds,
-													having: [.bottomLeft, .bottomRight],
-													with: 30.0)
-		self.dropShadow2 = CALayer(layer: shadowView.layer!)
-		self.dropShadow2.shadowPath = NSBezierPath(rect: view.bounds).cgPath
-		self.dropShadow2.shadowColor = NSColor.sand11.cgColor
-		self.dropShadow2.shadowOffset = CGSize(width: 2.0, height: -4.0)
-		self.dropShadow2.shadowOpacity = 0.15
-		self.dropShadow2.shadowRadius = 10.0
-		self.dropShadow2.masksToBounds = false
 
-		shadowView.layer?.insertSublayer(self.dropShadow2, at: 0)
-		self.view.superview?.addSubview(shadowView, positioned: .below, relativeTo: self.view)
-	}
-	
 	private func positionAndDisplaySearchView(){
 		searchController.view.frame.size = CGSize(width: 678.0, height: 450.0)
 		let posY = (welcomeTxt.frame.maxY - searchController.view.frame.height) + 30.0
