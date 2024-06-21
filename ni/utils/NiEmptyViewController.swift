@@ -8,7 +8,7 @@
 import Cocoa
 
 
-class NiEmptyView: NSViewController{
+class NiEmptyViewController: NSViewController{
 	
 	private var viewFrame: NSRect
 	private var contentController: NSViewController
@@ -24,7 +24,7 @@ class NiEmptyView: NSViewController{
 	}
 	
 	override func loadView() {
-		view = RoundedRectView(frame: viewFrame)
+		view = EmptyRectView(frame: viewFrame)
 	}
 	
 	override func viewDidLoad() {

@@ -30,8 +30,8 @@ class NiHomeWindow: NSPanel, NiSearchWindowProtocol{
 		titleVisibility = .hidden
 		titlebarAppearsTransparent = true
 		delegate = niDelegate
-		contentViewController = NiEmptyView(viewFrame: windowToAppearOn.frame,
-											contentController: NiHomeController(frame: windowToAppearOn.frame))
+		contentViewController = NiEmptyViewController(viewFrame: windowToAppearOn.frame,
+											contentController: NiHomeController(frame: homeViewRect))
 
 		hasShadow = false
 		isOpaque = false
@@ -40,10 +40,8 @@ class NiHomeWindow: NSPanel, NiSearchWindowProtocol{
 	}
 	
 	private static func calcHomeViewRect(_ screenSize: NSSize) -> NSRect{
-		let selfSize = CGSize(
-			width: (screenSize.width - 100.0),
-			height: (screenSize.height - 83.0))
-		return NSRect(origin: CGPoint(x: 50.0, y: 83.0), size: selfSize)
+		let selfSize = screenSize
+		return NSRect(origin: CGPoint(x: 0.0, y: 0.0), size: selfSize)
 	}
 	
 	func removeSelf(){
