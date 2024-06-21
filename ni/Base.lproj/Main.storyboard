@@ -111,12 +111,12 @@
                                                     </menuItem>
                                                     <menuItem title="Find Next" tag="2" keyEquivalent="g" id="R4R-nt-x3E">
                                                         <connections>
-                                                            <action selector="performFindPanelAction:" target="Ady-hI-5gd" id="74M-sb-ykA"/>
+                                                            <action selector="performFindNext:" target="Ady-hI-5gd" id="B3N-wA-0Lu"/>
                                                         </connections>
                                                     </menuItem>
                                                     <menuItem title="Find Previous" tag="3" keyEquivalent="G" id="Hw3-4Q-IHz">
                                                         <connections>
-                                                            <action selector="performFindPanelAction:" target="Ady-hI-5gd" id="jwb-jd-4HE"/>
+                                                            <action selector="performFindPrevious:" target="Ady-hI-5gd" id="D1h-pv-BZo"/>
                                                         </connections>
                                                     </menuItem>
                                                     <menuItem title="Use Selection for Find" tag="7" keyEquivalent="e" id="Fhk-5F-hpy">

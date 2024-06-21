@@ -60,9 +60,13 @@ class NiWebView: WKWebView, CFContentItem{
     private(set) var viewIsActive: Bool = true
 	var tabHeadPosition: Int = -1
 	var retries: Int = 0
-	
+	let findConfig = WKFindConfiguration()
+
 	// overlays own view to deactivate clicks and visualise deactivation state
 	private var overlay: NSView?
+	var searchPanel: NiWebViewFindPanel?
+	var prevFindAvailable: Bool = true
+	var nextFindAvailable: Bool = true
 	
 	var zoomLevel: Int = 7
 	
@@ -72,6 +76,9 @@ class NiWebView: WKWebView, CFContentItem{
         
         super.init(frame: frame, configuration: wvConfig)
         GlobalScriptMessageHandler.instance.ensureHandles(configuration: self.configuration)
+		
+		findConfig.caseSensitive = false
+		findConfig.wraps = false
 		
 		self.allowsBackForwardNavigationGestures = true
     }
@@ -185,28 +192,55 @@ class NiWebView: WKWebView, CFContentItem{
 	}
 	
 	@IBAction func performFindPanelAction(_ sender: NSMenuItem) {
-//		let findConfig = WKFindConfiguration()
-//		findConfig.caseSensitive = false
-//		findConfig.wraps = true
-//		findConfig.backwards = false
-//		self.find("audi", configuration: findConfig, completionHandler: handleFindResults)
+		guard searchPanel == nil else{return}
 		
-		let viewPanelCon = NiWebViewFindPanel()
-		viewPanelCon.niWebView = self
-		addSubview(viewPanelCon.view)
+		//needs to be ordered this way, otherwise the action images will be null in setNiWebView
+		searchPanel = NiWebViewFindPanel()
+		addSubview(searchPanel!.view)
+		searchPanel!.setNiWebView(self)
 	}
 	
-	func performFind(_ search: String){
-		let findConfig = WKFindConfiguration()
-		findConfig.caseSensitive = false
-		findConfig.wraps = true
-		findConfig.backwards = false
+	@IBAction func performFindNext(_ sender: NSMenuItem){
+		guard searchPanel != nil else {return}
+		performFind(searchPanel!.searchField.stringValue, backwards: false)
+	}
+	
+	@IBAction func performFindPrevious(_ sender: NSMenuItem){
+		guard searchPanel != nil else {return}
+		performFind(searchPanel!.searchField.stringValue, backwards: true)
+	}
+	
+	func performFind(_ search: String, backwards: Bool){
+		findConfig.backwards = backwards
 		self.find(search, configuration: findConfig, completionHandler: handleFindResults)
 	}
 	
 	func handleFindResults(_ result: WKFindResult){
-		print("result: \(result)")
+		//setting opposite direction button true or false depending if results are available
+		if(result.matchFound){
+			if(findConfig.backwards){
+				nextFindAvailable = true
+				searchPanel?.nxtFindButton.tintActive()
+			}else{
+				prevFindAvailable = true
+				searchPanel?.prevFindButton.tintActive()
+			}
+		}else{
+			if(findConfig.backwards){
+				prevFindAvailable = false
+				searchPanel?.prevFindButton.tintInactive()
+			}else{
+				nextFindAvailable = false
+				searchPanel?.nxtFindButton.tintInactive()
+			}
+		}
 	}
+	
+	func resetSearchAvailability(){
+		prevFindAvailable = true
+		nextFindAvailable = true
+	}
+	
 }
 
 class GlobalScriptMessageHandler: NSObject, WKScriptMessageHandler {
