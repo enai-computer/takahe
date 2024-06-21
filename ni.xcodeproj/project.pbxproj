@@ -91,6 +91,7 @@
 		CDABE64E2C11C63500BB4E85 /* NiMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDABE64D2C11C63500BB4E85 /* NiMenuView.swift */; };
 		CDB06B612AF84E1F008DB8FF /* NiSpaceDocumentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB06B602AF84E1F008DB8FF /* NiSpaceDocumentView.swift */; };
 		CDB549D12C2020C90038FB30 /* NiSearchViewScroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB549D02C2020C90038FB30 /* NiSearchViewScroller.swift */; };
+		CDC5A1142C25C8F3002F5621 /* EmptyRectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC5A1132C25C8F3002F5621 /* EmptyRectView.swift */; };
 		CDD6B9392B152A8000C6144D /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD6B9382B152A8000C6144D /* Storage.swift */; };
 		CDD6B93E2B152D3F00C6144D /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = CDD6B93D2B152D3F00C6144D /* SQLite */; };
 		CDD6B9402B169F7700C6144D /* DocumentTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD6B93F2B169F7700C6144D /* DocumentTable.swift */; };
@@ -118,7 +119,7 @@
 		CDF0DD222C202BCD006C4EF4 /* NiHomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF0DD212C202BCD006C4EF4 /* NiHomeController.swift */; };
 		CDF0DD242C202BDB006C4EF4 /* NiHomeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDF0DD232C202BDB006C4EF4 /* NiHomeView.xib */; };
 		CDF0DD262C2045C8006C4EF4 /* NiSearchWindowProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF0DD252C2045C8006C4EF4 /* NiSearchWindowProtocol.swift */; };
-		CDF0DD282C20549F006C4EF4 /* NiEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF0DD272C20549F006C4EF4 /* NiEmptyView.swift */; };
+		CDF0DD282C20549F006C4EF4 /* NiEmptyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF0DD272C20549F006C4EF4 /* NiEmptyViewController.swift */; };
 		CDFA8CFB2C03B9AE00882722 /* CFFramelessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDFA8CFA2C03B9AE00882722 /* CFFramelessView.swift */; };
 		CDFA8CFD2C03B9D000882722 /* CFFramelessView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDFA8CFC2C03B9D000882722 /* CFFramelessView.xib */; };
 		CDFA8CFF2C04815C00882722 /* EventUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDFA8CFE2C04815C00882722 /* EventUtils.swift */; };
@@ -223,6 +224,7 @@
 		CDB06B602AF84E1F008DB8FF /* NiSpaceDocumentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiSpaceDocumentView.swift; sourceTree = "<group>"; };
 		CDB549D02C2020C90038FB30 /* NiSearchViewScroller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiSearchViewScroller.swift; sourceTree = "<group>"; };
 		CDBC33F82BDBC896000EEF3D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		CDC5A1132C25C8F3002F5621 /* EmptyRectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyRectView.swift; sourceTree = "<group>"; };
 		CDD6B9382B152A8000C6144D /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		CDD6B93F2B169F7700C6144D /* DocumentTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentTable.swift; sourceTree = "<group>"; };
 		CDD6B9422B16A14300C6144D /* ContentTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentTable.swift; sourceTree = "<group>"; };
@@ -249,7 +251,7 @@
 		CDF0DD212C202BCD006C4EF4 /* NiHomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiHomeController.swift; sourceTree = "<group>"; };
 		CDF0DD232C202BDB006C4EF4 /* NiHomeView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NiHomeView.xib; sourceTree = "<group>"; };
 		CDF0DD252C2045C8006C4EF4 /* NiSearchWindowProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiSearchWindowProtocol.swift; sourceTree = "<group>"; };
-		CDF0DD272C20549F006C4EF4 /* NiEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiEmptyView.swift; sourceTree = "<group>"; };
+		CDF0DD272C20549F006C4EF4 /* NiEmptyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiEmptyViewController.swift; sourceTree = "<group>"; };
 		CDFA8CFA2C03B9AE00882722 /* CFFramelessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CFFramelessView.swift; sourceTree = "<group>"; };
 		CDFA8CFC2C03B9D000882722 /* CFFramelessView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CFFramelessView.xib; sourceTree = "<group>"; };
 		CDFA8CFE2C04815C00882722 /* EventUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventUtils.swift; sourceTree = "<group>"; };
@@ -451,9 +453,10 @@
 				CD1853182C09EA96001FE566 /* PasteboardUtils.swift */,
 				CDD7D3482C19AD7D0038E6F9 /* NSPanelUtils.swift */,
 				CD5F7DFE2C1EF06300ADC860 /* DataModelUtils.swift */,
-				CDF0DD272C20549F006C4EF4 /* NiEmptyView.swift */,
+				CDF0DD272C20549F006C4EF4 /* NiEmptyViewController.swift */,
 				CD72B83E2C24714800104802 /* CAUtils.swift */,
 				CD6DED912C257A5000AA8BC4 /* NiActionLabel.swift */,
+				CDC5A1132C25C8F3002F5621 /* EmptyRectView.swift */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -832,8 +835,9 @@
 				CDD7D3362C198A930038E6F9 /* NiPalette.swift in Sources */,
 				CD04974E2C12FA4A00C44021 /* NiTextField.swift in Sources */,
 				A14E8F272AD5EAF800409DDF /* NiSpaceView.swift in Sources */,
+				CDC5A1142C25C8F3002F5621 /* EmptyRectView.swift in Sources */,
 				CD5A04CD2BEA3CD0004CC3AA /* CFMinimizedStackItem.swift in Sources */,
-				CDF0DD282C20549F006C4EF4 /* NiEmptyView.swift in Sources */,
+				CDF0DD282C20549F006C4EF4 /* NiEmptyViewController.swift in Sources */,
 				CD1853172C09D623001FE566 /* DoubleUtils.swift in Sources */,
 				CDE88CAE2C2415AA000390A6 /* NiSpaceMenuPopup.swift in Sources */,
 				CD1853132C08D972001FE566 /* FaviconCacheTable.swift in Sources */,
@@ -1014,7 +1018,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = "0.1.6 --- 2024-06-21.1 - Kondo";
+				CURRENT_PROJECT_VERSION = "0.1.6 --- 2024-06-21.2 - Kondo";
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = SNXQ3BDQ5V;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -1047,7 +1051,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = "0.1.6 --- 2024-06-21.1 - Kondo";
+				CURRENT_PROJECT_VERSION = "0.1.6 --- 2024-06-21.2 - Kondo";
 				DEAD_CODE_STRIPPING = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;

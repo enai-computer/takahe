@@ -47,13 +47,10 @@ class NiSearchResultViewItem: NSCollectionViewItem {
 	}
 	
 	func select(){
-		if(style == .palette){
-			birkinHighlight = getBirkinView()
-			view.addSubview(birkinHighlight!)
-			view.layer?.backgroundColor = NSColor.sand1.cgColor
-			resultTitle.textColor = NSColor.sand12
-		}
-
+		birkinHighlight = getBirkinView()
+		view.addSubview(birkinHighlight!)
+		view.layer?.backgroundColor = NSColor.sand1.cgColor
+		resultTitle.textColor = NSColor.sand12
 		keySelected = true
 		rightSideElement.select()
 	}
@@ -65,8 +62,11 @@ class NiSearchResultViewItem: NSCollectionViewItem {
 		
 		if(style == .palette){
 			view.layer?.backgroundColor = NSColor.sand1T80.cgColor
-			resultTitle.textColor = NSColor.sand115
+		}else{
+			view.layer?.backgroundColor = NSColor.clear.cgColor
 		}
+		
+		resultTitle.textColor = NSColor.sand115
 		rightSideElement.deselect()
 	}
 	
@@ -102,7 +102,7 @@ class NiSearchResultViewItem: NSCollectionViewItem {
 	}
 	
 	override func mouseExited(with event: NSEvent) {
-		if(keySelected && style == .palette){return}
+		if(keySelected){return}
 		if(style == .palette){
 			view.layer?.backgroundColor = NSColor.sand1T80.cgColor
 		}else{
@@ -112,7 +112,7 @@ class NiSearchResultViewItem: NSCollectionViewItem {
 	}
 	
 	override func mouseEntered(with event: NSEvent) {
-		if(keySelected && style == .palette){return}
+		if(keySelected){return}
 		view.layer?.backgroundColor = NSColor.sand1.cgColor
 		resultTitle.textColor = NSColor.sand12
 	}
