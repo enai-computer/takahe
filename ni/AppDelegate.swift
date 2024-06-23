@@ -17,7 +17,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	private var lastActive: Date? = nil
 	//if loading fails we do not want to overwrite the space!
 	private var dontStoreSpace = Set<UUID>()
-//
+	
     func applicationDidFinishLaunching(_ aNotification: Notification) {
 		
 		_ = Storage.instance
