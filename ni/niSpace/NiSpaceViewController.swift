@@ -278,7 +278,7 @@ class NiSpaceViewController: NSViewController{
 		spaceName.stringValue = name
 		
 		documentCache.addToCache(id: id, controller: spaceDoc)
-		let oldDocController: NiSpaceDocumentController = niDocument
+
 		transition(from: niDocument, to: spaceDoc, options: [.crossfade])
 		
 		self.niDocument = spaceDoc
