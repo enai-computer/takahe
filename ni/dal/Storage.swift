@@ -26,6 +26,7 @@ class Storage{
     static let instance = Storage()
     let spacesDB: Connection
 	let cacheDB: Connection
+	let userConfig: NiUserConfigModel
 	private var path: String?
 
     private init(){
@@ -52,6 +53,8 @@ class Storage{
 			cacheDB = try Connection(path! + DB_CACHE)
 			cacheDB.foreignKeys = true
 			try Storage.createCacheDBIfNotExist(db: cacheDB)
+			
+			userConfig = UserConfigProvider(configPath: path!).userConfig
         }catch{
             print("Failed to init SQLight.")
             //TODO: try to send crash report

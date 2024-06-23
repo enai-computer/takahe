@@ -10,7 +10,7 @@ import Foundation
 class NiDocControllerCache{
 
 	//TODO: create logic to make this dynamic based on available memory
-	private let maxCachedNiDocControllers: Int = 3
+	private let maxCachedNiDocControllers: Int = Storage.instance.userConfig.nrOfCachedSpaces
 	private var leastRecentlyUsedDocumentKeys: [UUID] = []
 	private var cachedNiDocs: [UUID: NiSpaceDocumentController] = [:]
 	
