@@ -41,6 +41,8 @@
 		CD33621F2BFE0DD0004DBAFB /* CFSoftDeletedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD33621E2BFE0DD0004DBAFB /* CFSoftDeletedView.swift */; };
 		CD3362212BFE0DDC004DBAFB /* CFSoftDeletedView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD3362202BFE0DDC004DBAFB /* CFSoftDeletedView.xib */; };
 		CD3BF3D02C10A133003DA615 /* NewSpaceNote.json in Resources */ = {isa = PBXBuildFile; fileRef = CD3BF3CF2C10A133003DA615 /* NewSpaceNote.json */; };
+		CD410AE02C285AC700EC5DF7 /* UserConfigProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD410ADF2C285AC700EC5DF7 /* UserConfigProvider.swift */; };
+		CD410AE22C285C3C00EC5DF7 /* NiUserConfigModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD410AE12C285C3C00EC5DF7 /* NiUserConfigModel.swift */; };
 		CD42CEC92BDA48180039814D /* NiScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD42CEC82BDA48180039814D /* NiScrollView.swift */; };
 		CD53ACC02BCEE0ED00D5912B /* emptyTab.html in Resources */ = {isa = PBXBuildFile; fileRef = CD53ACBF2BCEE0ED00D5912B /* emptyTab.html */; };
 		CD5A04C62BEA2B96004CC3AA /* CFMinimizedView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD5A04C52BEA2B96004CC3AA /* CFMinimizedView.xib */; };
@@ -174,6 +176,8 @@
 		CD33621E2BFE0DD0004DBAFB /* CFSoftDeletedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CFSoftDeletedView.swift; sourceTree = "<group>"; };
 		CD3362202BFE0DDC004DBAFB /* CFSoftDeletedView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CFSoftDeletedView.xib; sourceTree = "<group>"; };
 		CD3BF3CF2C10A133003DA615 /* NewSpaceNote.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = NewSpaceNote.json; sourceTree = "<group>"; };
+		CD410ADF2C285AC700EC5DF7 /* UserConfigProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserConfigProvider.swift; sourceTree = "<group>"; };
+		CD410AE12C285C3C00EC5DF7 /* NiUserConfigModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiUserConfigModel.swift; sourceTree = "<group>"; };
 		CD42CEC82BDA48180039814D /* NiScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiScrollView.swift; sourceTree = "<group>"; };
 		CD53ACBF2BCEE0ED00D5912B /* emptyTab.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = emptyTab.html; sourceTree = "<group>"; };
 		CD5A04C52BEA2B96004CC3AA /* CFMinimizedView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CFMinimizedView.xib; sourceTree = "<group>"; };
@@ -363,6 +367,7 @@
 			children = (
 				CD1853102C08D22A001FE566 /* FaviconProvider.swift */,
 				CD23EBFA2C0F72FF00A2ACD9 /* Cook.swift */,
+				CD410ADF2C285AC700EC5DF7 /* UserConfigProvider.swift */,
 			);
 			path = provider;
 			sourceTree = "<group>";
@@ -577,6 +582,7 @@
 			isa = PBXGroup;
 			children = (
 				CDD6B9512B1BFE8B00C6144D /* NiDocumentModel.swift */,
+				CD410AE12C285C3C00EC5DF7 /* NiUserConfigModel.swift */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -795,6 +801,7 @@
 				CD6DED8F2C24954500AA8BC4 /* NiWebViewFindPanel.swift in Sources */,
 				CD72B83F2C24714800104802 /* CAUtils.swift in Sources */,
 				CD5F7DFF2C1EF06300ADC860 /* DataModelUtils.swift in Sources */,
+				CD410AE22C285C3C00EC5DF7 /* NiUserConfigModel.swift in Sources */,
 				CDE76C1C2BC6989000CE9513 /* TabViewModel.swift in Sources */,
 				CDF0DD202C202B71006C4EF4 /* NiHomeWindowDelegate.swift in Sources */,
 				CD04974C2C120ABE00C44021 /* CFGroupButton.swift in Sources */,
@@ -829,6 +836,7 @@
 				CD6317E32BC3F18300434D56 /* NiBadTypeError.swift in Sources */,
 				CD5A04D12BEA78E4004CC3AA /* CFBaseView.swift in Sources */,
 				CDABE6462C11C4FE00BB4E85 /* NiMenuWindow.swift in Sources */,
+				CD410AE02C285AC700EC5DF7 /* UserConfigProvider.swift in Sources */,
 				CDFA8CFB2C03B9AE00882722 /* CFFramelessView.swift in Sources */,
 				CDD7D3402C19924F0038E6F9 /* NiSearchResultViewItem.swift in Sources */,
 				CD06A9BA2BF79EF500312256 /* NiScroller.swift in Sources */,
