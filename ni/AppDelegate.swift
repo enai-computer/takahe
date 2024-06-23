@@ -144,10 +144,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	}
 	
 	@IBAction func showPalette(_ sender: NSMenuItem) {
+		showPalette()
+	}
+	
+	private func showPalette(){
 		if (NSApplication.shared.keyWindow is NiHomeWindow){
 			return
 		}
-		
 		//TODO: make async
 		getNiSpaceViewController()?.storeCurrentSpace()
 		let	palette = NiPalette()
@@ -171,6 +174,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 			}
 			if(event.modifierFlags.contains(.command) && event.keyCode == kVK_RightArrow){
 				self.getNiSpaceViewController()?.switchToNextWindow()
+				return nil
+			}
+			if(event.modifierFlags.contains(.command) && event.keyCode == kVK_ANSI_Slash){
+				self.showPalette()
 				return nil
 			}
 			if(event.modifierFlags.contains(.control) && event.modifierFlags.contains(.shift) && event.keyCode == kVK_Tab){
