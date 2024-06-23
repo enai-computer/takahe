@@ -5,7 +5,7 @@
 //  Created by Patrick Lukas on 23/6/24.
 //
 
-import Cocoa
+import Foundation
 
 class NiDocControllerCache{
 
