@@ -17,6 +17,7 @@ class NiSpaceViewController: NSViewController{
 
 	@IBOutlet var niScrollView: NiScrollView!
 	@IBOutlet var niDocument: NiSpaceDocumentController!
+	private let documentCache = NiDocControllerCache()
 
 	init(){
 		self.niSpaceName = ""
@@ -270,12 +271,37 @@ class NiSpaceViewController: NSViewController{
 	}
 	
 	func loadSpace(niSpaceID id: UUID, name: String){
-		let spaceDoc: NiSpaceDocumentController
-		var scrollTo: NSPoint? = nil
+		
+		let (spaceDoc, scrollTo) = getSpaceDoc(id, name: name)
+		
 		niSpaceName = name
 		spaceName.stringValue = name
 		
+		documentCache.addToCache(id: id, controller: spaceDoc)
+		let oldDocController: NiSpaceDocumentController = niDocument
+		transition(from: niDocument, to: spaceDoc, options: [.crossfade])
+		
+		self.niDocument = spaceDoc
+		self.niScrollView.documentView = spaceDoc.view
+		if(scrollTo != nil){
+			self.niScrollView.scroll(self.niScrollView.contentView, to: scrollTo!)
+		}
+		self.spaceLoaded = true
+		
+		let nrOfTimesLoaded = (NSApplication.shared.delegate as! AppDelegate).spaceLoadedSinceStart(id)
+		PostHogSDK.shared.capture("Space_loaded", properties: ["loaded_since_AppStart": nrOfTimesLoaded])
+	}
+	
+	private func getSpaceDoc(_ id: UUID, name: String) -> (NiSpaceDocumentController, NSPoint?) {
 		let spaceModel = loadStoredSpace(niSpaceID: id)
+		var scrollTo: NSPoint? = nil
+		
+		if let cachedDoc = documentCache.getIfCached(id: id){
+			scrollTo = tryGetScrolltoPos(spaceModel)
+			return (cachedDoc, scrollTo)
+		}
+		
+		let spaceDoc: NiSpaceDocumentController
 		
 		if(spaceModel == nil && id != WelcomeSpaceGenerator.WELCOME_SPACE_ID){
 			spaceDoc = getEmptySpaceDocument(id: id, name: name)
@@ -291,28 +317,20 @@ class NiSpaceViewController: NSViewController{
 		}
 		
 		addChild(spaceDoc)
-		let oldDocController: NiSpaceDocumentController = niDocument
-		transition(from: niDocument, to: spaceDoc, options: [.crossfade])
-		
-		self.niDocument = spaceDoc
-		self.niScrollView.documentView = spaceDoc.view
-		if(scrollTo != nil){
-			self.niScrollView.scroll(self.niScrollView.contentView, to: scrollTo!)
-		}
-		self.spaceLoaded = true
-		
-		deinitOldDocument(for: oldDocController)
-		
-		let nrOfTimesLoaded = (NSApplication.shared.delegate as! AppDelegate).spaceLoadedSinceStart(id)
-		PostHogSDK.shared.capture("Space_loaded", properties: ["loaded_since_AppStart": nrOfTimesLoaded])
-	}
-	
-	private func deinitOldDocument(for doc: NiSpaceDocumentController){
-		for conFrame in doc.myView.contentFrameControllers{
-			conFrame.deinitSelf()
-		}
+		return (spaceDoc, scrollTo)
 	}
 
+	func tryGetScrolltoPos(_ spaceModel: NiDocumentObjectModel?) -> NSPoint?{
+		if (spaceModel?.type == NiDocumentObjectTypes.document){
+			if let data = spaceModel?.data as? NiDocumentModel{
+				if (data.viewPosition != nil && 10.0 < data.viewPosition!.px){
+					return NSPoint(x: 0.0, y: data.viewPosition!.px)
+				}
+			}
+		}
+		return nil
+	}
+	
 	private func loadStoredSpace(niSpaceID: UUID) -> NiDocumentObjectModel?{
 		do{
 			let docJson = (DocumentTable.fetchDocumentModel(id: niSpaceID)?.data(using: .utf8))
