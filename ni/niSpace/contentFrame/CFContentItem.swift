@@ -18,4 +18,5 @@ protocol CFContentItem{
 	func setInactive() -> FollowOnAction
 	func cancelOperation(_ sender: Any?) -> Void
 	func spaceClosed() -> Void
+	func spaceRemovedFromMemory() -> Void
 }

@@ -983,9 +983,15 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		}
 	}
 	
-	func deinitSelf(){
+	func pauseMediaPlayback(){
 		for t in tabs{
 			t.viewItem?.spaceClosed()
+		}
+	}
+	
+	func deinitSelf(){
+		for t in tabs{
+			t.viewItem?.spaceRemovedFromMemory()
 		}
 		tabs = []
 		expandedCFView = nil

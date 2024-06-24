@@ -122,9 +122,8 @@ class NiNoteItem: NSViewController, CFContentItem {
 		parentView?.removeBorderAddDropShadow()
 	}
 	
-	func spaceClosed(){
-		
-	}
+	func spaceClosed(){}
+	func spaceRemovedFromMemory() {}
 	
 	func setInactive() -> FollowOnAction{
 		setStyling()

@@ -277,6 +277,8 @@ class NiSpaceViewController: NSViewController{
 		niSpaceName = name
 		spaceName.stringValue = name
 		
+		pauseMediaPlayback(niDocument)
+		
 		documentCache.addToCache(id: id, controller: spaceDoc)
 
 		transition(from: niDocument, to: spaceDoc, options: [.crossfade])
@@ -290,6 +292,13 @@ class NiSpaceViewController: NSViewController{
 		
 		let nrOfTimesLoaded = (NSApplication.shared.delegate as! AppDelegate).spaceLoadedSinceStart(id)
 		PostHogSDK.shared.capture("Space_loaded", properties: ["loaded_since_AppStart": nrOfTimesLoaded])
+	}
+	
+	private func pauseMediaPlayback(_ doc: NiSpaceDocumentController?){
+		guard doc != nil else{return}
+		for conFrame in doc!.myView.contentFrameControllers{
+			conFrame.pauseMediaPlayback()
+		}
 	}
 	
 	private func getSpaceDoc(_ id: UUID, name: String) -> (NiSpaceDocumentController, NSPoint?) {
