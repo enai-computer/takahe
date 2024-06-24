@@ -31,6 +31,7 @@ class CFBaseView: NSBox{
 		// const needed for resizing:
 		static let actionAreaMargin: CGFloat = 8.0
 		static let cornerActionAreaMargin: CGFloat = 24.0
+		static let defaultMargin: CGFloat = 20.0
 	 }
 
 	
