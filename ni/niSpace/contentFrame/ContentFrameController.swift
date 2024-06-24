@@ -21,6 +21,9 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	
     private(set) var expandedCFView: ContentFrameView? = nil
     private var selectedTabModel: Int = -1
+	//we need this var to have the behaviour that tabs that get open with cmd+click open in sequence next to each other
+	//and not just right next to the current tab
+	private var nxtTabPosOpenNxtTo: Int? = nil
 	private(set) var aTabIsInEditingMode: Bool = false
 	private(set) var tabs: [TabViewModel] = []
 	var viewState: NiConentFrameState = .expanded
@@ -488,10 +491,14 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	
 	func openWebsiteInNewTab(_ urlStr: String, shallSelectTab: Bool = true, openNextToSelectedTab: Bool = false){
         let id = UUID()
-		let pos = if(openNextToSelectedTab){
-			openWebsiteInNewTab(urlStr: urlStr, contentId: id, tabName: "", openNextTo: selectedTabModel)
+		let pos: Int
+		if(openNextToSelectedTab){
+			var openNXtToPos = self.nxtTabPosOpenNxtTo ?? selectedTabModel
+			pos = openWebsiteInNewTab(urlStr: urlStr, contentId: id, tabName: "", openNextTo: openNXtToPos)
+			self.nxtTabPosOpenNxtTo = pos
 		}else{
-			openWebsiteInNewTab(urlStr: urlStr, contentId: id, tabName: "")
+			pos = openWebsiteInNewTab(urlStr: urlStr, contentId: id, tabName: "")
+			self.nxtTabPosOpenNxtTo = nil
 		}
 		
 		if(shallSelectTab){
@@ -620,6 +627,8 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 			}
 			return
 		}
+		
+		self.nxtTabPosOpenNxtTo = nil
 		
 		if(aTabIsInEditingMode && at != selectedTabModel){
 			endEditingTabUrl(at: selectedTabModel)
