@@ -803,7 +803,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: any Error){
 		handleFailedLoad(webView)
 	}
-	
+
 	func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
 		
 		//open in new tab, comand clicked on link
@@ -817,7 +817,6 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		}
 		decisionHandler(WKNavigationActionPolicy.allow)
 	}
-
 	
 	//open in new tab, example clicked file in gDrive
 	func webView(_ webView: WKWebView, createWebViewWith configuration: WKWebViewConfiguration, for navigationAction: WKNavigationAction, windowFeatures: WKWindowFeatures) -> WKWebView?{
@@ -828,6 +827,12 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 			}
 		}
 		return nil
+	}
+
+	func webViewDidClose(_ webView: WKWebView){
+		if let niWebView = webView as? NiWebView{
+			closeTab(at: niWebView.tabHeadPosition)
+		}
 	}
 	
 	private func handleFailedLoad(_ webView: WKWebView){
