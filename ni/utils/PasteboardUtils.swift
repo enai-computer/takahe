@@ -64,6 +64,7 @@ extension NSPasteboard{
 	}
 	
 	func containsImgOrText() -> NiPasteboardContent{
+		//need to check in two steps here as a guard with `self.pasteboardItems?[0]` did not work reliable 
 		guard let lstOfItems: [NSPasteboardItem] = self.pasteboardItems else {return .empty}
 		if lstOfItems.isEmpty {return .empty}
 		let item = lstOfItems[0]
