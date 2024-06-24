@@ -66,7 +66,7 @@ class CFBaseView: NSBox{
 	 Do not call this function within a save method, as it modifies the data-structure up the chain.
 	 */
 	func closedContentFrameCleanUp(){
-		myController!.purgePersistetContent()
+		myController?.purgePersistetContent()
 		niParentDoc?.removeNiFrame(myController!)
 		removeFromSuperview()
 	}
