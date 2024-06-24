@@ -64,34 +64,36 @@ extension NSPasteboard{
 	}
 	
 	func containsImgOrText() -> NiPasteboardContent{
-		if let item = self.pasteboardItems?[0]{
-			var containsText: Bool = false
-			for t in item.types{
-				switch(t){
-					case .png:
-						return .image
-					case .tiff:
-						return .image
-					case .fileURL:
-						if let pasteBoardFileUrl = item.data(
-							forType: NSPasteboard.PasteboardType.fileURL
-						){
-							let fileStr = String(decoding: pasteBoardFileUrl, as: UTF8.self)
-							if(hasImgExtension(fileStr)){
-								return .image
-							}
+		guard let lstOfItems: [NSPasteboardItem] = self.pasteboardItems else {return .empty}
+		if lstOfItems.isEmpty {return .empty}
+		let item = lstOfItems[0]
+		var containsText: Bool = false
+		for t in item.types{
+			switch(t){
+				case .png:
+					return .image
+				case .tiff:
+					return .image
+				case .fileURL:
+					if let pasteBoardFileUrl = item.data(
+						forType: NSPasteboard.PasteboardType.fileURL
+					){
+						let fileStr = String(decoding: pasteBoardFileUrl, as: UTF8.self)
+						if(hasImgExtension(fileStr)){
+							return .image
 						}
-						continue
-					case .rtf, .html, .multipleTextSelection, .tabularText, .string:
-						containsText = true
-					default:
-						continue
-				}
-			}
-			if containsText{
-				return .txt
+					}
+					continue
+				case .rtf, .html, .multipleTextSelection, .tabularText, .string:
+					containsText = true
+				default:
+					continue
 			}
 		}
+		if containsText{
+			return .txt
+		}
+		
 		return .empty
 	}
 	
