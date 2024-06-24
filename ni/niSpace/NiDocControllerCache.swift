@@ -35,16 +35,17 @@ class NiDocControllerCache{
 	private func removeLeastRecentlyUsed(){
 		if let idToRemove = leastRecentlyUsedDocumentKeys.popLast(){
 			if let oldDoc = cachedNiDocs.removeValue(forKey: idToRemove){
-				deinitOldDocument(oldDoc)
+				NiDocControllerCache.deinitOldDocument(oldDoc)
 			}
 		}
 	}
 	
-	private func deinitOldDocument(_ doc: NiSpaceDocumentController?){
+	static func deinitOldDocument(_ doc: NiSpaceDocumentController?){
 		guard doc != nil else{return}
 		for conFrame in doc!.myView.contentFrameControllers{
 			conFrame.deinitSelf()
 		}
+		doc?.view.removeFromSuperviewWithoutNeedingDisplay()
 		doc?.removeFromParent()
 	}
 }

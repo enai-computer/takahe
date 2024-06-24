@@ -123,7 +123,10 @@ class NiNoteItem: NSViewController, CFContentItem {
 	}
 	
 	func spaceClosed(){}
-	func spaceRemovedFromMemory() {}
+	func spaceRemovedFromMemory() {
+		self.owner = nil
+		self.overlay = nil
+	}
 	
 	func setInactive() -> FollowOnAction{
 		setStyling()

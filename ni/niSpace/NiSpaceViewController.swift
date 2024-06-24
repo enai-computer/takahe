@@ -279,8 +279,11 @@ class NiSpaceViewController: NSViewController{
 		
 		pauseMediaPlayback(niDocument)
 		
-		documentCache.addToCache(id: id, controller: spaceDoc)
-
+		if(Storage.instance.userConfig.spaceCachingEnabled){
+			documentCache.addToCache(id: id, controller: spaceDoc)
+		}
+		
+		let oldDoc = niDocument
 		transition(from: niDocument, to: spaceDoc, options: [.crossfade])
 		
 		self.niDocument = spaceDoc
@@ -289,6 +292,10 @@ class NiSpaceViewController: NSViewController{
 			self.niScrollView.scroll(self.niScrollView.contentView, to: scrollTo!)
 		}
 		self.spaceLoaded = true
+		
+		if(!Storage.instance.userConfig.spaceCachingEnabled){
+			NiDocControllerCache.deinitOldDocument(oldDoc)
+		}
 		
 		let nrOfTimesLoaded = (NSApplication.shared.delegate as! AppDelegate).spaceLoadedSinceStart(id)
 		PostHogSDK.shared.capture("Space_loaded", properties: ["loaded_since_AppStart": nrOfTimesLoaded])
@@ -305,9 +312,11 @@ class NiSpaceViewController: NSViewController{
 		let spaceModel = loadStoredSpace(niSpaceID: id)
 		var scrollTo: NSPoint? = nil
 		
-		if let cachedDoc = documentCache.getIfCached(id: id){
-			scrollTo = tryGetScrolltoPos(spaceModel)
-			return (cachedDoc, scrollTo)
+		if(Storage.instance.userConfig.spaceCachingEnabled){
+			if let cachedDoc = documentCache.getIfCached(id: id){
+				scrollTo = tryGetScrolltoPos(spaceModel)
+				return (cachedDoc, scrollTo)
+			}
 		}
 		
 		let spaceDoc: NiSpaceDocumentController
