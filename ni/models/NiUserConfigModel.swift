@@ -18,7 +18,7 @@ extension NiUserConfigModel{
 	/** init with defaults
 	 */
 	init(){
-		nrOfCachedSpaces = 2
+		nrOfCachedSpaces = 3
 		eveEnabled = false
 	}
 }
