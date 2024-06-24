@@ -278,6 +278,13 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		//position
 		minimizedView.frame.origin.y = self.view.frame.origin.y
 		minimizedView.frame.origin.x = self.view.frame.origin.x + self.view.frame.width - minimizedView.frame.width
+		
+		if let niDocWidth: CGFloat = self.myView.niParentDoc?.frame.width{
+			if(niDocWidth < (minimizedView.frame.origin.x + minimizedView.frame.width)){
+				minimizedView.frame.origin.x = niDocWidth - minimizedView.frame.width - CFBaseView.CFConstants.defaultMargin
+			}
+		}
+
 		if(self.view.layer != nil){
 			minimizedView.layer?.zPosition = self.view.layer!.zPosition
 		}
