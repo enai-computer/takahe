@@ -335,9 +335,15 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		//TODO: ensure it's not out of bounds?
 		expandedCFView!.frame.origin.y = self.view.frame.origin.y
 		
+		if(myView.niParentDoc!.frame.width < expandedCFView!.frame.width){
+			expandedCFView?.frame.size.width = myView.niParentDoc!.frame.width - (CFBaseView.CFConstants.defaultMargin * 2.0)
+		}
 		var newXorigin = self.view.frame.origin.x + self.view.frame.width - expandedCFView!.frame.width
 		if(newXorigin < 0){
 			newXorigin = self.view.frame.origin.x
+		}
+		if(myView.niParentDoc!.frame.width < (newXorigin + expandedCFView!.frame.width)){
+			newXorigin = myView.niParentDoc!.frame.width - expandedCFView!.frame.width - CFBaseView.CFConstants.defaultMargin
 		}
 		expandedCFView!.frame.origin.x = newXorigin
 		if(self.view.layer != nil){
