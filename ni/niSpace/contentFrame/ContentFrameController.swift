@@ -548,6 +548,10 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		}
 	}
 	
+	/** does what the name suggests
+	 
+	 Close tabs and select the nxt tab to the right first and then left when none to the right are left
+	 */
 	func closeSelectedTab(){
 		if(viewState != .expanded){
 			return
@@ -556,9 +560,13 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		updateWVTabHeadPos(from: selectedTabModel+1)
 		var deletedTabModel: TabViewModel?
 		
-		if(0 < selectedTabModel){
+		if(selectedTabModel == 0 && self.tabs.count == 1){
+			deletedTabModel = self.tabs.remove(at: selectedTabModel)
+			
+			myView.niParentDoc?.removeNiFrame(self)
+			view.removeFromSuperview()
+		}else if(selectedTabModel < (self.tabs.count - 1)){
 			let toDeletePos = selectedTabModel
-			selectedTabModel -= 1
 			
 			expandedCFView?.deleteSelectedTab(at: toDeletePos)
 			deletedTabModel = self.tabs.remove(at: toDeletePos)
@@ -566,13 +574,9 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 			selectTab(at: selectedTabModel)
 			
 			expandedCFView?.cfTabHeadCollection.reloadData()
-		}else if( selectedTabModel == 0 && self.tabs.count == 1){
-			deletedTabModel = self.tabs.remove(at: selectedTabModel)
-			
-			myView.niParentDoc?.removeNiFrame(self)
-			view.removeFromSuperview()
-		}else if( selectedTabModel == 0 && 1 < self.tabs.count){
+		}else if(0 < selectedTabModel){
 			let toDeletePos = selectedTabModel
+			selectedTabModel -= 1
 			
 			expandedCFView?.deleteSelectedTab(at: toDeletePos)
 			deletedTabModel = self.tabs.remove(at: toDeletePos)
