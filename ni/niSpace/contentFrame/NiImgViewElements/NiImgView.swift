@@ -23,7 +23,9 @@ class NiImgView: NSImageView, CFContentItem{
 	}
 	
 	func spaceClosed() {}
-	func spaceRemovedFromMemory() {}
+	func spaceRemovedFromMemory() {
+		self.owner = nil
+	}
 	
 	override func cancelOperation(_ sender: Any?) {
 		return

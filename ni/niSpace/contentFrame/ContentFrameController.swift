@@ -1019,8 +1019,11 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 			t.viewItem?.spaceRemovedFromMemory()
 		}
 		tabs = []
+		expandedCFView?.removeFromSuperview()
+		myView.niParentDoc = nil
+		myView.myController = nil
+		view.removeFromSuperview()
 		expandedCFView = nil
 		groupName = nil
-		view.removeFromSuperview()
 	}
 }

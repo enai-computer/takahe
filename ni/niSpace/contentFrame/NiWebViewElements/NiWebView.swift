@@ -112,6 +112,9 @@ class NiWebView: WKWebView, CFContentItem{
 	func spaceRemovedFromMemory(){
 		self.pauseAllMediaPlayback()
 		self.closeAllMediaPresentations()
+		self.owner = nil
+		self.searchPanel = nil
+		self.overlay = nil
 	}
 	
 	func getCurrentURL() -> String? {
