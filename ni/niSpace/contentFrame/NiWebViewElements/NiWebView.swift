@@ -106,6 +106,12 @@ class NiWebView: WKWebView, CFContentItem{
     
 	func spaceClosed(){
 		self.pauseAllMediaPlayback()
+		self.closeAllMediaPresentations()
+	}
+	
+	func spaceRemovedFromMemory(){
+		self.pauseAllMediaPlayback()
+		self.closeAllMediaPresentations()
 	}
 	
 	func getCurrentURL() -> String? {

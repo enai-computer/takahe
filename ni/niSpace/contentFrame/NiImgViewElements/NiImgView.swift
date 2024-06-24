@@ -22,8 +22,8 @@ class NiImgView: NSImageView, CFContentItem{
 		return .nothing
 	}
 	
-	func spaceClosed() {
-	}
+	func spaceClosed() {}
+	func spaceRemovedFromMemory() {}
 	
 	override func cancelOperation(_ sender: Any?) {
 		return
