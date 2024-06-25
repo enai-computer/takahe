@@ -36,6 +36,14 @@ func fetchImgFromDisk(_ fUrl: URL) -> NSImage? {
 	return nil
 }
 
+func fetchImgFromMainBundle(id: UUID) -> NSImage? {
+	let urlString = "file://" + Bundle.main.resourcePath! + "/\(id).jpg"
+	
+	if let fUrl = URL(string: urlString){
+		return fetchImgFromDisk(fUrl)
+	}
+	return nil
+}
 
 /* returning Insert example: https://github.com/stephencelis/SQLite.swift/issues/1221#issuecomment-1732594273
  extension Insert {

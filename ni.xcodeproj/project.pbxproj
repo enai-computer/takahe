@@ -55,6 +55,10 @@
 		CD5F7DFD2C19E9B000ADC860 /* NiPaletteWindowDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5F7DFC2C19E9B000ADC860 /* NiPaletteWindowDelegate.swift */; };
 		CD5F7DFF2C1EF06300ADC860 /* DataModelUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5F7DFE2C1EF06300ADC860 /* DataModelUtils.swift */; };
 		CD5F7E012C1EFE7300ADC860 /* SearchViewTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5F7E002C1EFE7300ADC860 /* SearchViewTextField.swift */; };
+		CD618D902C2B2B8E006869AF /* EC9DF222-0555-41E2-A1E8-F36CD5CF2456.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CD618D8F2C2B2B8E006869AF /* EC9DF222-0555-41E2-A1E8-F36CD5CF2456.jpg */; };
+		CD618D922C2B2B9E006869AF /* DABFED28-717B-4E91-BBCA-3F7936E1ABC9.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CD618D912C2B2B9E006869AF /* DABFED28-717B-4E91-BBCA-3F7936E1ABC9.jpg */; };
+		CD618D942C2B2BB0006869AF /* 3D33D959-24D6-4EB0-9669-6333ED02AC42.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CD618D932C2B2BB0006869AF /* 3D33D959-24D6-4EB0-9669-6333ED02AC42.jpg */; };
+		CD618D962C2B2C28006869AF /* PregenSpaceSkiing.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD618D952C2B2C28006869AF /* PregenSpaceSkiing.swift */; };
 		CD6317E12BC3F11000434D56 /* NiUserInputError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6317E02BC3F11000434D56 /* NiUserInputError.swift */; };
 		CD6317E32BC3F18300434D56 /* NiBadTypeError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6317E22BC3F18300434D56 /* NiBadTypeError.swift */; };
 		CD6317EC2BC4852300434D56 /* sohne-dreiviertelfett.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CD6317E82BC4852300434D56 /* sohne-dreiviertelfett.ttf */; };
@@ -190,6 +194,10 @@
 		CD5F7DFC2C19E9B000ADC860 /* NiPaletteWindowDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiPaletteWindowDelegate.swift; sourceTree = "<group>"; };
 		CD5F7DFE2C1EF06300ADC860 /* DataModelUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModelUtils.swift; sourceTree = "<group>"; };
 		CD5F7E002C1EFE7300ADC860 /* SearchViewTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewTextField.swift; sourceTree = "<group>"; };
+		CD618D8F2C2B2B8E006869AF /* EC9DF222-0555-41E2-A1E8-F36CD5CF2456.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "EC9DF222-0555-41E2-A1E8-F36CD5CF2456.jpg"; sourceTree = "<group>"; };
+		CD618D912C2B2B9E006869AF /* DABFED28-717B-4E91-BBCA-3F7936E1ABC9.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "DABFED28-717B-4E91-BBCA-3F7936E1ABC9.jpg"; sourceTree = "<group>"; };
+		CD618D932C2B2BB0006869AF /* 3D33D959-24D6-4EB0-9669-6333ED02AC42.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "3D33D959-24D6-4EB0-9669-6333ED02AC42.jpg"; sourceTree = "<group>"; };
+		CD618D952C2B2C28006869AF /* PregenSpaceSkiing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PregenSpaceSkiing.swift; sourceTree = "<group>"; };
 		CD6317E02BC3F11000434D56 /* NiUserInputError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiUserInputError.swift; sourceTree = "<group>"; };
 		CD6317E22BC3F18300434D56 /* NiBadTypeError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiBadTypeError.swift; sourceTree = "<group>"; };
 		CD6317E82BC4852300434D56 /* sohne-dreiviertelfett.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "sohne-dreiviertelfett.ttf"; sourceTree = "<group>"; };
@@ -368,6 +376,7 @@
 				CD1853102C08D22A001FE566 /* FaviconProvider.swift */,
 				CD23EBFA2C0F72FF00A2ACD9 /* Cook.swift */,
 				CD410ADF2C285AC700EC5DF7 /* UserConfigProvider.swift */,
+				CD618D952C2B2C28006869AF /* PregenSpaceSkiing.swift */,
 			);
 			path = provider;
 			sourceTree = "<group>";
@@ -401,6 +410,16 @@
 			path = CFMinimized;
 			sourceTree = "<group>";
 		};
+		CD618D8E2C2B2B5D006869AF /* imgsForWelcomeSpaces */ = {
+			isa = PBXGroup;
+			children = (
+				CD618D932C2B2BB0006869AF /* 3D33D959-24D6-4EB0-9669-6333ED02AC42.jpg */,
+				CD618D912C2B2B9E006869AF /* DABFED28-717B-4E91-BBCA-3F7936E1ABC9.jpg */,
+				CD618D8F2C2B2B8E006869AF /* EC9DF222-0555-41E2-A1E8-F36CD5CF2456.jpg */,
+			);
+			path = imgsForWelcomeSpaces;
+			sourceTree = "<group>";
+		};
 		CD6317DF2BC3F0F300434D56 /* errors */ = {
 			isa = PBXGroup;
 			children = (
@@ -413,6 +432,7 @@
 		CD6317E62BC4845100434D56 /* assets */ = {
 			isa = PBXGroup;
 			children = (
+				CD618D8E2C2B2B5D006869AF /* imgsForWelcomeSpaces */,
 				CDA639552BF50596001941DE /* welcomeConfig.json */,
 				CD1160CB2BD286EC00345E3E /* emptyTab-1.jpg */,
 				CD53ACBF2BCEE0ED00D5912B /* emptyTab.html */,
@@ -736,6 +756,7 @@
 				CD7578472BC000F200293930 /* ContentFrameTabHead.xib in Resources */,
 				CDD7D33B2C198BE00038E6F9 /* NiSearchView.xib in Resources */,
 				CD5A04CB2BEA3CC7004CC3AA /* CFMinimizedStackItem.xib in Resources */,
+				CD618D942C2B2BB0006869AF /* 3D33D959-24D6-4EB0-9669-6333ED02AC42.jpg in Resources */,
 				CDDBCB2F2BD8FA4D00E7B187 /* errorLoading.html in Resources */,
 				CD3362212BFE0DDC004DBAFB /* CFSoftDeletedView.xib in Resources */,
 				CDD7D3412C19924F0038E6F9 /* NiSearchResultViewItem.xib in Resources */,
@@ -746,6 +767,8 @@
 				CD1160CC2BD286ED00345E3E /* emptyTab-1.jpg in Resources */,
 				CDA639562BF50596001941DE /* welcomeConfig.json in Resources */,
 				CD6317ED2BC4852300434D56 /* sohne-leicht.ttf in Resources */,
+				CD618D902C2B2B8E006869AF /* EC9DF222-0555-41E2-A1E8-F36CD5CF2456.jpg in Resources */,
+				CD618D922C2B2B9E006869AF /* DABFED28-717B-4E91-BBCA-3F7936E1ABC9.jpg in Resources */,
 				A14E8F252AD5EADF00409DDF /* NiSpaceView.xib in Resources */,
 				CD5A04C62BEA2B96004CC3AA /* CFMinimizedView.xib in Resources */,
 				CDABE64C2C11C5BC00BB4E85 /* NiMenuView.xib in Resources */,
@@ -829,6 +852,7 @@
 				CDD7D3492C19AD7D0038E6F9 /* NSPanelUtils.swift in Sources */,
 				CDD87ED02BF23C650045B84B /* NiCursorUtils.swift in Sources */,
 				CD5F7DFD2C19E9B000ADC860 /* NiPaletteWindowDelegate.swift in Sources */,
+				CD618D962C2B2C28006869AF /* PregenSpaceSkiing.swift in Sources */,
 				CD6D28102C11EE7E0009732A /* RoundedRectView.swift in Sources */,
 				CDF0DD222C202BCD006C4EF4 /* NiHomeController.swift in Sources */,
 				CD8D2B082C00C7A100C44C1D /* NoteTable.swift in Sources */,
@@ -1030,7 +1054,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = "0.1.6 --- 2024-06-25.3 - Kondo";
+				CURRENT_PROJECT_VERSION = "0.1.6 --- 2024-06-25.5 - Kondo";
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = SNXQ3BDQ5V;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -1063,7 +1087,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = "0.1.6 --- 2024-06-25.3 - Kondo";
+				CURRENT_PROJECT_VERSION = "0.1.6 --- 2024-06-25.5 - Kondo";
 				DEAD_CODE_STRIPPING = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
