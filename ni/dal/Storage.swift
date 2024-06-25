@@ -124,6 +124,7 @@ class Storage{
 		let db = Storage.instance.spacesDB
 		let skiing = PregenSpaceSkiing()
 		let intent = PregenIntent()
+		let cooking = PregenCookingSpace()
 		do{
 			try db.execute(skiing.skiing_doc_tabe)
 			try db.execute(skiing.skiing_contentTable_SQL)
@@ -135,6 +136,11 @@ class Storage{
 			try db.execute(intent.intent_doc_content_sql)
 			try db.execute(intent.intent_cached_web_sql)
 			try db.execute(intent.intent_note_sql)
+			
+			try db.execute(cooking.doc_table)
+			try db.execute(cooking.content_sql)
+			try db.execute(cooking.doc_content_sql)
+			try db.execute(cooking.cached_web_sql)
 		}catch{
 			print("Failed to create demo space with: \(error)")
 			return
@@ -155,16 +161,24 @@ class Storage{
 		let skiImg1 = UUID(uuidString: "3D33D959-24D6-4EB0-9669-6333ED02AC42")!
 		let skiImg2 = UUID(uuidString: "DABFED28-717B-4E91-BBCA-3F7936E1ABC9")!
 		let skiImg3 = UUID(uuidString: "EC9DF222-0555-41E2-A1E8-F36CD5CF2456")!
+		let cooking1 = UUID(uuidString: "43DC5B56-124C-4368-A341-EAA9D2E33CFD")!
+		let cooking2 = UUID(uuidString: "E52F5D89-38ED-42B3-938F-4E52105C7DF7")!
+		let cooking3 = UUID(uuidString: "E9762558-E0D7-4FAA-9BEA-405FB306E3E6")!
 		let imgIDs: [UUID]
 		let data: [UUID: ImgMeta]
 		
 		init(){
-			let docId = UUID(uuidString: "69BE4F72-9F6E-44FC-88F3-2E285461CEA9")!
-			self.imgIDs = [skiImg1, skiImg2 , skiImg3]
+			let docIdSkiing = UUID(uuidString: "69BE4F72-9F6E-44FC-88F3-2E285461CEA9")!
+			let docIdCooking = UUID(uuidString: "4D90F0F2-064D-42B8-9A16-B9A613A2A162")!
+			
+			self.imgIDs = [skiImg1, skiImg2 , skiImg3, cooking1, cooking2, cooking3]
 			self.data = [
-				skiImg1: ImgMeta(docID: docId, title: "ryder_alps_1", source: "https://www.fieldmag.com/articles/david-ryder-swiss-alps-ski-photography"),
-				skiImg2: ImgMeta(docID: docId, title: "Bildschirmfoto-2024-01-08-um-10.20.37", source: "https://www.zai.ch/stories/zai-developments-2024-about-performance-and-forms"),
-				skiImg3: ImgMeta(docID: docId, title: "Kirkwood_Chris-Whatford--Molly-Armanino--Claire-Hewitt-Demeyer-pow-day-shoot_Dennis-Baggett---social-res--5-of-7-", source: "https://skicalifornia.org/resorts/kirkwood-mountain-resort")
+				skiImg1: ImgMeta(docID: docIdSkiing, title: "ryder_alps_1", source: "https://www.fieldmag.com/articles/david-ryder-swiss-alps-ski-photography"),
+				skiImg2: ImgMeta(docID: docIdSkiing, title: "Bildschirmfoto-2024-01-08-um-10.20.37", source: "https://www.zai.ch/stories/zai-developments-2024-about-performance-and-forms"),
+				skiImg3: ImgMeta(docID: docIdSkiing, title: "Kirkwood_Chris-Whatford--Molly-Armanino--Claire-Hewitt-Demeyer-pow-day-shoot_Dennis-Baggett---social-res--5-of-7-", source: "https://skicalifornia.org/resorts/kirkwood-mountain-resort"),
+				cooking1: ImgMeta(docID: docIdCooking, title: "53721_-_Profi_Profi_Y-Schaeler_SPECIALTY_SERIE-1_1920x1920", source: "https://www.microplane-brandshop.com/en/Microplane-Profi-Y-Peeler/53721"),
+				cooking2: ImgMeta(docID: docIdCooking, title: "vegetablepeeler-2048px-KMilford045", source: "https://www.nytimes.com/wirecutter/reviews/best-vegetable-peeler/"),
+				cooking3: ImgMeta(docID: docIdCooking, title: "1*un-K3W8FI0nwnykyXOFiUQ", source: "https://medium.com/@drspoulsen/a-solution-to-the-onion-problem-of-j-kenji-l%C3%B3pez-alt-c3c4ab22e67c")
 			]
 		}
 	}

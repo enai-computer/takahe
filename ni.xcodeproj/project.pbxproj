@@ -60,6 +60,10 @@
 		CD618D942C2B2BB0006869AF /* 3D33D959-24D6-4EB0-9669-6333ED02AC42.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CD618D932C2B2BB0006869AF /* 3D33D959-24D6-4EB0-9669-6333ED02AC42.jpg */; };
 		CD618D962C2B2C28006869AF /* PregenSpaceSkiing.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD618D952C2B2C28006869AF /* PregenSpaceSkiing.swift */; };
 		CD618D982C2B3863006869AF /* PregenIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD618D972C2B3863006869AF /* PregenIntent.swift */; };
+		CD618D9A2C2B3D7E006869AF /* PregenCookingSpace.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD618D992C2B3D7E006869AF /* PregenCookingSpace.swift */; };
+		CD618D9C2C2B4151006869AF /* 43DC5B56-124C-4368-A341-EAA9D2E33CFD.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CD618D9B2C2B4151006869AF /* 43DC5B56-124C-4368-A341-EAA9D2E33CFD.jpg */; };
+		CD618D9E2C2B415F006869AF /* E52F5D89-38ED-42B3-938F-4E52105C7DF7.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CD618D9D2C2B415F006869AF /* E52F5D89-38ED-42B3-938F-4E52105C7DF7.jpg */; };
+		CD618DA02C2B416E006869AF /* E9762558-E0D7-4FAA-9BEA-405FB306E3E6.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CD618D9F2C2B416E006869AF /* E9762558-E0D7-4FAA-9BEA-405FB306E3E6.jpg */; };
 		CD6317E12BC3F11000434D56 /* NiUserInputError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6317E02BC3F11000434D56 /* NiUserInputError.swift */; };
 		CD6317E32BC3F18300434D56 /* NiBadTypeError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6317E22BC3F18300434D56 /* NiBadTypeError.swift */; };
 		CD6317EC2BC4852300434D56 /* sohne-dreiviertelfett.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CD6317E82BC4852300434D56 /* sohne-dreiviertelfett.ttf */; };
@@ -200,6 +204,10 @@
 		CD618D932C2B2BB0006869AF /* 3D33D959-24D6-4EB0-9669-6333ED02AC42.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "3D33D959-24D6-4EB0-9669-6333ED02AC42.jpg"; sourceTree = "<group>"; };
 		CD618D952C2B2C28006869AF /* PregenSpaceSkiing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PregenSpaceSkiing.swift; sourceTree = "<group>"; };
 		CD618D972C2B3863006869AF /* PregenIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PregenIntent.swift; sourceTree = "<group>"; };
+		CD618D992C2B3D7E006869AF /* PregenCookingSpace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PregenCookingSpace.swift; sourceTree = "<group>"; };
+		CD618D9B2C2B4151006869AF /* 43DC5B56-124C-4368-A341-EAA9D2E33CFD.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "43DC5B56-124C-4368-A341-EAA9D2E33CFD.jpg"; sourceTree = "<group>"; };
+		CD618D9D2C2B415F006869AF /* E52F5D89-38ED-42B3-938F-4E52105C7DF7.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "E52F5D89-38ED-42B3-938F-4E52105C7DF7.jpg"; sourceTree = "<group>"; };
+		CD618D9F2C2B416E006869AF /* E9762558-E0D7-4FAA-9BEA-405FB306E3E6.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "E9762558-E0D7-4FAA-9BEA-405FB306E3E6.jpg"; sourceTree = "<group>"; };
 		CD6317E02BC3F11000434D56 /* NiUserInputError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiUserInputError.swift; sourceTree = "<group>"; };
 		CD6317E22BC3F18300434D56 /* NiBadTypeError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiBadTypeError.swift; sourceTree = "<group>"; };
 		CD6317E82BC4852300434D56 /* sohne-dreiviertelfett.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "sohne-dreiviertelfett.ttf"; sourceTree = "<group>"; };
@@ -380,6 +388,7 @@
 				CD410ADF2C285AC700EC5DF7 /* UserConfigProvider.swift */,
 				CD618D952C2B2C28006869AF /* PregenSpaceSkiing.swift */,
 				CD618D972C2B3863006869AF /* PregenIntent.swift */,
+				CD618D992C2B3D7E006869AF /* PregenCookingSpace.swift */,
 			);
 			path = provider;
 			sourceTree = "<group>";
@@ -416,6 +425,9 @@
 		CD618D8E2C2B2B5D006869AF /* imgsForWelcomeSpaces */ = {
 			isa = PBXGroup;
 			children = (
+				CD618D9F2C2B416E006869AF /* E9762558-E0D7-4FAA-9BEA-405FB306E3E6.jpg */,
+				CD618D9D2C2B415F006869AF /* E52F5D89-38ED-42B3-938F-4E52105C7DF7.jpg */,
+				CD618D9B2C2B4151006869AF /* 43DC5B56-124C-4368-A341-EAA9D2E33CFD.jpg */,
 				CD618D932C2B2BB0006869AF /* 3D33D959-24D6-4EB0-9669-6333ED02AC42.jpg */,
 				CD618D912C2B2B9E006869AF /* DABFED28-717B-4E91-BBCA-3F7936E1ABC9.jpg */,
 				CD618D8F2C2B2B8E006869AF /* EC9DF222-0555-41E2-A1E8-F36CD5CF2456.jpg */,
@@ -752,6 +764,7 @@
 				CDABE6482C11C53100BB4E85 /* NiMenuItemView.xib in Resources */,
 				CD0FA1C12BDBE2BA0065313B /* Inter-Regular.ttf in Resources */,
 				CDDBCB2E2BD8FA4C00E7B187 /* errorLoading-1.jpeg in Resources */,
+				CD618DA02C2B416E006869AF /* E9762558-E0D7-4FAA-9BEA-405FB306E3E6.jpg in Resources */,
 				A1B8E6B02AAFB5EF00AC6566 /* Main.storyboard in Resources */,
 				CD6317EC2BC4852300434D56 /* sohne-dreiviertelfett.ttf in Resources */,
 				CD3BF3D02C10A133003DA615 /* NewSpaceNote.json in Resources */,
@@ -765,6 +778,7 @@
 				CDD7D3412C19924F0038E6F9 /* NiSearchResultViewItem.xib in Resources */,
 				A1E41BF62ACB533400338417 /* ContentFrameView.xib in Resources */,
 				CD53ACC02BCEE0ED00D5912B /* emptyTab.html in Resources */,
+				CD618D9C2C2B4151006869AF /* 43DC5B56-124C-4368-A341-EAA9D2E33CFD.jpg in Resources */,
 				CD6DED902C24954500AA8BC4 /* NiWebViewFindPanel.xib in Resources */,
 				CDF0DD242C202BDB006C4EF4 /* NiHomeView.xib in Resources */,
 				CD1160CC2BD286ED00345E3E /* emptyTab-1.jpg in Resources */,
@@ -775,6 +789,7 @@
 				A14E8F252AD5EADF00409DDF /* NiSpaceView.xib in Resources */,
 				CD5A04C62BEA2B96004CC3AA /* CFMinimizedView.xib in Resources */,
 				CDABE64C2C11C5BC00BB4E85 /* NiMenuView.xib in Resources */,
+				CD618D9E2C2B415F006869AF /* E52F5D89-38ED-42B3-938F-4E52105C7DF7.jpg in Resources */,
 				CD6317EE2BC4852300434D56 /* sohne-buch.ttf in Resources */,
 				CDFA8CFD2C03B9D000882722 /* CFFramelessView.xib in Resources */,
 			);
@@ -844,6 +859,7 @@
 				CDA639582BF508FF001941DE /* WelcomeSpaceGenerator.swift in Sources */,
 				CDFA8CFF2C04815C00882722 /* EventUtils.swift in Sources */,
 				CD1A72BE2C0F582500A63109 /* NiNoteViewScroller.swift in Sources */,
+				CD618D9A2C2B3D7E006869AF /* PregenCookingSpace.swift in Sources */,
 				CDDBCB2B2BD7C23E00E7B187 /* NiSpaceDocumentController.swift in Sources */,
 				CD6D280A2C11D5ED0009732A /* NiMenuItemViewModel.swift in Sources */,
 				CDD6B9472B16A29100C6144D /* DocumentIdContentIdTable.swift in Sources */,
