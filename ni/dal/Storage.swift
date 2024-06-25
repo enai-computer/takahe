@@ -123,11 +123,18 @@ class Storage{
 	func createDemoSpaces(){
 		let db = Storage.instance.spacesDB
 		let skiing = PregenSpaceSkiing()
+		let intent = PregenIntent()
 		do{
 			try db.execute(skiing.skiing_doc_tabe)
 			try db.execute(skiing.skiing_contentTable_SQL)
 			try db.execute(skiing.skiing_doc_content_sql)
 			try db.execute(skiing.skiing_cached_web_sql)
+			
+			try db.execute(intent.intent_doc_table)
+			try db.execute(intent.intent_content_sql)
+			try db.execute(intent.intent_doc_content_sql)
+			try db.execute(intent.intent_cached_web_sql)
+			try db.execute(intent.intent_note_sql)
 		}catch{
 			print("Failed to create demo space with: \(error)")
 			return

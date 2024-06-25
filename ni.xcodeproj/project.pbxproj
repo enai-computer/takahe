@@ -59,6 +59,7 @@
 		CD618D922C2B2B9E006869AF /* DABFED28-717B-4E91-BBCA-3F7936E1ABC9.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CD618D912C2B2B9E006869AF /* DABFED28-717B-4E91-BBCA-3F7936E1ABC9.jpg */; };
 		CD618D942C2B2BB0006869AF /* 3D33D959-24D6-4EB0-9669-6333ED02AC42.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CD618D932C2B2BB0006869AF /* 3D33D959-24D6-4EB0-9669-6333ED02AC42.jpg */; };
 		CD618D962C2B2C28006869AF /* PregenSpaceSkiing.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD618D952C2B2C28006869AF /* PregenSpaceSkiing.swift */; };
+		CD618D982C2B3863006869AF /* PregenIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD618D972C2B3863006869AF /* PregenIntent.swift */; };
 		CD6317E12BC3F11000434D56 /* NiUserInputError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6317E02BC3F11000434D56 /* NiUserInputError.swift */; };
 		CD6317E32BC3F18300434D56 /* NiBadTypeError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6317E22BC3F18300434D56 /* NiBadTypeError.swift */; };
 		CD6317EC2BC4852300434D56 /* sohne-dreiviertelfett.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CD6317E82BC4852300434D56 /* sohne-dreiviertelfett.ttf */; };
@@ -198,6 +199,7 @@
 		CD618D912C2B2B9E006869AF /* DABFED28-717B-4E91-BBCA-3F7936E1ABC9.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "DABFED28-717B-4E91-BBCA-3F7936E1ABC9.jpg"; sourceTree = "<group>"; };
 		CD618D932C2B2BB0006869AF /* 3D33D959-24D6-4EB0-9669-6333ED02AC42.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "3D33D959-24D6-4EB0-9669-6333ED02AC42.jpg"; sourceTree = "<group>"; };
 		CD618D952C2B2C28006869AF /* PregenSpaceSkiing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PregenSpaceSkiing.swift; sourceTree = "<group>"; };
+		CD618D972C2B3863006869AF /* PregenIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PregenIntent.swift; sourceTree = "<group>"; };
 		CD6317E02BC3F11000434D56 /* NiUserInputError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiUserInputError.swift; sourceTree = "<group>"; };
 		CD6317E22BC3F18300434D56 /* NiBadTypeError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiBadTypeError.swift; sourceTree = "<group>"; };
 		CD6317E82BC4852300434D56 /* sohne-dreiviertelfett.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "sohne-dreiviertelfett.ttf"; sourceTree = "<group>"; };
@@ -377,6 +379,7 @@
 				CD23EBFA2C0F72FF00A2ACD9 /* Cook.swift */,
 				CD410ADF2C285AC700EC5DF7 /* UserConfigProvider.swift */,
 				CD618D952C2B2C28006869AF /* PregenSpaceSkiing.swift */,
+				CD618D972C2B3863006869AF /* PregenIntent.swift */,
 			);
 			path = provider;
 			sourceTree = "<group>";
@@ -835,6 +838,7 @@
 				CDD6B9392B152A8000C6144D /* Storage.swift in Sources */,
 				CDD7D3472C19986F0038E6F9 /* NiSearchResultViewItemRightIcon.swift in Sources */,
 				CD42CEC92BDA48180039814D /* NiScrollView.swift in Sources */,
+				CD618D982C2B3863006869AF /* PregenIntent.swift in Sources */,
 				CDB549D12C2020C90038FB30 /* NiSearchViewScroller.swift in Sources */,
 				CDD7D3392C198BBE0038E6F9 /* NiSearchController.swift in Sources */,
 				CDA639582BF508FF001941DE /* WelcomeSpaceGenerator.swift in Sources */,
