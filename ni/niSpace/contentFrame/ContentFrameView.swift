@@ -408,8 +408,11 @@ class ContentFrameView: CFBaseView{
 	}
 	
 	func recalcDragArea(){
-		if(latestNrOfTabs != nil){
-			recalcDragArea(nrOfTabs: latestNrOfTabs!)
+		//needs to be recalculated a frame later, otherwise we end up with wrong sizes on resize:
+		DispatchQueue.main.async {
+			if(self.latestNrOfTabs != nil){
+				self.recalcDragArea(nrOfTabs: self.latestNrOfTabs!)
+			}
 		}
 	}
 	
