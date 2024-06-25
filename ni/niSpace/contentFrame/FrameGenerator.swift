@@ -56,11 +56,7 @@ func reopenContentFrameWithOutPositioning(
 	}
 	
 	openCFTabs(for: frameController, with: tabViewModels)
-	
-	if(1 == tabViewModels.count && tabViewModels[0].type == .img){
-		frameController.myView.fixedFrameRatio = true
-	}
-	
+
     return frameController
 }
 

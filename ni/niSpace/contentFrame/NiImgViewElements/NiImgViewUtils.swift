@@ -15,11 +15,10 @@ func getNewImgView(owner: ContentFrameController, parentView: NSView, img: NSIma
 	view.animates = false
 	view.allowsCutCopyPaste = true
 	
-	view.wantsLayer = true
 	if let radius = parentView.layer?.cornerRadius{
+		view.wantsLayer = true
 		view.layer?.cornerRadius = radius
+		view.layer?.cornerCurve = .continuous
 	}
-	view.layer?.cornerCurve = .continuous
-	
 	return view
 }

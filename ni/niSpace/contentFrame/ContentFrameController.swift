@@ -446,6 +446,8 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		self.tabs.append(tabHeadModel)
 		
 		_ = myView.createNewTab(tabView: imgView)
+		myView.fixedFrameRatio = content.size.width / content.size.height
+
 		//FIXME: dirty hack to ensure first responder status after space load
 		//(needed so the delete key works consistently)
 		DispatchQueue.main.async {
