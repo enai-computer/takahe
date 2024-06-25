@@ -18,7 +18,7 @@ class CFBaseView: NSBox{
 	var niParentDoc: NiSpaceDocumentView? = nil
 	var myController: ContentFrameController? = nil
 	
-	var fixedFrameRatio: Bool = false
+	var fixedFrameRatio: CGFloat? = nil
 	var frameIsActive: Bool = false
 	var deactivateDocumentResize: Bool = false
 	var cursorOnBorder: OnBorder = .no
@@ -187,15 +187,14 @@ class CFBaseView: NSBox{
 			nsize.width = minFrameWidth
 		}
 		
-		let ratio = frame.size.width / frame.size.height
-		if(fixedFrameRatio && ratio.isNormal){
+		if(fixedFrameRatio != nil){
 			let posXDiff = xDiff.negateIfNegative()
 			let posYDiff = yDiff.negateIfNegative()
 			//higher mouse distance dictates scaling priority
 			if(posXDiff < posYDiff){
-				nsize.width = nsize.height * ratio
+				nsize.width = nsize.height * fixedFrameRatio!
 			}else{
-				nsize.height = nsize.width / ratio
+				nsize.height = nsize.width / fixedFrameRatio!
 			}
 		}
 

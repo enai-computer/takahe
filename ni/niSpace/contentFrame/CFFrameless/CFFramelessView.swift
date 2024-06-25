@@ -64,7 +64,7 @@ class CFFramelessView: CFBaseView {
 			setContentItem(item: item)
 		}
 		self.contentView?.layer?.cornerCurve = .continuous
-		self.contentView?.layer?.cornerRadius  = 5.0
+		self.contentView?.layer?.cornerRadius = 5.0
 		return -1
 	}
 	
