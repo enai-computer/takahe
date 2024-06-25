@@ -1032,4 +1032,8 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		expandedCFView = nil
 		groupName = nil
 	}
+	
+	deinit{
+//		print("called deinit on \(groupName)")
+	}
 }

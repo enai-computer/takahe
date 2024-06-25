@@ -207,7 +207,6 @@ class NiSpaceViewController: NSViewController{
 		}
 		nextResponder?.keyDown(with: event)
 	}
-	
     
 	/*
 	 * MARK: - load and store Space here
@@ -216,6 +215,10 @@ class NiSpaceViewController: NSViewController{
 		let controller = NiSpaceDocumentController(id: id, name: name, height: height)
 		
 		return controller
+	}
+	
+	func reloadSpace(){
+		loadSpace(niSpaceID: niDocument.niSpaceID, name: niSpaceName) 
 	}
 	
 	func createSpace(name: String){

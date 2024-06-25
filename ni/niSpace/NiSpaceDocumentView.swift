@@ -20,11 +20,11 @@ class NiSpaceDocumentView: NSView{
 	init(height: CGFloat? = nil){
 		var frameSize = NSRect()
 		
-		let window = NSApplication.shared.mainWindow!
-		frameSize.size.width = window.frame.width
+		let windowSize: CGSize = AppDelegate.defaultWindowSize ?? NSApplication.shared.mainWindow!.frame.size
+		frameSize.size.width = windowSize.width
 		
 		if(height == nil){
-			frameSize.size.height = window.frame.height * (1+EMPTYSPACEFACTOR)
+			frameSize.size.height = windowSize.height * (1+EMPTYSPACEFACTOR)
 		}else{
 			frameSize.size.height = height!
 		}

@@ -45,16 +45,15 @@ class NiHomeController: NSViewController {
 		positionAndDisplaySearchView()
 	}
 	
-	override func viewDidLayout() {
-		super.viewDidLayout()
-	}
-
-	private func positionAndDisplaySearchView(){
+	override func viewWillLayout() {
+		super.viewWillLayout()
 		searchController.view.frame.size = CGSize(width: 678.0, height: 450.0)
 		let posY = (welcomeTxt.frame.maxY - searchController.view.frame.height) + 30.0
 		let posX = rightSide.frame.origin.x + 100.0
 		searchController.view.frame.origin = CGPoint(x: posX, y: posY)
-		
+	}
+
+	private func positionAndDisplaySearchView(){
 		self.view.addSubview(searchController.view)
 		view.window?.makeFirstResponder(searchController.searchField)
 	}

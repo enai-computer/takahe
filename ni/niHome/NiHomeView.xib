@@ -18,12 +18,12 @@
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <box wantsLayer="YES" boxType="custom" borderWidth="0.0" title="HomeView" titlePosition="noTitle" id="GZf-Vp-zmU">
             <rect key="frame" x="0.0" y="0.0" width="1600" height="900"/>
-            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <view key="contentView" id="Nho-ab-NVK">
                 <rect key="frame" x="0.0" y="0.0" width="1600" height="900"/>
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
-                    <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8gY-Mf-CWh" userLabel="left side">
+                    <customView id="8gY-Mf-CWh" userLabel="left side">
                         <rect key="frame" x="0.0" y="0.0" width="598" height="900"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES"/>
                         <subviews>
@@ -38,7 +38,7 @@
                             </textField>
                         </subviews>
                     </customView>
-                    <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yGh-k4-h8P" userLabel="right side">
+                    <customView id="yGh-k4-h8P" userLabel="right side">
                         <rect key="frame" x="597" y="0.0" width="1003" height="900"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" heightSizable="YES"/>
                     </customView>

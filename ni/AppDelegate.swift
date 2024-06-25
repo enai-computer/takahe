@@ -9,6 +9,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	
 	//TODO: move to a user controlled config file
 	let min_inactive_switch_to_home: Double = 29.0
+	static var defaultWindowSize: CGSize?
 	
 	//analytics
 	private var applicationStarted: Date? = nil
