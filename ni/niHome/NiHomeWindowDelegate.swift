@@ -7,11 +7,5 @@
 import Cocoa
 
 class NiHomeWindowDelegate: NSObject, NSWindowDelegate{
-	
-//	func windowDidResignKey(_ notification: Notification) {
-//			if let window = notification.object as? NiPalette {
-//				window.removeSelf()
-//			}
-//		}
-	
+
 }

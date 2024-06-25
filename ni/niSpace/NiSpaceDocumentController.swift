@@ -20,7 +20,7 @@ class NiSpaceDocumentController: NSViewController{
 	static let EMPTY_SPACE_ID: UUID = UUID(uuidString: "00000000-0000-0000-0000-000000000000")!
 	
 	private let niSpaceName: String
-	private let niSpaceID: UUID
+	let niSpaceID: UUID
 	private let initHeight: CGFloat?
 	private let spaceOpenedAt: Date
 	

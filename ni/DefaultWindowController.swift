@@ -4,7 +4,9 @@ import Cocoa
 
 class DefaultWindowController: NSWindowController, NSWindowDelegate{
     
+	private var prevScreenWidth: CGFloat? = nil
 	private var prevScreenSize: CGSize? = nil
+	private var spaceSaved = false
 	
     override func windowDidLoad() {
         super.windowDidLoad()
@@ -25,7 +27,43 @@ class DefaultWindowController: NSWindowController, NSWindowDelegate{
 	}
 	
 	func windowDidChangeScreen(_ notification: Notification) {
-		//TODO: build proper logic for resizing (& recognizing screen switiching properly :/, as the build in MAC logic get's triggered too often)
+		guard let windowObj = notification.object as? NSWindow else{return}
+		AppDelegate.defaultWindowSize = windowObj.frame.size
+		
+		prevScreenSize = windowObj.frame.size
+		
+//		print("[space resizing] prev: \(prevScreenWidth), nxt: \(windowObj.frame.width), active: \(NSApplication.shared.isActive), shown: \(windowObj.isOnActiveSpace), space saved: \(spaceSaved) ")
+		
+		//otherwise we have a screen reload on App start
+		if(prevScreenWidth == nil){
+			prevScreenWidth = windowObj.frame.width
+			return
+		}
+		
+		if let homeWindow = NSApplication.shared.keyWindow as? NiHomeWindow{
+			homeWindow.setFrame(windowObj.frame, display: true)
+			homeWindow.contentView?.resize(withOldSuperviewSize: prevScreenSize!)
+			return
+		}
+		
+		//application might be inactive soon
+		if((NSApplication.shared.isActive || windowObj.isOnActiveSpace) && prevScreenWidth != windowObj.frame.width && !spaceSaved){
+			guard let spaceViewController = contentViewController as? NiSpaceViewController else {return}
+			spaceViewController.storeCurrentSpace()
+			self.spaceSaved = true
+//			print("stored space, for width: \(prevScreenWidth)")
+		}
+		
+		//application will be active soon
+		if(windowObj.isOnActiveSpace && prevScreenWidth != windowObj.frame.width){
+			guard let spaceViewController = contentViewController as? NiSpaceViewController else {return}
+			spaceViewController.reloadSpace()
+			self.spaceSaved = false
+			
+			prevScreenWidth = windowObj.frame.width
+//			print("reloaded space, for width: \(windowObj.frame.width)")
+		}
+		
 	}
 
 	func windowWillClose(_ notification: Notification) {
