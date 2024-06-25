@@ -424,7 +424,6 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	
 	func openAndEditEmptyWebTab(){
 		if(viewState == .minimised || viewState == .frameless){
-			__NSBeep()
 			return
 		}
 		
@@ -682,7 +681,6 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	
 	func toggleEditSelectedTab(){
 		if(self.viewState == .minimised){
-			__NSBeep()
 			return
 		}
 		if(aTabIsInEditingMode){
@@ -695,7 +693,6 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	@MainActor
 	func editTabUrl(at: Int){
 		if(at < 0){
-			__NSBeep()
 			return
 		}
 		self.aTabIsInEditingMode = true
