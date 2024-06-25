@@ -101,7 +101,7 @@ class NiSearchController: NSViewController, NSCollectionViewDataSource, NSCollec
 			searchResults = Cook.instance.searchSpaces(typedChars: nil, excludeWelcomeSpaceGeneration: false)
 			searchResults.removeFirst()
 		}else{
-			searchResults = Cook.instance.searchSpaces(typedChars: nil, excludeWelcomeSpaceGeneration: false)
+			searchResults = Cook.instance.searchSpaces(typedChars: nil, excludeWelcomeSpaceGeneration: false, insertWelcomeSpaceGenFirst: true)
 		}
 		searchResultsCollection.reloadData()
 		resetSelection()
