@@ -44,6 +44,9 @@ class Storage{
 		}
         
         do {
+			if(!Storage.doesSQLiteDBExist(path!)){
+				AppDelegate.dbExists = false
+			}
 			Storage.createDirsIfNotExist(basepath: path!)
             spacesDB = try Connection(path! + DB_SPACES)
 			spacesDB.foreignKeys = true
@@ -62,6 +65,10 @@ class Storage{
         }
 
     }
+	
+	private static func doesSQLiteDBExist(_ basepath: String) -> Bool{
+		return FileManager.default.fileExists(atPath: (basepath + DB_SPACES))
+	}
 	
 	private static func createDirsIfNotExist(basepath: String){
 		do{
@@ -111,5 +118,53 @@ class Storage{
 			)
 		}
 		preconditionFailure("functionality is not implemented")
+	}
+	
+	func createDemoSpaces(){
+		let db = Storage.instance.spacesDB
+		let skiing = PregenSpaceSkiing()
+		do{
+			try db.execute(skiing.skiing_doc_tabe)
+			try db.execute(skiing.skiing_contentTable_SQL)
+			try db.execute(skiing.skiing_doc_content_sql)
+			try db.execute(skiing.skiing_cached_web_sql)
+		}catch{
+			print("Failed to create demo space with: \(error)")
+			return
+		}
+
+		//load img from assests
+		let imgData = ImgDataStruct()
+		for id in imgData.imgIDs{
+			if let nsImageBits = fetchImgFromMainBundle(id: id){
+				if let data = imgData.data[id]{
+					ImgDal.insert(documentId: data.docID, id: id, title: data.title, img: nsImageBits, source: data.source)
+				}
+			}
+		}
+	}
+		
+	struct ImgDataStruct{
+		let skiImg1 = UUID(uuidString: "3D33D959-24D6-4EB0-9669-6333ED02AC42")!
+		let skiImg2 = UUID(uuidString: "DABFED28-717B-4E91-BBCA-3F7936E1ABC9")!
+		let skiImg3 = UUID(uuidString: "EC9DF222-0555-41E2-A1E8-F36CD5CF2456")!
+		let imgIDs: [UUID]
+		let data: [UUID: ImgMeta]
+		
+		init(){
+			let docId = UUID(uuidString: "69BE4F72-9F6E-44FC-88F3-2E285461CEA9")!
+			self.imgIDs = [skiImg1, skiImg2 , skiImg3]
+			self.data = [
+				skiImg1: ImgMeta(docID: docId, title: "ryder_alps_1", source: "https://www.fieldmag.com/articles/david-ryder-swiss-alps-ski-photography"),
+				skiImg2: ImgMeta(docID: docId, title: "Bildschirmfoto-2024-01-08-um-10.20.37", source: "https://www.zai.ch/stories/zai-developments-2024-about-performance-and-forms"),
+				skiImg3: ImgMeta(docID: docId, title: "Kirkwood_Chris-Whatford--Molly-Armanino--Claire-Hewitt-Demeyer-pow-day-shoot_Dennis-Baggett---social-res--5-of-7-", source: "https://skicalifornia.org/resorts/kirkwood-mountain-resort")
+			]
+		}
+	}
+	
+	struct ImgMeta{
+		let docID: UUID
+		let title: String
+		let source: String
 	}
 }

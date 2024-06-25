@@ -11,6 +11,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	let min_inactive_switch_to_home: Double = 29.0
 	static var defaultWindowSize: CGSize?
 	
+	static var dbExists = true
+	
 	//analytics
 	private var applicationStarted: Date? = nil
 	private var spacesLoaded: [UUID:Int] = [:]
@@ -20,7 +22,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	private var dontStoreSpace = Set<UUID>()
 	
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-		
 		_ = Storage.instance
 		
 		let POSTHOG_API_KEY = "phc_qwTCTecFkqQyd3OYFoiWniEjMLBmJ3KL8P5rNRqJYN1"
@@ -30,8 +31,29 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		
 		applicationStarted = Date()
 		setLocalKeyListeners()
-    }
 		
+		if(!AppDelegate.dbExists){
+			Storage.instance.createDemoSpaces()
+		}
+    }
+	
+	
+	private func getStorageBasePath() -> String{
+		var customStorageLocation: String? = nil
+		let argPos = CommandLine.arguments.firstIndex(of: "-niLocalStorage")
+		if (argPos != nil){
+			customStorageLocation = CommandLine.arguments[(argPos!+1)]
+		}
+		let path = if(customStorageLocation == nil){
+			NSSearchPathForDirectoriesInDomains(
+				.applicationSupportDirectory, .userDomainMask, true
+			).first! + "/" + Bundle.main.bundleIdentifier!
+		}else{
+			customStorageLocation!
+		}
+		return path
+	}
+	
     func applicationWillTerminate(_ aNotification: Notification) {
         //TODO: Insert code here to tear down your application
 		
