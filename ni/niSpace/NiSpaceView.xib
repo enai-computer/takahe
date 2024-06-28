@@ -60,10 +60,10 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IcY-Xb-pUo">
+                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IcY-Xb-pUo" customClass="NiTextField" customModule="ni" customModuleProvider="target">
                                 <rect key="frame" x="62" y="9" width="420" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" enabled="NO" refusesFirstResponder="YES" allowsUndo="NO" title="SpaceName" id="ioC-6E-T33">
+                                <textFieldCell key="cell" lineBreakMode="clipping" allowsUndo="NO" title="SpaceName" id="ioC-6E-T33">
                                     <font key="font" size="15" name="Sohne-Kraftig"/>
                                     <color key="textColor" name="sand115"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -73,7 +73,7 @@
                                 <rect key="frame" x="30" y="6" width="24" height="24"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="SpaceIcon" id="mpw-cc-7kz"/>
-                                <color key="contentTintColor" name="IntAerospaceOrange"/>
+                                <color key="contentTintColor" name="Birkin"/>
                             </imageView>
                         </subviews>
                     </view>
@@ -101,8 +101,8 @@
     </objects>
     <resources>
         <image name="SpaceIcon" width="24" height="24"/>
-        <namedColor name="IntAerospaceOrange">
-            <color red="1" green="0.30980392156862746" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <namedColor name="Birkin">
+            <color red="0.95294117647058818" green="0.4392156862745098" blue="0.12941176470588237" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="sand115">
             <color red="0.31764705882352939" green="0.31372549019607843" blue="0.29411764705882354" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

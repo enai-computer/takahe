@@ -210,6 +210,8 @@ class CFGroupButton: NSView, NSTextFieldDelegate{
 	
 	private func genTextField() -> NiTextField{
 		let field = NiTextField(frame: NSRect(x: groupTitleMargin, y: groupTitleOriginY, width: 150.0, height: 20.0))
+		field.font = NSFont(name: "Sohne-Kraftig", size: 14.0)
+		field.textColor = NSColor.sand12
 		field.refusesFirstResponder = true
 		field.placeholderString = "Name this window"
 		field.delegate = self
