@@ -5,15 +5,17 @@ import Carbon.HIToolbox
 import PostHog
 import AppKit
 
-class NiSpaceViewController: NSViewController{
+class NiSpaceViewController: NSViewController, NSTextFieldDelegate{
     
 	private(set) var spaceLoaded: Bool = false
     private var niSpaceName: String
+	private var niSpaceID: UUID
 	
 	//header elements here:
 	@IBOutlet var header: NSBox!
 	@IBOutlet var time: NSTextField!
 	@IBOutlet var spaceName: NSTextField!
+	private var currentSpaceName: String?
 
 	@IBOutlet var niScrollView: NiScrollView!
 	@IBOutlet var niDocument: NiSpaceDocumentController!
@@ -21,12 +23,14 @@ class NiSpaceViewController: NSViewController{
 
 	init(){
 		self.niSpaceName = ""
+		self.niSpaceID = UUID(uuidString:"00000000-0000-0000-0000-000000000000")!
 		super.init(nibName: nil, bundle: nil)
 		view.registerForDraggedTypes([.png, .tiff])
 	}
 	
 	init(niSpaceID: UUID, niSpaceName: String) {
 		self.niSpaceName = niSpaceName
+		self.niSpaceID = niSpaceID
 		super.init(nibName: nil, bundle: nil)
 		view.registerForDraggedTypes([.png, .tiff])
 	}
@@ -46,6 +50,7 @@ class NiSpaceViewController: NSViewController{
 		spaceName.stringValue = niSpaceName
 		
 		setHeaderStyle()
+		styleEndEditSpaceName()
 		setAutoUpdatingTime()
 	}
 	
@@ -188,8 +193,23 @@ class NiSpaceViewController: NSViewController{
 	 */
 	override func mouseDown(with event: NSEvent) {
 		//TODO: ignore key down when HomeView is shown
-		let cursorPos = self.view.convert(event.locationInWindow, from: nil)
+		var cursorPos = self.header.convert(event.locationInWindow, from: nil)
+
+		if(NSPointInRect(cursorPos, spaceName.frame)){
+			if(event.clickCount == 1){
+				var adjustedPos = header.convert(spaceName.frame.origin, to: nil)
+				adjustedPos.x -= 15.0
+				let menuWindow = NiMenuWindow(
+					origin: adjustedPos,
+					dirtyMenuItems: self.getSpaceNameMenuItems(),
+					currentScreen: view.window!.screen!,
+					adjustOrigin: true)
+				menuWindow.makeKeyAndOrderFront(nil)
+			}
+			return
+		}
 		
+		cursorPos = self.view.convert(event.locationInWindow, from: nil)
 		if(NSPointInRect(cursorPos, header.frame)){
 			returnToHome()
 			return
@@ -208,6 +228,67 @@ class NiSpaceViewController: NSViewController{
 		nextResponder?.keyDown(with: event)
 	}
     
+	func editSpaceName(with event: NSEvent){
+		guard !spaceName.isEditable else {return}
+		
+		currentSpaceName = spaceName.stringValue
+		spaceName.refusesFirstResponder = false
+		spaceName.isSelectable = true
+		spaceName.isEditable = true
+		
+		spaceName.focusRingType = .none
+		spaceName.delegate = self
+		
+		view.window?.makeFirstResponder(spaceName)
+	}
+	
+	
+	func controlTextDidEndEditing(_ obj: Notification){
+		spaceName.currentEditor()?.selectedRange = NSMakeRange(0, 0)
+		spaceName.isEditable = false
+		spaceName.isSelectable = false
+		spaceName.refusesFirstResponder = true
+		styleEndEditSpaceName()
+		
+		if(obj.userInfo?["NSTextMovement"] as? NSTextMovement == NSTextMovement.cancel){
+			revertRenamingChanges()
+			return
+		}
+		if(spaceName.stringValue.isEmpty){
+			revertRenamingChanges()
+			return
+		}
+		niSpaceName = spaceName.stringValue
+		niDocument.niSpaceName = niSpaceName
+		DocumentTable.updateName(id: self.niSpaceID, name: niSpaceName)
+	}
+	
+	func styleEndEditSpaceName(){
+		spaceName.refusesFirstResponder = true
+		spaceName.isSelectable = false
+		spaceName.isEditable = false
+	}
+	
+	private func revertRenamingChanges(){
+		spaceName.stringValue = currentSpaceName!
+		currentSpaceName = nil
+	}
+	
+	private func getSpaceNameMenuItems() -> [NiMenuItemViewModel]{
+		return [
+			NiMenuItemViewModel(
+				title: "Rename this space",
+				isEnabled: true,
+				mouseDownFunction: self.editSpaceName
+			),
+			NiMenuItemViewModel(
+				title: "Delete this space (soon)",
+				isEnabled: false,
+				mouseDownFunction: nil
+			)
+		]
+	}
+	
 	/*
 	 * MARK: - load and store Space here
 	 */
@@ -218,15 +299,16 @@ class NiSpaceViewController: NSViewController{
 	}
 	
 	func reloadSpace(){
-		loadSpace(niSpaceID: niDocument.niSpaceID, name: niSpaceName) 
+		loadSpace(spaceId: niSpaceID, name: niSpaceName)
 	}
 	
 	func createSpace(name: String){
-		niSpaceName = name
-		spaceName.stringValue = name
-		
 		let spaceId = UUID()
 		let spaceDoc = getEmptySpaceDocument(id: spaceId, name: name)
+		
+		niSpaceName = name
+		spaceName.stringValue = name
+		self.niSpaceID = spaceId
 				
 		addChild(spaceDoc)
 		transition(from: niDocument, to: spaceDoc, options: [.crossfade])
@@ -273,12 +355,13 @@ class NiSpaceViewController: NSViewController{
 		var message: String
 	}
 	
-	func loadSpace(niSpaceID id: UUID, name: String){
+	func loadSpace(spaceId id: UUID, name: String){
 		
 		let (spaceDoc, scrollTo) = getSpaceDoc(id, name: name)
 		
 		niSpaceName = name
 		spaceName.stringValue = name
+		self.niSpaceID = id
 		
 		pauseMediaPlayback(niDocument)
 		

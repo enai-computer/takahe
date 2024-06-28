@@ -40,6 +40,22 @@ class DocumentTable{
             t.column(document)
         })
     }
+	
+	static func updateName(id: UUID, name: String){
+		do{
+			let rowToUpdate = table.filter(self.id == id)
+			let updatedRows = try Storage.instance.spacesDB.run(
+				rowToUpdate.update(
+					self.name <- name
+				)
+			)
+			if(updatedRows != 1){
+				print("Failed to update the name. Updated \(updatedRows) rows.")
+			}
+		}catch{
+			print("Failed to update the name")
+		}
+	}
     
     static func upsertDoc(id: UUID, name: String, document: String?){
         do{
