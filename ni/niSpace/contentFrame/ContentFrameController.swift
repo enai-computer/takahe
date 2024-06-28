@@ -626,7 +626,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	}
 	
 	func selectTab(at: Int, mouseDownEvent: NSEvent? = nil){
-		
+		guard (0 <= at && at < tabs.count) else {return}
 		//No tab switching while CF is not active
 		if(self.expandedCFView == nil || !self.expandedCFView!.frameIsActive){
 			if(mouseDownEvent != nil){
