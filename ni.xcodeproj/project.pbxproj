@@ -37,6 +37,8 @@
 		CD1FAAF12BFCA9BA00C781AC /* niTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1FAAF02BFCA9BA00C781AC /* niTests.swift */; };
 		CD1FAAF72BFCA9C100C781AC /* NiStringUtilsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD69D02F2BFCA54C002386D0 /* NiStringUtilsTests.swift */; };
 		CD23EBFB2C0F72FF00A2ACD9 /* Cook.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD23EBFA2C0F72FF00A2ACD9 /* Cook.swift */; };
+		CD2B68EE2C2F166E0086756E /* NiFullscreenPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD2B68ED2C2F166E0086756E /* NiFullscreenPanel.swift */; };
+		CD2B68F02C2F26930086756E /* NiAlertPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD2B68EF2C2F26930086756E /* NiAlertPanel.xib */; };
 		CD3362162BFDFF97004DBAFB /* SpaceTopbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD3362152BFDFF97004DBAFB /* SpaceTopbar.swift */; };
 		CD33621F2BFE0DD0004DBAFB /* CFSoftDeletedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD33621E2BFE0DD0004DBAFB /* CFSoftDeletedView.swift */; };
 		CD3362212BFE0DDC004DBAFB /* CFSoftDeletedView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD3362202BFE0DDC004DBAFB /* CFSoftDeletedView.xib */; };
@@ -93,6 +95,8 @@
 		CD9B96BF2C0733E700998CE2 /* NiImgView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9B96BE2C0733E700998CE2 /* NiImgView.swift */; };
 		CD9B96C12C0733F800998CE2 /* NiImgViewUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9B96C02C0733F800998CE2 /* NiImgViewUtils.swift */; };
 		CD9B96C42C075B8A00998CE2 /* ImgDal.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9B96C32C075B8A00998CE2 /* ImgDal.swift */; };
+		CD9C2B252C32EEBD00C6126F /* NiAlertPanelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9C2B242C32EEBD00C6126F /* NiAlertPanelController.swift */; };
+		CD9C2B272C32F8B800C6126F /* NiButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9C2B262C32F8B800C6126F /* NiButton.swift */; };
 		CDA639562BF50596001941DE /* welcomeConfig.json in Resources */ = {isa = PBXBuildFile; fileRef = CDA639552BF50596001941DE /* welcomeConfig.json */; };
 		CDA639582BF508FF001941DE /* WelcomeSpaceGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA639572BF508FF001941DE /* WelcomeSpaceGenerator.swift */; };
 		CDABE6462C11C4FE00BB4E85 /* NiMenuWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDABE6452C11C4FE00BB4E85 /* NiMenuWindow.swift */; };
@@ -181,6 +185,8 @@
 		CD1FAAEE2BFCA9BA00C781AC /* niTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = niTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD1FAAF02BFCA9BA00C781AC /* niTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = niTests.swift; sourceTree = "<group>"; };
 		CD23EBFA2C0F72FF00A2ACD9 /* Cook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cook.swift; sourceTree = "<group>"; };
+		CD2B68ED2C2F166E0086756E /* NiFullscreenPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiFullscreenPanel.swift; sourceTree = "<group>"; };
+		CD2B68EF2C2F26930086756E /* NiAlertPanel.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NiAlertPanel.xib; sourceTree = "<group>"; };
 		CD3362152BFDFF97004DBAFB /* SpaceTopbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpaceTopbar.swift; sourceTree = "<group>"; };
 		CD33621E2BFE0DD0004DBAFB /* CFSoftDeletedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CFSoftDeletedView.swift; sourceTree = "<group>"; };
 		CD3362202BFE0DDC004DBAFB /* CFSoftDeletedView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CFSoftDeletedView.xib; sourceTree = "<group>"; };
@@ -237,6 +243,8 @@
 		CD9B96BE2C0733E700998CE2 /* NiImgView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiImgView.swift; sourceTree = "<group>"; };
 		CD9B96C02C0733F800998CE2 /* NiImgViewUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiImgViewUtils.swift; sourceTree = "<group>"; };
 		CD9B96C32C075B8A00998CE2 /* ImgDal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImgDal.swift; sourceTree = "<group>"; };
+		CD9C2B242C32EEBD00C6126F /* NiAlertPanelController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiAlertPanelController.swift; sourceTree = "<group>"; };
+		CD9C2B262C32F8B800C6126F /* NiButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiButton.swift; sourceTree = "<group>"; };
 		CDA639552BF50596001941DE /* welcomeConfig.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = welcomeConfig.json; sourceTree = "<group>"; };
 		CDA639572BF508FF001941DE /* WelcomeSpaceGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeSpaceGenerator.swift; sourceTree = "<group>"; };
 		CDABE6452C11C4FE00BB4E85 /* NiMenuWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiMenuWindow.swift; sourceTree = "<group>"; };
@@ -331,6 +339,7 @@
 				CDD6B94F2B1BFE6500C6144D /* models */,
 				CDD6B9342B1527B700C6144D /* dal */,
 				CDD6B94A2B19469000C6144D /* niHome */,
+				CD2B68EC2C2F162F0086756E /* niFullscreenPanel */,
 				CDD7D3342C198A080038E6F9 /* niPalette */,
 				CDB06B5B2AF81CB6008DB8FF /* niSpace */,
 				CDABE6432C11C49100BB4E85 /* commonUI */,
@@ -400,6 +409,16 @@
 				CD1FAAF02BFCA9BA00C781AC /* niTests.swift */,
 			);
 			path = niUnitTests;
+			sourceTree = "<group>";
+		};
+		CD2B68EC2C2F162F0086756E /* niFullscreenPanel */ = {
+			isa = PBXGroup;
+			children = (
+				CD2B68ED2C2F166E0086756E /* NiFullscreenPanel.swift */,
+				CD2B68EF2C2F26930086756E /* NiAlertPanel.xib */,
+				CD9C2B242C32EEBD00C6126F /* NiAlertPanelController.swift */,
+			);
+			path = niFullscreenPanel;
 			sourceTree = "<group>";
 		};
 		CD3362172BFE0CCF004DBAFB /* CFSoftDeleted */ = {
@@ -499,6 +518,7 @@
 				CD72B83E2C24714800104802 /* CAUtils.swift */,
 				CD6DED912C257A5000AA8BC4 /* NiActionLabel.swift */,
 				CDC5A1132C25C8F3002F5621 /* EmptyRectView.swift */,
+				CD9C2B262C32F8B800C6126F /* NiButton.swift */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -772,6 +792,7 @@
 				CD7578472BC000F200293930 /* ContentFrameTabHead.xib in Resources */,
 				CDD7D33B2C198BE00038E6F9 /* NiSearchView.xib in Resources */,
 				CD5A04CB2BEA3CC7004CC3AA /* CFMinimizedStackItem.xib in Resources */,
+				CD2B68F02C2F26930086756E /* NiAlertPanel.xib in Resources */,
 				CD618D942C2B2BB0006869AF /* 3D33D959-24D6-4EB0-9669-6333ED02AC42.jpg in Resources */,
 				CDDBCB2F2BD8FA4D00E7B187 /* errorLoading.html in Resources */,
 				CD3362212BFE0DDC004DBAFB /* CFSoftDeletedView.xib in Resources */,
@@ -817,6 +838,7 @@
 				A14E8F212AD20A2600409DDF /* DefaultWindowController.swift in Sources */,
 				CD5B153A2BDFBFE40030F017 /* NiActionImage.swift in Sources */,
 				CDC5A1162C284AD1002F5621 /* NiDocControllerCache.swift in Sources */,
+				CD2B68EE2C2F166E0086756E /* NiFullscreenPanel.swift in Sources */,
 				CD5A04CF2BEA42EB004CC3AA /* cfUtils.swift in Sources */,
 				CD1853152C09C210001FE566 /* DalUtils.swift in Sources */,
 				A1B8E6A62AAFB5EC00AC6566 /* AppDelegate.swift in Sources */,
@@ -890,7 +912,9 @@
 				CD33621F2BFE0DD0004DBAFB /* CFSoftDeletedView.swift in Sources */,
 				CDD7D3362C198A930038E6F9 /* NiPalette.swift in Sources */,
 				CD04974E2C12FA4A00C44021 /* NiTextField.swift in Sources */,
+				CD9C2B252C32EEBD00C6126F /* NiAlertPanelController.swift in Sources */,
 				A14E8F272AD5EAF800409DDF /* NiSpaceView.swift in Sources */,
+				CD9C2B272C32F8B800C6126F /* NiButton.swift in Sources */,
 				CDC5A1142C25C8F3002F5621 /* EmptyRectView.swift in Sources */,
 				CD5A04CD2BEA3CD0004CC3AA /* CFMinimizedStackItem.swift in Sources */,
 				CDF0DD282C20549F006C4EF4 /* NiEmptyViewController.swift in Sources */,
