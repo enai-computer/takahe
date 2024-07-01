@@ -20,10 +20,11 @@ class NiSpaceViewController: NSViewController, NSTextFieldDelegate{
 	@IBOutlet var niScrollView: NiScrollView!
 	@IBOutlet var niDocument: NiSpaceDocumentController!
 	private let documentCache = NiDocControllerCache()
-
+	private let EMPTY_SPACE_ID = UUID(uuidString:"00000000-0000-0000-0000-000000000000")!
+	
 	init(){
 		self.niSpaceName = ""
-		self.niSpaceID = UUID(uuidString:"00000000-0000-0000-0000-000000000000")!
+		self.niSpaceID = EMPTY_SPACE_ID
 		super.init(nibName: nil, bundle: nil)
 		view.registerForDraggedTypes([.png, .tiff])
 	}
@@ -101,12 +102,23 @@ class NiSpaceViewController: NSViewController, NSTextFieldDelegate{
 		}
 	}
     
-	func returnToHome(saveCurrentSpace: Bool = true) {
+	func openPalette(saveCurrentSpace: Bool = true) {
 		if(saveCurrentSpace){
 			storeCurrentSpace()
 		}
 		let	palette = NiPalette()
 		palette.makeKeyAndOrderFront(nil)
+	}
+	
+	func openHome(){
+		let homeView = NiHomeWindow(windowToAppearOn: view.window!)
+		homeView.makeKeyAndOrderFront(nil)
+		openEmptyBackgroundSpace()
+	}
+	
+	private func openEmptyBackgroundSpace(){
+		let spaceDoc = getEmptySpaceDocument(id: EMPTY_SPACE_ID, name: "")
+		loadSpace(spaceId: EMPTY_SPACE_ID, name: "", spaceDoc: spaceDoc, scrollTo: nil)
 	}
 	
 	func openEmptyCF(){
@@ -211,7 +223,7 @@ class NiSpaceViewController: NSViewController, NSTextFieldDelegate{
 		
 		cursorPos = self.view.convert(event.locationInWindow, from: nil)
 		if(NSPointInRect(cursorPos, header.frame)){
-			returnToHome()
+			openPalette()
 			return
 		}
 		
@@ -228,6 +240,22 @@ class NiSpaceViewController: NSViewController, NSTextFieldDelegate{
 		nextResponder?.keyDown(with: event)
 	}
     
+	func triggerSpaceDeletion(with event: NSEvent){
+		let deletionMenuPanel = NiAlertPanelController()
+		deletionMenuPanel.loadView()
+		
+		let alertPanel = NiFullscreenPanel(deletionMenuPanel)
+		deletionMenuPanel.cancelFunction = alertPanel.removeSelf
+		deletionMenuPanel.deleteFunction = self.deleteCurrentSpaceAndGoHome
+		
+		alertPanel.makeKeyAndOrderFront(nil)
+	}
+	
+	func deleteCurrentSpaceAndGoHome(_ sender: Any? = nil){
+		DocumentTable.deleteDocument(id: niSpaceID)
+		openHome()
+	}
+	
 	func editSpaceName(with event: NSEvent){
 		guard !spaceName.isEditable else {return}
 		
@@ -282,9 +310,9 @@ class NiSpaceViewController: NSViewController, NSTextFieldDelegate{
 				mouseDownFunction: self.editSpaceName
 			),
 			NiMenuItemViewModel(
-				title: "Delete this space (soon)",
-				isEnabled: false,
-				mouseDownFunction: nil
+				title: "Delete this space",
+				isEnabled: true,
+				mouseDownFunction: self.triggerSpaceDeletion
 			)
 		]
 	}
@@ -356,9 +384,11 @@ class NiSpaceViewController: NSViewController, NSTextFieldDelegate{
 	}
 	
 	func loadSpace(spaceId id: UUID, name: String){
-		
 		let (spaceDoc, scrollTo) = getSpaceDoc(id, name: name)
-		
+		self.loadSpace(spaceId: id, name: name, spaceDoc: spaceDoc, scrollTo: scrollTo)
+	}
+	
+	func loadSpace(spaceId id: UUID, name: String, spaceDoc: NiSpaceDocumentController, scrollTo: NSPoint?){
 		niSpaceName = name
 		spaceName.stringValue = name
 		self.niSpaceID = id
