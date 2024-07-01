@@ -12,6 +12,10 @@ class NiPaletteWindowDelegate: NSObject, NSWindowDelegate{
 	func windowDidResignKey(_ notification: Notification) {
 			if let window = notification.object as? NiPalette {
 				window.removeSelf()
+				return
+			}
+			if let window = notification.object as? NiFullscreenPanel {
+				window.removeSelf()
 			}
 		}
 	
