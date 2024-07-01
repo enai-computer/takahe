@@ -104,6 +104,17 @@ class DocumentTable{
         }
         return nil
     }
+	
+	static func deleteDocument(id: UUID){
+		do{
+			let rowToDelete = table.filter(self.id == id)
+			try Storage.instance.spacesDB.run(
+				rowToDelete.delete()
+			)
+		}catch{
+			print("Failed to delete document.")
+		}
+	}
 }
 
 
