@@ -28,7 +28,7 @@
                         <rect key="frame" x="15" y="352" width="556" height="58"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <subviews>
-                            <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="69S-1x-KUI" customClass="SearchViewTextField" customModule="ni" customModuleProvider="target">
+                            <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="69S-1x-KUI" customClass="SearchViewTextField" customModule="ni" customModuleProvider="target">
                                 <rect key="frame" x="46" y="15" width="485" height="28"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" id="eQk-5F-QMg">
@@ -78,7 +78,7 @@
                 </subviews>
             </view>
             <color key="borderColor" name="sand4"/>
-            <color key="fillColor" name="sand4T50"/>
+            <color key="fillColor" name="sand4T80"/>
             <point key="canvasLocation" x="-246" y="64"/>
         </box>
     </objects>
@@ -89,7 +89,7 @@
         <namedColor name="sand4">
             <color red="0.93333333333333335" green="0.93333333333333335" blue="0.92549019607843142" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <namedColor name="sand4T50">
+        <namedColor name="sand4T80">
             <color red="0.93333333333333335" green="0.93333333333333335" blue="0.92549019607843142" alpha="0.80000001192092896" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="sand8T20">
