@@ -391,7 +391,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		for i in tabs.indices{
 			if(tabs[i].webView != nil){
 				if(tabs[i].webView!.title != nil){
-					tabs[i].title = tabs[i].webView!.title!
+					tabs[i].title = tabs[i].webView!.getTitle()
 				}
 				if(tabs[i].webView!.url != nil){
 					tabs[i].content = tabs[i].webView!.url!.absoluteString
@@ -787,7 +787,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		
 		wv.retries = 0
 		
-		self.tabs[wv.tabHeadPosition].title = wv.title ?? ""
+		self.tabs[wv.tabHeadPosition].title = wv.getTitle()
 		self.tabs[wv.tabHeadPosition].icon = nil
 		
 		//an empty tab still loads a local html
