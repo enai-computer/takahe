@@ -10,6 +10,11 @@ import Foundation
 
 class NiTextField: NSTextField{
 	
+	@IBInspectable public var hasHoverEffect: Bool = false
+	@IBInspectable public var hoverTint: NSColor = NSColor.birkin
+	
+	private var nonHoverTint: NSColor? = nil
+	
 	override init(frame frameRect: NSRect) {
 		super.init(frame: frameRect)
 		
@@ -31,6 +36,15 @@ class NiTextField: NSTextField{
 	let maxChars = 3
 	var numberOfChars = 0
 
+	override func awakeFromNib() {
+		super.awakeFromNib()
+		let hoverEffect = NSTrackingArea(rect: self.bounds,
+										 options: [.activeInKeyWindow, .inVisibleRect, .mouseEnteredAndExited],
+										 owner: self,
+										 userInfo: nil)
+		addTrackingArea(hoverEffect)		
+	}
+	
 	override func sendAction(_ action: Selector?, to target: Any?) -> Bool {
 		super.sendAction(action, to: target)
 	}
@@ -44,6 +58,18 @@ class NiTextField: NSTextField{
 		return
 	}
 	
+	override func mouseEntered(with event: NSEvent) {
+		if(hasHoverEffect && isEditable == false){
+			nonHoverTint = self.textColor
+			self.textColor = hoverTint
+		}
+	}
+	
+	override func mouseExited(with event: NSEvent) {
+		if(hasHoverEffect && isEditable == false){
+			self.textColor = nonHoverTint
+		}
+	}
 }
 
 class NiTextFieldCell: NSTextFieldCell{

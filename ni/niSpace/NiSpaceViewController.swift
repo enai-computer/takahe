@@ -86,7 +86,7 @@ class NiSpaceViewController: NSViewController, NSTextFieldDelegate{
 		header.contentView?.layer?.borderColor = NSColor(.sand2).cgColor
 		header.contentView?.layer?.borderWidth = 5
 	}
-        
+	
 	func setAutoUpdatingTime(){
 		Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(setDisplayedTime), userInfo: nil, repeats: true)
 	}
@@ -297,6 +297,7 @@ class NiSpaceViewController: NSViewController, NSTextFieldDelegate{
 		spaceName.refusesFirstResponder = true
 		spaceName.isSelectable = false
 		spaceName.isEditable = false
+		spaceName.isEnabled = true
 	}
 	
 	private func revertRenamingChanges(){

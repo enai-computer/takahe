@@ -68,6 +68,12 @@
                                     <color key="textColor" name="sand115"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="hasHoverEffect" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="hoverTint">
+                                        <color key="value" name="Birkin"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </textField>
                             <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Yne-Pi-Jml">
                                 <rect key="frame" x="30" y="6" width="24" height="24"/>
