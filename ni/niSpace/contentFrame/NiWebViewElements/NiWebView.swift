@@ -124,6 +124,16 @@ class NiWebView: WKWebView, CFContentItem{
 		return nil
 	}
 	
+	func getTitle() -> String{
+		if(title != nil && !title!.isEmpty){
+			return title!
+		}
+		if let fileName = url?.pathComponents.last{
+			return fileName
+		}
+		return ""
+	}
+	
 	private func replaceSearchWithGoogleAction(_ menu: NSMenu){
 		for item in menu.items{
 			if(item.title == "Search with Google"){

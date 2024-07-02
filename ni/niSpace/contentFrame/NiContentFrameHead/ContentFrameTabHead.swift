@@ -179,7 +179,7 @@ class ContentFrameTabHead: NSCollectionViewItem, NSTextFieldDelegate {
 			}
 		}else{
 			removeEditingStyle()
-			self.tabHeadTitle.disableEditing(title: viewModel.webView?.title ?? viewModel.title)
+			self.tabHeadTitle.disableEditing(title: viewModel.webView?.getTitle() ?? viewModel.title)
 		}
 		
 		if(viewModel.isSelected){
