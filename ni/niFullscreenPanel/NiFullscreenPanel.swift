@@ -101,7 +101,7 @@ class NiFullscreenPanel: NSPanel{
 		}
 	}
 	
-	func removeSelf(_ sender: Any? = nil){
+	func removeSelf(){
 		windowBlurView?.removeFromSuperview()
 		windowBlurView = nil
 		contentBlurView?.removeFromSuperview()

@@ -31,6 +31,14 @@ class NiAlertPanelController: NSViewController{
 		styleCancelButton()
 	}
 	
+	private func styleSelf(){
+		view.wantsLayer = true
+		view.layer?.borderColor = NSColor.clear.cgColor
+		view.layer?.cornerRadius = 15.0
+		view.layer?.cornerCurve = .continuous
+		view.layer?.backgroundColor = NSColor.sand4T80.cgColor
+	}
+	
 	private func styleDeletButton(){
 		deleteButton.wantsLayer = true
 		deleteButton.contentTintColor = NSColor.alertRed
@@ -44,10 +52,16 @@ class NiAlertPanelController: NSViewController{
 	}
 	
 	@IBAction func deleteAction(_ sender: Any) {
+		if let window = view.window as? NiFullscreenPanel {
+			window.removeSelf()
+		}
 		deleteFunction?(sender)
 	}
 	
 	@IBAction func cancelAction(_ sender: Any) {
+		if let window = view.window as? NiFullscreenPanel {
+			window.removeSelf()
+		}
 		cancelFunction?(sender)
 	}
 }

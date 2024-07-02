@@ -111,9 +111,11 @@ class NiSpaceViewController: NSViewController, NSTextFieldDelegate{
 	}
 	
 	func openHome(){
-		let homeView = NiHomeWindow(windowToAppearOn: view.window!)
-		homeView.makeKeyAndOrderFront(nil)
 		openEmptyBackgroundSpace()
+		DispatchQueue.main.asyncAfter(deadline: .now() + 0.2){
+			let homeView = NiHomeWindow(windowToAppearOn: self.view.window!)
+			homeView.makeKeyAndOrderFront(nil)
+		}
 	}
 	
 	private func openEmptyBackgroundSpace(){
@@ -245,15 +247,15 @@ class NiSpaceViewController: NSViewController, NSTextFieldDelegate{
 		deletionMenuPanel.loadView()
 		
 		let alertPanel = NiFullscreenPanel(deletionMenuPanel)
-		deletionMenuPanel.cancelFunction = alertPanel.removeSelf
 		deletionMenuPanel.deleteFunction = self.deleteCurrentSpaceAndGoHome
 		
 		alertPanel.makeKeyAndOrderFront(nil)
 	}
 	
 	func deleteCurrentSpaceAndGoHome(_ sender: Any? = nil){
-		DocumentTable.deleteDocument(id: niSpaceID)
+		let spaceIDToDelete = niSpaceID
 		openHome()
+		DocumentTable.deleteDocument(id: spaceIDToDelete)
 	}
 	
 	func editSpaceName(with event: NSEvent){
@@ -388,7 +390,7 @@ class NiSpaceViewController: NSViewController, NSTextFieldDelegate{
 		self.loadSpace(spaceId: id, name: name, spaceDoc: spaceDoc, scrollTo: scrollTo)
 	}
 	
-	func loadSpace(spaceId id: UUID, name: String, spaceDoc: NiSpaceDocumentController, scrollTo: NSPoint?){
+	private func loadSpace(spaceId id: UUID, name: String, spaceDoc: NiSpaceDocumentController, scrollTo: NSPoint?){
 		niSpaceName = name
 		spaceName.stringValue = name
 		self.niSpaceID = id
@@ -398,6 +400,8 @@ class NiSpaceViewController: NSViewController, NSTextFieldDelegate{
 		if(Storage.instance.userConfig.spaceCachingEnabled){
 			documentCache.addToCache(id: id, controller: spaceDoc)
 		}
+		
+		addChild(spaceDoc)
 		
 		let oldDoc = niDocument
 		transition(from: niDocument, to: spaceDoc, options: [.crossfade])
@@ -450,7 +454,6 @@ class NiSpaceViewController: NSViewController, NSTextFieldDelegate{
 			niDocument.view.frame = spaceDoc.view.frame
 		}
 		
-		addChild(spaceDoc)
 		return (spaceDoc, scrollTo)
 	}
 
