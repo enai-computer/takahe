@@ -25,7 +25,7 @@ class NiWebView: WKWebView, CFContentItem{
 	var prevFindAvailable: Bool = true
 	var nextFindAvailable: Bool = true
 	
-	var zoomLevel: Int = 7
+	private var zoomLevel: Int = 7
 	
     init(owner: ContentFrameController, frame: NSRect) {
         self.owner = owner
