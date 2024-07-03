@@ -70,7 +70,7 @@ func openCFTabs(for controller: ContentFrameController, with tabViewModels: [Tab
 			}else if(tab.type == .img && tab.icon != nil){
 				controller.openImgInNewTab(contentId: tab.contentId, tabTitle: tab.title, content: tab.icon!, source: tab.source)
 			}else if(tab.type == .pdf && tab.data != nil){
-				controller.openPdfInNewTab(contentId: tab.contentId, tabTitle: tab.title, content: (tab.data as! PDFDocument), source: tab.source)
+				controller.openPdfInNewTab(contentId: tab.contentId, tabTitle: tab.title, content: (tab.data as! PDFDocument), source: tab.source, scrollTo: tab.scrollPosition)
 			}
 		}
 		return
@@ -133,7 +133,7 @@ func niCFTabModelToTabViewModel(tabs: [NiCFTabModel]) -> [TabViewModel]{
 	var tabViews: [TabViewModel] = []
 	
 	for tabModel in tabs {
-		var tabView = getTabViewModel(for: tabModel.id, ofType: tabModel.contentType, positioned: tabModel.position)
+		var tabView = getTabViewModel(for: tabModel.id, ofType: tabModel.contentType, positioned: tabModel.position, scrollPosition: tabModel.scrollPosition)
 		if(tabModel.position < 0 || tabs.count <= tabModel.position){
 			tabPositionCorrectionNeeded = true
 		}
@@ -158,7 +158,7 @@ func niCFTabModelToTabViewModel(tabs: [NiCFTabModel]) -> [TabViewModel]{
 	return tabViews
 }
 
-func getTabViewModel(for id: UUID, ofType type: TabContentType, positioned at: Int) -> TabViewModel{
+func getTabViewModel(for id: UUID, ofType type: TabContentType, positioned at: Int, scrollPosition: Int?) -> TabViewModel{
 	var tabView: TabViewModel
 	if(type == .web){
 		let record = CachedWebTable.fetchCachedWebsite(contentId: id)
@@ -195,7 +195,8 @@ func getTabViewModel(for id: UUID, ofType type: TabContentType, positioned at: I
 			type: type,
 			title: title ?? "",
 			source: sourceUrl,
-			data: pdf
+			data: pdf,
+			scrollPosition: scrollPosition
 		)
 	}else{
 		preconditionFailure("unsupported type")
