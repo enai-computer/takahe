@@ -927,8 +927,13 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	
 	func purgePersistetContent(){
 		for tab in tabs {
+			if(tab.type == .img){
+				ImgDal.deleteImg(id: tab.contentId)
+			}
+			if(tab.type == .pdf){
+				PdfDal.deletePdf(id: tab.contentId)
+			}
 			ContentTable.delete(id: tab.contentId)
-			//TODO: add image  when deleted
 		}
 	}
 	
@@ -951,6 +956,11 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 			if(tab.type == .img){
 				if let img = tab.imgView?.image{
 					ImgDal.insert(documentId: documentId, id: tab.contentId, title: tab.title, img: img, source: tab.source)
+				}
+			}
+			if(tab.type == .pdf){
+				if let pdfDoc = tab.pdfView?.document{
+					PdfDal.insert(documentId: documentId, id: tab.contentId, title: tab.title, pdf: pdfDoc, source: tab.source)
 				}
 			}
 		}
@@ -977,6 +987,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 			if(tab.type == .web
 			   || (tab.type == .note && tab.noteView?.getText() != nil)
 			   || tab.type == .img
+			   || tab.type == .pdf
 			){
 				children.append(
 					NiCFTabModel(

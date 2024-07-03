@@ -37,4 +37,8 @@ class ImgDal{
 		
 		return nil
 	}
+	
+	static func deleteImg(id: UUID){
+		//TODO: impelement me
+	}
 }

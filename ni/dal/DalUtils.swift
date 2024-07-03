@@ -6,6 +6,7 @@
 //
 
 import Cocoa
+import PDFKit
 import SQLite
 
 /** returns false if failed
@@ -24,6 +25,15 @@ func writeImgToDisk(fUrl: URL, img: NSImage) -> Bool{
 		}
 	}
 	return false
+}
+
+func fetchPdfFromDisk(_ fUrl: URL) -> PDFDocument? {
+	if(fUrl.isFileURL){
+		if let pdf = PDFDocument(url: fUrl){
+			return pdf
+		}
+	}
+	return nil
 }
 
 func fetchImgFromDisk(_ fUrl: URL) -> NSImage? {
