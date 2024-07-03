@@ -435,7 +435,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		}
 	}
 	
-	func openPdfInNewTab(contentId: UUID = UUID(), tabTitle: String? = nil, content: PDFDocument, source: String? = nil){
+	func openPdfInNewTab(contentId: UUID = UUID(), tabTitle: String? = nil, content: PDFDocument, source: String? = nil, scrollTo pageNr: Int? = nil){
 		let pdfView = ni.getNewPdfView(owner: self, frame: self.view.frame, document: content)
 		
 		var tabHeadModel = TabViewModel(contentId: contentId, type: .pdf, source: source, isSelected: true)
@@ -447,6 +447,18 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		self.tabs.append(tabHeadModel)
 		
 		_ = myView.createNewTab(tabView: pdfView)
+		
+		asyncSrollPdfToPage(pdfView, pageNr)
+	}
+	
+	private func asyncSrollPdfToPage(_ pdfView: NiPdfView, _ pageNr: Int?){
+		if(pageNr != nil){
+			DispatchQueue.main.async {
+				if let gotoPage = pdfView.document?.page(at: pageNr!){
+					pdfView.go(to: gotoPage)
+				}
+			}
+		}
 	}
 	
 	func openImgInNewTab(contentId: UUID = UUID(), tabTitle: String? = nil, content: NSImage, source: String? = nil){
@@ -984,6 +996,14 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		var children: [NiCFTabModel] = []
 		
 		for (i, tab) in tabs.enumerated(){
+			var scrollPosition: Int? = nil
+			
+			if(tab.type == .pdf){
+				scrollPosition = (tab.pdfView?.currentPage?.pageRef?.pageNumber ?? 1) - 1
+				if(scrollPosition! < 0){
+					scrollPosition = 0
+				}
+			}
 			if(tab.type == .web
 			   || (tab.type == .note && tab.noteView?.getText() != nil)
 			   || tab.type == .img
@@ -995,7 +1015,8 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 						contentType: tab.type,
 						contentState: tab.state.rawValue,
 						active: tab.isSelected,
-						position: i
+						position: i,
+						scrollPosition: scrollPosition
 					)
 				)
 			}
