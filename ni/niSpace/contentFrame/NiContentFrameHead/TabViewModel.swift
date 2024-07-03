@@ -21,6 +21,7 @@ struct TabViewModel{
 	var source: String?
 	var state: TabViewModelState = .empty
 	var icon: NSImage?
+	var data: Any?
 	
 	var viewItem: CFContentItem?
 	var webView: NiWebView? {return self.viewItem as? NiWebView? ?? nil}

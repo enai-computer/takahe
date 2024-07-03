@@ -12,13 +12,14 @@ private let DB_SPACES = "/spaces.sqlite3"
 private let DB_CACHE = "/niCache.sqlite3"
 private let DATA_FOLDER = "/data-0"
 private let IMG_FOLDER = "/img-0"
+private let PDF_FOLDER = "/pdf-0"
 private let CACHE_FOLDER = "/cache"
 private let FAVICON_FOLDER = "/favicon"
 
 var CUSTOM_STORAGE_LOCATION: String? = nil
 
 enum FileStorageType{
-	case spaceImg, favIcon
+	case spaceImg, spacePdf, favIcon
 }
 
 class Storage{
@@ -77,6 +78,8 @@ class Storage{
 			
 			try FileManager.default.createDirectory(atPath: basepath + DATA_FOLDER + IMG_FOLDER, withIntermediateDirectories: true, attributes: nil)
 			
+			try FileManager.default.createDirectory(atPath: basepath + DATA_FOLDER + PDF_FOLDER, withIntermediateDirectories: true, attributes: nil)
+			
 			try FileManager.default.createDirectory(atPath: basepath + CACHE_FOLDER + FAVICON_FOLDER, withIntermediateDirectories: true, attributes: nil)
 		}catch{
 			print("Failed to init nessary Directories.")
@@ -107,6 +110,13 @@ class Storage{
 		if(type == .spaceImg){
 			return URL(
 				fileURLWithPath: path! + DATA_FOLDER + IMG_FOLDER + "/\(id).jpg",
+				isDirectory: false
+			)
+		}
+		
+		if(type == .spacePdf){
+			return URL(
+				fileURLWithPath: path! + DATA_FOLDER + PDF_FOLDER + "/\(id).pdf",
 				isDirectory: false
 			)
 		}

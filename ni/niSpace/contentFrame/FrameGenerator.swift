@@ -2,6 +2,7 @@
 
 import Cocoa
 import WebKit
+import PDFKit
 
 let maxWidthMargin: CGFloat = 30.0
 
@@ -68,6 +69,8 @@ func openCFTabs(for controller: ContentFrameController, with tabViewModels: [Tab
 				controller.openNoteInNewTab(contentId: tab.contentId, tabTitle: tab.title, content: tab.content)
 			}else if(tab.type == .img && tab.icon != nil){
 				controller.openImgInNewTab(contentId: tab.contentId, tabTitle: tab.title, content: tab.icon!, source: tab.source)
+			}else if(tab.type == .pdf && tab.data != nil){
+				controller.openPdfInNewTab(contentId: tab.contentId, tabTitle: tab.title, content: (tab.data as! PDFDocument), source: tab.source)
 			}
 		}
 		return
@@ -184,6 +187,15 @@ func getTabViewModel(for id: UUID, ofType type: TabContentType, positioned at: I
 			title: title ?? "",
 			source: sourceUrl,
 			icon: img
+		)
+	} else if(type == .pdf){
+		let (title, pdf, sourceUrl) = PdfDal.fetchPdfWMetaData(id: id) ?? (nil, nil, nil)
+		tabView = TabViewModel(
+			contentId: id,
+			type: type,
+			title: title ?? "",
+			source: sourceUrl,
+			data: pdf
 		)
 	}else{
 		preconditionFailure("unsupported type")
