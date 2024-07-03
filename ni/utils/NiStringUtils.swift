@@ -68,3 +68,10 @@ func hasImgExtension(_ path: String) -> Bool {
 	}
 	return false
 }
+
+func hasPdfExtension(_ path: String) -> Bool {
+	let cleanPath = path.lowercased()
+	let suffix = ".pdf"
+	
+	return cleanPath.hasSuffix(suffix)
+}
