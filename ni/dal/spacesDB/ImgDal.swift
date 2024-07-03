@@ -15,12 +15,14 @@ class ImgDal{
 			return
 		}
 	
-		let fUrl: URL = Storage.instance.genFileUrl(for: id, ofType: .spaceImg)
-		if(writeImgToDisk(fUrl: fUrl, img: img)){
-			ContentTable.upsert(id: id, type: "img", title: title, fileUrl: fUrl.absoluteString, source: source)
-			DocumentIdContentIdTable.insert(documentId: documentId, contentId: id)
-		}else{
-			print("Failed to write image to disk with Title: \(title ?? "")")
+		Task{
+			let fUrl: URL = Storage.instance.genFileUrl(for: id, ofType: .spaceImg)
+			if(writeImgToDisk(fUrl: fUrl, img: img)){
+				ContentTable.upsert(id: id, type: "img", title: title, fileUrl: fUrl.absoluteString, source: source)
+				DocumentIdContentIdTable.insert(documentId: documentId, contentId: id)
+			}else{
+				print("Failed to write image to disk with Title: \(title ?? "")")
+			}
 		}
 	}
 
@@ -39,6 +41,14 @@ class ImgDal{
 	}
 	
 	static func deleteImg(id: UUID){
-		//TODO: impelement me
+		let (urlString, _, _) = ContentTable.fetchURLTitleSource(for: id) ?? (nil, nil, nil)
+		if(urlString == nil){return}
+		
+		do{
+			try FileManager.default.removeItem(atPath: urlString!)
+			ContentTable.delete(id: id)
+		}catch{
+			print("failed to delete file")
+		}
 	}
 }

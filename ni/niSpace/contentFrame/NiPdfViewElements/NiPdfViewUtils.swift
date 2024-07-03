@@ -9,8 +9,7 @@ import Foundation
 import PDFKit
 
 func getNewPdfView(owner: ContentFrameController, frame: NSRect, document doc: PDFDocument) -> NiPdfView{
-	
 	let pdfView = NiPdfView(owner: owner, frame: frame, document: doc)
-	
+	pdfView.autoScales = true
 	return pdfView
 }

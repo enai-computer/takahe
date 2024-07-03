@@ -16,13 +16,15 @@ class PdfDal{
 			return
 		}
 		
-		let fUrl: URL = Storage.instance.genFileUrl(for: id, ofType: .spacePdf)
-		if(pdf.write(to: fUrl)){
-			ContentTable.upsert(id: id, type: "pdf", title: title, fileUrl: fUrl.absoluteString, source: source)
-			
-			DocumentIdContentIdTable.insert(documentId: documentId, contentId: id)
-		}else{
-			print("Failed to write pdf to disk with Title: \(title ?? "")")
+		Task{
+			let fUrl: URL = Storage.instance.genFileUrl(for: id, ofType: .spacePdf)
+			if(pdf.write(to: fUrl)){
+				ContentTable.upsert(id: id, type: "pdf", title: title, fileUrl: fUrl.absoluteString, source: source)
+				
+				DocumentIdContentIdTable.insert(documentId: documentId, contentId: id)
+			}else{
+				print("Failed to write pdf to disk with Title: \(title ?? "")")
+			}
 		}
 	}
 	
@@ -38,6 +40,14 @@ class PdfDal{
 	}
 	
 	static func deletePdf(id: UUID){
-		//TODO: impelement me
+		let (urlString, _, _) = ContentTable.fetchURLTitleSource(for: id) ?? (nil, nil, nil)
+		if(urlString == nil){return}
+		
+		do{
+			try FileManager.default.removeItem(atPath: urlString!)
+			ContentTable.delete(id: id)
+		}catch{
+			print("failed to delete file")
+		}
 	}
 }
