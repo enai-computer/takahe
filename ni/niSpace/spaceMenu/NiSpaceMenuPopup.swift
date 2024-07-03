@@ -28,7 +28,7 @@ class NiSpaceMenuPopup: NSObject{
 	}
 	
 	private func getItems() -> [NiMenuItemViewModel]{
-		let pasteBoardType = NSPasteboard.general.containsImgOrText()
+		let pasteBoardType = NSPasteboard.general.containsImgPdfOrText()
 		let pasteItem = getPasteMenuItem(for: pasteBoardType)
 		
 		return [
@@ -55,7 +55,13 @@ class NiSpaceMenuPopup: NSObject{
 		guard let img = NSPasteboard.general.getImage() else {return}
 		let title = NSPasteboard.general.tryGetName()
 		parentController.pasteImage(image: img, documentPosition: self.originInDocument, title: title, source: nil)
-		
+	}
+	
+	private func pastePdf(with event: NSEvent){
+		guard let pdf = NSPasteboard.general.getPdf() else {return}
+		let title = NSPasteboard.general.tryGetName()
+		let source = NSPasteboard.general.tryGetFileURL()
+		parentController.pastePdf(pdf: pdf, screenPosition:  self.originInDocument, title: title, source: source)
 	}
 	
 	private func getPasteMenuItem(for content: NiPasteboardContent?) -> NiMenuItemViewModel{
@@ -63,7 +69,9 @@ class NiSpaceMenuPopup: NSObject{
 			return NiMenuItemViewModel(title: "Paste an image", isEnabled: true, mouseDownFunction: pasteImg)
 		}else if(content == .txt){
 			return NiMenuItemViewModel(title: "Paste text", isEnabled: true, mouseDownFunction: pasteTxt)
+		}else if(content == .pdf){
+			return NiMenuItemViewModel(title: "Paste pdf", isEnabled: true, mouseDownFunction: pastePdf)
 		}
-		return NiMenuItemViewModel(title: "Paste image or text", isEnabled: false, mouseDownFunction: nil)
+		return NiMenuItemViewModel(title: "Paste pdf, image or text", isEnabled: false, mouseDownFunction: nil)
 	}
 }

@@ -4,6 +4,7 @@ import Cocoa
 import Carbon.HIToolbox
 import PostHog
 import AppKit
+import PDFKit
 
 class NiSpaceViewController: NSViewController, NSTextFieldDelegate{
     
@@ -64,11 +65,30 @@ class NiSpaceViewController: NSViewController, NSTextFieldDelegate{
 	}
  
 	@IBAction func paste(_ sender: NSMenuItem){
+		let pasteBoardType = NSPasteboard.general.containsImgPdfOrText()
+		
+		if(pasteBoardType == .image){
+			tryPasteImg()
+		}else if(pasteBoardType == .pdf){
+			tryPastePdf()
+		}
+	}
+	
+	private func tryPasteImg(){
 		if let img = NSPasteboard.general.getImage(){
 			let title = NSPasteboard.general.tryGetName()
 			let source = NSPasteboard.general.tryGetFileURL()
 			let pos = view.window!.mouseLocationOutsideOfEventStream
 			pasteImage(image: img, screenPosition: pos, title: title, source: source)
+		}
+	}
+	
+	private func tryPastePdf(){
+		if let pdf = NSPasteboard.general.getPdf(){
+			let title = NSPasteboard.general.tryGetName()
+			let source = NSPasteboard.general.tryGetFileURL()
+			let pos = view.window!.mouseLocationOutsideOfEventStream
+			pastePdf(pdf: pdf, screenPosition: pos, title: title, source: source)
 		}
 	}
 	
@@ -125,6 +145,14 @@ class NiSpaceViewController: NSViewController, NSTextFieldDelegate{
 	
 	func openEmptyCF(){
 		niDocument.openEmptyCF()
+	}
+	
+	func pastePdf(pdf: PDFDocument, screenPosition at: CGPoint, title: String?, source: String?){
+		var position = at
+		position.y = niScrollView.documentView!.visibleRect.size.height - position.y + niScrollView.documentView!.visibleRect.origin.y
+		
+		let cfController = niDocument.openEmptyCF(viewState: .frameless, initialTabType: .pdf, positioned: position, size: CGSize(width: 300.0, height: 600.0))
+		cfController.openPdfInNewTab(tabTitle: title, content: pdf, source: source)
 	}
 	
 	func pasteImage(image: NSImage, screenPosition at: CGPoint, title: String?, source: String?){

@@ -6,9 +6,10 @@
 //
 
 import Cocoa
+import PDFKit
 
 enum NiPasteboardContent{
-	case empty, image, txt
+	case empty, image, txt, pdf
 }
 
 extension NSPasteboard{
@@ -20,6 +21,15 @@ extension NSPasteboard{
 		if let pasteboardItem = self.pasteboardItems?[0]{
 			if let img = loadImg(from: pasteboardItem){
 				return img
+			}
+		}
+		return nil
+	}
+	
+	func getPdf() -> PDFDocument? {
+		if let item = self.pasteboardItems?[0]{
+			if let pdfUrl = getPdfImgfileURL(from: item){
+				return PDFDocument(url: pdfUrl)
 			}
 		}
 		return nil
@@ -63,7 +73,7 @@ extension NSPasteboard{
 		return nil
 	}
 	
-	func containsImgOrText() -> NiPasteboardContent{
+	func containsImgPdfOrText() -> NiPasteboardContent{
 		//need to check in two steps here as a guard with `self.pasteboardItems?[0]` did not work reliable 
 		guard let lstOfItems: [NSPasteboardItem] = self.pasteboardItems else {return .empty}
 		if lstOfItems.isEmpty {return .empty}
@@ -82,6 +92,9 @@ extension NSPasteboard{
 						let fileStr = String(decoding: pasteBoardFileUrl, as: UTF8.self)
 						if(hasImgExtension(fileStr)){
 							return .image
+						}
+						if(hasPdfExtension(fileStr)){
+							return .pdf
 						}
 					}
 					continue
@@ -116,19 +129,19 @@ extension NSPasteboard{
 		if(type == .png || type == .tiff){
 			return NSImage(pasteboard: self)
 		}else if(type == .fileURL){
-			if let fileUrl = getImgfileURL(from: item){
+			if let fileUrl = getPdfImgfileURL(from: item){
 				return NSImage(contentsOf: fileUrl)
 			}
 		}
 		return nil
 	}
 	
-	private func getImgfileURL(from item: NSPasteboardItem) -> URL?{
+	private func getPdfImgfileURL(from item: NSPasteboardItem) -> URL?{
 		if let pasteBoardFileUrl = item.data(
 			forType: NSPasteboard.PasteboardType.fileURL
 		){
 			let fileStr = String(decoding: pasteBoardFileUrl, as: UTF8.self)
-			if(hasImgExtension(fileStr)){
+			if(hasImgExtension(fileStr) || hasPdfExtension(fileStr)){
 				let fileUrl = URL(string: fileStr)
 				return fileUrl
 			}
@@ -139,6 +152,7 @@ extension NSPasteboard{
 	private func getPasteboardItemType(for item: NSPasteboardItem) -> NSPasteboard.PasteboardType?{
 		//order is not garanteed, we'd prefer png or tiff pasteboard over fileURL
 		var containsFileURL: Bool = false
+		var containsTiff: Bool = false
 		for t in item.types{
 			switch(t){
 				case .fileURL:
@@ -146,10 +160,15 @@ extension NSPasteboard{
 				case .png:
 					return .png
 				case .tiff:
-					return .tiff
+					containsTiff = true
+				case .pdf:
+					return .pdf
 				default:
 					break
 			}
+		}
+		if(containsTiff){
+			return .tiff
 		}
 		if(containsFileURL){
 			return .fileURL
