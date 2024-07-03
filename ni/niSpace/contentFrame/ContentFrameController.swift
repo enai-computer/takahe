@@ -10,6 +10,7 @@ import Foundation
 import Cocoa
 import Carbon.HIToolbox
 import WebKit
+import PDFKit
 import QuartzCore
 import FaviconFinder
 
@@ -432,6 +433,20 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		DispatchQueue.main.async {
 			self.editTabUrl(at: pos)
 		}
+	}
+	
+	func openPdfInNewTab(contentId: UUID = UUID(), tabTitle: String? = nil, content: PDFDocument, source: String? = nil){
+		let pdfView = ni.getNewPdfView(owner: self, frame: self.view.frame, document: content)
+		
+		var tabHeadModel = TabViewModel(contentId: contentId, type: .pdf, source: source, isSelected: true)
+		if let title = tabTitle{
+			tabHeadModel.title = title
+		}
+		tabHeadModel.position = 0
+		tabHeadModel.viewItem = pdfView
+		self.tabs.append(tabHeadModel)
+		
+		_ = myView.createNewTab(tabView: pdfView)
 	}
 	
 	func openImgInNewTab(contentId: UUID = UUID(), tabTitle: String? = nil, content: NSImage, source: String? = nil){
