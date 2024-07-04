@@ -15,7 +15,7 @@ class ContentFrameView: CFBaseView{
 	private var latestNrOfTabs: Int? = nil
 	@IBOutlet var contentBackButton: NiActionImage!
 	@IBOutlet var contentForwardButton: NiActionImage!
-	var prevButtonColor: NSColor? = nil
+
 	@IBOutlet var closeButton: NiActionImage!
 	@IBOutlet var addTabButton: NiActionImage!
 	@IBOutlet var cfHeadDragArea: NSView!
