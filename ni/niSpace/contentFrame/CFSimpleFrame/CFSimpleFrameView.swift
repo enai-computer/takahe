@@ -1,0 +1,140 @@
+//
+//  CFSimpleFrameView.swift
+//  ni
+//
+//  Created by Patrick Lukas on 4/7/24.
+//
+
+import Cocoa
+
+class CFSimpleFrameView: CFBaseView{
+	
+	@IBOutlet var cfHeadView: ContentFrameHeadView!
+	@IBOutlet var cfGroupButton: CFGroupButton!
+	@IBOutlet var maximizeButton: NiActionImage!
+	@IBOutlet var minimizeButton: NiActionImage!
+	@IBOutlet var closeButton: NiActionImage!
+	
+	private var dropShadow2 = CALayer()
+	private var dropShadow3 = CALayer()
+	
+	required init?(coder: NSCoder) {
+		super.init(coder: coder)
+		self.wantsLayer = true
+	}
+	
+	func initAfterViewLoad(_ groupName: String?){
+		closeButton.mouseDownFunction = clickedCloseButton
+		closeButton.isActiveFunction = self.isFrameActive
+		closeButton.mouseDownInActiveFunction = activateContentFrame
+		
+		maximizeButton.mouseDownFunction = fillOrRetractView
+		maximizeButton.isActiveFunction = self.isFrameActive
+		maximizeButton.mouseDownInActiveFunction = activateContentFrame
+		
+		//		minimizeButton.mouseDownFunction = clickedMinimizeButton
+		minimizeButton.isActiveFunction = {return false}
+		//		minimizeButton.mouseDownInActiveFunction = activateContentFrame
+	}
+	
+	override func createNewTab(tabView: NSView, openNextTo: Int = -1) -> Int {
+		tabView.frame = NSRect(x: 5.0, y: 5.0, width: frame.width - 10.0, height: frame.height - 10.0)
+		
+		tabView.wantsLayer = true
+		tabView.layer?.cornerRadius = 10.0
+		tabView.layer?.cornerCurve = .continuous
+		
+		addSubview(tabView)
+		return -1
+	}
+	
+	override func layout() {
+		super.layout()
+		
+		if(frameIsActive){
+			shadowActive()
+		}else{
+			shadowInActive()
+		}
+	}
+	
+	override func toggleActive(){
+		frameIsActive = !frameIsActive
+		
+		if frameIsActive{
+			self.layer?.borderColor = NSColor(.sand4).cgColor
+			self.layer?.backgroundColor = NSColor(.sand4).cgColor
+			shadowActive()
+			
+			showHeader()
+			self.resetCursorRects()
+		}else{
+			self.layer?.borderColor = NSColor(.sand3).cgColor
+			self.layer?.backgroundColor = NSColor(.sand3).cgColor
+			shadowInActive()
+			
+			hideHeader()
+			self.discardCursorRects()
+		}
+	}
+	
+	private func shadowActive(){
+		
+		self.clipsToBounds = false
+		
+		self.layer?.shadowColor = NSColor.sand115.cgColor
+		self.layer?.shadowOffset = CGSize(width: 0.0, height: -1.0)
+		self.layer?.shadowOpacity = 0.33
+		self.layer?.shadowRadius = 3.0
+		self.layer?.masksToBounds = false
+		
+		self.dropShadow2.removeFromSuperlayer()
+		
+		self.dropShadow2 = CALayer(layer: self.layer!)
+		self.dropShadow2.shadowPath = NSBezierPath(rect: bounds).cgPath
+		self.dropShadow2.shadowColor = NSColor.sand115.cgColor
+		self.dropShadow2.shadowOffset = CGSize(width: 2.0, height: -4.0)
+		self.dropShadow2.shadowOpacity = 0.2
+		self.dropShadow2.shadowRadius = 6.0
+		self.dropShadow2.masksToBounds = false
+		
+		self.layer?.insertSublayer(self.dropShadow2, at: 0)
+		
+		self.dropShadow3.removeFromSuperlayer()
+		
+		self.dropShadow3 = CALayer(layer: self.layer!)
+		self.dropShadow3.shadowPath = NSBezierPath(rect: bounds).cgPath
+		self.dropShadow3.shadowColor = NSColor.sand115.cgColor
+		self.dropShadow3.shadowOffset = CGSize(width: 4.0, height: -8.0)
+		self.dropShadow3.shadowOpacity = 0.2
+		self.dropShadow3.shadowRadius = 20.0
+		self.dropShadow3.masksToBounds = false
+		
+		dropShadow2.insertSublayer(self.dropShadow3, at: 0)
+	}
+	
+	private func shadowInActive(){
+		self.dropShadow2.removeFromSuperlayer()
+		self.dropShadow3.removeFromSuperlayer()
+		
+		self.layer?.shadowColor = NSColor.sand9.cgColor
+		self.layer?.shadowOffset = CGSize(width: 0.0, height: 0.0)
+		self.layer?.shadowOpacity = 0.5
+		self.layer?.shadowRadius = 1.0
+		self.layer?.masksToBounds = false
+	}
+	
+	private func hideHeader(){
+		closeButton.tintInactive()
+		minimizeButton.tintInactive()
+		maximizeButton.tintInactive()
+		cfGroupButton.tintInactive()
+	}
+	
+	private func showHeader(){
+		closeButton.tintActive()
+		minimizeButton.tintActive()
+		maximizeButton.tintActive()
+		cfGroupButton.tintActive()
+	}
+}
