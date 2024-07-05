@@ -33,7 +33,7 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" name="sand2"/>
+                        <color key="backgroundColor" name="Sand2"/>
                     </clipView>
                     <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="9PI-SI-Oxx">
                         <rect key="frame" x="-100" y="-100" width="792" height="15"/>
@@ -110,11 +110,11 @@
         <namedColor name="Birkin">
             <color red="0.95294117647058818" green="0.4392156862745098" blue="0.12941176470588237" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <namedColor name="Sand2">
+            <color red="0.97647058823529409" green="0.97647058823529409" blue="0.97254901960784312" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="sand115">
             <color red="0.31764705882352939" green="0.31372549019607843" blue="0.29411764705882354" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="sand2">
-            <color red="0.97647058823529409" green="0.97647058823529409" blue="0.97254901960784312" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>
