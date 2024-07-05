@@ -60,11 +60,11 @@ class NiFullscreenPanel: NSPanel{
 		windowBlurView = NSView(frame: mainWindow.frame)
 		windowBlurView?.frame.origin = CGPoint(x: 0.0, y: 0.0)
 		windowBlurView!.wantsLayer = true
-		setupBlurLayer(windowBlurView!, inputRadius: 1.0, inputSaturation: 0.6)
+		setupBlurLayerView(windowBlurView!, inputRadius: 1.0, inputSaturation: 0.6)
 		
 		contentBlurView = NSView(frame: self.frame)
 		contentBlurView!.wantsLayer = true
-		setupBlurLayer(contentBlurView!, inputRadius: 30.0, inputSaturation: 1.0)
+		setupBlurLayerView(contentBlurView!, inputRadius: 30.0, inputSaturation: 1.0)
 		contentBlurView?.layer?.cornerRadius = 15.0
 		
 		mainWindow.contentView!.addSubview(windowBlurView!)

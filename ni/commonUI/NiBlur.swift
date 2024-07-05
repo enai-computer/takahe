@@ -7,12 +7,16 @@
 
 import Cocoa
 
-func setupBlurLayer(_ blurView: NSView, inputRadius: CGFloat, inputSaturation: CGFloat){
+func setupBlurLayerView(_ blurView: NSView, inputRadius: CGFloat, inputSaturation: CGFloat){
 	blurView.layer?.backgroundColor = NSColor.clear.cgColor
 	blurView.layer?.masksToBounds = true
 	blurView.layerUsesCoreImageFilters = true
 	blurView.layer?.needsDisplayOnBoundsChange = true
 
+	blurView.layer?.backgroundFilters = getBlurFilter(inputRadius: inputRadius, inputSaturation: inputSaturation)
+}
+
+func getBlurFilter(inputRadius: CGFloat, inputSaturation: CGFloat) -> [CIFilter]{
 	let satFilter = CIFilter(name: "CIColorControls")!
 	satFilter.setDefaults()
 	satFilter.setValue(NSNumber(value: inputSaturation), forKey: "inputSaturation")
@@ -20,6 +24,6 @@ func setupBlurLayer(_ blurView: NSView, inputRadius: CGFloat, inputSaturation: C
 	let blurFilter = CIFilter(name: "CIGaussianBlur")!
 	blurFilter.setDefaults()
 	blurFilter.setValue(NSNumber(value: inputRadius), forKey: "inputRadius")
-
-	blurView.layer?.backgroundFilters = [satFilter, blurFilter]
+	
+	return [satFilter, blurFilter]
 }
