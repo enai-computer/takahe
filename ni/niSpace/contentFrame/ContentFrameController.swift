@@ -56,6 +56,8 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 			loadAndDisplayMinimizedView()
 		}else if(viewState == .frameless){
 			loadAndDisplayFramelessView()
+		}else if(viewState == .simpleFrame){
+			loadAndDisplaySimpleFrameView()
 		}else{
 			loadAndDisplayDefaultView()
 		}
@@ -88,6 +90,13 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		framelessView.layer?.cornerCurve = .continuous
 		framelessView.layer?.backgroundColor = NSColor.sand3.cgColor
 		return framelessView
+	}
+	
+	private func loadAndDisplaySimpleFrameView(){
+		let simpleFrameView = (NSView.loadFromNib(nibName: "CFSimpleFrameView", owner: self) as! CFSimpleFrameView)
+		simpleFrameView.setSelfController(self)
+		
+		self.view = simpleFrameView
 	}
 	
 	private func loadAndDisplayMinimizedView(){

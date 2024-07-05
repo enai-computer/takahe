@@ -62,7 +62,7 @@ func reopenContentFrameWithOutPositioning(
 }
 
 func openCFTabs(for controller: ContentFrameController, with tabViewModels: [TabViewModel]){
-	if(controller.viewState == .frameless){
+	if(controller.viewState == .frameless || controller.viewState == .simpleFrame){
 		if(0 < tabViewModels.count){
 			let tab = tabViewModels[0]
 			if(tab.type == .note){

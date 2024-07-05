@@ -125,7 +125,7 @@ struct NiCFTabModel: Codable{
 // MARK: -  Content Frame Model:
 
 enum NiConentFrameState: String, Codable {
-    case minimised, expanded, frameless, fullscreen
+    case minimised, expanded, frameless, simpleFrame, fullscreen
 }
 
 struct NiContentFrameModel: Codable{
