@@ -34,8 +34,6 @@ class ContentFrameView: CFBaseView{
 	static let SPACE_BETWEEN_TABS: CGFloat = 4.0
 	static let DEFAULT_TAB_SIZE = NSSize(width: 195, height: 30)
 	
-	private var previousCFSize: NSRect? = nil
-	
 	override var minFrameWidth: CGFloat { return 575.0}
 	
 	private var dropShadow2 = CALayer()
@@ -427,35 +425,11 @@ class ContentFrameView: CFBaseView{
 	 */
 	override func resizeOwnFrame(_ xDiff: Double, _ yDiff: Double, cursorLeftSide invertX: Bool = false, cursorTop invertY: Bool = false){
 		super.resizeOwnFrame(xDiff, yDiff, cursorLeftSide: invertX, cursorTop: invertY)
-		
-		previousCFSize = nil
 		recalcDragArea()
     }
 	
-	func fillOrRetractView(with event: NSEvent){
-		if(previousCFSize == nil){
-			fillView(with: event)
-			return
-		}
-		self.frame = previousCFSize!
-		previousCFSize = nil
-		recalcDragArea()
-	}
-	
-	func fillView(with event: NSEvent){
-		if(previousCFSize == nil){
-			previousCFSize = self.frame
-		}
-		
-		let visibleView = self.niParentDoc!.visibleRect
-		let w = visibleView.size.width - 100.0
-		let h = visibleView.size.height - 50.0
-		
-		let x = 50.0	//origin x will always be 0
-		let y = visibleView.origin.y + 40		//view is flipped, distance from top
-		
-		self.setFrameSize(NSSize(width: w, height: h))
-		self.setFrameOrigin(NSPoint(x: x, y: y))
+	override func fillOrRetractView(with event: NSEvent){
+		super.fillOrRetractView(with: event)
 		recalcDragArea()
 	}
     

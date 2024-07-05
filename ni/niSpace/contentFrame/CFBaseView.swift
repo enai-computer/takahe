@@ -27,6 +27,8 @@ class CFBaseView: NSBox{
 	var minFrameHeight: CGFloat { return 150.0}
 	var minFrameWidth: CGFloat { return 350.0}
 	
+	var previousCFSize: NSRect? = nil
+	
 	struct CFConstants {
 		// const needed for resizing:
 		static let actionAreaMargin: CGFloat = 8.0
@@ -207,6 +209,33 @@ class CFBaseView: NSBox{
 			self.frame.origin.y -= yDiff
 		}
 		self.setFrameSize(nsize)
+		
+		previousCFSize = nil
+	}
+	
+	func fillOrRetractView(with event: NSEvent){
+		if(previousCFSize == nil){
+			fillView(with: event)
+			return
+		}
+		self.frame = previousCFSize!
+		previousCFSize = nil
+	}
+	
+	func fillView(with event: NSEvent){
+		if(previousCFSize == nil){
+			previousCFSize = self.frame
+		}
+		
+		let visibleView = self.niParentDoc!.visibleRect
+		let w = visibleView.size.width - 100.0
+		let h = visibleView.size.height - 50.0
+		
+		let x = 50.0	//origin x will always be 0
+		let y = visibleView.origin.y + 40		//view is flipped, distance from top
+		
+		self.setFrameSize(NSSize(width: w, height: h))
+		self.setFrameOrigin(NSPoint(x: x, y: y))
 	}
 	
 	/*
