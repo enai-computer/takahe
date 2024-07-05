@@ -16,6 +16,7 @@ class NiSpaceViewController: NSViewController, NSTextFieldDelegate{
 	@IBOutlet var header: NSBox!
 	@IBOutlet var time: NSTextField!
 	@IBOutlet var spaceName: NSTextField!
+	@IBOutlet var searchIcon: NiActionImage!
 	private var currentSpaceName: String?
 
 	@IBOutlet var niScrollView: NiScrollView!
@@ -46,14 +47,15 @@ class NiSpaceViewController: NSViewController, NSTextFieldDelegate{
 		addChild(niDocument)
 		
 		self.view.wantsLayer = true
-		self.view.layer?.backgroundColor = NSColor(.sand1).cgColor
 		
 		time.stringValue = getLocalisedTime()
 		spaceName.stringValue = niSpaceName
 		
-		setHeaderStyle()
 		styleEndEditSpaceName()
 		setAutoUpdatingTime()
+		
+		searchIcon.isActiveFunction = {return true}
+		searchIcon.mouseDownFunction = openPalette
 	}
 	
     override func viewDidLoad() {
@@ -96,17 +98,6 @@ class NiSpaceViewController: NSViewController, NSTextFieldDelegate{
 		removeAutoUpdatingTime()
 	}
 	
-	func setHeaderStyle(){
-		header.contentView?.wantsLayer = true
-		header.contentView?.layer?.cornerRadius = 30.0
-		header.contentView?.layer?.cornerCurve = .continuous
-		header.contentView?.layer?.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
-		header.contentView?.layer?.masksToBounds = true
-		header.contentView?.layer?.backgroundColor = NSColor(.sand2).cgColor
-		header.contentView?.layer?.borderColor = NSColor(.sand2).cgColor
-		header.contentView?.layer?.borderWidth = 5
-	}
-	
 	func setAutoUpdatingTime(){
 		Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(setDisplayedTime), userInfo: nil, repeats: true)
 	}
@@ -122,10 +113,8 @@ class NiSpaceViewController: NSViewController, NSTextFieldDelegate{
 		}
 	}
     
-	func openPalette(saveCurrentSpace: Bool = true) {
-		if(saveCurrentSpace){
-			storeCurrentSpace()
-		}
+	func openPalette(with event: NSEvent) {
+		storeCurrentSpace()
 		let	palette = NiPalette()
 		palette.makeKeyAndOrderFront(nil)
 	}
@@ -151,7 +140,7 @@ class NiSpaceViewController: NSViewController, NSTextFieldDelegate{
 		var position = at
 		position.y = niScrollView.documentView!.visibleRect.size.height - position.y + niScrollView.documentView!.visibleRect.origin.y
 		
-		let cfController = niDocument.openEmptyCF(viewState: .frameless, initialTabType: .pdf, positioned: position, size: CGSize(width: 300.0, height: 600.0))
+		let cfController = niDocument.openEmptyCF(viewState: .simpleFrame, initialTabType: .pdf, positioned: position, size: CGSize(width: 300.0, height: 600.0))
 		cfController.openPdfInNewTab(tabTitle: title, content: pdf, source: source)
 	}
 	
@@ -253,7 +242,6 @@ class NiSpaceViewController: NSViewController, NSTextFieldDelegate{
 		
 		cursorPos = self.view.convert(event.locationInWindow, from: nil)
 		if(NSPointInRect(cursorPos, header.frame)){
-			openPalette()
 			return
 		}
 		
