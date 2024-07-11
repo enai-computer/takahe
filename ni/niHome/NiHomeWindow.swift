@@ -45,7 +45,15 @@ class NiHomeWindow: NSPanel, NiSearchWindowProtocol{
 	}
 	
 	func removeSelf(){
-		self.orderOut(nil)
-		self.close()
+		resignKey()
+		
+		//This is needed, otherwise tracking areas will not work
+		if let mainWindow = NSApplication.shared.mainWindow{
+			order(.below, relativeTo: mainWindow.windowNumber)
+			print("ran")
+		}
+
+		orderOut(self)
+		close()
 	}
 }
