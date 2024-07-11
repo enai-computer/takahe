@@ -9,6 +9,8 @@ import Cocoa
 
 class SpaceTopbar: NSView{
 	
+	private var contentBlurView: NSView?
+
 	override func awakeFromNib() {
 		super.awakeFromNib()
 		wantsLayer = true
@@ -23,6 +25,18 @@ class SpaceTopbar: NSView{
 		layer?.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
 		layer?.masksToBounds = true
 		layer?.backgroundColor = NSColor(.sand1T10).cgColor
+		
+		contentBlurView = NSView(frame: self.frame)
+		contentBlurView?.wantsLayer = true
+		setupBlurLayerView(contentBlurView!, inputRadius: 10.0, inputSaturation: 0.0)
+		contentBlurView?.layer?.cornerRadius = 15.0
+		contentBlurView?.layer?.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+		superview!.addSubview(contentBlurView!, positioned: .below, relativeTo: self)
+	}
+	
+	override func resize(withOldSuperviewSize oldSize: NSSize) {
+		super.resize(withOldSuperviewSize: oldSize)
+		contentBlurView?.frame = frame
 	}
 	
 	override func updateTrackingAreas() {

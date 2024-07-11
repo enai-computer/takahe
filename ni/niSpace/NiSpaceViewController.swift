@@ -61,9 +61,8 @@ class NiSpaceViewController: NSViewController, NSTextFieldDelegate{
 	
     override func viewDidLoad() {
         super.viewDidLoad()
-		visEffectView.alphaValue = 1.0
     }
-	
+
 	override func viewDidAppear() {
 		super.viewDidAppear()
 		
