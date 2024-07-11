@@ -9,8 +9,8 @@ import Cocoa
 
 class SpaceTopbar: NSBox{
 	
-	private var hoverEffect: NSTrackingArea?
-	override var allowsVibrancy: Bool {return true}
+	private var contentBlurView: NSView?
+	private var visualEffectsView: NSVisualEffectView?
 	
 	override func awakeFromNib() {
 		super.awakeFromNib()
@@ -20,26 +20,27 @@ class SpaceTopbar: NSBox{
 		contentView?.layer?.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
 		contentView?.layer?.masksToBounds = true
 		contentView?.layer?.backgroundColor = NSColor(.sand1T10).cgColor
-//		contentView?.layer?.backgroundFilters = getBlurFilter(inputRadius: 15.0, inputSaturation: 1.0)
-//		
-//		hoverEffect = NSTrackingArea(rect: bounds,
-//									 options: [.mouseEnteredAndExited, .activeInActiveApp],
-//									 owner: self,
-//									 userInfo: nil)
-//		addTrackingArea(hoverEffect!)
+		
+		contentBlurView = NSView(frame: self.frame)
+		contentBlurView?.wantsLayer = true
+		setupBlurLayerView(contentBlurView!, inputRadius: 10.0, inputSaturation: 0.0)
+		contentBlurView?.layer?.cornerRadius = 15.0
+		superview!.addSubview(contentBlurView!, positioned: .below, relativeTo: self)
 	}
 	
-//	override func updateTrackingAreas() {
-//		hoverEffect = NSTrackingArea(rect: bounds,
-//									 options: [.activeInActiveApp, .mouseEnteredAndExited],
-//									 owner: self,
-//									 userInfo: nil)
-//		addTrackingArea(hoverEffect!)
-//	}
-//	
-//	override func mouseEntered(with event: NSEvent) {
-//		contentView?.layer?.backgroundColor = NSColor.sand1.cgColor
-//	}
+	override func updateTrackingAreas() {
+		super.updateTrackingAreas()
+	}
+	
+	override func resize(withOldSuperviewSize oldSize: NSSize) {
+		super.resize(withOldSuperviewSize: oldSize)
+		contentBlurView?.frame = frame
+		visualEffectsView?.frame = frame
+	}
+	
+	override func mouseEntered(with event: NSEvent) {
+		contentView?.layer?.backgroundColor = NSColor.sand1.cgColor
+	}
 	
 	override func mouseExited(with event: NSEvent) {
 		contentView?.layer?.backgroundColor = NSColor.sand1T10.cgColor

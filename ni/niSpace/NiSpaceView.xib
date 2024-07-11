@@ -53,21 +53,21 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" id="yLB-kD-fbD">
-                                <rect key="frame" x="1400" y="9" width="80" height="18"/>
+                                <rect key="frame" x="1398" y="9" width="84" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" refusesFirstResponder="YES" allowsUndo="NO" alignment="right" title="10:00 AM" id="q69-4k-xlx">
                                     <font key="font" size="15" name="Inter-Regular"/>
                                     <color key="textColor" name="sand115"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="Sand2"/>
                                 </textFieldCell>
                             </textField>
                             <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IcY-Xb-pUo" customClass="NiTextField" customModule="ni" customModuleProvider="target">
-                                <rect key="frame" x="56" y="9" width="420" height="20"/>
+                                <rect key="frame" x="54" y="9" width="424" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" allowsUndo="NO" title="SpaceName" id="ioC-6E-T33">
                                     <font key="font" size="15" name="Sohne-Kraftig"/>
                                     <color key="textColor" name="sand115"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="transparent"/>
                                 </textFieldCell>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="hasHoverEffect" value="YES"/>
@@ -96,7 +96,7 @@
                         <userDefinedRuntimeAttribute type="boolean" keyPath="wantsLayer" value="YES"/>
                         <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                         <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                            <integer key="value" value="30"/>
+                            <integer key="value" value="15"/>
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </box>
@@ -124,6 +124,9 @@
         </namedColor>
         <namedColor name="sand9">
             <color red="0.56470588235294117" green="0.56470588235294117" blue="0.5490196078431373" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="transparent">
+            <color red="1" green="1" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>
