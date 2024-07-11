@@ -13,12 +13,13 @@ class NiSpaceViewController: NSViewController, NSTextFieldDelegate{
 	private var niSpaceID: UUID
 	
 	//header elements here:
-	@IBOutlet var header: NSBox!
+	@IBOutlet var header: SpaceTopbar!
 	@IBOutlet var time: NSTextField!
 	@IBOutlet var spaceName: NSTextField!
 	@IBOutlet var searchIcon: NiActionImage!
 	private var currentSpaceName: String?
-
+	@IBOutlet var visEffectView: NSVisualEffectView!
+	
 	@IBOutlet var niScrollView: NiScrollView!
 	@IBOutlet var niDocument: NiSpaceDocumentController!
 	private let documentCache = NiDocControllerCache()
@@ -60,12 +61,29 @@ class NiSpaceViewController: NSViewController, NSTextFieldDelegate{
 	
     override func viewDidLoad() {
         super.viewDidLoad()
+		visEffectView.alphaValue = 1.0
     }
 	
 	override func viewDidAppear() {
 		super.viewDidAppear()
+		
+		let hoverEffect = NSTrackingArea(rect: header.bounds,
+										 options: [.mouseEnteredAndExited, .activeAlways],
+									 owner: header,
+									 userInfo: nil)
+		header.addTrackingArea(hoverEffect)
 	}
  
+	override func mouseEntered(with event: NSEvent) {
+		header.layer?.backgroundColor = NSColor.sand1.cgColor
+		visEffectView.isHidden = true
+	}
+	
+	override func mouseExited(with event: NSEvent) {
+		header.layer?.backgroundColor = NSColor.sand1T10.cgColor
+		visEffectView.isHidden = false
+	}
+	
 	@IBAction func paste(_ sender: NSMenuItem){
 		let pasteBoardType = NSPasteboard.general.containsImgPdfOrText()
 		
