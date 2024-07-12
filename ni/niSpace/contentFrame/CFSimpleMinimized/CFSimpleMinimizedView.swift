@@ -25,6 +25,11 @@ class CFSimpleMinimizedView: CFBaseView{
 		}
 	}
 	
+	override func toggleActive() {
+		//TODO: set and remove border
+		return
+	}
+	
 	override func isOnBoarder(_ cursorLocation: CGPoint) -> CFBaseView.OnBorder {
 		if(NSPointInRect(cursorLocation, self.bounds)){
 			return .top
@@ -39,7 +44,7 @@ class CFSimpleMinimizedView: CFBaseView{
 		}
 		
 		if(event.clickCount == 2){
-			//TODO: expand to Simple frame
+			maximize()
 			return
 		}
 		
@@ -53,5 +58,10 @@ class CFSimpleMinimizedView: CFBaseView{
 		if(cursorOnBorder == .top){
 			NSCursor.closedHand.push()
 		}
+	}
+	
+	private func maximize(){
+		guard let myController = nextResponder as? ContentFrameController else{return}
+		myController.maximizeSelf()
 	}
 }

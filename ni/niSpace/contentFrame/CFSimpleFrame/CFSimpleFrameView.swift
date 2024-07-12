@@ -40,9 +40,10 @@ class CFSimpleFrameView: CFBaseView{
 			titleChangedCallback: titleChangedCallback
 		)
 		cfGroupButton.setView(title: groupName)
-		//		minimizeButton.mouseDownFunction = clickedMinimizeButton
-		minimizeButton.isActiveFunction = {return false}
-		//		minimizeButton.mouseDownInActiveFunction = activateContentFrame
+		
+		minimizeButton.mouseDownFunction = clickedMinimizeButton
+		minimizeButton.isActiveFunction = self.isFrameActive
+		minimizeButton.mouseDownInActiveFunction = activateContentFrame
 	}
 	
 	override func createNewTab(tabView: NSView, openNextTo: Int = -1) -> Int {
@@ -154,6 +155,11 @@ class CFSimpleFrameView: CFBaseView{
 		default:
 				repositionView(horizontalDistanceDragged, verticalDistanceDragged)
 		}
+	}
+	
+	func clickedMinimizeButton(with event: NSEvent){
+		guard let myController = nextResponder as? ContentFrameController else{return}
+		myController.minimizeClicked(event)
 	}
 	
 	private func shadowActive(){
