@@ -12,6 +12,7 @@ class CFGroupButton: NSView, NSTextFieldDelegate{
 	var mouseDownFunction: ((NSEvent) -> Void)?
 	var mouseDownInActiveFunction: ((NSEvent) -> Void)?
 	var isActiveFunction: (() -> Bool)?
+	var titleChangedCallback: ((String) -> Void)?
 	
 	private var groupIcon: NiActionImage?
 	private var groupTitle: NSTextField?
@@ -27,11 +28,13 @@ class CFGroupButton: NSView, NSTextFieldDelegate{
 	
 	func initButton(mouseDownFunction: ((NSEvent) -> Void)?,
 					mouseDownInActiveFunction: ((NSEvent) -> Void)?,
-					isActiveFunction: (() -> Bool)?
+					isActiveFunction: (() -> Bool)?,
+					titleChangedCallback: ((String) -> Void)? = nil
 	){
 		self.mouseDownFunction = mouseDownFunction
 		self.mouseDownInActiveFunction = mouseDownInActiveFunction
 		self.isActiveFunction = isActiveFunction
+		self.titleChangedCallback = titleChangedCallback
 	}
 
 	func setView(title: String? = nil){
@@ -116,6 +119,7 @@ class CFGroupButton: NSView, NSTextFieldDelegate{
 			updateTrackingAreas()
 			return
 		}
+		titleChangedCallback?(groupTitle!.stringValue)
 		setWidthConstraintToTitle()
 	}
 	

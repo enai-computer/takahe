@@ -24,7 +24,7 @@ class CFSimpleFrameView: CFBaseView{
 		self.wantsLayer = true
 	}
 	
-	func initAfterViewLoad(_ groupName: String?){
+	func initAfterViewLoad(_ groupName: String?, titleChangedCallback: ((String)->Void)?){
 		closeButton.mouseDownFunction = clickedCloseButton
 		closeButton.isActiveFunction = self.isFrameActive
 		closeButton.mouseDownInActiveFunction = activateContentFrame
@@ -33,6 +33,12 @@ class CFSimpleFrameView: CFBaseView{
 		maximizeButton.isActiveFunction = self.isFrameActive
 		maximizeButton.mouseDownInActiveFunction = activateContentFrame
 		
+		cfGroupButton.initButton(
+			mouseDownFunction: clickedGroupButton,
+			mouseDownInActiveFunction: activateContentFrame,
+			isActiveFunction: self.isFrameActive,
+			titleChangedCallback: titleChangedCallback
+		)
 		cfGroupButton.setView(title: groupName)
 		//		minimizeButton.mouseDownFunction = clickedMinimizeButton
 		minimizeButton.isActiveFunction = {return false}

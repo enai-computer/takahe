@@ -95,12 +95,21 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	private func loadAndDisplaySimpleFrameView(){
 		let simpleFrameView = (NSView.loadFromNib(nibName: "CFSimpleFrameView", owner: self) as! CFSimpleFrameView)
 		simpleFrameView.setSelfController(self)
-		simpleFrameView.initAfterViewLoad(groupName)
+		simpleFrameView.initAfterViewLoad(groupName, 
+										  titleChangedCallback: simpleViewTitleChangedCallback)
 		simpleFrameView.wantsLayer = true
 		simpleFrameView.layer?.cornerRadius = 5.0
 		simpleFrameView.layer?.cornerCurve = .continuous
 		simpleFrameView.layer?.backgroundColor = NSColor.sand3.cgColor
 		self.view = simpleFrameView
+	}
+	
+	/** only use this in views with one tab.
+	 
+	 The tabGroup title reflects the document name. These need to be kept in sync in case the single tab is moved into a group.
+	 */
+	func simpleViewTitleChangedCallback(_ newTitle: String){
+		tabs[0].title = newTitle
 	}
 	
 	private func loadAndDisplayMinimizedView(){
@@ -155,6 +164,9 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 			let minimizedView = self.view as! CFMinimizedView
 			editNameItem = minimizedView.cfGroupButton.getNameTileMenuItem()
 			optionalMenuItem = minimizedView.cfGroupButton.getRemoveTitleMenuItem()
+		}else if(viewState == .simpleFrame){
+			let simpleFrameView = self.view as! CFSimpleFrameView
+			editNameItem = simpleFrameView.cfGroupButton.getNameTileMenuItem()
 		}
 		
 		let items = [ editNameItem, optionalMenuItem,
@@ -194,6 +206,13 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 				}else{
 					return (globalPointUp, false)
 				}
+			}
+		}else if(viewState == .simpleFrame){
+			if let refernceView = self.view as? CFSimpleFrameView {
+				let pInView = NSPoint(
+					x: refernceView.cfHeadView.frame.origin.x + (refernceView.cfGroupButton.frame.origin.x),
+					y: refernceView.cfHeadView.frame.origin.y + 16.0)
+				return (self.view.convert(pInView, to: view.window?.contentView), true)
 			}
 		}
 		
@@ -1065,10 +1084,13 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	private func updateGroupName() {
 		if (viewState == .expanded){
 			self.groupName = expandedCFView?.cfGroupButton.getName()
-		}
-		if (viewState == .minimised){
+		}else if (viewState == .minimised){
 			if let minimizedView = self.view as? CFMinimizedView{
 				self.groupName = minimizedView.cfGroupButton.getName()
+			}
+		}else if (viewState == .simpleFrame){
+			if let simpleView = self.view as? CFSimpleFrameView{
+				self.groupName = simpleView.cfGroupButton.getName()
 			}
 		}
 	}
