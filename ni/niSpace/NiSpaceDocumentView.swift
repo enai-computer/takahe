@@ -132,8 +132,8 @@ class NiSpaceDocumentView: NSView{
 	}
 	
 	func toggleMinimizeOnTopCF(_ sender: NSMenuItem){
-		if(topNiFrame?.viewState == .minimised){
-			topNiFrame?.minimizedToExpanded()
+		if(topNiFrame?.viewState == .minimised || topNiFrame?.viewState == .simpleMinimised){
+			topNiFrame?.maximizeSelf()
 		}else{
 			topNiFrame?.minimizeSelf()
 		}

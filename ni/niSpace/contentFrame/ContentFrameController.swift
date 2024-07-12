@@ -58,6 +58,8 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 			loadAndDisplayFramelessView()
 		}else if(viewState == .simpleFrame){
 			loadAndDisplaySimpleFrameView()
+		}else if(viewState == .simpleMinimised){
+			loadAndDisplaySimpleMinimizedView()
 		}else{
 			loadAndDisplayDefaultView()
 		}
@@ -93,15 +95,21 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	}
 	
 	private func loadAndDisplaySimpleFrameView(){
+		let simpleFrameView = loadSimpleFrameView()
+		self.view = simpleFrameView
+		self.viewState = .simpleFrame
+	}
+	
+	private func loadSimpleFrameView() -> CFSimpleFrameView{
 		let simpleFrameView = (NSView.loadFromNib(nibName: "CFSimpleFrameView", owner: self) as! CFSimpleFrameView)
 		simpleFrameView.setSelfController(self)
-		simpleFrameView.initAfterViewLoad(groupName, 
+		simpleFrameView.initAfterViewLoad(groupName,
 										  titleChangedCallback: simpleViewTitleChangedCallback)
 		simpleFrameView.wantsLayer = true
 		simpleFrameView.layer?.cornerRadius = 5.0
 		simpleFrameView.layer?.cornerCurve = .continuous
 		simpleFrameView.layer?.backgroundColor = NSColor.sand3.cgColor
-		self.view = simpleFrameView
+		return simpleFrameView
 	}
 	
 	/** only use this in views with one tab.
@@ -110,6 +118,20 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	 */
 	func simpleViewTitleChangedCallback(_ newTitle: String){
 		tabs[0].title = newTitle
+	}
+	
+	private func loadAndDisplaySimpleMinimizedView(){
+		let simpleMinimizedView = loadSimpleMinimzedView()
+		self.view = simpleMinimizedView
+		self.viewState = .simpleMinimised
+	}
+	
+	private func loadSimpleMinimzedView() -> CFSimpleMinimizedView{
+		let simpleMinimizedView = (NSView.loadFromNib(nibName: "CFSimpleMinimizedView", owner: self) as! CFSimpleMinimizedView)
+		if(0 < tabs.count){
+			simpleMinimizedView.initAfterViewLoad(tab: tabs[0])
+		}
+		return simpleMinimizedView
 	}
 	
 	private func loadAndDisplayMinimizedView(){
@@ -307,11 +329,33 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	/*
 	 * MARK: minimizing and maximizing
 	 */
-	func minimizeSelf(){
+	private func minimizeSelfToDefault(){
 		updateTabViewModel()
 		let minimizedView = loadMinimizedView()
 		
-		//position
+		positionMinimizedView(for: minimizedView)
+		
+		//replace
+		self.view.superview?.replaceSubview(self.view, with: minimizedView)
+		
+		self.view = minimizedView
+		sharedLoadViewSetters()
+		
+		self.myView.niParentDoc?.setTopNiFrame(self)
+	}
+	
+	private func minimizeSelfToSimple(){
+		let simpleMinimizedView = loadSimpleMinimzedView()
+		
+		positionMinimizedView(for: simpleMinimizedView)
+		//replace
+		self.view.superview?.replaceSubview(self.view, 
+											with: simpleMinimizedView)
+		self.view = simpleMinimizedView
+		self.myView.niParentDoc?.setTopNiFrame(self)
+	}
+	
+	private func positionMinimizedView(for minimizedView: CFBaseView){
 		minimizedView.frame.origin.y = self.view.frame.origin.y
 		minimizedView.frame.origin.x = self.view.frame.origin.x + self.view.frame.width - minimizedView.frame.width
 		
@@ -324,25 +368,29 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		if(self.view.layer != nil){
 			minimizedView.layer?.zPosition = self.view.layer!.zPosition
 		}
-		
-		//replace
-		self.view.superview?.replaceSubview(self.view, with: minimizedView)
-		
-		self.view = minimizedView
-		sharedLoadViewSetters()
-		
-		self.myView.niParentDoc?.setTopNiFrame(self)
 	}
 	
+	func minimizeSelf(){
+		if(viewState == .expanded){
+			minimizeSelfToDefault()
+		}else if(viewState == .simpleFrame){
+			minimizeSelfToSimple()
+		}
+	}
 	
 	func minimizeClicked(_ event: NSEvent) {
 		minimizeSelf()
 	}
 	
-	
 	func maximizeClicked(_ event: NSEvent){
+		maximizeSelf()
+	}
+	
+	func maximizeSelf(){
 		if(viewState == .minimised){
 			minimizedToExpanded()
+		}else if(viewState == .simpleMinimised){
+			simpleMinimizedToSimpleFrame()
 		}
 	}
 	
@@ -364,24 +412,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 			tabSelectedInModel = recreateExpandedCFView()
 			expandedCFView?.setFrameOwner(self.myView.niParentDoc)
 		}
-		//position
-		//TODO: ensure it's not out of bounds?
-		expandedCFView!.frame.origin.y = self.view.frame.origin.y
-		
-		if(myView.niParentDoc!.frame.width < expandedCFView!.frame.width){
-			expandedCFView?.frame.size.width = myView.niParentDoc!.frame.width - (CFBaseView.CFConstants.defaultMargin * 2.0)
-		}
-		var newXorigin = self.view.frame.origin.x + self.view.frame.width - expandedCFView!.frame.width
-		if(newXorigin < 0){
-			newXorigin = self.view.frame.origin.x
-		}
-		if(myView.niParentDoc!.frame.width < (newXorigin + expandedCFView!.frame.width)){
-			newXorigin = myView.niParentDoc!.frame.width - expandedCFView!.frame.width - CFBaseView.CFConstants.defaultMargin
-		}
-		expandedCFView!.frame.origin.x = newXorigin
-		if(self.view.layer != nil){
-			expandedCFView!.layer?.zPosition = self.view.layer!.zPosition
-		}
+		positionBiggerView(for: expandedCFView!)
 		
 		//replace
 		self.view.superview?.replaceSubview(self.view, with: expandedCFView!)
@@ -399,6 +430,40 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		self.expandedCFView!.niParentDoc?.setTopNiFrame(self)
 		
 		sharedLoadViewSetters()
+	}
+	
+	private func simpleMinimizedToSimpleFrame(){
+		let simpleFrameView = loadSimpleFrameView()
+		
+		positionBiggerView(for: simpleFrameView)
+		
+		self.view.superview?.replaceSubview(self.view, with: simpleFrameView)
+		self.view = simpleFrameView
+		self.viewState = .simpleFrame
+		self.myView.niParentDoc?.setTopNiFrame(self)
+	}
+	
+	/**
+	 used to position expanded and simpleFrame views, after clicking the maximizeButton in their minimized Versions
+	 */
+	private func positionBiggerView(for biggerView: CFBaseView){
+		//TODO: ensure it's not out of bounds?
+		biggerView.frame.origin.y = self.view.frame.origin.y
+		
+		if(myView.niParentDoc!.frame.width < biggerView.frame.width){
+			biggerView.frame.size.width = myView.niParentDoc!.frame.width - (CFBaseView.CFConstants.defaultMargin * 2.0)
+		}
+		var newXorigin = self.view.frame.origin.x + self.view.frame.width - biggerView.frame.width
+		if(newXorigin < 0){
+			newXorigin = self.view.frame.origin.x
+		}
+		if(myView.niParentDoc!.frame.width < (newXorigin + biggerView.frame.width)){
+			newXorigin = myView.niParentDoc!.frame.width - biggerView.frame.width - CFBaseView.CFConstants.defaultMargin
+		}
+		biggerView.frame.origin.x = newXorigin
+		if(self.view.layer != nil){
+			biggerView.layer?.zPosition = self.view.layer!.zPosition
+		}
 	}
 	
 	func recreateExpandedCFView() -> Int {
@@ -470,7 +535,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	func openPdfInNewTab(contentId: UUID = UUID(), tabTitle: String? = nil, content: PDFDocument, source: String? = nil, scrollTo pageNr: Int? = nil){
 		let pdfView = ni.getNewPdfView(owner: self, frame: self.view.frame, document: content)
 		
-		var tabHeadModel = TabViewModel(contentId: contentId, type: .pdf, source: source, isSelected: true)
+		var tabHeadModel = TabViewModel(contentId: contentId, type: .pdf, source: source, data: content, isSelected: true)
 		if let title = tabTitle{
 			tabHeadModel.title = title
 		}
@@ -479,7 +544,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		self.tabs.append(tabHeadModel)
 		
 		_ = myView.createNewTab(tabView: pdfView)
-		
+		tabHeadModel.state = .loaded
 		asyncSrollPdfToPage(pdfView, pageNr)
 	}
 	
