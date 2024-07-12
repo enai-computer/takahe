@@ -40,7 +40,7 @@ func reopenContentFrameWithOutPositioning(
 	groupName: String?
 ) -> ContentFrameController {
     
-	let frameController = if(contentFrameState == .minimised){
+	let frameController = if(contentFrameState.isMinimized()){
 		ContentFrameController(viewState: contentFrameState,
 							   groupName: groupName,
 							   tabsModel: tabViewModels)
@@ -52,7 +52,7 @@ func reopenContentFrameWithOutPositioning(
 
     frameController.loadView()
 	
-	if(contentFrameState == .minimised){
+	if(contentFrameState.isMinimized()){
 		return frameController
 	}
 	
@@ -86,6 +86,7 @@ func openCFTabs(for controller: ContentFrameController, with tabViewModels: [Tab
 			_ = controller.openWebsiteInNewTab(urlStr: tab.content, contentId: tab.contentId, tabName: tab.title, webContentState: tab.state)
 		}else{
 			//Everything else is not supported
+
 			preconditionFailure("type: \(tab.type) is not supported in a tabbed contentFrame.")
 		}
 		if(tab.isSelected){

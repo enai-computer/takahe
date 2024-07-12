@@ -353,6 +353,8 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 											with: simpleMinimizedView)
 		self.view = simpleMinimizedView
 		self.myView.niParentDoc?.setTopNiFrame(self)
+		
+		self.viewState = .simpleMinimised
 	}
 	
 	private func positionMinimizedView(for minimizedView: CFBaseView){

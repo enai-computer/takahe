@@ -13,6 +13,12 @@ class CFSimpleMinimizedView: CFBaseView{
 	@IBOutlet var thumbnail: NSImageView!
 	@IBOutlet var name: NSTextField!
 
+	override func awakeFromNib() {
+		thumbnail.wantsLayer = true
+		thumbnail.layer?.cornerRadius = 2.0
+		thumbnail.layer?.cornerCurve = .continuous
+		thumbnail.layer?.masksToBounds = true
+	}
 
 	func initAfterViewLoad(tab: TabViewModel){
 		guard (tab.type == .pdf) else {
