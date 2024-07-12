@@ -95,7 +95,11 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	private func loadAndDisplaySimpleFrameView(){
 		let simpleFrameView = (NSView.loadFromNib(nibName: "CFSimpleFrameView", owner: self) as! CFSimpleFrameView)
 		simpleFrameView.setSelfController(self)
-		
+		simpleFrameView.initAfterViewLoad(groupName)
+		simpleFrameView.wantsLayer = true
+		simpleFrameView.layer?.cornerRadius = 5.0
+		simpleFrameView.layer?.cornerCurve = .continuous
+		simpleFrameView.layer?.backgroundColor = NSColor.sand3.cgColor
 		self.view = simpleFrameView
 	}
 	
