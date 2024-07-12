@@ -14,6 +14,7 @@ class CFSimpleFrameView: CFBaseView{
 	@IBOutlet var maximizeButton: NiActionImage!
 	@IBOutlet var minimizeButton: NiActionImage!
 	@IBOutlet var closeButton: NiActionImage!
+	@IBOutlet var placeholderView: NSView!
 	
 	private var dropShadow2 = CALayer()
 	private var dropShadow3 = CALayer()
@@ -32,19 +33,22 @@ class CFSimpleFrameView: CFBaseView{
 		maximizeButton.isActiveFunction = self.isFrameActive
 		maximizeButton.mouseDownInActiveFunction = activateContentFrame
 		
+		cfGroupButton.setView(title: groupName)
 		//		minimizeButton.mouseDownFunction = clickedMinimizeButton
 		minimizeButton.isActiveFunction = {return false}
 		//		minimizeButton.mouseDownInActiveFunction = activateContentFrame
 	}
 	
 	override func createNewTab(tabView: NSView, openNextTo: Int = -1) -> Int {
-		tabView.frame = NSRect(x: 5.0, y: 5.0, width: frame.width - 10.0, height: frame.height - 10.0)
+		tabView.frame = placeholderView.frame
+		tabView.autoresizingMask = placeholderView.autoresizingMask
+		placeholderView.removeFromSuperview()
 		
 		tabView.wantsLayer = true
 		tabView.layer?.cornerRadius = 10.0
 		tabView.layer?.cornerCurve = .continuous
 		
-		addSubview(tabView)
+		contentView?.addSubview(tabView)
 		return -1
 	}
 	
@@ -75,6 +79,74 @@ class CFSimpleFrameView: CFBaseView{
 			
 			hideHeader()
 			self.discardCursorRects()
+		}
+	}
+	
+	
+	override func mouseDown(with event: NSEvent) {
+		if !frameIsActive{
+			niParentDoc?.setTopNiFrame(myController!)
+			return
+		}
+		
+		let cursorPos = self.convert(event.locationInWindow, from: nil)
+		
+		//enable drag and drop niFrame to new postion and resizing
+		cursorOnBorder = isOnBoarder(cursorPos)
+		cursorDownPoint = event.locationInWindow
+		
+		if (cursorOnBorder == .top){
+			NSCursor.closedHand.push()
+		}
+	}
+	
+	override func mouseUp(with event: NSEvent) {
+		if !frameIsActive{
+			nextResponder?.mouseUp(with: event)
+			return
+		}
+		
+		if (cursorOnBorder == .top){
+			NSCursor.pop()
+		}
+
+		cursorDownPoint = .zero
+		cursorOnBorder = .no
+		deactivateDocumentResize = false
+		//TODO: look for a cleaner solution,- this is called here so the hand icon switches from closed to open
+		resetCursorRects()
+	}
+	
+	override func mouseDragged(with event: NSEvent) {
+		if !frameIsActive{
+			nextResponder?.mouseDragged(with: event)
+			return
+		}
+		
+		let currCursorPoint = event.locationInWindow
+		let horizontalDistanceDragged = currCursorPoint.x - cursorDownPoint.x
+		let verticalDistanceDragged = currCursorPoint.y - cursorDownPoint.y
+		
+		//Update here, so we don't have a frame running quicker then the cursor
+		cursorDownPoint = currCursorPoint
+		
+		switch cursorOnBorder {
+			case .topLeft:
+				resizeOwnFrame(horizontalDistanceDragged, verticalDistanceDragged, cursorLeftSide: true, cursorTop: true)
+			case .topRight:
+				resizeOwnFrame(horizontalDistanceDragged, verticalDistanceDragged, cursorTop: true)
+			case .bottomLeft:
+				resizeOwnFrame(horizontalDistanceDragged, verticalDistanceDragged, cursorLeftSide: true)
+			case .bottom:
+				resizeOwnFrame(0, verticalDistanceDragged)
+			case .bottomRight:
+				resizeOwnFrame(horizontalDistanceDragged, verticalDistanceDragged)
+			case .leftSide:
+				resizeOwnFrame(horizontalDistanceDragged, 0, cursorLeftSide: true)
+			case .rightSide:
+				resizeOwnFrame(horizontalDistanceDragged, 0)
+		default:
+				repositionView(horizontalDistanceDragged, verticalDistanceDragged)
 		}
 	}
 	
