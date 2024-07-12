@@ -47,11 +47,8 @@ class NiHomeWindow: NSPanel, NiSearchWindowProtocol{
 	func removeSelf(){
 		resignKey()
 		
-		//This is needed, otherwise tracking areas will not work
-		if let mainWindow = NSApplication.shared.mainWindow{
-			order(.below, relativeTo: mainWindow.windowNumber)
-			print("ran")
-		}
+		//TODO: find out why hover states do not work in main window after homeview dissapeared.
+		//place to fix is here
 
 		orderOut(self)
 		close()
