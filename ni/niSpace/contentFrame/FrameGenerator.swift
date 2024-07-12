@@ -6,8 +6,8 @@ import PDFKit
 
 let maxWidthMargin: CGFloat = 30.0
 
-func openEmptyContentFrame(viewState: NiConentFrameState = .expanded) -> ContentFrameController{
-	let frameController = ContentFrameController(viewState: viewState, groupName: nil, tabsModel: nil)
+func openEmptyContentFrame(viewState: NiConentFrameState = .expanded, groupName: String? = nil) -> ContentFrameController{
+	let frameController = ContentFrameController(viewState: viewState, groupName: groupName, tabsModel: nil)
 	frameController.loadView()
 	return frameController
 }

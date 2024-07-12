@@ -56,9 +56,10 @@ class NiSpaceDocumentController: NSViewController{
 					 openInitalTab: Bool = true,
 					 positioned relavtiveTo: CGPoint? = nil,
 					 size: CGSize? = nil,
-					 content: String? = nil
+					 content: String? = nil,
+					 groupName: String? = nil
 	) -> ContentFrameController {
-		let controller = openEmptyContentFrame(viewState: viewState)
+		let controller = openEmptyContentFrame(viewState: viewState, groupName: groupName)
 		let newCFView = controller.myView
 		
 		//TODO: set location & size dependent on viewState
