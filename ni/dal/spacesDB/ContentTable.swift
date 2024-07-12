@@ -43,6 +43,20 @@ class ContentTable{
 		}
 		return false
 	}
+	
+	static func updateTitle(id: UUID, title: String?){
+		do{
+			let rowToUpdate = table.where(self.id == id)
+			try Storage.instance.spacesDB.run(
+				rowToUpdate.update(
+					self.title <- title,
+					self.updatedAt <- Date().timeIntervalSince1970
+				)
+			)
+		}catch{
+			print("Failed to insert into ContentTable")
+		}
+	}
     
 	static func fetchURLTitleSource(for id: UUID) -> (String?, String?, String?)?{
 		do{
@@ -60,6 +74,9 @@ class ContentTable{
 		return nil
 	}
 	
+	/** do not use this function for rows that require a local storage location as that will be overwrite them with null!!!
+	 
+	 */
     static func upsert(id: UUID, type: String, title: String?){
         do{
             try Storage.instance.spacesDB.run(

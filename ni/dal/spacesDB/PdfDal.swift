@@ -13,6 +13,7 @@ class PdfDal{
 	
 	static func insert(documentId: UUID, id: UUID, title: String?, pdf: PDFDocument, source: String?) {
 		if(ContentTable.contains(id: id)){
+			ContentTable.updateTitle(id: id, title: title)
 			return
 		}
 		
