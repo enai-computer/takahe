@@ -46,6 +46,7 @@ class CFSimpleFrameView: CFBaseView{
 		minimizeButton.mouseDownInActiveFunction = activateContentFrame
 	}
 	
+	@discardableResult
 	override func createNewTab(tabView: NSView, openNextTo: Int = -1) -> Int {
 		tabView.frame = placeholderView.frame
 		tabView.autoresizingMask = placeholderView.autoresizingMask
