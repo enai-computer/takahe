@@ -10,20 +10,20 @@
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <box boxType="custom" borderType="none" borderWidth="0.0" cornerRadius="5" title="Box" id="qvf-n8-ud2" customClass="CFSimpleMinimizedView" customModule="ni" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="85" height="155"/>
+            <rect key="frame" x="0.0" y="0.0" width="85" height="166"/>
             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
             <view key="contentView" id="jV2-LE-3rB">
-                <rect key="frame" x="0.0" y="0.0" width="85" height="155"/>
+                <rect key="frame" x="0.0" y="0.0" width="85" height="166"/>
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
                     <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FQu-4O-bSM">
-                        <rect key="frame" x="0.0" y="45" width="85" height="115"/>
+                        <rect key="frame" x="0.0" y="45" width="85" height="120"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="xpc-6f-jyP"/>
                     </imageView>
                     <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oyP-aL-AqR">
                         <rect key="frame" x="0.0" y="0.0" width="85" height="45"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                         <textFieldCell key="cell" refusesFirstResponder="YES" allowsUndo="NO" alignment="center" title="forwardcokpitlayoutschemeForAirbus3056" id="Paj-PO-Xpc">
                             <font key="font" size="12" name="Sohne-Buch"/>
                             <color key="textColor" name="sand115"/>
