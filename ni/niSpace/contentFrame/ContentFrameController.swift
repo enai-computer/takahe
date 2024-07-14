@@ -131,6 +131,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		if(0 < tabs.count){
 			simpleMinimizedView.initAfterViewLoad(tab: tabs[0])
 		}
+		simpleMinimizedView.setSelfController(self)
 		return simpleMinimizedView
 	}
 	
@@ -346,6 +347,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	
 	private func minimizeSelfToSimple(){
 		let simpleMinimizedView = loadSimpleMinimzedView()
+		simpleMinimizedView.setFrameOwner(myView.niParentDoc)
 		
 		positionMinimizedView(for: simpleMinimizedView)
 		//replace
@@ -436,7 +438,13 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	
 	private func simpleMinimizedToSimpleFrame(){
 		let simpleFrameView = loadSimpleFrameView()
-		
+		simpleFrameView.setFrameOwner(myView.niParentDoc)
+		if(tabs[0].viewItem == nil){
+			guard tabs[0].type == .pdf else {fatalError("transition from SimpleMinimizedView to SimpleView for \(tabs[0].type) has not been implemented.")}
+			
+			tabs[0].viewItem = getNewPdfView(owner: self, frame: simpleFrameView.frame, document: tabs[0].data as! PDFDocument)
+		}
+		simpleFrameView.createNewTab(tabView: tabs[0].viewItem as! NSView)
 		positionBiggerView(for: simpleFrameView)
 		
 		self.view.superview?.replaceSubview(self.view, with: simpleFrameView)
