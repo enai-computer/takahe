@@ -28,12 +28,33 @@ class CFSimpleMinimizedView: CFBaseView{
 		if let pdfDoc = tab.data as? PDFDocument{
 			let page = pdfDoc.getPageSafely(at: 0)
 			thumbnail.image = page?.thumbnail(of: thumbnail.frame.size, for: .trimBox)
+			if(thumbnail.image!.size.height < thumbnail.frame.height - 5){
+				thumbnail.frame.size.height = thumbnail.image!.size.height + 2
+			}
 		}
 	}
 	
 	override func toggleActive() {
-		//TODO: set and remove border
+		frameIsActive = !frameIsActive
+		
+		if(frameIsActive){
+			highlight()
+		}else{
+			removeHighlight()
+		}
+		
 		return
+	}
+	
+	private func highlight(){
+		thumbnail.layer?.borderWidth = 1.0
+		thumbnail.layer?.borderColor = NSColor.birkinT50.cgColor
+		name.textColor = NSColor.birkin
+	}
+	
+	private func removeHighlight(){
+		thumbnail.layer?.borderWidth = 0
+		name.textColor = NSColor.sand115
 	}
 	
 	override func isOnBoarder(_ cursorLocation: CGPoint) -> CFBaseView.OnBorder {
@@ -64,6 +85,21 @@ class CFSimpleMinimizedView: CFBaseView{
 		if(cursorOnBorder == .top){
 			NSCursor.closedHand.push()
 		}
+	}
+	
+	override func mouseDragged(with event: NSEvent) {
+		if !frameIsActive{
+			nextResponder?.mouseDragged(with: event)
+			return
+		}
+		let currCursorPoint = event.locationInWindow
+		let horizontalDistanceDragged = currCursorPoint.x - cursorDownPoint.x
+		let verticalDistanceDragged = currCursorPoint.y - cursorDownPoint.y
+		
+		//Update here, so we don't have a frame running quicker then the cursor
+		cursorDownPoint = currCursorPoint
+		
+		repositionView(horizontalDistanceDragged, verticalDistanceDragged)
 	}
 	
 	private func maximize(){
