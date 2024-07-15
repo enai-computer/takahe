@@ -6,6 +6,7 @@
 //
 
 import WebKit
+import PDFKit
 import Foundation
 
 class NiDownloadHandler: NSObject, WKDownloadDelegate{
@@ -46,27 +47,63 @@ class NiDownloadHandler: NSObject, WKDownloadDelegate{
 	}
 	
 	func downloadDidFinish(_ download: WKDownload) {
+		let source = download.originalRequest?.url?.absoluteString
 		if let originalRequest: URLRequest = download.originalRequest{
 			if let cachedDownloadLocation = downloadsInProgress[originalRequest]{
-				do{
-					let gotAccess = downloadFolder?.startAccessingSecurityScopedResource()
-
-					let destinationUrl = genDestUrl(
-						destPath: downloadFolder!.absoluteStringWithoutScheme!,
-						destFileName: cachedDownloadLocation.deletingPathExtension().lastPathComponent,
-						fileExtension: cachedDownloadLocation.pathExtension
-					)
-					try FileManager.default.moveItem(at: cachedDownloadLocation, to: destinationUrl)
-					try FileManager.default.removeItem(at: cachedDownloadLocation.deletingLastPathComponent())
-					downloadFolder?.stopAccessingSecurityScopedResource()
-				}catch{
-					print(error)
+				Task{
+					do{
+						try handleDownloadedFile(in: cachedDownloadLocation, from: source)
+					}catch{
+						print(error)
+					}
 				}
 			}
 		}
 	}
 	
-	private func genDestUrl(destPath: String, destFileName: String, fileExtension: String, iteration: Int = 0) -> URL{
+	private func handleDownloadedFile(in cachedlocation: URL, from source: String?) throws{
+		let gotAccess = downloadFolder?.startAccessingSecurityScopedResource()
+		let title = cachedlocation.deletingPathExtension().lastPathComponent
+		
+		let destinationUrl = genDestUrl(
+			destFileName: title,
+			fileExtension: cachedlocation.pathExtension
+		)
+		if(cachedlocation.pathExtension == "pdf"){
+			openPDF(from: cachedlocation, title: title, source: source)
+		}
+		try FileManager.default.moveItem(at: cachedlocation, to: destinationUrl)
+		try FileManager.default.removeItem(at: cachedlocation.deletingLastPathComponent())
+		downloadFolder?.stopAccessingSecurityScopedResource()
+	}
+	
+	/** function to be called from a non-main thread. Opening will be dispatched to the main thread
+	 
+	 */
+	private func openPDF(from path: URL, title: String, source: String?){
+		if let pdf = PDFDocument(url: path){
+			DispatchQueue.main.async {
+				if let applicationDelegate = NSApplication.shared.delegate as? AppDelegate{
+					if let spaceController = applicationDelegate.getNiSpaceViewController(){
+						spaceController.pastePdf(pdf: pdf,
+												 title: title,
+												 source: source)
+					}
+				}
+			}
+		}
+	}
+	
+	private func genDestUrl(destFileName: String, fileExtension: String) -> URL{
+		let destPath: String = downloadFolder!.absoluteStringWithoutScheme!
+		
+		return genDestUrl(destPath: destPath,
+						  destFileName: destFileName,
+						  fileExtension: fileExtension,
+						  iteration: 0)
+	}
+	
+	private func genDestUrl(destPath: String, destFileName: String, fileExtension: String, iteration: Int) -> URL{
 		let filePath: String
 		
 		if(iteration == 0){

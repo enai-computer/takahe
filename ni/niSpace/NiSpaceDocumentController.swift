@@ -75,7 +75,7 @@ class NiSpaceDocumentController: NSViewController{
 		}
 		
 		if(relavtiveTo == nil){
-			newCFView.frame.origin = calculateExpandedViewOrigin(for: controller.view.frame)
+			newCFView.frame.origin = calculateContentFrameOrigin(for: controller.view.frame)
 		}else{
 			newCFView.frame.origin = calculateOrigin(for: controller.view.frame, relativeTo: relavtiveTo!)
 		}
@@ -106,7 +106,7 @@ class NiSpaceDocumentController: NSViewController{
 		return CGPoint(x: relativeTo.x, y: relativeTo.y)
 	}
 	
-	private func calculateExpandedViewOrigin(for frame: NSRect) -> CGPoint{
+	func calculateContentFrameOrigin(for frame: NSRect) -> CGPoint{
 		let viewSize = view.visibleRect.size
 		
 		let x_center: Double
