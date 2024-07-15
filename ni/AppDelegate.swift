@@ -35,6 +35,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		if(!AppDelegate.dbExists){
 			Storage.instance.createDemoSpaces()
 		}
+		
+		print("Enai has access to downloads folder: \(NiDownloadHandler.instance.hasAccessToDownloadsFolder())")
     }
 	
 	
@@ -114,9 +116,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		let window = NSApplication.shared.mainWindow
 		if (window != nil && window is DefaultWindow){
 			if let controller = window!.contentViewController as? NiSpaceViewController{
+				//TODO: set notification observer that tracks that everything has been saved before termination
 				controller.storeCurrentSpace()
 			}
 		}
+		//TODO: .terminatelater
         return .terminateNow
     }
 
@@ -180,7 +184,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		palette.makeKeyAndOrderFront(nil)
 	}
 	
-	private func getNiSpaceViewController() -> NiSpaceViewController?{
+	func getNiSpaceViewController() -> NiSpaceViewController?{
 		if let window = NSApplication.shared.mainWindow as? DefaultWindow{
 			if let controller = window.contentViewController as? NiSpaceViewController{
 				return controller

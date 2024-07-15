@@ -153,10 +153,20 @@ class NiSpaceViewController: NSViewController, NSTextFieldDelegate{
 		niDocument.openEmptyCF()
 	}
 	
+	func pastePdf(pdf: PDFDocument, title: String?, source: String?){
+		let docSize = getIntrinsicDocSize(for: pdf)
+		let origin = niDocument.calculateContentFrameOrigin(for: NSRect(origin: CGPoint(x: 0.0, y: 0.0), size: docSize))
+		openPDF(pdf: pdf, position: origin, docSize: docSize, title: title, source: source)
+	}
+	
 	func pastePdf(pdf: PDFDocument, screenPosition at: CGPoint, title: String?, source: String?){
 		var position = at
 		position.y = niScrollView.documentView!.visibleRect.size.height - position.y + niScrollView.documentView!.visibleRect.origin.y
 		let docSize = getIntrinsicDocSize(for: pdf)
+		openPDF(pdf: pdf, position: position, docSize: docSize, title: title, source: source)
+	}
+	
+	private func openPDF(pdf: PDFDocument, position: CGPoint, docSize: CGSize, title: String?, source: String?){
 		let cfController = niDocument.openEmptyCF(viewState: .simpleFrame, initialTabType: .pdf, positioned: position, size: docSize, groupName: title)
 		cfController.openPdfInNewTab(tabTitle: title, content: pdf, source: source)
 	}
