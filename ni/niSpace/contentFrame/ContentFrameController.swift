@@ -976,7 +976,6 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 			decisionHandler(.download)
 		}
 	}
-
 	
 	//open in new tab, example clicked file in gDrive
 	func webView(_ webView: WKWebView, createWebViewWith configuration: WKWebViewConfiguration, for navigationAction: WKNavigationAction, windowFeatures: WKWindowFeatures) -> WKWebView?{

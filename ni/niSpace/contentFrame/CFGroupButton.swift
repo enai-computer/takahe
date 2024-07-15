@@ -25,16 +25,19 @@ class CFGroupButton: NSView, NSTextFieldDelegate{
 	
 	private let groupTitleMargin = 7.0
 	private let groupTitleOriginY = 2.0
+	private var displayType: NiConentFrameState?
 	
 	func initButton(mouseDownFunction: ((NSEvent) -> Void)?,
 					mouseDownInActiveFunction: ((NSEvent) -> Void)?,
 					isActiveFunction: (() -> Bool)?,
-					titleChangedCallback: ((String) -> Void)? = nil
+					titleChangedCallback: ((String) -> Void)? = nil,
+					displayType: NiConentFrameState
 	){
 		self.mouseDownFunction = mouseDownFunction
 		self.mouseDownInActiveFunction = mouseDownInActiveFunction
 		self.isActiveFunction = isActiveFunction
 		self.titleChangedCallback = titleChangedCallback
+		self.displayType = displayType
 	}
 
 	func setView(title: String? = nil){
@@ -267,13 +270,19 @@ class CFGroupButton: NSView, NSTextFieldDelegate{
 	}
 	
 	private func getTitleWidthConstraint(_ editMode: Bool) -> NSLayoutConstraint{
-		var width: CGFloat = if(editMode){
+		let maxWidth: CGFloat = if(displayType == .simpleFrame){
+			220.0
+		}else{
 			155.0
+		}
+		
+		var width: CGFloat = if(editMode){
+			maxWidth
 		}else{
 			groupTitle?.fittingSize.width ?? 155.0
 		}
-		if(width.isZero || 155.0 < width){
-			width = 155.0
+		if(width.isZero || maxWidth < width){
+			width = maxWidth
 		}
 		if (groupTitle != nil){
 			groupTitle!.frame.size.width = width

@@ -60,6 +60,10 @@ class NiWebView: WKWebView, CFContentItem{
         niOpenInNewTab.target = self
         menu.items = [niOpenInNewTab]
     }
+	
+	override func startDownload(using request: URLRequest, completionHandler: @escaping (WKDownload) -> Void) {
+		super.startDownload(using: request, completionHandler: completionHandler)
+	}
     
 	func spaceClosed(){
 		self.pauseAllMediaPlayback()

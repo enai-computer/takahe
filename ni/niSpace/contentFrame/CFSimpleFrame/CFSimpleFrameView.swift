@@ -16,6 +16,8 @@ class CFSimpleFrameView: CFBaseView{
 	@IBOutlet var closeButton: NiActionImage!
 	@IBOutlet var placeholderView: NSView!
 	
+	private var myContent: CFContentItem?
+	
 	private var dropShadow2 = CALayer()
 	private var dropShadow3 = CALayer()
 	
@@ -37,7 +39,8 @@ class CFSimpleFrameView: CFBaseView{
 			mouseDownFunction: clickedGroupButton,
 			mouseDownInActiveFunction: activateContentFrame,
 			isActiveFunction: self.isFrameActive,
-			titleChangedCallback: titleChangedCallback
+			titleChangedCallback: titleChangedCallback,
+			displayType: .simpleFrame
 		)
 		cfGroupButton.setView(title: groupName)
 		
@@ -57,6 +60,9 @@ class CFSimpleFrameView: CFBaseView{
 		tabView.layer?.cornerCurve = .continuous
 		
 		contentView?.addSubview(tabView)
+		if let contentItem = tabView as? CFContentItem{
+			myContent = contentItem
+		}
 		return -1
 	}
 	
@@ -74,17 +80,17 @@ class CFSimpleFrameView: CFBaseView{
 		frameIsActive = !frameIsActive
 		
 		if frameIsActive{
+			myContent?.setActive()
 			self.layer?.borderColor = NSColor(.sand4).cgColor
 			self.layer?.backgroundColor = NSColor(.sand4).cgColor
 			shadowActive()
-			
 			showHeader()
 			self.resetCursorRects()
 		}else{
+			myContent?.setInactive()
 			self.layer?.borderColor = NSColor(.sand3).cgColor
 			self.layer?.backgroundColor = NSColor(.sand3).cgColor
 			shadowInActive()
-			
 			hideHeader()
 			self.discardCursorRects()
 		}
