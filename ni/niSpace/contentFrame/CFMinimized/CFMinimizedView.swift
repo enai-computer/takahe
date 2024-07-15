@@ -43,7 +43,8 @@ class CFMinimizedView: CFBaseView{
 		cfGroupButton.initButton(
 			mouseDownFunction: clickedGroupButton,
 			mouseDownInActiveFunction: activateContentFrame,
-			isActiveFunction: self.isFrameActive
+			isActiveFunction: self.isFrameActive,
+			displayType: .minimised
 		)
 		cfGroupButton.setView(title: groupName)
 	}

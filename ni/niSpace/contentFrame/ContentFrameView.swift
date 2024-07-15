@@ -75,7 +75,8 @@ class ContentFrameView: CFBaseView{
 		cfGroupButton.initButton(
 			mouseDownFunction: clickedGroupButton,
 			mouseDownInActiveFunction: activateContentFrame,
-			isActiveFunction: self.isFrameActive
+			isActiveFunction: self.isFrameActive,
+			displayType: .expanded
 		)
 		cfGroupButton.setView(title: groupName)
 		
