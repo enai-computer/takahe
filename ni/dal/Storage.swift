@@ -14,12 +14,13 @@ private let DATA_FOLDER = "/data-0"
 private let IMG_FOLDER = "/img-0"
 private let PDF_FOLDER = "/pdf-0"
 private let CACHE_FOLDER = "/cache"
+private let PARTIAL_DOWNLOAD_FOLDER = "/patrial-download"
 private let FAVICON_FOLDER = "/favicon"
 
 var CUSTOM_STORAGE_LOCATION: String? = nil
 
 enum FileStorageType{
-	case spaceImg, spacePdf, favIcon
+	case spaceImg, spacePdf, favIcon, partialDownload
 }
 
 class Storage{
@@ -81,6 +82,8 @@ class Storage{
 			try FileManager.default.createDirectory(atPath: basepath + DATA_FOLDER + PDF_FOLDER, withIntermediateDirectories: true, attributes: nil)
 			
 			try FileManager.default.createDirectory(atPath: basepath + CACHE_FOLDER + FAVICON_FOLDER, withIntermediateDirectories: true, attributes: nil)
+			
+			try FileManager.default.createDirectory(atPath: basepath + CACHE_FOLDER + PARTIAL_DOWNLOAD_FOLDER, withIntermediateDirectories: true, attributes: nil)
 		}catch{
 			print("Failed to init nessary Directories.")
 			exit(EXIT_FAILURE)
@@ -106,7 +109,7 @@ class Storage{
 		try FaviconCacheTable.create(db: db)
 	}
 	
-	func genFileUrl(for id: UUID, ofType type: FileStorageType) -> URL{
+	func genFileUrl(for id: UUID, ofType type: FileStorageType, with suffix: String? = nil) -> URL{
 		if(type == .spaceImg){
 			return URL(
 				fileURLWithPath: path! + DATA_FOLDER + IMG_FOLDER + "/\(id).jpg",
@@ -127,6 +130,14 @@ class Storage{
 				isDirectory: false
 			)
 		}
+		
+		if(type == .partialDownload){
+			return URL(
+				fileURLWithPath: path! + CACHE_FOLDER + PARTIAL_DOWNLOAD_FOLDER + "/\(id)/\(suffix!)",
+				isDirectory: false
+			)
+		}
+		
 		preconditionFailure("functionality is not implemented")
 	}
 	

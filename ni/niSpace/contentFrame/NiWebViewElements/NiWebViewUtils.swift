@@ -14,6 +14,7 @@ func getNewWebView(owner: ContentFrameController, contentId: UUID, urlReq: URLRe
 	wkView.load(urlReq)
 	wkView.navigationDelegate = owner
 	wkView.uiDelegate = owner
+	wkView.allowsLinkPreview = true
 	
 	return wkView
 }
