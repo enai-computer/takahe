@@ -954,8 +954,29 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 				return
 			}
 		}
-		decisionHandler(WKNavigationActionPolicy.allow)
+		if(navigationAction.shouldPerformDownload){
+			decisionHandler(.download)
+		}else{
+			decisionHandler(WKNavigationActionPolicy.allow)
+		}
 	}
+	
+	func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, preferences: WKWebpagePreferences, decisionHandler: @escaping (WKNavigationActionPolicy, WKWebpagePreferences) -> Void) {
+		if navigationAction.shouldPerformDownload {
+			decisionHandler(.download, preferences)
+		} else {
+			decisionHandler(.allow, preferences)
+		}
+	}
+	
+	func webView(_ webView: WKWebView, decidePolicyFor navigationResponse: WKNavigationResponse, decisionHandler: @escaping (WKNavigationResponsePolicy) -> Void) {
+		if navigationResponse.canShowMIMEType {
+			decisionHandler(.allow) // In case of force download file; decisionHandler(.download)
+		} else {
+			decisionHandler(.download)
+		}
+	}
+
 	
 	//open in new tab, example clicked file in gDrive
 	func webView(_ webView: WKWebView, createWebViewWith configuration: WKWebViewConfiguration, for navigationAction: WKNavigationAction, windowFeatures: WKWindowFeatures) -> WKWebView?{
@@ -968,6 +989,14 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		return nil
 	}
 
+	func webView(_ webView: WKWebView, navigationResponse: WKNavigationResponse, didBecome download: WKDownload){
+		download.delegate = NiDownloadHandler.instance
+	}
+	
+	func webView(_ webView: WKWebView, navigationAction: WKNavigationAction, didBecome download: WKDownload){
+		download.delegate = NiDownloadHandler.instance
+	}
+	
 	func webViewDidClose(_ webView: WKWebView){
 		if let niWebView = webView as? NiWebView{
 			closeTab(at: niWebView.tabHeadPosition)
