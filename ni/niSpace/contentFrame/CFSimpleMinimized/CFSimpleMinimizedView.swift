@@ -13,6 +13,8 @@ class CFSimpleMinimizedView: CFBaseView{
 	@IBOutlet var thumbnail: NSImageView!
 	@IBOutlet var name: NSTextField!
 
+	private var cursorClosedHandPushed = false
+	
 	override func awakeFromNib() {
 		thumbnail.wantsLayer = true
 		thumbnail.layer?.cornerRadius = 2.0
@@ -82,9 +84,6 @@ class CFSimpleMinimizedView: CFBaseView{
 			cursorDownPoint = event.locationInWindow
 		}
 		
-		if(cursorOnBorder == .top){
-			NSCursor.closedHand.push()
-		}
 	}
 	
 	override func mouseDragged(with event: NSEvent) {
@@ -92,6 +91,10 @@ class CFSimpleMinimizedView: CFBaseView{
 			nextResponder?.mouseDragged(with: event)
 			return
 		}
+
+		NSCursor.closedHand.push()
+		cursorClosedHandPushed = true
+
 		let currCursorPoint = event.locationInWindow
 		let horizontalDistanceDragged = currCursorPoint.x - cursorDownPoint.x
 		let verticalDistanceDragged = currCursorPoint.y - cursorDownPoint.y
@@ -100,6 +103,14 @@ class CFSimpleMinimizedView: CFBaseView{
 		cursorDownPoint = currCursorPoint
 		
 		repositionView(horizontalDistanceDragged, verticalDistanceDragged)
+	}
+	
+	override func mouseUp(with event: NSEvent) {
+		if(cursorClosedHandPushed){
+			NSCursor.current.pop()
+			NSCursor.arrow.push()
+			cursorClosedHandPushed = false
+		}
 	}
 	
 	private func maximize(){
