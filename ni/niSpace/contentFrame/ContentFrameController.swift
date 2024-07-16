@@ -351,7 +351,10 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		
 		positionMinimizedView(for: simpleMinimizedView)
 		//replace
-		self.view.superview?.replaceSubview(self.view, 
+		if let zPos = self.view.layer?.zPosition{
+			simpleMinimizedView.layer?.zPosition = zPos
+		}
+		self.view.superview?.replaceSubview(self.view,
 											with: simpleMinimizedView)
 		self.view = simpleMinimizedView
 		self.myView.niParentDoc?.setTopNiFrame(self)
@@ -446,7 +449,9 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		}
 		simpleFrameView.createNewTab(tabView: tabs[0].viewItem as! NSView)
 		positionBiggerView(for: simpleFrameView)
-		
+		if let zPos = self.view.layer?.zPosition{
+			simpleFrameView.layer?.zPosition = zPos
+		}
 		self.view.superview?.replaceSubview(self.view, with: simpleFrameView)
 		self.view = simpleFrameView
 		self.viewState = .simpleFrame

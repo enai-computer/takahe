@@ -25,7 +25,7 @@
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="24" id="11u-P6-7xk"/>
                                     <constraint firstAttribute="height" constant="24" id="cVO-89-rDJ"/>
-                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="155" id="xsB-Gx-o9y"/>
+                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="185" id="xsB-Gx-o9y"/>
                                 </constraints>
                             </customView>
                             <customView horizontalHuggingPriority="750" horizontalCompressionResistancePriority="250" misplaced="YES" placeholderIntrinsicWidth="937" placeholderIntrinsicHeight="30" verifyAmbiguity="ignoreSizes" translatesAutoresizingMaskIntoConstraints="NO" id="u3t-XD-2W6">
