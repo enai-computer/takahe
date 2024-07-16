@@ -9,7 +9,7 @@ import Foundation
 import Cocoa
 import Carbon.HIToolbox
 import WebKit
-
+import PDFKit
 
 class NiWebView: WKWebView, CFContentItem, CFContentSearch{
     
@@ -65,6 +65,30 @@ class NiWebView: WKWebView, CFContentItem, CFContentSearch{
 		super.startDownload(using: request, completionHandler: completionHandler)
 	}
     
+	@IBAction override func printView(_ sender: Any?){
+		Task{
+			await printViewViaPdf()
+		}
+	}
+	
+	/**
+	 To be executed from non-main Thread
+	 */
+	private func printViewViaPdf() async{
+		do{
+			let pdfDocData = try await pdf()
+			if let pdfDoc = PDFDocument(data: pdfDocData){
+				DispatchQueue.main.async {
+					if let printOp = pdfDoc.printOperation(for: NSPrintInfo(dictionary: [.allPages:true]), scalingMode: .pageScaleToFit, autoRotate: false){
+						printOp.showsPrintPanel = true
+						printOp.run()
+					}
+				}
+			}
+		}catch{//TODO: inform user
+		}
+	}
+	
 	func spaceClosed(){
 		self.pauseAllMediaPlayback()
 		self.closeAllMediaPresentations()
