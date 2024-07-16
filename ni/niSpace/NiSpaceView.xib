@@ -59,7 +59,7 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 </visualEffectView>
                                 <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Yne-Pi-Jml">
-                                    <rect key="frame" x="24" y="6" width="24" height="24"/>
+                                    <rect key="frame" x="24" y="4" width="24" height="24"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="SpaceIcon" id="mpw-cc-7kz"/>
                                     <color key="contentTintColor" name="sand9"/>

@@ -57,7 +57,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	}
 	
     func applicationWillTerminate(_ aNotification: Notification) {
-        //TODO: Insert code here to tear down your application
+        //Insert code here to tear down your application
 		
 		//PostHog
 		let timeSinceStartMin = (Date().timeIntervalSinceReferenceDate - applicationStarted!.timeIntervalSinceReferenceDate) / 60

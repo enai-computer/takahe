@@ -135,8 +135,6 @@ class NiPdfView: PDFView, CFContentItem, CFContentSearch{
 	}
 	
 	func spaceRemovedFromMemory() {
-		
+		self.owner = nil
 	}
-	
-	
 }
