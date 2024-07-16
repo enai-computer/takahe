@@ -87,7 +87,7 @@ class CFSimpleFrameView: CFBaseView{
 			showHeader()
 			self.resetCursorRects()
 		}else{
-			myContent?.setInactive()
+		_ = myContent?.setInactive()
 			self.layer?.borderColor = NSColor(.sand3).cgColor
 			self.layer?.backgroundColor = NSColor(.sand3).cgColor
 			shadowInActive()

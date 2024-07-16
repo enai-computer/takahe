@@ -5,7 +5,7 @@
 //  Created by Patrick Lukas on 27/5/24.
 //
 
-import Foundation
+import Cocoa
 
 enum FollowOnAction{
 	case nothing, removeSelf
@@ -19,4 +19,14 @@ protocol CFContentItem{
 	func cancelOperation(_ sender: Any?) -> Void
 	func spaceClosed() -> Void
 	func spaceRemovedFromMemory() -> Void
+}
+
+protocol CFContentSearch{
+	var nextFindAvailable: Bool {get}
+	var prevFindAvailable: Bool {get}
+	var searchPanel: NiWebViewFindPanel? {set get}
+	func resetSearchAvailability() -> Void
+	func performFind(_: String, backwards: Bool) -> Void
+	func performFindNext() -> Void
+	func performFindPrevious() -> Void
 }

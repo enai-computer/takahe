@@ -1,5 +1,5 @@
 //
-//  NiWebViewFindPanel.swift
+//  NiFindPanel.swift
 //  ni
 //
 //  Created by Patrick Lukas on 20/6/24.
@@ -9,7 +9,7 @@ import Cocoa
 
 class NiWebViewFindPanel: NSViewController, NSTextFieldDelegate {
 
-	private var niWebView: NiWebView? = nil
+	private var niContentItem: CFContentSearch? = nil
 
 	@IBOutlet var doneButton: NiActionLabel!
 	@IBOutlet var searchField: NSTextField!
@@ -48,31 +48,39 @@ class NiWebViewFindPanel: NSViewController, NSTextFieldDelegate {
 		view.window?.makeFirstResponder(searchField)
 	}
 	
-	func setNiWebView(_ niWebView: NiWebView){
-		self.niWebView = niWebView
-		nxtFindButton.isActiveFunction = {return self.niWebView!.nextFindAvailable}
-		prevFindButton.isActiveFunction = {return self.niWebView!.prevFindAvailable}
+	func resetOrigin(_ parentFrame: CGSize, cooridatesFilpped: Bool = false){
+		if(cooridatesFilpped){
+			view.frame.origin = CGPoint(x: 4.0, y: 4.0)
+			return
+		}
+		view.frame.origin.y = parentFrame.height - 4.0 - view.frame.height
+	}
+	
+	func setParentViewItem(_ searchableContentView: CFContentSearch){
+		self.niContentItem = searchableContentView
+		nxtFindButton.isActiveFunction = {return self.niContentItem!.nextFindAvailable}
+		prevFindButton.isActiveFunction = {return self.niContentItem!.prevFindAvailable}
 	}
 	
 	func controlTextDidChange(_ obj: Notification) {
-		niWebView?.resetSearchAvailability()
+		niContentItem?.resetSearchAvailability()
 		nxtFindButton.tintActive()
 		prevFindButton.tintActive()
 	}
 	
 	func controlTextDidEndEditing(_ obj: Notification){
-		niWebView?.performFind(searchField.stringValue, backwards: false)
+		niContentItem?.performFind(searchField.stringValue, backwards: false)
 	}
 	
 	func control(_ control: NSControl, textView: NSTextView, doCommandBy commandSelector: Selector) -> Bool {
 		if commandSelector == #selector(NSTextView.insertNewline) {
 			if let currentEvent = NSApplication.shared.currentEvent{
 				if(currentEvent.modifierFlags.contains(.shift)){
-					niWebView?.performFind(searchField.stringValue, backwards: true)
+					niContentItem?.performFind(searchField.stringValue, backwards: true)
 					return true
 				}
 			}
-			niWebView?.performFind(searchField.stringValue, backwards: false)
+			niContentItem?.performFind(searchField.stringValue, backwards: false)
 			return true
 		}
 		return false
@@ -83,11 +91,11 @@ class NiWebViewFindPanel: NSViewController, NSTextFieldDelegate {
 	}
 	
 	func nxtButtonClicked(_ event: NSEvent){
-		niWebView?.performFind(searchField.stringValue, backwards: false)
+		niContentItem?.performFindNext()
 	}
 	
 	func prevButtonClicked(_ event: NSEvent){
-		niWebView?.performFind(searchField.stringValue, backwards: true)
+		niContentItem?.performFindPrevious()
 	}
 	
 	func doneButtonClicked(_ event: NSEvent){
@@ -95,11 +103,11 @@ class NiWebViewFindPanel: NSViewController, NSTextFieldDelegate {
 	}
 	
 	@IBAction func performFindNext(_ sender: NSMenuItem){
-		niWebView?.performFind(searchField.stringValue, backwards: false)
+		niContentItem?.performFindNext()
 	}
 	
 	@IBAction func performFindPrevious(_ sender: NSMenuItem){
-		niWebView?.performFind(searchField.stringValue, backwards: true)
+		niContentItem?.performFindPrevious()
 	}
 	
 	override func mouseDown(with event: NSEvent) {
@@ -108,6 +116,7 @@ class NiWebViewFindPanel: NSViewController, NSTextFieldDelegate {
 	
 	private func removeSelf(){
 		view.removeFromSuperview()
-		niWebView?.searchPanel = nil
+		niContentItem?.searchPanel = nil
+		niContentItem?.resetSearchAvailability()
 	}
 }
