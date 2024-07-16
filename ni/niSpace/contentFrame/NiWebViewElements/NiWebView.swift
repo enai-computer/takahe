@@ -198,7 +198,7 @@ class NiWebView: WKWebView, CFContentItem, CFContentSearch{
 		performFind(searchPanel!.searchField.stringValue, backwards: true)
 	}
 	
-	func performFind(_ search: String, backwards: Bool){
+	private func performFind(_ search: String, backwards: Bool){
 		findConfig.backwards = backwards
 		self.find(search, configuration: findConfig, completionHandler: handleFindResults)
 	}

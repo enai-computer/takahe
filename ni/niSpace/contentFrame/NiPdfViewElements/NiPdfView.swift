@@ -63,7 +63,7 @@ class NiPdfView: PDFView, CFContentItem, CFContentSearch{
 	}
 	
 	func performFindNext(){
-		if (searchResults == nil){
+		if (searchResults == nil || searchResults!.isEmpty){
 			guard searchPanel != nil else {return}
 			performFind(searchPanel!.searchField.stringValue, backwards: false)
 			return
@@ -86,7 +86,7 @@ class NiPdfView: PDFView, CFContentItem, CFContentSearch{
 		gotoSelectedResult()
 	}
 	
-	func performFind(_ search: String, backwards: Bool){
+	private func performFind(_ search: String, backwards: Bool){
 		searchResults = self.document?.findString(search, withOptions: [.caseInsensitive])
 		
 		if(searchResults?.count == 0){
@@ -106,7 +106,16 @@ class NiPdfView: PDFView, CFContentItem, CFContentSearch{
 		if(0 <= selectedResult && selectedResult < results.count){
 			go(to: results[selectedResult])
 		}
-		//TODO: update prev nxt result button
+		if(selectedResult == 0){
+			prevFindAvailable = false
+		}else{
+			prevFindAvailable = true
+		}
+		if(selectedResult == results.count - 1){
+			nextFindAvailable = false
+		}else{
+			nextFindAvailable = true
+		}
 	}
 
 	private func noResults(){
