@@ -11,7 +11,7 @@ import Carbon.HIToolbox
 import WebKit
 
 
-class NiWebView: WKWebView, CFContentItem{
+class NiWebView: WKWebView, CFContentItem, CFContentSearch{
     
     var owner: ContentFrameController?
     private(set) var viewIsActive: Bool = true
@@ -177,15 +177,23 @@ class NiWebView: WKWebView, CFContentItem{
 		//needs to be ordered this way, otherwise the action images will be null in setNiWebView
 		searchPanel = NiWebViewFindPanel()
 		addSubview(searchPanel!.view)
-		searchPanel!.setNiWebView(self)
+		searchPanel!.setParentViewItem(self)
 	}
 	
 	@IBAction func performFindNext(_ sender: NSMenuItem){
+		performFindNext()
+	}
+	
+	func performFindNext() {
 		guard searchPanel != nil else {return}
 		performFind(searchPanel!.searchField.stringValue, backwards: false)
 	}
 	
 	@IBAction func performFindPrevious(_ sender: NSMenuItem){
+		performFindPrevious()
+	}
+	
+	func performFindPrevious() {
 		guard searchPanel != nil else {return}
 		performFind(searchPanel!.searchField.stringValue, backwards: true)
 	}
