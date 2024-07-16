@@ -39,23 +39,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		print("Enai has access to downloads folder: \(NiDownloadHandler.instance.hasAccessToDownloadsFolder())")
     }
 	
-	
-	private func getStorageBasePath() -> String{
-		var customStorageLocation: String? = nil
-		let argPos = CommandLine.arguments.firstIndex(of: "-niLocalStorage")
-		if (argPos != nil){
-			customStorageLocation = CommandLine.arguments[(argPos!+1)]
-		}
-		let path = if(customStorageLocation == nil){
-			NSSearchPathForDirectoriesInDomains(
-				.applicationSupportDirectory, .userDomainMask, true
-			).first! + "/" + Bundle.main.bundleIdentifier!
-		}else{
-			customStorageLocation!
-		}
-		return path
-	}
-	
     func applicationWillTerminate(_ aNotification: Notification) {
         //Insert code here to tear down your application
 		
