@@ -10,6 +10,7 @@ import Cocoa
 class CFSimpleFrameView: CFBaseView{
 	
 	@IBOutlet var cfHeadView: ContentFrameHeadView!
+	@IBOutlet var cfHeadDragArea: NSView!
 	@IBOutlet var cfGroupButton: CFGroupButton!
 	@IBOutlet var maximizeButton: NiActionImage!
 	@IBOutlet var minimizeButton: NiActionImage!
@@ -96,7 +97,6 @@ class CFSimpleFrameView: CFBaseView{
 		}
 	}
 	
-	
 	override func mouseDown(with event: NSEvent) {
 		if !frameIsActive{
 			niParentDoc?.setTopNiFrame(myController!)
@@ -149,6 +149,8 @@ class CFSimpleFrameView: CFBaseView{
 				resizeOwnFrame(horizontalDistanceDragged, verticalDistanceDragged, cursorLeftSide: true, cursorTop: true)
 			case .topRight:
 				resizeOwnFrame(horizontalDistanceDragged, verticalDistanceDragged, cursorTop: true)
+			case .top:
+				repositionView(horizontalDistanceDragged, verticalDistanceDragged)
 			case .bottomLeft:
 				resizeOwnFrame(horizontalDistanceDragged, verticalDistanceDragged, cursorLeftSide: true)
 			case .bottom:
@@ -160,13 +162,24 @@ class CFSimpleFrameView: CFBaseView{
 			case .rightSide:
 				resizeOwnFrame(horizontalDistanceDragged, 0)
 		default:
-				repositionView(horizontalDistanceDragged, verticalDistanceDragged)
+				return
 		}
 	}
 	
 	func clickedMinimizeButton(with event: NSEvent){
 		guard let myController = nextResponder as? ContentFrameController else{return}
 		myController.minimizeClicked(event)
+	}
+	
+	override func isOnBoarder(_ cursorLocation: CGPoint) -> OnBorder{
+		if (NSPointInRect(cursorLocation, getTopBorderActionArea()) || NSPointInRect(cursorLocation, getDragArea())){
+			return .top
+		}
+		return super.isOnBoarder(cursorLocation)
+	}
+	
+	private func getDragArea() -> NSRect{
+		return self.convert(cfHeadDragArea.frame, from: cfHeadView)
 	}
 	
 	private func shadowActive(){

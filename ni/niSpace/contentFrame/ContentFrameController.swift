@@ -106,7 +106,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		simpleFrameView.initAfterViewLoad(groupName,
 										  titleChangedCallback: simpleViewTitleChangedCallback)
 		simpleFrameView.wantsLayer = true
-		simpleFrameView.layer?.cornerRadius = 5.0
+		simpleFrameView.layer?.cornerRadius = 10.0
 		simpleFrameView.layer?.cornerCurve = .continuous
 		simpleFrameView.layer?.backgroundColor = NSColor.sand3.cgColor
 		return simpleFrameView

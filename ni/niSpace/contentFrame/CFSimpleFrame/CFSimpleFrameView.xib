@@ -9,7 +9,7 @@
         <customObject id="-2" userLabel="File's Owner"/>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
-        <box boxType="custom" borderWidth="5" cornerRadius="5" title="Box" titlePosition="noTitle" id="TRM-aq-XhT" customClass="CFSimpleFrameView" customModule="ni" customModuleProvider="target">
+        <box boxType="custom" borderWidth="5" cornerRadius="10" title="Box" titlePosition="noTitle" id="TRM-aq-XhT" customClass="CFSimpleFrameView" customModule="ni" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="1066" height="635"/>
             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
             <view key="contentView" id="AeM-b0-a7b">
@@ -75,6 +75,7 @@
             <color key="fillColor" name="sand4"/>
             <connections>
                 <outlet property="cfGroupButton" destination="Y6X-jL-a1c" id="bCK-kf-Ras"/>
+                <outlet property="cfHeadDragArea" destination="u3t-XD-2W6" id="gIu-ti-tAz"/>
                 <outlet property="cfHeadView" destination="AyA-HP-F1l" id="FrD-0W-EMe"/>
                 <outlet property="closeButton" destination="z6Z-t5-FmO" id="4ey-rB-cmL"/>
                 <outlet property="maximizeButton" destination="oUj-dg-mT0" id="8Ya-cv-H61"/>
