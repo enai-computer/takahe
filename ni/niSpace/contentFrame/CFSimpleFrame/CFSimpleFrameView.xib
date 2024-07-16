@@ -17,7 +17,7 @@
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
                     <customView id="AyA-HP-F1l" customClass="ContentFrameHeadView" customModule="ni" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="595" width="1056" height="30"/>
+                        <rect key="frame" x="0.0" y="600" width="1056" height="27"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <subviews>
                             <customView horizontalHuggingPriority="1000" horizontalCompressionResistancePriority="250" placeholderIntrinsicWidth="24" placeholderIntrinsicHeight="24" verifyAmbiguity="ignoreSizes" translatesAutoresizingMaskIntoConstraints="NO" id="Y6X-jL-a1c" customClass="CFGroupButton" customModule="ni" customModuleProvider="target">
@@ -29,10 +29,10 @@
                                 </constraints>
                             </customView>
                             <customView horizontalHuggingPriority="750" horizontalCompressionResistancePriority="250" misplaced="YES" placeholderIntrinsicWidth="937" placeholderIntrinsicHeight="30" verifyAmbiguity="ignoreSizes" translatesAutoresizingMaskIntoConstraints="NO" id="u3t-XD-2W6">
-                                <rect key="frame" x="24" y="0.0" width="952" height="30"/>
+                                <rect key="frame" x="24" y="0.0" width="952" height="27"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" priority="750" constant="20" id="6C8-cU-jRV"/>
-                                    <constraint firstAttribute="height" constant="30" id="hDf-HF-aXq"/>
+                                    <constraint firstAttribute="height" constant="27" id="hDf-HF-aXq"/>
                                 </constraints>
                             </customView>
                             <imageView horizontalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="oUj-dg-mT0" customClass="NiActionImage" customModule="ni" customModuleProvider="target">
@@ -54,19 +54,19 @@
                         <constraints>
                             <constraint firstAttribute="right" secondItem="z6Z-t5-FmO" secondAttribute="right" constant="8" id="2K5-JW-Vsr"/>
                             <constraint firstItem="Y6X-jL-a1c" firstAttribute="left" secondItem="AyA-HP-F1l" secondAttribute="left" id="3dQ-nH-H6x"/>
-                            <constraint firstItem="oUj-dg-mT0" firstAttribute="top" secondItem="AyA-HP-F1l" secondAttribute="top" constant="3" id="6DI-fg-6rZ"/>
-                            <constraint firstItem="Y6X-jL-a1c" firstAttribute="top" secondItem="AyA-HP-F1l" secondAttribute="top" constant="3" id="LYn-J2-52n"/>
-                            <constraint firstItem="z6Z-t5-FmO" firstAttribute="top" secondItem="AyA-HP-F1l" secondAttribute="top" constant="3" id="Ulb-Fn-6fY"/>
+                            <constraint firstItem="oUj-dg-mT0" firstAttribute="top" secondItem="AyA-HP-F1l" secondAttribute="top" id="6DI-fg-6rZ"/>
+                            <constraint firstItem="Y6X-jL-a1c" firstAttribute="top" secondItem="AyA-HP-F1l" secondAttribute="top" id="LYn-J2-52n"/>
+                            <constraint firstItem="z6Z-t5-FmO" firstAttribute="top" secondItem="AyA-HP-F1l" secondAttribute="top" id="Ulb-Fn-6fY"/>
                             <constraint firstItem="u3t-XD-2W6" firstAttribute="right" secondItem="oUj-dg-mT0" secondAttribute="left" id="bZ0-N9-0qU"/>
                             <constraint firstItem="wj8-QD-sV2" firstAttribute="right" secondItem="z6Z-t5-FmO" secondAttribute="left" id="ec8-Hp-mM6"/>
                             <constraint firstItem="u3t-XD-2W6" firstAttribute="left" secondItem="Y6X-jL-a1c" secondAttribute="right" priority="250" id="lfv-ci-hUA"/>
                             <constraint firstItem="oUj-dg-mT0" firstAttribute="right" secondItem="wj8-QD-sV2" secondAttribute="left" id="sQc-bm-ZPx"/>
                             <constraint firstItem="u3t-XD-2W6" firstAttribute="top" secondItem="AyA-HP-F1l" secondAttribute="top" id="uMa-yM-mlg"/>
-                            <constraint firstItem="wj8-QD-sV2" firstAttribute="top" secondItem="AyA-HP-F1l" secondAttribute="top" constant="3" id="yDg-cw-a02"/>
+                            <constraint firstItem="wj8-QD-sV2" firstAttribute="top" secondItem="AyA-HP-F1l" secondAttribute="top" id="yDg-cw-a02"/>
                         </constraints>
                     </customView>
                     <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qq8-Fi-j5r">
-                        <rect key="frame" x="0.0" y="0.0" width="1056" height="595"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1056" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     </customView>
                 </subviews>
