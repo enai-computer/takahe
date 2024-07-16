@@ -15,7 +15,7 @@
 			]
 		},
 		{
-			"windowName": null,
+			"windowName": "Interface history",
 			"state": "minimised",
 			"tabs": [
 				{
@@ -49,11 +49,15 @@
 				{
 					"title": "Barry Katz: The history and philosophy of design in Silicon Valley and beyond",
 					"url": "https://designbetterpodcast.com/p/barry-katz"
+				},
+				{
+					"title": "On the Origins of Interation Design",
+					"url": "https://open.spotify.com/episode/2V2hPf6yUw5IroG0S9Vi62?si=BCiPNcOHQvaTkv3QhaJzjQ&nd=1&dlsi=46dd7ba8105c4799"
 				}
 			]
 		},
 		{
-			"windowName": "",
+			"windowName": "Attention",
 			"state": "minimised",
 			"tabs": [
 				{
