@@ -66,29 +66,9 @@ class NiWebView: WKWebView, CFContentItem, CFContentSearch{
 	}
     
 	@IBAction override func printView(_ sender: Any?){
-		Task{
-			await printViewViaPdf()
-		}
+		return
 	}
-	
-	/**
-	 To be executed from non-main Thread
-	 */
-	private func printViewViaPdf() async{
-		do{
-			let pdfDocData = try await pdf()
-			if let pdfDoc = PDFDocument(data: pdfDocData){
-				DispatchQueue.main.async {
-					if let printOp = pdfDoc.printOperation(for: NSPrintInfo(dictionary: [.allPages:true]), scalingMode: .pageScaleToFit, autoRotate: false){
-						printOp.showsPrintPanel = true
-						printOp.run()
-					}
-				}
-			}
-		}catch{//TODO: inform user
-		}
-	}
-	
+
 	func spaceClosed(){
 		self.pauseAllMediaPlayback()
 		self.closeAllMediaPresentations()
