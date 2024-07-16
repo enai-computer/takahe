@@ -69,18 +69,18 @@ class NiWebViewFindPanel: NSViewController, NSTextFieldDelegate {
 	}
 	
 	func controlTextDidEndEditing(_ obj: Notification){
-		niContentItem?.performFind(searchField.stringValue, backwards: false)
+		niContentItem?.performFindNext()
 	}
 	
 	func control(_ control: NSControl, textView: NSTextView, doCommandBy commandSelector: Selector) -> Bool {
 		if commandSelector == #selector(NSTextView.insertNewline) {
 			if let currentEvent = NSApplication.shared.currentEvent{
 				if(currentEvent.modifierFlags.contains(.shift)){
-					niContentItem?.performFind(searchField.stringValue, backwards: true)
+					niContentItem?.performFindPrevious()
 					return true
 				}
 			}
-			niContentItem?.performFind(searchField.stringValue, backwards: false)
+			niContentItem?.performFindNext()
 			return true
 		}
 		return false

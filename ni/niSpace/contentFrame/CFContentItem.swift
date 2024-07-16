@@ -26,7 +26,6 @@ protocol CFContentSearch{
 	var prevFindAvailable: Bool {get}
 	var searchPanel: NiWebViewFindPanel? {set get}
 	func resetSearchAvailability() -> Void
-	func performFind(_: String, backwards: Bool) -> Void
 	func performFindNext() -> Void
 	func performFindPrevious() -> Void
 }
