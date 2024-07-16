@@ -17,7 +17,7 @@ class WelcomeSpaceGenerator{
 	static let paddingToBottomScreenEdge: CGFloat = 20.00
 	
 	static let WELCOME_SPACE_ID =  UUID(uuidString:"00000000-0000-0000-0000-000000000001")!
-	static let WELCOME_SPACE_NAME = "Welcome to Enai"
+	static let WELCOME_SPACE_NAME = "Welcome to Enai - Start Here"
 	
 	static func generateSpace(_ screenSize: CGSize) -> NiSpaceDocumentController{
 		let controller = NiSpaceDocumentController(
