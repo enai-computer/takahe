@@ -956,25 +956,43 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		}
 		if(navigationAction.shouldPerformDownload){
 			decisionHandler(.download)
-		}else{
-			decisionHandler(WKNavigationActionPolicy.allow)
+			return
 		}
+		
+		if let contentType = navigationAction.request.value(forHTTPHeaderField: "Content-Type"){
+			if(contentType == "application/pdf"){
+				decisionHandler(.download)
+				return
+			}
+		}
+		decisionHandler(.allow)
 	}
 	
 	func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, preferences: WKWebpagePreferences, decisionHandler: @escaping (WKNavigationActionPolicy, WKWebpagePreferences) -> Void) {
 		if navigationAction.shouldPerformDownload {
 			decisionHandler(.download, preferences)
-		} else {
-			decisionHandler(.allow, preferences)
+			return
 		}
+		
+		if let contentType = navigationAction.request.value(forHTTPHeaderField: "Content-Type"){
+			if(contentType == "application/pdf"){
+				decisionHandler(.download, preferences)
+				return
+			}
+		}
+		decisionHandler(.allow, preferences)
 	}
 	
 	func webView(_ webView: WKWebView, decidePolicyFor navigationResponse: WKNavigationResponse, decisionHandler: @escaping (WKNavigationResponsePolicy) -> Void) {
+		if (navigationResponse.response.mimeType == "application/pdf"){
+			decisionHandler(.download)
+			return
+		}
 		if navigationResponse.canShowMIMEType {
 			decisionHandler(.allow) // In case of force download file; decisionHandler(.download)
-		} else {
-			decisionHandler(.download)
+			return
 		}
+		decisionHandler(.download)
 	}
 	
 	//open in new tab, example clicked file in gDrive
