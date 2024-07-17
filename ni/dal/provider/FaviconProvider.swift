@@ -31,6 +31,17 @@ class FaviconProvider{
 		return nil
 	}
 	
+	func flushCache(){
+		let favIconCache = Storage.instance.getDir(for: .favIcon)
+		do{
+			try FileManager.default.removeItem(at: favIconCache)
+			try FileManager.default.createDirectory(at: favIconCache, withIntermediateDirectories: true, attributes: nil)
+			FaviconCacheTable.flushTable()
+		}catch{
+			print("failed clearing cache with error: \(error)")
+		}
+	}
+	
 	private func tryFetchFromCache(_ host: String) -> NSImage? {
 		if let storageLocation = FaviconCacheTable.fetchIconLocation(domain: host){
 			if let fUrl = URL(string: storageLocation){
@@ -44,7 +55,7 @@ class FaviconProvider{
 	
 	private func cacheIcon(_ img: NSImage, domain: String){
 		let fUrl = Storage.instance.genFileUrl(for: UUID(), ofType: .favIcon)
-		if(writeImgToDisk(fUrl: fUrl, img: img)){
+		if(writePngToDisk(fUrl: fUrl, img: img)){
 			FaviconCacheTable.upsert(domain: domain, storageLocation: fUrl.absoluteString)
 		}
 	}
