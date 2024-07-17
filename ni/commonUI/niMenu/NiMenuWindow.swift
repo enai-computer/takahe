@@ -32,7 +32,8 @@ class NiMenuWindow: NSPanel {
 			backing: .buffered,
 			defer: true
 		)
-		
+		//set, as otherwise the desktop on the 2nd display will switch to a different desktop if an application is running fullscreen on that display
+		collectionBehavior = NSWindow.CollectionBehavior.moveToActiveSpace
 		titleVisibility = .hidden
 		titlebarAppearsTransparent = true
 		delegate = niDelegate
