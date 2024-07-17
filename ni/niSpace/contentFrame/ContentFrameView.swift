@@ -33,6 +33,7 @@ class ContentFrameView: CFBaseView{
 	
 	static let SPACE_BETWEEN_TABS: CGFloat = 4.0
 	static let DEFAULT_TAB_SIZE = NSSize(width: 195, height: 30)
+	static let MAX_TAB_WIDTH: CGFloat = 300.0
 	
 	override var minFrameWidth: CGFloat { return 575.0}
 	

@@ -1067,7 +1067,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 			return ContentFrameView.DEFAULT_TAB_SIZE
 		}
 		
-		let maxWidth = (expandedCFView?.cfTabHeadCollection.frame.width ?? 780) / 2
+		let maxWidth = (expandedCFView?.cfHeadView.frame.width ?? 780) / 2
 		let nrOfCharacters = viewModel.webView?.url?.absoluteString.count ?? 30
 		var tabHeadWidth = CGFloat(nrOfCharacters) * 8.0 + 30
 		
@@ -1077,6 +1077,9 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		
 		if(tabHeadWidth < ContentFrameView.DEFAULT_TAB_SIZE.width){
 			tabHeadWidth = ContentFrameView.DEFAULT_TAB_SIZE.width
+		}
+		if(ContentFrameView.MAX_TAB_WIDTH < tabHeadWidth){
+			tabHeadWidth = ContentFrameView.MAX_TAB_WIDTH
 		}
 		expandedCFView?.recalcDragArea(specialTabWidth: tabHeadWidth)
 		
