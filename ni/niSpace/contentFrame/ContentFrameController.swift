@@ -1081,7 +1081,11 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		if(ContentFrameView.MAX_TAB_WIDTH < tabHeadWidth){
 			tabHeadWidth = ContentFrameView.MAX_TAB_WIDTH
 		}
-		expandedCFView?.recalcDragArea(specialTabWidth: tabHeadWidth)
+		
+		//fixes ni-172 - if we call the recalcuation live here, before the first item is drawn the following `collectionView.makeItem` calls with have views sized 0,0
+		DispatchQueue.main.async {
+			self.expandedCFView?.recalcDragArea(specialTabWidth: tabHeadWidth)
+		}
 		
 		return NSSize(width: tabHeadWidth, height: 30)
 	}
