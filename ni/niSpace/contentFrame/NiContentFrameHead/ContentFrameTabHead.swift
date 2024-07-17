@@ -15,7 +15,6 @@ class ContentFrameTabHead: NSCollectionViewItem, NSTextFieldDelegate {
 	@IBOutlet var tabHeadTitle: ContentFrameTabHeadTextNode!
 	
 	private var inEditingMode = false
-//	private var hoverEffectTrackingArea: NSTrackingArea? = nil
 	var parentController: ContentFrameController?
 	var tabPosition: Int = -1
 	
