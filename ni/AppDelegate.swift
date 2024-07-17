@@ -23,6 +23,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	
     func applicationDidFinishLaunching(_ aNotification: Notification) {
 		_ = Storage.instance
+		UserSettings.reload()
 		
 		let POSTHOG_API_KEY = "phc_qwTCTecFkqQyd3OYFoiWniEjMLBmJ3KL8P5rNRqJYN1"
 		let POSTHOG_HOST = "https://eu.i.posthog.com"
