@@ -27,7 +27,7 @@ class ContentFrameView: CFBaseView{
 	private var niContentTabViewWidthConstraint: NSLayoutConstraint?
 	private var groupButtonLeftConstraint: NSLayoutConstraint?
 	
-	//TabView
+	//Tabbed ContentView
 	@IBOutlet var niContentTabView: NSTabView!
 	var observation: NSKeyValueObservation?
 	
@@ -349,14 +349,9 @@ class ContentFrameView: CFBaseView{
 		if(cfHeadDragAreaWidthConstraint != nil){
 			cfHeadDragArea.removeConstraint(cfHeadDragAreaWidthConstraint!)
 		}
-		if(niContentTabViewWidthConstraint != nil){
-			niContentTabView.removeConstraint(niContentTabViewWidthConstraint!)
-		}
+
 		setCfHeadDragAreaWidthConstraint(width: dragAreaWidth)
 		cfHeadDragArea.addConstraint(cfHeadDragAreaWidthConstraint!)
-		
-		setNiContentTabViewWidthConstraint(width: tabHScrollWidth)
-		niContentTabView.addConstraint(niContentTabViewWidthConstraint!)
 	}
 	
 	private func setNiContentTabViewWidthConstraint(width: CGFloat){
