@@ -38,6 +38,16 @@ class FaviconCacheTable{
 		}
 	}
 	
+	static func flushTable(){
+		do{
+			let delQuery = table.delete()
+			let numbDelRows = try Storage.instance.cacheDB.run(delQuery)
+			print("deleted \(numbDelRows) of rows in FavIcon cache table")
+		}catch{
+			print("Failed to delete content in table")
+		}
+	}
+	
 	static func fetchIconLocation(domain: String) -> String?{
 		do{
 			let q = table.where(self.domain == domain)

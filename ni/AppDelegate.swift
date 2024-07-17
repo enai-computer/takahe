@@ -32,10 +32,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		
 		applicationStarted = Date()
 		setLocalKeyListeners()
-		
-		if(!AppDelegate.dbExists){
-			Storage.instance.createDemoSpaces()
-		}
+		runPostLunchChecks()
 		
 		print("Enai has access to downloads folder: \(NiDownloadHandler.instance.hasAccessToDownloadsFolder())")
     }
@@ -175,6 +172,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 			}
 		}
 		return nil
+	}
+	
+	private func runPostLunchChecks(){
+		if(!AppDelegate.dbExists){
+			Storage.instance.createDemoSpaces()
+		}
+		if(UserSettings.shared.cacheClearedLast < Date(timeIntervalSince1970: 20.0)){
+			FaviconProvider.instance.flushCache()
+			UserSettings.updateValue(setting: .cacheClearedLast, value: Date())
+		}
 	}
 	
 	private func setLocalKeyListeners(){

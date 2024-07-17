@@ -28,7 +28,7 @@ extension NiUsersSettingsModel{
 	/** init with defaults
 	 */
 	init(){
-		version = 1
+		version = 1	//version to be increased after every breaking change
 		spaceCachingEnabled = false
 		nrOfCachedSpaces = 3
 		eveEnabled = false

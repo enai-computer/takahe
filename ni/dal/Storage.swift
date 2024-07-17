@@ -28,7 +28,6 @@ class Storage{
     static let instance = Storage()
     let spacesDB: Connection
 	let cacheDB: Connection
-	let userConfig: NiUserConfigModel
 	private var path: String?
 
     private init(){
@@ -58,8 +57,6 @@ class Storage{
 			cacheDB = try Connection(path! + DB_CACHE)
 			cacheDB.foreignKeys = true
 			try Storage.createCacheDBIfNotExist(db: cacheDB)
-			
-			userConfig = UserConfigProvider(configPath: path!).userConfig
         }catch{
             print("Failed to init SQLight.")
             //TODO: try to send crash report
@@ -96,6 +93,7 @@ class Storage{
         try CachedWebTable.create(db: db)
         try DocumentIdContentIdTable.create(db: db)
 		try NoteTable.create(db: db)
+		try UserSettingsTable.create(db: db)
     }
     
 	private static func runSpacesMigrations(db: Connection) throws{
@@ -107,6 +105,16 @@ class Storage{
 	
 	private static func createCacheDBIfNotExist(db: Connection) throws {
 		try FaviconCacheTable.create(db: db)
+	}
+	
+	func getDir(for type: FileStorageType) -> URL {
+		if(type == .favIcon){
+			return URL(
+				fileURLWithPath: path! + CACHE_FOLDER + FAVICON_FOLDER,
+				isDirectory: true
+			)
+		}
+		preconditionFailure("functionality is not implemented")
 	}
 	
 	func genFileUrl(for id: UUID, ofType type: FileStorageType, with suffix: String? = nil) -> URL{
@@ -126,7 +134,7 @@ class Storage{
 		
 		if(type == .favIcon){
 			return URL(
-				fileURLWithPath: path! + CACHE_FOLDER + FAVICON_FOLDER + "/\(id).jpg",
+				fileURLWithPath: path! + CACHE_FOLDER + FAVICON_FOLDER + "/\(id).png",
 				isDirectory: false
 			)
 		}

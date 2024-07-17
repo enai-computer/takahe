@@ -27,6 +27,19 @@ func writeImgToDisk(fUrl: URL, img: NSImage) -> Bool{
 	return false
 }
 
+func writePngToDisk(fUrl: URL, img: NSImage) -> Bool{
+	let imgRep = img.representations[0] as? NSBitmapImageRep
+	if let rawImg = imgRep?.representation(using: .png, properties:[:]){
+		do{
+			try rawImg.write(to: fUrl, options: .withoutOverwriting)
+			return true
+		}catch{
+			print(error)
+		}
+	}
+	return false
+}
+
 func fetchPdfFromDisk(_ fUrl: URL) -> PDFDocument? {
 	if(fUrl.isFileURL){
 		if let pdf = PDFDocument(url: fUrl){
