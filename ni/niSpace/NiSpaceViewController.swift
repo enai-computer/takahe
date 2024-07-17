@@ -441,9 +441,9 @@ class NiSpaceViewController: NSViewController, NSTextFieldDelegate{
 		
 		pauseMediaPlayback(niDocument)
 		
-		if(Storage.instance.userConfig.spaceCachingEnabled){
-			documentCache.addToCache(id: id, controller: spaceDoc)
-		}
+//		if(Storage.instance.userConfig.spaceCachingEnabled){
+//			documentCache.addToCache(id: id, controller: spaceDoc)
+//		}
 		
 		addChild(spaceDoc)
 		
@@ -457,9 +457,9 @@ class NiSpaceViewController: NSViewController, NSTextFieldDelegate{
 		}
 		self.spaceLoaded = true
 		
-		if(!Storage.instance.userConfig.spaceCachingEnabled){
-			NiDocControllerCache.deinitOldDocument(oldDoc)
-		}
+//		if(!Storage.instance.userConfig.spaceCachingEnabled){
+//			NiDocControllerCache.deinitOldDocument(oldDoc)
+//		}
 		
 		let nrOfTimesLoaded = (NSApplication.shared.delegate as! AppDelegate).spaceLoadedSinceStart(id)
 		PostHogSDK.shared.capture("Space_loaded", properties: ["loaded_since_AppStart": nrOfTimesLoaded])
@@ -476,12 +476,12 @@ class NiSpaceViewController: NSViewController, NSTextFieldDelegate{
 		let spaceModel = loadStoredSpace(niSpaceID: id)
 		var scrollTo: NSPoint? = nil
 		
-		if(Storage.instance.userConfig.spaceCachingEnabled){
-			if let cachedDoc = documentCache.getIfCached(id: id){
-				scrollTo = tryGetScrolltoPos(spaceModel)
-				return (cachedDoc, scrollTo)
-			}
-		}
+//		if(Storage.instance.userConfig.spaceCachingEnabled){
+//			if let cachedDoc = documentCache.getIfCached(id: id){
+//				scrollTo = tryGetScrolltoPos(spaceModel)
+//				return (cachedDoc, scrollTo)
+//			}
+//		}
 		
 		let spaceDoc: NiSpaceDocumentController
 		
