@@ -17,6 +17,7 @@ class PdfDal{
 			return
 		}
 		
+		Storage.instance.startedWrite()
 		Task{
 			let fUrl: URL = Storage.instance.genFileUrl(for: id, ofType: .spacePdf)
 			if(pdf.write(to: fUrl)){
@@ -26,6 +27,7 @@ class PdfDal{
 			}else{
 				print("Failed to write pdf to disk with Title: \(title ?? "")")
 			}
+			Storage.instance.finishedWrite()
 		}
 	}
 	

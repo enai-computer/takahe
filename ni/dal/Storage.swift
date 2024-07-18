@@ -7,6 +7,7 @@
 
 import Cocoa
 import SQLite
+import Atomics
 
 private let DB_SPACES = "/spaces.sqlite3"
 private let DB_CACHE = "/niCache.sqlite3"
@@ -28,6 +29,7 @@ class Storage{
     static let instance = Storage()
     let spacesDB: Connection
 	let cacheDB: Connection
+	private let currentWrites = ManagedAtomic<Int>(0)
 	private var path: String?
 
     private init(){
@@ -186,6 +188,18 @@ class Storage{
 		}
 	}
 		
+	func startedWrite(){
+		currentWrites.wrappingIncrement(ordering: .sequentiallyConsistent)
+	}
+	
+	func finishedWrite(){
+		currentWrites.wrappingDecrement(ordering: .sequentiallyConsistent)
+	}
+	
+	func writesInProgress() -> Bool{
+		return currentWrites.load(ordering: .sequentiallyConsistent) != 0
+	}
+	
 	struct ImgDataStruct{
 		let skiImg1 = UUID(uuidString: "3D33D959-24D6-4EB0-9669-6333ED02AC42")!
 		let skiImg2 = UUID(uuidString: "DABFED28-717B-4E91-BBCA-3F7936E1ABC9")!

@@ -101,9 +101,23 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 				controller.storeCurrentSpace()
 			}
 		}
-		//TODO: .terminatelater
-        return .terminateNow
+		self.terminateEnai()
+        return .terminateLater
     }
+	
+	private func terminateEnai(){
+		Task{
+			let startTime = Date().currentTimeMillis()
+			while(Date().currentTimeMillis() < startTime + 3000){
+				if(!Storage.instance.writesInProgress()){
+					await NSApplication.shared.reply(toApplicationShouldTerminate: true)
+					return
+				}
+				try await Task.sleep(for: .milliseconds(100))
+			}
+			await NSApplication.shared.reply(toApplicationShouldTerminate: true)
+		}
+	}
 
 	func spaceLoadedSinceStart(_ spaceID: UUID) -> Int{
 		if(spacesLoaded[spaceID] == nil){
