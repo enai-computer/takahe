@@ -15,6 +15,7 @@ class ImgDal{
 			return
 		}
 	
+		Storage.instance.startedWrite()
 		Task{
 			let fUrl: URL = Storage.instance.genFileUrl(for: id, ofType: .spaceImg)
 			if(writeImgToDisk(fUrl: fUrl, img: img)){
@@ -23,6 +24,7 @@ class ImgDal{
 			}else{
 				print("Failed to write image to disk with Title: \(title ?? "")")
 			}
+			Storage.instance.finishedWrite()
 		}
 	}
 

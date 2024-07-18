@@ -46,6 +46,8 @@
 		CD410AE02C285AC700EC5DF7 /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD410ADF2C285AC700EC5DF7 /* UserSettings.swift */; };
 		CD410AE22C285C3C00EC5DF7 /* NiUsersSettingsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD410AE12C285C3C00EC5DF7 /* NiUsersSettingsModel.swift */; };
 		CD42CEC92BDA48180039814D /* NiScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD42CEC82BDA48180039814D /* NiScrollView.swift */; };
+		CD4D7AE42C49459400B6DBFD /* Atomics in Frameworks */ = {isa = PBXBuildFile; productRef = CD4D7AE32C49459400B6DBFD /* Atomics */; };
+		CD4D7AE62C4959B800B6DBFD /* DateUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4D7AE52C4959B800B6DBFD /* DateUtils.swift */; };
 		CD4E0E3B2C4164A000273109 /* CFSimpleMinimizedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4E0E3A2C4164A000273109 /* CFSimpleMinimizedView.swift */; };
 		CD4E0E3D2C4164AF00273109 /* CFSimpleMinimizedView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD4E0E3C2C4164AF00273109 /* CFSimpleMinimizedView.xib */; };
 		CD53ACC02BCEE0ED00D5912B /* emptyTab.html in Resources */ = {isa = PBXBuildFile; fileRef = CD53ACBF2BCEE0ED00D5912B /* emptyTab.html */; };
@@ -205,6 +207,7 @@
 		CD410ADF2C285AC700EC5DF7 /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
 		CD410AE12C285C3C00EC5DF7 /* NiUsersSettingsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiUsersSettingsModel.swift; sourceTree = "<group>"; };
 		CD42CEC82BDA48180039814D /* NiScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiScrollView.swift; sourceTree = "<group>"; };
+		CD4D7AE52C4959B800B6DBFD /* DateUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtils.swift; sourceTree = "<group>"; };
 		CD4E0E3A2C4164A000273109 /* CFSimpleMinimizedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CFSimpleMinimizedView.swift; sourceTree = "<group>"; };
 		CD4E0E3C2C4164AF00273109 /* CFSimpleMinimizedView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CFSimpleMinimizedView.xib; sourceTree = "<group>"; };
 		CD53ACBF2BCEE0ED00D5912B /* emptyTab.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = emptyTab.html; sourceTree = "<group>"; };
@@ -320,6 +323,7 @@
 			files = (
 				CDD6B93E2B152D3F00C6144D /* SQLite in Frameworks */,
 				CD75784A2BC0207E00293930 /* FaviconFinder in Frameworks */,
+				CD4D7AE42C49459400B6DBFD /* Atomics in Frameworks */,
 				CD1160C82BD142D100345E3E /* WebURL in Frameworks */,
 				CD0589372BE1837B00E9A01E /* PostHog in Frameworks */,
 			);
@@ -573,6 +577,7 @@
 				CD6DED912C257A5000AA8BC4 /* NiActionLabel.swift */,
 				CDC5A1132C25C8F3002F5621 /* EmptyRectView.swift */,
 				CD9C2B262C32F8B800C6126F /* NiButton.swift */,
+				CD4D7AE52C4959B800B6DBFD /* DateUtils.swift */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -780,6 +785,7 @@
 				CD7578492BC0207E00293930 /* FaviconFinder */,
 				CD1160C72BD142D100345E3E /* WebURL */,
 				CD0589362BE1837B00E9A01E /* PostHog */,
+				CD4D7AE32C49459400B6DBFD /* Atomics */,
 			);
 			productName = ni;
 			productReference = A1B8E6A22AAFB5EC00AC6566 /* ni.app */;
@@ -837,6 +843,7 @@
 				CD1160C62BD142D100345E3E /* XCRemoteSwiftPackageReference "swift-url" */,
 				CD0589352BE1837B00E9A01E /* XCRemoteSwiftPackageReference "posthog-ios" */,
 				CD1853092C087E2D001FE566 /* XCRemoteSwiftPackageReference "swift-png" */,
+				CD4D7AE22C49459400B6DBFD /* XCRemoteSwiftPackageReference "swift-atomics" */,
 			);
 			productRefGroup = A1B8E6A32AAFB5EC00AC6566 /* Products */;
 			projectDirPath = "";
@@ -972,6 +979,7 @@
 				CDD7D3492C19AD7D0038E6F9 /* NSPanelUtils.swift in Sources */,
 				CDD87ED02BF23C650045B84B /* NiCursorUtils.swift in Sources */,
 				CD5F7DFD2C19E9B000ADC860 /* NiPaletteWindowDelegate.swift in Sources */,
+				CD4D7AE62C4959B800B6DBFD /* DateUtils.swift in Sources */,
 				CD618D962C2B2C28006869AF /* PregenSpaceSkiing.swift in Sources */,
 				CD6D28102C11EE7E0009732A /* RoundedRectView.swift in Sources */,
 				CDF0DD222C202BCD006C4EF4 /* NiHomeController.swift in Sources */,
@@ -1340,6 +1348,14 @@
 				minimumVersion = 4.4.2;
 			};
 		};
+		CD4D7AE22C49459400B6DBFD /* XCRemoteSwiftPackageReference "swift-atomics" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-atomics.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.2.0;
+			};
+		};
 		CD7578482BC0207E00293930 /* XCRemoteSwiftPackageReference "FaviconFinder" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/will-lumley/FaviconFinder.git";
@@ -1360,6 +1376,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = CD1160C62BD142D100345E3E /* XCRemoteSwiftPackageReference "swift-url" */;
 			productName = WebURL;
+		};
+		CD4D7AE32C49459400B6DBFD /* Atomics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CD4D7AE22C49459400B6DBFD /* XCRemoteSwiftPackageReference "swift-atomics" */;
+			productName = Atomics;
 		};
 		CD7578492BC0207E00293930 /* FaviconFinder */ = {
 			isa = XCSwiftPackageProductDependency;
