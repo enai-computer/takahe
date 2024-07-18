@@ -536,7 +536,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	}
 	
 	func openAndEditEmptyWebTab(){
-		if(viewState == .minimised || viewState == .frameless){
+		if(viewState != .expanded){
 			return
 		}
 		
@@ -901,7 +901,6 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 				return
 			}
 		}
-		
 		nextResponder?.keyDown(with: event)
 	}
 	
@@ -937,7 +936,6 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 			}
 			expandedCFView?.cfTabHeadCollection.reloadItems(at: Set(arrayLiteral: IndexPath(item: wv.tabHeadPosition, section: 0)))
 		}
-		
 	}
 	
 	func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: any Error){
@@ -950,23 +948,22 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 
 	func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
 		
+		if(navigationAction.shouldPerformDownload){
+			decisionHandler(.download)
+			return
+		}
+		if let contentType = navigationAction.request.value(forHTTPHeaderField: "Content-Type"){
+			if(contentType == "application/pdf"){
+				decisionHandler(.download)
+				return
+			}
+		}
 		//open in new tab, comand clicked on link
 		if(navigationAction.modifierFlags == .command){
 			let urlStr = navigationAction.request.url?.absoluteString
 			if(urlStr != nil && !urlStr!.isEmpty){
 				self.openWebsiteInNewTab(urlStr!, shallSelectTab: false, openNextToSelectedTab: true)
-				decisionHandler(WKNavigationActionPolicy.cancel)
-				return
-			}
-		}
-		if(navigationAction.shouldPerformDownload){
-			decisionHandler(.download)
-			return
-		}
-		
-		if let contentType = navigationAction.request.value(forHTTPHeaderField: "Content-Type"){
-			if(contentType == "application/pdf"){
-				decisionHandler(.download)
+				decisionHandler(.cancel)
 				return
 			}
 		}
@@ -982,6 +979,15 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		if let contentType = navigationAction.request.value(forHTTPHeaderField: "Content-Type"){
 			if(contentType == "application/pdf"){
 				decisionHandler(.download, preferences)
+				return
+			}
+		}
+		//open in new tab, comand clicked on link
+		if(navigationAction.modifierFlags == .command){
+			let urlStr = navigationAction.request.url?.absoluteString
+			if(urlStr != nil && !urlStr!.isEmpty){
+				self.openWebsiteInNewTab(urlStr!, shallSelectTab: false, openNextToSelectedTab: true)
+				decisionHandler(.cancel, preferences)
 				return
 			}
 		}
