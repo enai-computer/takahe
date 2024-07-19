@@ -6,7 +6,6 @@
 //
 import Cocoa
 
-let minContentFrameExposure: CGFloat = 150
 
 /** Base class shared by all ContentFrame Classes.
 	Implements common functionality.
@@ -24,6 +23,7 @@ class CFBaseView: NSBox{
 	var cursorOnBorder: OnBorder = .no
 	var cursorDownPoint: CGPoint  = .zero
 	
+	var minContentFrameExposure: CGFloat {return 150}
 	var minFrameHeight: CGFloat { return 150.0}
 	var minFrameWidth: CGFloat { return 350.0}
 	

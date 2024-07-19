@@ -14,6 +14,7 @@ class CFSimpleMinimizedView: CFBaseView{
 	@IBOutlet var name: NSTextField!
 
 	private var cursorClosedHandPushed = false
+	override var minContentFrameExposure: CGFloat {return 85}
 	
 	override func awakeFromNib() {
 		thumbnail.wantsLayer = true

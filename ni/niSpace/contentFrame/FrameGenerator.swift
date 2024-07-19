@@ -22,6 +22,7 @@ func reopenContentFrame(screenWidth: CGFloat, contentFrame: NiContentFrameModel,
 	)
 	//positioning
 	controller.view.frame = initPositionAndSize(
+		for: controller.view as! CFBaseView,
 		maxWidth: (screenWidth - maxWidthMargin),
 		contentFrame: contentFrame
 	)
@@ -101,7 +102,7 @@ func openCFTabs(for controller: ContentFrameController, with tabViewModels: [Tab
 /** Resizing here, in case the CFs are out of bounds on reload on a smaller screen
  
  */
-func initPositionAndSize(maxWidth: CGFloat, contentFrame: NiContentFrameModel) -> NSRect {
+func initPositionAndSize(for view: CFBaseView, maxWidth: CGFloat, contentFrame: NiContentFrameModel) -> NSRect {
 	var width = contentFrame.width.px
 	var x = contentFrame.position.x.px
 
@@ -116,7 +117,7 @@ func initPositionAndSize(maxWidth: CGFloat, contentFrame: NiContentFrameModel) -
 			x = maxX
 		}
 	}else{ //otherwise min Exposure must be visible
-		let maxX = maxWidth - minContentFrameExposure
+		let maxX = maxWidth - view.minContentFrameExposure
 		if(maxX < x){
 			x = maxX
 		}
