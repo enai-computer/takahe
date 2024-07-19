@@ -555,4 +555,8 @@ class NiSpaceViewController: NSViewController, NSTextFieldDelegate{
 	func switchToPrevWindow() {
 		niDocument.myView.switchToNextCF(goFwd: false)
 	}
+	
+	func printDocument(){
+		niDocument.myView.topNiFrame?.tryPrintContent(nil)
+	}
 }

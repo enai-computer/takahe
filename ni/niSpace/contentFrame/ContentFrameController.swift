@@ -170,6 +170,17 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		self.view.layer?.backgroundColor = NSColor(.sand4).cgColor
 	}
 	
+	func tryPrintContent(_ sender: Any?){
+		if(selectedTabModel < 0 && 0 < tabs.count){
+			tabs[0].viewItem?.printView(sender)
+			return
+		}
+		if(selectedTabModel < tabs.count && 0 <= selectedTabModel){
+			tabs[selectedTabModel].viewItem?.printView(sender)
+			return
+		}
+	}
+	
 	/*
 	 * MARK: drop down menu
 	 */

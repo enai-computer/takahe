@@ -19,6 +19,7 @@ protocol CFContentItem{
 	func cancelOperation(_ sender: Any?) -> Void
 	func spaceClosed() -> Void
 	func spaceRemovedFromMemory() -> Void
+	func printView(_ sender: Any?) -> Void
 }
 
 protocol CFContentSearch{
