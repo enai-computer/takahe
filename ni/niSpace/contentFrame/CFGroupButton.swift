@@ -127,6 +127,12 @@ class CFGroupButton: NSView, NSTextFieldDelegate{
 	}
 	
 	private func getUIMenuStr() -> String{
+		
+		//FIXME: hacky needs to be cleaned up
+		if(displayType == .simpleFrame){
+			return "Rename pdf"
+		}
+		
 		if(hasTitle()){
 			return "Rename this window"
 		}
