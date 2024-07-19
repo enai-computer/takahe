@@ -17,6 +17,7 @@ class CFSimpleMinimizedView: CFBaseView{
 	override var minContentFrameExposure: CGFloat {return 85}
 	
 	override func awakeFromNib() {
+		self.wantsLayer = true
 		thumbnail.wantsLayer = true
 		thumbnail.layer?.cornerRadius = 2.0
 		thumbnail.layer?.cornerCurve = .continuous
