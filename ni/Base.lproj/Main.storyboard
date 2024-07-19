@@ -300,7 +300,7 @@
                                         <menuItem isSeparatorItem="YES" id="ygb-Ah-VV6"/>
                                         <menuItem title="Print…" keyEquivalent="p" id="6vn-0L-bSa">
                                             <connections>
-                                                <action selector="print:" target="Ady-hI-5gd" id="Qpj-Tq-gTM"/>
+                                                <action selector="printDocument:" target="Voe-Tx-rLC" id="Evh-cu-e8t"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="vka-e7-PtF"/>

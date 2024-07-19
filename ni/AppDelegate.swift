@@ -169,6 +169,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		showPalette()
 	}
 	
+	@IBAction func printDocument(_ sender: NSMenuItem){
+		getNiSpaceViewController()?.printDocument()
+	}
+	
 	private func showPalette(){
 		if (NSApplication.shared.keyWindow is NiHomeWindow){
 			return

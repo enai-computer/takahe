@@ -107,6 +107,10 @@ class NiNoteItem: NSViewController, CFContentItem {
 		
 	}
 	
+	func printView(_ sender: Any?) {
+		txtDocView.printView(sender)
+	}
+	
 	func resizeContent(){
 		txtDocView.needsLayout = true
 	}
