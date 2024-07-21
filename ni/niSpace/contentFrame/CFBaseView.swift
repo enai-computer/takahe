@@ -228,10 +228,10 @@ class CFBaseView: NSBox{
 		}
 		
 		let visibleView = self.niParentDoc!.visibleRect
-		let w = visibleView.size.width - 100.0
+		let w = visibleView.size.width - 60.0
 		let h = visibleView.size.height - 50.0
 		
-		let x = 50.0	//origin x will always be 0
+		let x = 30.0	//origin x will always be 0
 		let y = visibleView.origin.y + 40		//view is flipped, distance from top
 		
 		self.setFrameSize(NSSize(width: w, height: h))
