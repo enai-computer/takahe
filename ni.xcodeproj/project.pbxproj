@@ -39,6 +39,8 @@
 		CD23EBFB2C0F72FF00A2ACD9 /* Cook.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD23EBFA2C0F72FF00A2ACD9 /* Cook.swift */; };
 		CD2B68EE2C2F166E0086756E /* NiFullscreenPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD2B68ED2C2F166E0086756E /* NiFullscreenPanel.swift */; };
 		CD2B68F02C2F26930086756E /* NiAlertPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD2B68EF2C2F26930086756E /* NiAlertPanel.xib */; };
+		CD2D8E7C2C4EB976003AED25 /* toolsmith.pdf in Resources */ = {isa = PBXBuildFile; fileRef = CD2D8E7B2C4EB976003AED25 /* toolsmith.pdf */; };
+		CD2D8E7E2C4EB992003AED25 /* licklider.pdf in Resources */ = {isa = PBXBuildFile; fileRef = CD2D8E7D2C4EB992003AED25 /* licklider.pdf */; };
 		CD3362162BFDFF97004DBAFB /* SpaceTopbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD3362152BFDFF97004DBAFB /* SpaceTopbar.swift */; };
 		CD33621F2BFE0DD0004DBAFB /* CFSoftDeletedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD33621E2BFE0DD0004DBAFB /* CFSoftDeletedView.swift */; };
 		CD3362212BFE0DDC004DBAFB /* CFSoftDeletedView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD3362202BFE0DDC004DBAFB /* CFSoftDeletedView.xib */; };
@@ -200,6 +202,8 @@
 		CD23EBFA2C0F72FF00A2ACD9 /* Cook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cook.swift; sourceTree = "<group>"; };
 		CD2B68ED2C2F166E0086756E /* NiFullscreenPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiFullscreenPanel.swift; sourceTree = "<group>"; };
 		CD2B68EF2C2F26930086756E /* NiAlertPanel.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NiAlertPanel.xib; sourceTree = "<group>"; };
+		CD2D8E7B2C4EB976003AED25 /* toolsmith.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = toolsmith.pdf; sourceTree = "<group>"; };
+		CD2D8E7D2C4EB992003AED25 /* licklider.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = licklider.pdf; sourceTree = "<group>"; };
 		CD3362152BFDFF97004DBAFB /* SpaceTopbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpaceTopbar.swift; sourceTree = "<group>"; };
 		CD33621E2BFE0DD0004DBAFB /* CFSoftDeletedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CFSoftDeletedView.swift; sourceTree = "<group>"; };
 		CD3362202BFE0DDC004DBAFB /* CFSoftDeletedView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CFSoftDeletedView.xib; sourceTree = "<group>"; };
@@ -452,6 +456,15 @@
 			path = niFullscreenPanel;
 			sourceTree = "<group>";
 		};
+		CD2D8E7A2C4EB961003AED25 /* pdfsForWelcomeSpaces */ = {
+			isa = PBXGroup;
+			children = (
+				CD2D8E7D2C4EB992003AED25 /* licklider.pdf */,
+				CD2D8E7B2C4EB976003AED25 /* toolsmith.pdf */,
+			);
+			path = pdfsForWelcomeSpaces;
+			sourceTree = "<group>";
+		};
 		CD3362172BFE0CCF004DBAFB /* CFSoftDeleted */ = {
 			isa = PBXGroup;
 			children = (
@@ -524,6 +537,7 @@
 		CD6317E62BC4845100434D56 /* assets */ = {
 			isa = PBXGroup;
 			children = (
+				CD2D8E7A2C4EB961003AED25 /* pdfsForWelcomeSpaces */,
 				CD618D8E2C2B2B5D006869AF /* imgsForWelcomeSpaces */,
 				CDA639552BF50596001941DE /* welcomeConfig.json */,
 				CD1160CB2BD286EC00345E3E /* emptyTab-1.jpg */,
@@ -881,6 +895,7 @@
 				CDD7D3412C19924F0038E6F9 /* NiSearchResultViewItem.xib in Resources */,
 				A1E41BF62ACB533400338417 /* ContentFrameView.xib in Resources */,
 				CD53ACC02BCEE0ED00D5912B /* emptyTab.html in Resources */,
+				CD2D8E7E2C4EB992003AED25 /* licklider.pdf in Resources */,
 				CD618D9C2C2B4151006869AF /* 43DC5B56-124C-4368-A341-EAA9D2E33CFD.jpg in Resources */,
 				CD6DED902C24954500AA8BC4 /* NiWebViewFindPanel.xib in Resources */,
 				CDF0DD242C202BDB006C4EF4 /* NiHomeView.xib in Resources */,
@@ -890,6 +905,7 @@
 				CD618D902C2B2B8E006869AF /* EC9DF222-0555-41E2-A1E8-F36CD5CF2456.jpg in Resources */,
 				CD618D922C2B2B9E006869AF /* DABFED28-717B-4E91-BBCA-3F7936E1ABC9.jpg in Resources */,
 				A14E8F252AD5EADF00409DDF /* NiSpaceView.xib in Resources */,
+				CD2D8E7C2C4EB976003AED25 /* toolsmith.pdf in Resources */,
 				CD5A04C62BEA2B96004CC3AA /* CFMinimizedView.xib in Resources */,
 				CDABE64C2C11C5BC00BB4E85 /* NiMenuView.xib in Resources */,
 				CD618D9E2C2B415F006869AF /* E52F5D89-38ED-42B3-938F-4E52105C7DF7.jpg in Resources */,
