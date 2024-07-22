@@ -11,8 +11,7 @@ import Foundation
 let EMPTYSPACEFACTOR: Double = 1
 
 class NiSpaceDocumentView: NSView{
-        
-	private var allowSubViewResize: Bool = true
+
 	private(set) var topNiFrame: ContentFrameController? = nil
 	private(set) var contentFrameControllers: Set<ContentFrameController> = []	//rn all niFrames are drawn. Needs to be reworked in future
 	
@@ -45,18 +44,12 @@ class NiSpaceDocumentView: NSView{
     }
     
     func extendDocumentDownwards(){
-		//otherwise we reposition the ContentFrames within the document
-		self.allowSubViewResize = false
-		
         let window = NSApplication.shared.mainWindow!
         self.frame.size.height += window.frame.height * EMPTYSPACEFACTOR
     }
 	
 	override func resizeSubviews(withOldSize oldSize: NSSize) {
-		if(self.allowSubViewResize){
-			super.resizeSubviews(withOldSize: oldSize)
-		}
-		self.allowSubViewResize = true
+		return
 	}
 	
     /*
