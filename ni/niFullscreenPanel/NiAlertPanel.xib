@@ -9,10 +9,10 @@
         <customObject id="-2" userLabel="File's Owner" customClass="NiAlertPanelController" customModule="ni" customModuleProvider="target">
             <connections>
                 <outlet property="cancelButton" destination="1kn-0t-IVJ" id="dif-jH-ASn"/>
+                <outlet property="contentBox" destination="JrN-pQ-Oxo" id="95u-pr-eXy"/>
                 <outlet property="deleteButton" destination="sW0-lr-GcA" id="hD9-dh-cY7"/>
                 <outlet property="panelContet" destination="fPl-Ao-MfY" id="dBr-Oq-LnH"/>
                 <outlet property="panelTitle" destination="g4x-9G-6VZ" id="and-Ge-s8Z"/>
-                <outlet property="view" destination="JrN-pQ-Oxo" id="Mdh-5T-Ib6"/>
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
@@ -24,7 +24,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="634" height="274"/>
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
-                    <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fPl-Ao-MfY">
+                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fPl-Ao-MfY">
                         <rect key="frame" x="40" y="115" width="560" height="90"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" allowsUndo="NO" title="Once deleted, it can not be recovered." id="OUP-bN-IuC">
@@ -140,7 +140,7 @@
                             <action selector="cancelAction:" target="-2" id="muu-eB-KsN"/>
                         </connections>
                     </button>
-                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="g4x-9G-6VZ">
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="g4x-9G-6VZ">
                         <rect key="frame" x="40" y="228" width="560" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" lineBreakMode="clipping" allowsUndo="NO" title="Are you sure you want to delete this space?" id="eNE-cW-RBa">

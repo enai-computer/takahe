@@ -9,6 +9,7 @@ import Cocoa
 
 class NiAlertPanelController: NSViewController{
 	
+	@IBOutlet var contentBox: NSBox!
 	@IBOutlet var panelTitle: NSTextField!
 	@IBOutlet var panelContet: NSTextField!
 	@IBOutlet var deleteButton: NSButton!
@@ -18,25 +19,43 @@ class NiAlertPanelController: NSViewController{
 	var deleteFunction: ((Any) -> Void)?
 	
 	init(){
-		super.init(nibName: NSNib.Name("NiAlertPanel"), bundle: Bundle.main)
+		super.init(nibName: nil, bundle: nil)
 	}
 	
 	required init?(coder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
 	}
 	
-	override func viewDidLoad() {
+	override func loadView() {
+		let myView = (NSView.loadFromNib(nibName: "NiAlertPanel", owner: self))!
+		let wSize = CGSize(width: myView.frame.width + 120.0, height: myView.frame.height + 120.0)
+		myView.frame.origin = CGPoint(x: 60.0, y: 60.0)
+		view = RoundedRectView(frame: NSRect(origin: CGPoint(x: 0.0, y: 0.0), size: wSize))
+		view.addSubview(myView)
+	}
+	
+	override func viewWillAppear() {
 		super.viewDidLoad()
+		styleSelf()
 		styleDeletButton()
 		styleCancelButton()
 	}
 	
 	private func styleSelf(){
-		view.wantsLayer = true
-		view.layer?.borderColor = NSColor.clear.cgColor
-		view.layer?.cornerRadius = 15.0
-		view.layer?.cornerCurve = .continuous
-		view.layer?.backgroundColor = NSColor.sand4T80.cgColor
+		contentBox.clipsToBounds = false
+		
+		contentBox.wantsLayer = true
+		contentBox.layer?.borderColor = NSColor.clear.cgColor
+		contentBox.layer?.cornerRadius = 15.0
+		contentBox.layer?.cornerCurve = .continuous
+		contentBox.layer?.backgroundColor = NSColor.sand4T80.cgColor
+		
+		contentBox.layer?.shadowColor = NSColor.sand11.cgColor
+		contentBox.layer?.shadowOffset = CGSize(width: 0.0, height: -4.0)
+		contentBox.layer?.shadowOpacity = 0.3
+		contentBox.layer?.shadowRadius = 15.0
+		
+		contentBox.layer?.masksToBounds = false
 	}
 	
 	private func styleDeletButton(){
