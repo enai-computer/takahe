@@ -16,6 +16,7 @@ class NiSpaceViewController: NSViewController, NSTextFieldDelegate{
 	@IBOutlet var header: SpaceTopbar!
 	@IBOutlet var time: NSTextField!
 	@IBOutlet var spaceName: NSTextField!
+	@IBOutlet var spaceIcon: NSImageView!
 	@IBOutlet var searchIcon: NiActionImage!
 	private var currentSpaceName: String?
 	@IBOutlet var visEffectView: NSVisualEffectView!
@@ -75,11 +76,15 @@ class NiSpaceViewController: NSViewController, NSTextFieldDelegate{
  
 	override func mouseEntered(with event: NSEvent) {
 		header.layer?.backgroundColor = NSColor.sand1.cgColor
+		searchIcon.contentTintColor = NSColor.sand11
+		spaceIcon.contentTintColor = NSColor.sand11
 		visEffectView.isHidden = true
 	}
 	
 	override func mouseExited(with event: NSEvent) {
 		header.layer?.backgroundColor = NSColor.sand1T10.cgColor
+		searchIcon.contentTintColor = NSColor.sand9
+		spaceIcon.contentTintColor = NSColor.sand9
 		visEffectView.isHidden = false
 	}
 	
