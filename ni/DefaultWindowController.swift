@@ -56,14 +56,26 @@ class DefaultWindowController: NSWindowController, NSWindowDelegate{
 		
 		//application will be active soon
 		if(windowObj.isOnActiveSpace && prevScreenWidth != windowObj.frame.width){
-			guard let spaceViewController = contentViewController as? NiSpaceViewController else {return}
-			spaceViewController.reloadSpace()
-			self.spaceSaved = false
-			
-			prevScreenWidth = windowObj.frame.width
-//			print("reloaded space, for width: \(windowObj.frame.width)")
+			Task{
+				try await Task.sleep(for: .milliseconds(300))
+				DispatchQueue.main.async {
+					self.doSpaceResize(windowObj)
+				}
+			}
 		}
+	}
+	
+	@MainActor
+	private func doSpaceResize(_ windowObj: NSWindow){
+		guard let spaceViewController = contentViewController as? NiSpaceViewController else {return}
+		if(prevScreenWidth == windowObj.frame.width){
+			return
+		}
+		spaceViewController.reloadSpace()
+		self.spaceSaved = false
 		
+		prevScreenWidth = windowObj.frame.width
+//		print("reloaded space, for width: \(windowObj.frame.width)")
 	}
 
 	func windowWillClose(_ notification: Notification) {
