@@ -166,6 +166,33 @@ class CFSimpleFrameView: CFBaseView{
 		}
 	}
 	
+	override func resetCursorRects() {
+		if(frameIsActive){
+			//otherwise hand opens while dragging
+			if(cursorDownPoint == .zero){
+				addCursorRect(getTopBorderActionArea(), cursor: NSCursor.openHand)
+				addCursorRect(getDragArea(), cursor: NSCursor.openHand)
+			}
+			addCursorRect(getRightSideBorderActionArea(), cursor: niLeftRightCursor)
+			addCursorRect(getLeftSideBorderActionArea(), cursor: niLeftRightCursor)
+			addCursorRect(getBottomBorderActionArea(), cursor: niUpDownCursor)
+			
+			//Corners Top
+			addCursorRect(getTopLeftCornerActionAreaVertical(), cursor: niDiagonalCursor)
+			addCursorRect(getTopLeftCornerActionAreaHorizontal(), cursor: niDiagonalCursor)
+			
+			addCursorRect(getTopRightCornerActionAreaVertical(), cursor: niDiagonalFlippedCursor)
+			addCursorRect(getTopRightCornerActionAreaHorizontal(), cursor: niDiagonalFlippedCursor)
+			
+			//Corners Bottom
+			addCursorRect(getBottomRightCornerActionAreaVertical(), cursor: niDiagonalCursor)
+			addCursorRect(getBottomRightCornerActionAreaHorizontal(), cursor: niDiagonalCursor)
+			
+			addCursorRect(getBottomLeftCornerActionAreaVertical(), cursor: niDiagonalFlippedCursor)
+			addCursorRect(getBottomLeftCornerActionAreaHorizontal(), cursor: niDiagonalFlippedCursor)
+		}
+	}
+	
 	func clickedMinimizeButton(with event: NSEvent){
 		guard let myController = nextResponder as? ContentFrameController else{return}
 		myController.minimizeClicked(event)
