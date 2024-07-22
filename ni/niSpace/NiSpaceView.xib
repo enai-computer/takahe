@@ -30,7 +30,7 @@
                         <rect key="frame" x="1" y="1" width="1598" height="898"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view id="93b-vm-ObV" customClass="NiSpaceDocumentView" customModule="ni" customModuleProvider="target">
+                            <view autoresizesSubviews="NO" id="93b-vm-ObV" customClass="NiSpaceDocumentView" customModule="ni" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="1583" height="883"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </view>
