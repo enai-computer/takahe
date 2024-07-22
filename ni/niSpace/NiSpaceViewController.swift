@@ -13,6 +13,7 @@ class NiSpaceViewController: NSViewController, NSTextFieldDelegate{
 	private var niSpaceID: UUID
 	
 	//header elements here:
+	@IBOutlet var headerContainer: NSView!
 	@IBOutlet var header: SpaceTopbar!
 	@IBOutlet var time: NSTextField!
 	@IBOutlet var spaceName: NSTextField!
@@ -273,7 +274,7 @@ class NiSpaceViewController: NSViewController, NSTextFieldDelegate{
 		}
 		
 		cursorPos = self.view.convert(event.locationInWindow, from: nil)
-		if(NSPointInRect(cursorPos, header.frame)){
+		if(NSPointInRect(cursorPos, headerContainer.frame)){
 			return
 		}
 		

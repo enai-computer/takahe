@@ -9,6 +9,7 @@
         <customObject id="-2" userLabel="File's Owner" customClass="NiSpaceViewController" customModule="ni" customModuleProvider="target">
             <connections>
                 <outlet property="header" destination="iIa-km-m0P" id="aNT-h4-Qbh"/>
+                <outlet property="headerContainer" destination="m2w-Th-Zhg" id="dvi-IC-NR0"/>
                 <outlet property="niDocument" destination="AOV-if-yNQ" id="XS1-g0-Czv"/>
                 <outlet property="niScrollView" destination="eEh-KB-aea" id="eGO-rP-RcL"/>
                 <outlet property="searchIcon" destination="uIA-xm-pTo" id="bdh-7n-Of2"/>
