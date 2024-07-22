@@ -12,6 +12,7 @@
                 <outlet property="niDocument" destination="AOV-if-yNQ" id="XS1-g0-Czv"/>
                 <outlet property="niScrollView" destination="eEh-KB-aea" id="eGO-rP-RcL"/>
                 <outlet property="searchIcon" destination="uIA-xm-pTo" id="bdh-7n-Of2"/>
+                <outlet property="spaceIcon" destination="Yne-Pi-Jml" id="l5U-YG-TqC"/>
                 <outlet property="spaceName" destination="IcY-Xb-pUo" id="ECl-ux-gyo"/>
                 <outlet property="time" destination="yLB-kD-fbD" id="LJa-ji-zdb"/>
                 <outlet property="visEffectView" destination="OTL-Hy-eFp" id="KEH-QA-Cwy"/>
@@ -65,7 +66,7 @@
                                     <color key="contentTintColor" name="sand9"/>
                                 </imageView>
                                 <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IcY-Xb-pUo" customClass="NiTextField" customModule="ni" customModuleProvider="target">
-                                    <rect key="frame" x="54" y="8" width="424" height="20"/>
+                                    <rect key="frame" x="58" y="8" width="424" height="20"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <textFieldCell key="cell" lineBreakMode="clipping" allowsUndo="NO" title="SpaceName" id="ioC-6E-T33">
                                         <font key="font" size="15" name="Sohne-Kraftig"/>
@@ -90,9 +91,14 @@
                                     </textFieldCell>
                                 </textField>
                                 <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uIA-xm-pTo" customClass="NiActionImage" customModule="ni" customModuleProvider="target">
-                                    <rect key="frame" x="1494" y="8" width="20" height="20"/>
+                                    <rect key="frame" x="1494" y="7" width="20" height="20"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="search" id="uVf-dX-FXz"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="color" keyPath="defaultTint">
+                                            <color key="value" name="sand9"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
                                 </imageView>
                             </subviews>
                         </customView>

@@ -13,7 +13,11 @@ class NiActionImage: NSImageView{
 	var mouseDownFunction: ((NSEvent) -> Void)?
 	var mouseDownInActiveFunction: ((NSEvent) -> Void)?
 	var isActiveFunction: (() -> Bool)?
-
+	
+	@IBInspectable public var defaultTint: NSColor = .sand11
+	
+	private var prevDefaultTint: NSColor?
+	
 	init(image: NSImage){
 		super.init(frame: NSRect(origin: CGPoint(x: 0.0, y: 0.0), size: image.size))
 		self.image = image
@@ -43,6 +47,7 @@ class NiActionImage: NSImageView{
 		if(isActiveFunction != nil && !isActiveFunction!()){
 			return
 		}
+		prevDefaultTint = self.contentTintColor
 		self.contentTintColor = NSColor(.birkin)
 	}
 	
@@ -52,7 +57,7 @@ class NiActionImage: NSImageView{
 			self.tintInactive()
 			return
 		}
-		self.tintActive()
+		self.contentTintColor = prevDefaultTint ?? defaultTint
 	}
 	
 	func tintInactive(){
@@ -60,7 +65,7 @@ class NiActionImage: NSImageView{
 	}
 	
 	func tintActive(){
-		self.contentTintColor = NSColor(.sand11)
+		self.contentTintColor = defaultTint
 	}
 	
 	override func prepareForReuse() {
