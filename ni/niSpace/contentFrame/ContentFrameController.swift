@@ -688,10 +688,15 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	/*
 	 * MARK: selecting, closing, editing tabs
 	 */
-	func closeTab(at: Int){
-		if(at != selectedTabModel){
-			//open: implement proper methodology to end editing a URL, before closing a tab
+	func closeTab(at position: Int){
+		if(position != selectedTabModel){
+			//TODO: Before exposing close UI element on non-selected tabs.
+			//Implement proper methodology to end editing a URL, before closing a tab
 			//otherwise we'll run into an index out of bounds issue
+			expandedCFView?.deleteSelectedTab(at: position)
+			var deletedTabModel = self.tabs.remove(at: position)
+			expandedCFView?.cfTabHeadCollection.reloadData()
+			deletedTabModel.viewItem = nil
 		}else {
 			closeSelectedTab()
 		}
@@ -928,6 +933,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	 */
 	func webView(_ webView: WKWebView, didFinish: WKNavigation!){
 		guard let wv = webView as? NiWebView else{return}
+		wv.viewLoadedWebsite()
 		
 		//check if tab was closed by the time this callback happens
 		if(tabs.count <= wv.tabHeadPosition || tabs[wv.tabHeadPosition].webView != wv){
@@ -1008,6 +1014,11 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	func webView(_ webView: WKWebView, decidePolicyFor navigationResponse: WKNavigationResponse, decisionHandler: @escaping (WKNavigationResponsePolicy) -> Void) {
 		if (navigationResponse.response.mimeType == "application/pdf"){
 			decisionHandler(.download)
+			if let niWV = webView as? NiWebView{
+				if(!niWV.websiteLoaded){
+					NiDownloadHandler.instance.setCloseTabCallback(for: niWV)
+				}
+			}
 			return
 		}
 		if navigationResponse.canShowMIMEType {

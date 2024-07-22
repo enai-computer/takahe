@@ -14,6 +14,7 @@ class NiDownloadHandler: NSObject, WKDownloadDelegate{
 	static let instance = NiDownloadHandler()
 	let downloadFolder: URL?
 	var downloadsInProgress: [URLRequest: URL] = [:]
+	var tabsToClose: Set<NiWebView> = []
 	
 	override init() {
 		do {
@@ -59,6 +60,15 @@ class NiDownloadHandler: NSObject, WKDownloadDelegate{
 				}
 			}
 		}
+		if let niWebView = download.webView as? NiWebView{
+			if(tabsToClose.remove(niWebView) != nil){
+				niWebView.owner?.closeTab(at: niWebView.tabHeadPosition)
+			}
+		}
+	}
+	
+	func setCloseTabCallback(for niWV: NiWebView){
+		tabsToClose.insert(niWV)
 	}
 	
 	private func handleDownloadedFile(in cachedlocation: URL, from source: String?) throws{

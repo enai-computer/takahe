@@ -18,7 +18,8 @@ class NiWebView: WKWebView, CFContentItem, CFContentSearch{
 	var tabHeadPosition: Int = -1
 	var retries: Int = 0
 	let findConfig = WKFindConfiguration()
-
+	private(set) var websiteLoaded = false
+	
 	// overlays own view to deactivate clicks and visualise deactivation state
 	private var overlay: NSView?
 	var searchPanel: NiWebViewFindPanel?
@@ -69,6 +70,10 @@ class NiWebView: WKWebView, CFContentItem, CFContentSearch{
 		return
 	}
 
+	func viewLoadedWebsite(){
+		websiteLoaded = true
+	}
+	
 	func spaceClosed(){
 		self.pauseAllMediaPlayback()
 		self.closeAllMediaPresentations()
