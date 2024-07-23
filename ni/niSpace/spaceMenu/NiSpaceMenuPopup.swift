@@ -70,8 +70,8 @@ class NiSpaceMenuPopup: NSObject{
 		}else if(content == .txt){
 			return NiMenuItemViewModel(title: "Paste text", isEnabled: true, mouseDownFunction: pasteTxt)
 		}else if(content == .pdf){
-			return NiMenuItemViewModel(title: "Paste pdf", isEnabled: true, mouseDownFunction: pastePdf)
+			return NiMenuItemViewModel(title: "Paste PDF", isEnabled: true, mouseDownFunction: pastePdf)
 		}
-		return NiMenuItemViewModel(title: "Paste pdf, image or text", isEnabled: false, mouseDownFunction: nil)
+		return NiMenuItemViewModel(title: "Paste PDF, image or text", isEnabled: false, mouseDownFunction: nil)
 	}
 }
