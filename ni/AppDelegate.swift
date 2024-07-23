@@ -216,6 +216,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 				self.showPalette()
 				return nil
 			}
+			if(event.modifierFlags.contains(.command) && event.keyCode == kVK_ANSI_Period){
+				self.showPalette()
+				return nil
+			}
 			if(event.modifierFlags.contains(.control) && event.modifierFlags.contains(.shift) && event.keyCode == kVK_Tab){
 				self.getNiSpaceViewController()?.switchToPrevTab()
 				return nil
