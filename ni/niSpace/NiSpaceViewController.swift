@@ -16,7 +16,7 @@ class NiSpaceViewController: NSViewController, NSTextFieldDelegate{
 	@IBOutlet var headerContainer: NSView!
 	@IBOutlet var header: SpaceTopbar!
 	@IBOutlet var time: NSTextField!
-	@IBOutlet var spaceName: NSTextField!
+	@IBOutlet var spaceName: NiTextField!
 	@IBOutlet var spaceIcon: NSImageView!
 	@IBOutlet var searchIcon: NiActionImage!
 	private var currentSpaceName: String?
@@ -326,8 +326,10 @@ class NiSpaceViewController: NSViewController, NSTextFieldDelegate{
 		spaceName.currentEditor()?.selectedRange = NSMakeRange(0, 0)
 		spaceName.isEditable = false
 		spaceName.isSelectable = false
-		spaceName.refusesFirstResponder = true
-		styleEndEditSpaceName()
+		
+		//need to have a different first responder right away,
+		//otherwise we can not click directly onto the spaceName again to rename, as the click will not be registered correctly
+		view.window?.makeFirstResponder(header)
 		
 		if(obj.userInfo?["NSTextMovement"] as? NSTextMovement == NSTextMovement.cancel){
 			revertRenamingChanges()
@@ -343,14 +345,12 @@ class NiSpaceViewController: NSViewController, NSTextFieldDelegate{
 	}
 	
 	func styleEndEditSpaceName(){
-		spaceName.refusesFirstResponder = true
-		spaceName.isSelectable = false
 		spaceName.isEditable = false
-		spaceName.isEnabled = true
+		spaceName.isSelectable = false
 	}
 	
 	private func revertRenamingChanges(){
-		spaceName.stringValue = currentSpaceName!
+		spaceName.stringValue = currentSpaceName ?? spaceName.stringValue
 		currentSpaceName = nil
 	}
 	
