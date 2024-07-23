@@ -66,7 +66,14 @@ class NiPalette: NSPanel, NiSearchWindowProtocol {
 		windowBlurView!.wantsLayer = true
 		setupBlurOnView(windowBlurView!, inputRadius: 1.0, inputSaturation: 0.6)
 		
-		paletteBlurView = NSView(frame: self.frame)
+		//needs to happen if the display that is shown on is not main
+		let backAdjustedOriginRect = CGRect(
+			origin: CGPoint(
+				x: self.frame.origin.x - mainWindow.screen!.frame.origin.x,
+				y: self.frame.origin.y - mainWindow.screen!.frame.origin.y
+			),
+			size: self.frame.size)
+		paletteBlurView = NSView(frame: backAdjustedOriginRect)
 		paletteBlurView!.wantsLayer = true
 		setupBlurOnView(paletteBlurView!, inputRadius: 8.0, inputSaturation: 1.0)
 		paletteBlurView?.layer?.cornerRadius = 15.0

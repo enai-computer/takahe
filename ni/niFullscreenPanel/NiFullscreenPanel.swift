@@ -71,6 +71,13 @@ class NiFullscreenPanel: NSPanel{
 		windowBlurView!.wantsLayer = true
 		setupBlurLayerView(windowBlurView!, inputRadius: 1.0, inputSaturation: 0.6)
 		
+		//needs to happen if the display that is shown on is not main
+		let backAdjustedOriginRect = CGRect(
+			origin: CGPoint(
+				x: contentRect.origin.x - mainWindow.screen!.frame.origin.x,
+				y: contentRect.origin.y - mainWindow.screen!.frame.origin.y
+			),
+			size: contentRect.size)
 		contentBlurView = NSView(frame: contentRect)
 		contentBlurView!.wantsLayer = true
 		setupBlurLayerView(contentBlurView!, inputRadius: 15.0, inputSaturation: 1.0)
