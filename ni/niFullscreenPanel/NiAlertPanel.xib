@@ -18,23 +18,32 @@
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <box boxType="custom" borderType="none" cornerRadius="15" title="Box" titlePosition="noTitle" id="JrN-pQ-Oxo">
-            <rect key="frame" x="0.0" y="0.0" width="634" height="274"/>
+            <rect key="frame" x="0.0" y="0.0" width="640" height="280"/>
             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
             <view key="contentView" id="Pkc-5N-Bz1">
-                <rect key="frame" x="0.0" y="0.0" width="634" height="274"/>
+                <rect key="frame" x="0.0" y="0.0" width="640" height="280"/>
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
-                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fPl-Ao-MfY">
-                        <rect key="frame" x="40" y="115" width="560" height="90"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <textFieldCell key="cell" allowsUndo="NO" title="Once deleted, it can not be recovered." id="OUP-bN-IuC">
-                            <font key="font" size="24" name="Sohne-Buch"/>
+                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="g4x-9G-6VZ">
+                        <rect key="frame" x="40" y="208" width="560" height="32"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <textFieldCell key="cell" lineBreakMode="clipping" allowsUndo="NO" title="Are you sure you want to delete this space?" id="eNE-cW-RBa">
+                            <font key="font" size="24" name="Sohne-Kraftig"/>
                             <color key="textColor" name="sand12"/>
                             <color key="backgroundColor" name="transparent"/>
                         </textFieldCell>
                     </textField>
+                    <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fPl-Ao-MfY">
+                        <rect key="frame" x="40" y="114" width="560" height="70"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <textFieldCell key="cell" allowsUndo="NO" title="Once deleted, it can not be recovered. " id="OUP-bN-IuC">
+                            <font key="font" size="24" name="Sohne-Buch"/>
+                            <color key="textColor" name="sand11"/>
+                            <color key="backgroundColor" name="transparent"/>
+                        </textFieldCell>
+                    </textField>
                     <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sW0-lr-GcA" customClass="NiButton" customModule="ni" customModuleProvider="target">
-                        <rect key="frame" x="333" y="40" width="110" height="52"/>
+                        <rect key="frame" x="339" y="40" width="110" height="52"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                         <buttonCell key="cell" type="bevel" title="Delete" bezelStyle="regularSquare" alignment="center" borderStyle="border" inset="2" id="hZG-k5-pmZ">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -89,7 +98,7 @@
                         </connections>
                     </button>
                     <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1kn-0t-IVJ" customClass="NiButton" customModule="ni" customModuleProvider="target">
-                        <rect key="frame" x="477" y="40" width="110" height="52"/>
+                        <rect key="frame" x="483" y="40" width="110" height="52"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                         <buttonCell key="cell" type="bevel" title="Cancel" bezelStyle="regularSquare" alignment="center" borderStyle="border" inset="2" id="BvR-pp-LuW">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -140,19 +149,10 @@
                             <action selector="cancelAction:" target="-2" id="muu-eB-KsN"/>
                         </connections>
                     </button>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="g4x-9G-6VZ">
-                        <rect key="frame" x="40" y="228" width="560" height="32"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <textFieldCell key="cell" lineBreakMode="clipping" allowsUndo="NO" title="Are you sure you want to delete this space?" id="eNE-cW-RBa">
-                            <font key="font" size="24" name="Sohne-Kraftig"/>
-                            <color key="textColor" name="sand12"/>
-                            <color key="backgroundColor" name="transparent"/>
-                        </textFieldCell>
-                    </textField>
                 </subviews>
             </view>
             <color key="borderColor" name="sand4"/>
-            <color key="fillColor" name="sand8T20"/>
+            <color key="fillColor" name="sand4T70"/>
             <point key="canvasLocation" x="90" y="185"/>
         </box>
     </objects>
@@ -163,6 +163,9 @@
         <namedColor name="Sand1">
             <color red="0.99215686274509807" green="0.99215686274509807" blue="0.9882352941176471" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <namedColor name="sand11">
+            <color red="0.4392156862745098" green="0.43529411764705883" blue="0.42352941176470588" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="sand12">
             <color red="0.10588235294117647" green="0.10588235294117647" blue="0.094117647058823528" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
@@ -172,8 +175,8 @@
         <namedColor name="sand4">
             <color red="0.93333333333333335" green="0.93333333333333335" blue="0.92549019607843142" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <namedColor name="sand8T20">
-            <color red="0.78431372549019607" green="0.7803921568627451" blue="0.75686274509803919" alpha="0.20000000298023224" colorSpace="custom" customColorSpace="sRGB"/>
+        <namedColor name="sand4T70">
+            <color red="0.93333333333333335" green="0.93333333333333335" blue="0.92549019607843142" alpha="0.69999999999999996" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="transparent">
             <color red="1" green="1" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
