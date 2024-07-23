@@ -28,7 +28,7 @@ func reopenContentFrame(screenWidth: CGFloat, contentFrame: NiContentFrameModel,
 	)
 	
 	if(controller.tabs.count != tabViewModels.count){
-		preconditionFailure("Tabs not generated correctly. Contentframe is missing tabs")
+		print("Content missing: Expected number of content Elements: \(tabViewModels.count) actual number: \(controller.tabs.count).")
 	}
 	
 	return controller
