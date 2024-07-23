@@ -14,7 +14,7 @@ class NiMenuWindow: NSPanel {
 	override var canBecomeMain: Bool {return false}
 	private var screenToDisplayOn: NSScreen?
 	
-	init(origin: NSPoint, dirtyMenuItems: [NiMenuItemViewModel?], currentScreen: NSScreen, adjustOrigin: Bool = true){
+	init(origin: NSPoint, dirtyMenuItems: [NiMenuItemViewModel?], currentScreen: NSScreen, adjustOrigin: Bool = true, adjustForOutofBounds: Bool = false){
 		niDelegate = NiMenuWindowDelegate()
 		
 		screenToDisplayOn = currentScreen
@@ -25,7 +25,15 @@ class NiMenuWindow: NSPanel {
 		if(adjustOrigin){
 			adjustedOrigin.y = origin.y - size.height
 		}
-		let frameRect = NSPanel.rectForScreen(NSRect(origin: adjustedOrigin, size: size), screen: currentScreen)
+		var frameRect = NSPanel.rectForScreen(NSRect(origin: adjustedOrigin, size: size), screen: currentScreen)
+		
+		if(adjustForOutofBounds && currentScreen.frame.maxX < frameRect.maxX){
+			frameRect.origin.x -= (frameRect.width - 26.0)
+		}
+		if(adjustForOutofBounds && frameRect.minY < 0){
+			frameRect.origin.y += (frameRect.height - 18)
+		}
+		
 		super.init(
 			contentRect: frameRect,
 			styleMask: NiMenuWindow.getStyleMask(),
