@@ -188,7 +188,7 @@ class CFBaseView: NSBox{
 		if(nsize.width < minFrameWidth){
 			nsize.width = minFrameWidth
 		}
-		
+				
 		if(fixedFrameRatio != nil){
 			let posXDiff = xDiff.negateIfNegative()
 			let posYDiff = yDiff.negateIfNegative()
@@ -206,7 +206,12 @@ class CFBaseView: NSBox{
 		}
 		
 		if(invertY && frame.size.height != nsize.height){
-			self.frame.origin.y -= yDiff
+			if((self.frame.origin.y - yDiff) < 40.0){
+				frame.origin.y = 40.0
+				nsize.height = frame.size.height
+			}else{
+				self.frame.origin.y -= yDiff
+			}
 		}
 		self.setFrameSize(nsize)
 		
