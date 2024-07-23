@@ -75,7 +75,7 @@
                                         <color key="backgroundColor" name="Sand2"/>
                                     </textFieldCell>
                                     <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="boolean" keyPath="hasHoverEffect" value="NO"/>
+                                        <userDefinedRuntimeAttribute type="boolean" keyPath="hasHoverEffect" value="YES"/>
                                         <userDefinedRuntimeAttribute type="color" keyPath="hoverTint">
                                             <color key="value" name="Birkin"/>
                                         </userDefinedRuntimeAttribute>

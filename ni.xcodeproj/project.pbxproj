@@ -577,10 +577,11 @@
 			isa = PBXGroup;
 			children = (
 				CDA639572BF508FF001941DE /* WelcomeSpaceGenerator.swift */,
-				CD66CE372B1FD26A0006BB98 /* NiStringUtils.swift */,
 				CD8873772BCD649800007BE9 /* TimeUtils.swift */,
+				CD66CE372B1FD26A0006BB98 /* NiStringUtils.swift */,
 				CD5B15392BDFBFE40030F017 /* NiActionImage.swift */,
 				CDD87ECF2BF23C650045B84B /* NiCursorUtils.swift */,
+				CD9C2B262C32F8B800C6126F /* NiButton.swift */,
 				CDFA8CFE2C04815C00882722 /* EventUtils.swift */,
 				CD1853162C09D623001FE566 /* DoubleUtils.swift */,
 				CD1853182C09EA96001FE566 /* PasteboardUtils.swift */,
@@ -590,7 +591,6 @@
 				CD72B83E2C24714800104802 /* CAUtils.swift */,
 				CD6DED912C257A5000AA8BC4 /* NiActionLabel.swift */,
 				CDC5A1132C25C8F3002F5621 /* EmptyRectView.swift */,
-				CD9C2B262C32F8B800C6126F /* NiButton.swift */,
 				CD4D7AE52C4959B800B6DBFD /* DateUtils.swift */,
 			);
 			path = utils;
@@ -1206,7 +1206,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = "0.1.7 --- 2024-07-21.1";
+				CURRENT_PROJECT_VERSION = "0.1.7 --- 2024-07-23.1";
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = SNXQ3BDQ5V;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -1239,7 +1239,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = "0.1.7 --- 2024-07-21.1";
+				CURRENT_PROJECT_VERSION = "0.1.7 --- 2024-07-23.1";
 				DEAD_CODE_STRIPPING = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
