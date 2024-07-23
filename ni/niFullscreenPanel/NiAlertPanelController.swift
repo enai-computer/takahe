@@ -48,7 +48,7 @@ class NiAlertPanelController: NSViewController{
 		contentBox.layer?.borderColor = NSColor.clear.cgColor
 		contentBox.layer?.cornerRadius = 15.0
 		contentBox.layer?.cornerCurve = .continuous
-		contentBox.layer?.backgroundColor = NSColor.sand4T80.cgColor
+		contentBox.layer?.backgroundColor = NSColor.sand4T70.cgColor
 		
 		contentBox.layer?.shadowColor = NSColor.sand11.cgColor
 		contentBox.layer?.shadowOffset = CGSize(width: 0.0, height: -4.0)
