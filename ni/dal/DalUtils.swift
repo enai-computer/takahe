@@ -68,6 +68,15 @@ func fetchImgFromMainBundle(id: UUID) -> NSImage? {
 	return nil
 }
 
+func fetchPDFFromMainBundle(name: String) -> PDFDocument? {
+	let urlString = "file://" + Bundle.main.resourcePath! + "/\(name).pdf"
+	
+	if let fUrl = URL(string: urlString){
+		return fetchPdfFromDisk(fUrl)
+	}
+	return nil
+}
+
 /* returning Insert example: https://github.com/stephencelis/SQLite.swift/issues/1221#issuecomment-1732594273
  extension Insert {
 	 func returning(_ columns: [Expression<Int64>]) -> Insert {

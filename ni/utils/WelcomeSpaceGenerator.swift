@@ -57,6 +57,43 @@ class WelcomeSpaceGenerator{
 			spaceView.addNiFrame(cfController)
 			cfController.myView.setFrameOwner(spaceView)
 		}
+		let pdfs = pdfTabViewModel()
+		for pdfTab in pdfs{
+			let cfController = reopenContentFrameWithOutPositioning(
+				screenWidth: screenSize.width,
+				contentFrameState: .simpleMinimised,
+				tabViewModels: [pdfTab],
+				groupName: pdfTab.title)
+			cfController.view.frame = positionWindow(
+				screenSize,
+				latestMinimizedWindowY: latestMinimizedWindowY,
+				isMinimised: true,
+				frameSize: cfController.view.frame.size
+			)
+			latestMinimizedWindowY = cfController.view.frame.maxY
+			
+			spaceView.addNiFrame(cfController)
+			cfController.myView.setFrameOwner(spaceView)
+		}
+	}
+	
+	static func pdfTabViewModel() -> [TabViewModel]{
+		let licklider = fetchPDFFromMainBundle(name: "licklider")
+		let toolsmith = fetchPDFFromMainBundle(name: "toolsmith")
+		return [
+			TabViewModel(contentId: UUID(),
+						 type: .pdf,
+						 title: "Man-Computer Symbiosis",
+						 state: .loaded,
+						 data: licklider
+						),
+			TabViewModel(contentId: UUID(),
+						 type: .pdf,
+						 title: "The Computer Scientist as Toolsmith",
+						 state: .loaded,
+						 data: toolsmith
+						)
+		]
 	}
 	
 	static func urlStrsToNiCFTabModel(tabs: [WelcomeSpaceTabModel]) -> [TabViewModel]{
