@@ -40,7 +40,15 @@ class NiFullscreenPanel: NSPanel{
 		hasShadow = false
 		isOpaque = false
 		backgroundColor = NSColor.clear
-		setBlurOnMainWindow(mainWindow, with: contentViewController.panelContet.frame)
+		
+		let contentBlurRect = CGRect(
+			origin: CGPoint(
+				x: contentViewController.contentBox.frame.origin.x + self.frame.origin.x,
+				y: contentViewController.contentBox.frame.origin.y + self.frame.origin.y
+			),
+			size: contentViewController.contentBox.frame.size
+		)
+		setBlurOnMainWindow(mainWindow, for: contentBlurRect)
 	}
 	
 	private static func calcContentRect(_ contentSize: NSSize, screenSize: NSSize) -> NSRect{
@@ -57,7 +65,7 @@ class NiFullscreenPanel: NSPanel{
 		)
 	}
 	
-	private func setBlurOnMainWindow(_ mainWindow: NSWindow, with contentRect: CGRect){
+	private func setBlurOnMainWindow(_ mainWindow: NSWindow, for contentRect: CGRect){
 		windowBlurView = NSView(frame: mainWindow.frame)
 		windowBlurView?.frame.origin = CGPoint(x: 0.0, y: 0.0)
 		windowBlurView!.wantsLayer = true
@@ -65,7 +73,7 @@ class NiFullscreenPanel: NSPanel{
 		
 		contentBlurView = NSView(frame: contentRect)
 		contentBlurView!.wantsLayer = true
-		setupBlurLayerView(contentBlurView!, inputRadius: 30.0, inputSaturation: 1.0)
+		setupBlurLayerView(contentBlurView!, inputRadius: 15.0, inputSaturation: 1.0)
 		contentBlurView?.layer?.cornerRadius = 15.0
 		
 		mainWindow.contentView!.addSubview(windowBlurView!)

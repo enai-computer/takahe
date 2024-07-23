@@ -23,7 +23,7 @@
                 </subviews>
             </view>
             <color key="borderColor" name="transparent"/>
-            <color key="fillColor" name="sand2"/>
+            <color key="fillColor" name="Sand2"/>
             <connections>
                 <outlet property="lstOfMenuItems" destination="xGj-L7-x4G" id="5SM-NJ-kRp"/>
             </connections>
@@ -31,7 +31,7 @@
         </box>
     </objects>
     <resources>
-        <namedColor name="sand2">
+        <namedColor name="Sand2">
             <color red="0.97647058823529409" green="0.97647058823529409" blue="0.97254901960784312" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="transparent">

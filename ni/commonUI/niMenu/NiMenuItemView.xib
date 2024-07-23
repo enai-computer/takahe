@@ -13,22 +13,22 @@
             <rect key="frame" x="0.0" y="0.0" width="240" height="40"/>
             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
             <subviews>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" textCompletion="NO" id="q8A-fu-mJB">
+                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" textCompletion="NO" id="q8A-fu-mJB">
                     <rect key="frame" x="8" y="8" width="219" height="22"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" lineBreakMode="clipping" enabled="NO" refusesFirstResponder="YES" allowsUndo="NO" title="Write a note" id="EKI-vR-Bu6">
                         <font key="font" size="16" name="Sohne-Buch"/>
                         <color key="textColor" name="sand12"/>
-                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="transparent"/>
                     </textFieldCell>
                 </textField>
-                <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" id="ClY-8r-lXp">
+                <textField hidden="YES" focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" id="ClY-8r-lXp">
                     <rect key="frame" x="190" y="8" width="35" height="22"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" lineBreakMode="clipping" refusesFirstResponder="YES" title="⌘ N" id="v3q-TH-Kxj">
                         <font key="font" size="16" name="Sohne-Buch"/>
                         <color key="textColor" name="sand11"/>
-                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="transparent"/>
                     </textFieldCell>
                 </textField>
             </subviews>
@@ -45,6 +45,9 @@
         </namedColor>
         <namedColor name="sand12">
             <color red="0.10588235294117647" green="0.10588235294117647" blue="0.094117647058823528" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="transparent">
+            <color red="1" green="1" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>
