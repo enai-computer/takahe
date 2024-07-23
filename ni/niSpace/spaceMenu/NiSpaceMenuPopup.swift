@@ -61,7 +61,7 @@ class NiSpaceMenuPopup: NSObject{
 		guard let pdf = NSPasteboard.general.getPdf() else {return}
 		let title = pdf.tryGetTitle() ?? NSPasteboard.general.tryGetName()
 		let source = NSPasteboard.general.tryGetFileURL()
-		parentController.pastePdf(pdf: pdf, screenPosition:  self.originInDocument, title: title, source: source)
+		parentController.pastePdf(pdf: pdf, documentPosition:  self.originInDocument, title: title, source: source)
 	}
 	
 	private func getPasteMenuItem(for content: NiPasteboardContent?) -> NiMenuItemViewModel{

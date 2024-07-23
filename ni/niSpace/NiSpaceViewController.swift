@@ -113,7 +113,9 @@ class NiSpaceViewController: NSViewController, NSTextFieldDelegate{
 			let title = pdf.tryGetTitle() ?? NSPasteboard.general.tryGetName()
 			let source = NSPasteboard.general.tryGetFileURL()
 			let pos = view.window!.mouseLocationOutsideOfEventStream
-			pastePdf(pdf: pdf, screenPosition: pos, title: title, source: source)
+			if let docPosition = niScrollView.documentView?.convert(pos, from: nil){
+				pastePdf(pdf: pdf, documentPosition: docPosition, title: title, source: source)
+			}
 		}
 	}
 	
@@ -165,11 +167,9 @@ class NiSpaceViewController: NSViewController, NSTextFieldDelegate{
 		openPDF(pdf: pdf, position: origin, docSize: docSize, title: title, source: source)
 	}
 	
-	func pastePdf(pdf: PDFDocument, screenPosition at: CGPoint, title: String?, source: String?){
-		var position = at
-		position.y = niScrollView.documentView!.visibleRect.size.height - position.y + niScrollView.documentView!.visibleRect.origin.y
+	func pastePdf(pdf: PDFDocument, documentPosition at: CGPoint, title: String?, source: String?){
 		let docSize = getIntrinsicDocSize(for: pdf)
-		openPDF(pdf: pdf, position: position, docSize: docSize, title: title, source: source)
+		openPDF(pdf: pdf, position: at, docSize: docSize, title: title, source: source)
 	}
 	
 	private func openPDF(pdf: PDFDocument, position: CGPoint, docSize: CGSize, title: String?, source: String?){
