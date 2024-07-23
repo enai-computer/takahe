@@ -22,7 +22,7 @@ class NiSpaceMenuPopup: NSObject{
 			x: event.locationInWindow.x - 13.0,
 			y: event.locationInWindow.y + 9.0
 		)
-		let menuWindow = NiMenuWindow(origin: adjustedPos, dirtyMenuItems: getItems(), currentScreen: screen, adjustOrigin: true)
+		let menuWindow = NiMenuWindow(origin: adjustedPos, dirtyMenuItems: getItems(), currentScreen: screen, adjustOrigin: true, adjustForOutofBounds: true)
 		menuWindow.makeKeyAndOrderFront(nil)
 		return menuWindow
 	}
