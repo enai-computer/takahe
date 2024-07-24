@@ -20,7 +20,7 @@ class NiSearchController: NSViewController, NSCollectionViewDataSource, NSCollec
 	@IBOutlet var searchResultsCollection: NSCollectionView!
 	
 	private var selectedPosition: Int = 0
-	private var searchResults: [NiSearchResult] = []
+	private var searchResults: [NiSearchResultItem] = []
 	private let style: NiSearchViewStyle
 	
 	init(style: NiSearchViewStyle){
@@ -160,7 +160,7 @@ class NiSearchController: NSViewController, NSCollectionViewDataSource, NSCollec
 			selectedPos = selectedPosition
 		}
 		if let selectedItem = searchResultsCollection.item(at: selectedPos!) as? NiSearchResultViewItem{
-			selectedItem.openSpaceAndTryRemoveWindow()
+			selectedItem.tryOpenResult()
 		}
 	}
 
@@ -215,8 +215,7 @@ class NiSearchController: NSViewController, NSCollectionViewDataSource, NSCollec
 		guard let resultView = viewItem as? NiSearchResultViewItem else {return viewItem}
 		let dataItem = searchResults[indexPath.item]
 		resultView.configureView(
-			dataItem.name,
-			spaceId: dataItem.id,
+			dataItem,
 			position: indexPath.item,
 			style: self.style)
 		
