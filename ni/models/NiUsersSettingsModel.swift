@@ -12,7 +12,8 @@ enum UserSettingKey: String{
 		 spaceCachingEnabled,
 		 nrOfCachedSpaces,
 		 eveEnabled,
-		 cacheClearedLast
+		 cacheClearedLast,
+		 demoMode
 }
 
 struct NiUsersSettingsModel: Codable{
@@ -21,6 +22,7 @@ struct NiUsersSettingsModel: Codable{
 	let nrOfCachedSpaces: Int
 	let eveEnabled: Bool
 	let cacheClearedLast: Date
+	let demoMode: Bool
 }
 
 extension NiUsersSettingsModel{
@@ -33,6 +35,7 @@ extension NiUsersSettingsModel{
 		nrOfCachedSpaces = 3
 		eveEnabled = false
 		cacheClearedLast = Date(timeIntervalSince1970: 0.0)
+		demoMode = false
 	}
 	
 	init(from dic: [String: String]) throws{
@@ -41,6 +44,7 @@ extension NiUsersSettingsModel{
 		nrOfCachedSpaces = try getValueOrThrow(key: .nrOfCachedSpaces, from: dic)
 		eveEnabled = try getValueOrThrow(key: .eveEnabled, from: dic)
 		cacheClearedLast = try getValueOrThrow(key: .cacheClearedLast, from: dic)
+		demoMode = getValueOrDefault(key: .demoMode, from: dic, defaultVal: false)
 	}
 	
 	func toDic() -> [UserSettingKey: String]{
@@ -89,3 +93,9 @@ private func getValueOrThrow(key: UserSettingKey, from dic: [String: String]) th
 	throw NiUsersSettingsModelError.initErrorOn(setting: key.rawValue)
 }
 
+private func getValueOrDefault(key: UserSettingKey, from dic: [String: String], defaultVal: Bool) -> Bool{
+	if let valStr: String = dic[key.rawValue]{
+		return Bool(valStr) ?? defaultVal
+	}
+	return defaultVal
+}
