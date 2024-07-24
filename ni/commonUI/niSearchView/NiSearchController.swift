@@ -20,7 +20,7 @@ class NiSearchController: NSViewController, NSCollectionViewDataSource, NSCollec
 	@IBOutlet var searchResultsCollection: NSCollectionView!
 	
 	private var selectedPosition: Int = 0
-	private var searchResults: [NiDocumentViewModel] = []
+	private var searchResults: [NiSearchResult] = []
 	private let style: NiSearchViewStyle
 	
 	init(style: NiSearchViewStyle){
@@ -109,7 +109,7 @@ class NiSearchController: NSViewController, NSCollectionViewDataSource, NSCollec
 	
 	func controlTextDidChange(_ obj: Notification) {
 		if let dirtyTxt = (obj.object as? NSTextField)?.stringValue{
-			searchResults = Cook.instance.searchSpaces(typedChars: dirtyTxt, giveCreateNewSpaceOption: true)
+			searchResults = Cook.instance.searchSpaces(typedChars: dirtyTxt, giveCreateNewSpaceOption: true, displayOption: style)
 			searchResultsCollection.reloadData()
 			resetSelection()
 		}
