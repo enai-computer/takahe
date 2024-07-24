@@ -12,7 +12,7 @@ class NiSearchResultViewItem: NSCollectionViewItem {
 	@IBOutlet var resultTitle: NSTextField!
 	@IBOutlet var rightSideElement: NiSearchResultViewItemRightIcon!
 	
-	private var spaceId: UUID?
+	private var resultData: NiSearchResultItem?
 	private var keySelected: Bool = false
 	private var birkinHighlight: NSView? = nil
 	private var style: NiSearchViewStyle? = nil
@@ -29,9 +29,9 @@ class NiSearchResultViewItem: NSCollectionViewItem {
 		view.addTrackingArea(hoverEffectTrackingArea)
     }
     
-	func configureView(_ title: String, spaceId: UUID?, position: Int, style: NiSearchViewStyle){
-		resultTitle.stringValue = title
-		self.spaceId = spaceId
+	func configureView(_ data: NiSearchResultItem, position: Int, style: NiSearchViewStyle){
+		resultTitle.stringValue = data.name
+		self.resultData = data
 		self.style = style
 
 		self.rightSideElement.configureElement(position)
@@ -71,18 +71,24 @@ class NiSearchResultViewItem: NSCollectionViewItem {
 	}
 	
 	override func mouseDown(with event: NSEvent) {
-		openSpaceAndTryRemoveWindow()
+		tryOpenResult()
+	}
+	
+	func tryOpenResult(){
+		if(resultData?.type == .niSpace){
+			openSpaceAndTryRemoveWindow()
+		}
 	}
 	
 	func openSpaceAndTryRemoveWindow(){
-		if(spaceId == nil){return}
+		if(resultData?.id == nil){return}
 		if let spaceViewController = NSApplication.shared.mainWindow?.contentViewController as? NiSpaceViewController{
-			if(spaceId == NiSpaceDocumentController.EMPTY_SPACE_ID){
+			if(resultData?.id == NiSpaceDocumentController.EMPTY_SPACE_ID){
 				if let spaceName = getEnteredSearchText()?.trimmingCharacters(in: .whitespaces){
 					spaceViewController.createSpace(name: spaceName)
 				}
 			}else{
-				spaceViewController.loadSpace(spaceId: spaceId!, name: resultTitle.stringValue)
+				spaceViewController.loadSpace(spaceId: resultData!.id!, name: resultTitle.stringValue)
 			}
 		}
 		if let paletteWindow = view.window as? NiSearchWindowProtocol{
