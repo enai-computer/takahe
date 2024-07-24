@@ -13,7 +13,7 @@ enum NiSearchResultType{
 	case niSpace, webApp
 }
 
-struct NiSearchResult{
+struct NiSearchResultItem{
 	let type: NiSearchResultType
 	let id: UUID?
 	let name: String
@@ -37,15 +37,15 @@ class Cook{
 					  giveCreateNewSpaceOption: Bool = false,
 					  insertWelcomeSpaceGenFirst: Bool = false,
 					  displayOption: NiSearchViewStyle = .homeView
-	) -> [NiSearchResult]{
-		var res: [NiSearchResult] = []
+	) -> [NiSearchResultItem]{
+		var res: [NiSearchResultItem] = []
 		var containsWelcomeSpace: Bool = excludeWelcomeSpaceGeneration
 		do{
 			for record in try Storage.instance.spacesDB.prepare(
 				buildSearchQuery(typedChars: typedChars, maxNrOfResults: maxNrOfResults)
 			){
 				res.append(
-					NiSearchResult(
+					NiSearchResultItem(
 						type: .niSpace,
 						id: try record.get(DocumentTable.id),
 						name: try record.get(DocumentTable.name),
@@ -64,9 +64,9 @@ class Cook{
 		
 		if(!containsWelcomeSpace){
 			if(insertWelcomeSpaceGenFirst){
-				res.insert(NiSearchResult(type: .niSpace, id: WelcomeSpaceGenerator.WELCOME_SPACE_ID, name: WelcomeSpaceGenerator.WELCOME_SPACE_NAME, data: nil), at: 0)
+				res.insert(NiSearchResultItem(type: .niSpace, id: WelcomeSpaceGenerator.WELCOME_SPACE_ID, name: WelcomeSpaceGenerator.WELCOME_SPACE_NAME, data: nil), at: 0)
 			}else{
-				res.append(NiSearchResult(type: .niSpace, id: WelcomeSpaceGenerator.WELCOME_SPACE_ID, name: WelcomeSpaceGenerator.WELCOME_SPACE_NAME, data: nil))
+				res.append(NiSearchResultItem(type: .niSpace, id: WelcomeSpaceGenerator.WELCOME_SPACE_ID, name: WelcomeSpaceGenerator.WELCOME_SPACE_NAME, data: nil))
 			}
 		}
 		
@@ -84,7 +84,7 @@ class Cook{
 				}
 				return true
 			}
-			res.append(NiSearchResult(type: .niSpace, id: NiSpaceDocumentController.EMPTY_SPACE_ID, name: "Create a new space", data: nil))
+			res.append(NiSearchResultItem(type: .niSpace, id: NiSpaceDocumentController.EMPTY_SPACE_ID, name: "Create a new space", data: nil))
 		}
 		return res
 	}
@@ -107,13 +107,13 @@ class Cook{
 	}
 	
 	//FIXME: very hacky - needs to be done properly
-	private func getWebApps(_ searchTerm: String) -> [NiSearchResult]{
-		var res: [NiSearchResult] = []
+	private func getWebApps(_ searchTerm: String) -> [NiSearchResultItem]{
+		var res: [NiSearchResultItem] = []
 		for item in preConfigedWebApps.keys{
 			if(item.lowercased().starts(with: searchTerm.lowercased())){
 				let data = preConfigedWebApps[item]
 				res.append(
-					NiSearchResult(type: .webApp, id: nil, name: item, data: data)
+					NiSearchResultItem(type: .webApp, id: nil, name: item, data: data)
 				)
 			}
 		}
