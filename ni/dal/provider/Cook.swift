@@ -9,6 +9,18 @@ import Foundation
 import SQLite
 
 
+enum NiSearchResultType{
+	case niSpace, webApp
+}
+
+struct NiSearchResult{
+	let type: NiSearchResultType
+	let id: UUID?
+	let name: String
+	let data: Any?
+}
+
+
 /** Named after Captain James Cook
  
  */
@@ -19,18 +31,25 @@ class Cook{
 	//TBD:
 	func search(){}
 	
-	func searchSpaces(typedChars: String?, maxNrOfResults: Int? = nil, excludeWelcomeSpaceGeneration: Bool = true, giveCreateNewSpaceOption: Bool = false, insertWelcomeSpaceGenFirst: Bool = false) -> [NiDocumentViewModel]{
-		var res: [NiDocumentViewModel] = []
+	func searchSpaces(typedChars: String?, 
+					  maxNrOfResults: Int? = nil,
+					  excludeWelcomeSpaceGeneration: Bool = true,
+					  giveCreateNewSpaceOption: Bool = false,
+					  insertWelcomeSpaceGenFirst: Bool = false,
+					  displayOption: NiSearchViewStyle = .homeView
+	) -> [NiSearchResult]{
+		var res: [NiSearchResult] = []
 		var containsWelcomeSpace: Bool = excludeWelcomeSpaceGeneration
 		do{
 			for record in try Storage.instance.spacesDB.prepare(
 				buildSearchQuery(typedChars: typedChars, maxNrOfResults: maxNrOfResults)
 			){
 				res.append(
-					NiDocumentViewModel(
+					NiSearchResult(
+						type: .niSpace,
 						id: try record.get(DocumentTable.id),
 						name: try record.get(DocumentTable.name),
-						updatedAt: Date(timeIntervalSince1970: try record.get(DocumentTable.updatedAt))
+						data: nil
 					)
 				)
 				if(!excludeWelcomeSpaceGeneration){
@@ -45,11 +64,18 @@ class Cook{
 		
 		if(!containsWelcomeSpace){
 			if(insertWelcomeSpaceGenFirst){
-				res.insert(NiDocumentViewModel(id: WelcomeSpaceGenerator.WELCOME_SPACE_ID, name: WelcomeSpaceGenerator.WELCOME_SPACE_NAME), at: 0)
+				res.insert(NiSearchResult(type: .niSpace, id: WelcomeSpaceGenerator.WELCOME_SPACE_ID, name: WelcomeSpaceGenerator.WELCOME_SPACE_NAME, data: nil), at: 0)
 			}else{
-				res.append(NiDocumentViewModel(id: WelcomeSpaceGenerator.WELCOME_SPACE_ID, name: WelcomeSpaceGenerator.WELCOME_SPACE_NAME))
+				res.append(NiSearchResult(type: .niSpace, id: WelcomeSpaceGenerator.WELCOME_SPACE_ID, name: WelcomeSpaceGenerator.WELCOME_SPACE_NAME, data: nil))
 			}
 		}
+		
+		//adding WebApps to search results
+		if(UserSettings.shared.demoMode && typedChars != nil && !typedChars!.isEmpty && displayOption == .palette){
+			res.append(contentsOf: getWebApps(typedChars!))
+		}
+		
+		//sorting
 		if(giveCreateNewSpaceOption && typedChars != nil && !typedChars!.isEmpty){
 			//FIXME: hacky sorting solution
 			res = res.sorted{
@@ -58,7 +84,7 @@ class Cook{
 				}
 				return true
 			}
-			res.append(NiDocumentViewModel(id: NiSpaceDocumentController.EMPTY_SPACE_ID, name: "Create a new space"))
+			res.append(NiSearchResult(type: .niSpace, id: NiSpaceDocumentController.EMPTY_SPACE_ID, name: "Create a new space", data: nil))
 		}
 		return res
 	}
@@ -79,4 +105,27 @@ class Cook{
 		}
 		return query
 	}
+	
+	//FIXME: very hacky - needs to be done properly
+	private func getWebApps(_ searchTerm: String) -> [NiSearchResult]{
+		var res: [NiSearchResult] = []
+		for item in preConfigedWebApps.keys{
+			if(item.lowercased().starts(with: searchTerm.lowercased())){
+				let data = preConfigedWebApps[item]
+				res.append(
+					NiSearchResult(type: .webApp, id: nil, name: item, data: data)
+				)
+			}
+		}
+		return res
+	}
 }
+
+
+let preConfigedWebApps: [String: String] = [
+	"WhatsApp": "https://web.whatsapp.com/",
+	"Linear": "https://linear.app/",
+	"Google Sheets": "https://sheets.google.com",
+	"Google Docs": "https://docs.google.com",
+	"Google Slides": "https://slides.google.com",
+]
