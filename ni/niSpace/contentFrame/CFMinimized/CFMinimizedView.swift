@@ -32,11 +32,11 @@ class CFMinimizedView: CFBaseView{
 		self.layer?.shadowRadius = 1.0
 		self.layer?.masksToBounds = false
 		
-		closeButton.mouseDownFunction = clickedCloseButton
+		closeButton.setMouseDownFunction(clickedCloseButton)
 		closeButton.isActiveFunction = self.isFrameActive
 		closeButton.mouseDownInActiveFunction = activateContentFrame
 		
-		maximizeButton.mouseDownFunction = maximizeButtonClicked
+		maximizeButton.setMouseDownFunction(maximizeButtonClicked)
 		maximizeButton.isActiveFunction = self.isFrameActive
 		maximizeButton.mouseDownInActiveFunction = activateContentFrame
 		

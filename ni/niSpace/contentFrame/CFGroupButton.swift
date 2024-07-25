@@ -73,7 +73,7 @@ class CFGroupButton: NSView, NSTextFieldDelegate{
 			return
 		}
 		let icon = NiActionImage(image: NSImage.groupIcon)
-		icon.mouseDownFunction = mouseDownFunction
+		icon.setMouseDownFunction(mouseDownFunction)
 		icon.mouseDownInActiveFunction = mouseDownInActiveFunction
 		icon.isActiveFunction = isActiveFunction
 		addSubview(icon)

@@ -31,7 +31,7 @@ class ContentFrameTabHead: NSCollectionViewItem, NSTextFieldDelegate {
 		tabHeadTitle.focusRingType = .none
 		
 		hideCloseButton()
-		closeButton.mouseDownFunction = pressedClosedButton
+		closeButton.setMouseDownFunction(pressedClosedButton)
 		
 		let hoverEffectTrackingArea = NSTrackingArea(rect: view.frame, options: [.mouseEnteredAndExited, .activeInKeyWindow], owner: self, userInfo: nil)
 		view.addTrackingArea(hoverEffectTrackingArea)
