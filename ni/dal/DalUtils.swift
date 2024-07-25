@@ -59,8 +59,8 @@ func fetchImgFromDisk(_ fUrl: URL) -> NSImage? {
 	return nil
 }
 
-func fetchImgFromMainBundle(id: UUID) -> NSImage? {
-	let urlString = "file://" + Bundle.main.resourcePath! + "/\(id).jpg"
+func fetchImgFromMainBundle(id: UUID, type: String = ".jpg") -> NSImage? {
+	let urlString = "file://" + Bundle.main.resourcePath! + "/\(id)\(type)"
 	
 	if let fUrl = URL(string: urlString){
 		return fetchImgFromDisk(fUrl)

@@ -77,10 +77,12 @@ class NiSearchResultViewItem: NSCollectionViewItem {
 	func tryOpenResult(){
 		if(resultData?.type == .niSpace){
 			openSpaceAndTryRemoveWindow()
+		}else if(resultData?.type == .webApp){
+			//TODO: open WebApp in SimpleFrame
 		}
 	}
 	
-	func openSpaceAndTryRemoveWindow(){
+	private func openSpaceAndTryRemoveWindow(){
 		if(resultData?.id == nil){return}
 		if let spaceViewController = NSApplication.shared.mainWindow?.contentViewController as? NiSpaceViewController{
 			if(resultData?.id == NiSpaceDocumentController.EMPTY_SPACE_ID){

@@ -12,6 +12,7 @@
                 <outlet property="headerContainer" destination="m2w-Th-Zhg" id="dvi-IC-NR0"/>
                 <outlet property="niDocument" destination="AOV-if-yNQ" id="XS1-g0-Czv"/>
                 <outlet property="niScrollView" destination="eEh-KB-aea" id="eGO-rP-RcL"/>
+                <outlet property="pinnedAppIcon" destination="FKx-O8-pCs" id="OTL-r3-JqI"/>
                 <outlet property="searchIcon" destination="uIA-xm-pTo" id="bdh-7n-Of2"/>
                 <outlet property="spaceIcon" destination="Yne-Pi-Jml" id="l5U-YG-TqC"/>
                 <outlet property="spaceName" destination="IcY-Xb-pUo" id="ECl-ux-gyo"/>
@@ -83,7 +84,7 @@
                                     </userDefinedRuntimeAttributes>
                                 </textField>
                                 <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" id="yLB-kD-fbD">
-                                    <rect key="frame" x="1398" y="9" width="84" height="18"/>
+                                    <rect key="frame" x="1370" y="9" width="84" height="18"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                     <textFieldCell key="cell" lineBreakMode="clipping" refusesFirstResponder="YES" allowsUndo="NO" alignment="right" title="10:00 AM" id="q69-4k-xlx">
                                         <font key="font" size="15" name="Inter-Regular"/>
@@ -92,7 +93,7 @@
                                     </textFieldCell>
                                 </textField>
                                 <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uIA-xm-pTo" customClass="NiActionImage" customModule="ni" customModuleProvider="target">
-                                    <rect key="frame" x="1494" y="7" width="20" height="20"/>
+                                    <rect key="frame" x="1466" y="7" width="20" height="20"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="search" id="uVf-dX-FXz"/>
                                     <userDefinedRuntimeAttributes>
@@ -100,6 +101,11 @@
                                             <color key="value" name="sand9"/>
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
+                                </imageView>
+                                <imageView wantsLayer="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FKx-O8-pCs" customClass="NiActionImage" customModule="ni" customModuleProvider="target">
+                                    <rect key="frame" x="1494" y="7" width="20" height="20"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="pinnedAppIcon" id="LNn-B4-hp2"/>
                                 </imageView>
                             </subviews>
                         </customView>
@@ -120,6 +126,7 @@
     </objects>
     <resources>
         <image name="SpaceIcon" width="24" height="24"/>
+        <image name="pinnedAppIcon" width="20" height="20"/>
         <image name="search" width="20" height="20"/>
         <namedColor name="Birkin">
             <color red="0.95294117647058818" green="0.4392156862745098" blue="0.12941176470588237" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
