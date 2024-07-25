@@ -59,10 +59,10 @@ class NiSpaceViewController: NSViewController, NSTextFieldDelegate{
 		setAutoUpdatingTime()
 		
 		searchIcon.isActiveFunction = {return true}
-		searchIcon.mouseDownFunction = openPalette
+		searchIcon.setMouseDownFunction(openPalette)
 		
 		pinnedAppIcon.isActiveFunction = {return UserSettings.shared.demoMode}
-		pinnedAppIcon.mouseDownFunction = openPinnedMenu
+		pinnedAppIcon.setMouseDownFunction(openPinnedMenu)
 	}
 	
     override func viewDidLoad() {
@@ -149,8 +149,9 @@ class NiSpaceViewController: NSViewController, NSTextFieldDelegate{
 	}
 	
 	func openPinnedMenu(with event: NSEvent){
-		let menuPopup = NiPinnedMenuPopup.displayPopupWindow(event: event, screen: view.window!.screen!)
-		menuPopup.makeKeyAndOrderFront(nil)
+		let menuPopup = NiPinnedMenuPopup()
+		let menuPopupWindow = menuPopup.displayPopupWindow(event: event, screen: view.window!.screen!)
+		menuPopupWindow.makeKeyAndOrderFront(nil)
 	}
 	
 	func openHome(){

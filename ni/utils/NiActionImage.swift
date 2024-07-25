@@ -10,9 +10,11 @@ import Cocoa
 
 class NiActionImage: NSImageView{
 	
-	var mouseDownFunction: ((NSEvent) -> Void)?
+	private var mouseDownFunction: ((NSEvent) -> Void)?
+	private var mouseDownFunctionWContext: ((NSEvent, Any) -> Void)?
 	var mouseDownInActiveFunction: ((NSEvent) -> Void)?
 	var isActiveFunction: (() -> Bool)?
+	private var clickContext: Any?
 	
 	@IBInspectable public var defaultTint: NSColor = .sand11
 	
@@ -58,6 +60,15 @@ class NiActionImage: NSImageView{
 			return
 		}
 		self.contentTintColor = prevDefaultTint ?? defaultTint
+	}
+	
+	func setMouseDownFunction(_ function: ((NSEvent) -> Void)?){
+		self.mouseDownFunction = function
+	}
+	
+	func setMouseDownFunction(_ function: ((NSEvent, Any) -> Void)?, with context: Any){
+		self.mouseDownFunctionWContext = function
+		self.clickContext = context
 	}
 	
 	func tintInactive(){
