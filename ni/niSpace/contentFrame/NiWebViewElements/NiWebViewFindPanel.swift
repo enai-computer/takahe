@@ -36,10 +36,10 @@ class NiWebViewFindPanel: NSViewController, NSTextFieldDelegate {
 		doneButton.mouseDownFunction = doneButtonClicked
 		doneButton.isActiveFunction = {return true}
 		
-		nxtFindButton.mouseDownFunction = nxtButtonClicked
+		nxtFindButton.setMouseDownFunction(nxtButtonClicked)
 		nxtFindButton.isActiveFunction = {return false}
 
-		prevFindButton.mouseDownFunction = prevButtonClicked
+		prevFindButton.setMouseDownFunction(prevButtonClicked)
 		prevFindButton.isActiveFunction = {return false}
     }
     
