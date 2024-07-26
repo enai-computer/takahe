@@ -6,6 +6,7 @@
 //
 
 import Cocoa
+import SwiftSoup
 
 class CFSimpleFrameView: CFBaseView{
 	
@@ -63,6 +64,10 @@ class CFSimpleFrameView: CFBaseView{
 		contentView?.addSubview(tabView)
 		if let contentItem = tabView as? CFContentItem{
 			myContent = contentItem
+			if(contentItem is NiWebView){
+				minimizeButton.isActiveFunction = {return false}
+				minimizeButton.tintInactive()
+			}
 		}
 		return -1
 	}
@@ -203,6 +208,13 @@ class CFSimpleFrameView: CFBaseView{
 			return .top
 		}
 		return super.isOnBoarder(cursorLocation)
+	}
+	
+	func changeFrameColor(set color: NSColor){
+		self.layer?.backgroundColor = color.cgColor
+		self.borderColor = color
+		cfHeadView.wantsLayer = true
+		cfHeadView.layer?.backgroundColor = color.cgColor
 	}
 	
 	private func getDragArea() -> NSRect{

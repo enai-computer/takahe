@@ -11,6 +11,7 @@ struct WebAppItem{
 	let name: String
 	let icon: NSImage
 	let url: URL
+	let frameColor: NSColor
 }
 
 class NiPinnedMenuWindow: NSPanel{

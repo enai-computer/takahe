@@ -620,8 +620,8 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	}
 	
 	func openWebsiteInNewTab(urlStr: String, contentId: UUID, tabName: String, webContentState: TabViewModelState? = nil, openNextTo: Int = -1) -> Int{
-		let niWebView = getNewWebView(owner: self, frame: expandedCFView!.frame, dirtyUrl: urlStr, contentId: contentId)
-		let viewPosition = expandedCFView!.createNewTab(tabView: niWebView, openNextTo: openNextTo)
+		let niWebView = getNewWebView(owner: self, frame: view.frame, dirtyUrl: urlStr, contentId: contentId)
+		let viewPosition = myView.createNewTab(tabView: niWebView, openNextTo: openNextTo)
 		
 		if(0 <= openNextTo){
 			updateWVTabHeadPos(from: viewPosition, moveLeft: false)
@@ -932,6 +932,9 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	 * MARK: - WKDelegate functions
 	 */
 	func webView(_ webView: WKWebView, didFinish: WKNavigation!){
+		if(viewState != .expanded){
+			return
+		}
 		guard let wv = webView as? NiWebView else{return}
 		wv.viewLoadedWebsite()
 		
@@ -976,7 +979,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 			}
 		}
 		//open in new tab, comand clicked on link
-		if(navigationAction.modifierFlags == .command){
+		if(navigationAction.modifierFlags == .command && viewState == .expanded){
 			let urlStr = navigationAction.request.url?.absoluteString
 			if(urlStr != nil && !urlStr!.isEmpty){
 				self.openWebsiteInNewTab(urlStr!, shallSelectTab: false, openNextToSelectedTab: true)
@@ -1000,7 +1003,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 			}
 		}
 		//open in new tab, comand clicked on link
-		if(navigationAction.modifierFlags == .command){
+		if(navigationAction.modifierFlags == .command && viewState == .expanded){
 			let urlStr = navigationAction.request.url?.absoluteString
 			if(urlStr != nil && !urlStr!.isEmpty){
 				self.openWebsiteInNewTab(urlStr!, shallSelectTab: false, openNextToSelectedTab: true)
