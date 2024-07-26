@@ -16,12 +16,15 @@
                 <rect key="frame" x="0.0" y="0.0" width="48" height="48"/>
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
-                    <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" fixedFrame="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="M5Q-yN-KTb">
+                    <stackView autoresizesSubviews="NO" distribution="fillEqually" orientation="vertical" alignment="leading" spacing="5" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="250" fixedFrame="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="M5Q-yN-KTb">
                         <rect key="frame" x="10" y="10" width="28" height="28"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <autoresizingMask key="autoresizingMask" heightSizable="YES"/>
                     </stackView>
                 </subviews>
             </view>
+            <shadow key="shadow" blurRadius="1">
+                <color key="color" name="sand9"/>
+            </shadow>
             <color key="borderColor" name="transparent"/>
             <color key="fillColor" name="Sand2"/>
             <connections>
@@ -33,6 +36,9 @@
     <resources>
         <namedColor name="Sand2">
             <color red="0.97647058823529409" green="0.97647058823529409" blue="0.97254901960784312" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="sand9">
+            <color red="0.56470588235294117" green="0.56470588235294117" blue="0.5490196078431373" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="transparent">
             <color red="1" green="1" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
