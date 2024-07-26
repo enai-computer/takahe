@@ -20,9 +20,17 @@ class NiActionImage: NSImageView{
 	
 	private var prevDefaultTint: NSColor?
 	
-	init(image: NSImage){
-		super.init(frame: NSRect(origin: CGPoint(x: 0.0, y: 0.0), size: image.size))
+	init(image: NSImage, with size: NSSize? = nil){
+		if(size == nil){
+			super.init(frame: NSRect(origin: CGPoint(x: 0.0, y: 0.0), size: image.size))
+		}else{
+			super.init(frame: NSRect(origin: CGPoint(x: 0.0, y: 0.0), size: size!))
+		}
 		self.image = image
+		
+		if(size != nil){
+			self.image?.size = size!
+		}
 		
 		let hoverEffect = NSTrackingArea.init(rect: self.bounds, options: [.mouseEnteredAndExited, .activeInKeyWindow], owner: self, userInfo: nil)
 		self.addTrackingArea(hoverEffect)
@@ -39,6 +47,10 @@ class NiActionImage: NSImageView{
 		//if is not active - don't change color
 		if(isActiveFunction != nil && !isActiveFunction!()){
 			mouseDownInActiveFunction?(event)
+			return
+		}
+		if(clickContext != nil){
+			mouseDownFunctionWContext?(event, clickContext as Any)
 			return
 		}
 		mouseDownFunction?(event)
