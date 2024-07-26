@@ -25,27 +25,33 @@ class NiPinnedMenuPopup: NSObject{
 		hardCodedWebApps = [
 			WebAppItem(name: "Linear",
 					   icon: linearAppIcon,
-					   url: URL(string: "https://linear.app/")!
+					   url: URL(string: "https://linear.app/")!,
+					   frameColor: .birkin
 					  ),
 			WebAppItem(name: "Gmail", 
 					   icon: gMailAppIcon,
-					   url: URL(string: "https://mail.google.com/mail/u/0/#inbox")!
+					   url: URL(string: "https://mail.google.com/mail/u/0/#inbox")!,
+					   frameColor: .birkin
 					  ),
 			WebAppItem(name: "PostHog",
 					   icon: postHogAppIcon,
-					   url: URL(string: "https://eu.posthog.com/")!
+					   url: URL(string: "https://eu.posthog.com/")!,
+					   frameColor: .birkin
 					  ),
 			WebAppItem(name: "Notion Calendar",
 					   icon: notionCalAppIcon,
-					   url: URL(string: "https://calendar.notion.so")!
+					   url: URL(string: "https://calendar.notion.so")!,
+					   frameColor: .birkin
 			),
 			WebAppItem(name: "Slack",
 					   icon: slackAppIcon,
-					   url: URL(string: "https://slack.com")!
+					   url: URL(string: "https://slack.com")!,
+					   frameColor: .birkin
 					  ),
 			WebAppItem(name: "Figma",
 					   icon: figmaAppIcon,
-					   url: URL(string: "https://www.figma.com")!
+					   url: URL(string: "https://www.figma.com")!,
+					   frameColor: .birkin
 					  )
 		]
 	}
