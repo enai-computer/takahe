@@ -70,10 +70,10 @@ class Cook{
 			}
 		}
 		
-		//adding WebApps to search results
-		if(UserSettings.shared.demoMode && typedChars != nil && !typedChars!.isEmpty && displayOption == .palette){
-			res.append(contentsOf: getWebApps(typedChars!))
-		}
+//		//adding WebApps to search results
+//		if(UserSettings.shared.demoMode && typedChars != nil && !typedChars!.isEmpty && displayOption == .palette){
+//			res.append(contentsOf: getWebApps(typedChars!))
+//		}
 		
 		//sorting
 		if(giveCreateNewSpaceOption && typedChars != nil && !typedChars!.isEmpty){
@@ -106,26 +106,17 @@ class Cook{
 		return query
 	}
 	
-	//FIXME: very hacky - needs to be done properly
-	private func getWebApps(_ searchTerm: String) -> [NiSearchResultItem]{
-		var res: [NiSearchResultItem] = []
-		for item in preConfigedWebApps.keys{
-			if(item.lowercased().starts(with: searchTerm.lowercased())){
-				let data = preConfigedWebApps[item]
-				res.append(
-					NiSearchResultItem(type: .webApp, id: nil, name: item, data: data)
-				)
-			}
-		}
-		return res
-	}
+//	//FIXME: very hacky - needs to be done properly
+//	private func getWebApps(_ searchTerm: String) -> [NiSearchResultItem]{
+//		var res: [NiSearchResultItem] = []
+//		for item in preConfigedWebApps.keys{
+//			if(item.lowercased().starts(with: searchTerm.lowercased())){
+//				let data = preConfigedWebApps[item]
+//				res.append(
+//					NiSearchResultItem(type: .webApp, id: nil, name: item, data: data)
+//				)
+//			}
+//		}
+//		return res
+//	}
 }
-
-
-let preConfigedWebApps: [String: String] = [
-	"WhatsApp": "https://web.whatsapp.com/",
-	"Linear": "https://linear.app/",
-	"Google Sheets": "https://sheets.google.com",
-	"Google Docs": "https://docs.google.com",
-	"Google Slides": "https://slides.google.com",
-]
