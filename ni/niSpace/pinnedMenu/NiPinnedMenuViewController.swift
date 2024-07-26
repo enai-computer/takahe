@@ -66,6 +66,7 @@ extension WebAppItem{
 		if let docController = context as? NiSpaceDocumentController{
 			let cfController = docController.openEmptyCF(openInitalTab: false)
 			cfController.openWebsiteInNewTab(url.absoluteString, shallSelectTab: true)
+			cfController.view.window?.makeKeyAndOrderFront(nil)
 		}
 	}
 }
