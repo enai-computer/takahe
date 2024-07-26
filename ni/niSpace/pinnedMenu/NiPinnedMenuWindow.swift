@@ -7,6 +7,12 @@
 
 import Cocoa
 
+struct WebAppItem{
+	let name: String
+	let icon: NSImage
+	let url: URL
+}
+
 class NiPinnedMenuWindow: NSPanel{
 	
 	private let niDelegate: NiMenuWindowDelegate
@@ -14,18 +20,18 @@ class NiPinnedMenuWindow: NSPanel{
 	override var canBecomeMain: Bool {return false}
 	private var screenToDisplayOn: NSScreen?
 	
-	init(origin: NSPoint, currentScreen: NSScreen, adjustOrigin: Bool = true, adjustForOutofBounds: Bool = false){
+	init(origin: NSPoint, items: [WebAppItem], docController: NiSpaceDocumentController,
+		 currentScreen: NSScreen, adjustOrigin: Bool = true, adjustForOutofBounds: Bool = false){
 		niDelegate = NiMenuWindowDelegate()
 		
 		screenToDisplayOn = currentScreen
 		
-//		let cleanMenuItems = NiMenuWindow.removeNilValues(items: dirtyMenuItems)
-//		let size = NiMenuWindow.calcSize(cleanMenuItems.count)
+		let size = NiPinnedMenuWindow.calcSize(items.count)
 		var adjustedOrigin = origin
-//		if(adjustOrigin){
-//			adjustedOrigin.y = origin.y - size.height
-//		}
-		var frameRect = NSPanel.rectForScreen(NSRect(origin: adjustedOrigin, size: CGSize(width: 48.0, height: 48.0)), screen: currentScreen)
+		if(adjustOrigin){
+			adjustedOrigin.y = origin.y - size.height
+		}
+		var frameRect = NSPanel.rectForScreen(NSRect(origin: adjustedOrigin, size: size), screen: currentScreen)
 		
 		if(adjustForOutofBounds && currentScreen.frame.maxX < frameRect.maxX){
 			frameRect.origin.x -= (frameRect.width - 26.0)
@@ -36,7 +42,7 @@ class NiPinnedMenuWindow: NSPanel{
 		
 		super.init(
 			contentRect: frameRect,
-			styleMask: .borderless,
+			styleMask: NSWindow.StyleMask.borderless,
 			backing: .buffered,
 			defer: true
 		)
@@ -45,10 +51,28 @@ class NiPinnedMenuWindow: NSPanel{
 		titleVisibility = .hidden
 		titlebarAppearsTransparent = true
 		delegate = niDelegate
-		contentViewController = NiPinnedMenuViewController(items: [])
+		contentViewController = NiPinnedMenuViewController(
+			items: items,
+			docController: docController,
+			height: NiPinnedMenuWindow.calcViewHeight(items.count)
+		)
 		
 		hasShadow = false
 		isOpaque = false
 		backgroundColor = NSColor.clear
+	}
+	
+	private static func calcSize(_ nrOfItems: Int) -> CGSize{
+		let h = calcViewHeight(nrOfItems) + 20.0	//contentView + space for a shadow
+		return CGSize(width: 68.0, height: h)
+	}
+	
+	private static func calcViewHeight(_ nrOfItems: Int) -> CGFloat{
+		return ((28.0 * Double(nrOfItems)) + ((Double(nrOfItems) - 1.0) * 20.0) + 20.0)
+	}
+	
+	override func cancelOperation(_ sender: Any?) {
+		orderOut(nil)
+		close()
 	}
 }
