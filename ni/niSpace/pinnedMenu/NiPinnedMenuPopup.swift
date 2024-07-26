@@ -14,21 +14,39 @@ class NiPinnedMenuPopup: NSObject{
 	
 	init(with docController: NiSpaceDocumentController) {
 		self.docController = docController
-		let whatsAppIcon = fetchImgFromMainBundle(id: UUID(uuidString: "0DF11B3D-FD70-47A3-9D86-AF0189F1E1E3")!, type: ".png")!
-		let notionAppIcon = fetchImgFromMainBundle(id: UUID(uuidString: "C8F62C3A-3A6C-4679-9D6B-1170A2285100")!, type: ".png")!
-		let linearAppIcon = fetchImgFromMainBundle(id: UUID(uuidString: "EDC4FB2E-538C-4B59-802A-D607CC5D2525")!, type: ".png")!
+		
+		let notionCalAppIcon = fetchImgFromMainBundle(id: UUID(uuidString: "4432C460-246D-4A72-A3B8-F84A66C93E05")!, type: ".png")!
+		let linearAppIcon = fetchImgFromMainBundle(id: UUID(uuidString: "9AA500EF-5D06-49EC-B3E3-D122308BCAD2")!, type: ".png")!
+		let gMailAppIcon = fetchImgFromMainBundle(id: UUID(uuidString: "76AD3FA8-81D2-4C9D-A5B0-EF190D4F6D81")!, type: ".png")!
+		let slackAppIcon = fetchImgFromMainBundle(id: UUID(uuidString: "19898FAF-0C66-446E-AB4E-773CF5EBE1E3")!, type: ".png")!
+		let postHogAppIcon = fetchImgFromMainBundle(id: UUID(uuidString: "31D0446F-5F68-482A-AC81-39EACAFD11AF")!, type: ".png")!
+		let figmaAppIcon = fetchImgFromMainBundle(id: UUID(uuidString: "165C18BB-B531-419D-8EB4-8BBFEC4A9308")!, type: ".png")!
+		
 		hardCodedWebApps = [
-			WebAppItem(name: "WhatsApp",
-						  icon: whatsAppIcon,
-						  url: URL(string: "https://web.whatsapp.com/")!
-						 ),
-			WebAppItem(name: "Notion",
-					   icon: notionAppIcon,
-					   url: URL(string:"https://www.notion.so/")!),
 			WebAppItem(name: "Linear",
 					   icon: linearAppIcon,
 					   url: URL(string: "https://linear.app/")!
-			)
+					  ),
+			WebAppItem(name: "Gmail", 
+					   icon: gMailAppIcon,
+					   url: URL(string: "https://mail.google.com/mail/u/0/#inbox")!
+					  ),
+			WebAppItem(name: "PostHog",
+					   icon: postHogAppIcon,
+					   url: URL(string: "https://eu.posthog.com/")!
+					  ),
+			WebAppItem(name: "Notion Calendar",
+					   icon: notionCalAppIcon,
+					   url: URL(string: "https://calendar.notion.so")!
+			),
+			WebAppItem(name: "Slack",
+					   icon: slackAppIcon,
+					   url: URL(string: "https://slack.com")!
+					  ),
+			WebAppItem(name: "Figma",
+					   icon: figmaAppIcon,
+					   url: URL(string: "https://www.figma.com")!
+					  )
 		]
 	}
 	
