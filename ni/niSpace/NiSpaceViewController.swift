@@ -17,7 +17,7 @@ class NiSpaceViewController: NSViewController, NSTextFieldDelegate{
 	@IBOutlet var header: SpaceTopbar!
 	@IBOutlet var time: NSTextField!
 	@IBOutlet var spaceName: NiTextField!
-	@IBOutlet var spaceIcon: NSImageView!
+	@IBOutlet var spaceIcon: NiActionImage!
 	@IBOutlet var searchIcon: NiActionImage!
 	@IBOutlet var pinnedAppIcon: NiActionImage!
 	private var currentSpaceName: String?
@@ -63,6 +63,9 @@ class NiSpaceViewController: NSViewController, NSTextFieldDelegate{
 		
 		pinnedAppIcon.isActiveFunction = {return UserSettings.shared.demoMode}
 		pinnedAppIcon.setMouseDownFunction(openPinnedMenu)
+		
+		spaceIcon.isActiveFunction = {return UserSettings.shared.demoMode}
+		spaceIcon.setMouseDownFunction(openLibrary)
 	}
 	
     override func viewDidLoad() {
@@ -156,6 +159,11 @@ class NiSpaceViewController: NSViewController, NSTextFieldDelegate{
 			pointOnScreen,
 			screen: view.window!.screen!
 		)
+	}
+	
+	func openLibrary(with event: NSEvent){
+		let lib = NiLibrary()
+		lib.makeKeyAndOrderFront(nil)
 	}
 	
 	func openHome(){

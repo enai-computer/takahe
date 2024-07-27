@@ -16,6 +16,10 @@ class NiPaletteWindowDelegate: NSObject, NSWindowDelegate{
 			}
 			if let window = notification.object as? NiFullscreenPanel {
 				window.removeSelf()
+				return
+			}
+			if let window = notification.object as? NiLibrary {
+				window.removeSelf()
 			}
 		}
 	

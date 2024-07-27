@@ -61,13 +61,13 @@
                                     <rect key="frame" x="0.0" y="0.0" width="1540" height="35"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 </visualEffectView>
-                                <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Yne-Pi-Jml">
+                                <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Yne-Pi-Jml" customClass="NiActionImage" customModule="ni" customModuleProvider="target">
                                     <rect key="frame" x="24" y="4" width="24" height="24"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="SpaceIcon" id="mpw-cc-7kz"/>
                                     <color key="contentTintColor" name="sand9"/>
                                 </imageView>
-                                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IcY-Xb-pUo" customClass="NiTextField" customModule="ni" customModuleProvider="target">
+                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IcY-Xb-pUo" customClass="NiTextField" customModule="ni" customModuleProvider="target">
                                     <rect key="frame" x="58" y="8" width="424" height="20"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <textFieldCell key="cell" lineBreakMode="clipping" allowsUndo="NO" title="SpaceName" id="ioC-6E-T33">
@@ -83,7 +83,7 @@
                                         <userDefinedRuntimeAttribute type="boolean" keyPath="willAllowVibrancy" value="YES"/>
                                     </userDefinedRuntimeAttributes>
                                 </textField>
-                                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" id="yLB-kD-fbD">
+                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="yLB-kD-fbD">
                                     <rect key="frame" x="1370" y="9" width="84" height="18"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                     <textFieldCell key="cell" lineBreakMode="clipping" refusesFirstResponder="YES" allowsUndo="NO" alignment="right" title="10:00 AM" id="q69-4k-xlx">
