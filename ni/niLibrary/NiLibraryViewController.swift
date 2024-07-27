@@ -9,8 +9,6 @@ import Cocoa
 
 class NiLibraryViewController: NSViewController{
 	
-	@IBOutlet var connector: NiLibraryConnectionViewElement!
-	
 	init(){
 		super.init(nibName: NSNib.Name("NiLibraryView"), bundle: Bundle.main)
 	}
@@ -33,8 +31,6 @@ class NiLibraryViewController: NSViewController{
 	}
 	
 	override func viewWillAppear() {
-		connector.wantsLayer = true
-		connector.needsDisplay = true
-		connector.layer?.zPosition = view.layer!.zPosition + 1
+		super.viewWillAppear()
 	}
 }
