@@ -17,7 +17,7 @@ class NiLibrary: NSPanel{
 
 	init(){
 		let mainWindow = NSApplication.shared.mainWindow!
-		let paletteRect = NiLibrary.calcPaletteRect(mainWindow.frame.size)
+		let paletteRect = NiLibrary.calcLibraryRect(mainWindow.frame.size)
 		let frameRect = NSPanel.rectForScreen(paletteRect, screen: mainWindow.screen!)
 		
 		niDelegate = NiPaletteWindowDelegate()
@@ -33,7 +33,7 @@ class NiLibrary: NSPanel{
 		titleVisibility = .hidden
 		titlebarAppearsTransparent = true
 		delegate = niDelegate
-		contentViewController = NiPaletteContentController(paletteSize: paletteRect.size)
+		contentViewController = NiLibraryViewController()
 		
 		hasShadow = false
 		isOpaque = false
@@ -60,18 +60,13 @@ class NiLibrary: NSPanel{
 		windowBlurView!.layer?.needsDisplay()
 	}
 	
-	private static func calcPaletteRect(_ screenSize: NSSize) -> NSRect{
-		let w = 586.0
-		let h = 426.0
-		
-		//center on x
-		let distToLeftBorder = (screenSize.width - w) / 2
-		//18% down from top
-		let distToBottomBorder = screenSize.height - (screenSize.height * 0.18024) - h
+	private static func calcLibraryRect(_ screenSize: NSSize) -> NSRect{
+		let w = screenSize.width - (56.0 * 2.0)
+		let h = screenSize.height - 56.0
 		
 		return NSRect(
-			x: distToLeftBorder,
-			y: distToBottomBorder,
+			x: 56.0,
+			y: 0,
 			width: w,
 			height: h
 		)
