@@ -65,19 +65,20 @@ import Cocoa
 		
 		context.saveGState()
 		
+		context.setStrokeColor(.clear)
 		context.setShadow(offset: CGSize(width: 0.0, height: 0.0), blur: 1.0, color: NSColor.sand9.cgColor)
 		context.addEllipse(in: dotRect)
 		context.drawPath(using: .fillStroke)
 		
 		context.restoreGState()
 		
-		if(false){
-			context.setStrokeColor(NSColor.birkin.cgColor)
+		if(hovering){
+			context.setStrokeColor(strokeColor.cgColor)
 			context.setLineWidth(2.0)
 			context.addEllipse(in: dotRect)
 			context.drawPath(using: .stroke)
 			
-			context.setFillColor(NSColor.birkin.cgColor)
+			context.setFillColor(strokeColor.cgColor)
 			context.addEllipse(in: calcMiniHoverDotRect())
 			context.drawPath(using: .fill)
 		}
