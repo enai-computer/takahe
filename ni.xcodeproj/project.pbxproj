@@ -154,7 +154,6 @@
 		CDD7ED032C554D6E007604D9 /* NiLibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD7ED022C554D6E007604D9 /* NiLibraryView.swift */; };
 		CDD7ED052C554E24007604D9 /* DemoLibraryImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD7ED042C554E24007604D9 /* DemoLibraryImage.swift */; };
 		CDD7ED072C555153007604D9 /* NiLibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD7ED062C555153007604D9 /* NiLibraryViewController.swift */; };
-		CDD7ED092C555968007604D9 /* NiLibraryConnectionViewElement.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDD7ED082C555968007604D9 /* NiLibraryConnectionViewElement.xib */; };
 		CDD7ED0B2C555A76007604D9 /* NiLibraryConnectionViewElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD7ED0A2C555A76007604D9 /* NiLibraryConnectionViewElement.swift */; };
 		CDD87ED02BF23C650045B84B /* NiCursorUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD87ECF2BF23C650045B84B /* NiCursorUtils.swift */; };
 		CDDBCB2B2BD7C23E00E7B187 /* NiSpaceDocumentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDDBCB2A2BD7C23E00E7B187 /* NiSpaceDocumentController.swift */; };
@@ -334,7 +333,6 @@
 		CDD7ED022C554D6E007604D9 /* NiLibraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiLibraryView.swift; sourceTree = "<group>"; };
 		CDD7ED042C554E24007604D9 /* DemoLibraryImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoLibraryImage.swift; sourceTree = "<group>"; };
 		CDD7ED062C555153007604D9 /* NiLibraryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiLibraryViewController.swift; sourceTree = "<group>"; };
-		CDD7ED082C555968007604D9 /* NiLibraryConnectionViewElement.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = NiLibraryConnectionViewElement.xib; path = ni/niLibrary/NiLibraryConnectionViewElement.xib; sourceTree = SOURCE_ROOT; };
 		CDD7ED0A2C555A76007604D9 /* NiLibraryConnectionViewElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NiLibraryConnectionViewElement.swift; path = ni/niLibrary/NiLibraryConnectionViewElement.swift; sourceTree = SOURCE_ROOT; };
 		CDD87ECF2BF23C650045B84B /* NiCursorUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiCursorUtils.swift; sourceTree = "<group>"; };
 		CDDBCB2A2BD7C23E00E7B187 /* NiSpaceDocumentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiSpaceDocumentController.swift; sourceTree = "<group>"; };
@@ -687,7 +685,6 @@
 				CDD7ED022C554D6E007604D9 /* NiLibraryView.swift */,
 				CDD7ED062C555153007604D9 /* NiLibraryViewController.swift */,
 				CDD7ED042C554E24007604D9 /* DemoLibraryImage.swift */,
-				CDD7ED082C555968007604D9 /* NiLibraryConnectionViewElement.xib */,
 				CDD7ED0A2C555A76007604D9 /* NiLibraryConnectionViewElement.swift */,
 			);
 			path = niLibrary;
@@ -978,7 +975,6 @@
 				A1E41BF62ACB533400338417 /* ContentFrameView.xib in Resources */,
 				CD569FE82C53A05700C16B2E /* 165C18BB-B531-419D-8EB4-8BBFEC4A9308.png in Resources */,
 				CD53ACC02BCEE0ED00D5912B /* emptyTab.html in Resources */,
-				CDD7ED092C555968007604D9 /* NiLibraryConnectionViewElement.xib in Resources */,
 				CD2D8E7E2C4EB992003AED25 /* licklider.pdf in Resources */,
 				CD618D9C2C2B4151006869AF /* 43DC5B56-124C-4368-A341-EAA9D2E33CFD.jpg in Resources */,
 				CD569FEC2C53A05700C16B2E /* 76AD3FA8-81D2-4C9D-A5B0-EF190D4F6D81.png in Resources */,
