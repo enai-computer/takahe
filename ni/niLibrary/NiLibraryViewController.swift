@@ -19,6 +19,11 @@ class NiLibraryViewController: NSViewController{
 		super.init(coder: coder)
 	}
 	
+	override func loadView() {
+		super.loadView()
+//		connector = (NSView.loadFromNib(nibName: "NiLibraryConnectionViewElement", owner: self) as! NiLibraryConnectionViewElement)
+	}
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		view.wantsLayer = true
@@ -28,7 +33,8 @@ class NiLibraryViewController: NSViewController{
 	}
 	
 	override func viewWillAppear() {
+		connector.wantsLayer = true
 		connector.needsDisplay = true
-		connector.diagonal.needsDisplay = true
+		connector.layer?.zPosition = view.layer!.zPosition + 1
 	}
 }
