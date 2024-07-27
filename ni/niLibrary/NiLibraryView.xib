@@ -8,7 +8,6 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NiLibraryViewController" customModule="ni" customModuleProvider="target">
             <connections>
-                <outlet property="connector" destination="zhm-lT-2Fq" id="Phn-83-ZHn"/>
                 <outlet property="view" destination="LOA-fb-PyN" id="ZU6-HS-sC9"/>
             </connections>
         </customObject>
@@ -112,13 +111,14 @@
                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="disappear" value="NO"/>
                                             </userDefinedRuntimeAttributes>
                                         </imageView>
-                                        <customView wantsLayer="YES" id="zhm-lT-2Fq" customClass="NiLibraryConnectionViewElement" customModule="ni" customModuleProvider="target">
-                                            <rect key="frame" x="240" y="385" width="481" height="140"/>
+                                        <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sl3-9P-sbV" customClass="NiLibraryConnectionViewElement" customModule="ni" customModuleProvider="target">
+                                            <rect key="frame" x="240" y="371" width="480" height="155"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="boolean" keyPath="showLeftRight" value="YES"/>
-                                                <userDefinedRuntimeAttribute type="boolean" keyPath="showRightLeft" value="NO"/>
                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="lineBottomLeftToTopRight" value="YES"/>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="strokeWidth">
+                                                    <real key="value" value="2"/>
+                                                </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
                                         </customView>
                                     </subviews>
