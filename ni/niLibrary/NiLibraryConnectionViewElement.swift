@@ -14,7 +14,6 @@ import Cocoa
 			needsDisplay = true
 		}
 	}
-	
 	@IBInspectable public var lineBottomRightToTopLeft: Bool = false{
 		didSet {
 			needsDisplay = true
@@ -22,12 +21,16 @@ import Cocoa
 	}
 	@IBInspectable public var strokeColor: NSColor = .birkin
 	@IBInspectable public var strokeWidth: CGFloat = 2.0
-
+	@IBInspectable public var dotColor: NSColor = .sand1
+	@IBInspectable public var dotDiameter: CGFloat = 30.0
+	
+	private var hovering: Bool = false
+	
 	required init?(coder: NSCoder) {
 		super.init(coder: coder)
 
-//		let hoverEffect = NSTrackingArea.init(rect: self.bounds, options: [.mouseEnteredAndExited, .activeInKeyWindow], owner: self, userInfo: nil)
-//		self.addTrackingArea(hoverEffect)
+		let hoverEffect = NSTrackingArea.init(rect: calcDotRect(), options: [.mouseEnteredAndExited, .activeInKeyWindow], owner: self, userInfo: nil)
+		self.addTrackingArea(hoverEffect)
 	}
 	
 	override open func awakeFromNib() {
@@ -40,6 +43,7 @@ import Cocoa
 		
 		guard let context = NSGraphicsContext.current?.cgContext else{return}
 
+		//draws line
 		context.beginPath()
 		if(lineBottomLeftToTopRight){
 			context.move(to: .zero)
@@ -52,7 +56,61 @@ import Cocoa
 		context.setStrokeColor(strokeColor.cgColor)
 		context.setLineWidth(strokeWidth)
 		context.strokePath()
+		
+		//draws middle dot
+		let dotRect = calcDotRect()
+		context.setFillColor(dotColor.cgColor)
+		context.addEllipse(in: dotRect)
+		context.drawPath(using: .fill)
+		
+		context.saveGState()
+		
+		context.setShadow(offset: CGSize(width: 0.0, height: 0.0), blur: 1.0, color: NSColor.sand9.cgColor)
+		context.addEllipse(in: dotRect)
+		context.drawPath(using: .fillStroke)
+		
+		context.restoreGState()
+		
+		if(false){
+			context.setStrokeColor(NSColor.birkin.cgColor)
+			context.setLineWidth(2.0)
+			context.addEllipse(in: dotRect)
+			context.drawPath(using: .stroke)
+			
+			context.setFillColor(NSColor.birkin.cgColor)
+			context.addEllipse(in: calcMiniHoverDotRect())
+			context.drawPath(using: .fill)
+		}
 	}
 	
+	private func calcDotRect() -> CGRect{
+		return CGRect(
+			origin: CGPoint(
+				x: bounds.midX - (dotDiameter/2),
+				y: bounds.midY - (dotDiameter/2)
+			),
+			size: CGSize(width: dotDiameter, height: dotDiameter)
+		)
+	}
 
+	private func calcMiniHoverDotRect() -> CGRect{
+		let miniDiameter = 6.0
+		return CGRect(
+			origin: CGPoint(
+				x: bounds.midX - (miniDiameter/2),
+				y: bounds.midY - (miniDiameter/2)
+			),
+			size: CGSize(width: miniDiameter, height: miniDiameter)
+		)
+	}
+	
+	override func mouseEntered(with event: NSEvent) {
+		hovering = true
+		needsDisplay = true
+	}
+	
+	override func mouseExited(with event: NSEvent) {
+		hovering = false
+		needsDisplay = true
+	}
 }
