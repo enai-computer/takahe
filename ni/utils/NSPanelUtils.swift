@@ -15,4 +15,21 @@ extension NSPanel{
 			y: screen.frame.origin.y + frameRect.origin.y)
 		return NSRect(origin: frameOrigin, size: frameRect.size)
 	}
+	
+	func setupBlurOnView(_ blurView: NSView, inputRadius: CGFloat, inputSaturation: CGFloat){
+	   blurView.layer?.backgroundColor = NSColor.clear.cgColor
+	   blurView.layer?.masksToBounds = true
+	   blurView.layerUsesCoreImageFilters = true
+	   blurView.layer?.needsDisplayOnBoundsChange = true
+
+	   let satFilter = CIFilter(name: "CIColorControls")!
+	   satFilter.setDefaults()
+	   satFilter.setValue(NSNumber(value: inputSaturation), forKey: "inputSaturation")
+
+	   let blurFilter = CIFilter(name: "CIGaussianBlur")!
+	   blurFilter.setDefaults()
+	   blurFilter.setValue(NSNumber(value: inputRadius), forKey: "inputRadius")
+
+	   blurView.layer?.backgroundFilters = [satFilter, blurFilter]
+   }
 }
