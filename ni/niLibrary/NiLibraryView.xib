@@ -112,11 +112,13 @@
                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="disappear" value="NO"/>
                                             </userDefinedRuntimeAttributes>
                                         </imageView>
-                                        <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zhm-lT-2Fq" customClass="NiLibraryConnectionViewElement" customModule="ni" customModuleProvider="target">
-                                            <rect key="frame" x="241" y="380" width="475" height="158"/>
+                                        <customView wantsLayer="YES" id="zhm-lT-2Fq" customClass="NiLibraryConnectionViewElement" customModule="ni" customModuleProvider="target">
+                                            <rect key="frame" x="240" y="385" width="481" height="140"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="showLeftRight" value="YES"/>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="showRightLeft" value="NO"/>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="lineBottomLeftToTopRight" value="YES"/>
                                             </userDefinedRuntimeAttributes>
                                         </customView>
                                     </subviews>
