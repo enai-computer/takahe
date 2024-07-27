@@ -151,6 +151,9 @@
 		CDD7D3472C19986F0038E6F9 /* NiSearchResultViewItemRightIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD7D3462C19986F0038E6F9 /* NiSearchResultViewItemRightIcon.swift */; };
 		CDD7D3492C19AD7D0038E6F9 /* NSPanelUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD7D3482C19AD7D0038E6F9 /* NSPanelUtils.swift */; };
 		CDD7D34B2C19B20C0038E6F9 /* NiPaletteContentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD7D34A2C19B20C0038E6F9 /* NiPaletteContentController.swift */; };
+		CDD7ED032C554D6E007604D9 /* NiLibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD7ED022C554D6E007604D9 /* NiLibraryView.swift */; };
+		CDD7ED052C554E24007604D9 /* DemoLibraryImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD7ED042C554E24007604D9 /* DemoLibraryImage.swift */; };
+		CDD7ED072C555153007604D9 /* NiLibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD7ED062C555153007604D9 /* NiLibraryViewController.swift */; };
 		CDD87ED02BF23C650045B84B /* NiCursorUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD87ECF2BF23C650045B84B /* NiCursorUtils.swift */; };
 		CDDBCB2B2BD7C23E00E7B187 /* NiSpaceDocumentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDDBCB2A2BD7C23E00E7B187 /* NiSpaceDocumentController.swift */; };
 		CDDBCB2E2BD8FA4C00E7B187 /* errorLoading-1.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = CDDBCB2C2BD8FA4C00E7B187 /* errorLoading-1.jpeg */; };
@@ -326,6 +329,9 @@
 		CDD7D3462C19986F0038E6F9 /* NiSearchResultViewItemRightIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiSearchResultViewItemRightIcon.swift; sourceTree = "<group>"; };
 		CDD7D3482C19AD7D0038E6F9 /* NSPanelUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSPanelUtils.swift; sourceTree = "<group>"; };
 		CDD7D34A2C19B20C0038E6F9 /* NiPaletteContentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiPaletteContentController.swift; sourceTree = "<group>"; };
+		CDD7ED022C554D6E007604D9 /* NiLibraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiLibraryView.swift; sourceTree = "<group>"; };
+		CDD7ED042C554E24007604D9 /* DemoLibraryImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoLibraryImage.swift; sourceTree = "<group>"; };
+		CDD7ED062C555153007604D9 /* NiLibraryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiLibraryViewController.swift; sourceTree = "<group>"; };
 		CDD87ECF2BF23C650045B84B /* NiCursorUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiCursorUtils.swift; sourceTree = "<group>"; };
 		CDDBCB2A2BD7C23E00E7B187 /* NiSpaceDocumentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiSpaceDocumentController.swift; sourceTree = "<group>"; };
 		CDDBCB2C2BD8FA4C00E7B187 /* errorLoading-1.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "errorLoading-1.jpeg"; sourceTree = "<group>"; };
@@ -674,6 +680,9 @@
 			children = (
 				CD7AE0A92C55366A00B3984E /* NiLibrary.swift */,
 				CD7AE0AB2C553C7300B3984E /* NiLibraryView.xib */,
+				CDD7ED022C554D6E007604D9 /* NiLibraryView.swift */,
+				CDD7ED042C554E24007604D9 /* DemoLibraryImage.swift */,
+				CDD7ED062C555153007604D9 /* NiLibraryViewController.swift */,
 			);
 			path = niLibrary;
 			sourceTree = "<group>";
@@ -1045,6 +1054,7 @@
 				CDFA8D022C0492F400882722 /* NiNoteItem.swift in Sources */,
 				CDD6B9392B152A8000C6144D /* Storage.swift in Sources */,
 				CDD7D3472C19986F0038E6F9 /* NiSearchResultViewItemRightIcon.swift in Sources */,
+				CDD7ED052C554E24007604D9 /* DemoLibraryImage.swift in Sources */,
 				CD42CEC92BDA48180039814D /* NiScrollView.swift in Sources */,
 				CD618D982C2B3863006869AF /* PregenIntent.swift in Sources */,
 				CDB549D12C2020C90038FB30 /* NiSearchViewScroller.swift in Sources */,
@@ -1057,6 +1067,7 @@
 				CDDBCB2B2BD7C23E00E7B187 /* NiSpaceDocumentController.swift in Sources */,
 				CD6D280A2C11D5ED0009732A /* NiMenuItemViewModel.swift in Sources */,
 				CD1C6D592C525A630019CD09 /* NiPinnedMenuViewController.swift in Sources */,
+				CDD7ED032C554D6E007604D9 /* NiLibraryView.swift in Sources */,
 				CD59FA0E2C345CB700CFB8DE /* NiPdfView.swift in Sources */,
 				CDD6B9472B16A29100C6144D /* DocumentIdContentIdTable.swift in Sources */,
 				CD1853112C08D22A001FE566 /* FaviconProvider.swift in Sources */,
@@ -1071,6 +1082,7 @@
 				CD4D7AE62C4959B800B6DBFD /* DateUtils.swift in Sources */,
 				CD618D962C2B2C28006869AF /* PregenSpaceSkiing.swift in Sources */,
 				CD6D28102C11EE7E0009732A /* RoundedRectView.swift in Sources */,
+				CDD7ED072C555153007604D9 /* NiLibraryViewController.swift in Sources */,
 				CDF0DD222C202BCD006C4EF4 /* NiHomeController.swift in Sources */,
 				CD8D2B082C00C7A100C44C1D /* NoteTable.swift in Sources */,
 				CDC0BD432C45280C00CB2DDB /* NiDownloadHandler.swift in Sources */,
