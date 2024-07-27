@@ -9,7 +9,26 @@ import Cocoa
 
 class NiLibraryViewController: NSViewController{
 	
-	override func loadView() {
-		view = (NSView.loadFromNib(nibName: "NiLibraryView", owner: self) as! NiLibraryView)
+	@IBOutlet var connector: NiLibraryConnectionViewElement!
+	
+	init(){
+		super.init(nibName: NSNib.Name("NiLibraryView"), bundle: Bundle.main)
+	}
+	
+	required init?(coder: NSCoder) {
+		super.init(coder: coder)
+	}
+	
+	override func viewDidLoad() {
+		super.viewDidLoad()
+		view.wantsLayer = true
+		view.layer?.cornerRadius = 20.0
+		view.layer?.cornerCurve = .continuous
+		view.layer?.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner]
+	}
+	
+	override func viewWillAppear() {
+		connector.needsDisplay = true
+		connector.diagonal.needsDisplay = true
 	}
 }

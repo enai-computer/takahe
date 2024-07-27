@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22690"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner"/>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView id="c22-O7-iKe" customClass="NiLibraryConnectionViewElement" customModule="ni" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
+            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1Pu-Sj-N0I">
+                    <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="axesIndependently" image="diagonal" id="EEB-Kq-V2n"/>
+                    <color key="contentTintColor" name="Birkin"/>
+                </imageView>
+                <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bu2-su-d1G">
+                    <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="axesIndependently" image="diagonal-mirrored" id="jKK-cE-hrB"/>
+                    <color key="contentTintColor" name="Birkin"/>
+                </imageView>
+                <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="84m-G8-3wN">
+                    <rect key="frame" x="134" y="134" width="32" height="32"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="ellipse" id="UBK-0C-fYL"/>
+                </imageView>
+            </subviews>
+            <connections>
+                <outlet property="diagonal" destination="1Pu-Sj-N0I" id="zIQ-ia-8Fx"/>
+                <outlet property="diagonalMirrored" destination="bu2-su-d1G" id="kP0-Ue-H44"/>
+                <outlet property="middleDot" destination="84m-G8-3wN" id="dE7-To-sng"/>
+            </connections>
+            <point key="canvasLocation" x="14" y="154"/>
+        </customView>
+    </objects>
+    <resources>
+        <image name="diagonal" width="302" height="302"/>
+        <image name="diagonal-mirrored" width="302" height="302"/>
+        <image name="ellipse" width="32" height="32"/>
+        <namedColor name="Birkin">
+            <color red="0.95294117647058818" green="0.4392156862745098" blue="0.12941176470588237" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>
