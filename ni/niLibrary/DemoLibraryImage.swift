@@ -30,7 +30,7 @@ class DemoLibraryImage: NSImageView{
 	
 	override func mouseEntered(with event: NSEvent) {
 		layer?.borderColor = NSColor.birkin.cgColor
-		layer?.borderWidth = 1.0
+		layer?.borderWidth = 2.0
 	}
 	
 	override func mouseExited(with event: NSEvent) {

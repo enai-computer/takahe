@@ -32,13 +32,20 @@ class NiLibrary: NSPanel{
 		collectionBehavior = NSWindow.CollectionBehavior.moveToActiveSpace
 		titleVisibility = .hidden
 		titlebarAppearsTransparent = true
-		delegate = niDelegate
+//		delegate = niDelegate
 		contentViewController = NiLibraryViewController()
 		
 		hasShadow = false
 		isOpaque = false
 		backgroundColor = NSColor.clear
 		setBlurOnMainWindow(mainWindow)
+	}
+	
+	func removeSelf(){
+		windowBlurView?.removeFromSuperview()
+		windowBlurView = nil
+		self.orderOut(nil)
+		self.close()
 	}
 	
 	private func setBlurOnMainWindow(_ mainWindow: NSWindow){
