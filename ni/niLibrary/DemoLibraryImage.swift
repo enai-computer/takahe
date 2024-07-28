@@ -11,6 +11,11 @@ class DemoLibraryImage: NSImageView{
 	
 	@IBInspectable public var disappear: Bool = true
 	
+	private var hoverImg: NSImage?
+	private var blurredImg: NSImage?
+	private var active = false
+	var mouseDownFunction: ((NSEvent) -> Void)?
+	
 	required init?(coder: NSCoder) {
 		super.init(coder: coder)
 		
@@ -31,9 +36,30 @@ class DemoLibraryImage: NSImageView{
 	override func mouseEntered(with event: NSEvent) {
 		layer?.borderColor = NSColor.birkin.cgColor
 		layer?.borderWidth = 2.0
+		
+		if(hoverImg != nil){
+			blurredImg = self.image
+			self.image = hoverImg
+		}
 	}
 	
 	override func mouseExited(with event: NSEvent) {
 		layer?.borderWidth = 0.0
+		
+		if(blurredImg != nil && !active){
+			self.image = blurredImg
+		}
+	}
+	
+	override func mouseDown(with event: NSEvent) {
+		mouseDownFunction?(event)
+		if(mouseDownFunction != nil){
+			active = true
+		}
+	}
+	
+	func setNonBlurredImg(id: UUID){
+		hoverImg = fetchImgFromMainBundle(id: id, type: ".png")
+		hoverImg?.size = self.frame.size
 	}
 }
