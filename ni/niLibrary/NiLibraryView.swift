@@ -13,7 +13,7 @@ class NiLibraryView: NSBox{
 	
 	
 	func hideSpaces(){
-		for v in subviews{
+		for v in contentBox.subviews{
 			if let demoImage = v as? DemoLibraryImage{
 				demoImage.tryHide()
 			}

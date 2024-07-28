@@ -26,6 +26,8 @@ import Cocoa
 	
 	private var hovering: Bool = false
 	
+	public var mouseDownFunction: ((NSEvent) -> Void)?
+	
 	required init?(coder: NSCoder) {
 		super.init(coder: coder)
 
@@ -113,5 +115,9 @@ import Cocoa
 	override func mouseExited(with event: NSEvent) {
 		hovering = false
 		needsDisplay = true
+	}
+	
+	override func mouseDown(with event: NSEvent) {
+		mouseDownFunction?(event)
 	}
 }
