@@ -68,6 +68,15 @@ func fetchImgFromMainBundle(id: UUID, type: String = ".jpg") -> NSImage? {
 	return nil
 }
 
+func fetchImgFromMainBundle(name: String, type: String = ".jpg") -> NSImage? {
+	let urlString = "file://" + Bundle.main.resourcePath! + "/\(name)\(type)"
+	
+	if let fUrl = URL(string: urlString){
+		return fetchImgFromDisk(fUrl)
+	}
+	return nil
+}
+
 func fetchPDFFromMainBundle(name: String) -> PDFDocument? {
 	let urlString = "file://" + Bundle.main.resourcePath! + "/\(name).pdf"
 	
