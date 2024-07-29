@@ -18,6 +18,7 @@ class NiSpaceDocumentController: NSViewController{
 	private let bufferToSides: CGFloat = 40.0
 	
 	static let EMPTY_SPACE_ID: UUID = UUID(uuidString: "00000000-0000-0000-0000-000000000000")!
+	static let DEMO_GEN_SPACE_ID: UUID = UUID(uuidString: "00000000-0000-0000-0000-000000000002")!
 	
 	var niSpaceName: String
 	let niSpaceID: UUID
