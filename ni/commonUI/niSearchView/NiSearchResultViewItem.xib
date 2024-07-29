@@ -8,6 +8,7 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NiSearchResultViewItem" customModule="ni" customModuleProvider="target">
             <connections>
+                <outlet property="leftSideResultTypeIcon" destination="1sL-Lx-nik" id="w4C-bD-9Bb"/>
                 <outlet property="resultTitle" destination="t8U-1E-53I" id="5jK-mZ-4wi"/>
                 <outlet property="rightSideElement" destination="G6o-tn-ihA" id="TKl-f5-3te"/>
                 <outlet property="view" destination="6zT-Dc-V0C" id="tiu-hF-o4J"/>

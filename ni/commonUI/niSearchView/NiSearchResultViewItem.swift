@@ -9,6 +9,7 @@ import Cocoa
 
 class NiSearchResultViewItem: NSCollectionViewItem {
 
+	@IBOutlet var leftSideResultTypeIcon: NSImageView!
 	@IBOutlet var resultTitle: NSTextField!
 	@IBOutlet var rightSideElement: NiSearchResultViewItemRightIcon!
 	
@@ -38,6 +39,11 @@ class NiSearchResultViewItem: NSCollectionViewItem {
 		
 		if(style == .homeView){
 			view.layer?.backgroundColor = NSColor.clear.cgColor
+		}
+		if(data.id == NiSpaceDocumentController.DEMO_GEN_SPACE_ID){
+			leftSideResultTypeIcon.image = NSImage(named: "magicWand")
+		}else{
+			leftSideResultTypeIcon.image = NSImage(named: "SpaceIcon")
 		}
 	}
 	
