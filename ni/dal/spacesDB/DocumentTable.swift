@@ -93,7 +93,18 @@ class DocumentTable{
 		}
         return res
     }
-    
+
+	static func fetchDocumentName(id: UUID) -> String?{
+		do{
+			for record in try Storage.instance.spacesDB.prepare(table.select(name).filter(self.id == id)){
+				return try record.get(name)
+			}
+		}catch{
+			print("Failed to fetch name from document table with id: \(id) and error: \(error)")
+		}
+		return nil
+	}
+	
     static func fetchDocumentModel(id: UUID) -> String?{
         do{
             for record in try Storage.instance.spacesDB.prepare(table.select(document).filter(self.id == id)){
