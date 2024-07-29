@@ -58,8 +58,8 @@ class DemoLibraryImage: NSImageView{
 		}
 	}
 	
-	func setNonBlurredImg(id: UUID){
-		hoverImg = fetchImgFromMainBundle(id: id, type: ".png")
+	func setHoverImg(_ name: String){
+		hoverImg = NSImage(named: name)
 		hoverImg?.size = self.frame.size
 	}
 }

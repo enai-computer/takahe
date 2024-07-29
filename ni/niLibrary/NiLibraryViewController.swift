@@ -11,7 +11,6 @@ class NiLibraryViewController: NSViewController{
 	
 	@IBOutlet var classMoviesConnection: NiLibraryConnectionViewElement!
 	@IBOutlet var functionalConnection: NiLibraryConnectionViewElement!
-	@IBOutlet var spaceThubnail41: DemoLibraryImage!
 	
 	init(){
 		super.init(nibName: NSNib.Name("NiLibraryView"), bundle: Bundle.main)
@@ -23,7 +22,6 @@ class NiLibraryViewController: NSViewController{
 	
 	override func loadView() {
 		super.loadView()
-//		connector = (NSView.loadFromNib(nibName: "NiLibraryConnectionViewElement", owner: self) as! NiLibraryConnectionViewElement)
 	}
 	
 	override func viewDidLoad() {
@@ -33,9 +31,11 @@ class NiLibraryViewController: NSViewController{
 		view.layer?.cornerCurve = .continuous
 		view.layer?.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner]
 		
-		functionalConnection.mouseDownFunction = showConnectionDetails
-		spaceThubnail41.mouseDownFunction = showConnections
-		setUp2ndImg()
+		if let myView = view as? NiLibraryView{
+			myView.setHoverStateImgs()
+		}
+		
+//		functionalConnection.mouseDownFunction = showConnectionDetails
 	}
 	
 	override func viewWillAppear() {
@@ -61,10 +61,6 @@ class NiLibraryViewController: NSViewController{
 		classMoviesConnection.isHidden = false
 		functionalConnection.isHidden = false
 		
-	}
-	
-	private func setUp2ndImg(){
-		spaceThubnail41.setNonBlurredImg(id: UUID(uuidString: "694A8A7C-9A42-4C21-BF8D-58DFE577B291")!)
 	}
 }
 
