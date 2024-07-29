@@ -15,3 +15,12 @@ Talk to Curran
 
 ### How does it work?
 Talk to Patrick
+
+
+## Special things to consider
+
+#### spacial UUIDs
+
+"00000000-0000-0000-0000-000000000000" - Empty Space
+"00000000-0000-0000-0000-000000000001" - Welcome Space
+"00000000-0000-0000-0000-000000000002" - Demo Space (available only in Demo mode)
