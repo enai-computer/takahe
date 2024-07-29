@@ -116,6 +116,9 @@
 		CD7AE0AC2C553C7300B3984E /* NiLibraryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD7AE0AB2C553C7300B3984E /* NiLibraryView.xib */; };
 		CD8873782BCD649800007BE9 /* TimeUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8873772BCD649800007BE9 /* TimeUtils.swift */; };
 		CD8D2B082C00C7A100C44C1D /* NoteTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8D2B072C00C7A100C44C1D /* NoteTable.swift */; };
+		CD97975C2C57AC2C00640750 /* LoadingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD97975B2C57AC2C00640750 /* LoadingView.xib */; };
+		CD97975E2C57AE1400640750 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD97975D2C57AE1400640750 /* LoadingView.swift */; };
+		CD9797602C57AFC100640750 /* perfectLoopCube.gif in Resources */ = {isa = PBXBuildFile; fileRef = CD97975F2C57AFC100640750 /* perfectLoopCube.gif */; };
 		CD9B96BC2C04C8EE00998CE2 /* CFContentItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9B96BB2C04C8EE00998CE2 /* CFContentItem.swift */; };
 		CD9B96BF2C0733E700998CE2 /* NiImgView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9B96BE2C0733E700998CE2 /* NiImgView.swift */; };
 		CD9B96C12C0733F800998CE2 /* NiImgViewUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9B96C02C0733F800998CE2 /* NiImgViewUtils.swift */; };
@@ -297,6 +300,9 @@
 		CD7AE0AB2C553C7300B3984E /* NiLibraryView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NiLibraryView.xib; sourceTree = "<group>"; };
 		CD8873772BCD649800007BE9 /* TimeUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeUtils.swift; sourceTree = "<group>"; };
 		CD8D2B072C00C7A100C44C1D /* NoteTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteTable.swift; sourceTree = "<group>"; };
+		CD97975B2C57AC2C00640750 /* LoadingView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoadingView.xib; sourceTree = "<group>"; };
+		CD97975D2C57AE1400640750 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		CD97975F2C57AFC100640750 /* perfectLoopCube.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = perfectLoopCube.gif; sourceTree = "<group>"; };
 		CD9B96BB2C04C8EE00998CE2 /* CFContentItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CFContentItem.swift; sourceTree = "<group>"; };
 		CD9B96BE2C0733E700998CE2 /* NiImgView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiImgView.swift; sourceTree = "<group>"; };
 		CD9B96C02C0733F800998CE2 /* NiImgViewUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiImgViewUtils.swift; sourceTree = "<group>"; };
@@ -691,6 +697,8 @@
 				CDD7ED062C555153007604D9 /* NiLibraryViewController.swift */,
 				CDD7ED042C554E24007604D9 /* DemoLibraryImage.swift */,
 				CDD7ED0A2C555A76007604D9 /* NiLibraryConnectionViewElement.swift */,
+				CD97975B2C57AC2C00640750 /* LoadingView.xib */,
+				CD97975D2C57AE1400640750 /* LoadingView.swift */,
 			);
 			path = niLibrary;
 			sourceTree = "<group>";
@@ -735,6 +743,7 @@
 		CDACD35C2C56C80C00B9CBE9 /* forDemo */ = {
 			isa = PBXGroup;
 			children = (
+				CD97975F2C57AFC100640750 /* perfectLoopCube.gif */,
 				CDACD35F2C56C92700B9CBE9 /* unblurredSpaces */,
 				CDACD35D2C56C81B00B9CBE9 /* 1DA3C6AF-A701-418E-AB8C-B73285A3ECAB.png */,
 			);
@@ -980,6 +989,7 @@
 				CD59FA192C369ADD00CFB8DE /* CFSimpleFrameView.xib in Resources */,
 				CD1C6D5B2C525A950019CD09 /* NiPinnedMenuView.xib in Resources */,
 				A1B8E6B02AAFB5EF00AC6566 /* Main.storyboard in Resources */,
+				CD97975C2C57AC2C00640750 /* LoadingView.xib in Resources */,
 				CD6317EC2BC4852300434D56 /* sohne-dreiviertelfett.ttf in Resources */,
 				CD569FEA2C53A05700C16B2E /* 31D0446F-5F68-482A-AC81-39EACAFD11AF.png in Resources */,
 				CD3BF3D02C10A133003DA615 /* NewSpaceNote.json in Resources */,
@@ -993,6 +1003,7 @@
 				CDDBCB2F2BD8FA4D00E7B187 /* errorLoading.html in Resources */,
 				CD3362212BFE0DDC004DBAFB /* CFSoftDeletedView.xib in Resources */,
 				CD4E0E3D2C4164AF00273109 /* CFSimpleMinimizedView.xib in Resources */,
+				CD9797602C57AFC100640750 /* perfectLoopCube.gif in Resources */,
 				CDD7D3412C19924F0038E6F9 /* NiSearchResultViewItem.xib in Resources */,
 				A1E41BF62ACB533400338417 /* ContentFrameView.xib in Resources */,
 				CD569FE82C53A05700C16B2E /* 165C18BB-B531-419D-8EB4-8BBFEC4A9308.png in Resources */,
@@ -1103,6 +1114,7 @@
 				CD8873782BCD649800007BE9 /* TimeUtils.swift in Sources */,
 				CD3362162BFDFF97004DBAFB /* SpaceTopbar.swift in Sources */,
 				CD9B96BF2C0733E700998CE2 /* NiImgView.swift in Sources */,
+				CD97975E2C57AE1400640750 /* LoadingView.swift in Sources */,
 				CD1160CA2BD27B9E00345E3E /* NiWebViewUtils.swift in Sources */,
 				CDD7D3492C19AD7D0038E6F9 /* NSPanelUtils.swift in Sources */,
 				CDD87ED02BF23C650045B84B /* NiCursorUtils.swift in Sources */,
