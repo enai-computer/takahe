@@ -8,9 +8,6 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NiLibraryViewController" customModule="ni" customModuleProvider="target">
             <connections>
-                <outlet property="classMoviesConnection" destination="sl3-9P-sbV" id="ymE-CC-rym"/>
-                <outlet property="functionalConnection" destination="pUK-LR-3aE" id="lir-TE-zBY"/>
-                <outlet property="spaceThubnail41" destination="fdR-S6-RI1" id="1uD-pf-a1a"/>
                 <outlet property="view" destination="LOA-fb-PyN" id="ZU6-HS-sC9"/>
             </connections>
         </customObject>
@@ -45,92 +42,82 @@
                                     <rect key="frame" x="0.0" y="0.0" width="1385" height="715"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qU8-Qf-a1D" customClass="DemoLibraryImage" customModule="ni" customModuleProvider="target">
-                                            <rect key="frame" x="60" y="361" width="180" height="304"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="space-1-1" id="cOC-38-IFQ"/>
-                                            <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="boolean" keyPath="disappear" value="NO"/>
-                                            </userDefinedRuntimeAttributes>
-                                        </imageView>
-                                        <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ofy-pV-0mm" customClass="DemoLibraryImage" customModule="ni" customModuleProvider="target">
-                                            <rect key="frame" x="280" y="385" width="180" height="280"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="space-2-1" id="8cP-wV-uQN"/>
-                                        </imageView>
-                                        <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NL8-am-QGN" customClass="DemoLibraryImage" customModule="ni" customModuleProvider="target">
-                                            <rect key="frame" x="60" y="7" width="180" height="304"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="space-1-2" id="nrg-Ta-0kU"/>
-                                        </imageView>
-                                        <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9dz-5R-u6b" customClass="DemoLibraryImage" customModule="ni" customModuleProvider="target">
-                                            <rect key="frame" x="280" y="115" width="180" height="220"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="space-2-2" id="MSE-cm-pYy"/>
-                                        </imageView>
-                                        <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bcZ-C9-IpR" customClass="DemoLibraryImage" customModule="ni" customModuleProvider="target">
-                                            <rect key="frame" x="500" y="44" width="180" height="220"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="space-3-2" id="NQZ-Nr-gau"/>
-                                        </imageView>
-                                        <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xp2-zt-tDq" customClass="DemoLibraryImage" customModule="ni" customModuleProvider="target">
-                                            <rect key="frame" x="500" y="314" width="180" height="351"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="space-3-1" id="Rq5-y8-5qA"/>
-                                        </imageView>
-                                        <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="h73-Qe-JR0" customClass="DemoLibraryImage" customModule="ni" customModuleProvider="target">
-                                            <rect key="frame" x="720" y="29" width="180" height="366"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="space-4-2" id="rFt-lU-0x6"/>
-                                        </imageView>
                                         <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fdR-S6-RI1" customClass="DemoLibraryImage" customModule="ni" customModuleProvider="target">
-                                            <rect key="frame" x="720" y="445" width="180" height="220"/>
+                                            <rect key="frame" x="720" y="200" width="180" height="220"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="space-4-1" id="qtA-ME-G4I"/>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="disappear" value="NO"/>
                                             </userDefinedRuntimeAttributes>
                                         </imageView>
-                                        <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="l3c-5n-d8f" customClass="DemoLibraryImage" customModule="ni" customModuleProvider="target">
-                                            <rect key="frame" x="940" y="445" width="180" height="220"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="space-5-1" id="XqV-Jk-vzF"/>
-                                        </imageView>
-                                        <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5ae-QC-wVy" customClass="DemoLibraryImage" customModule="ni" customModuleProvider="target">
-                                            <rect key="frame" x="940" y="175" width="180" height="220"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="space-5-2" id="hPS-4q-Fqr"/>
-                                        </imageView>
-                                        <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9At-Td-tQ8" customClass="DemoLibraryImage" customModule="ni" customModuleProvider="target">
-                                            <rect key="frame" x="1160" y="445" width="180" height="220"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="space-6-1" id="rZe-O2-adr"/>
-                                        </imageView>
                                         <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kV3-GM-OPW" customClass="DemoLibraryImage" customModule="ni" customModuleProvider="target">
-                                            <rect key="frame" x="1160" y="175" width="180" height="220"/>
+                                            <rect key="frame" x="1160" y="-23" width="180" height="220"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="space-6-2" id="qAw-jg-Ljv"/>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="disappear" value="NO"/>
                                             </userDefinedRuntimeAttributes>
                                         </imageView>
-                                        <customView hidden="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sl3-9P-sbV" customClass="NiLibraryConnectionViewElement" customModule="ni" customModuleProvider="target">
-                                            <rect key="frame" x="240" y="371" width="480" height="155"/>
+                                        <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ofy-pV-0mm" customClass="DemoLibraryImage" customModule="ni" customModuleProvider="target">
+                                            <rect key="frame" x="280" y="49" width="180" height="280"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="space-2-1" id="8cP-wV-uQN"/>
+                                        </imageView>
+                                        <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="h73-Qe-JR0" customClass="DemoLibraryImage" customModule="ni" customModuleProvider="target">
+                                            <rect key="frame" x="940" y="-219" width="180" height="366"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="boolean" keyPath="lineBottomLeftToTopRight" value="YES"/>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="strokeWidth">
-                                                    <real key="value" value="2"/>
-                                                </userDefinedRuntimeAttribute>
-                                            </userDefinedRuntimeAttributes>
-                                        </customView>
-                                        <customView hidden="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pUK-LR-3aE" customClass="NiLibraryConnectionViewElement" customModule="ni" customModuleProvider="target">
-                                            <rect key="frame" x="900" y="249" width="262" height="312"/>
+                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="space-4-2" id="rFt-lU-0x6"/>
+                                        </imageView>
+                                        <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="l3c-5n-d8f" customClass="DemoLibraryImage" customModule="ni" customModuleProvider="target">
+                                            <rect key="frame" x="940" y="501" width="180" height="220"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="boolean" keyPath="lineBottomRightToTopLeft" value="YES"/>
-                                            </userDefinedRuntimeAttributes>
-                                        </customView>
+                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="BerlinB" id="XqV-Jk-vzF"/>
+                                        </imageView>
+                                        <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AAk-ln-zPh" customClass="DemoLibraryImage" customModule="ni" customModuleProvider="target">
+                                            <rect key="frame" x="60" y="463" width="180" height="258"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="MLsysDesignB" id="37s-Sr-swX"/>
+                                        </imageView>
+                                        <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eVe-Ac-s3K" customClass="DemoLibraryImage" customModule="ni" customModuleProvider="target">
+                                            <rect key="frame" x="280" y="379" width="180" height="342"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="payAttentionB" id="UTy-Wy-sdq"/>
+                                        </imageView>
+                                        <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2a7-Po-K6r" customClass="DemoLibraryImage" customModule="ni" customModuleProvider="target">
+                                            <rect key="frame" x="500" y="404" width="180" height="317"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="introOSB" id="nw2-R1-KM5"/>
+                                        </imageView>
+                                        <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dk6-oT-uHY" customClass="DemoLibraryImage" customModule="ni" customModuleProvider="target">
+                                            <rect key="frame" x="720" y="470" width="180" height="251"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="HCIB" id="2bs-zb-bqB"/>
+                                        </imageView>
+                                        <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pek-jt-gSv" customClass="DemoLibraryImage" customModule="ni" customModuleProvider="target">
+                                            <rect key="frame" x="507" y="40" width="180" height="314"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="weddingB" id="dfz-hO-SoH"/>
+                                        </imageView>
+                                        <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YAJ-oQ-ExP" customClass="DemoLibraryImage" customModule="ni" customModuleProvider="target">
+                                            <rect key="frame" x="940" y="197" width="180" height="254"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="interfacesB" id="cQp-P2-nZL"/>
+                                        </imageView>
+                                        <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lDg-cl-OhD" customClass="DemoLibraryImage" customModule="ni" customModuleProvider="target">
+                                            <rect key="frame" x="1160" y="538" width="180" height="183"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="jetsB" id="8x9-WM-vbm"/>
+                                        </imageView>
+                                        <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qDF-6Z-ZDe" customClass="DemoLibraryImage" customModule="ni" customModuleProvider="target">
+                                            <rect key="frame" x="1160" y="247" width="180" height="241"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="cookingB" id="CPd-44-xPw"/>
+                                        </imageView>
+                                        <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BvC-pX-U7M" customClass="DemoLibraryImage" customModule="ni" customModuleProvider="target">
+                                            <rect key="frame" x="60" y="133" width="180" height="280"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="booksB" id="PFj-t3-ZH3"/>
+                                        </imageView>
                                     </subviews>
                                 </view>
                             </subviews>
@@ -150,25 +137,37 @@
             <color key="borderColor" name="sand4"/>
             <color key="fillColor" name="sand4"/>
             <connections>
+                <outlet property="attention" destination="eVe-Ac-s3K" id="f38-wo-y9h"/>
+                <outlet property="berlin" destination="l3c-5n-d8f" id="VNK-i3-hGB"/>
+                <outlet property="books" destination="BvC-pX-U7M" id="qZx-g6-vEr"/>
                 <outlet property="contentBox" destination="yGc-zh-9ck" id="rg9-1f-Gs1"/>
+                <outlet property="cooking" destination="qDF-6Z-ZDe" id="CaE-td-RH7"/>
+                <outlet property="hciFoundations" destination="dk6-oT-uHY" id="W7M-AC-Ptn"/>
+                <outlet property="interface" destination="YAJ-oQ-ExP" id="e8R-cF-iQG"/>
+                <outlet property="introOS" destination="2a7-Po-K6r" id="ita-OC-xhb"/>
+                <outlet property="jets" destination="lDg-cl-OhD" id="QHm-LN-iQt"/>
+                <outlet property="mlSysDesign" destination="AAk-ln-zPh" id="PF0-Cy-3lS"/>
+                <outlet property="wedding" destination="pek-jt-gSv" id="BnE-kB-lSP"/>
             </connections>
             <point key="canvasLocation" x="-267" y="25"/>
         </box>
     </objects>
     <resources>
+        <image name="BerlinB" width="720" height="863"/>
+        <image name="HCIB" width="720" height="1004"/>
+        <image name="MLsysDesignB" width="720" height="1030"/>
+        <image name="booksB" width="720" height="1120"/>
+        <image name="cookingB" width="720" height="964"/>
+        <image name="interfacesB" width="720" height="1014"/>
+        <image name="introOSB" width="720" height="1268"/>
+        <image name="jetsB" width="720" height="690"/>
         <image name="libraryHeader" width="1280" height="52"/>
-        <image name="space-1-1" width="180" height="304"/>
-        <image name="space-1-2" width="180" height="304"/>
+        <image name="payAttentionB" width="720" height="1369"/>
         <image name="space-2-1" width="180" height="280"/>
-        <image name="space-2-2" width="180" height="220"/>
-        <image name="space-3-1" width="180" height="351"/>
-        <image name="space-3-2" width="180" height="220"/>
         <image name="space-4-1" width="180" height="220"/>
         <image name="space-4-2" width="180" height="366"/>
-        <image name="space-5-1" width="180" height="220"/>
-        <image name="space-5-2" width="180" height="220"/>
-        <image name="space-6-1" width="180" height="220"/>
         <image name="space-6-2" width="180" height="220"/>
+        <image name="weddingB" width="720" height="1256"/>
         <namedColor name="sand4">
             <color red="0.93333333333333335" green="0.93333333333333335" blue="0.92549019607843142" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
