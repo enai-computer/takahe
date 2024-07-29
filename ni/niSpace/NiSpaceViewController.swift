@@ -458,24 +458,26 @@ class NiSpaceViewController: NSViewController, NSTextFieldDelegate{
 	}
 	
 	func loadSpace(spaceId id: UUID, name: String){
-		let (spaceDoc, scrollTo) = getSpaceDoc(id, name: name)
+		let (spaceDoc, scrollTo) = getSpaceDoc(id, userInputName: name)
 		self.loadSpace(spaceId: id, name: name, spaceDoc: spaceDoc, scrollTo: scrollTo)
 	}
 	
 	private func loadSpace(spaceId id: UUID, name: String, spaceDoc: NiSpaceDocumentController, scrollTo: NSPoint?){
-		niSpaceName = name
-		spaceName.stringValue = name
-		self.niSpaceID = id
-		
 		pauseMediaPlayback(niDocument)
 		
 //		if(Storage.instance.userConfig.spaceCachingEnabled){
 //			documentCache.addToCache(id: id, controller: spaceDoc)
 //		}
 		
+		if(UserSettings.shared.demoMode 
+		   && id == NiSpaceDocumentController.DEMO_GEN_SPACE_ID){
+			simulateWaitingLoadingForDemo(spaceDoc)
+			return
+		}
+		
 		addChild(spaceDoc)
 		
-		let oldDoc = niDocument
+//		let oldDoc = niDocument
 		transition(from: niDocument, to: spaceDoc, options: [.crossfade])
 		
 		self.niDocument = spaceDoc
@@ -483,6 +485,11 @@ class NiSpaceViewController: NSViewController, NSTextFieldDelegate{
 		if(scrollTo != nil){
 			self.niScrollView.scroll(self.niScrollView.contentView, to: scrollTo!)
 		}
+		
+		niSpaceName = name
+		spaceName.stringValue = name
+		self.niSpaceID = id
+		
 		self.spaceLoaded = true
 		
 //		if(!Storage.instance.userConfig.spaceCachingEnabled){
@@ -493,6 +500,37 @@ class NiSpaceViewController: NSViewController, NSTextFieldDelegate{
 		PostHogSDK.shared.capture("Space_loaded", properties: ["loaded_since_AppStart": nrOfTimesLoaded])
 	}
 	
+	private func simulateWaitingLoadingForDemo(_ spaceDoc: NiSpaceDocumentController){
+		let emptyDoc = getEmptySpaceDocument(id: NiSpaceDocumentController.EMPTY_SPACE_ID,
+											 name: "Generating space…")
+		addChild(emptyDoc)
+		transition(from: niDocument, to: emptyDoc, options: [.crossfade])
+		self.niDocument = emptyDoc
+		self.niScrollView.documentView = emptyDoc.view
+		
+		niSpaceName = "Generating space …"
+		spaceName.stringValue = "Generating space …"
+		self.niSpaceID = NiSpaceDocumentController.EMPTY_SPACE_ID
+		
+		
+		DispatchQueue.main.asyncAfter(deadline: .now() + 5.0){
+			self.displayDemoSpace(spaceDoc)
+		}
+	}
+	
+	private func displayDemoSpace(_ spaceDoc: NiSpaceDocumentController){
+		addChild(spaceDoc)
+		transition(from: niDocument, to: spaceDoc, options: [.crossfade])
+		
+		spaceName.stringValue = spaceDoc.niSpaceName
+		spaceName.stringValue = spaceDoc.niSpaceName
+		self.niSpaceID = spaceDoc.niSpaceID
+		
+		self.niDocument = spaceDoc
+		self.niScrollView.documentView = spaceDoc.view
+		self.spaceLoaded = true
+	}
+	
 	private func pauseMediaPlayback(_ doc: NiSpaceDocumentController?){
 		guard doc != nil else{return}
 		for conFrame in doc!.myView.contentFrameControllers{
@@ -500,8 +538,9 @@ class NiSpaceViewController: NSViewController, NSTextFieldDelegate{
 		}
 	}
 	
-	private func getSpaceDoc(_ id: UUID, name: String) -> (NiSpaceDocumentController, NSPoint?) {
+	private func getSpaceDoc(_ id: UUID, userInputName: String) -> (NiSpaceDocumentController, NSPoint?) {
 		let spaceModel = loadStoredSpace(niSpaceID: id)
+		let name = DocumentTable.fetchDocumentName(id: id) ?? userInputName
 		var scrollTo: NSPoint? = nil
 		
 //		if(Storage.instance.userConfig.spaceCachingEnabled){
@@ -520,6 +559,7 @@ class NiSpaceViewController: NSViewController, NSTextFieldDelegate{
 			niDocument.view.frame = spaceDoc.view.frame
 		}else{
 			let docHeightPx = (spaceModel?.data as? NiDocumentModel)?.height.px
+			
 			spaceDoc = getEmptySpaceDocument(id: id, name: name, height: docHeightPx)
 			scrollTo = spaceDoc.recreateSpace(docModel: spaceModel!)
 			

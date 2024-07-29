@@ -84,6 +84,9 @@ class Cook{
 				}
 				return true
 			}
+			if(UserSettings.shared.demoMode){
+				res.append(NiSearchResultItem(type: .niSpace, id: NiSpaceDocumentController.DEMO_GEN_SPACE_ID, name: "Generate a new space", data: nil))
+			}
 			res.append(NiSearchResultItem(type: .niSpace, id: NiSpaceDocumentController.EMPTY_SPACE_ID, name: "Create a new space", data: nil))
 		}
 		return res
@@ -96,12 +99,15 @@ class Cook{
 			DocumentTable.updatedAt
 		)
 		if(typedChars != nil){
-			query = query.filter(DocumentTable.name .like("%\(typedChars!)%"))
+			query = query.filter(DocumentTable.name.like("%\(typedChars!)%"))
 		}else{
 			query = query.order(DocumentTable.updatedAt.desc)
 		}
 		if(maxNrOfResults != nil){
 			query = query.limit(maxNrOfResults!)
+		}
+		if(UserSettings.shared.demoMode){
+			query = query.where(NiSpaceDocumentController.DEMO_GEN_SPACE_ID != DocumentTable.id)
 		}
 		return query
 	}
