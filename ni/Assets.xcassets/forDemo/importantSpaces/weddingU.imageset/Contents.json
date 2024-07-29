@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "weddingU.png",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
