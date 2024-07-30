@@ -12,22 +12,18 @@ let EMPTYSPACEFACTOR: Double = 1
 
 class NiSpaceDocumentView: NSView{
 
+	private let DEFAULT_WINDOW_HEIGHT: CGFloat = 1400.0
+	
 	private(set) var topNiFrame: ContentFrameController? = nil
 	private(set) var contentFrameControllers: Set<ContentFrameController> = []	//rn all niFrames are drawn. Needs to be reworked in future
 	
 	
-	init(height: CGFloat? = nil){
+	init(windowSize: CGSize){
 		var frameSize = NSRect()
 		
-		let windowSize: CGSize = AppDelegate.defaultWindowSize ?? NSApplication.shared.mainWindow!.frame.size
 		frameSize.size.width = windowSize.width
-		
-		if(height == nil){
-			frameSize.size.height = windowSize.height * (1+EMPTYSPACEFACTOR)
-		}else{
-			frameSize.size.height = height!
-		}
-		
+		frameSize.size.height = windowSize.height * (1+EMPTYSPACEFACTOR)
+
 		super.init(frame: frameSize)
 	}
 	
@@ -44,8 +40,8 @@ class NiSpaceDocumentView: NSView{
     }
     
     func extendDocumentDownwards(){
-        let window = NSApplication.shared.mainWindow!
-        self.frame.size.height += window.frame.height * EMPTYSPACEFACTOR
+		let windowHeight: CGFloat = NSApplication.shared.mainWindow?.frame.height ?? DEFAULT_WINDOW_HEIGHT
+        self.frame.size.height += windowHeight * EMPTYSPACEFACTOR
     }
 	
 	override func resizeSubviews(withOldSize oldSize: NSSize) {
