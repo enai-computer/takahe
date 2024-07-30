@@ -39,6 +39,7 @@ class DemoLibraryImage: NSImageView{
 		
 		if(hoverImg != nil){
 			blurredImg = self.image
+//			transition(to: hoverImg, duration: 0.3)
 			self.image = hoverImg
 		}
 	}
@@ -47,6 +48,7 @@ class DemoLibraryImage: NSImageView{
 		layer?.borderWidth = 0.0
 		
 		if(blurredImg != nil && !active){
+//			transition(to: blurredImg, duration: 0.3)
 			self.image = blurredImg
 		}
 	}
@@ -62,4 +64,26 @@ class DemoLibraryImage: NSImageView{
 		hoverImg = NSImage(named: name)
 		hoverImg?.size = self.frame.size
 	}
+
+	func transition(to image: NSImage?, duration: TimeInterval = 0.5) {
+		// Create a temporary image view to perform the transition
+		let tempImageView = NSImageView(frame: bounds)
+		tempImageView.image = image
+		tempImageView.animates = false
+		tempImageView.imageScaling = .scaleProportionallyUpOrDown
+		
+		// Add the temporary image view in front of the current one
+		addSubview(tempImageView, positioned: .above, relativeTo: self)
+		
+		// Animate the fade transition using the animator proxy
+		NSAnimationContext.runAnimationGroup({ (context) in
+			context.duration = duration
+			tempImageView.animator().alphaValue = 1.0
+		}) {
+			// Remove the temporary image view and set the final image
+			tempImageView.removeFromSuperview()
+			self.image = image
+		}
+	}
+
 }

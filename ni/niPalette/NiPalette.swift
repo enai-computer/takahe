@@ -17,8 +17,7 @@ class NiPalette: NSPanel, NiSearchWindowProtocol {
 	private var windowBlurView: NSView?
 	private var paletteBlurView: NSView?
 	
-	init(){
-		let mainWindow = NSApplication.shared.mainWindow!
+	init(_ mainWindow: NSWindow){
 		let paletteRect = NiPalette.calcPaletteRect(mainWindow.frame.size)
 		let frameRect = NSPanel.rectForScreen(paletteRect, screen: mainWindow.screen!)
 		

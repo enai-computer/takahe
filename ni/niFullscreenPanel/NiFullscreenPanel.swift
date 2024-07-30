@@ -17,8 +17,7 @@ class NiFullscreenPanel: NSPanel{
 	private var windowBlurView: NSView?
 	private var contentBlurView: NSView?
 	
-	init(_ contentViewController: NiAlertPanelController){
-		let mainWindow = NSApplication.shared.mainWindow!
+	init(mainWindow: NSWindow, contentViewController: NiAlertPanelController){
 		let contentRect = NiFullscreenPanel.calcContentRect(contentViewController.view.frame.size, screenSize: mainWindow.frame.size)
 		let frameRect = NSPanel.rectForScreen(contentRect, screen: mainWindow.screen!)
 		

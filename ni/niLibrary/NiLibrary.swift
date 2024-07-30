@@ -15,8 +15,7 @@ class NiLibrary: NSPanel{
 	
 	private var windowBlurView: NSView?
 
-	init(){
-		let mainWindow = NSApplication.shared.mainWindow!
+	init(_ mainWindow: NSWindow){
 		let paletteRect = NiLibrary.calcLibraryRect(mainWindow.frame.size)
 		let frameRect = NSPanel.rectForScreen(paletteRect, screen: mainWindow.screen!)
 		

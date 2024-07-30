@@ -45,7 +45,11 @@ class NiSpaceDocumentController: NSViewController{
 	}
 	
 	override func loadView() {
-		self.view = NiSpaceDocumentView(height: initHeight)
+		var windowSize: CGSize? = AppDelegate.defaultWindowSize
+		if(windowSize == nil){
+			windowSize = NSApplication.shared.mainWindow?.frame.size ?? CGSize(width: 1600.0, height: 1000.0)
+		}
+		self.view = NiSpaceDocumentView(windowSize: windowSize!)
 	}
 	
 	/**
