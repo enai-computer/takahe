@@ -98,6 +98,7 @@
 		CD6317F12BC53A9600434D56 /* cfOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6317F02BC53A9600434D56 /* cfOverlay.swift */; };
 		CD66CE332B1F819E0006BB98 /* NiWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD66CE322B1F819E0006BB98 /* NiWebView.swift */; };
 		CD66CE382B1FD26A0006BB98 /* NiStringUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD66CE372B1FD26A0006BB98 /* NiStringUtils.swift */; };
+		CD6B97712C590AB80046C36B /* loadingAnimation.gif in Resources */ = {isa = PBXBuildFile; fileRef = CD6B97702C590AB80046C36B /* loadingAnimation.gif */; };
 		CD6D280A2C11D5ED0009732A /* NiMenuItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6D28092C11D5ED0009732A /* NiMenuItemViewModel.swift */; };
 		CD6D280C2C11D6DA0009732A /* NiMenuWindowDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6D280B2C11D6DA0009732A /* NiMenuWindowDelegate.swift */; };
 		CD6D280E2C11DC7A0009732A /* NiMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6D280D2C11DC7A0009732A /* NiMenuViewController.swift */; };
@@ -283,6 +284,7 @@
 		CD66CE322B1F819E0006BB98 /* NiWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiWebView.swift; sourceTree = "<group>"; };
 		CD66CE372B1FD26A0006BB98 /* NiStringUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiStringUtils.swift; sourceTree = "<group>"; };
 		CD69D02F2BFCA54C002386D0 /* NiStringUtilsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiStringUtilsTests.swift; sourceTree = "<group>"; };
+		CD6B97702C590AB80046C36B /* loadingAnimation.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = loadingAnimation.gif; sourceTree = "<group>"; };
 		CD6D28092C11D5ED0009732A /* NiMenuItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiMenuItemViewModel.swift; sourceTree = "<group>"; };
 		CD6D280B2C11D6DA0009732A /* NiMenuWindowDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiMenuWindowDelegate.swift; sourceTree = "<group>"; };
 		CD6D280D2C11DC7A0009732A /* NiMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiMenuViewController.swift; sourceTree = "<group>"; };
@@ -743,6 +745,7 @@
 		CDACD35C2C56C80C00B9CBE9 /* forDemo */ = {
 			isa = PBXGroup;
 			children = (
+				CD6B97702C590AB80046C36B /* loadingAnimation.gif */,
 				CD97975F2C57AFC100640750 /* perfectLoopCube.gif */,
 				CDACD35F2C56C92700B9CBE9 /* unblurredSpaces */,
 				CDACD35D2C56C81B00B9CBE9 /* 1DA3C6AF-A701-418E-AB8C-B73285A3ECAB.png */,
@@ -1010,6 +1013,7 @@
 				CD53ACC02BCEE0ED00D5912B /* emptyTab.html in Resources */,
 				CD2D8E7E2C4EB992003AED25 /* licklider.pdf in Resources */,
 				CD618D9C2C2B4151006869AF /* 43DC5B56-124C-4368-A341-EAA9D2E33CFD.jpg in Resources */,
+				CD6B97712C590AB80046C36B /* loadingAnimation.gif in Resources */,
 				CD569FEC2C53A05700C16B2E /* 76AD3FA8-81D2-4C9D-A5B0-EF190D4F6D81.png in Resources */,
 				CD6DED902C24954500AA8BC4 /* NiWebViewFindPanel.xib in Resources */,
 				CDF0DD242C202BDB006C4EF4 /* NiHomeView.xib in Resources */,

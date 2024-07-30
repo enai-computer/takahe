@@ -11,6 +11,10 @@ class NiLibraryView: NSBox{
 	
 	@IBOutlet var contentBox: NSView!
 	
+	@IBOutlet var plants: DemoLibraryImage!
+	@IBOutlet var mindfulness: DemoLibraryImage!
+	@IBOutlet var art: DemoLibraryImage!
+	@IBOutlet var groupProject: DemoLibraryImage!
 	@IBOutlet var attention: DemoLibraryImage!
 	@IBOutlet var berlin: DemoLibraryImage!
 	@IBOutlet var mlSysDesign: DemoLibraryImage!
@@ -21,6 +25,7 @@ class NiLibraryView: NSBox{
 	@IBOutlet var wedding: DemoLibraryImage!
 	@IBOutlet var hciFoundations: DemoLibraryImage!
 	@IBOutlet var introOS: DemoLibraryImage!
+	@IBOutlet var ski: DemoLibraryImage!
 	
 	func setHoverStateImgs(){
 		attention.setHoverImg("payAttentionU")
@@ -33,6 +38,11 @@ class NiLibraryView: NSBox{
 		hciFoundations.setHoverImg("HCIU")
 		introOS.setHoverImg("introOSU")
 		berlin.setHoverImg("BerlinU")
+		groupProject.setHoverImg("groupProU")
+		art.setHoverImg("artU")
+		mindfulness.setHoverImg("mindfulnessU")
+		plants.setHoverImg("plantsU")
+		ski.setHoverImg("skiU")
 	}
 	
 	func hideSpaces(){
