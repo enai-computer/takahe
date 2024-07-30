@@ -212,6 +212,7 @@ class CFSimpleFrameView: CFBaseView{
 	
 	func changeFrameColor(set color: NSColor){
 		self.layer?.backgroundColor = color.cgColor
+		fillColor = color
 		self.borderColor = color
 		cfHeadView.wantsLayer = true
 		cfHeadView.layer?.backgroundColor = color.cgColor

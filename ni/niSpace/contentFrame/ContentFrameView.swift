@@ -442,6 +442,7 @@ class ContentFrameView: CFBaseView{
             self.layer?.borderColor = NSColor(.sand4).cgColor
 			self.layer?.backgroundColor = NSColor(.sand4).cgColor
 			cfHeadView.layer?.backgroundColor = NSColor(.sand4).cgColor
+			fillColor = .sand4
 			shadowActive()
             
 			showHeader()
@@ -452,6 +453,7 @@ class ContentFrameView: CFBaseView{
             self.layer?.borderColor = NSColor(.sand3).cgColor
 			self.layer?.backgroundColor = NSColor(.sand3).cgColor
 			cfHeadView.layer?.backgroundColor = NSColor(.sand3).cgColor
+			fillColor = .sand3
 			shadowInActive()
 			
 			hideHeader()
