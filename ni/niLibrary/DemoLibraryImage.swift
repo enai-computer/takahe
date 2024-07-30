@@ -33,11 +33,15 @@ class DemoLibraryImage: NSImageView{
 		}
 	}
 	
+	func unhide(){
+		isHidden = false
+	}
+	
 	override func mouseEntered(with event: NSEvent) {
 		layer?.borderColor = NSColor.birkin.cgColor
 		layer?.borderWidth = 2.0
 		
-		if(hoverImg != nil){
+		if(hoverImg != nil && !active){
 			blurredImg = self.image
 //			transition(to: hoverImg, duration: 0.3)
 			self.image = hoverImg
@@ -56,7 +60,7 @@ class DemoLibraryImage: NSImageView{
 	override func mouseDown(with event: NSEvent) {
 		mouseDownFunction?(event)
 		if(mouseDownFunction != nil){
-			active = true
+			active = !active
 		}
 	}
 	
