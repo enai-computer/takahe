@@ -43,92 +43,190 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ofy-pV-0mm" customClass="DemoLibraryImage" customModule="ni" customModuleProvider="target">
-                                            <rect key="frame" x="280" y="-265" width="180" height="280"/>
+                                            <rect key="frame" x="280" y="-230" width="180" height="280"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="space-2-1" id="8cP-wV-uQN"/>
-                                        </imageView>
-                                        <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="l3c-5n-d8f" customClass="DemoLibraryImage" customModule="ni" customModuleProvider="target">
-                                            <rect key="frame" x="940" y="501" width="180" height="220"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="BerlinB" id="XqV-Jk-vzF"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="disappear" value="YES"/>
+                                            </userDefinedRuntimeAttributes>
                                         </imageView>
                                         <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eVe-Ac-s3K" customClass="DemoLibraryImage" customModule="ni" customModuleProvider="target">
-                                            <rect key="frame" x="280" y="379" width="180" height="342"/>
+                                            <rect key="frame" x="940" y="379" width="180" height="342"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="payAttentionB" id="UTy-Wy-sdq"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="disappear" value="NO"/>
+                                            </userDefinedRuntimeAttributes>
                                         </imageView>
                                         <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2a7-Po-K6r" customClass="DemoLibraryImage" customModule="ni" customModuleProvider="target">
-                                            <rect key="frame" x="500" y="404" width="180" height="317"/>
+                                            <rect key="frame" x="280" y="404" width="180" height="317"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="introOSB" id="nw2-R1-KM5"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="disappear" value="YES"/>
+                                            </userDefinedRuntimeAttributes>
                                         </imageView>
                                         <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dk6-oT-uHY" customClass="DemoLibraryImage" customModule="ni" customModuleProvider="target">
-                                            <rect key="frame" x="720" y="470" width="180" height="251"/>
+                                            <rect key="frame" x="720" y="244" width="180" height="251"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="HCIB" id="2bs-zb-bqB"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="disappear" value="NO"/>
+                                            </userDefinedRuntimeAttributes>
                                         </imageView>
                                         <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pek-jt-gSv" customClass="DemoLibraryImage" customModule="ni" customModuleProvider="target">
-                                            <rect key="frame" x="507" y="40" width="180" height="314"/>
+                                            <rect key="frame" x="940" y="15" width="180" height="314"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="weddingB" id="dfz-hO-SoH"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="disappear" value="YES"/>
+                                            </userDefinedRuntimeAttributes>
                                         </imageView>
                                         <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YAJ-oQ-ExP" customClass="DemoLibraryImage" customModule="ni" customModuleProvider="target">
-                                            <rect key="frame" x="940" y="197" width="180" height="254"/>
+                                            <rect key="frame" x="280" y="100" width="180" height="254"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="interfacesB" id="cQp-P2-nZL"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="disappear" value="NO"/>
+                                            </userDefinedRuntimeAttributes>
                                         </imageView>
                                         <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lDg-cl-OhD" customClass="DemoLibraryImage" customModule="ni" customModuleProvider="target">
-                                            <rect key="frame" x="1160" y="538" width="180" height="183"/>
+                                            <rect key="frame" x="720" y="545" width="180" height="180"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="jetsB" id="8x9-WM-vbm"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="disappear" value="YES"/>
+                                            </userDefinedRuntimeAttributes>
                                         </imageView>
                                         <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qDF-6Z-ZDe" customClass="DemoLibraryImage" customModule="ni" customModuleProvider="target">
-                                            <rect key="frame" x="1160" y="247" width="180" height="241"/>
+                                            <rect key="frame" x="500" y="480" width="180" height="241"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="cookingB" id="CPd-44-xPw"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="disappear" value="YES"/>
+                                            </userDefinedRuntimeAttributes>
                                         </imageView>
                                         <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BvC-pX-U7M" customClass="DemoLibraryImage" customModule="ni" customModuleProvider="target">
                                             <rect key="frame" x="60" y="-114" width="180" height="280"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="booksB" id="PFj-t3-ZH3"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="disappear" value="YES"/>
+                                            </userDefinedRuntimeAttributes>
                                         </imageView>
                                         <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XOG-NK-dps" customClass="DemoLibraryImage" customModule="ni" customModuleProvider="target">
                                             <rect key="frame" x="60" y="524" width="180" height="197"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="groupProB" id="rCh-fe-7Vz"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="disappear" value="NO"/>
+                                            </userDefinedRuntimeAttributes>
                                         </imageView>
                                         <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AAk-ln-zPh" customClass="DemoLibraryImage" customModule="ni" customModuleProvider="target">
                                             <rect key="frame" x="60" y="216" width="180" height="258"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="MLsysDesignB" id="37s-Sr-swX"/>
-                                        </imageView>
-                                        <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GSZ-e7-OcM" customClass="DemoLibraryImage" customModule="ni" customModuleProvider="target">
-                                            <rect key="frame" x="720" y="225" width="180" height="195"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="artB" id="v9D-nr-Kg7"/>
-                                        </imageView>
-                                        <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fdR-S6-RI1" customClass="DemoLibraryImage" customModule="ni" customModuleProvider="target">
-                                            <rect key="frame" x="720" y="-45" width="180" height="220"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="space-4-1" id="qtA-ME-G4I"/>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="disappear" value="NO"/>
                                             </userDefinedRuntimeAttributes>
                                         </imageView>
+                                        <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GSZ-e7-OcM" customClass="DemoLibraryImage" customModule="ni" customModuleProvider="target">
+                                            <rect key="frame" x="720" y="-1" width="180" height="195"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="artB" id="v9D-nr-Kg7"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="disappear" value="NO"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </imageView>
+                                        <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fdR-S6-RI1" customClass="DemoLibraryImage" customModule="ni" customModuleProvider="target">
+                                            <rect key="frame" x="500" y="-103" width="180" height="220"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="space-4-1" id="qtA-ME-G4I"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="disappear" value="YES"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </imageView>
                                         <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xs9-I2-eeM" customClass="DemoLibraryImage" customModule="ni" customModuleProvider="target">
-                                            <rect key="frame" x="280" y="65" width="180" height="263"/>
+                                            <rect key="frame" x="500" y="167" width="180" height="263"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="mindfulnessB" id="ych-GX-vcs"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="disappear" value="YES"/>
+                                            </userDefinedRuntimeAttributes>
                                         </imageView>
                                         <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0hd-cw-Un8" customClass="DemoLibraryImage" customModule="ni" customModuleProvider="target">
-                                            <rect key="frame" x="940" y="-91" width="180" height="238"/>
-                                            <autoresizingMask key="autoresizingMask"/>
+                                            <rect key="frame" x="1160" y="213" width="180" height="238"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="plantsB" id="bi3-0b-1Qh"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="disappear" value="YES"/>
+                                            </userDefinedRuntimeAttributes>
                                         </imageView>
                                         <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CzW-mJ-Rju" customClass="DemoLibraryImage" customModule="ni" customModuleProvider="target">
-                                            <rect key="frame" x="1160" y="24" width="180" height="173"/>
+                                            <rect key="frame" x="1160" y="-10" width="180" height="173"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="skiB" id="TpS-0i-hnP"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="disappear" value="YES"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </imageView>
+                                        <customView hidden="YES" id="ElG-wo-C7U" customClass="NiLibraryConnectionViewElement" customModule="ni" customModuleProvider="target">
+                                            <rect key="frame" x="235" y="354" width="139" height="176"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="lineBottomLeftToTopRight" value="NO"/>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="lineBottomRightToTopLeft" value="YES"/>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="connectorDriection">
+                                                    <integer key="value" value="0"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </customView>
+                                        <customView hidden="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="66H-DJ-Rhh" customClass="NiLibraryConnectionViewElement" customModule="ni" customModuleProvider="target">
+                                            <rect key="frame" x="117" y="470" width="70" height="54"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="verticalLine" value="YES"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </customView>
+                                        <customView hidden="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZRd-dc-Fft" customClass="NiLibraryConnectionViewElement" customModule="ni" customModuleProvider="target">
+                                            <rect key="frame" x="240" y="188" width="485" height="349"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="lineBottomLeftToTopRight" value="NO"/>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="lineBottomRightToTopLeft" value="YES"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </customView>
+                                        <customView hidden="YES" id="Wdl-Z9-zIJ" customClass="NiLibraryConnectionViewElement" customModule="ni" customModuleProvider="target">
+                                            <rect key="frame" x="240" y="416" width="479" height="148"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="lineBottomLeftToTopRight" value="NO"/>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="lineBottomRightToTopLeft" value="YES"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </customView>
+                                        <customView hidden="YES" id="jVn-us-Ie7" customClass="NiLibraryConnectionViewElement" customModule="ni" customModuleProvider="target">
+                                            <rect key="frame" x="240" y="564" width="700" height="65"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="lineBottomLeftToTopRight" value="NO"/>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="horizontalLine" value="YES"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </customView>
+                                        <customView hidden="YES" id="psp-ay-3ub" customClass="NiLibraryConnectionViewElement" customModule="ni" customModuleProvider="target">
+                                            <rect key="frame" x="372" y="354" width="348" height="277"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="lineBottomLeftToTopRight" value="YES"/>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="lineBottomRightToTopLeft" value="NO"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </customView>
+                                        <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="l3c-5n-d8f" customClass="DemoLibraryImage" customModule="ni" customModuleProvider="target">
+                                            <rect key="frame" x="1160" y="501" width="180" height="220"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="BerlinB" id="XqV-Jk-vzF"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="disappear" value="YES"/>
+                                            </userDefinedRuntimeAttributes>
                                         </imageView>
                                     </subviews>
                                 </view>
@@ -155,6 +253,12 @@
                 <outlet property="books" destination="BvC-pX-U7M" id="qZx-g6-vEr"/>
                 <outlet property="contentBox" destination="yGc-zh-9ck" id="rg9-1f-Gs1"/>
                 <outlet property="cooking" destination="qDF-6Z-ZDe" id="CaE-td-RH7"/>
+                <outlet property="fighterJetsConnector" destination="psp-ay-3ub" id="31I-rn-1O8"/>
+                <outlet property="groupConnector1" destination="ElG-wo-C7U" id="YMT-Mg-Gyr"/>
+                <outlet property="groupConnector2" destination="66H-DJ-Rhh" id="hdH-YC-6NG"/>
+                <outlet property="groupConnector3" destination="ZRd-dc-Fft" id="tkN-h8-oHQ"/>
+                <outlet property="groupConnector4" destination="Wdl-Z9-zIJ" id="E4Q-su-oyx"/>
+                <outlet property="groupConnector5" destination="jVn-us-Ie7" id="lcp-Jp-Sfv"/>
                 <outlet property="groupProject" destination="XOG-NK-dps" id="BZK-g1-woK"/>
                 <outlet property="hciFoundations" destination="dk6-oT-uHY" id="W7M-AC-Ptn"/>
                 <outlet property="interface" destination="YAJ-oQ-ExP" id="e8R-cF-iQG"/>

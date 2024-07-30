@@ -54,14 +54,6 @@ class NiLibraryViewController: NSViewController{
 		view.addSubview(imgView)
 	}
 	
-	func showConnections(with event: NSEvent){
-		if let myView = self.view as? NiLibraryView{
-			myView.hideSpaces()
-		}
-		classMoviesConnection.isHidden = false
-		functionalConnection.isHidden = false
-		
-	}
 }
 
 

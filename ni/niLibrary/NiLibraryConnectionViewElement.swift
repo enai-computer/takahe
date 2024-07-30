@@ -19,6 +19,17 @@ import Cocoa
 			needsDisplay = true
 		}
 	}
+	@IBInspectable public var horizontalLine: Bool = false{
+		didSet{
+			needsDisplay = true
+		}
+	}
+	@IBInspectable public var verticalLine: Bool = false{
+		didSet{
+			needsDisplay = true
+		}
+	}
+	
 	@IBInspectable public var strokeColor: NSColor = .birkin
 	@IBInspectable public var strokeWidth: CGFloat = 2.0
 	@IBInspectable public var dotColor: NSColor = .sand1
@@ -54,6 +65,14 @@ import Cocoa
 		if(lineBottomRightToTopLeft){
 			context.move(to: NSPoint(x: bounds.maxX, y: bounds.minY))
 			context.addLine(to: NSPoint(x: bounds.minX, y: bounds.maxY))
+		}
+		if(horizontalLine){
+			context.move(to: NSPoint(x: bounds.minX, y: bounds.midY))
+			context.addLine(to: NSPoint(x: bounds.maxX, y: bounds.midY))
+		}
+		if(verticalLine){
+			context.move(to: NSPoint(x: bounds.midX, y: bounds.minY))
+			context.addLine(to: NSPoint(x: bounds.midX, y: bounds.maxY))
 		}
 		context.setStrokeColor(strokeColor.cgColor)
 		context.setLineWidth(strokeWidth)

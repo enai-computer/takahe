@@ -27,6 +27,16 @@ class NiLibraryView: NSBox{
 	@IBOutlet var introOS: DemoLibraryImage!
 	@IBOutlet var ski: DemoLibraryImage!
 	
+	@IBOutlet var groupConnector5: NiLibraryConnectionViewElement!
+	@IBOutlet var groupConnector4: NiLibraryConnectionViewElement!
+	@IBOutlet var groupConnector3: NiLibraryConnectionViewElement!
+	@IBOutlet var groupConnector2: NiLibraryConnectionViewElement!
+	@IBOutlet var groupConnector1: NiLibraryConnectionViewElement!
+	@IBOutlet var fighterJetsConnector: NiLibraryConnectionViewElement!
+	
+	private var groupPojectActive: Bool = false
+	private var jetSpaceActive: Bool = false
+	
 	func setHoverStateImgs(){
 		attention.setHoverImg("payAttentionU")
 		mlSysDesign.setHoverImg("MLsysDesignU")
@@ -43,13 +53,72 @@ class NiLibraryView: NSBox{
 		mindfulness.setHoverImg("mindfulnessU")
 		plants.setHoverImg("plantsU")
 		ski.setHoverImg("skiU")
+		
+		groupProject.mouseDownFunction = self.showGroupConnections
+		jets.mouseDownFunction = self.showJetConenctios
 	}
 	
-	func hideSpaces(){
+	func showGroupConnections(with event: NSEvent){
+		if(event.clickCount == 1){
+			if(self.groupPojectActive){
+				self.hideGroupProjConnections()
+				self.groupPojectActive = false
+			}else{
+				self.showGroupProjConnections()
+				self.groupPojectActive = true
+			}
+		}
+	}
+	
+	func showJetConenctios(with event: NSEvent){
+		if(event.clickCount == 1){
+			if(self.jetSpaceActive){
+				self.hideJetConnections()
+				self.jetSpaceActive = false
+			}else{
+				self.showJetConnections()
+				self.jetSpaceActive = true
+			}
+		}
+	}
+	
+	func showGroupProjConnections(){
+		toggleSpacesVisability()
+		setVisability(false, for: [groupConnector1, groupConnector2, groupConnector3, groupConnector4, groupConnector5])
+	}
+	
+	func toggleSpacesVisability(_ hide: Bool = true, forceHide: Bool = false){
 		for v in contentBox.subviews{
 			if let demoImage = v as? DemoLibraryImage{
-				demoImage.tryHide()
+				if(forceHide){
+					demoImage.isHidden = hide
+				}else if(hide){
+					demoImage.tryHide()
+				}else{
+					demoImage.unhide()
+				}
 			}
+		}
+	}
+	
+	func hideGroupProjConnections(){
+		toggleSpacesVisability(false)
+		setVisability(for: [groupConnector1, groupConnector2, groupConnector3, groupConnector4, groupConnector5])
+	}
+	
+	func showJetConnections(){
+		toggleSpacesVisability(true, forceHide: true)
+		setVisability(false, for: [jets, interface, fighterJetsConnector])
+	}
+	
+	func hideJetConnections(){
+		toggleSpacesVisability(false)
+		setVisability(for: [fighterJetsConnector])
+	}
+	
+	func setVisability(_ hide: Bool = true, for views: [NSView]){
+		for v in views{
+			v.isHidden = hide
 		}
 	}
 }
