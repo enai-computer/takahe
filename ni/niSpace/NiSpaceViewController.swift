@@ -86,6 +86,7 @@ class NiSpaceViewController: NSViewController, NSTextFieldDelegate{
 		header.layer?.backgroundColor = NSColor.sand1.cgColor
 		searchIcon.contentTintColor = NSColor.sand11
 		spaceIcon.contentTintColor = NSColor.sand11
+		pinnedAppIcon.contentTintColor = NSColor.sand11
 		visEffectView.isHidden = true
 	}
 	
@@ -93,6 +94,7 @@ class NiSpaceViewController: NSViewController, NSTextFieldDelegate{
 		header.layer?.backgroundColor = NSColor.sand1T10.cgColor
 		searchIcon.contentTintColor = NSColor.sand9
 		spaceIcon.contentTintColor = NSColor.sand9
+		pinnedAppIcon.contentTintColor = NSColor.sand9
 		visEffectView.isHidden = false
 	}
 	
@@ -147,7 +149,8 @@ class NiSpaceViewController: NSViewController, NSTextFieldDelegate{
     
 	func openPalette(with event: NSEvent) {
 		storeCurrentSpace()
-		let	palette = NiPalette()
+		guard let mainWindow: NSWindow = NSApplication.shared.mainWindow else{return}
+		let	palette = NiPalette(mainWindow)
 		palette.makeKeyAndOrderFront(nil)
 	}
 	
@@ -162,7 +165,8 @@ class NiSpaceViewController: NSViewController, NSTextFieldDelegate{
 	}
 	
 	func openLibrary(with event: NSEvent){
-		let lib = NiLibrary()
+		guard let mainWindow: NSWindow = NSApplication.shared.mainWindow else{return}
+		let lib = NiLibrary(mainWindow)
 		lib.makeKeyAndOrderFront(nil)
 	}
 	
@@ -314,10 +318,11 @@ class NiSpaceViewController: NSViewController, NSTextFieldDelegate{
 	}
     
 	func triggerSpaceDeletion(with event: NSEvent){
+		guard let mainWindow: NSWindow = NSApplication.shared.mainWindow else{return}
 		let deletionMenuPanel = NiAlertPanelController()
 		deletionMenuPanel.loadView()
 		
-		let alertPanel = NiFullscreenPanel(deletionMenuPanel)
+		let alertPanel = NiFullscreenPanel(mainWindow: mainWindow, contentViewController: deletionMenuPanel)
 		deletionMenuPanel.deleteFunction = self.deleteCurrentSpaceAndGoHome
 		
 		alertPanel.makeKeyAndOrderFront(nil)
@@ -518,7 +523,7 @@ class NiSpaceViewController: NSViewController, NSTextFieldDelegate{
 		loadingAnimationView.frame.origin = CGPoint(
 			x: emptyDoc.view.visibleRect.midX - (loadingAnimationView.frame.width / 2),
 			y: emptyDoc.view.visibleRect.midY - (loadingAnimationView.frame.height / 2)
-		)		
+		)
 		
 		emptyDoc.view.addSubview(loadingAnimationView)
 		

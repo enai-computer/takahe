@@ -174,12 +174,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	}
 	
 	private func showPalette(){
+		guard let mainWindow: NSWindow = NSApplication.shared.mainWindow else{return}
 		if (NSApplication.shared.keyWindow is NiHomeWindow){
 			return
 		}
 		//TODO: make async
 		getNiSpaceViewController()?.storeCurrentSpace()
-		let	palette = NiPalette()
+		
+		let	palette = NiPalette(mainWindow)
 		palette.makeKeyAndOrderFront(nil)
 	}
 	
