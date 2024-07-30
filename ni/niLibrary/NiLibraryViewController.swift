@@ -42,18 +42,6 @@ class NiLibraryViewController: NSViewController{
 		super.viewWillAppear()
 	}
 	
-	func showConnectionDetails(with event: NSEvent){
-		let imgSize = CGSize(width: 523.0, height: 85.0)
-		let imgOrigin = CGPoint(
-			x: functionalConnection.frame.midX - 16.0,
-			y: functionalConnection.frame.midY + 16.0 - imgSize.height)
-		let img = fetchImgFromMainBundle(id: UUID(uuidString: "1DA3C6AF-A701-418E-AB8C-B73285A3ECAB")!, type: ".png")!
-		img.size = imgSize
-		let imgView = NSImageView(frame: NSRect(origin: imgOrigin, size: imgSize))
-		imgView.image = img
-		view.addSubview(imgView)
-	}
-	
 }
 
 

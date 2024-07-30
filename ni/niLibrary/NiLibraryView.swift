@@ -56,6 +56,8 @@ class NiLibraryView: NSBox{
 		
 		groupProject.mouseDownFunction = self.showGroupConnections
 		jets.mouseDownFunction = self.showJetConenctios
+		
+		fighterJetsConnector.mouseDownFunction = showJetConnectionDetails
 	}
 	
 	func showGroupConnections(with event: NSEvent){
@@ -120,5 +122,17 @@ class NiLibraryView: NSBox{
 		for v in views{
 			v.isHidden = hide
 		}
+	}
+	
+	func showJetConnectionDetails(with event: NSEvent){
+		let imgSize = CGSize(width: 523.0, height: 85.0)
+		let imgOrigin = CGPoint(
+			x: fighterJetsConnector.frame.midX - 16.0,
+			y: fighterJetsConnector.frame.midY + 16.0 - imgSize.height)
+		let img = NSImage(named: "")!
+		img.size = imgSize
+		let imgView = NSImageView(frame: NSRect(origin: imgOrigin, size: imgSize))
+		imgView.image = img
+		addSubview(imgView)
 	}
 }
