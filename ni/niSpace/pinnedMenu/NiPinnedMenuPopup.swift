@@ -26,32 +26,32 @@ class NiPinnedMenuPopup: NSObject{
 			WebAppItem(name: "Linear",
 					   icon: linearAppIcon,
 					   url: URL(string: "https://linear.app/")!,
-					   frameColor: .birkin
+					   frameColor: NSColor(r: 236.0, g: 236.0, b: 236.0, alpha: 1.0)
 					  ),
 			WebAppItem(name: "Gmail", 
 					   icon: gMailAppIcon,
 					   url: URL(string: "https://mail.google.com/mail/u/0/#inbox")!,
-					   frameColor: .birkin
+					   frameColor: NSColor(r: 235.0, g: 241.0, b: 250.0, alpha: 1.0)
 					  ),
 			WebAppItem(name: "PostHog",
 					   icon: postHogAppIcon,
 					   url: URL(string: "https://eu.posthog.com/")!,
-					   frameColor: .birkin
+					   frameColor: NSColor(r: 238.0, g: 239.0, b: 234.0, alpha: 1.0)
 					  ),
 			WebAppItem(name: "Notion Calendar",
 					   icon: notionCalAppIcon,
 					   url: URL(string: "https://calendar.notion.so")!,
-					   frameColor: .birkin
+					   frameColor: NSColor(r: 247.0, g: 247.0, b: 247.0, alpha: 1.0)
 			),
 			WebAppItem(name: "Slack",
 					   icon: slackAppIcon,
 					   url: URL(string: "https://slack.com")!,
-					   frameColor: .birkin
+					   frameColor: NSColor(r: 76.0, g: 41.0, b: 82.0, alpha: 1.0)
 					  ),
 			WebAppItem(name: "Figma",
 					   icon: figmaAppIcon,
 					   url: URL(string: "https://www.figma.com")!,
-					   frameColor: .birkin
+					   frameColor: NSColor(r: 255.0, g: 255.0, b: 255.0, alpha: 1.0)
 					  )
 		]
 	}
@@ -69,5 +69,12 @@ class NiPinnedMenuPopup: NSObject{
 		)
 		menuWindow.makeKeyAndOrderFront(nil)
 		return menuWindow
+	}
+}
+
+extension NSColor{
+	
+	convenience init(r: CGFloat, g: CGFloat, b: CGFloat, alpha: CGFloat){
+		self.init(red: r/255.0, green: g/255.0, blue: b/255.0, alpha: alpha)
 	}
 }
