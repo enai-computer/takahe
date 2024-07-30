@@ -519,7 +519,7 @@ class NiSpaceViewController: NSViewController, NSTextFieldDelegate{
 		
 		let loadingAnimationView = (NSView.loadFromNib(nibName: "LoadingView", owner: nil)! as! LoadingView)
 		
-		loadingAnimationView.loadingAnimation.image = fetchImgFromMainBundle(name: "perfectLoopCube", type: ".gif")
+		loadingAnimationView.loadingAnimation.image = fetchImgFromMainBundle(name: "loadingAnimation", type: ".gif")
 		loadingAnimationView.frame.origin = CGPoint(
 			x: emptyDoc.view.visibleRect.midX - (loadingAnimationView.frame.width / 2),
 			y: emptyDoc.view.visibleRect.midY - (loadingAnimationView.frame.height / 2)
