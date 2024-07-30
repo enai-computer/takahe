@@ -82,6 +82,13 @@ class NiLibraryView: NSBox{
 				self.jetSpaceActive = true
 			}
 		}
+		if(event.clickCount == 2){
+			if let appDel = (NSApplication.shared.delegate as? AppDelegate){
+				let spaceController = appDel.getNiSpaceViewController()
+				spaceController?.loadSpace(spaceId: UUID(uuidString:"64DD09C6-D900-4C71-9127-7F5818E6AD11")!, name: "Fighter Jets")
+				spaceController?.view.window?.makeKey()
+			}
+		}
 	}
 	
 	func showGroupProjConnections(){
