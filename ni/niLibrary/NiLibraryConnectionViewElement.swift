@@ -137,6 +137,11 @@ import Cocoa
 	}
 	
 	override func mouseDown(with event: NSEvent) {
-		mouseDownFunction?(event)
+		let eventLocation = self.convert(event.locationInWindow, from: nil)
+		if(NSPointInRect(eventLocation, calcDotRect())){
+			mouseDownFunction?(event)
+		}else{
+			nextResponder?.mouseDown(with: event)
+		}
 	}
 }

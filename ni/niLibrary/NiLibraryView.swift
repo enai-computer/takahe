@@ -36,6 +36,7 @@ class NiLibraryView: NSBox{
 	
 	private var groupPojectActive: Bool = false
 	private var jetSpaceActive: Bool = false
+	private var connectorBoxesToHide: [NiLibraryInfoBox] = []
 	
 	func setHoverStateImgs(){
 		attention.setHoverImg("payAttentionU")
@@ -58,6 +59,11 @@ class NiLibraryView: NSBox{
 		jets.mouseDownFunction = self.showJetConenctios
 		
 		fighterJetsConnector.mouseDownFunction = showJetConnectionDetails
+		groupConnector1.mouseDownFunction = showInterfaceGroupDetails
+		groupConnector2.mouseDownFunction = showCSGroupDetails
+		groupConnector3.mouseDownFunction = showArtGroupDetails
+		groupConnector4.mouseDownFunction = showHCIGroupDetails
+		groupConnector5.mouseDownFunction = showAttentionGroupDetails
 	}
 	
 	func showGroupConnections(with event: NSEvent){
@@ -111,6 +117,10 @@ class NiLibraryView: NSBox{
 	}
 	
 	func hideGroupProjConnections(){
+		for conBox in connectorBoxesToHide{
+			conBox.removeFromSuperview()
+		}
+		connectorBoxesToHide = []
 		toggleSpacesVisability(false)
 		setVisability(for: [groupConnector1, groupConnector2, groupConnector3, groupConnector4, groupConnector5])
 	}
@@ -121,6 +131,10 @@ class NiLibraryView: NSBox{
 	}
 	
 	func hideJetConnections(){
+		for conBox in connectorBoxesToHide{
+			conBox.removeFromSuperview()
+		}
+		connectorBoxesToHide = []
 		toggleSpacesVisability(false)
 		setVisability(for: [fighterJetsConnector])
 	}
@@ -132,14 +146,42 @@ class NiLibraryView: NSBox{
 	}
 	
 	func showJetConnectionDetails(with event: NSEvent){
-		let imgSize = CGSize(width: 523.0, height: 85.0)
+		showConnectionDetails(for: fighterJetsConnector, with: "jetsConnInfo", height: 149.0)
+	}
+	
+	func showInterfaceGroupDetails(with event: NSEvent){
+		showConnectionDetails(for: groupConnector1, with: "interfaceToGroup", height: 128.0)
+	}
+	
+	func showCSGroupDetails(with event: NSEvent){
+		showConnectionDetails(for: groupConnector2, with: "mlToGroup", height: 107.0)
+	}
+	
+	func showArtGroupDetails(with event: NSEvent){
+		showConnectionDetails(for: groupConnector3, with: "phenomenologyToGroup", height: 128.0)
+	}
+	
+	func showHCIGroupDetails(with event: NSEvent){
+		showConnectionDetails(for: groupConnector4, with: "hciToGroup", height: 128.0)
+	}
+	
+	func showAttentionGroupDetails(with event: NSEvent){
+		showConnectionDetails(for: groupConnector5, with: "anthToGroup", height: 128.0)
+	}
+	
+	func showConnectionDetails(for connector: NiLibraryConnectionViewElement, with imageName: String, height: CGFloat){
+		let imgSize = CGSize(width: 523.0, height: height)
 		let imgOrigin = CGPoint(
-			x: fighterJetsConnector.frame.midX - 16.0,
-			y: fighterJetsConnector.frame.midY + 16.0 - imgSize.height)
-		let img = NSImage(named: "")!
+			x: connector.frame.midX - 8.0,
+			y: connector.frame.midY + 8.0 - imgSize.height
+		)
+		let img = NSImage(named: imageName)!
 		img.size = imgSize
-		let imgView = NSImageView(frame: NSRect(origin: imgOrigin, size: imgSize))
+		let imgView = NiLibraryInfoBox(frame: NSRect(origin: imgOrigin, size: imgSize))
 		imgView.image = img
+		imgView.wantsLayer = true
+		imgView.layer?.zPosition = 3
 		addSubview(imgView)
+		connectorBoxesToHide.append(imgView)
 	}
 }
