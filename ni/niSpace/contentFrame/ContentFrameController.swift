@@ -1014,11 +1014,14 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		decisionHandler(.allow, preferences)
 	}
 	
-	func webView(_ webView: WKWebView, decidePolicyFor navigationResponse: WKNavigationResponse, decisionHandler: @escaping (WKNavigationResponsePolicy) -> Void) {
+	func webView(_ webView: WKWebView, 
+				 decidePolicyFor navigationResponse: WKNavigationResponse,
+				 decisionHandler: @escaping (WKNavigationResponsePolicy) -> Void
+	) {
 		if (navigationResponse.response.mimeType == "application/pdf"){
 			decisionHandler(.download)
 			if let niWV = webView as? NiWebView{
-				if(!niWV.websiteLoaded){
+				if(!niWV.websiteLoaded && viewState == .expanded){
 					NiDownloadHandler.instance.setCloseTabCallback(for: niWV)
 				}
 			}
@@ -1032,7 +1035,14 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	}
 	
 	//open in new tab, example clicked file in gDrive
-	func webView(_ webView: WKWebView, createWebViewWith configuration: WKWebViewConfiguration, for navigationAction: WKNavigationAction, windowFeatures: WKWindowFeatures) -> WKWebView?{
+	func webView(_ webView: WKWebView, 
+				 createWebViewWith configuration: WKWebViewConfiguration,
+				 for navigationAction: WKNavigationAction,
+				 windowFeatures: WKWindowFeatures
+	) -> WKWebView?{
+		
+		guard viewState == .expanded else {return nil}
+		
 		if(navigationAction.targetFrame == nil){
 			let urlStr = navigationAction.request.url?.absoluteString
 			if(urlStr != nil && !urlStr!.isEmpty){
@@ -1051,6 +1061,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	}
 	
 	func webViewDidClose(_ webView: WKWebView){
+		guard viewState == .expanded else {return}
 		if let niWebView = webView as? NiWebView{
 			closeTab(at: niWebView.tabHeadPosition)
 		}
@@ -1069,6 +1080,9 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		}
 		let errorURL = getCouldNotLoadWebViewURL()
 		webView.loadFileURL(errorURL, allowingReadAccessTo: errorURL.deletingLastPathComponent())
+		
+		guard viewState == .expanded else {return}
+		
 		self.tabs[wv.tabHeadPosition].state = .error
 	}
 	
