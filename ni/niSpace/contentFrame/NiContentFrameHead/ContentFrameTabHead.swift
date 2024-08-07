@@ -38,6 +38,7 @@ class ContentFrameTabHead: NSCollectionViewItem, NSTextFieldDelegate {
     }
 	
 	override func prepareForReuse() {
+		super.prepareForReuse()
 		tabPosition = -1
 		image.image = Bundle.main.image(forResource: "AppIcon")
 		parentController = nil

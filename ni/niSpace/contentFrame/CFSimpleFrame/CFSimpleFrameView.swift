@@ -281,4 +281,9 @@ class CFSimpleFrameView: CFBaseView{
 		maximizeButton.tintActive()
 		cfGroupButton.tintActive()
 	}
+	
+	override func deinitSelf() {
+		myContent?.spaceRemovedFromMemory()
+		super.deinitSelf()
+	}
 }
