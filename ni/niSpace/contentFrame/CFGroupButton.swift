@@ -338,5 +338,11 @@ class CFGroupButton: NSView, NSTextFieldDelegate{
 		groupTitle?.textColor = NSColor(.sand11)
 	}
 	
+	func deinitSelf(){
+		mouseDownFunction = nil
+		mouseDownInActiveFunction = nil
+		isActiveFunction = nil
+		titleChangedCallback = nil
+	}
 }
 

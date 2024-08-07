@@ -650,7 +650,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
         let id = UUID()
 		let pos: Int
 		if(openNextToSelectedTab){
-			var openNXtToPos = self.nxtTabPosOpenNxtTo ?? selectedTabModel
+			let openNXtToPos = self.nxtTabPosOpenNxtTo ?? selectedTabModel
 			pos = openWebsiteInNewTab(urlStr: urlStr, contentId: id, tabName: "", openNextTo: openNXtToPos)
 			self.nxtTabPosOpenNxtTo = pos
 		}else{
@@ -1284,9 +1284,9 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 			t.viewItem?.spaceRemovedFromMemory()
 		}
 		tabs = []
+		myView.deinitSelf()
+		
 		expandedCFView?.removeFromSuperview()
-		myView.niParentDoc = nil
-		myView.myController = nil
 		view.removeFromSuperview()
 		expandedCFView = nil
 		groupName = nil

@@ -206,4 +206,10 @@ class CFFramelessView: CFBaseView {
 			noteItem.resizeContent()
 		}
 	}
+	
+	override func deinitSelf() {
+		myItem?.spaceRemovedFromMemory()
+		myItem = nil
+		super.deinitSelf()
+	}
 }

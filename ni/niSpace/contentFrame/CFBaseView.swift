@@ -293,4 +293,11 @@ class CFBaseView: NSBox{
 	func getBottomLeftCornerActionAreaHorizontal() -> NSRect{
 		return NSRect(x: 0.0, y: 0.0, width: CFConstants.cornerActionAreaMargin, height: CFConstants.actionAreaMargin)
 	}
+	
+	
+	func deinitSelf(){
+		niParentDoc = nil
+		myController = nil
+	}
+	
 }

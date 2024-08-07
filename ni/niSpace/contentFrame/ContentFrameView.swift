@@ -526,4 +526,22 @@ class ContentFrameView: CFBaseView{
 		cfGroupButton.tintActive()
 	}
     
+	override func deinitSelf(){
+		closeButton.deinitSelf()
+		maximizeButton.deinitSelf()
+		minimizeButton.deinitSelf()
+		addTabButton.deinitSelf()
+		contentBackButton.deinitSelf()
+		contentForwardButton.deinitSelf()
+		contentBackButton.deinitSelf()
+		cfGroupButton.deinitSelf()
+		
+		for t in niContentTabView.tabViewItems{
+			if let niContentView = t.view as? CFContentItem{
+				niContentView.spaceRemovedFromMemory()
+			}
+		}
+		
+		super.deinitSelf()
+	}
 }

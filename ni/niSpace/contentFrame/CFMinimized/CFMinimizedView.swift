@@ -145,6 +145,15 @@ class CFMinimizedView: CFBaseView{
 		}
 	}
 	
+	override func deinitSelf() {
+		closeButton.deinitSelf()
+		maximizeButton.deinitSelf()
+		cfGroupButton.deinitSelf()
+		listOfTabs?.removeFromSuperviewWithoutNeedingDisplay()
+		listOfTabs = nil
+		super.deinitSelf()
+	}
+	
 	private func getDragCursorRect() -> NSRect{
 		let width = cfHeadView.frame.width - closeButton.frame.width - maximizeButton.frame.width - cfGroupButton.frame.width
 		return NSRect(x: cfGroupButton.frame.maxX, y: cfHeadView.frame.origin.y, width: width, height: cfHeadView.frame.height)

@@ -42,9 +42,7 @@ class NiDocControllerCache{
 	
 	static func deinitOldDocument(_ doc: NiSpaceDocumentController?){
 		guard doc != nil else{return}
-		for conFrame in doc!.myView.contentFrameControllers{
-			conFrame.deinitSelf()
-		}
+		doc?.myView.deinitSelf()
 		doc?.view.removeFromSuperviewWithoutNeedingDisplay()
 		doc?.removeFromParent()
 	}

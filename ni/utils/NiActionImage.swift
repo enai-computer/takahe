@@ -96,4 +96,12 @@ class NiActionImage: NSImageView{
 		mouseDownFunction = nil
 		isActiveFunction = nil
 	}
+	
+	func deinitSelf(){
+		mouseDownFunction = nil
+		mouseDownFunctionWContext = nil
+		mouseDownInActiveFunction = nil
+		isActiveFunction = nil
+		clickContext = nil
+	}
 }
