@@ -482,7 +482,7 @@ class NiSpaceViewController: NSViewController, NSTextFieldDelegate{
 		
 		addChild(spaceDoc)
 		
-//		let oldDoc = niDocument
+		let oldDoc = niDocument
 		transition(from: niDocument, to: spaceDoc, options: [.crossfade])
 		
 		self.niDocument = spaceDoc
@@ -497,9 +497,8 @@ class NiSpaceViewController: NSViewController, NSTextFieldDelegate{
 		
 		self.spaceLoaded = true
 		
-//		if(!Storage.instance.userConfig.spaceCachingEnabled){
-//			NiDocControllerCache.deinitOldDocument(oldDoc)
-//		}
+		//also removes all circular dependencies so we do not end up with mem leaks
+		NiDocControllerCache.deinitOldDocument(oldDoc)
 		
 		let nrOfTimesLoaded = (NSApplication.shared.delegate as! AppDelegate).spaceLoadedSinceStart(id)
 		PostHogSDK.shared.capture("Space_loaded", properties: ["loaded_since_AppStart": nrOfTimesLoaded])

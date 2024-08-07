@@ -178,4 +178,13 @@ class NiSpaceDocumentView: NSView{
 		}
 		return (currentPos, orderedCFs)
 	}
+	
+	func deinitSelf(){
+		for conFrame in contentFrameControllers{
+			conFrame.deinitSelf()
+		}
+		contentFrameControllers = []
+		topNiFrame = nil
+	}
+	
 }
