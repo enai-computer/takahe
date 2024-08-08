@@ -72,7 +72,7 @@ class NiDownloadHandler: NSObject, WKDownloadDelegate{
 	}
 	
 	private func handleDownloadedFile(in cachedlocation: URL, from source: String?) throws{
-		let gotAccess = downloadFolder?.startAccessingSecurityScopedResource()
+		_ = downloadFolder?.startAccessingSecurityScopedResource()
 		let title = cachedlocation.deletingPathExtension().lastPathComponent
 		
 		let destinationUrl = genDestUrl(

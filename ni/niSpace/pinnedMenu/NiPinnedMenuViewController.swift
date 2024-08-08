@@ -65,7 +65,15 @@ extension WebAppItem{
 	func openWebApp(with event: NSEvent, context: Any){
 		if let docController = context as? NiSpaceDocumentController{
 			let cfController = docController.openEmptyCF(viewState: .simpleFrame, openInitalTab: false, groupName: self.name)
-			cfController.openWebsiteInNewTab(url.absoluteString, shallSelectTab: true)
+			
+			//TODO: fix me!
+			if(webAppView == nil){
+				cfController.openWebsiteInNewTab(url.absoluteString, shallSelectTab: true)
+//				self.webAppView = cfController.tabs[0].webView
+			}else{
+				
+			}
+			
 			if let frameView = cfController.myView as? CFSimpleFrameView{
 				frameView.changeFrameColor(set: self.frameColor)
 			}
