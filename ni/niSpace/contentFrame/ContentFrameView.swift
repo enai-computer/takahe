@@ -555,7 +555,6 @@ class ContentFrameView: CFBaseView{
 	deinit{
 		self.dropShadow3.removeFromSuperlayer()
 		self.dropShadow2.removeFromSuperlayer()
-		print("called on View with Websites")
 	}
 	
 }

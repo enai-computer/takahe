@@ -1304,7 +1304,4 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		groupName = nil
 	}
 	
-	deinit{
-//		print("called deinit on \(groupName)")
-	}
 }
