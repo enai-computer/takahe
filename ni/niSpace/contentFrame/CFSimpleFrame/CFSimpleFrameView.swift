@@ -286,4 +286,8 @@ class CFSimpleFrameView: CFBaseView{
 		myContent?.spaceRemovedFromMemory()
 		super.deinitSelf()
 	}
+	
+	deinit{
+		print("called on simple View")
+	}
 }

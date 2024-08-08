@@ -14,8 +14,8 @@ import Cocoa
  */
 class CFBaseView: NSBox{
 	
-	var niParentDoc: NiSpaceDocumentView? = nil
-	var myController: ContentFrameController? = nil
+	weak var niParentDoc: NiSpaceDocumentView? = nil
+	weak var myController: ContentFrameController? = nil
 	
 	var fixedFrameRatio: CGFloat? = nil
 	var frameIsActive: Bool = false
@@ -57,11 +57,11 @@ class CFBaseView: NSBox{
 	}
 	
 	func clickedCloseButton(with event: NSEvent){
-		myController!.triggerCloseProcess(with: event)
+		myController?.triggerCloseProcess(with: event)
 	}
 	
 	func clickedGroupButton(with event: NSEvent){
-		myController!.showDropdown(with: event)
+		myController?.showDropdown(with: event)
 	}
 	
 	/**

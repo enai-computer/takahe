@@ -11,7 +11,7 @@ import Carbon.HIToolbox
 
 class ContentFrameTabHeadTextNode: NSTextField{
 	
-	var parentController: ContentFrameTabHead?{
+	weak var parentController: ContentFrameTabHead?{
 		set { delegate = newValue }
 		get { (delegate as! ContentFrameTabHead) }
 	}

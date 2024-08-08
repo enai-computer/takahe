@@ -158,4 +158,8 @@ class CFMinimizedView: CFBaseView{
 		let width = cfHeadView.frame.width - closeButton.frame.width - maximizeButton.frame.width - cfGroupButton.frame.width
 		return NSRect(x: cfGroupButton.frame.maxX, y: cfHeadView.frame.origin.y, width: width, height: cfHeadView.frame.height)
 	}
+	
+	deinit{
+		print("called on minimized View")
+	}
 }

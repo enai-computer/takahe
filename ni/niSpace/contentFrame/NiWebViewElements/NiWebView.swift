@@ -13,7 +13,7 @@ import PDFKit
 
 class NiWebView: WKWebView, CFContentItem, CFContentSearch{
     
-    var owner: ContentFrameController?
+    weak var owner: ContentFrameController?
     private(set) var viewIsActive: Bool = true
 	var tabHeadPosition: Int = -1
 	var retries: Int = 0
@@ -82,6 +82,8 @@ class NiWebView: WKWebView, CFContentItem, CFContentSearch{
 	func spaceRemovedFromMemory(){
 		self.pauseAllMediaPlayback()
 		self.closeAllMediaPresentations()
+		self.navigationDelegate = nil
+		self.uiDelegate = nil
 		self.owner = nil
 		self.searchPanel = nil
 		self.overlay = nil
