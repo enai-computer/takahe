@@ -71,7 +71,7 @@ class ContentFrameView: CFBaseView{
 		
 		contentForwardButton.setMouseDownFunction(forwardButtonClicked)
 		contentForwardButton.isActiveFunction = fwdButtonIsActive
-		contentBackButton.mouseDownInActiveFunction = activateContentFrame
+		contentForwardButton.mouseDownInActiveFunction = activateContentFrame
 
 		cfGroupButton.initButton(
 			mouseDownFunction: clickedGroupButton,
