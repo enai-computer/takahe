@@ -661,8 +661,8 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		if(shallSelectTab){
 			selectTab(at: pos)
 		}else{
-			expandedCFView?.cfTabHeadCollection.reloadData()
-			expandedCFView?.cfTabHeadCollection.scrollToItems(at: Set(arrayLiteral: IndexPath(item: pos, section: 0)), scrollPosition: .nearestVerticalEdge)
+			expandedCFView?.cfTabHeadCollection?.reloadData()
+			expandedCFView?.cfTabHeadCollection?.scrollToItems(at: Set(arrayLiteral: IndexPath(item: pos, section: 0)), scrollPosition: .nearestVerticalEdge)
 		}
     }
 	
@@ -695,7 +695,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 			//otherwise we'll run into an index out of bounds issue
 			expandedCFView?.deleteSelectedTab(at: position)
 			var deletedTabModel = self.tabs.remove(at: position)
-			expandedCFView?.cfTabHeadCollection.reloadData()
+			expandedCFView?.cfTabHeadCollection?.reloadData()
 			deletedTabModel.viewItem = nil
 		}else {
 			closeSelectedTab()
@@ -742,7 +742,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 			
 			selectTab(at: selectedTabModel)
 			
-			expandedCFView?.cfTabHeadCollection.reloadData()
+			expandedCFView?.cfTabHeadCollection?.reloadData()
 		}else if(0 < selectedTabModel){
 			let toDeletePos = selectedTabModel
 			selectedTabModel -= 1
@@ -752,7 +752,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 			
 			selectTab(at: selectedTabModel)
 			
-			expandedCFView?.cfTabHeadCollection.reloadData()
+			expandedCFView?.cfTabHeadCollection?.reloadData()
 		}
 		
 		if(deletedTabModel != nil){
@@ -804,8 +804,8 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		
 		forceSelectTab(at: at)
 		
-		expandedCFView?.cfTabHeadCollection.reloadData()
-		expandedCFView?.cfTabHeadCollection.scrollToItems(at: Set(arrayLiteral: IndexPath(item: at, section: 0)), scrollPosition: .nearestVerticalEdge)
+		expandedCFView?.cfTabHeadCollection?.reloadData()
+		expandedCFView?.cfTabHeadCollection?.scrollToItems(at: Set(arrayLiteral: IndexPath(item: at, section: 0)), scrollPosition: .nearestVerticalEdge)
 	}
 	
 	
@@ -854,8 +854,8 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		}
 		self.aTabIsInEditingMode = true
 		tabs[at].inEditingMode = true
-		expandedCFView?.cfTabHeadCollection.reloadData()
-		expandedCFView?.cfTabHeadCollection.scrollToItems(at: Set(arrayLiteral: IndexPath(item: at, section: 0)), scrollPosition: .nearestVerticalEdge)
+		expandedCFView?.cfTabHeadCollection?.reloadData()
+		expandedCFView?.cfTabHeadCollection?.scrollToItems(at: Set(arrayLiteral: IndexPath(item: at, section: 0)), scrollPosition: .nearestVerticalEdge)
 	}
 	
 	func endEditingTabUrl(){
@@ -873,7 +873,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 			
 			// This update interferes with the (async) web view callback and effectively defaults all editing operations to go to Google
 			RunLoop.main.perform { [self] in
-				expandedCFView?.cfTabHeadCollection.reloadData()
+				expandedCFView?.cfTabHeadCollection?.reloadData()
 			}
 		}
 	}
@@ -954,7 +954,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 			if(wv.url != nil){
 				self.tabs[wv.tabHeadPosition].content = wv.url!.absoluteString
 			}
-			expandedCFView?.cfTabHeadCollection.reloadItems(at: Set(arrayLiteral: IndexPath(item: wv.tabHeadPosition, section: 0)))
+			expandedCFView?.cfTabHeadCollection?.reloadItems(at: Set(arrayLiteral: IndexPath(item: wv.tabHeadPosition, section: 0)))
 		}
 	}
 	
@@ -1099,7 +1099,6 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		let item = collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier("ContentFrameTabHead"), for: indexPath)
 		
 		guard let tabHead = item as? ContentFrameTabHead else {return item}
-
 		tabHead.configureView(parentController: self, tabPosition: indexPath.item, viewModel: tabs[indexPath.item])
 		
 		return tabHead
@@ -1280,11 +1279,23 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	}
 	
 	func deinitSelf(){
+//		if let nrOfTabHeadItems: Int = expandedCFView?.cfTabHeadCollection?.numberOfItems(inSection: 0){
+//			var i = 0
+//			while(i < nrOfTabHeadItems){
+//				if let tabHead = expandedCFView?.cfTabHeadCollection?.item(at: i) as? ContentFrameTabHead{
+//					tabHead.deinitSelf()
+//					print("deinited tabHed nr: \(i)")
+//				}
+//				i += 1
+//			}
+//		}
+//		
 		for t in tabs{
 			t.viewItem?.spaceRemovedFromMemory()
 		}
 		tabs = []
 		myView.deinitSelf()
+		expandedCFView?.deinitSelf()
 		
 		expandedCFView?.removeFromSuperview()
 		view.removeFromSuperview()

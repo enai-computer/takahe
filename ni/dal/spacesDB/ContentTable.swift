@@ -35,7 +35,7 @@ class ContentTable{
 	static func contains(id: UUID) -> Bool {
 		do{
 			let q = table.where(self.id == id)
-			for r in try Storage.instance.spacesDB.prepare(q){
+			for _ in try Storage.instance.spacesDB.prepare(q){
 				return true
 			}
 		}catch{

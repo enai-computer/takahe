@@ -10,7 +10,7 @@ class ContentFrameView: CFBaseView{
         
 	//Header
 	@IBOutlet var cfHeadView: ContentFrameHeadView!
-	@IBOutlet var cfTabHeadCollection: NSCollectionView!
+	@IBOutlet var cfTabHeadCollection: NSCollectionView?
 	@IBOutlet var tabHeadsScrollContainer: NSScrollView!
 	private var latestNrOfTabs: Int? = nil
 	@IBOutlet var contentBackButton: NiActionImage!
@@ -541,7 +541,6 @@ class ContentFrameView: CFBaseView{
 				niContentView.spaceRemovedFromMemory()
 			}
 		}
-		
 		super.deinitSelf()
 	}
 }
