@@ -213,7 +213,4 @@ class CFFramelessView: CFBaseView {
 		super.deinitSelf()
 	}
 	
-	deinit{
-		print("called on frameless View")
-	}
 }

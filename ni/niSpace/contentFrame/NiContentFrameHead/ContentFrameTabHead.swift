@@ -15,7 +15,7 @@ class ContentFrameTabHead: NSCollectionViewItem, NSTextFieldDelegate {
 	@IBOutlet var tabHeadTitle: ContentFrameTabHeadTextNode!
 	
 	private var inEditingMode = false
-//	var parentController: ContentFrameController?
+	weak var parentController: ContentFrameController?
 	var tabPosition: Int = -1
 	
 	override func viewDidLoad() {
@@ -41,7 +41,7 @@ class ContentFrameTabHead: NSCollectionViewItem, NSTextFieldDelegate {
 		super.prepareForReuse()
 		tabPosition = -1
 		image.image = Bundle.main.image(forResource: "AppIcon")
-//		parentController = nil
+		parentController = nil
 	}
 	
 	func controlTextDidBeginEditing(_ notification: Notification) {
@@ -98,7 +98,7 @@ class ContentFrameTabHead: NSCollectionViewItem, NSTextFieldDelegate {
 	
 	func configureView(parentController: ContentFrameController, tabPosition: Int, viewModel: TabViewModel){
 		self.tabPosition = tabPosition
-//		self.parentController = parentController
+		self.parentController = parentController
 		self.isSelected = viewModel.isSelected
 		
 		self.setText(viewModel)
@@ -107,7 +107,7 @@ class ContentFrameTabHead: NSCollectionViewItem, NSTextFieldDelegate {
 	}
 	
 	private func pressedClosedButton(with event: NSEvent) {
-//		parentController?.closeTab(at: tabPosition)
+		parentController?.closeTab(at: tabPosition)
 	}
 	
 	override func mouseExited(with event: NSEvent) {
@@ -162,7 +162,7 @@ class ContentFrameTabHead: NSCollectionViewItem, NSTextFieldDelegate {
 		Task {
 			if(viewModel.webView?.url?.absoluteString != nil){
 				let img = await FaviconProvider.instance.fetchIcon( viewModel.webView!.url!.absoluteString)
-//				parentController?.setTabIcon(at: tabPosition, icon: img)
+				parentController?.setTabIcon(at: tabPosition, icon: img)
 				self.setIcon(img: img)
 			}
 		}
@@ -190,19 +190,19 @@ class ContentFrameTabHead: NSCollectionViewItem, NSTextFieldDelegate {
 	}
 	
 	func loadWebsite(url: URL) {
-//		parentController?.loadWebsite(url, forTab: tabPosition)
+		parentController?.loadWebsite(url, forTab: tabPosition)
 	}
 	
 	func selectSelf(mouseDownEvent: NSEvent? = nil){
-//		parentController?.selectTab(at: tabPosition, mouseDownEvent: mouseDownEvent)
+		parentController?.selectTab(at: tabPosition, mouseDownEvent: mouseDownEvent)
 	}
 	
 	func startEditMode(){
-//		parentController?.editTabUrl(at: tabPosition)
+		parentController?.editTabUrl(at: tabPosition)
 	}
 	
 	func endEditMode(){
-//		parentController?.endEditingTabUrl(at: tabPosition)
+		parentController?.endEditingTabUrl(at: tabPosition)
 	}
 	
 	private func addEditingStyle(){
@@ -219,11 +219,10 @@ class ContentFrameTabHead: NSCollectionViewItem, NSTextFieldDelegate {
 	 */
 	
 	override func mouseDown(with event: NSEvent) {
-//		let isFrameActive = parentController?.expandedCFView?.frameIsActive
-		let isFrameActive :Bool? = true
+		let isFrameActive = parentController?.expandedCFView?.frameIsActive
 		if(isFrameActive != nil && !isFrameActive!){
 			//sets current frame active
-//			parentController?.expandedCFView?.mouseDown(with: event)
+			parentController?.expandedCFView?.mouseDown(with: event)
 		}
 		//need to test if we are already selected otherwise we call self select on a double click and screw up where the text editing happens as this Item will process the double click, but may have a different postion, due to view recycling
 		if(!self.isSelected && !tabHeadTitle.isEditable && event.clickCount == 1){
