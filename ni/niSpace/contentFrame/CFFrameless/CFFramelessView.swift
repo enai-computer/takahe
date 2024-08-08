@@ -212,4 +212,8 @@ class CFFramelessView: CFBaseView {
 		myItem = nil
 		super.deinitSelf()
 	}
+	
+	deinit{
+		print("called on frameless View")
+	}
 }

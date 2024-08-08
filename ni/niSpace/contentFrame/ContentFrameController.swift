@@ -323,6 +323,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 			return
 		}
 		myView.closedContentFrameCleanUp()
+		removeFromParent()
 	}
 	
 	/*
@@ -1289,7 +1290,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 //				i += 1
 //			}
 //		}
-//		
+		myView.removeFromSuperviewWithoutNeedingDisplay()
 		for t in tabs{
 			t.viewItem?.spaceRemovedFromMemory()
 		}

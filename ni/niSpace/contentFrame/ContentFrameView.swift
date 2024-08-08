@@ -531,16 +531,31 @@ class ContentFrameView: CFBaseView{
 		maximizeButton.deinitSelf()
 		minimizeButton.deinitSelf()
 		addTabButton.deinitSelf()
-		contentBackButton.deinitSelf()
 		contentForwardButton.deinitSelf()
 		contentBackButton.deinitSelf()
 		cfGroupButton.deinitSelf()
-		
+//		
 		for t in niContentTabView.tabViewItems{
 			if let niContentView = t.view as? CFContentItem{
 				niContentView.spaceRemovedFromMemory()
 			}
+			niContentTabView.removeTabViewItem(t)
 		}
+		niContentTabView.tabViewItems = []
+		niContentTabView.removeFromSuperviewWithoutNeedingDisplay()
+		tabHeadsScrollContainer.removeFromSuperviewWithoutNeedingDisplay()
+		
+		cfTabHeadCollection?.dataSource = nil
+		cfTabHeadCollection?.delegate = nil
+		cfTabHeadCollection?.removeFromSuperviewWithoutNeedingDisplay()
+		
 		super.deinitSelf()
 	}
+	
+	deinit{
+		self.dropShadow3.removeFromSuperlayer()
+		self.dropShadow2.removeFromSuperlayer()
+		print("called on View with Websites")
+	}
+	
 }
