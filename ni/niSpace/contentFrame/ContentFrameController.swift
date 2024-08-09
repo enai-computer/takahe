@@ -809,6 +809,13 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		expandedCFView?.cfTabHeadCollection?.scrollToItems(at: Set(arrayLiteral: IndexPath(item: at, section: 0)), scrollPosition: .nearestVerticalEdge)
 	}
 	
+	func pinTabToTopbar(at: Int){
+		guard (0 <= at && at < tabs.count) else {return}
+		guard let url: URL = tabs[at].webView?.url else{return}
+		guard let spaceController: NiSpaceViewController = (NSApplication.shared.delegate as? AppDelegate)?.getNiSpaceViewController() else {return}
+		
+		spaceController.addPinnedWebApp(name: tabs[at].title, url: url)
+	}
 	
 	//Stopping fullscreen playback, as it otherwise would create empty balck desktop, after switching tabs
 	private func tryCloseFullScreenPlayback() {

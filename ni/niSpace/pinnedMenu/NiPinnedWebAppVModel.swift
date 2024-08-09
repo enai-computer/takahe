@@ -34,6 +34,9 @@ func loadPinnedWebApps() async -> [NiPinnedWebAppVModel]{
 
 func getNewPinnedWebApp(name: String, url: URL) async -> (NiPinnedWebAppVModel, WebAppItemModel){
 	let model = WebAppItemModel(name: name, url: url)
+	let vModel = NiPinnedWebAppVModel(for: model)
+	await vModel.loadIcon()
+	return (vModel, model)
 }
 
 class NiPinnedWebAppVModel{

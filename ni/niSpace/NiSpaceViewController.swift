@@ -222,14 +222,13 @@ class NiSpaceViewController: NSViewController, NSTextFieldDelegate{
 	}
 	
 	func addPinnedWebApp(name: String, url: URL){
-		//TODO: add
 		Task{
-//			let (webAppToAdd, model) = await getNewPinnedWebApp(
-//				name: name,
-////				url: url
-////			)
-//			self.webApps.append(webAppToAdd)
-//			UserSettings.appendValue(setting: .pinnedWebApps, value: model)
+			let (webAppToAdd, model) = await getNewPinnedWebApp(
+				name: name,
+				url: url
+			)
+			self.webApps.append(webAppToAdd)
+			UserSettings.appendValue(setting: .pinnedWebApps, value: model)
 		}
 	}
 	

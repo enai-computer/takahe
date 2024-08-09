@@ -237,7 +237,19 @@ class ContentFrameTabHead: NSCollectionViewItem, NSTextFieldDelegate {
 		nextResponder?.mouseDown(with: event)
 	}
 	
-	override func otherMouseDown(with event: NSEvent) {
-		//TODO: pop-up menu and pass option to pin it to the App Menu
+	override func rightMouseDown(with event: NSEvent) {
+		let isFrameActive = parentController?.expandedCFView?.frameIsActive
+		if(isFrameActive != nil && !isFrameActive!){
+			//sets current frame active
+			parentController?.expandedCFView?.mouseDown(with: event)
+			return
+		}
+		if(!self.isSelected && !tabHeadTitle.isEditable && event.clickCount == 1){
+			selectSelf(mouseDownEvent: event)
+			return
+		}
+		//TODO: show pop-up with this option
+		parentController?.pinTabToTopbar(at: tabPosition)
 	}
+	
 }
