@@ -23,6 +23,7 @@ struct NiUsersSettingsModel: Codable{
 	let eveEnabled: Bool
 	let cacheClearedLast: Date
 	let demoMode: Bool
+	let pinnedWebApps: [WebAppItemModel]
 }
 
 extension NiUsersSettingsModel{
@@ -36,6 +37,7 @@ extension NiUsersSettingsModel{
 		eveEnabled = false
 		cacheClearedLast = Date(timeIntervalSince1970: 0.0)
 		demoMode = false
+		pinnedWebApps = []
 	}
 	
 	init(from dic: [String: String]) throws{
@@ -45,6 +47,7 @@ extension NiUsersSettingsModel{
 		eveEnabled = try getValueOrThrow(key: .eveEnabled, from: dic)
 		cacheClearedLast = try getValueOrThrow(key: .cacheClearedLast, from: dic)
 		demoMode = getValueOrDefault(key: .demoMode, from: dic, defaultVal: false)
+		pinnedWebApps = []
 	}
 	
 	func toDic() -> [UserSettingKey: String]{

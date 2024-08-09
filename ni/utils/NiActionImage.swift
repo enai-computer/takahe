@@ -78,7 +78,7 @@ class NiActionImage: NSImageView{
 		self.mouseDownFunction = function
 	}
 	
-	func setMouseDownFunction(_ function: ((NSEvent, Any) -> Void)?, with context: Any){
+	func setMouseDownFunction(_ function: ((NSEvent, Any) -> Void)?, with context: Any?){
 		self.mouseDownFunctionWContext = function
 		self.clickContext = context
 	}

@@ -175,6 +175,8 @@
 		CDF0DD262C2045C8006C4EF4 /* NiSearchWindowProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF0DD252C2045C8006C4EF4 /* NiSearchWindowProtocol.swift */; };
 		CDF0DD282C20549F006C4EF4 /* NiEmptyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF0DD272C20549F006C4EF4 /* NiEmptyViewController.swift */; };
 		CDF6C54E2C383A37006B458B /* NiBlur.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF6C54D2C383A37006B458B /* NiBlur.swift */; };
+		CDF711B72C66004A00B4A6B8 /* NiPinnedWebAppVModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF711B62C66004A00B4A6B8 /* NiPinnedWebAppVModel.swift */; };
+		CDF711B92C66085800B4A6B8 /* WebAppItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF711B82C66085800B4A6B8 /* WebAppItemModel.swift */; };
 		CDFA8CFB2C03B9AE00882722 /* CFFramelessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDFA8CFA2C03B9AE00882722 /* CFFramelessView.swift */; };
 		CDFA8CFD2C03B9D000882722 /* CFFramelessView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDFA8CFC2C03B9D000882722 /* CFFramelessView.xib */; };
 		CDFA8CFF2C04815C00882722 /* EventUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDFA8CFE2C04815C00882722 /* EventUtils.swift */; };
@@ -361,6 +363,8 @@
 		CDF0DD252C2045C8006C4EF4 /* NiSearchWindowProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiSearchWindowProtocol.swift; sourceTree = "<group>"; };
 		CDF0DD272C20549F006C4EF4 /* NiEmptyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiEmptyViewController.swift; sourceTree = "<group>"; };
 		CDF6C54D2C383A37006B458B /* NiBlur.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiBlur.swift; sourceTree = "<group>"; };
+		CDF711B62C66004A00B4A6B8 /* NiPinnedWebAppVModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiPinnedWebAppVModel.swift; sourceTree = "<group>"; };
+		CDF711B82C66085800B4A6B8 /* WebAppItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebAppItemModel.swift; sourceTree = "<group>"; };
 		CDFA8CFA2C03B9AE00882722 /* CFFramelessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CFFramelessView.swift; sourceTree = "<group>"; };
 		CDFA8CFC2C03B9D000882722 /* CFFramelessView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CFFramelessView.xib; sourceTree = "<group>"; };
 		CDFA8CFE2C04815C00882722 /* EventUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventUtils.swift; sourceTree = "<group>"; };
@@ -494,6 +498,7 @@
 				CD1C6D582C525A630019CD09 /* NiPinnedMenuViewController.swift */,
 				CD1C6D5A2C525A950019CD09 /* NiPinnedMenuView.xib */,
 				CD1C6D5C2C525C540019CD09 /* NiPinnedMenuView.swift */,
+				CDF711B62C66004A00B4A6B8 /* NiPinnedWebAppVModel.swift */,
 			);
 			path = pinnedMenu;
 			sourceTree = "<group>";
@@ -842,6 +847,7 @@
 			children = (
 				CDD6B9512B1BFE8B00C6144D /* NiDocumentModel.swift */,
 				CD410AE12C285C3C00EC5DF7 /* NiUsersSettingsModel.swift */,
+				CDF711B82C66085800B4A6B8 /* WebAppItemModel.swift */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -1161,6 +1167,8 @@
 				CDE88CAE2C2415AA000390A6 /* NiSpaceMenuPopup.swift in Sources */,
 				CD4E0E3B2C4164A000273109 /* CFSimpleMinimizedView.swift in Sources */,
 				CD59FA102C345CFC00CFB8DE /* NiPdfViewUtils.swift in Sources */,
+				CDF711B72C66004A00B4A6B8 /* NiPinnedWebAppVModel.swift in Sources */,
+				CDF711B92C66085800B4A6B8 /* WebAppItemModel.swift in Sources */,
 				CD1853132C08D972001FE566 /* FaviconCacheTable.swift in Sources */,
 				CD1C6D552C5259020019CD09 /* NiPinnedMenuPopup.swift in Sources */,
 				CD7AE0AA2C55366A00B3984E /* NiLibrary.swift in Sources */,

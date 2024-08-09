@@ -9,11 +9,11 @@ import Cocoa
 
 class NiPinnedMenuViewController: NSViewController{
 	
-	let items: [WebAppItem] //FixME
-	let spaceDocController: NiSpaceDocumentController
+	let items: [NiPinnedWebAppVModel]
+	private weak var spaceDocController: NiSpaceDocumentController?
 	private let myViewHeight: CGFloat
 	
-	init(items: [WebAppItem], docController: NiSpaceDocumentController, height: CGFloat) {
+	init(items: [NiPinnedWebAppVModel], docController: NiSpaceDocumentController?, height: CGFloat) {
 		self.items = items
 		self.spaceDocController = docController
 		self.myViewHeight = height
@@ -42,13 +42,12 @@ class NiPinnedMenuViewController: NSViewController{
 		super.viewDidLayout()
 	}
 	
-	//TODO: set up NiActionImages and add to Stack view
-	private func genMenuItemViews(items: [WebAppItem]) -> [NSView]{
+	private func genMenuItemViews(items: [NiPinnedWebAppVModel]) -> [NSView]{
 		var menuItems: [NSView] = []
 		
 		for item in items{
 			let itemView = NiActionImage(
-				image: item.icon,
+				image: item.getIcon(),
 				with: NSSize(width: 28.0, height: 28.0)
 			)
 			itemView.isActiveFunction = {return true}
@@ -60,24 +59,3 @@ class NiPinnedMenuViewController: NSViewController{
 	}
 }
 
-extension WebAppItem{
-	
-	func openWebApp(with event: NSEvent, context: Any){
-		if let docController = context as? NiSpaceDocumentController{
-			let cfController = docController.openEmptyCF(viewState: .simpleFrame, openInitalTab: false, groupName: self.name)
-			
-			//TODO: fix me!
-			if(webAppView == nil){
-				cfController.openWebsiteInNewTab(url.absoluteString, shallSelectTab: true)
-//				self.webAppView = cfController.tabs[0].webView
-			}else{
-				
-			}
-			
-			if let frameView = cfController.myView as? CFSimpleFrameView{
-				frameView.changeFrameColor(set: self.frameColor)
-			}
-			cfController.view.window?.makeKeyAndOrderFront(nil)
-		}
-	}
-}
