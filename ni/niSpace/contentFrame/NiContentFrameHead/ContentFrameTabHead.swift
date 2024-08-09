@@ -236,4 +236,8 @@ class ContentFrameTabHead: NSCollectionViewItem, NSTextFieldDelegate {
 		}
 		nextResponder?.mouseDown(with: event)
 	}
+	
+	override func otherMouseDown(with event: NSEvent) {
+		//TODO: pop-up menu and pass option to pin it to the App Menu
+	}
 }

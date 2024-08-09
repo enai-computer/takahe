@@ -13,7 +13,8 @@ enum UserSettingKey: String{
 		 nrOfCachedSpaces,
 		 eveEnabled,
 		 cacheClearedLast,
-		 demoMode
+		 demoMode,
+		 pinnedWebApps
 }
 
 struct NiUsersSettingsModel: Codable{
@@ -47,7 +48,7 @@ extension NiUsersSettingsModel{
 		eveEnabled = try getValueOrThrow(key: .eveEnabled, from: dic)
 		cacheClearedLast = try getValueOrThrow(key: .cacheClearedLast, from: dic)
 		demoMode = getValueOrDefault(key: .demoMode, from: dic, defaultVal: false)
-		pinnedWebApps = []
+		pinnedWebApps = getValueOrEmptyList(key: .pinnedWebApps, from: dic, of: WebAppItemModel.self)
 	}
 	
 	func toDic() -> [UserSettingKey: String]{
@@ -56,9 +57,18 @@ extension NiUsersSettingsModel{
 			.spaceCachingEnabled: String(spaceCachingEnabled),
 			.nrOfCachedSpaces: String(nrOfCachedSpaces),
 			.eveEnabled: String(eveEnabled),
-			.cacheClearedLast: String(cacheClearedLast.timeIntervalSince1970)
+			.cacheClearedLast: String(cacheClearedLast.timeIntervalSince1970),
+			.pinnedWebApps: encodeToJsonString(pinnedWebApps)
 		]
 	}
+	
+	func appendSetting(setting: UserSettingKey, with element: WebAppItemModel) -> String{
+		if(setting != .pinnedWebApps){
+			fatalError("appending Setting \(setting) is not implemented")
+		}
+		return encodeToJsonString(pinnedWebApps + [element])
+	}
+			
 }
 
 
@@ -101,4 +111,27 @@ private func getValueOrDefault(key: UserSettingKey, from dic: [String: String], 
 		return Bool(valStr) ?? defaultVal
 	}
 	return defaultVal
+}
+
+private func getValueOrEmptyList<T>(key: UserSettingKey, from dic: [String: String], of type: T.Type) -> [T] where T : Decodable
+{
+	do{
+		let jsonDecoder = JSONDecoder()
+		if let data: Data = dic[key.rawValue]?.data(using: .utf8){
+			let docModel = try jsonDecoder.decode([T].self, from: data)
+			return docModel
+		}
+	}catch{}
+	
+	return []
+}
+
+private func encodeToJsonString<T>(_ toEncode: [T]) -> String where T: Encodable{
+	do{
+		let jsonEncoder = JSONEncoder()
+		jsonEncoder.outputFormatting = .prettyPrinted
+		let jsonData = try jsonEncoder.encode(toEncode)
+		return String(data: jsonData, encoding: .utf8) ?? "[]"
+	}catch{}
+	return "[]"
 }

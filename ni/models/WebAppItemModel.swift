@@ -24,10 +24,16 @@ struct WebAppItemModel: Codable{
 		   case frameColor
 	   }
 	
-	init(name: String, url: URL, frameColor: NSColor? = nil) {
+	init(name: String, url: URL){
 		self.name = name
 		self.url = url
-		self.frameColor = frameColor?.hex
+		self.frameColor = WebAppItemModel.getColor(for: url).hex
+	}
+	
+	init(name: String, url: URL, frameColor: NSColor) {
+		self.name = name
+		self.url = url
+		self.frameColor = frameColor.hex
 	}
 
 	init(from decoder: Decoder) throws {
@@ -43,43 +49,36 @@ struct WebAppItemModel: Codable{
 		try container.encode(url, forKey: .url)
 		try container.encodeIfPresent(frameColor, forKey: .frameColor)
 	}
+	
+	private static func getColor(for url: URL) -> NSColor{
+		if let baseURL = url.host(){
+			switch baseURL{
+				case _ where baseURL.contains("linear.app"):
+					return NSColor(r: 236.0, g: 236.0, b: 236.0, alpha: 1.0)
+				case _ where baseURL.contains("mail.google.com"):
+					return NSColor(r: 235.0, g: 241.0, b: 250.0, alpha: 1.0)
+				case _ where baseURL.contains("posthog.com"):
+					return NSColor(r: 238.0, g: 239.0, b: 234.0, alpha: 1.0)
+				case _ where baseURL.contains("calendar.notion.so"):
+					return NSColor(r: 247.0, g: 247.0, b: 247.0, alpha: 1.0)
+				case _ where baseURL.contains("slack.com"):
+					return NSColor(r: 76.0, g: 41.0, b: 82.0, alpha: 1.0)
+				case _ where baseURL.contains("figma.com"):
+					return NSColor(r: 255.0, g: 255.0, b: 255.0, alpha: 1.0)
+				default:
+					return NSColor.sand4
+			}
+		}
+		return NSColor.sand4
+	}
 }
 
-/*
- WebAppItem(name: "Linear",
-			url: URL(string: "https://linear.app/")!,
-			frameColor: NSColor(r: 236.0, g: 236.0, b: 236.0, alpha: 1.0)
-		   ),
- WebAppItem(name: "Gmail",
-			url: URL(string: "https://mail.google.com/mail/u/0/#inbox")!,
-			frameColor: NSColor(r: 235.0, g: 241.0, b: 250.0, alpha: 1.0)
-		   ),
- WebAppItem(name: "PostHog",
-			url: URL(string: "https://eu.posthog.com/")!,
-			frameColor: NSColor(r: 238.0, g: 239.0, b: 234.0, alpha: 1.0)
-		   ),
- WebAppItem(name: "Notion Calendar",
-			url: URL(string: "https://calendar.notion.so")!,
-			frameColor: NSColor(r: 247.0, g: 247.0, b: 247.0, alpha: 1.0)
- ),
- WebAppItem(name: "Slack",
-			url: URL(string: "https://slack.com")!,
-			frameColor: NSColor(r: 76.0, g: 41.0, b: 82.0, alpha: 1.0)
-		   ),
- WebAppItem(name: "Figma",
-			url: URL(string: "https://www.figma.com")!,
-			frameColor: NSColor(r: 255.0, g: 255.0, b: 255.0, alpha: 1.0)
-		   )
- 
- extension NSColor{
-	 
-	 convenience init(r: CGFloat, g: CGFloat, b: CGFloat, alpha: CGFloat){
-		 self.init(red: r/255.0, green: g/255.0, blue: b/255.0, alpha: alpha)
-	 }
- }
-
- */
 extension NSColor {
+	
+	convenience init(r: CGFloat, g: CGFloat, b: CGFloat, alpha: CGFloat){
+		self.init(red: r/255.0, green: g/255.0, blue: b/255.0, alpha: alpha)
+	}
+	
 	convenience init(hex: String) {
 		let scanner = Scanner(string: hex)
 		scanner.scanString("#")
@@ -95,9 +94,13 @@ extension NSColor {
 	}
 
 	var hex: String {
-		var r: CGFloat = 0, g: CGFloat = 0, b: CGFloat = 0, a: CGFloat = 0
-		getRed(&r, green: &g, blue: &b, alpha: &a)
-
-		return String(format: "#%02X%02X%02X%02X", Int(r * 255), Int(g * 255), Int(b * 255), Int(a * 255))
+		guard let rgbColor = usingColorSpaceName(NSColorSpaceName.calibratedRGB) else {
+			return "#FFFFFF"
+		}
+		let red = Int(round(rgbColor.redComponent * 0xFF))
+		let green = Int(round(rgbColor.greenComponent * 0xFF))
+		let blue = Int(round(rgbColor.blueComponent * 0xFF))
+		let hexString = NSString(format: "#%02X%02X%02X", red, green, blue)
+		return hexString as String
 	}
 }
