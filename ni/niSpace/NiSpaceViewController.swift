@@ -221,6 +221,18 @@ class NiSpaceViewController: NSViewController, NSTextFieldDelegate{
 		cfController.openImgInNewTab(tabTitle: title, content: image, source: source)
 	}
 	
+	func addPinnedWebApp(name: String, url: URL){
+		//TODO: add
+		Task{
+//			let (webAppToAdd, model) = await getNewPinnedWebApp(
+//				name: name,
+////				url: url
+////			)
+//			self.webApps.append(webAppToAdd)
+//			UserSettings.appendValue(setting: .pinnedWebApps, value: model)
+		}
+	}
+	
 	private func imgSizing(_ initSize: CGSize) -> CGSize{
 		var size = initSize
 		let ratio = initSize.width/initSize.height

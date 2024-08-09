@@ -32,6 +32,10 @@ func loadPinnedWebApps() async -> [NiPinnedWebAppVModel]{
 	return apps
 }
 
+func getNewPinnedWebApp(name: String, url: URL) async -> (NiPinnedWebAppVModel, WebAppItemModel){
+	let model = WebAppItemModel(name: name, url: url)
+}
+
 class NiPinnedWebAppVModel{
 	
 	let itemData: WebAppItemModel
