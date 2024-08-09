@@ -12,6 +12,8 @@ class NiSpaceViewController: NSViewController, NSTextFieldDelegate{
     private var niSpaceName: String
 	private var niSpaceID: UUID
 	
+	private var webApps: [NiPinnedWebAppVModel] = []
+	
 	//header elements here:
 	@IBOutlet var headerContainer: NSView!
 	@IBOutlet var header: SpaceTopbar!
@@ -70,6 +72,9 @@ class NiSpaceViewController: NSViewController, NSTextFieldDelegate{
 	
     override func viewDidLoad() {
         super.viewDidLoad()
+		Task{
+			self.webApps = await loadPinnedWebApps()
+		}
     }
 
 	override func viewDidAppear() {
@@ -155,7 +160,7 @@ class NiSpaceViewController: NSViewController, NSTextFieldDelegate{
 	}
 	
 	func openPinnedMenu(with event: NSEvent){
-		let menuPopup = NiPinnedMenuPopup(with: self.niDocument)
+		let menuPopup = NiPinnedMenuPopup(with: self.niDocument, having: webApps)
 		let pointInHeader = CGPoint(x: pinnedAppIcon.frame.midX, y: pinnedAppIcon.frame.minY)
 		let pointOnScreen = header.convert(pointInHeader, to: nil)
 		_ = menuPopup.displayPopupWindow(

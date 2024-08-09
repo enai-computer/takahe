@@ -7,14 +7,6 @@
 
 import Cocoa
 
-struct WebAppItem{
-	let name: String
-	let icon: NSImage
-	let url: URL
-	let frameColor: NSColor
-	var webAppView: NiWebView?
-}
-
 class NiPinnedMenuWindow: NSPanel{
 	
 	private let niDelegate: NiMenuWindowDelegate
@@ -22,8 +14,13 @@ class NiPinnedMenuWindow: NSPanel{
 	override var canBecomeMain: Bool {return false}
 	private var screenToDisplayOn: NSScreen?
 	
-	init(origin: NSPoint, items: [WebAppItem], docController: NiSpaceDocumentController,
-		 currentScreen: NSScreen, adjustOrigin: Bool = true, adjustForOutofBounds: Bool = false){
+	init(origin: NSPoint,
+		 items: [NiPinnedWebAppVModel],
+		 docController: NiSpaceDocumentController?,
+		 currentScreen: NSScreen,
+		 adjustOrigin: Bool = true,
+		 adjustForOutofBounds: Bool = false
+	){
 		niDelegate = NiMenuWindowDelegate()
 		
 		screenToDisplayOn = currentScreen
