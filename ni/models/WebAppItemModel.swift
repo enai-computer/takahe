@@ -84,17 +84,39 @@ extension NSColor {
 	}
 	
 	convenience init(hex: String) {
-		let scanner = Scanner(string: hex)
-		scanner.scanString("#")
-
-		var r: UInt64 = 0, g: UInt64 = 0, b: UInt64 = 0, a: UInt64 = 0
-
-		scanner.scanHexInt64(&r)
-		scanner.scanHexInt64(&g)
-		scanner.scanHexInt64(&b)
-		scanner.scanHexInt64(&a)
-
-		self.init(red: CGFloat(r) / 255, green: CGFloat(g) / 255, blue: CGFloat(b) / 255, alpha: CGFloat(a) / 255)
+//		let scanner = Scanner(string: hex)
+//		scanner.scanString("#")
+//
+//		var r: UInt64 = 0, g: UInt64 = 0, b: UInt64 = 0, a: UInt64 = 0
+//
+//		scanner.scanHexInt64(&r)
+//		scanner.scanHexInt64(&g)
+//		scanner.scanHexInt64(&b)
+//		scanner.scanHexInt64(&a)
+//
+//		self.init(red: CGFloat(r) / 255, green: CGFloat(g) / 255, blue: CGFloat(b) / 255, alpha: CGFloat(a) / 255)
+		let trimHex = hex.trimmingCharacters(in: .whitespacesAndNewlines)
+		let dropHash = String(trimHex.dropFirst()).trimmingCharacters(in: .whitespacesAndNewlines)
+		let hexString = trimHex.starts(with: "#") ? dropHash : trimHex
+		let ui64 = UInt64(hexString, radix: 16)
+		let value = ui64 != nil ? Int(ui64!) : 0
+		// #RRGGBB
+		var components = (
+			R: CGFloat((value >> 16) & 0xff) / 255,
+			G: CGFloat((value >> 08) & 0xff) / 255,
+			B: CGFloat((value >> 00) & 0xff) / 255,
+			a: CGFloat(1)
+		)
+		if String(hexString).count == 8 {
+			// #RRGGBBAA
+			components = (
+				R: CGFloat((value >> 24) & 0xff) / 255,
+				G: CGFloat((value >> 16) & 0xff) / 255,
+				B: CGFloat((value >> 08) & 0xff) / 255,
+				a: CGFloat((value >> 00) & 0xff) / 255
+			)
+		}
+		self.init(red: components.R, green: components.G, blue: components.B, alpha: components.a)
 	}
 
 	var hex: String {

@@ -62,7 +62,6 @@ class NiPinnedWebAppVModel{
 				groupName: itemData.name
 			)
 			
-			//TODO: fix me!
 			if(webView == nil){
 				cfController.openWebsiteInNewTab(
 					itemData.url.absoluteString,
@@ -71,7 +70,7 @@ class NiPinnedWebAppVModel{
 				)
 				self.webView = cfController.tabs[0].webView
 			}else{
-				
+				openWebViewFromCache(cfController, with: webView!)
 			}
 			
 			if let frameView = cfController.myView as? CFSimpleFrameView{
@@ -79,6 +78,20 @@ class NiPinnedWebAppVModel{
 			}
 			cfController.view.window?.makeKeyAndOrderFront(nil)
 		}
+	}
+	
+	private func openWebViewFromCache(
+		_ cfController: ContentFrameController,
+		with webView: NiWebView
+	){
+		_ = cfController.myView.createNewTab(tabView: webView)
+		webView.owner = cfController
+		
+		var tabHeadModel = TabViewModel(contentId: UUID(), type: .webApp)
+		tabHeadModel.position = 0
+		tabHeadModel.viewItem = webView
+		tabHeadModel.webView!.tabHeadPosition = tabHeadModel.position
+		tabHeadModel.state = .loaded
 	}
 	
 	func getIcon() -> NSImage{
