@@ -28,7 +28,8 @@ class CFSimpleFrameView: CFBaseView{
 		self.wantsLayer = true
 	}
 	
-	func initAfterViewLoad(_ groupName: String?, titleChangedCallback: ((String)->Void)?){
+	func initAfterViewLoad(_ groupName: String?, 
+						   titleChangedCallback: ((String)->Void)?){
 		closeButton.setMouseDownFunction(clickedCloseButton)
 		closeButton.isActiveFunction = self.isFrameActive
 		closeButton.mouseDownInActiveFunction = activateContentFrame
@@ -67,6 +68,7 @@ class CFSimpleFrameView: CFBaseView{
 			if(contentItem is NiWebView){
 				minimizeButton.isActiveFunction = {return false}
 				minimizeButton.tintInactive()
+				cfGroupButton.isActiveFunction = {return false}
 			}
 		}
 		return -1

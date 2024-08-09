@@ -65,6 +65,10 @@ struct WebAppItemModel: Codable{
 					return NSColor(r: 76.0, g: 41.0, b: 82.0, alpha: 1.0)
 				case _ where baseURL.contains("figma.com"):
 					return NSColor(r: 255.0, g: 255.0, b: 255.0, alpha: 1.0)
+				case _ where baseURL.contains("web.whatsapp.com"):
+					return NSColor(r: 240.0, g: 242.0, b: 245.0, alpha: 1.0)
+				case _ where baseURL.contains("perplexity.ai"):
+					return NSColor(r: 243.0, g: 243.0, b: 238.0, alpha: 1.0)
 				default:
 					return NSColor.sand4
 			}
