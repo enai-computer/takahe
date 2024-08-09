@@ -26,19 +26,22 @@ class CFGroupButton: NSView, NSTextFieldDelegate{
 	private let groupTitleMargin = 7.0
 	private let groupTitleOriginY = 2.0
 	private var displayType: NiConentFrameState?
+	var contentType: TabContentType?
 	
 	func initButton(mouseDownFunction: ((NSEvent) -> Void)?,
 					mouseDownInActiveFunction: ((NSEvent) -> Void)?,
 					isActiveFunction: (() -> Bool)?,
 					titleChangedCallback: ((String) -> Void)? = nil,
-					displayType: NiConentFrameState
+					displayType: NiConentFrameState,
+					displayedContent: TabContentType = .web
 	){
 		self.mouseDownFunction = mouseDownFunction
 		self.mouseDownInActiveFunction = mouseDownInActiveFunction
 		self.isActiveFunction = isActiveFunction
 		self.titleChangedCallback = titleChangedCallback
 		self.displayType = displayType
-	}
+		self.contentType = displayedContent
+ 	}
 
 	func setView(title: String? = nil){
 		if(title == nil || title!.isEmpty){
@@ -128,9 +131,11 @@ class CFGroupButton: NSView, NSTextFieldDelegate{
 	
 	private func getUIMenuStr() -> String{
 		
-		//FIXME: hacky needs to be cleaned up
-		if(displayType == .simpleFrame){
+		if(contentType == .pdf){
 			return "Rename pdf"
+		}
+		if(contentType == .webApp){
+			return "Rename app"
 		}
 		
 		if(hasTitle()){

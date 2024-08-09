@@ -64,20 +64,24 @@ class NiPinnedWebAppVModel{
 			
 			//TODO: fix me!
 			if(webView == nil){
-				cfController.openWebsiteInNewTab(itemData.url.absoluteString, shallSelectTab: true)
+				cfController.openWebsiteInNewTab(
+					itemData.url.absoluteString,
+					shallSelectTab: true,
+					as: .webApp
+				)
 				self.webView = cfController.tabs[0].webView
 			}else{
 				
 			}
 			
 			if let frameView = cfController.myView as? CFSimpleFrameView{
-//				frameView.changeFrameColor(set: itemData.frameNSColor)
+				frameView.changeFrameColor(set: itemData.frameNSColor ?? NSColor.sand4)
 			}
 			cfController.view.window?.makeKeyAndOrderFront(nil)
 		}
 	}
 	
 	func getIcon() -> NSImage{
-		return NSImage(size: NSZeroSize)
+		return self.icon ?? NSImage(named: "AppIcon")!
 	}
 }

@@ -620,7 +620,14 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		myView.window?.makeFirstResponder(noteItem)
 	}
 	
-	func openWebsiteInNewTab(urlStr: String, contentId: UUID, tabName: String, webContentState: TabViewModelState? = nil, openNextTo: Int = -1) -> Int{
+	func openWebsiteInNewTab(
+		urlStr: String,
+		contentId: UUID,
+		tabName: String,
+		webContentState: TabViewModelState? = nil,
+		openNextTo: Int = -1,
+		as type: TabContentType = .web
+	) -> Int{
 		let niWebView = getNewWebView(owner: self, frame: view.frame, dirtyUrl: urlStr, contentId: contentId)
 		let viewPosition = myView.createNewTab(tabView: niWebView, openNextTo: openNextTo)
 		
@@ -628,7 +635,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 			updateWVTabHeadPos(from: viewPosition, moveLeft: false)
 		}
 		
-		var tabHeadModel = TabViewModel(contentId: contentId, type: .web)
+		var tabHeadModel = TabViewModel(contentId: contentId, type: type)
 		tabHeadModel.position = viewPosition
 		tabHeadModel.viewItem = niWebView
 		tabHeadModel.webView!.tabHeadPosition = tabHeadModel.position
@@ -647,7 +654,12 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		return tabHeadModel.position
     }
 	
-	func openWebsiteInNewTab(_ urlStr: String, shallSelectTab: Bool = true, openNextToSelectedTab: Bool = false){
+	func openWebsiteInNewTab(
+		_ urlStr: String,
+		shallSelectTab: Bool = true,
+		openNextToSelectedTab: Bool = false,
+		as type: TabContentType = .web
+	){
         let id = UUID()
 		let pos: Int
 		if(openNextToSelectedTab){
@@ -655,7 +667,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 			pos = openWebsiteInNewTab(urlStr: urlStr, contentId: id, tabName: "", openNextTo: openNXtToPos)
 			self.nxtTabPosOpenNxtTo = pos
 		}else{
-			pos = openWebsiteInNewTab(urlStr: urlStr, contentId: id, tabName: "")
+			pos = openWebsiteInNewTab(urlStr: urlStr, contentId: id, tabName: "", as: type)
 			self.nxtTabPosOpenNxtTo = nil
 		}
 		

@@ -248,7 +248,25 @@ class ContentFrameTabHead: NSCollectionViewItem, NSTextFieldDelegate {
 			selectSelf(mouseDownEvent: event)
 			return
 		}
-		//TODO: show pop-up with this option
+		showRightClickMenu()
+	}
+	
+	private func showRightClickMenu(){
+		var adjustedPos = view.convert(view.frame.origin, to: nil)
+		adjustedPos.x -= 15.0
+		let menuWindow = NiMenuWindow(
+			origin: adjustedPos,
+			dirtyMenuItems: [NiMenuItemViewModel(
+				title: "Pin to space bar",
+				isEnabled: true,
+				mouseDownFunction: self.pinToTopbar
+			)],
+			currentScreen: view.window!.screen!,
+			adjustOrigin: true)
+		menuWindow.makeKeyAndOrderFront(nil)
+	}
+	
+	func pinToTopbar(with event: NSEvent){
 		parentController?.pinTabToTopbar(at: tabPosition)
 	}
 	
