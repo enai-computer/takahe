@@ -39,7 +39,7 @@ func getNewPinnedWebApp(name: String, url: URL) async -> (NiPinnedWebAppVModel, 
 	return (vModel, model)
 }
 
-class NiPinnedWebAppVModel{
+class NiPinnedWebAppVModel: NSObject{
 	
 	let itemData: WebAppItemModel
 	private var icon: NSImage?
@@ -51,6 +51,10 @@ class NiPinnedWebAppVModel{
 	
 	func loadIcon() async{
 		self.icon = await FaviconProvider.instance.fetchIcon(itemData.url.absoluteString)
+	}
+	
+	static func == (lhs: NiPinnedWebAppVModel, rhs: NiPinnedWebAppVModel) -> Bool {
+		return lhs.itemData.url == rhs.itemData.url && lhs.itemData.name == rhs.itemData.name
 	}
 	
 	func openWebApp(with event: NSEvent, context: Any){
@@ -78,6 +82,43 @@ class NiPinnedWebAppVModel{
 			}
 			cfController.view.window?.makeKeyAndOrderFront(nil)
 		}
+	}
+	
+//	func showPopUpMenu(with event: NSEvent, context: Any){
+//		guard let originOnScreen: CGPoint = context as? CGPoint else{return}
+//		guard let screen: NSScreen = NSApplication.shared.mainWindow?.screen else{return}
+//		var adjustedPos = originOnScreen
+//		adjustedPos.x -= 260.0
+//		let menuWindow = NiMenuWindow(
+//			origin: adjustedPos,
+//			dirtyMenuItems: [NiMenuItemViewModel(
+//				title: "Remove from pinned menu",
+//				isEnabled: true,
+//				mouseDownFunction: self.removeFromPinnedMenu
+//			)],
+//			currentScreen: screen,
+//			adjustOrigin: false)
+//		menuWindow.makeKeyAndOrderFront(nil)
+//	}
+	
+	func showDeleteIcon(with event: NSEvent, context: Any){
+		guard let referenceIcon: NiActionImage = context as? NiActionImage else{return}
+		guard let deleteIcon = NiActionImage(namedImage: "closeCircle") else{return}
+		deleteIcon.isActiveFunction = {return true}
+		deleteIcon.setMouseDownFunction(self.removeFromPinnedMenu, with: referenceIcon as Any)
+		let deleteOrigin = CGPoint(
+			x: (referenceIcon.bounds.maxX - 11.0),
+			y: (referenceIcon.bounds.maxY - 11.0)
+		)
+		deleteIcon.frame.origin = deleteOrigin
+		referenceIcon.addSubview(deleteIcon)
+	}
+	
+	func removeFromPinnedMenu(with event: NSEvent, with context: Any){
+		guard let spaceController: NiSpaceViewController = (NSApplication.shared.delegate as? AppDelegate)?.getNiSpaceViewController() else {return}
+		guard let referenceIcon: NiActionImage = context as? NiActionImage else{return}
+		referenceIcon.removeFromSuperview()
+		spaceController.removePinnedWebApp(self)
 	}
 	
 	private func openWebViewFromCache(

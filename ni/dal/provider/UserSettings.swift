@@ -36,8 +36,19 @@ class UserSettings {
 	}
 	
 	static func appendValue<T>(setting: UserSettingKey, value: T) where T: Encodable{
-		
 		let updatedSettingStr = shared.appendSetting(
+			setting: setting,
+			with: value as! WebAppItemModel
+		)
+		UserSettingsTable.upsertSetting(
+			setting: setting,
+			value: updatedSettingStr
+		)
+		reload()
+	}
+	
+	static func removeValue<T>(setting: UserSettingKey, value: T) where T: Encodable{
+		let updatedSettingStr = shared.removeSetting(
 			setting: setting,
 			with: value as! WebAppItemModel
 		)
