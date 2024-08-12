@@ -13,6 +13,8 @@ class NiPinnedMenuViewController: NSViewController{
 	private weak var spaceDocController: NiSpaceDocumentController?
 	private let myViewHeight: CGFloat
 	
+	private var myContentView: NiPinnedMenuView?
+	
 	init(items: [NiPinnedWebAppVModel], docController: NiSpaceDocumentController?, height: CGFloat) {
 		self.items = items
 		self.spaceDocController = docController
@@ -25,13 +27,13 @@ class NiPinnedMenuViewController: NSViewController{
 	}
 	
 	override func loadView() {
-		let myView = (NSView.loadFromNib(nibName: "NiPinnedMenuView", owner: self) as! NiPinnedMenuView)
+		myContentView = (NSView.loadFromNib(nibName: "NiPinnedMenuView", owner: self) as! NiPinnedMenuView)
 		let viewItems = genMenuItemViews(items: self.items)
-		myView.lstOfMenuItems.setViews(viewItems, in: .top)
-		myView.frame.origin = NSPoint(x: 10.0, y: 10.0)
-		myView.frame.size.height = self.myViewHeight
+		myContentView?.lstOfMenuItems.setViews(viewItems, in: .top)
+		myContentView?.frame.origin = NSPoint(x: 10.0, y: 10.0)
+		myContentView?.frame.size.height = self.myViewHeight
 		view = RoundedRectView(frame: NSRect(origin: CGPoint(x: 0.0, y: 0.0), size: CGSize(width: 68.0, height: self.myViewHeight + 20.0)))
-		view.addSubview(myView)
+		view.addSubview(myContentView!)
 	}
 
 	override func viewWillLayout() {
@@ -52,6 +54,7 @@ class NiPinnedMenuViewController: NSViewController{
 			)
 			itemView.isActiveFunction = {return true}
 			itemView.setMouseDownFunction(item.openWebApp, with: spaceDocController)
+			itemView.setRightMouseDownFunction(item.showDeleteIcon, with: itemView)
 			menuItems.append(itemView)
 		}
 		

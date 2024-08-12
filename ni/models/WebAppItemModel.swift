@@ -8,7 +8,7 @@
 import Cocoa
 
 
-struct WebAppItemModel: Codable{
+struct WebAppItemModel: Codable, Equatable{
 	let name: String
 	let url: URL
 	let frameColor: String?
@@ -19,10 +19,10 @@ struct WebAppItemModel: Codable{
    }
 	
 	enum CodingKeys: String, CodingKey {
-		   case name
-		   case url
-		   case frameColor
-	   }
+	   case name
+	   case url
+	   case frameColor
+	}
 	
 	init(name: String, url: URL){
 		self.name = name
@@ -43,6 +43,10 @@ struct WebAppItemModel: Codable{
 		frameColor = try container.decodeIfPresent(String.self, forKey: .frameColor)
 	}
 
+	static func == (lhs: WebAppItemModel, rhs: WebAppItemModel) -> Bool {
+		return lhs.url == rhs.url && lhs.name == rhs.name
+	}
+	
 	func encode(to encoder: Encoder) throws {
 		var container = encoder.container(keyedBy: CodingKeys.self)
 		try container.encode(name, forKey: .name)

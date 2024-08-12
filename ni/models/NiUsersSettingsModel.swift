@@ -68,6 +68,14 @@ extension NiUsersSettingsModel{
 		}
 		return encodeToJsonString(pinnedWebApps + [element])
 	}
+	
+	func removeSetting(setting: UserSettingKey, with element: WebAppItemModel) -> String{
+		if(setting != .pinnedWebApps){
+			fatalError("appending Setting \(setting) is not implemented")
+		}
+		let filteredApp = pinnedWebApps.filter({$0 != element})
+		return encodeToJsonString(filteredApp)
+	}
 			
 }
 
