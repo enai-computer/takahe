@@ -137,6 +137,8 @@
 		CDACD35E2C56C81B00B9CBE9 /* 1DA3C6AF-A701-418E-AB8C-B73285A3ECAB.png in Resources */ = {isa = PBXBuildFile; fileRef = CDACD35D2C56C81B00B9CBE9 /* 1DA3C6AF-A701-418E-AB8C-B73285A3ECAB.png */; };
 		CDACD3632C56C95C00B9CBE9 /* 694A8A7C-9A42-4C21-BF8D-58DFE577B291.png in Resources */ = {isa = PBXBuildFile; fileRef = CDACD3622C56C95C00B9CBE9 /* 694A8A7C-9A42-4C21-BF8D-58DFE577B291.png */; };
 		CDB06B612AF84E1F008DB8FF /* NiSpaceDocumentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB06B602AF84E1F008DB8FF /* NiSpaceDocumentView.swift */; };
+		CDB4830A2C6A623900612AF5 /* CFFullscreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDB483092C6A623900612AF5 /* CFFullscreen.xib */; };
+		CDB4830C2C6A624E00612AF5 /* CFFullscreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB4830B2C6A624E00612AF5 /* CFFullscreenView.swift */; };
 		CDB549D12C2020C90038FB30 /* NiSearchViewScroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB549D02C2020C90038FB30 /* NiSearchViewScroller.swift */; };
 		CDC0BD432C45280C00CB2DDB /* NiDownloadHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC0BD422C45280C00CB2DDB /* NiDownloadHandler.swift */; };
 		CDC0BD482C47B6B000CB2DDB /* UserSettingsTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC0BD472C47B6B000CB2DDB /* UserSettingsTable.swift */; };
@@ -326,6 +328,8 @@
 		CDACD35D2C56C81B00B9CBE9 /* 1DA3C6AF-A701-418E-AB8C-B73285A3ECAB.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "1DA3C6AF-A701-418E-AB8C-B73285A3ECAB.png"; sourceTree = "<group>"; };
 		CDACD3622C56C95C00B9CBE9 /* 694A8A7C-9A42-4C21-BF8D-58DFE577B291.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "694A8A7C-9A42-4C21-BF8D-58DFE577B291.png"; sourceTree = "<group>"; };
 		CDB06B602AF84E1F008DB8FF /* NiSpaceDocumentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiSpaceDocumentView.swift; sourceTree = "<group>"; };
+		CDB483092C6A623900612AF5 /* CFFullscreen.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CFFullscreen.xib; sourceTree = "<group>"; };
+		CDB4830B2C6A624E00612AF5 /* CFFullscreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CFFullscreenView.swift; sourceTree = "<group>"; };
 		CDB549D02C2020C90038FB30 /* NiSearchViewScroller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiSearchViewScroller.swift; sourceTree = "<group>"; };
 		CDBC33F82BDBC896000EEF3D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		CDC0BD422C45280C00CB2DDB /* NiDownloadHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiDownloadHandler.swift; sourceTree = "<group>"; };
@@ -456,6 +460,7 @@
 				CDFA8CF92C03B95F00882722 /* CFFrameless */,
 				CD5A04C92BEA3C5E004CC3AA /* CFMinimized */,
 				CD7578352BBD9FD100293930 /* NiContentFrameHead */,
+				CDB483082C6A612000612AF5 /* CFFullscreen */,
 				CD3362172BFE0CCF004DBAFB /* CFSoftDeleted */,
 				A1E41BF52ACB533400338417 /* ContentFrameView.xib */,
 				A1E41BF92ACB57EF00338417 /* ContentFrameView.swift */,
@@ -790,6 +795,15 @@
 			path = niSpace;
 			sourceTree = "<group>";
 		};
+		CDB483082C6A612000612AF5 /* CFFullscreen */ = {
+			isa = PBXGroup;
+			children = (
+				CDB483092C6A623900612AF5 /* CFFullscreen.xib */,
+				CDB4830B2C6A624E00612AF5 /* CFFullscreenView.swift */,
+			);
+			path = CFFullscreen;
+			sourceTree = "<group>";
+		};
 		CDC0BD412C4527E500CB2DDB /* handler */ = {
 			isa = PBXGroup;
 			children = (
@@ -1041,6 +1055,7 @@
 				CD2D8E7C2C4EB976003AED25 /* toolsmith.pdf in Resources */,
 				CD5A04C62BEA2B96004CC3AA /* CFMinimizedView.xib in Resources */,
 				CDABE64C2C11C5BC00BB4E85 /* NiMenuView.xib in Resources */,
+				CDB4830A2C6A623900612AF5 /* CFFullscreen.xib in Resources */,
 				CD618D9E2C2B415F006869AF /* E52F5D89-38ED-42B3-938F-4E52105C7DF7.jpg in Resources */,
 				CD6317EE2BC4852300434D56 /* sohne-buch.ttf in Resources */,
 				CDACD3632C56C95C00B9CBE9 /* 694A8A7C-9A42-4C21-BF8D-58DFE577B291.png in Resources */,
@@ -1070,6 +1085,7 @@
 				A14E8F212AD20A2600409DDF /* DefaultWindowController.swift in Sources */,
 				CD5B153A2BDFBFE40030F017 /* NiActionImage.swift in Sources */,
 				CDC5A1162C284AD1002F5621 /* NiDocControllerCache.swift in Sources */,
+				CDB4830C2C6A624E00612AF5 /* CFFullscreenView.swift in Sources */,
 				CD2B68EE2C2F166E0086756E /* NiFullscreenPanel.swift in Sources */,
 				CD5A04CF2BEA42EB004CC3AA /* cfUtils.swift in Sources */,
 				CD1853152C09C210001FE566 /* DalUtils.swift in Sources */,
