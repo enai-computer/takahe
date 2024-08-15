@@ -16,11 +16,42 @@ class CFFullscreenView: CFBaseView{
 	@IBOutlet var searchIcon: NiActionImage!
 	@IBOutlet var time: NSTextField!
 	@IBOutlet var cfTabHeadCollection: NSCollectionView!
-	@IBOutlet var addButton: NiActionImage!
-	@IBOutlet var fwdButton: NiActionImage!
-	@IBOutlet var backButton: NiActionImage!
+	@IBOutlet var addTabButton: NiActionImage!
+	@IBOutlet var contentForwardButton: NiActionImage!
+	@IBOutlet var contentBackButton: NiActionImage!
 	@IBOutlet var spaceName: NiTextField!
 	@IBOutlet var groupName: NiTextField!
+	
+	
+	func initAfterViewLoad(spaceName: String, groupName: String?){
+		niContentTabView.wantsLayer = true
+		
+		addTabButton.setMouseDownFunction(addTabClicked)
+		addTabButton.isActiveFunction = {return true}
+		
+		contentBackButton.setMouseDownFunction(backButtonClicked)
+		contentBackButton.isActiveFunction = backButtonIsActive
+		
+		contentForwardButton.setMouseDownFunction(forwardButtonClicked)
+		contentForwardButton.isActiveFunction = fwdButtonIsActive
+		
+		searchIcon.setMouseDownFunction(searchIconClicked)
+		searchIcon.isActiveFunction = {return true}
+		
+		pinnedAppIcon.setMouseDownFunction(openPinnedMenu)
+		pinnedAppIcon.isActiveFunction = {return true}
+		
+//		minimizedIcon.setMouseDownFunction()
+		minimizedIcon.isActiveFunction = {return true}
+		
+		if(groupName != nil && !groupName!.isEmpty){
+			self.spaceName.stringValue = spaceName + ":"
+			self.groupName.stringValue = groupName!
+		}else{
+			self.spaceName.stringValue = spaceName
+		}
+		
+	}
 	
 	override func repositionView(_ xDiff: Double, _ yDiff: Double) {
 		return
@@ -64,8 +95,82 @@ class CFFullscreenView: CFBaseView{
 		return tabViewPos
 	}
 	
+	func addTabClicked(with event: NSEvent){
+		if let cfc = self.nextResponder as? ContentFrameController{
+			cfc.openAndEditEmptyWebTab()
+		}
+	}
+	
+	func searchIconClicked(with event: NSEvent){
+		(NSApplication.shared.delegate as? AppDelegate)?.showPalette()
+	}
+	
+	func openPinnedMenu(with event: NSEvent){
+		(NSApplication.shared.delegate as? AppDelegate)?
+			.getNiSpaceViewController()?
+			.openPinnedMenu(with: event)
+	}
+	
+	
+	override func mouseDown(with event: NSEvent) {
+		return
+	}
+	
+	// MARK: - fwd/back button
 	private func setWebViewObservers(tabView: NSView){
 		tabView.addObserver(self, forKeyPath: "canGoBack", options: [.initial, .new], context: nil)
 		tabView.addObserver(self, forKeyPath: "canGoForward", options: [.initial, .new], context: nil)
+	}
+	
+	override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+		guard let niWebView = niContentTabView.selectedTabViewItem?.view as? NiWebView else {return}
+		if keyPath == "canGoBack" {
+			self.setBackButtonTint(niWebView.canGoBack)
+		}else if keyPath == "canGoForward"{
+			self.setForwardButtonTint(niWebView.canGoForward)
+		}
+	}
+	
+	func forwardButtonClicked(with event: NSEvent){
+		let activeTabView = niContentTabView.selectedTabViewItem?.view as! NiWebView
+		activeTabView.goForward()
+	}
+	
+	func backButtonClicked(with event: NSEvent){
+		let activeTabView = niContentTabView.selectedTabViewItem?.view as! NiWebView
+		activeTabView.goBack()
+	}
+	
+	func updateFwdBackTint(){
+		self.setBackButtonTint(backButtonIsActive())
+		self.setForwardButtonTint(fwdButtonIsActive())
+	}
+	
+	func fwdButtonIsActive() -> Bool{
+		guard let niWebView = niContentTabView.selectedTabViewItem?.view as? NiWebView else {return false}
+		return niWebView.canGoForward
+	}
+	
+	func backButtonIsActive() -> Bool{
+		guard let niWebView = niContentTabView.selectedTabViewItem?.view as? NiWebView else {return false}
+		return niWebView.canGoBack
+	}
+	
+	@MainActor
+	private func setBackButtonTint(_ canGoBack: Bool = false){
+		if(canGoBack){
+			self.contentBackButton.contentTintColor = NSColor(.sand11)
+		}else{
+			self.contentBackButton.contentTintColor = NSColor(.sand8)
+		}
+	}
+	
+	@MainActor
+	private func setForwardButtonTint(_ canGoFwd: Bool = false){
+		if(canGoFwd){
+			self.contentForwardButton.contentTintColor = NSColor(.sand11)
+		}else{
+			self.contentForwardButton.contentTintColor = NSColor(.sand8)
+		}
 	}
 }

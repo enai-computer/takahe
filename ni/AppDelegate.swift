@@ -173,7 +173,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		getNiSpaceViewController()?.printDocument()
 	}
 	
-	private func showPalette(){
+	func showPalette(){
 		guard let mainWindow: NSWindow = NSApplication.shared.mainWindow else{return}
 		if (NSApplication.shared.keyWindow is NiHomeWindow){
 			return

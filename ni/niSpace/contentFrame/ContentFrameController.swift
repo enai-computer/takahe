@@ -91,6 +91,9 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		fullscreenView.setSelfController(self)
 		fullscreenView.wantsLayer = true
 		
+		let spaceName = (NSApplication.shared.delegate as? AppDelegate)?.getNiSpaceViewController()?.getCurrentSpaceName() ?? ""
+		fullscreenView.initAfterViewLoad(spaceName: spaceName, groupName: groupName)
+		
 		return fullscreenView
 	}
 	
@@ -574,10 +577,10 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	 * MARK: opening tabs
 	 */
 	func openEmptyWebTab(_ contentId: UUID = UUID()) -> Int{
-		let niWebView = ni.getNewWebView(owner: self, contentId: contentId, frame: expandedCFView!.frame, fileUrl: nil)
+		let niWebView = ni.getNewWebView(owner: self, contentId: contentId, frame: view.frame, fileUrl: nil)
 		
 		var tabHeadModel = TabViewModel(contentId: contentId, type: .web)
-		tabHeadModel.position = expandedCFView!.createNewTab(tabView: niWebView)
+		tabHeadModel.position = myView.createNewTab(tabView: niWebView)
 		tabHeadModel.viewItem = niWebView
 		tabHeadModel.webView!.tabHeadPosition = tabHeadModel.position
 		self.tabs.append(tabHeadModel)

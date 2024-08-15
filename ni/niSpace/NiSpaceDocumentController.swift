@@ -179,6 +179,10 @@ class NiSpaceDocumentController: NSViewController{
 		let storedWebsiteCFController = reopenContentFrame(screenWidth: self.view.frame.width, contentFrame: data, tabDataModel: data.children)
 		myView.addNiFrame(storedWebsiteCFController)
 		storedWebsiteCFController.myView.setFrameOwner(myView)
+		
+		if(storedWebsiteCFController.viewState == .fullscreen){
+			(NSApplication.shared.delegate as? AppDelegate)?.getNiSpaceViewController()?.hideHeader()
+		}
 	}
 	
 	func storeSpace(scrollPosition: CGFloat){
