@@ -9,16 +9,16 @@
         <customObject id="-2" userLabel="File's Owner"/>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
-        <box boxType="custom" cornerRadius="4" title="Box" id="l8v-af-eQM">
+        <box boxType="custom" borderWidth="0.0" cornerRadius="4" title="Box" id="l8v-af-eQM" customClass="CFFullscreenView" customModule="ni" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="1600" height="900"/>
             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
             <view key="contentView" id="Oxx-rY-cxW">
-                <rect key="frame" x="1" y="1" width="1598" height="898"/>
+                <rect key="frame" x="0.0" y="0.0" width="1600" height="900"/>
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
                     <customView id="FQB-AR-SzO" customClass="ContentFrameHeadView" customModule="ni" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="866" width="1600" height="34"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <subviews>
                             <imageView ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2gZ-pG-JxN" customClass="NiActionImage" customModule="ni" customModuleProvider="target">
                                 <rect key="frame" x="7" y="4" width="24" height="24"/>
@@ -97,6 +97,10 @@
                                                 <size key="itemSize" width="195" height="30"/>
                                             </collectionViewFlowLayout>
                                             <color key="primaryBackgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <connections>
+                                                <outlet property="dataSource" destination="-2" id="xgR-8q-wLF"/>
+                                                <outlet property="delegate" destination="-2" id="Tiv-br-jns"/>
+                                            </connections>
                                         </collectionView>
                                     </subviews>
                                     <color key="backgroundColor" name="sand4"/>
@@ -172,8 +176,26 @@
                             <constraint firstItem="fCW-1p-oJH" firstAttribute="top" secondItem="FQB-AR-SzO" secondAttribute="top" constant="3" id="zdW-PJ-O0W"/>
                         </constraints>
                     </customView>
+                    <tabView fixedFrame="YES" type="noTabsNoBorder" translatesAutoresizingMaskIntoConstraints="NO" id="tC7-07-Pbm">
+                        <rect key="frame" x="0.0" y="0.0" width="1600" height="866"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </tabView>
                 </subviews>
             </view>
+            <connections>
+                <outlet property="addButton" destination="aRE-V6-65e" id="CqY-cZ-Ryu"/>
+                <outlet property="backButton" destination="fCW-1p-oJH" id="bbm-fb-kRG"/>
+                <outlet property="cfTabHeadCollection" destination="OvC-Sb-bzu" id="Csd-3T-MBd"/>
+                <outlet property="fwdButton" destination="djo-g2-s21" id="C8D-h8-5rc"/>
+                <outlet property="groupName" destination="fPI-xS-yoO" id="l6n-hm-gb9"/>
+                <outlet property="minimizedIcon" destination="dSV-Oo-rA0" id="ldU-Cu-tW6"/>
+                <outlet property="niContentTabView" destination="tC7-07-Pbm" id="tfs-Db-gtw"/>
+                <outlet property="pinnedAppIcon" destination="fkI-7B-epu" id="fp3-Ug-pvy"/>
+                <outlet property="searchIcon" destination="B86-Dq-rUQ" id="RbZ-OT-PoM"/>
+                <outlet property="spaceName" destination="8Q0-6a-YiJ" id="lZ9-ta-nJK"/>
+                <outlet property="time" destination="ZjQ-rG-c3I" id="Zwq-yq-arU"/>
+            </connections>
             <point key="canvasLocation" x="70" y="180"/>
         </box>
     </objects>

@@ -632,6 +632,16 @@ class NiSpaceViewController: NSViewController, NSTextFieldDelegate{
 		return nil
 	}
     
+	
+	//function needed for fullscreen contentframes
+	func hideHeader(){
+		header.isHidden = true
+	}
+	
+	func showHeader(){
+		header.isHidden = false
+	}
+	
 	func switchToNextTab() {
 		niDocument.myView.switchToNextTab()
 	}

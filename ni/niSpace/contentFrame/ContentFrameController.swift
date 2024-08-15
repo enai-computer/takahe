@@ -60,6 +60,8 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 			loadAndDisplaySimpleFrameView()
 		}else if(viewState == .simpleMinimised){
 			loadAndDisplaySimpleMinimizedView()
+		}else if(viewState == .fullscreen){
+			loadAndDisplayFullscreenView()
 		}else{
 			loadAndDisplayDefaultView()
 		}
@@ -78,6 +80,18 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 
 		expandedCFView!.cfHeadView.wantsLayer = true
 		expandedCFView!.cfHeadView.layer?.backgroundColor = NSColor(.sand4).cgColor
+	}
+	
+	private func loadAndDisplayFullscreenView(){
+		self.view = loadFullscreenView()
+	}
+	
+	private func loadFullscreenView() -> CFFullscreenView{
+		let fullscreenView = (NSView.loadFromNib(nibName: "CFFullscreenView", owner: self) as! CFFullscreenView)
+		fullscreenView.setSelfController(self)
+		fullscreenView.wantsLayer = true
+		
+		return fullscreenView
 	}
 	
 	private func loadAndDisplayFramelessView(){
@@ -340,7 +354,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	}
 	
 	/*
-	 * MARK: minimizing and maximizing
+	 * MARK: minimizing, expanding and maximizing
 	 */
 	private func minimizeSelfToDefault(){
 		updateTabViewModel()
@@ -403,6 +417,32 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	
 	func maximizeClicked(_ event: NSEvent){
 		maximizeSelf()
+	}
+	
+	func makeFullscreenClicked(_ event: NSEvent){
+		if(viewState == .expanded){
+			expandedToFullscreen()
+		}
+	}
+	
+	func expandedToFullscreen(){
+		let fullscreenView = loadFullscreenView()
+		fullscreenView.setFrameOwner(myView.niParentDoc)
+		
+		fullscreenView.niContentTabView.tabViewItems = expandedCFView?.niContentTabView.tabViewItems ?? []
+		
+		if let zPos = self.view.layer?.zPosition{
+			fullscreenView.layer?.zPosition = zPos
+		}
+		fullscreenView.fillView(with: nil)
+		
+		self.view.superview?.replaceSubview(self.view, with: fullscreenView)
+		self.view = fullscreenView
+		self.viewState = .fullscreen
+		
+		(NSApplication.shared.delegate as? AppDelegate)?.getNiSpaceViewController()?.hideHeader()
+		
+		self.myView.niParentDoc?.setTopNiFrame(self)
 	}
 	
 	func maximizeSelf(){
