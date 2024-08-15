@@ -53,7 +53,7 @@ class ContentFrameView: CFBaseView{
 		closeButton.isActiveFunction = self.isFrameActive
 		closeButton.mouseDownInActiveFunction = activateContentFrame
 		
-		maximizeButton.setMouseDownFunction(fillOrRetractView)
+		maximizeButton.setMouseDownFunction(clickedMakeFullscreen)
 		maximizeButton.isActiveFunction = self.isFrameActive
 		maximizeButton.mouseDownInActiveFunction = activateContentFrame
 		
@@ -430,6 +430,10 @@ class ContentFrameView: CFBaseView{
 		recalcDragArea()
 	}
     
+	func clickedMakeFullscreen(with event: NSEvent){
+		myController?.makeFullscreenClicked(event)
+	}
+	
 	/*
 	 * MARK: - toggle Active
 	 */

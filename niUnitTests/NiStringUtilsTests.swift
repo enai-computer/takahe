@@ -23,4 +23,12 @@ final class NiStringUtilsTests: XCTestCase{
 		XCTAssertTrue(isValidWebUrl(url: "x.com"))
 	}
 	
+	
+	func testURLHost() throws{
+		let url = URL(string: "https://mail.google.com/mail/u/0/#inbox")
+		print(url?.host())
+		
+		let url2 = URL(string: "https://www.linear.app/")
+		print(url2?.host())
+	}
 }
