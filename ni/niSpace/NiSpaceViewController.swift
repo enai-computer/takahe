@@ -642,6 +642,10 @@ class NiSpaceViewController: NSViewController, NSTextFieldDelegate{
 		header.isHidden = false
 	}
 	
+	func getCurrentSpaceName() -> String{
+		return niSpaceName
+	}
+	
 	func switchToNextTab() {
 		niDocument.myView.switchToNextTab()
 	}
