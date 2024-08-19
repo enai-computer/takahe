@@ -7,7 +7,7 @@
 
 import Cocoa
 
-class CFFullscreenView: CFBaseView{
+class CFFullscreenView: CFBaseView, CFTabHeadProtocol{
 
 	@IBOutlet var niContentTabView: NSTabView!
 	
@@ -15,7 +15,7 @@ class CFFullscreenView: CFBaseView{
 	@IBOutlet var pinnedAppIcon: NiActionImage!
 	@IBOutlet var searchIcon: NiActionImage!
 	@IBOutlet var time: NSTextField!
-	@IBOutlet var cfTabHeadCollection: NSCollectionView!
+	@IBOutlet var cfTabHeadCollection: NSCollectionView?
 	@IBOutlet var addTabButton: NiActionImage!
 	@IBOutlet var contentForwardButton: NiActionImage!
 	@IBOutlet var contentBackButton: NiActionImage!
@@ -41,7 +41,7 @@ class CFFullscreenView: CFBaseView{
 		pinnedAppIcon.setMouseDownFunction(openPinnedMenu)
 		pinnedAppIcon.isActiveFunction = {return true}
 		
-//		minimizedIcon.setMouseDownFunction()
+		minimizedIcon.setMouseDownFunction(minimizedButtonClicked)
 		minimizedIcon.isActiveFunction = {return true}
 		
 		if(groupName != nil && !groupName!.isEmpty){
@@ -49,6 +49,7 @@ class CFFullscreenView: CFBaseView{
 			self.groupName.stringValue = groupName!
 		}else{
 			self.spaceName.stringValue = spaceName
+			self.groupName.stringValue = ""
 		}
 		
 	}
@@ -111,6 +112,9 @@ class CFFullscreenView: CFBaseView{
 			.openPinnedMenu(with: event)
 	}
 	
+	func deleteSelectedTab(at position: Int){
+		niContentTabView.removeTabViewItem(niContentTabView.tabViewItem(at: position))
+	}
 	
 	override func mouseDown(with event: NSEvent) {
 		return
@@ -129,6 +133,10 @@ class CFFullscreenView: CFBaseView{
 		}else if keyPath == "canGoForward"{
 			self.setForwardButtonTint(niWebView.canGoForward)
 		}
+	}
+	
+	func minimizedButtonClicked(with event: NSEvent){
+		myController?.fullscreenToExpanded()
 	}
 	
 	func forwardButtonClicked(with event: NSEvent){

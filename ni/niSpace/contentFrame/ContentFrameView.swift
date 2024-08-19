@@ -6,7 +6,7 @@ import WebKit
 import QuartzCore
 
 
-class ContentFrameView: CFBaseView{
+class ContentFrameView: CFBaseView, CFTabHeadProtocol{
         
 	//Header
 	@IBOutlet var cfHeadView: ContentFrameHeadView!
