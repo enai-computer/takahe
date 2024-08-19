@@ -19,6 +19,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
     
 	var myView: CFBaseView {return self.view as! CFBaseView}
 	var framelessView: CFFramelessView? {return self.view as? CFFramelessView}
+	var viewWithTabs: CFTabHeadProtocol? {return self.view as? CFTabHeadProtocol}
 	
     private(set) var expandedCFView: ContentFrameView? = nil
     private var selectedTabModel: Int = -1
@@ -448,6 +449,31 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		self.myView.niParentDoc?.setTopNiFrame(self)
 	}
 	
+	func fullscreenToExpanded(){
+		if(expandedCFView == nil){
+			loadExpandedView()
+			expandedCFView?.setFrameOwner(self.myView.niParentDoc)
+			expandedCFView?.cfGroupButton.setView(title: groupName)
+		}
+		if let zPos = self.view.layer?.zPosition{
+			expandedCFView?.layer?.zPosition = zPos
+		}
+		
+		if let fullscreenView = self.view as? CFFullscreenView{
+			expandedCFView?.niContentTabView.tabViewItems = fullscreenView.niContentTabView.tabViewItems
+		}
+		
+		//replace
+		self.view.superview?.replaceSubview(self.view, with: expandedCFView!)
+		self.view = expandedCFView!
+		
+		self.viewState = .expanded
+		self.expandedCFView!.niParentDoc?.setTopNiFrame(self)
+		sharedLoadViewSetters()
+		
+		(NSApplication.shared.delegate as? AppDelegate)?.getNiSpaceViewController()?.showHeader()
+	}
+	
 	func maximizeSelf(){
 		if(viewState == .minimised){
 			minimizedToExpanded()
@@ -591,7 +617,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	}
 	
 	func openAndEditEmptyWebTab(){
-		if(viewState != .expanded){
+		if(!viewHasTabs()){
 			return
 		}
 		
@@ -717,8 +743,8 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		if(shallSelectTab){
 			selectTab(at: pos)
 		}else{
-			expandedCFView?.cfTabHeadCollection?.reloadData()
-			expandedCFView?.cfTabHeadCollection?.scrollToItems(at: Set(arrayLiteral: IndexPath(item: pos, section: 0)), scrollPosition: .nearestVerticalEdge)
+			viewWithTabs?.cfTabHeadCollection?.reloadData()
+			viewWithTabs?.cfTabHeadCollection?.scrollToItems(at: Set(arrayLiteral: IndexPath(item: pos, section: 0)), scrollPosition: .nearestVerticalEdge)
 		}
     }
 	
@@ -749,9 +775,9 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 			//TODO: Before exposing close UI element on non-selected tabs.
 			//Implement proper methodology to end editing a URL, before closing a tab
 			//otherwise we'll run into an index out of bounds issue
-			expandedCFView?.deleteSelectedTab(at: position)
+			viewWithTabs?.deleteSelectedTab(at: position)
 			var deletedTabModel = self.tabs.remove(at: position)
-			expandedCFView?.cfTabHeadCollection?.reloadData()
+			viewWithTabs?.cfTabHeadCollection?.reloadData()
 			deletedTabModel.viewItem = nil
 		}else {
 			closeSelectedTab()
@@ -793,22 +819,22 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		}else if(selectedTabModel < (self.tabs.count - 1)){
 			let toDeletePos = selectedTabModel
 			
-			expandedCFView?.deleteSelectedTab(at: toDeletePos)
+			viewWithTabs?.deleteSelectedTab(at: toDeletePos)
 			deletedTabModel = self.tabs.remove(at: toDeletePos)
 			
 			selectTab(at: selectedTabModel)
 			
-			expandedCFView?.cfTabHeadCollection?.reloadData()
+			viewWithTabs?.cfTabHeadCollection?.reloadData()
 		}else if(0 < selectedTabModel){
 			let toDeletePos = selectedTabModel
 			selectedTabModel -= 1
 			
-			expandedCFView?.deleteSelectedTab(at: toDeletePos)
+			viewWithTabs?.deleteSelectedTab(at: toDeletePos)
 			deletedTabModel = self.tabs.remove(at: toDeletePos)
 			
 			selectTab(at: selectedTabModel)
 			
-			expandedCFView?.cfTabHeadCollection?.reloadData()
+			viewWithTabs?.cfTabHeadCollection?.reloadData()
 		}
 		
 		if(deletedTabModel != nil){
@@ -839,7 +865,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	func selectTab(at: Int, mouseDownEvent: NSEvent? = nil){
 		guard (0 <= at && at < tabs.count) else {return}
 		//No tab switching while CF is not active
-		if(self.expandedCFView == nil || !self.expandedCFView!.frameIsActive){
+		if(viewHasTabs() || !self.myView.frameIsActive){
 			if(mouseDownEvent != nil){
 				nextResponder?.mouseDown(with: mouseDownEvent!)
 			}
@@ -860,8 +886,15 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		
 		forceSelectTab(at: at)
 		
-		expandedCFView?.cfTabHeadCollection?.reloadData()
-		expandedCFView?.cfTabHeadCollection?.scrollToItems(at: Set(arrayLiteral: IndexPath(item: at, section: 0)), scrollPosition: .nearestVerticalEdge)
+		viewWithTabs?.cfTabHeadCollection?.reloadData()
+		viewWithTabs?.cfTabHeadCollection?.scrollToItems(at: Set(arrayLiteral: IndexPath(item: at, section: 0)), scrollPosition: .nearestVerticalEdge)
+	}
+	
+	func viewHasTabs() -> Bool{
+		if(viewState == .expanded || viewState == .fullscreen){
+			return true
+		}
+		return false
 	}
 	
 	func pinTabToTopbar(at: Int){
@@ -892,8 +925,8 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 			tabs[selectedTabModel].isSelected = false
 		}
 		
-		self.expandedCFView?.niContentTabView.selectTabViewItem(at: at)
-		self.expandedCFView?.updateFwdBackTint()
+		self.viewWithTabs?.niContentTabView.selectTabViewItem(at: at)
+		self.viewWithTabs?.updateFwdBackTint()
 		
 		self.selectedTabModel = at
 		tabs[selectedTabModel].isSelected = true
@@ -917,8 +950,9 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		}
 		self.aTabIsInEditingMode = true
 		tabs[at].inEditingMode = true
-		expandedCFView?.cfTabHeadCollection?.reloadData()
-		expandedCFView?.cfTabHeadCollection?.scrollToItems(at: Set(arrayLiteral: IndexPath(item: at, section: 0)), scrollPosition: .nearestVerticalEdge)
+		
+		viewWithTabs?.cfTabHeadCollection?.reloadData()
+		viewWithTabs?.cfTabHeadCollection?.scrollToItems(at: Set(arrayLiteral: IndexPath(item: at, section: 0)), scrollPosition: .nearestVerticalEdge)
 	}
 	
 	func endEditingTabUrl(){
@@ -936,7 +970,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 			
 			// This update interferes with the (async) web view callback and effectively defaults all editing operations to go to Google
 			RunLoop.main.perform { [self] in
-				expandedCFView?.cfTabHeadCollection?.reloadData()
+				viewWithTabs?.cfTabHeadCollection?.reloadData()
 			}
 		}
 	}
@@ -1017,7 +1051,12 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 			if(wv.url != nil){
 				self.tabs[wv.tabHeadPosition].content = wv.url!.absoluteString
 			}
-			expandedCFView?.cfTabHeadCollection?.reloadItems(at: Set(arrayLiteral: IndexPath(item: wv.tabHeadPosition, section: 0)))
+			if(viewState == .fullscreen){
+				
+			}else if(viewState == .expanded){
+				
+			}
+			viewWithTabs?.cfTabHeadCollection?.reloadItems(at: Set(arrayLiteral: IndexPath(item: wv.tabHeadPosition, section: 0)))
 		}
 	}
 	
@@ -1153,7 +1192,9 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	 * MARK: - Tab Heads collection control functions
 	 */
 	func collectionView(_ collectionView: NSCollectionView, numberOfItemsInSection section: Int) -> Int{
-		expandedCFView?.recalcDragArea(nrOfTabs: self.tabs.count)
+		if(viewState == .expanded){
+			expandedCFView?.recalcDragArea(nrOfTabs: self.tabs.count)
+		}
 		return self.tabs.count
 	}
     
