@@ -256,11 +256,18 @@ class ContentFrameTabHead: NSCollectionViewItem, NSTextFieldDelegate {
 		adjustedPos.x -= 15.0
 		let menuWindow = NiMenuWindow(
 			origin: adjustedPos,
-			dirtyMenuItems: [NiMenuItemViewModel(
-				title: "Pin to space bar",
-				isEnabled: true,
-				mouseDownFunction: self.pinToTopbar
-			)],
+			dirtyMenuItems: [
+				NiMenuItemViewModel(
+					title: "Pin to space bar",
+					isEnabled: true,
+					mouseDownFunction: self.pinToTopbar
+				),
+				NiMenuItemViewModel(
+					title: "Move to another space (soon)",
+					isEnabled: false,
+					mouseDownFunction: nil
+				)
+			],
 			currentScreen: view.window!.screen!,
 			adjustOrigin: true)
 		menuWindow.makeKeyAndOrderFront(nil)
