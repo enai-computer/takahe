@@ -439,7 +439,9 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		let fullscreenView = loadFullscreenView()
 		fullscreenView.setFrameOwner(myView.niParentDoc)
 		
+		let selectedItem = expandedCFView?.niContentTabView.selectedTabViewItem
 		fullscreenView.niContentTabView.tabViewItems = expandedCFView?.niContentTabView.tabViewItems ?? []
+		fullscreenView.niContentTabView.selectTabViewItem(selectedItem)
 		
 		if let zPos = self.view.layer?.zPosition{
 			fullscreenView.layer?.zPosition = zPos
@@ -456,11 +458,15 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	}
 	
 	func fullscreenToExpanded(){
+		var reloadTabHeads = false
 		if(expandedCFView == nil){
 			loadExpandedView()
 			expandedCFView?.setFrameOwner(self.myView.niParentDoc)
 			expandedCFView?.cfGroupButton.setView(title: groupName)
+		}else{
+			reloadTabHeads = true
 		}
+		
 		if(expandedCFView!.frame.origin.y < 50.0){
 			expandedCFView?.frame.origin.y = 50.0
 		}
@@ -472,7 +478,10 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		}
 		
 		if let fullscreenView = self.view as? CFFullscreenView{
+			let selectedItem = fullscreenView.niContentTabView.selectedTabViewItem
 			expandedCFView?.niContentTabView.tabViewItems = fullscreenView.niContentTabView.tabViewItems
+			
+			expandedCFView?.niContentTabView.selectTabViewItem(selectedItem)
 		}
 		
 		//replace
@@ -484,6 +493,10 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		sharedLoadViewSetters()
 		
 		(NSApplication.shared.delegate as? AppDelegate)?.getNiSpaceViewController()?.showHeader()
+		
+		if(reloadTabHeads){
+			viewWithTabs?.cfTabHeadCollection?.reloadData()
+		}
 	}
 	
 	func maximizeSelf(){
@@ -1173,6 +1186,16 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		guard viewHasTabs() else {return}
 		if let niWebView = webView as? NiWebView{
 			closeTab(at: niWebView.tabHeadPosition)
+		}
+	}
+	
+	func niWebViewTitleChanged(_ webView: NiWebView){
+		guard viewHasTabs() else {return}
+		//TODO: implement func for simple frames
+		
+		if(0 < webView.tabHeadPosition && webView.tabHeadPosition < tabs.count){
+			self.tabs[webView.tabHeadPosition].title = webView.getTitle()
+			viewWithTabs?.cfTabHeadCollection?.reloadItems(at: Set(arrayLiteral: IndexPath(item: webView.tabHeadPosition, section: 0)))
 		}
 	}
 	

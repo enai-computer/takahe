@@ -27,6 +27,7 @@ class NiWebView: WKWebView, CFContentItem, CFContentSearch{
 	var nextFindAvailable: Bool = true
 	
 	private var zoomLevel: Int = 7
+	private var titleChangeObserver: NSKeyValueObservation?
 	
     init(owner: ContentFrameController, frame: NSRect) {
         self.owner = owner
@@ -39,6 +40,13 @@ class NiWebView: WKWebView, CFContentItem, CFContentSearch{
 		findConfig.wraps = false
 		
 		self.allowsBackForwardNavigationGestures = true
+		
+		titleChangeObserver = self.observe(
+			\.title,
+			 options: [.new]
+		){niWebView, val in
+			niWebView.titleChanged()
+		}
     }
     
     required init?(coder: NSCoder) {
@@ -240,6 +248,13 @@ class NiWebView: WKWebView, CFContentItem, CFContentSearch{
 		nextFindAvailable = true
 	}
 	
+	func titleChanged(){
+		owner?.niWebViewTitleChanged(self)
+	}
+	
+	deinit{
+		titleChangeObserver?.invalidate()
+	}
 }
 
 class GlobalScriptMessageHandler: NSObject, WKScriptMessageHandler {
