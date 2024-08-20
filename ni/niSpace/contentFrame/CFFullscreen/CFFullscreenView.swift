@@ -52,6 +52,9 @@ class CFFullscreenView: CFBaseView, CFTabHeadProtocol{
 			self.groupName.stringValue = ""
 		}
 		
+		time.stringValue = getLocalisedTime()
+		setAutoUpdatingTime()
+		frameIsActive = true
 	}
 	
 	override func repositionView(_ xDiff: Double, _ yDiff: Double) {
@@ -180,5 +183,25 @@ class CFFullscreenView: CFBaseView, CFTabHeadProtocol{
 		}else{
 			self.contentForwardButton.contentTintColor = NSColor(.sand8)
 		}
+	}
+	
+	func setAutoUpdatingTime(){
+		Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(setDisplayedTime), userInfo: nil, repeats: true)
+	}
+	
+	func removeAutoUpdatingTime(){
+		Timer.cancelPreviousPerformRequests(withTarget: setDisplayedTime())
+	}
+	
+	@objc func setDisplayedTime(){
+		let currentTime = getLocalisedTime()
+		DispatchQueue.main.async {
+			self.time.stringValue = currentTime
+		}
+	}
+	
+	override func removeFromSuperview() {
+		removeAutoUpdatingTime()
+		super.removeFromSuperview()
 	}
 }

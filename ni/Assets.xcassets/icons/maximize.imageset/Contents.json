@@ -2,7 +2,13 @@
   "images" : [
     {
       "filename" : "maximize.svg",
-      "idiom" : "universal"
+      "idiom" : "universal",
+      "language-direction" : "left-to-right"
+    },
+    {
+      "filename" : "maximizeFlipped.svg",
+      "idiom" : "universal",
+      "language-direction" : "right-to-left"
     }
   ],
   "info" : {
