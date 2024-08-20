@@ -636,10 +636,12 @@ class NiSpaceViewController: NSViewController, NSTextFieldDelegate{
 	//function needed for fullscreen contentframes
 	func hideHeader(){
 		header.isHidden = true
+		niScrollView.allowScrolling = false
 	}
 	
 	func showHeader(){
 		header.isHidden = false
+		niScrollView.allowScrolling = true
 	}
 	
 	func getCurrentSpaceName() -> String{

@@ -91,6 +91,7 @@ class NiSearchResultViewItem: NSCollectionViewItem {
 	private func openSpaceAndTryRemoveWindow(){
 		if(resultData?.id == nil){return}
 		if let spaceViewController = NSApplication.shared.mainWindow?.contentViewController as? NiSpaceViewController{
+			spaceViewController.showHeader()
 			if(resultData?.id == NiSpaceDocumentController.EMPTY_SPACE_ID){
 				if let spaceName = getEnteredSearchText()?.trimmingCharacters(in: .whitespaces){
 					spaceViewController.createSpace(name: spaceName)

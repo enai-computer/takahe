@@ -88,6 +88,8 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	}
 	
 	private func loadFullscreenView() -> CFFullscreenView{
+		groupName = expandedCFView?.cfGroupButton.getName() ?? groupName
+		
 		let fullscreenView = (NSView.loadFromNib(nibName: "CFFullscreenView", owner: self) as! CFFullscreenView)
 		fullscreenView.setSelfController(self)
 		fullscreenView.wantsLayer = true
@@ -353,7 +355,11 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	
 	func reloadSelectedTab(){
 		if(viewState != .minimised){
-			tabs[selectedTabModel].webView?.reload()
+			if(selectedTabModel < 0){
+				tabs[0].webView?.reload()
+			}else{
+				tabs[selectedTabModel].webView?.reload()
+			}
 		}
 	}
 	
@@ -454,6 +460,12 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 			loadExpandedView()
 			expandedCFView?.setFrameOwner(self.myView.niParentDoc)
 			expandedCFView?.cfGroupButton.setView(title: groupName)
+		}
+		if(expandedCFView!.frame.origin.y < 50.0){
+			expandedCFView?.frame.origin.y = 50.0
+		}
+		if(expandedCFView!.frame.origin.x < 50.0){
+			expandedCFView?.frame.origin.x = 50.0
 		}
 		if let zPos = self.view.layer?.zPosition{
 			expandedCFView?.layer?.zPosition = zPos
@@ -804,7 +816,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	 Close tabs and select the nxt tab to the right first and then left when none to the right are left
 	 */
 	func closeSelectedTab(){
-		if(viewState != .expanded){
+		if(!viewHasTabs()){
 			return
 		}
 		
@@ -865,7 +877,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	func selectTab(at: Int, mouseDownEvent: NSEvent? = nil){
 		guard (0 <= at && at < tabs.count) else {return}
 		//No tab switching while CF is not active
-		if(viewHasTabs() || !self.myView.frameIsActive){
+		if(!viewHasTabs() || !self.myView.frameIsActive){
 			if(mouseDownEvent != nil){
 				nextResponder?.mouseDown(with: mouseDownEvent!)
 			}
@@ -1029,7 +1041,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	 * MARK: - WKDelegate functions
 	 */
 	func webView(_ webView: WKWebView, didFinish: WKNavigation!){
-		if(viewState != .expanded){
+		if(!viewHasTabs()){
 			return
 		}
 		guard let wv = webView as? NiWebView else{return}
@@ -1050,11 +1062,6 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 			self.tabs[wv.tabHeadPosition].state = .loaded
 			if(wv.url != nil){
 				self.tabs[wv.tabHeadPosition].content = wv.url!.absoluteString
-			}
-			if(viewState == .fullscreen){
-				
-			}else if(viewState == .expanded){
-				
 			}
 			viewWithTabs?.cfTabHeadCollection?.reloadItems(at: Set(arrayLiteral: IndexPath(item: wv.tabHeadPosition, section: 0)))
 		}
@@ -1143,7 +1150,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 				 windowFeatures: WKWindowFeatures
 	) -> WKWebView?{
 		
-		guard viewState == .expanded else {return nil}
+		guard viewHasTabs() else {return nil}
 		
 		if(navigationAction.targetFrame == nil){
 			let urlStr = navigationAction.request.url?.absoluteString
@@ -1163,7 +1170,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	}
 	
 	func webViewDidClose(_ webView: WKWebView){
-		guard viewState == .expanded else {return}
+		guard viewHasTabs() else {return}
 		if let niWebView = webView as? NiWebView{
 			closeTab(at: niWebView.tabHeadPosition)
 		}
@@ -1183,7 +1190,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		let errorURL = getCouldNotLoadWebViewURL()
 		webView.loadFileURL(errorURL, allowingReadAccessTo: errorURL.deletingLastPathComponent())
 		
-		guard viewState == .expanded else {return}
+		guard viewHasTabs() else {return}
 		
 		self.tabs[wv.tabHeadPosition].state = .error
 	}

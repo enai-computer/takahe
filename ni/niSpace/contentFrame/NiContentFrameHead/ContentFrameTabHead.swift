@@ -219,10 +219,10 @@ class ContentFrameTabHead: NSCollectionViewItem, NSTextFieldDelegate {
 	 */
 	
 	override func mouseDown(with event: NSEvent) {
-		let isFrameActive = parentController?.expandedCFView?.frameIsActive
+		let isFrameActive = parentController?.myView.frameIsActive
 		if(isFrameActive != nil && !isFrameActive!){
 			//sets current frame active
-			parentController?.expandedCFView?.mouseDown(with: event)
+			parentController?.myView.mouseDown(with: event)
 		}
 		//need to test if we are already selected otherwise we call self select on a double click and screw up where the text editing happens as this Item will process the double click, but may have a different postion, due to view recycling
 		if(!self.isSelected && !tabHeadTitle.isEditable && event.clickCount == 1){
@@ -238,10 +238,10 @@ class ContentFrameTabHead: NSCollectionViewItem, NSTextFieldDelegate {
 	}
 	
 	override func rightMouseDown(with event: NSEvent) {
-		let isFrameActive = parentController?.expandedCFView?.frameIsActive
+		let isFrameActive = parentController?.myView.frameIsActive
 		if(isFrameActive != nil && !isFrameActive!){
 			//sets current frame active
-			parentController?.expandedCFView?.mouseDown(with: event)
+			parentController?.myView.mouseDown(with: event)
 			return
 		}
 		if(!self.isSelected && !tabHeadTitle.isEditable && event.clickCount == 1){
