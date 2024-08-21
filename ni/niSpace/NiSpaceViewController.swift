@@ -185,7 +185,7 @@ class NiSpaceViewController: NSViewController, NSTextFieldDelegate{
 	
 	private func openEmptyBackgroundSpace(){
 		let spaceDoc = getEmptySpaceDocument(id: EMPTY_SPACE_ID, name: "")
-		loadSpace(spaceId: EMPTY_SPACE_ID, name: "", spaceDoc: spaceDoc, scrollTo: nil)
+		loadSpace(spaceId: EMPTY_SPACE_ID, name: "", spaceDoc: spaceDoc, scrollTo: nil, containsFullscreenFrame: false)
 	}
 	
 	func openEmptyCF(){
@@ -485,11 +485,11 @@ class NiSpaceViewController: NSViewController, NSTextFieldDelegate{
 	}
 	
 	func loadSpace(spaceId id: UUID, name: String){
-		let (spaceDoc, scrollTo) = getSpaceDoc(id, userInputName: name)
-		self.loadSpace(spaceId: id, name: name, spaceDoc: spaceDoc, scrollTo: scrollTo)
+		let (spaceDoc, scrollTo, containsFullscreenFrame) = getSpaceDoc(id, userInputName: name)
+		self.loadSpace(spaceId: id, name: name, spaceDoc: spaceDoc, scrollTo: scrollTo, containsFullscreenFrame: containsFullscreenFrame)
 	}
 	
-	private func loadSpace(spaceId id: UUID, name: String, spaceDoc: NiSpaceDocumentController, scrollTo: NSPoint?){
+	private func loadSpace(spaceId id: UUID, name: String, spaceDoc: NiSpaceDocumentController, scrollTo: NSPoint?, containsFullscreenFrame: Bool){
 		pauseMediaPlayback(niDocument)
 		
 //		if(Storage.instance.userConfig.spaceCachingEnabled){
@@ -516,6 +516,17 @@ class NiSpaceViewController: NSViewController, NSTextFieldDelegate{
 		niSpaceName = name
 		spaceName.stringValue = name
 		self.niSpaceID = id
+		
+		if(containsFullscreenFrame){
+			for frameController in niDocument.myView.contentFrameControllers{
+				if(frameController.viewState == .fullscreen){
+					if let fullscreenView = frameController.myView as? CFFullscreenView{
+						fullscreenView.fillView(with: nil)
+						fullscreenView.updateSpaceName(name)
+					}
+				}
+			}
+		}
 		
 		self.spaceLoaded = true
 		
@@ -574,10 +585,11 @@ class NiSpaceViewController: NSViewController, NSTextFieldDelegate{
 		}
 	}
 	
-	private func getSpaceDoc(_ id: UUID, userInputName: String) -> (NiSpaceDocumentController, NSPoint?) {
+	private func getSpaceDoc(_ id: UUID, userInputName: String) -> (NiSpaceDocumentController, NSPoint?, Bool) {
 		let spaceModel = loadStoredSpace(niSpaceID: id)
 		let name = DocumentTable.fetchDocumentName(id: id) ?? userInputName
 		var scrollTo: NSPoint? = nil
+		var containsFullscreenFrame = false
 		
 //		if(Storage.instance.userConfig.spaceCachingEnabled){
 //			if let cachedDoc = documentCache.getIfCached(id: id){
@@ -597,12 +609,12 @@ class NiSpaceViewController: NSViewController, NSTextFieldDelegate{
 			let docHeightPx = (spaceModel?.data as? NiDocumentModel)?.height.px
 			
 			spaceDoc = getEmptySpaceDocument(id: id, name: name, height: docHeightPx)
-			scrollTo = spaceDoc.recreateSpace(docModel: spaceModel!)
+			(scrollTo, containsFullscreenFrame) = spaceDoc.recreateSpace(docModel: spaceModel!)
 			
 			niDocument.view.frame = spaceDoc.view.frame
 		}
 		
-		return (spaceDoc, scrollTo)
+		return (spaceDoc, scrollTo, containsFullscreenFrame)
 	}
 
 	func tryGetScrolltoPos(_ spaceModel: NiDocumentObjectModel?) -> NSPoint?{

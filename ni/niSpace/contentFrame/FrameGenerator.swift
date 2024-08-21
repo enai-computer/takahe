@@ -12,20 +12,25 @@ func openEmptyContentFrame(viewState: NiConentFrameState = .expanded, groupName:
 	return frameController
 }
 
-func reopenContentFrame(screenWidth: CGFloat, contentFrame: NiContentFrameModel, tabDataModel: [NiCFTabModel]) -> ContentFrameController{
+func reopenContentFrame(screenSize: CGSize, contentFrame: NiContentFrameModel, tabDataModel: [NiCFTabModel]) -> ContentFrameController{
 	let tabViewModels = niCFTabModelToTabViewModel(tabs: tabDataModel)
 	let controller = reopenContentFrameWithOutPositioning(
-		screenWidth: screenWidth,
+		screenWidth: screenSize.width,
 		contentFrameState: contentFrame.state,
 		tabViewModels: tabViewModels,
 		groupName: contentFrame.name
 	)
 	//positioning
-	controller.view.frame = initPositionAndSize(
-		for: controller.view as! CFBaseView,
-		maxWidth: (screenWidth - maxWidthMargin),
-		contentFrame: contentFrame
-	)
+	if(controller.viewState == .fullscreen){
+		controller.view.frame.size = screenSize
+		controller.view.frame.origin.y = contentFrame.position.y.px
+	}else{
+		controller.view.frame = initPositionAndSize(
+			for: controller.view as! CFBaseView,
+			maxWidth: (screenSize.width - maxWidthMargin),
+			contentFrame: contentFrame
+		)
+	}
 	
 	if(controller.tabs.count != tabViewModels.count){
 		print("Content missing: Expected number of content Elements: \(tabViewModels.count) actual number: \(controller.tabs.count).")

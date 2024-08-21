@@ -146,7 +146,12 @@ class NiSpaceDocumentController: NSViewController{
 	 * MARK: - load and store space document here
 	 */
 	
-	func recreateSpace(docModel: NiDocumentObjectModel) -> NSPoint?{
+	/** returns scrollTo point and if it contains a fullscreen Frame
+	 
+	 */
+	func recreateSpace(docModel: NiDocumentObjectModel) -> (NSPoint?, Bool){
+		var containsFullscreenFrame = false
+		
 		if (docModel.type == NiDocumentObjectTypes.document){
 			let data = docModel.data as! NiDocumentModel
 			let docModelChildren = data.children
@@ -165,24 +170,36 @@ class NiSpaceDocumentController: NSViewController{
 			}
 			
 			for cfData in orderedCFsToRecreate{
-				recreateContentFrame(data: cfData)
+				containsFullscreenFrame = recreateContentFrame(data: cfData) || containsFullscreenFrame
 			}
 			
 			if (data.viewPosition != nil && 10.0 < data.viewPosition!.px){
-				return NSPoint(x: 0.0, y: data.viewPosition!.px)
+				return (NSPoint(x: 0.0, y: data.viewPosition!.px), containsFullscreenFrame)
 			}
 		}
-		return nil
+		return (nil, containsFullscreenFrame)
 	}
 	
-	private func recreateContentFrame(data: NiContentFrameModel){
-		let storedWebsiteCFController = reopenContentFrame(screenWidth: self.view.frame.width, contentFrame: data, tabDataModel: data.children)
+	/** returns true if fullscreen
+	 
+	 */
+	private func recreateContentFrame(data: NiContentFrameModel) -> Bool {
+		var screenSize = view.frame.size
+		if let maxHeight = NSApplication.shared.mainWindow?.frame.height{
+			screenSize.height = maxHeight
+		}
+		let storedWebsiteCFController = reopenContentFrame(
+			screenSize: screenSize,
+			contentFrame: data,
+			tabDataModel: data.children
+		)
 		myView.addNiFrame(storedWebsiteCFController)
 		storedWebsiteCFController.myView.setFrameOwner(myView)
 		
 		if(storedWebsiteCFController.viewState == .fullscreen){
 			(NSApplication.shared.delegate as? AppDelegate)?.getNiSpaceViewController()?.hideHeader()
 		}
+		return storedWebsiteCFController.viewState == .fullscreen
 	}
 	
 	func storeSpace(scrollPosition: CGFloat){
