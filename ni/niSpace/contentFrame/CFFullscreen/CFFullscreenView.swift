@@ -97,6 +97,14 @@ class CFFullscreenView: CFBaseView, CFTabHeadProtocol{
 		return tabViewPos
 	}
 	
+	func updateSpaceName(_ newVal: String){
+		if(!groupName.stringValue.isEmpty){
+			self.spaceName.stringValue = newVal + ":"
+		}else{
+			self.spaceName.stringValue = newVal
+		}
+	}
+	
 	func addTabClicked(with event: NSEvent){
 		if let cfc = self.nextResponder as? ContentFrameController{
 			cfc.openAndEditEmptyWebTab()
