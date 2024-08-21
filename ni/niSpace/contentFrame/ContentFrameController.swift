@@ -492,6 +492,11 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		self.expandedCFView!.niParentDoc?.setTopNiFrame(self)
 		sharedLoadViewSetters()
 		
+		//ensure visibility
+		if let docController: NiSpaceDocumentController = myView.niParentDoc?.nextResponder as? NiSpaceDocumentController{
+			view.frame.origin = docController.calculateContentFrameOrigin(for: view.frame)
+		}
+		
 		(NSApplication.shared.delegate as? AppDelegate)?.getNiSpaceViewController()?.showHeader()
 		
 		if(reloadTabHeads){
