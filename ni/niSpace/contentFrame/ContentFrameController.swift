@@ -834,6 +834,10 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	 Close tabs and select the nxt tab to the right first and then left when none to the right are left
 	 */
 	func closeSelectedTab(){
+		if(0 < tabs.count && tabs[0].type == .webApp){
+			confirmClose()
+			return
+		}
 		if(!viewHasTabs()){
 			return
 		}
@@ -1195,8 +1199,11 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	}
 	
 	func niWebViewTitleChanged(_ webView: NiWebView){
+		if(viewState == .simpleFrame){
+			//TODO: implement func for simple frames
+			return
+		}
 		guard viewHasTabs() else {return}
-		//TODO: implement func for simple frames
 		
 		if(0 < webView.tabHeadPosition && webView.tabHeadPosition < tabs.count){
 			self.tabs[webView.tabHeadPosition].title = webView.getTitle()
