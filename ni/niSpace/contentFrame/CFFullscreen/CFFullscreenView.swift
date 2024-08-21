@@ -71,9 +71,7 @@ class CFFullscreenView: CFBaseView, CFTabHeadProtocol{
 	
 	override func fillView(with event: NSEvent?) {
 		let visibleView = self.niParentDoc!.visibleRect
-		
-		self.setFrameSize(visibleView.size)
-		self.setFrameOrigin(NSPoint(x: 0.0, y: 0.0))
+		self.frame = visibleView
 	}
 	
 	override func toggleActive() {
