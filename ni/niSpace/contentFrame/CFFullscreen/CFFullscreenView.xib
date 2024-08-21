@@ -17,11 +17,11 @@
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
                     <customView id="FQB-AR-SzO" customClass="ContentFrameHeadView" customModule="ni" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="866" width="1600" height="34"/>
+                        <rect key="frame" x="0.0" y="860" width="1600" height="40"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <subviews>
                             <imageView ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2gZ-pG-JxN" customClass="NiActionImage" customModule="ni" customModuleProvider="target">
-                                <rect key="frame" x="7" y="4" width="24" height="24"/>
+                                <rect key="frame" x="7" y="8" width="24" height="24"/>
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="SpaceIcon" id="Y1w-h3-tKv"/>
                                 <color key="contentTintColor" name="sand9"/>
                                 <userDefinedRuntimeAttributes>
@@ -30,8 +30,8 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </imageView>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8Q0-6a-YiJ" customClass="NiTextField" customModule="ni" customModuleProvider="target">
-                                <rect key="frame" x="39" y="8" width="89" height="20"/>
+                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8Q0-6a-YiJ" customClass="NiTextField" customModule="ni" customModuleProvider="target">
+                                <rect key="frame" x="39" y="11" width="89" height="20"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" allowsUndo="NO" alignment="right" title="SpaceName:" id="bjc-E2-6Bu">
                                     <font key="font" size="15" name="Sohne-Kraftig"/>
                                     <color key="textColor" name="sand115"/>
@@ -45,8 +45,8 @@
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="willAllowVibrancy" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                             </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fPI-xS-yoO" customClass="NiTextField" customModule="ni" customModuleProvider="target">
-                                <rect key="frame" x="124" y="8" width="86" height="20"/>
+                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fPI-xS-yoO" customClass="NiTextField" customModule="ni" customModuleProvider="target">
+                                <rect key="frame" x="126" y="11" width="86" height="20"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" allowsUndo="NO" alignment="left" title="GroupName" id="ACS-w3-SPq">
                                     <font key="font" size="15" name="Sohne-Leicht"/>
                                     <color key="textColor" name="sand115"/>
@@ -60,24 +60,24 @@
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="willAllowVibrancy" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                             </textField>
-                            <imageView horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="fCW-1p-oJH" userLabel="back-button" customClass="NiActionImage" customModule="ni" customModuleProvider="target">
-                                <rect key="frame" x="210" y="7" width="24" height="24"/>
+                            <imageView horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fCW-1p-oJH" userLabel="back-button" customClass="NiActionImage" customModule="ni" customModuleProvider="target">
+                                <rect key="frame" x="210" y="8" width="24" height="24"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="24" id="WFL-8L-5JX"/>
                                     <constraint firstAttribute="width" constant="24" id="Xmm-zL-CUi"/>
                                 </constraints>
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="arrowLeft" id="5f6-bz-vfg"/>
                             </imageView>
-                            <imageView horizontalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="djo-g2-s21" userLabel="forward-button" customClass="NiActionImage" customModule="ni" customModuleProvider="target">
-                                <rect key="frame" x="234" y="7" width="24" height="24"/>
+                            <imageView horizontalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="djo-g2-s21" userLabel="forward-button" customClass="NiActionImage" customModule="ni" customModuleProvider="target">
+                                <rect key="frame" x="234" y="8" width="24" height="24"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="24" id="45o-ss-r4w"/>
                                     <constraint firstAttribute="width" constant="24" id="uEO-ZN-gIs"/>
                                 </constraints>
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="arrowRight" id="DMu-PI-oaA"/>
                             </imageView>
-                            <imageView horizontalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="aRE-V6-65e" userLabel="Add Button" customClass="NiActionImage" customModule="ni" customModuleProvider="target">
-                                <rect key="frame" x="258" y="7" width="24" height="24"/>
+                            <imageView horizontalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aRE-V6-65e" userLabel="Add Button" customClass="NiActionImage" customModule="ni" customModuleProvider="target">
+                                <rect key="frame" x="258" y="8" width="24" height="24"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="24" id="7eK-lR-0SS"/>
                                     <constraint firstAttribute="height" constant="24" id="W4I-10-Gvk"/>
@@ -85,13 +85,13 @@
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="plus" id="pXk-Gh-woM"/>
                             </imageView>
                             <scrollView wantsLayer="YES" horizontalHuggingPriority="1000" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="1000" borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasVerticalScroller="NO" usesPredominantAxisScrolling="NO" verticalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="9Bx-XI-5ku">
-                                <rect key="frame" x="292" y="4" width="1134" height="30"/>
+                                <rect key="frame" x="294" y="4" width="1132" height="30"/>
                                 <clipView key="contentView" drawsBackground="NO" id="W6W-Pu-wMH">
-                                    <rect key="frame" x="0.0" y="0.0" width="1134" height="30"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="1132" height="30"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <collectionView id="OvC-Sb-bzu">
-                                            <rect key="frame" x="0.0" y="0.0" width="1134" height="30"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="1132" height="30"/>
                                             <autoresizingMask key="autoresizingMask" heightSizable="YES"/>
                                             <collectionViewFlowLayout key="collectionViewLayout" minimumInteritemSpacing="16" scrollDirection="horizontal" id="vmX-yG-T7D">
                                                 <size key="itemSize" width="195" height="30"/>
@@ -111,7 +111,7 @@
                                 </constraints>
                                 <edgeInsets key="scrollerInsets" left="0.0" right="0.0" top="0.0" bottom="-3"/>
                                 <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="QPg-Hj-FQJ" customClass="NiScroller" customModule="ni" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="17" width="794" height="16"/>
+                                    <rect key="frame" x="0.0" y="17" width="1130" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="cdf-o4-zdA">
@@ -119,8 +119,8 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="ZjQ-rG-c3I">
-                                <rect key="frame" x="1424" y="6" width="84" height="20"/>
+                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" id="ZjQ-rG-c3I">
+                                <rect key="frame" x="1424" y="10" width="84" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" refusesFirstResponder="YES" allowsUndo="NO" alignment="right" title="10:00 AM" id="1f1-Rt-xtd">
                                     <font key="font" size="15" name="Inter-Regular"/>
@@ -129,7 +129,7 @@
                                 </textFieldCell>
                             </textField>
                             <imageView ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="B86-Dq-rUQ" customClass="NiActionImage" customModule="ni" customModuleProvider="target">
-                                <rect key="frame" x="1520" y="6" width="24" height="24"/>
+                                <rect key="frame" x="1520" y="10" width="24" height="24"/>
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="search" id="Gfr-zU-zXi"/>
                                 <color key="contentTintColor" name="sand9"/>
                                 <userDefinedRuntimeAttributes>
@@ -139,7 +139,7 @@
                                 </userDefinedRuntimeAttributes>
                             </imageView>
                             <imageView wantsLayer="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fkI-7B-epu" customClass="NiActionImage" customModule="ni" customModuleProvider="target">
-                                <rect key="frame" x="1544" y="4" width="24" height="24"/>
+                                <rect key="frame" x="1544" y="7" width="24" height="24"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="pinnedAppIcon" id="hCi-wv-Ovp"/>
                                 <color key="contentTintColor" name="sand9"/>
@@ -150,7 +150,7 @@
                                 </userDefinedRuntimeAttributes>
                             </imageView>
                             <imageView horizontalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" fixedFrame="YES" mirrorLayoutDirectionWhenInternationalizing="never" translatesAutoresizingMaskIntoConstraints="NO" id="dSV-Oo-rA0" customClass="NiActionImage" customModule="ni" customModuleProvider="target">
-                                <rect key="frame" x="1568" y="4" width="24" height="24"/>
+                                <rect key="frame" x="1568" y="7" width="24" height="24"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                 <imageCell key="cell" refusesFirstResponder="YES" userInterfaceLayoutDirection="rightToLeft" alignment="left" animates="YES" imageScaling="proportionallyDown" image="maximize" id="Laf-F3-xeM"/>
                                 <color key="contentTintColor" name="sand9"/>
@@ -162,24 +162,23 @@
                             </imageView>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="9Bx-XI-5ku" firstAttribute="top" secondItem="FQB-AR-SzO" secondAttribute="top" id="0bW-bd-GWy"/>
+                            <constraint firstItem="9Bx-XI-5ku" firstAttribute="top" secondItem="FQB-AR-SzO" secondAttribute="top" constant="6" id="0bW-bd-GWy"/>
                             <constraint firstItem="ZjQ-rG-c3I" firstAttribute="left" secondItem="9Bx-XI-5ku" secondAttribute="right" priority="250" id="B9f-bV-poX"/>
                             <constraint firstItem="fCW-1p-oJH" firstAttribute="left" secondItem="fPI-xS-yoO" secondAttribute="right" constant="2" id="CZT-sK-UZR"/>
                             <constraint firstItem="djo-g2-s21" firstAttribute="left" secondItem="fCW-1p-oJH" secondAttribute="right" id="H90-IO-80P"/>
                             <constraint firstItem="9Bx-XI-5ku" firstAttribute="left" secondItem="aRE-V6-65e" secondAttribute="right" constant="10" id="ZHb-EO-Ee3"/>
-                            <constraint firstItem="aRE-V6-65e" firstAttribute="top" secondItem="FQB-AR-SzO" secondAttribute="top" constant="3" id="aeP-aI-QBa"/>
-                            <constraint firstItem="fPI-xS-yoO" firstAttribute="left" secondItem="8Q0-6a-YiJ" secondAttribute="right" id="dSr-Rv-Rf4"/>
+                            <constraint firstItem="aRE-V6-65e" firstAttribute="top" secondItem="FQB-AR-SzO" secondAttribute="top" constant="8" id="aeP-aI-QBa"/>
+                            <constraint firstItem="fPI-xS-yoO" firstAttribute="left" secondItem="8Q0-6a-YiJ" secondAttribute="right" constant="2" id="dSr-Rv-Rf4"/>
                             <constraint firstItem="2gZ-pG-JxN" firstAttribute="left" secondItem="FQB-AR-SzO" secondAttribute="left" constant="7" id="mvJ-IH-8fl"/>
                             <constraint firstItem="8Q0-6a-YiJ" firstAttribute="left" secondItem="2gZ-pG-JxN" secondAttribute="right" constant="10" id="n32-FH-2MO"/>
-                            <constraint firstItem="9Bx-XI-5ku" firstAttribute="top" secondItem="FQB-AR-SzO" secondAttribute="top" id="nnc-lT-Fsg"/>
-                            <constraint firstItem="djo-g2-s21" firstAttribute="top" secondItem="FQB-AR-SzO" secondAttribute="top" constant="3" id="r0c-44-hJX"/>
+                            <constraint firstItem="djo-g2-s21" firstAttribute="top" secondItem="FQB-AR-SzO" secondAttribute="top" constant="8" id="r0c-44-hJX"/>
                             <constraint firstItem="B86-Dq-rUQ" firstAttribute="left" secondItem="ZjQ-rG-c3I" secondAttribute="right" constant="14" id="vx0-XJ-kb7"/>
                             <constraint firstItem="aRE-V6-65e" firstAttribute="left" secondItem="djo-g2-s21" secondAttribute="right" id="wb5-Uv-DNO"/>
-                            <constraint firstItem="fCW-1p-oJH" firstAttribute="top" secondItem="FQB-AR-SzO" secondAttribute="top" constant="3" id="zdW-PJ-O0W"/>
+                            <constraint firstItem="fCW-1p-oJH" firstAttribute="top" secondItem="FQB-AR-SzO" secondAttribute="top" constant="8" id="zdW-PJ-O0W"/>
                         </constraints>
                     </customView>
                     <tabView fixedFrame="YES" type="noTabsNoBorder" translatesAutoresizingMaskIntoConstraints="NO" id="tC7-07-Pbm">
-                        <rect key="frame" x="0.0" y="0.0" width="1600" height="866"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1600" height="860"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <font key="font" metaFont="system"/>
                     </tabView>
