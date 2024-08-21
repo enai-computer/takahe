@@ -189,6 +189,7 @@ class NiSpaceViewController: NSViewController, NSTextFieldDelegate{
 	}
 	
 	func openEmptyCF(){
+		guard !header.isHidden else {return}
 		niDocument.openEmptyCF()
 	}
 	
@@ -681,10 +682,12 @@ class NiSpaceViewController: NSViewController, NSTextFieldDelegate{
 	}
 	
 	func switchToNextWindow() {
+		guard !header.isHidden else {return}
 		niDocument.myView.switchToNextCF()
 	}
 	
 	func switchToPrevWindow() {
+		guard !header.isHidden else {return}
 		niDocument.myView.switchToNextCF(goFwd: false)
 	}
 	
