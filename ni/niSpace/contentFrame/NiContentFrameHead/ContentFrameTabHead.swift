@@ -258,7 +258,7 @@ class ContentFrameTabHead: NSCollectionViewItem, NSTextFieldDelegate {
 			origin: adjustedPos,
 			dirtyMenuItems: [
 				NiMenuItemViewModel(
-					title: "Pin to space bar",
+					title: "Pin to menu bar",
 					isEnabled: true,
 					mouseDownFunction: self.pinToTopbar
 				),
