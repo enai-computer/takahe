@@ -16,20 +16,21 @@ import FaviconFinder
 
 //TODO: clean up tech debt and move the delegates out of here
 class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelegate, NSCollectionViewDataSource, NSCollectionViewDelegate, NSCollectionViewDelegateFlowLayout{
-    
+
 	var myView: CFBaseView {return self.view as! CFBaseView}
 	var framelessView: CFFramelessView? {return self.view as? CFFramelessView}
+	var simpleFrame: CFSimpleFrameView? {return self.view as? CFSimpleFrameView}
 	var viewWithTabs: CFTabHeadProtocol? {return self.view as? CFTabHeadProtocol}
 	
-    private(set) var expandedCFView: ContentFrameView? = nil
-    private var selectedTabModel: Int = -1
+	private(set) var expandedCFView: ContentFrameView? = nil
+	private var selectedTabModel: Int = -1
 	//we need this var to have the behaviour that tabs that get open with cmd+click open in sequence next to each other
 	//and not just right next to the current tab
 	private var nxtTabPosOpenNxtTo: Int? = nil
 	private(set) var aTabIsInEditingMode: Bool = false
 	private(set) var tabs: [TabViewModel] = []
 	var viewState: NiConentFrameState = .expanded
-		
+	
 	private var closeCancelled = false
 	private(set) var closeTriggered = false
 	
@@ -52,7 +53,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		fatalError("init(coder:) has not been implemented")
 	}
 	
-    override func loadView() {
+	override func loadView() {
 		if(viewState == .minimised){
 			loadAndDisplayMinimizedView()
 		}else if(viewState == .frameless){
@@ -66,8 +67,8 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		}else{
 			loadAndDisplayDefaultView()
 		}
-    }
-    
+	}
+	
 	private func loadAndDisplayDefaultView(){
 		loadExpandedView()
 		self.view = expandedCFView!
@@ -78,7 +79,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		self.expandedCFView = (NSView.loadFromNib(nibName: "ContentFrameView", owner: self) as! ContentFrameView)
 		self.expandedCFView?.setSelfController(self)
 		self.expandedCFView?.initAfterViewLoad(groupName)
-
+		
 		expandedCFView!.cfHeadView.wantsLayer = true
 		expandedCFView!.cfHeadView.layer?.backgroundColor = NSColor(.sand4).cgColor
 	}
@@ -137,6 +138,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	 The tabGroup title reflects the document name. These need to be kept in sync in case the single tab is moved into a group.
 	 */
 	func simpleViewTitleChangedCallback(_ newTitle: String){
+		guard !newTitle.isEmpty && newTitle != "/" else {return}
 		tabs[0].title = newTitle
 	}
 	
@@ -614,9 +616,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	private func updateTabViewModel(){
 		for i in tabs.indices{
 			if(tabs[i].webView != nil){
-				if(tabs[i].webView!.title != nil){
-					tabs[i].title = tabs[i].webView!.getTitle()
-				}
+				tabs[i].title = tabs[i].webView!.getTitle() ?? tabs[i].title
 				if(tabs[i].webView!.url != nil){
 					tabs[i].content = tabs[i].webView!.url!.absoluteString
 				}
@@ -1076,7 +1076,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		
 		wv.retries = 0
 		
-		self.tabs[wv.tabHeadPosition].title = wv.getTitle()
+		self.tabs[wv.tabHeadPosition].title = wv.getTitle() ?? tabs[wv.tabHeadPosition].title
 		self.tabs[wv.tabHeadPosition].icon = nil
 		
 		//an empty tab still loads a local html
@@ -1200,13 +1200,13 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	
 	func niWebViewTitleChanged(_ webView: NiWebView){
 		if(viewState == .simpleFrame){
-			//TODO: implement func for simple frames
+			simpleFrame?.cfGroupButton.setView(title: webView.getTitle())
 			return
 		}
 		guard viewHasTabs() else {return}
 		
 		if(0 < webView.tabHeadPosition && webView.tabHeadPosition < tabs.count){
-			self.tabs[webView.tabHeadPosition].title = webView.getTitle()
+			self.tabs[webView.tabHeadPosition].title = webView.getTitle() ?? tabs[webView.tabHeadPosition].title
 			viewWithTabs?.cfTabHeadCollection?.reloadItems(at: Set(arrayLiteral: IndexPath(item: webView.tabHeadPosition, section: 0)))
 		}
 	}
