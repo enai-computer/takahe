@@ -266,6 +266,11 @@ class ContentFrameTabHead: NSCollectionViewItem, NSTextFieldDelegate {
 					title: "Move to another space (soon)",
 					isEnabled: false,
 					mouseDownFunction: nil
+				),
+				NiMenuItemViewModel(
+					title: "Provide context (soon)",
+					isEnabled: false,
+					mouseDownFunction: nil
 				)
 			],
 			currentScreen: view.window!.screen!,
