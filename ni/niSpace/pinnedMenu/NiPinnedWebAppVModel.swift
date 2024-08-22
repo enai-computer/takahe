@@ -74,6 +74,7 @@ class NiPinnedWebAppVModel: NSObject{
 				)
 				self.webView = cfController.tabs[0].webView
 			}else{
+				webView?.setActive()
 				openWebViewFromCache(cfController, with: webView!)
 			}
 			
