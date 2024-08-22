@@ -11,6 +11,7 @@ class CFFullscreenView: CFBaseView, CFTabHeadProtocol{
 
 	@IBOutlet var niContentTabView: NSTabView!
 	
+	@IBOutlet var cfHeadView: ContentFrameHeadView!
 	@IBOutlet var minimizedIcon: NiActionImage!
 	@IBOutlet var pinnedAppIcon: NiActionImage!
 	@IBOutlet var searchIcon: NiActionImage!
@@ -55,6 +56,9 @@ class CFFullscreenView: CFBaseView, CFTabHeadProtocol{
 		time.stringValue = getLocalisedTime()
 		setAutoUpdatingTime()
 		frameIsActive = true
+		
+		cfHeadView.wantsLayer = true
+		cfHeadView.layer?.backgroundColor = NSColor(.sand4).cgColor
 	}
 	
 	override func repositionView(_ xDiff: Double, _ yDiff: Double) {

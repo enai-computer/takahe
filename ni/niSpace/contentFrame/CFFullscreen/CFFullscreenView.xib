@@ -186,6 +186,7 @@
             </view>
             <connections>
                 <outlet property="addTabButton" destination="aRE-V6-65e" id="CqY-cZ-Ryu"/>
+                <outlet property="cfHeadView" destination="FQB-AR-SzO" id="NqM-uz-nz8"/>
                 <outlet property="cfTabHeadCollection" destination="OvC-Sb-bzu" id="Csd-3T-MBd"/>
                 <outlet property="contentBackButton" destination="fCW-1p-oJH" id="bbm-fb-kRG"/>
                 <outlet property="contentForwardButton" destination="djo-g2-s21" id="C8D-h8-5rc"/>
