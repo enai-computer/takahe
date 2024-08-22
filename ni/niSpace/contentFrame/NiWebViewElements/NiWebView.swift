@@ -104,14 +104,17 @@ class NiWebView: WKWebView, CFContentItem, CFContentSearch{
 		return nil
 	}
 	
-	func getTitle() -> String{
+	func getTitle() -> String?{
+		if(title == "/"){
+			return nil
+		}
 		if(title != nil && !title!.isEmpty){
 			return title!
 		}
 		if let fileName = url?.pathComponents.last{
 			return fileName
 		}
-		return ""
+		return nil
 	}
 	
 	private func replaceSearchWithGoogleAction(_ menu: NSMenu){
