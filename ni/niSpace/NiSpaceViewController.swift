@@ -63,7 +63,7 @@ class NiSpaceViewController: NSViewController, NSTextFieldDelegate{
 		searchIcon.isActiveFunction = {return true}
 		searchIcon.setMouseDownFunction(openPalette)
 		
-		pinnedAppIcon.isActiveFunction = {return UserSettings.shared.demoMode}
+		pinnedAppIcon.isActiveFunction = {return true}
 		pinnedAppIcon.setMouseDownFunction(openPinnedMenu)
 		
 		spaceIcon.isActiveFunction = {return UserSettings.shared.demoMode}
