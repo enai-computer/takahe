@@ -74,6 +74,13 @@ class NiPinnedWebAppVModel: NSObject{
 				)
 				self.webView = cfController.tabs[0].webView
 			}else{
+				//remove WebApp if shown somewhere else in this space
+				webView?.owner?.view.removeFromSuperview()
+				webView?.owner?.removeFromParent()
+				if let webAppController = webView?.owner as? ContentFrameController{
+					webAppController.myView.niParentDoc?.removeNiFrame(webAppController)
+				}
+				//make sure that there is no overlay on top
 				webView?.setActive()
 				openWebViewFromCache(cfController, with: webView!)
 			}
