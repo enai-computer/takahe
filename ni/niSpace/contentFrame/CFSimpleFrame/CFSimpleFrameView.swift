@@ -117,6 +117,10 @@ class CFSimpleFrameView: CFBaseView{
 		cursorDownPoint = event.locationInWindow
 		
 		if (cursorOnBorder == .top){
+			if(event.clickCount == 2){
+				fillOrRetractView(with: event)
+				return
+			}
 			NSCursor.closedHand.push()
 		}
 	}
