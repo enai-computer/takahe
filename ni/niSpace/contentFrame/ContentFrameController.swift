@@ -346,6 +346,11 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		}
 		myView.closedContentFrameCleanUp()
 		removeFromParent()
+		if(viewState == .fullscreen){
+			if let spaceController = (NSApplication.shared.delegate as? AppDelegate)?.getNiSpaceViewController(){
+				spaceController.showHeader()
+			}
+		}
 	}
 	
 	/*
@@ -848,8 +853,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		if(selectedTabModel == 0 && self.tabs.count == 1){
 			deletedTabModel = self.tabs.remove(at: selectedTabModel)
 			
-			myView.niParentDoc?.removeNiFrame(self)
-			view.removeFromSuperview()
+			confirmClose()
 		}else if(selectedTabModel < (self.tabs.count - 1)){
 			let toDeletePos = selectedTabModel
 			
