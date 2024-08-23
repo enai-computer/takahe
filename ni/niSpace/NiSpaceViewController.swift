@@ -161,11 +161,15 @@ class NiSpaceViewController: NSViewController, NSTextFieldDelegate{
 	}
 	
 	func openPinnedMenu(with event: NSEvent){
-		let menuPopup = NiPinnedMenuPopup(with: self.niDocument, having: webApps)
 		let pointInHeader = CGPoint(x: pinnedAppIcon.frame.midX, y: pinnedAppIcon.frame.minY)
 		let pointOnScreen = header.convert(pointInHeader, to: nil)
+		openPinnedMenu(point: pointOnScreen)
+	}
+	
+	func openPinnedMenu(point: CGPoint){
+		let menuPopup = NiPinnedMenuPopup(with: self.niDocument, having: webApps)
 		_ = menuPopup.displayPopupWindow(
-			pointOnScreen,
+			point,
 			screen: view.window!.screen!
 		)
 	}
