@@ -63,7 +63,8 @@ class NiPinnedWebAppVModel: NSObject{
 				viewState: .simpleFrame,
 				initialTabType: .webApp,
 				openInitalTab: false,
-				groupName: itemData.name
+				groupName: itemData.name,
+				positionAlwaysCenter: true
 			)
 			
 			if(webView == nil){
