@@ -72,9 +72,6 @@ class NiSpaceViewController: NSViewController, NSTextFieldDelegate{
 	
     override func viewDidLoad() {
         super.viewDidLoad()
-		Task{
-			self.webApps = await loadPinnedWebApps()
-		}
     }
 
 	override func viewDidAppear() {
@@ -85,6 +82,10 @@ class NiSpaceViewController: NSViewController, NSTextFieldDelegate{
 									 owner: header,
 									 userInfo: nil)
 		header.addTrackingArea(hoverEffect)
+		Task{
+			try await Task.sleep(for: .milliseconds(10))
+			self.webApps = await loadPinnedWebApps()
+		}
 	}
  
 	override func mouseEntered(with event: NSEvent) {
