@@ -17,14 +17,18 @@ class NiSpaceDocumentView: NSView{
 	private(set) var topNiFrame: ContentFrameController? = nil
 	private(set) var contentFrameControllers: Set<ContentFrameController> = []	//rn all niFrames are drawn. Needs to be reworked in future
 	
-	
-	init(windowSize: CGSize){
-		var frameSize = NSRect()
-		
-		frameSize.size.width = windowSize.width
-		frameSize.size.height = windowSize.height * (1+EMPTYSPACEFACTOR)
-
+	init(with size: CGSize){
+		let frameSize = NSRect(origin: CGPoint(x: 0.0, y: 0.0), size: size)
 		super.init(frame: frameSize)
+	}
+	
+	convenience init(windowSize: CGSize){
+		var docSize = CGSize()
+		
+		docSize.width = windowSize.width
+		docSize.height = windowSize.height * (1+EMPTYSPACEFACTOR)
+
+		self.init(with: docSize)
 	}
 	
     required init(coder: NSCoder) {
