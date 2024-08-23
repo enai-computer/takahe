@@ -120,9 +120,11 @@ class CFFullscreenView: CFBaseView, CFTabHeadProtocol{
 	}
 	
 	func openPinnedMenu(with event: NSEvent){
+		let pointInHeader = CGPoint(x: pinnedAppIcon.frame.midX, y: pinnedAppIcon.frame.minY)
+		let pointOnScreen = cfHeadView.convert(pointInHeader, to: nil)
 		(NSApplication.shared.delegate as? AppDelegate)?
 			.getNiSpaceViewController()?
-			.openPinnedMenu(with: event)
+			.openPinnedMenu(point: pointOnScreen)
 	}
 	
 	func deleteSelectedTab(at position: Int){
