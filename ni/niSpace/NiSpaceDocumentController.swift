@@ -49,7 +49,11 @@ class NiSpaceDocumentController: NSViewController{
 		if(windowSize == nil){
 			windowSize = NSApplication.shared.mainWindow?.frame.size ?? CGSize(width: 1600.0, height: 1000.0)
 		}
-		self.view = NiSpaceDocumentView(windowSize: windowSize!)
+		if(self.initHeight == nil){
+			self.view = NiSpaceDocumentView(windowSize: windowSize!)
+		}else{
+			self.view = NiSpaceDocumentView(with: CGSize(width: windowSize!.width, height: initHeight!))
+		}
 	}
 	
 	/**
