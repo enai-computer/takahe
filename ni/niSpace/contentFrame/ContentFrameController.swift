@@ -501,7 +501,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		
 		//ensure visibility
 		if let docController: NiSpaceDocumentController = myView.niParentDoc?.nextResponder as? NiSpaceDocumentController{
-			view.frame.origin = docController.calculateContentFrameOrigin(for: view.frame)
+			view.frame.origin = docController.calculateContentFrameOrigin(for: view.frame, ignoreLeastRecentlyUsed: true)
 		}
 		
 		(NSApplication.shared.delegate as? AppDelegate)?.getNiSpaceViewController()?.showHeader()

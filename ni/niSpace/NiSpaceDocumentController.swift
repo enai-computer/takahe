@@ -15,7 +15,7 @@ class NiSpaceDocumentController: NSViewController{
 	private let defaultCFSize: CGSize = CGSize(width: 1400, height: 880)
 	private let defaultNoteSize: CGSize = CGSize(width: 300, height: 200)
 	private let bufferToTop: CGFloat = 45.0
-	private let bufferToSides: CGFloat = 40.0
+	private let bufferToSides: CGFloat = 30.0
 	
 	static let EMPTY_SPACE_ID: UUID = UUID(uuidString: "00000000-0000-0000-0000-000000000000")!
 	static let DEMO_GEN_SPACE_ID: UUID = UUID(uuidString: "00000000-0000-0000-0000-000000000002")!
@@ -66,7 +66,8 @@ class NiSpaceDocumentController: NSViewController{
 					 positioned relavtiveTo: CGPoint? = nil,
 					 size: CGSize? = nil,
 					 content: String? = nil,
-					 groupName: String? = nil
+					 groupName: String? = nil,
+					 positionAlwaysCenter: Bool = false
 	) -> ContentFrameController {
 		let controller = openEmptyContentFrame(viewState: viewState, groupName: groupName)
 		let newCFView = controller.myView
@@ -84,7 +85,7 @@ class NiSpaceDocumentController: NSViewController{
 		}
 		
 		if(relavtiveTo == nil){
-			newCFView.frame.origin = calculateContentFrameOrigin(for: controller.view.frame)
+			newCFView.frame.origin = calculateContentFrameOrigin(for: controller.view.frame, ignoreLeastRecentlyUsed: positionAlwaysCenter)
 		}else{
 			newCFView.frame.origin = calculateOrigin(for: controller.view.frame, relativeTo: relavtiveTo!)
 		}
@@ -115,22 +116,26 @@ class NiSpaceDocumentController: NSViewController{
 		return CGPoint(x: relativeTo.x, y: relativeTo.y)
 	}
 	
-	func calculateContentFrameOrigin(for frame: NSRect) -> CGPoint{
+	func calculateContentFrameOrigin(for frame: NSRect, ignoreLeastRecentlyUsed: Bool = false) -> CGPoint{
 		let viewSize = view.visibleRect.size
 		
 		let x_center: Double
 		let y_center: Double
 		
-		if(leastRecentlyUsedOrigin == nil || leastRecentlyUsedOrigin != view.visibleRect.origin){
+		if(ignoreLeastRecentlyUsed || leastRecentlyUsedOrigin == nil || leastRecentlyUsedOrigin != view.visibleRect.origin){
 			x_center = viewSize.width / 2
 			y_center = view.visibleRect.origin.y + viewSize.height / 2
-			leastRecentlyUsedOriginFactor = 1
+			if(!ignoreLeastRecentlyUsed){
+				leastRecentlyUsedOriginFactor = 1
+			}
 		}else{
 			x_center = leastRecentlyUsedOrigin!.x + viewSize.width / 2 + leastRecentlyUsedOriginFactor * 30
 			y_center = leastRecentlyUsedOrigin!.y + viewSize.height / 2 + leastRecentlyUsedOriginFactor * 30
 			leastRecentlyUsedOriginFactor += 1
 		}
-		leastRecentlyUsedOrigin = CGPoint(x: view.visibleRect.origin.x, y: view.visibleRect.origin.y)
+		if(!ignoreLeastRecentlyUsed){
+			leastRecentlyUsedOrigin = CGPoint(x: view.visibleRect.origin.x, y: view.visibleRect.origin.y)
+		}
 		
 		let x_dist_to_center = frame.width / 2
 		let y_dist_to_center = frame.height / 2
