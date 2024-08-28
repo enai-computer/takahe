@@ -85,6 +85,7 @@ class NiWebView: WKWebView, CFContentItem, CFContentSearch{
 	func spaceClosed(){
 		self.pauseAllMediaPlayback()
 		self.closeAllMediaPresentations()
+		self.stopLoading()
 	}
 	
 	func spaceRemovedFromMemory(){
@@ -95,6 +96,7 @@ class NiWebView: WKWebView, CFContentItem, CFContentSearch{
 		self.owner = nil
 		self.searchPanel = nil
 		self.overlay = nil
+		self.stopLoading()
 	}
 	
 	func getCurrentURL() -> String? {
@@ -257,6 +259,7 @@ class NiWebView: WKWebView, CFContentItem, CFContentSearch{
 	
 	deinit{
 		titleChangeObserver?.invalidate()
+		stopLoading()
 	}
 }
 
