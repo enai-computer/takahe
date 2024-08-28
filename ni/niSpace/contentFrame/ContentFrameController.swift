@@ -1114,7 +1114,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 			}
 		}
 		//open in new tab, comand clicked on link
-		if(navigationAction.modifierFlags == .command && viewState == .expanded){
+		if(navigationAction.modifierFlags == .command && viewHasTabs()){
 			let urlStr = navigationAction.request.url?.absoluteString
 			if(urlStr != nil && !urlStr!.isEmpty){
 				self.openWebsiteInNewTab(urlStr!, shallSelectTab: false, openNextToSelectedTab: true)
@@ -1138,7 +1138,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 			}
 		}
 		//open in new tab, comand clicked on link
-		if(navigationAction.modifierFlags == .command && viewState == .expanded){
+		if(navigationAction.modifierFlags == .command && viewHasTabs()){
 			let urlStr = navigationAction.request.url?.absoluteString
 			if(urlStr != nil && !urlStr!.isEmpty){
 				self.openWebsiteInNewTab(urlStr!, shallSelectTab: false, openNextToSelectedTab: true)
@@ -1156,7 +1156,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		if (navigationResponse.response.mimeType == "application/pdf"){
 			decisionHandler(.download)
 			if let niWV = webView as? NiWebView{
-				if(!niWV.websiteLoaded && viewState == .expanded){
+				if(!niWV.websiteLoaded && viewHasTabs()){
 					NiDownloadHandler.instance.setCloseTabCallback(for: niWV)
 				}
 			}
