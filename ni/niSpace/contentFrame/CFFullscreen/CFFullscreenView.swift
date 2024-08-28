@@ -79,7 +79,17 @@ class CFFullscreenView: CFBaseView, CFTabHeadProtocol{
 	}
 	
 	override func toggleActive() {
+		frameIsActive = !frameIsActive
+		let webView = niContentTabView.selectedTabViewItem?.view as? CFContentItem	//a new content frame will not have a webView yet
 		
+		if frameIsActive{
+			webView?.setActive()
+			self.resetCursorRects()
+
+		}else{
+			_ = webView?.setInactive()
+			self.discardCursorRects()
+		}
 	}
 	
 	override func createNewTab(tabView: NSView, openNextTo: Int = -1) -> Int {
@@ -132,7 +142,10 @@ class CFFullscreenView: CFBaseView, CFTabHeadProtocol{
 	}
 	
 	override func mouseDown(with event: NSEvent) {
-		return
+		if !frameIsActive{
+			niParentDoc?.setTopNiFrame(myController!)
+			return
+		}
 	}
 	
 	// MARK: - fwd/back button
