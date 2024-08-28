@@ -397,12 +397,15 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		if let zPos = self.view.layer?.zPosition{
 			simpleMinimizedView.layer?.zPosition = zPos
 		}
+		let oldView = self.myView
 		self.view.superview?.replaceSubview(self.view,
 											with: simpleMinimizedView)
 		self.view = simpleMinimizedView
 		self.myView.niParentDoc?.setTopNiFrame(self)
 		
 		self.viewState = .simpleMinimised
+		
+		oldView.deinitSelf()
 	}
 	
 	private func positionMinimizedView(for minimizedView: CFBaseView){
@@ -570,10 +573,13 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		if let zPos = self.view.layer?.zPosition{
 			simpleFrameView.layer?.zPosition = zPos
 		}
+		let oldView = self.myView
 		self.view.superview?.replaceSubview(self.view, with: simpleFrameView)
 		self.view = simpleFrameView
 		self.viewState = .simpleFrame
 		self.myView.niParentDoc?.setTopNiFrame(self)
+		
+		oldView.deinitSelf()
 	}
 	
 	/**

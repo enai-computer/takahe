@@ -73,6 +73,7 @@ class CFBaseView: NSBox{
 	func closedContentFrameCleanUp(){
 		myController?.purgePersistetContent()
 		niParentDoc?.removeNiFrame(myController!)
+		deinitSelf()
 		removeFromSuperview()
 	}
 	

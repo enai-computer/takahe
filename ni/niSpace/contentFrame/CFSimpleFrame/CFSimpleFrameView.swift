@@ -290,6 +290,23 @@ class CFSimpleFrameView: CFBaseView{
 	
 	override func deinitSelf() {
 		myContent?.spaceRemovedFromMemory()
+		
+		closeButton.setMouseDownFunction(nil)
+		closeButton.isActiveFunction = nil
+		closeButton.mouseDownInActiveFunction = nil
+		
+		maximizeButton.setMouseDownFunction(nil)
+		maximizeButton.isActiveFunction = nil
+		maximizeButton.mouseDownInActiveFunction = nil
+		
+		cfGroupButton.mouseDownFunction = nil
+		cfGroupButton.mouseDownInActiveFunction = nil
+		cfGroupButton.isActiveFunction = nil
+		
+		minimizeButton.setMouseDownFunction(nil)
+		minimizeButton.isActiveFunction = nil
+		minimizeButton.mouseDownInActiveFunction = nil
+		
 		super.deinitSelf()
 	}
 	
