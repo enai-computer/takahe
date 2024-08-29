@@ -25,7 +25,7 @@ struct WeatherData {
 
 struct WeatherView: View {
 	@State private var weatherData = WeatherData.placeholder
-	@State private var currentTime = getCurrentTime()
+	@State private var currentTime = getLocalisedTime()
 	let cityName = "Berlin, Germany"
 	let timer = Timer.publish(every: 5, on: .main, in: .common).autoconnect()
 	
@@ -58,7 +58,7 @@ struct WeatherView: View {
 		}
 		.frame(alignment: .trailing)
 		.onReceive(timer) { _ in
-			self.currentTime = WeatherView.getCurrentTime()
+			self.currentTime = getLocalisedTime()
 		}
 		.task {
 			await fetchWeather()
@@ -75,11 +75,6 @@ struct WeatherView: View {
 		}
 	}
 	
-	private static func getCurrentTime() -> String {
-		let formatter = DateFormatter()
-		formatter.timeStyle = .short
-		return formatter.string(from: Date())
-	}
 }
 
 
