@@ -8,7 +8,7 @@
 import Cocoa
 
 
-struct WebAppItemModel: Codable, Equatable{
+struct PinnedWebsiteItemModel: Codable, Equatable{
 	let name: String
 	let url: URL
 	let frameColor: String?
@@ -27,7 +27,7 @@ struct WebAppItemModel: Codable, Equatable{
 	init(name: String, url: URL){
 		self.name = name
 		self.url = url
-		self.frameColor = WebAppItemModel.getColor(for: url).hex
+		self.frameColor = PinnedWebsiteItemModel.getColor(for: url).hex
 	}
 	
 	init(name: String, url: URL, frameColor: NSColor) {
@@ -43,7 +43,7 @@ struct WebAppItemModel: Codable, Equatable{
 		frameColor = try container.decodeIfPresent(String.self, forKey: .frameColor)
 	}
 
-	static func == (lhs: WebAppItemModel, rhs: WebAppItemModel) -> Bool {
+	static func == (lhs: PinnedWebsiteItemModel, rhs: PinnedWebsiteItemModel) -> Bool {
 		return lhs.url == rhs.url && lhs.name == rhs.name
 	}
 	

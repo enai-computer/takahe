@@ -15,7 +15,7 @@ class NiPinnedMenuWindow: NSPanel{
 	private var screenToDisplayOn: NSScreen?
 	
 	init(origin: NSPoint,
-		 items: [NiPinnedWebAppVModel],
+		 items: [NiPinnedWebsiteVModel],
 		 docController: NiSpaceDocumentController?,
 		 currentScreen: NSScreen,
 		 adjustOrigin: Bool = true,

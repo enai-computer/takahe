@@ -9,12 +9,12 @@ import Cocoa
 
 class NiPinnedMenuPopup: NSObject{
 	
-	private let hardCodedWebApps: [NiPinnedWebAppVModel]
+	private let hardCodedWebsites: [NiPinnedWebsiteVModel]
 	private weak var docController: NiSpaceDocumentController?
 	
-	init(with docController: NiSpaceDocumentController, having apps: [NiPinnedWebAppVModel]) {
+	init(with docController: NiSpaceDocumentController, containing sites: [NiPinnedWebsiteVModel]) {
 		self.docController = docController
-		self.hardCodedWebApps = apps
+		self.hardCodedWebsites = sites
 	}
 	
 	func displayPopupWindow(_ referencePoint: CGPoint, screen: NSScreen) -> NiPinnedMenuWindow {
@@ -24,7 +24,7 @@ class NiPinnedMenuPopup: NSObject{
 		)
 		let menuWindow = NiPinnedMenuWindow(
 			origin: adjustedPos,
-			items: hardCodedWebApps, 
+			items: hardCodedWebsites, 
 			docController: self.docController,
 			currentScreen: screen
 		)
