@@ -14,7 +14,7 @@ enum UserSettingKey: String{
 		 eveEnabled,
 		 cacheClearedLast,
 		 demoMode,
-		 pinnedWebApps
+		 pinnedWebApps	//maps to pinnedWebsites --- DB migration needed for renaming
 }
 
 struct NiUsersSettingsModel: Codable{
@@ -24,7 +24,7 @@ struct NiUsersSettingsModel: Codable{
 	let eveEnabled: Bool
 	let cacheClearedLast: Date
 	let demoMode: Bool
-	let pinnedWebApps: [WebAppItemModel]
+	let pinnedWebsites: [PinnedWebsiteItemModel]
 }
 
 extension NiUsersSettingsModel{
@@ -38,7 +38,7 @@ extension NiUsersSettingsModel{
 		eveEnabled = false
 		cacheClearedLast = Date(timeIntervalSince1970: 0.0)
 		demoMode = false
-		pinnedWebApps = []
+		pinnedWebsites = []
 	}
 	
 	init(from dic: [String: String]) throws{
@@ -48,7 +48,7 @@ extension NiUsersSettingsModel{
 		eveEnabled = try getValueOrThrow(key: .eveEnabled, from: dic)
 		cacheClearedLast = try getValueOrThrow(key: .cacheClearedLast, from: dic)
 		demoMode = getValueOrDefault(key: .demoMode, from: dic, defaultVal: false)
-		pinnedWebApps = getValueOrEmptyList(key: .pinnedWebApps, from: dic, of: WebAppItemModel.self)
+		pinnedWebsites = getValueOrEmptyList(key: .pinnedWebApps, from: dic, of: PinnedWebsiteItemModel.self)
 	}
 	
 	func toDic() -> [UserSettingKey: String]{
@@ -58,22 +58,22 @@ extension NiUsersSettingsModel{
 			.nrOfCachedSpaces: String(nrOfCachedSpaces),
 			.eveEnabled: String(eveEnabled),
 			.cacheClearedLast: String(cacheClearedLast.timeIntervalSince1970),
-			.pinnedWebApps: encodeToJsonString(pinnedWebApps)
+			.pinnedWebApps: encodeToJsonString(pinnedWebsites)
 		]
 	}
 	
-	func appendSetting(setting: UserSettingKey, with element: WebAppItemModel) -> String{
+	func appendSetting(setting: UserSettingKey, with element: PinnedWebsiteItemModel) -> String{
 		if(setting != .pinnedWebApps){
 			fatalError("appending Setting \(setting) is not implemented")
 		}
-		return encodeToJsonString(pinnedWebApps + [element])
+		return encodeToJsonString(pinnedWebsites + [element])
 	}
 	
-	func removeSetting(setting: UserSettingKey, with element: WebAppItemModel) -> String{
+	func removeSetting(setting: UserSettingKey, with element: PinnedWebsiteItemModel) -> String{
 		if(setting != .pinnedWebApps){
 			fatalError("appending Setting \(setting) is not implemented")
 		}
-		let filteredApp = pinnedWebApps.filter({$0 != element})
+		let filteredApp = pinnedWebsites.filter({$0 != element})
 		return encodeToJsonString(filteredApp)
 	}
 			

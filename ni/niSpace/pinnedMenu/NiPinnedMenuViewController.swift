@@ -9,13 +9,13 @@ import Cocoa
 
 class NiPinnedMenuViewController: NSViewController{
 	
-	let items: [NiPinnedWebAppVModel]
+	let items: [NiPinnedWebsiteVModel]
 	private weak var spaceDocController: NiSpaceDocumentController?
 	private let myViewHeight: CGFloat
 	
 	private var myContentView: NiPinnedMenuView?
 	
-	init(items: [NiPinnedWebAppVModel], docController: NiSpaceDocumentController?, height: CGFloat) {
+	init(items: [NiPinnedWebsiteVModel], docController: NiSpaceDocumentController?, height: CGFloat) {
 		self.items = items
 		self.spaceDocController = docController
 		self.myViewHeight = height
@@ -44,7 +44,7 @@ class NiPinnedMenuViewController: NSViewController{
 		super.viewDidLayout()
 	}
 	
-	private func genMenuItemViews(items: [NiPinnedWebAppVModel]) -> [NSView]{
+	private func genMenuItemViews(items: [NiPinnedWebsiteVModel]) -> [NSView]{
 		var menuItems: [NSView] = []
 		
 		for item in items{
@@ -53,7 +53,7 @@ class NiPinnedMenuViewController: NSViewController{
 				with: NSSize(width: 28.0, height: 28.0)
 			)
 			itemView.isActiveFunction = {return true}
-			itemView.setMouseDownFunction(item.openWebApp, with: spaceDocController)
+			itemView.setMouseDownFunction(item.openWebsite, with: spaceDocController)
 			itemView.setRightMouseDownFunction(item.showDeleteIcon, with: itemView)
 			menuItems.append(itemView)
 		}

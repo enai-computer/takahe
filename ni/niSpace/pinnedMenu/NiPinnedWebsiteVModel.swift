@@ -1,5 +1,5 @@
 //
-//  NiPinnedMenuVModel.swift
+//  NiPinnedWebsiteVModel.swift
 //  ni
 //
 //  Created by Patrick Lukas on 9/8/24.
@@ -9,42 +9,42 @@ import Cocoa
 
 private let HOW_TO_LINK = "https://enai.notion.site/How-to-use-pinned-Apps-cef61416cfaa48fc83099d818f81c3ff"
 
-func loadPinnedWebApps() async -> [NiPinnedWebAppVModel]{
-	var apps: [NiPinnedWebAppVModel] = []
+func loadPinnedWebsites() async -> [NiPinnedWebsiteVModel]{
+	var websites: [NiPinnedWebsiteVModel] = []
 	
-	for webAppConfig in UserSettings.shared.pinnedWebApps{
-		let webAppVM = NiPinnedWebAppVModel(for: webAppConfig)
-		await webAppVM.loadIcon()
-		apps.append(webAppVM)
+	for webAppConfig in UserSettings.shared.pinnedWebsites{
+		let websiteVM = NiPinnedWebsiteVModel(for: webAppConfig)
+		await websiteVM.loadIcon()
+		websites.append(websiteVM)
 	}
 	
-	if(apps.isEmpty){
-		let webAppVM = NiPinnedWebAppVModel(
-			for: WebAppItemModel(
+	if(websites.isEmpty){
+		let webAppVM = NiPinnedWebsiteVModel(
+			for: PinnedWebsiteItemModel(
 				name: "How to use pinned Apps",
 				url: URL(string: HOW_TO_LINK)!
 			)
 		)
 		await webAppVM.loadIcon()
-		apps.append(webAppVM)
+		websites.append(webAppVM)
 	}
 	
-	return apps
+	return websites
 }
 
-func getNewPinnedWebApp(name: String, url: URL) async -> (NiPinnedWebAppVModel, WebAppItemModel){
-	let model = WebAppItemModel(name: name, url: url)
-	let vModel = NiPinnedWebAppVModel(for: model)
+func getNewPinnedWebsite(name: String, url: URL) async -> (NiPinnedWebsiteVModel, PinnedWebsiteItemModel){
+	let model = PinnedWebsiteItemModel(name: name, url: url)
+	let vModel = NiPinnedWebsiteVModel(for: model)
 	await vModel.loadIcon()
 	return (vModel, model)
 }
 
-class NiPinnedWebAppVModel: NSObject{
+class NiPinnedWebsiteVModel: NSObject{
 	
-	let itemData: WebAppItemModel
+	let itemData: PinnedWebsiteItemModel
 	private var icon: NSImage?
 	
-	init(for item: WebAppItemModel) {
+	init(for item: PinnedWebsiteItemModel) {
 		self.itemData = item
 	}
 	
@@ -52,11 +52,11 @@ class NiPinnedWebAppVModel: NSObject{
 		self.icon = await FaviconProvider.instance.fetchIcon(itemData.url.absoluteString)
 	}
 	
-	static func == (lhs: NiPinnedWebAppVModel, rhs: NiPinnedWebAppVModel) -> Bool {
+	static func == (lhs: NiPinnedWebsiteVModel, rhs: NiPinnedWebsiteVModel) -> Bool {
 		return lhs.itemData.url == rhs.itemData.url && lhs.itemData.name == rhs.itemData.name
 	}
 	
-	func openWebApp(with event: NSEvent, context: Any){
+	func openWebsite(with event: NSEvent, context: Any){
 		if let docController = context as? NiSpaceDocumentController{
 			let cfController = docController.openEmptyCF(
 				viewState: .simpleFrame,
@@ -99,21 +99,7 @@ class NiPinnedWebAppVModel: NSObject{
 		referenceIcon.removeFromSuperview()
 		spaceController.removePinnedWebApp(self)
 	}
-	
-	private func openWebViewFromCache(
-		_ cfController: ContentFrameController,
-		with webView: NiWebView
-	){
-		_ = cfController.myView.createNewTab(tabView: webView)
-		webView.owner = cfController
-		
-		var tabHeadModel = TabViewModel(contentId: UUID(), type: .webApp)
-		tabHeadModel.position = 0
-		tabHeadModel.viewItem = webView
-		tabHeadModel.webView!.tabHeadPosition = tabHeadModel.position
-		tabHeadModel.state = .loaded
-	}
-	
+
 	func getIcon() -> NSImage{
 		return self.icon ?? NSImage(named: "AppIcon")!
 	}

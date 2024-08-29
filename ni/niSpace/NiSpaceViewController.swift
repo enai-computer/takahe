@@ -12,7 +12,7 @@ class NiSpaceViewController: NSViewController, NSTextFieldDelegate{
     private var niSpaceName: String
 	private var niSpaceID: UUID
 	
-	private var webApps: [NiPinnedWebAppVModel] = []
+	private var pinnedWebsites: [NiPinnedWebsiteVModel] = []
 	
 	//header elements here:
 	@IBOutlet var headerContainer: NSView!
@@ -84,7 +84,7 @@ class NiSpaceViewController: NSViewController, NSTextFieldDelegate{
 		header.addTrackingArea(hoverEffect)
 		Task{
 			try await Task.sleep(for: .milliseconds(10))
-			self.webApps = await loadPinnedWebApps()
+			self.pinnedWebsites = await loadPinnedWebsites()
 		}
 	}
  
@@ -167,7 +167,7 @@ class NiSpaceViewController: NSViewController, NSTextFieldDelegate{
 	}
 	
 	func openPinnedMenu(point: CGPoint){
-		let menuPopup = NiPinnedMenuPopup(with: self.niDocument, having: webApps)
+		let menuPopup = NiPinnedMenuPopup(with: self.niDocument, containing: pinnedWebsites)
 		_ = menuPopup.displayPopupWindow(
 			point,
 			screen: view.window!.screen!
@@ -229,17 +229,17 @@ class NiSpaceViewController: NSViewController, NSTextFieldDelegate{
 	
 	func addPinnedWebApp(name: String, url: URL){
 		Task{
-			let (webAppToAdd, model) = await getNewPinnedWebApp(
+			let (webAppToAdd, model) = await getNewPinnedWebsite(
 				name: name,
 				url: url
 			)
-			self.webApps.append(webAppToAdd)
+			self.pinnedWebsites.append(webAppToAdd)
 			UserSettings.appendValue(setting: .pinnedWebApps, value: model)
 		}
 	}
 	
-	func removePinnedWebApp(_ model: NiPinnedWebAppVModel){
-		self.webApps.removeAll(where: {$0 == model})
+	func removePinnedWebApp(_ model: NiPinnedWebsiteVModel){
+		self.pinnedWebsites.removeAll(where: {$0 == model})
 		UserSettings.removeValue(setting: .pinnedWebApps, value: model.itemData)
 	}
 	
