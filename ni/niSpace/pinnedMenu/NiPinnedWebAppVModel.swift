@@ -43,7 +43,6 @@ class NiPinnedWebAppVModel: NSObject{
 	
 	let itemData: WebAppItemModel
 	private var icon: NSImage?
-	var webView: NiWebView?
 	
 	init(for item: WebAppItemModel) {
 		self.itemData = item
@@ -67,24 +66,12 @@ class NiPinnedWebAppVModel: NSObject{
 				positionAlwaysCenter: true
 			)
 			
-			if(webView == nil){
-				cfController.openWebsiteInNewTab(
-					itemData.url.absoluteString,
-					shallSelectTab: true,
-					as: .webApp
-				)
-				self.webView = cfController.tabs[0].webView
-			}else{
-				//remove WebApp if shown somewhere else in this space
-				webView?.owner?.view.removeFromSuperview()
-				webView?.owner?.removeFromParent()
-				if let webAppController = webView?.owner as? ContentFrameController{
-					webAppController.myView.niParentDoc?.removeNiFrame(webAppController)
-				}
-				//make sure that there is no overlay on top
-				webView?.setActive()
-				openWebViewFromCache(cfController, with: webView!)
-			}
+			
+			cfController.openWebsiteInNewTab(
+				itemData.url.absoluteString,
+				shallSelectTab: true,
+				as: .webApp
+			)
 			
 			if let frameView = cfController.myView as? CFSimpleFrameView{
 				frameView.changeFrameColor(set: itemData.frameNSColor ?? NSColor.sand4)
@@ -92,24 +79,7 @@ class NiPinnedWebAppVModel: NSObject{
 			cfController.view.window?.makeKeyAndOrderFront(nil)
 		}
 	}
-	
-//	func showPopUpMenu(with event: NSEvent, context: Any){
-//		guard let originOnScreen: CGPoint = context as? CGPoint else{return}
-//		guard let screen: NSScreen = NSApplication.shared.mainWindow?.screen else{return}
-//		var adjustedPos = originOnScreen
-//		adjustedPos.x -= 260.0
-//		let menuWindow = NiMenuWindow(
-//			origin: adjustedPos,
-//			dirtyMenuItems: [NiMenuItemViewModel(
-//				title: "Remove from pinned menu",
-//				isEnabled: true,
-//				mouseDownFunction: self.removeFromPinnedMenu
-//			)],
-//			currentScreen: screen,
-//			adjustOrigin: false)
-//		menuWindow.makeKeyAndOrderFront(nil)
-//	}
-	
+
 	func showDeleteIcon(with event: NSEvent, context: Any){
 		guard let referenceIcon: NiActionImage = context as? NiActionImage else{return}
 		guard let deleteIcon = NiActionImage(namedImage: "closeCircle") else{return}
