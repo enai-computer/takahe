@@ -362,9 +362,9 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	
 	func reloadSelectedTab(){
 		if(viewState != .minimised){
-			if(selectedTabModel < 0){
+			if(selectedTabModel < 0 && 0 < tabs.count){
 				tabs[0].webView?.reload()
-			}else{
+			}else if(0 < tabs.count){
 				tabs[selectedTabModel].webView?.reload()
 			}
 		}
