@@ -44,6 +44,7 @@
 		CD1FAAF72BFCA9C100C781AC /* NiStringUtilsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD69D02F2BFCA54C002386D0 /* NiStringUtilsTests.swift */; };
 		CD23EBFB2C0F72FF00A2ACD9 /* Cook.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD23EBFA2C0F72FF00A2ACD9 /* Cook.swift */; };
 		CD240BD52C80A714000E478F /* WeatherWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD240BD42C80A714000E478F /* WeatherWidget.swift */; };
+		CD240BD72C80BFC2000E478F /* WeatherWidgetNSView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD240BD62C80BFC2000E478F /* WeatherWidgetNSView.swift */; };
 		CD2B68EE2C2F166E0086756E /* NiFullscreenPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD2B68ED2C2F166E0086756E /* NiFullscreenPanel.swift */; };
 		CD2B68F02C2F26930086756E /* NiAlertPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD2B68EF2C2F26930086756E /* NiAlertPanel.xib */; };
 		CD2D8E7C2C4EB976003AED25 /* toolsmith.pdf in Resources */ = {isa = PBXBuildFile; fileRef = CD2D8E7B2C4EB976003AED25 /* toolsmith.pdf */; };
@@ -236,6 +237,7 @@
 		CD1FAAF02BFCA9BA00C781AC /* niTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = niTests.swift; sourceTree = "<group>"; };
 		CD23EBFA2C0F72FF00A2ACD9 /* Cook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cook.swift; sourceTree = "<group>"; };
 		CD240BD42C80A714000E478F /* WeatherWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherWidget.swift; sourceTree = "<group>"; };
+		CD240BD62C80BFC2000E478F /* WeatherWidgetNSView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherWidgetNSView.swift; sourceTree = "<group>"; };
 		CD2B68ED2C2F166E0086756E /* NiFullscreenPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiFullscreenPanel.swift; sourceTree = "<group>"; };
 		CD2B68EF2C2F26930086756E /* NiAlertPanel.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NiAlertPanel.xib; sourceTree = "<group>"; };
 		CD2D8E7B2C4EB976003AED25 /* toolsmith.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = toolsmith.pdf; sourceTree = "<group>"; };
@@ -847,6 +849,7 @@
 				CDF0DD212C202BCD006C4EF4 /* NiHomeController.swift */,
 				CDF0DD232C202BDB006C4EF4 /* NiHomeView.xib */,
 				CD240BD42C80A714000E478F /* WeatherWidget.swift */,
+				CD240BD62C80BFC2000E478F /* WeatherWidgetNSView.swift */,
 			);
 			path = niHome;
 			sourceTree = "<group>";
@@ -1128,6 +1131,7 @@
 				CDDBCB2B2BD7C23E00E7B187 /* NiSpaceDocumentController.swift in Sources */,
 				CD6D280A2C11D5ED0009732A /* NiMenuItemViewModel.swift in Sources */,
 				CD1C6D592C525A630019CD09 /* NiPinnedMenuViewController.swift in Sources */,
+				CD240BD72C80BFC2000E478F /* WeatherWidgetNSView.swift in Sources */,
 				CDD7ED032C554D6E007604D9 /* NiLibraryView.swift in Sources */,
 				CD59FA0E2C345CB700CFB8DE /* NiPdfView.swift in Sources */,
 				CDD6B9472B16A29100C6144D /* DocumentIdContentIdTable.swift in Sources */,

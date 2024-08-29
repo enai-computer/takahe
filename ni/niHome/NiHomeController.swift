@@ -38,6 +38,7 @@ class NiHomeController: NSViewController {
 		view.wantsLayer = true
 		
 		setWelcomeMessage()
+		addWeatherWidget()
 		
 		styleLeftSide()
 		styleRightSide()
@@ -65,6 +66,21 @@ class NiHomeController: NSViewController {
 	private func styleLeftSide(){
 		leftSide.wantsLayer = true
 		leftSide.layer?.backgroundColor = NSColor.sand1.cgColor
+	}
+	
+	private func addWeatherWidget(){
+		let width = 300.0
+		let height = 60.0
+		let padding = 30.0
+		let weatherView = WeatherNSView(
+			frame: NSRect(
+				x: welcomeTxt.frame.maxX - width,
+				y: welcomeTxt.frame.minY - padding - height,
+				width: width,
+				height: height
+			)
+		)
+		view.addSubview(weatherView)
 	}
 	
 	private func styleRightSide(){
