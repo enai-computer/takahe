@@ -17,6 +17,8 @@ class CFSimpleFrameView: CFBaseView{
 	@IBOutlet var minimizeButton: NiActionImage!
 	@IBOutlet var closeButton: NiActionImage!
 	@IBOutlet var placeholderView: NSView!
+	@IBOutlet var backButton: NiActionImage!
+	@IBOutlet var forwardButton: NiActionImage!
 	
 	private var myContent: CFContentItem?
 	
@@ -50,6 +52,9 @@ class CFSimpleFrameView: CFBaseView{
 		minimizeButton.setMouseDownFunction(clickedMinimizeButton)
 		minimizeButton.isActiveFunction = self.isFrameActive
 		minimizeButton.mouseDownInActiveFunction = activateContentFrame
+		
+		backButton.isHidden = true
+		forwardButton.isHidden = true
 	}
 	
 	@discardableResult
@@ -69,6 +74,7 @@ class CFSimpleFrameView: CFBaseView{
 				minimizeButton.isActiveFunction = {return false}
 				minimizeButton.tintInactive()
 				cfGroupButton.isActiveFunction = {return false}
+				setUpFwdBackButton()
 			}
 		}
 		return -1
@@ -286,6 +292,83 @@ class CFSimpleFrameView: CFBaseView{
 		minimizeButton.tintActive()
 		maximizeButton.tintActive()
 		cfGroupButton.tintActive()
+	}
+	
+	// MARK: - fwd/back button
+	private func setUpFwdBackButton(){
+		guard let niWebView = myContent as? NiWebView else { return }
+		
+		backButton.isHidden = false
+		forwardButton.isHidden = false
+		
+		backButton.setMouseDownFunction(backButtonClicked)
+		backButton.isActiveFunction = backButtonIsActive
+		
+		forwardButton.setMouseDownFunction(forwardButtonClicked)
+		forwardButton.isActiveFunction = fwdButtonIsActive
+		
+		setWebViewObservers(niWebView)
+	}
+	
+	private func setWebViewObservers(_ contentView: NiWebView){
+		contentView.addObserver(self, forKeyPath: "canGoBack", options: [.initial, .new], context: nil)
+		contentView.addObserver(self, forKeyPath: "canGoForward", options: [.initial, .new], context: nil)
+	}
+	
+	override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+		guard let niWebView = myContent as? NiWebView else { return }
+		if keyPath == "canGoBack" {
+			self.setBackButtonTint(niWebView.canGoBack)
+		}else if keyPath == "canGoForward"{
+			self.setForwardButtonTint(niWebView.canGoForward)
+		}
+	}
+	
+	func minimizedButtonClicked(with event: NSEvent){
+		myController?.fullscreenToExpanded()
+	}
+	
+	func forwardButtonClicked(with event: NSEvent){
+		guard let niWebView = myContent as? NiWebView else { return }
+		niWebView.goForward()
+	}
+	
+	func backButtonClicked(with event: NSEvent){
+		guard let niWebView = myContent as? NiWebView else { return }
+		niWebView.goBack()
+	}
+	
+	func updateFwdBackTint(){
+		self.setBackButtonTint(backButtonIsActive())
+		self.setForwardButtonTint(fwdButtonIsActive())
+	}
+	
+	func fwdButtonIsActive() -> Bool{
+		guard let niWebView = myContent as? NiWebView else {return false}
+		return niWebView.canGoForward
+	}
+	
+	func backButtonIsActive() -> Bool{
+		guard let niWebView = myContent as? NiWebView else {return false}
+		return niWebView.canGoBack
+	}
+	
+	@MainActor
+	private func setBackButtonTint(_ canGoBack: Bool = false){
+		if(canGoBack){
+			self.backButton.contentTintColor = NSColor(.sand11)
+		}else{
+			self.backButton.contentTintColor = NSColor(.sand8)
+		}
+	}
+	
+	@MainActor
+	private func setForwardButtonTint(_ canGoFwd: Bool = false){
+		if(canGoFwd){
+			self.forwardButton.contentTintColor = NSColor(.sand11)
+		}else{
+			self.forwardButton.contentTintColor = NSColor(.sand8)
+		}
 	}
 	
 	override func deinitSelf() {
