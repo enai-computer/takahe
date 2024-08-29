@@ -28,8 +28,24 @@
                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="185" id="xsB-Gx-o9y"/>
                                 </constraints>
                             </customView>
-                            <customView horizontalHuggingPriority="750" horizontalCompressionResistancePriority="250" misplaced="YES" placeholderIntrinsicWidth="937" placeholderIntrinsicHeight="30" verifyAmbiguity="ignoreSizes" translatesAutoresizingMaskIntoConstraints="NO" id="u3t-XD-2W6">
-                                <rect key="frame" x="24" y="0.0" width="952" height="27"/>
+                            <imageView horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="Bny-XT-Ma8" userLabel="back-button" customClass="NiActionImage" customModule="ni" customModuleProvider="target">
+                                <rect key="frame" x="24" y="3" width="24" height="24"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="24" id="3XW-GZ-nyK"/>
+                                    <constraint firstAttribute="width" constant="24" id="6cd-RC-DjK"/>
+                                </constraints>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="arrowLeft" id="h1R-Zw-Mld"/>
+                            </imageView>
+                            <imageView horizontalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="PrU-ju-r61" userLabel="forward-button" customClass="NiActionImage" customModule="ni" customModuleProvider="target">
+                                <rect key="frame" x="48" y="3" width="24" height="24"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="24" id="6dW-m6-hsM"/>
+                                    <constraint firstAttribute="height" constant="24" id="nyK-qz-8Ho"/>
+                                </constraints>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="arrowRight" id="Gh3-zx-Hzh"/>
+                            </imageView>
+                            <customView horizontalHuggingPriority="750" horizontalCompressionResistancePriority="250" ambiguous="YES" placeholderIntrinsicWidth="937" placeholderIntrinsicHeight="30" verifyAmbiguity="ignoreSizes" translatesAutoresizingMaskIntoConstraints="NO" id="u3t-XD-2W6">
+                                <rect key="frame" x="72" y="0.0" width="904" height="27"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" priority="750" constant="20" id="6C8-cU-jRV"/>
                                     <constraint firstAttribute="height" constant="27" id="hDf-HF-aXq"/>
@@ -58,10 +74,14 @@
                             <constraint firstItem="Y6X-jL-a1c" firstAttribute="top" secondItem="AyA-HP-F1l" secondAttribute="top" id="LYn-J2-52n"/>
                             <constraint firstItem="z6Z-t5-FmO" firstAttribute="top" secondItem="AyA-HP-F1l" secondAttribute="top" id="Ulb-Fn-6fY"/>
                             <constraint firstItem="u3t-XD-2W6" firstAttribute="right" secondItem="oUj-dg-mT0" secondAttribute="left" id="bZ0-N9-0qU"/>
+                            <constraint firstItem="Bny-XT-Ma8" firstAttribute="left" secondItem="Y6X-jL-a1c" secondAttribute="right" id="dH9-JM-KMh"/>
                             <constraint firstItem="wj8-QD-sV2" firstAttribute="right" secondItem="z6Z-t5-FmO" secondAttribute="left" id="ec8-Hp-mM6"/>
-                            <constraint firstItem="u3t-XD-2W6" firstAttribute="left" secondItem="Y6X-jL-a1c" secondAttribute="right" priority="250" id="lfv-ci-hUA"/>
+                            <constraint firstItem="u3t-XD-2W6" firstAttribute="left" secondItem="PrU-ju-r61" secondAttribute="right" priority="250" id="lfv-ci-hUA"/>
+                            <constraint firstItem="PrU-ju-r61" firstAttribute="top" secondItem="AyA-HP-F1l" secondAttribute="top" id="pA8-UD-QOI"/>
+                            <constraint firstItem="PrU-ju-r61" firstAttribute="left" secondItem="Bny-XT-Ma8" secondAttribute="right" id="rF0-BY-Zfp"/>
                             <constraint firstItem="oUj-dg-mT0" firstAttribute="right" secondItem="wj8-QD-sV2" secondAttribute="left" id="sQc-bm-ZPx"/>
                             <constraint firstItem="u3t-XD-2W6" firstAttribute="top" secondItem="AyA-HP-F1l" secondAttribute="top" id="uMa-yM-mlg"/>
+                            <constraint firstItem="Bny-XT-Ma8" firstAttribute="top" secondItem="AyA-HP-F1l" secondAttribute="top" id="wOZ-1C-HE1"/>
                             <constraint firstItem="wj8-QD-sV2" firstAttribute="top" secondItem="AyA-HP-F1l" secondAttribute="top" id="yDg-cw-a02"/>
                         </constraints>
                     </customView>
@@ -74,10 +94,12 @@
             <color key="borderColor" name="sand4"/>
             <color key="fillColor" name="sand4"/>
             <connections>
+                <outlet property="backButton" destination="Bny-XT-Ma8" id="T6T-s0-9CV"/>
                 <outlet property="cfGroupButton" destination="Y6X-jL-a1c" id="bCK-kf-Ras"/>
                 <outlet property="cfHeadDragArea" destination="u3t-XD-2W6" id="gIu-ti-tAz"/>
                 <outlet property="cfHeadView" destination="AyA-HP-F1l" id="FrD-0W-EMe"/>
                 <outlet property="closeButton" destination="z6Z-t5-FmO" id="4ey-rB-cmL"/>
+                <outlet property="forwardButton" destination="PrU-ju-r61" id="LPh-0P-82k"/>
                 <outlet property="maximizeButton" destination="oUj-dg-mT0" id="8Ya-cv-H61"/>
                 <outlet property="minimizeButton" destination="wj8-QD-sV2" id="zbp-8W-VoI"/>
                 <outlet property="placeholderView" destination="qq8-Fi-j5r" id="Fyc-dR-eCI"/>
@@ -86,6 +108,8 @@
         </box>
     </objects>
     <resources>
+        <image name="arrowLeft" width="24" height="24"/>
+        <image name="arrowRight" width="24" height="24"/>
         <image name="close" width="24" height="24"/>
         <image name="maximize" width="24" height="24"/>
         <image name="minimize" width="24" height="24"/>
