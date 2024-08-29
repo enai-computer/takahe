@@ -845,7 +845,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	 Close tabs and select the nxt tab to the right first and then left when none to the right are left
 	 */
 	func closeSelectedTab(){
-		if(0 < tabs.count && tabs[0].type == .webApp){
+		if(0 < tabs.count && tabs[0].type == .web){
 			confirmClose()
 			return
 		}
@@ -1074,6 +1074,9 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	 */
 	func webView(_ webView: WKWebView, didFinish: WKNavigation!){
 		if(!viewHasTabs()){
+			if(0 < tabs.count){
+				tabs[0].state = .loaded
+			}
 			return
 		}
 		guard let wv = webView as? NiWebView else{return}

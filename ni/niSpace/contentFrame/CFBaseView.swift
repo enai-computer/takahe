@@ -61,7 +61,7 @@ class CFBaseView: NSBox{
 	}
 	
 	func clickedGroupButton(with event: NSEvent){
-		if(!(myController?.tabs.isEmpty ?? true) && myController?.tabs[0].type == .webApp){
+		if(!(myController?.tabs.isEmpty ?? true) && (myController?.tabs[0].type == .web && myController?.viewState == .simpleFrame)){
 			return
 		}
 		myController?.showDropdown(with: event)
