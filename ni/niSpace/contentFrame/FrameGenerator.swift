@@ -77,6 +77,8 @@ func openCFTabs(for controller: ContentFrameController, with tabViewModels: [Tab
 				controller.openImgInNewTab(contentId: tab.contentId, tabTitle: tab.title, content: tab.icon!, source: tab.source)
 			}else if(tab.type == .pdf && tab.data != nil){
 				controller.openPdfInNewTab(contentId: tab.contentId, tabTitle: tab.title, content: (tab.data as! PDFDocument), source: tab.source, scrollTo: tab.scrollPosition)
+			}else if(tab.type == .web){
+				_ = controller.openWebsiteInNewTab(urlStr: tab.content, contentId: tab.contentId, tabName: tab.title, webContentState: tab.state)
 			}
 		}
 		return

@@ -134,9 +134,6 @@ class CFGroupButton: NSView, NSTextFieldDelegate{
 		if(contentType == .pdf){
 			return "Rename pdf"
 		}
-		if(contentType == .webApp){
-			return "Rename app"
-		}
 		
 		if(hasTitle()){
 			return "Rename this window"

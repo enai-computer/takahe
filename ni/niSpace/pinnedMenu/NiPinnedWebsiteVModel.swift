@@ -60,7 +60,7 @@ class NiPinnedWebsiteVModel: NSObject{
 		if let docController = context as? NiSpaceDocumentController{
 			let cfController = docController.openEmptyCF(
 				viewState: .simpleFrame,
-				initialTabType: .webApp,
+				initialTabType: .web,
 				openInitalTab: false,
 				groupName: itemData.name,
 				positionAlwaysCenter: true
@@ -70,7 +70,7 @@ class NiPinnedWebsiteVModel: NSObject{
 			cfController.openWebsiteInNewTab(
 				itemData.url.absoluteString,
 				shallSelectTab: true,
-				as: .webApp
+				as: .web
 			)
 			
 			if let frameView = cfController.myView as? CFSimpleFrameView{
