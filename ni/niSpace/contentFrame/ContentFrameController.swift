@@ -1215,9 +1215,13 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		}
 		guard viewHasTabs() else {return}
 		
-		if(0 < webView.tabHeadPosition && webView.tabHeadPosition < tabs.count){
+		if(0 <= webView.tabHeadPosition && webView.tabHeadPosition < tabs.count){
 			self.tabs[webView.tabHeadPosition].title = webView.getTitle() ?? tabs[webView.tabHeadPosition].title
-			viewWithTabs?.cfTabHeadCollection?.reloadItems(at: Set(arrayLiteral: IndexPath(item: webView.tabHeadPosition, section: 0)))
+			if let nrOfItems: Int = viewWithTabs?.cfTabHeadCollection?.numberOfItems(inSection: 0){
+				if(webView.tabHeadPosition < nrOfItems){
+					viewWithTabs?.cfTabHeadCollection?.reloadItems(at: Set(arrayLiteral: IndexPath(item: webView.tabHeadPosition, section: 0)))
+				}
+			}
 		}
 	}
 	
