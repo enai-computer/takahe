@@ -239,7 +239,6 @@ class NiSpaceViewController: NSViewController, NSTextFieldDelegate{
 	}
 	
 	func removePinnedWebApp(_ model: NiPinnedWebAppVModel){
-		model.webView = nil
 		self.webApps.removeAll(where: {$0 == model})
 		UserSettings.removeValue(setting: .pinnedWebApps, value: model.itemData)
 	}
