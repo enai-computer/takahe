@@ -57,7 +57,6 @@ struct WeatherView: View {
 			}
 		}
 		.frame(alignment: .trailing)
-		.padding()
 		.onReceive(timer) { _ in
 			self.currentTime = WeatherView.getCurrentTime()
 		}
