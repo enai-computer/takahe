@@ -166,6 +166,23 @@ class NiHomeController: NSViewController, NSTextFieldDelegate {
 	
 	
 	func controlTextDidEndEditing(_ obj: Notification){
+
+		if(obj.userInfo?["NSTextMovement"] as? NSTextMovement == NSTextMovement.cancel){
+			revertRenamingChanges()
+			endEditing()
+			return
+		}
+		if(userName.stringValue.isEmpty){
+			revertRenamingChanges()
+			endEditing()
+			return
+		}
+		endEditing()
+		let cleanName = userName.stringValue.trimmingCharacters(in: .whitespacesAndNewlines).truncate(20)
+		UserSettings.updateValue(setting: .userFirstName, value: cleanName)
+	}
+	
+	private func endEditing(){
 		userName.currentEditor()?.selectedRange = NSMakeRange(0, 0)
 		userName.isEditable = false
 		userName.isSelectable = false
@@ -173,20 +190,9 @@ class NiHomeController: NSViewController, NSTextFieldDelegate {
 		//need to have a different first responder right away,
 		//otherwise we can not click directly onto the spaceName again to rename, as the click will not be registered correctly
 		view.window?.makeFirstResponder(searchController.searchField)
-		
-		if(obj.userInfo?["NSTextMovement"] as? NSTextMovement == NSTextMovement.cancel){
-			revertRenamingChanges()
-			return
-		}
-		if(userName.stringValue.isEmpty){
-			revertRenamingChanges()
-			return
-		}
-		let cleanName = userName.stringValue.trimmingCharacters(in: .whitespacesAndNewlines).truncate(20)
-		UserSettings.updateValue(setting: .userFirstName, value: cleanName)
 	}
 	
 	private func revertRenamingChanges(){
-		userName.stringValue = UserSettings.shared.userFirstName
+		userName.stringValue = " \(UserSettings.shared.userFirstName)"
 	}
 }
