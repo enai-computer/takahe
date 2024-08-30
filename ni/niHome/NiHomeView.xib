@@ -10,8 +10,10 @@
             <connections>
                 <outlet property="leftSide" destination="8gY-Mf-CWh" id="9Iz-Oq-cbZ"/>
                 <outlet property="rightSide" destination="yGh-k4-h8P" id="yLB-Md-Jww"/>
+                <outlet property="userName" destination="ERP-Od-vPj" id="VUc-jO-98q"/>
                 <outlet property="view" destination="GZf-Vp-zmU" id="yuT-SM-gLc"/>
-                <outlet property="welcomeTxt" destination="ERP-Od-vPj" id="50k-hX-hFu"/>
+                <outlet property="welcomeStackView" destination="ypb-rf-Bnt" id="fKb-d2-GLo"/>
+                <outlet property="welcomeTxt" destination="wXH-Zl-aHh" id="I4N-8r-6t9"/>
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
@@ -27,15 +29,39 @@
                         <rect key="frame" x="0.0" y="0.0" width="598" height="900"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ERP-Od-vPj">
-                                <rect key="frame" x="98" y="611" width="400" height="36"/>
+                            <stackView distribution="fill" orientation="horizontal" alignment="centerY" spacing="0.0" horizontalStackHuggingPriority="500" verticalStackHuggingPriority="250" detachesHiddenViews="YES" id="ypb-rf-Bnt">
+                                <rect key="frame" x="58" y="611" width="340" height="28"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" refusesFirstResponder="YES" allowsUndo="NO" alignment="right" title="Good morning, Alice" id="ieM-7X-FTC">
-                                    <font key="font" size="21" name="Sohne-Buch"/>
-                                    <color key="textColor" name="sand12"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
+                                <subviews>
+                                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="wXH-Zl-aHh">
+                                        <rect key="frame" x="-2" y="0.0" width="292" height="28"/>
+                                        <textFieldCell key="cell" lineBreakMode="clipping" refusesFirstResponder="YES" allowsUndo="NO" alignment="right" title="Good morning," id="vU7-cL-hDd">
+                                            <font key="font" size="21" name="Sohne-Buch"/>
+                                            <color key="textColor" name="sand12"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <textField focusRingType="none" horizontalHuggingPriority="252" verticalHuggingPriority="750" horizontalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="ERP-Od-vPj" customClass="NiTextField" customModule="ni" customModuleProvider="target">
+                                        <rect key="frame" x="286" y="0.0" width="56" height="28"/>
+                                        <textFieldCell key="cell" lineBreakMode="clipping" allowsUndo="NO" alignment="left" title=" Alice" id="ieM-7X-FTC">
+                                            <font key="font" size="21" name="Sohne-Buch"/>
+                                            <color key="textColor" name="sand12"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="hasHoverEffect" value="NO"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </textField>
+                                </subviews>
+                                <visibilityPriorities>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                </visibilityPriorities>
+                                <customSpacing>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                </customSpacing>
+                            </stackView>
                         </subviews>
                     </customView>
                     <customView id="yGh-k4-h8P" userLabel="right side">

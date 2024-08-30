@@ -14,7 +14,8 @@ enum UserSettingKey: String{
 		 eveEnabled,
 		 cacheClearedLast,
 		 demoMode,
-		 pinnedWebApps	//maps to pinnedWebsites --- DB migration needed for renaming
+		 pinnedWebApps,	//maps to pinnedWebsites --- DB migration needed for renaming
+		 userFirstName
 }
 
 struct NiUsersSettingsModel: Codable{
@@ -25,6 +26,7 @@ struct NiUsersSettingsModel: Codable{
 	let cacheClearedLast: Date
 	let demoMode: Bool
 	let pinnedWebsites: [PinnedWebsiteItemModel]
+	let userFirstName: String
 }
 
 extension NiUsersSettingsModel{
@@ -39,6 +41,7 @@ extension NiUsersSettingsModel{
 		cacheClearedLast = Date(timeIntervalSince1970: 0.0)
 		demoMode = false
 		pinnedWebsites = []
+		userFirstName = NSUserName()
 	}
 	
 	init(from dic: [String: String]) throws{
@@ -49,6 +52,7 @@ extension NiUsersSettingsModel{
 		cacheClearedLast = try getValueOrThrow(key: .cacheClearedLast, from: dic)
 		demoMode = getValueOrDefault(key: .demoMode, from: dic, defaultVal: false)
 		pinnedWebsites = getValueOrEmptyList(key: .pinnedWebApps, from: dic, of: PinnedWebsiteItemModel.self)
+		userFirstName = getValueOrDefault(key: .userFirstName, from: dic, defaultVal: NSUserName())
 	}
 	
 	func toDic() -> [UserSettingKey: String]{
@@ -58,7 +62,8 @@ extension NiUsersSettingsModel{
 			.nrOfCachedSpaces: String(nrOfCachedSpaces),
 			.eveEnabled: String(eveEnabled),
 			.cacheClearedLast: String(cacheClearedLast.timeIntervalSince1970),
-			.pinnedWebApps: encodeToJsonString(pinnedWebsites)
+			.pinnedWebApps: encodeToJsonString(pinnedWebsites),
+			.userFirstName: userFirstName
 		]
 	}
 	
@@ -117,6 +122,13 @@ private func getValueOrThrow(key: UserSettingKey, from dic: [String: String]) th
 private func getValueOrDefault(key: UserSettingKey, from dic: [String: String], defaultVal: Bool) -> Bool{
 	if let valStr: String = dic[key.rawValue]{
 		return Bool(valStr) ?? defaultVal
+	}
+	return defaultVal
+}
+
+private func getValueOrDefault(key: UserSettingKey, from dic: [String: String], defaultVal: String) -> String{
+	if let valStr: String = dic[key.rawValue]{
+		return valStr
 	}
 	return defaultVal
 }
