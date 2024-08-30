@@ -40,6 +40,12 @@ class UserSettings {
 		reload()
 	}
 	
+	static func updateValue<T>(setting: UserSettingKey, value: T) where T: Encodable{
+		let strVal = encodeToJsonString(value)
+		UserSettingsTable.upsertSetting(setting: setting, value: strVal)
+		reload()
+	}
+	
 	static func appendValue<T>(setting: UserSettingKey, value: T) where T: Encodable{
 		let updatedSettingStr = shared.appendSetting(
 			setting: setting,

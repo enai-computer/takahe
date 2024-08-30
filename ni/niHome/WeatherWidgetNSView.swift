@@ -22,7 +22,8 @@ class WeatherNSView: NSView {
 	}
 	
 	private func setupSwiftUIView() {
-		let swiftUIView = WeatherView()
+		let local = UserSettings.shared.homeViewWeatherLocation
+		let swiftUIView = WeatherView(for: local)
 		hostingView = NSHostingView(rootView: swiftUIView)
 		
 		if let hostingView = hostingView {
