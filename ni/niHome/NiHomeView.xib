@@ -30,11 +30,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView distribution="fill" orientation="horizontal" alignment="centerY" spacing="0.0" horizontalStackHuggingPriority="500" verticalStackHuggingPriority="250" detachesHiddenViews="YES" id="ypb-rf-Bnt">
-                                <rect key="frame" x="58" y="611" width="340" height="28"/>
+                                <rect key="frame" x="58" y="611" width="440" height="28"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                 <subviews>
                                     <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="wXH-Zl-aHh">
-                                        <rect key="frame" x="-2" y="0.0" width="292" height="28"/>
+                                        <rect key="frame" x="-2" y="0.0" width="392" height="28"/>
                                         <textFieldCell key="cell" lineBreakMode="clipping" refusesFirstResponder="YES" allowsUndo="NO" alignment="right" title="Good morning," id="vU7-cL-hDd">
                                             <font key="font" size="21" name="Sohne-Buch"/>
                                             <color key="textColor" name="sand12"/>
@@ -42,7 +42,7 @@
                                         </textFieldCell>
                                     </textField>
                                     <textField focusRingType="none" horizontalHuggingPriority="252" verticalHuggingPriority="750" horizontalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="ERP-Od-vPj" customClass="NiTextField" customModule="ni" customModuleProvider="target">
-                                        <rect key="frame" x="286" y="0.0" width="56" height="28"/>
+                                        <rect key="frame" x="386" y="0.0" width="56" height="28"/>
                                         <textFieldCell key="cell" lineBreakMode="clipping" allowsUndo="NO" alignment="left" title=" Alice" id="ieM-7X-FTC">
                                             <font key="font" size="21" name="Sohne-Buch"/>
                                             <color key="textColor" name="sand12"/>
