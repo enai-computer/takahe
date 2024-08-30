@@ -7,11 +7,13 @@
 
 import Cocoa
 
-class NiHomeController: NSViewController {
+class NiHomeController: NSViewController, NSTextFieldDelegate {
 	
 	@IBOutlet var leftSide: NSView!
 	@IBOutlet var rightSide: NSView!
+	@IBOutlet var welcomeStackView: NSStackView!
 	@IBOutlet var welcomeTxt: NSTextField!
+	@IBOutlet var userName: NSTextField!
 	
 	private var searchController: NiSearchController
 	private let viewFrame: NSRect
@@ -49,18 +51,19 @@ class NiHomeController: NSViewController {
 	override func viewWillLayout() {
 		super.viewWillLayout()
 		searchController.view.frame.size = CGSize(width: 678.0, height: 450.0)
-		let posY = (welcomeTxt.frame.maxY - searchController.view.frame.height) + 30.0
+		let posY = (welcomeStackView.frame.maxY - searchController.view.frame.height) + 30.0
 		let posX = rightSide.frame.origin.x + 100.0
 		searchController.view.frame.origin = CGPoint(x: posX, y: posY)
 	}
-
+	
 	private func positionAndDisplaySearchView(){
 		self.view.addSubview(searchController.view)
 		view.window?.makeFirstResponder(searchController.searchField)
 	}
 	
 	private func setWelcomeMessage(){
-		welcomeTxt.stringValue = "\(getWelcomeMessage()), \(NSUserName())"
+		welcomeTxt.stringValue = "\(getWelcomeMessage()),"
+		userName.stringValue = " \(UserSettings.shared.userFirstName)"
 	}
 	
 	private func styleLeftSide(){
@@ -74,8 +77,8 @@ class NiHomeController: NSViewController {
 		let padding = 30.0
 		let weatherView = WeatherNSView(
 			frame: NSRect(
-				x: welcomeTxt.frame.maxX - width,
-				y: welcomeTxt.frame.minY - padding - height,
+				x: welcomeStackView.frame.maxX - width,
+				y: welcomeStackView.frame.minY - padding - height,
 				width: width,
 				height: height
 			)
@@ -135,5 +138,55 @@ class NiHomeController: NSViewController {
 		static let bottomLeft = RectCorner(rawValue: 1 << 3)
 		
 		static let allCorners: RectCorner = [.topLeft, topRight, .bottomLeft, .bottomRight]
+	}
+	
+	//MARK: - mouse down edit name
+	override func mouseDown(with event: NSEvent) {
+		let cursorPos = self.welcomeStackView.convert(event.locationInWindow, from: nil)
+		
+		if(NSPointInRect(cursorPos, userName.frame)){
+			if(event.clickCount == 1){
+				editUserName()
+			}
+		}
+	}
+
+	private func editUserName(){
+		guard !userName.isEditable else {return}
+		
+		userName.refusesFirstResponder = false
+		userName.isSelectable = true
+		userName.isEditable = true
+		
+		userName.focusRingType = .none
+		userName.delegate = self
+		
+		view.window?.makeFirstResponder(userName)
+	}
+	
+	
+	func controlTextDidEndEditing(_ obj: Notification){
+		userName.currentEditor()?.selectedRange = NSMakeRange(0, 0)
+		userName.isEditable = false
+		userName.isSelectable = false
+		
+		//need to have a different first responder right away,
+		//otherwise we can not click directly onto the spaceName again to rename, as the click will not be registered correctly
+		view.window?.makeFirstResponder(searchController.searchField)
+		
+		if(obj.userInfo?["NSTextMovement"] as? NSTextMovement == NSTextMovement.cancel){
+			revertRenamingChanges()
+			return
+		}
+		if(userName.stringValue.isEmpty){
+			revertRenamingChanges()
+			return
+		}
+		let cleanName = userName.stringValue.trimmingCharacters(in: .whitespacesAndNewlines).truncate(20)
+		UserSettings.updateValue(setting: .userFirstName, value: cleanName)
+	}
+	
+	private func revertRenamingChanges(){
+		userName.stringValue = UserSettings.shared.userFirstName
 	}
 }

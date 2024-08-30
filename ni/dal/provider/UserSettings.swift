@@ -35,6 +35,11 @@ class UserSettings {
 		reload()
 	}
 	
+	static func updateValue(setting: UserSettingKey, value: String){
+		UserSettingsTable.upsertSetting(setting: setting, value: value)
+		reload()
+	}
+	
 	static func appendValue<T>(setting: UserSettingKey, value: T) where T: Encodable{
 		let updatedSettingStr = shared.appendSetting(
 			setting: setting,
