@@ -26,18 +26,23 @@ struct WeatherData {
 struct WeatherView: View {
 	@State private var weatherData = WeatherData.placeholder
 	@State private var currentTime = getLocalisedTime()
-	let cityName = "Berlin, Germany"
+	@State var weatherLocation: WeatherLocationModel
 	let timer = Timer.publish(every: 5, on: .main, in: .common).autoconnect()
+	
+	@State private var showCityPicker = false
+	
+	init(for location: WeatherLocationModel){
+		self.weatherLocation = location
+	}
 	
 	var body: some View {
 		VStack(alignment: .trailing, spacing: 4.0) {
 			HStack{
-				Text(cityName)
+				Text("\(weatherLocation.city), \(weatherLocation.country)" )
 					.font(.custom("Sohne-Buch", size: 18))
 					.foregroundColor(.sand11)
 				Image(systemName: weatherData.symbolName)
 					.font(.custom("Sohne-Buch", size: 18))
-					.tint(.yellow)
 					.foregroundColor(.sand115)
 			}
 			.padding(.bottom, 9.0)
@@ -63,12 +68,23 @@ struct WeatherView: View {
 		.task {
 			await fetchWeather()
 		}
+		.popover(isPresented: $showCityPicker) {
+			WeatherLocationPicker(shown: $showCityPicker, changeLocation: $weatherLocation)
+		}
+		.onTapGesture {
+			showCityPicker.toggle()
+		}
+		.onChange(of: weatherLocation){
+			Task{
+				await fetchWeather()
+			}
+		}
 	}
 	
-	private func fetchWeather() async {
+	func fetchWeather() async {
 		do {
-			let location = CLLocation(latitude: 52.5200, longitude: 13.4050) // Berlin coordinates
-			let weather = try await WeatherService.shared.weather(for: location)
+			let coordinates = weatherLocation.coordinates
+			let weather = try await WeatherService.shared.weather(for: coordinates)
 			weatherData = WeatherData(weather: weather)
 		} catch {
 			print("Error fetching weather: \(error)")
@@ -79,5 +95,11 @@ struct WeatherView: View {
 
 
 #Preview {
-	WeatherView()
+	WeatherView(for: 
+		WeatherLocationModel(
+			city: "Berlin",
+			country: "Germany",
+			coordinates: CLLocation(latitude: 52.5200, longitude: 13.4050) // Berlin coordinates
+		)
+	)
 }

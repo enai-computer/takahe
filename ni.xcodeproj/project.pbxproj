@@ -45,6 +45,7 @@
 		CD23EBFB2C0F72FF00A2ACD9 /* Cook.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD23EBFA2C0F72FF00A2ACD9 /* Cook.swift */; };
 		CD240BD52C80A714000E478F /* WeatherWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD240BD42C80A714000E478F /* WeatherWidget.swift */; };
 		CD240BD72C80BFC2000E478F /* WeatherWidgetNSView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD240BD62C80BFC2000E478F /* WeatherWidgetNSView.swift */; };
+		CD240BD92C80C95D000E478F /* WeatherLocationPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD240BD82C80C95D000E478F /* WeatherLocationPicker.swift */; };
 		CD2B68EE2C2F166E0086756E /* NiFullscreenPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD2B68ED2C2F166E0086756E /* NiFullscreenPanel.swift */; };
 		CD2B68F02C2F26930086756E /* NiAlertPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD2B68EF2C2F26930086756E /* NiAlertPanel.xib */; };
 		CD2D8E7C2C4EB976003AED25 /* toolsmith.pdf in Resources */ = {isa = PBXBuildFile; fileRef = CD2D8E7B2C4EB976003AED25 /* toolsmith.pdf */; };
@@ -238,6 +239,7 @@
 		CD23EBFA2C0F72FF00A2ACD9 /* Cook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cook.swift; sourceTree = "<group>"; };
 		CD240BD42C80A714000E478F /* WeatherWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherWidget.swift; sourceTree = "<group>"; };
 		CD240BD62C80BFC2000E478F /* WeatherWidgetNSView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherWidgetNSView.swift; sourceTree = "<group>"; };
+		CD240BD82C80C95D000E478F /* WeatherLocationPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherLocationPicker.swift; sourceTree = "<group>"; };
 		CD2B68ED2C2F166E0086756E /* NiFullscreenPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiFullscreenPanel.swift; sourceTree = "<group>"; };
 		CD2B68EF2C2F26930086756E /* NiAlertPanel.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NiAlertPanel.xib; sourceTree = "<group>"; };
 		CD2D8E7B2C4EB976003AED25 /* toolsmith.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = toolsmith.pdf; sourceTree = "<group>"; };
@@ -850,6 +852,7 @@
 				CDF0DD232C202BDB006C4EF4 /* NiHomeView.xib */,
 				CD240BD42C80A714000E478F /* WeatherWidget.swift */,
 				CD240BD62C80BFC2000E478F /* WeatherWidgetNSView.swift */,
+				CD240BD82C80C95D000E478F /* WeatherLocationPicker.swift */,
 			);
 			path = niHome;
 			sourceTree = "<group>";
@@ -1079,6 +1082,7 @@
 				CD5B153A2BDFBFE40030F017 /* NiActionImage.swift in Sources */,
 				CDC5A1162C284AD1002F5621 /* NiDocControllerCache.swift in Sources */,
 				CDB4830C2C6A624E00612AF5 /* CFFullscreenView.swift in Sources */,
+				CD240BD92C80C95D000E478F /* WeatherLocationPicker.swift in Sources */,
 				CD2B68EE2C2F166E0086756E /* NiFullscreenPanel.swift in Sources */,
 				CD5A04CF2BEA42EB004CC3AA /* cfUtils.swift in Sources */,
 				CD1853152C09C210001FE566 /* DalUtils.swift in Sources */,
@@ -1366,7 +1370,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = "0.1.7 --- 2024-08.28-1";
+				CURRENT_PROJECT_VERSION = "0.1.7 --- 2024-08-30.2";
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = SNXQ3BDQ5V;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -1399,7 +1403,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = "0.1.7 --- 2024-08.28-1";
+				CURRENT_PROJECT_VERSION = "0.1.7 --- 2024-08-30.2";
 				DEAD_CODE_STRIPPING = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;

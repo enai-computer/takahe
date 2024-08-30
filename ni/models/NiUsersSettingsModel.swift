@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CoreLocation
 
 enum UserSettingKey: String{
 	case version, 
@@ -15,7 +16,8 @@ enum UserSettingKey: String{
 		 cacheClearedLast,
 		 demoMode,
 		 pinnedWebApps,	//maps to pinnedWebsites --- DB migration needed for renaming
-		 userFirstName
+		 userFirstName,
+		 homeViewWeatherLocation
 }
 
 struct NiUsersSettingsModel: Codable{
@@ -27,7 +29,10 @@ struct NiUsersSettingsModel: Codable{
 	let demoMode: Bool
 	let pinnedWebsites: [PinnedWebsiteItemModel]
 	let userFirstName: String
+	let homeViewWeatherLocation: WeatherLocationModel
 }
+
+let defaultWeatherLocation = WeatherLocationModel(city: "Berlin", country: "Germany", coordinates: CLLocation(latitude: 52.5200, longitude: 13.4050))
 
 extension NiUsersSettingsModel{
 	
@@ -42,6 +47,7 @@ extension NiUsersSettingsModel{
 		demoMode = false
 		pinnedWebsites = []
 		userFirstName = NSUserName()
+		homeViewWeatherLocation = defaultWeatherLocation
 	}
 	
 	init(from dic: [String: String]) throws{
@@ -53,6 +59,7 @@ extension NiUsersSettingsModel{
 		demoMode = getValueOrDefault(key: .demoMode, from: dic, defaultVal: false)
 		pinnedWebsites = getValueOrEmptyList(key: .pinnedWebApps, from: dic, of: PinnedWebsiteItemModel.self)
 		userFirstName = getValueOrDefault(key: .userFirstName, from: dic, defaultVal: NSUserName())
+		homeViewWeatherLocation = getValueOrDefault(key: .homeViewWeatherLocation, from: dic, defaultVal: defaultWeatherLocation)
 	}
 	
 	func toDic() -> [UserSettingKey: String]{
@@ -62,8 +69,9 @@ extension NiUsersSettingsModel{
 			.nrOfCachedSpaces: String(nrOfCachedSpaces),
 			.eveEnabled: String(eveEnabled),
 			.cacheClearedLast: String(cacheClearedLast.timeIntervalSince1970),
-			.pinnedWebApps: encodeToJsonString(pinnedWebsites),
-			.userFirstName: userFirstName
+			.pinnedWebApps: encodeListToJsonString(pinnedWebsites),
+			.userFirstName: userFirstName,
+			.homeViewWeatherLocation: encodeToJsonString(homeViewWeatherLocation)
 		]
 	}
 	
@@ -71,7 +79,7 @@ extension NiUsersSettingsModel{
 		if(setting != .pinnedWebApps){
 			fatalError("appending Setting \(setting) is not implemented")
 		}
-		return encodeToJsonString(pinnedWebsites + [element])
+		return encodeListToJsonString(pinnedWebsites + [element])
 	}
 	
 	func removeSetting(setting: UserSettingKey, with element: PinnedWebsiteItemModel) -> String{
@@ -79,7 +87,7 @@ extension NiUsersSettingsModel{
 			fatalError("appending Setting \(setting) is not implemented")
 		}
 		let filteredApp = pinnedWebsites.filter({$0 != element})
-		return encodeToJsonString(filteredApp)
+		return encodeListToJsonString(filteredApp)
 	}
 			
 }
@@ -133,6 +141,28 @@ private func getValueOrDefault(key: UserSettingKey, from dic: [String: String], 
 	return defaultVal
 }
 
+private func getValueOrDefault<T>(key: UserSettingKey, from dic: [String: String], defaultVal: T) -> T where T : Decodable{
+	do{
+		let jsonDecoder = JSONDecoder()
+		if let data: Data = dic[key.rawValue]?.data(using: .utf8){
+			let docModel = try jsonDecoder.decode(T.self, from: data)
+			return docModel
+		}
+	}catch{}
+	return defaultVal
+}
+
+
+func encodeToJsonString<T>(_ toEncode: T) -> String where T: Encodable{
+	do{
+		let jsonEncoder = JSONEncoder()
+		jsonEncoder.outputFormatting = .prettyPrinted
+		let jsonData = try jsonEncoder.encode(toEncode)
+		return String(data: jsonData, encoding: .utf8) ?? ""
+	}catch{}
+	return ""
+}
+
 private func getValueOrEmptyList<T>(key: UserSettingKey, from dic: [String: String], of type: T.Type) -> [T] where T : Decodable
 {
 	do{
@@ -146,7 +176,7 @@ private func getValueOrEmptyList<T>(key: UserSettingKey, from dic: [String: Stri
 	return []
 }
 
-private func encodeToJsonString<T>(_ toEncode: [T]) -> String where T: Encodable{
+private func encodeListToJsonString<T>(_ toEncode: [T]) -> String where T: Encodable{
 	do{
 		let jsonEncoder = JSONEncoder()
 		jsonEncoder.outputFormatting = .prettyPrinted
