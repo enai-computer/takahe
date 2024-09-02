@@ -8,7 +8,7 @@
 import Cocoa
 import SwiftSoup
 
-class CFSimpleFrameView: CFBaseView{
+class CFSimpleFrameView: CFBaseView, CFFwdBackButtonProtocol{
 	
 	@IBOutlet var cfHeadView: ContentFrameHeadView!
 	@IBOutlet var cfHeadDragArea: NSView!
@@ -307,21 +307,6 @@ class CFSimpleFrameView: CFBaseView{
 		forwardButton.setMouseDownFunction(forwardButtonClicked)
 		forwardButton.isActiveFunction = fwdButtonIsActive
 		
-		setWebViewObservers(niWebView)
-	}
-	
-	private func setWebViewObservers(_ contentView: NiWebView){
-		contentView.addObserver(self, forKeyPath: "canGoBack", options: [.initial, .new], context: nil)
-		contentView.addObserver(self, forKeyPath: "canGoForward", options: [.initial, .new], context: nil)
-	}
-	
-	override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-		guard let niWebView = myContent as? NiWebView else { return }
-		if keyPath == "canGoBack" {
-			self.setBackButtonTint(niWebView.canGoBack)
-		}else if keyPath == "canGoForward"{
-			self.setForwardButtonTint(niWebView.canGoForward)
-		}
 	}
 	
 	func minimizedButtonClicked(with event: NSEvent){
@@ -370,6 +355,15 @@ class CFSimpleFrameView: CFBaseView{
 			self.forwardButton.contentTintColor = NSColor(.sand8)
 		}
 	}
+	
+	func setBackButtonTint(_ canGoBack: Bool, trigger: NSView) {
+		setBackButtonTint(canGoBack)
+	}
+	
+	func setForwardButtonTint(_ canGoFwd: Bool, trigger: NSView) {
+		setForwardButtonTint(canGoFwd)
+	}
+	
 	
 	override func deinitSelf() {
 		myContent?.spaceRemovedFromMemory()

@@ -1228,6 +1228,16 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		}
 	}
 	
+	func niWebViewCanGoBack(_ newValue: Bool, _ webView: NiWebView){
+		guard let fwdBackView: CFFwdBackButtonProtocol = view as? CFFwdBackButtonProtocol else {return}
+		fwdBackView.setBackButtonTint(newValue, trigger: webView)
+	}
+	
+	func niWebViewCanGoFwd(_ newValue: Bool, _ webView: NiWebView){
+		guard let fwdBackView: CFFwdBackButtonProtocol = view as? CFFwdBackButtonProtocol else {return}
+		fwdBackView.setForwardButtonTint(newValue, trigger: webView)
+	}
+	
 	private func handleFailedLoad(_ webView: WKWebView){
 		guard let wv = webView as? NiWebView else{
 			let errorURL = getCouldNotLoadWebViewURL()

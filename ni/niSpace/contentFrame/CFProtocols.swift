@@ -1,5 +1,5 @@
 //
-//  CFTabHeadProtocol.swift
+//  CFProtocols.swift
 //  ni
 //
 //  Created by Patrick Lukas on 19/8/24.
@@ -12,4 +12,9 @@ protocol CFTabHeadProtocol{
 	var niContentTabView: NSTabView! {get set}
 	func updateFwdBackTint() -> Void
 	func deleteSelectedTab(at position: Int) -> Void
+}
+
+protocol CFFwdBackButtonProtocol{
+	func setBackButtonTint(_ canGoBack: Bool, trigger: NSView) -> Void
+	func setForwardButtonTint(_ canGoFwd: Bool, trigger: NSView) -> Void
 }
