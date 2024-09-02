@@ -7,7 +7,7 @@
 
 import Cocoa
 
-class CFFullscreenView: CFBaseView, CFTabHeadProtocol{
+class CFFullscreenView: CFBaseView, CFTabHeadProtocol, CFFwdBackButtonProtocol{
 
 	@IBOutlet var niContentTabView: NSTabView!
 	
@@ -22,7 +22,6 @@ class CFFullscreenView: CFBaseView, CFTabHeadProtocol{
 	@IBOutlet var contentBackButton: NiActionImage!
 	@IBOutlet var spaceName: NiTextField!
 	@IBOutlet var groupName: NiTextField!
-	
 	
 	func initAfterViewLoad(spaceName: String, groupName: String?){
 		niContentTabView.wantsLayer = true
@@ -105,9 +104,6 @@ class CFFullscreenView: CFBaseView, CFTabHeadProtocol{
 			tabViewPos = openNextTo + 1
 			niContentTabView.insertTabViewItem(tabViewItem, at: tabViewPos)
 		}
-		
-		//TODO: set guard to call only on webViews
-		setWebViewObservers(tabView: tabView)
 		return tabViewPos
 	}
 	
@@ -149,20 +145,6 @@ class CFFullscreenView: CFBaseView, CFTabHeadProtocol{
 	}
 	
 	// MARK: - fwd/back button
-	private func setWebViewObservers(tabView: NSView){
-		tabView.addObserver(self, forKeyPath: "canGoBack", options: [.initial, .new], context: nil)
-		tabView.addObserver(self, forKeyPath: "canGoForward", options: [.initial, .new], context: nil)
-	}
-	
-	override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-		guard let niWebView = niContentTabView.selectedTabViewItem?.view as? NiWebView else {return}
-		if keyPath == "canGoBack" {
-			self.setBackButtonTint(niWebView.canGoBack)
-		}else if keyPath == "canGoForward"{
-			self.setForwardButtonTint(niWebView.canGoForward)
-		}
-	}
-	
 	func minimizedButtonClicked(with event: NSEvent){
 		myController?.fullscreenToExpanded()
 	}
@@ -202,12 +184,24 @@ class CFFullscreenView: CFBaseView, CFTabHeadProtocol{
 	}
 	
 	@MainActor
+	func setBackButtonTint(_ canGoBack: Bool = false, trigger: NSView){
+		guard trigger == niContentTabView.selectedTabViewItem?.view else {return}
+		setBackButtonTint(canGoBack)
+	}
+	
+	@MainActor
 	private func setForwardButtonTint(_ canGoFwd: Bool = false){
 		if(canGoFwd){
 			self.contentForwardButton.contentTintColor = NSColor(.sand11)
 		}else{
 			self.contentForwardButton.contentTintColor = NSColor(.sand8)
 		}
+	}
+	
+	@MainActor
+	func setForwardButtonTint(_ canGoFwd: Bool = false, trigger: NSView){
+		guard trigger == niContentTabView.selectedTabViewItem?.view else {return}
+		setForwardButtonTint(canGoFwd)
 	}
 	
 	func setAutoUpdatingTime(){

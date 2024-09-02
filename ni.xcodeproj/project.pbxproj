@@ -27,7 +27,7 @@
 		CD1160C82BD142D100345E3E /* WebURL in Frameworks */ = {isa = PBXBuildFile; productRef = CD1160C72BD142D100345E3E /* WebURL */; };
 		CD1160CA2BD27B9E00345E3E /* NiWebViewUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1160C92BD27B9E00345E3E /* NiWebViewUtils.swift */; };
 		CD1160CC2BD286ED00345E3E /* emptyTab-1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CD1160CB2BD286EC00345E3E /* emptyTab-1.jpg */; };
-		CD1427762C735CAC00510FE6 /* CFTabHeadProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1427752C735CAC00510FE6 /* CFTabHeadProtocol.swift */; };
+		CD1427762C735CAC00510FE6 /* CFProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1427752C735CAC00510FE6 /* CFProtocols.swift */; };
 		CD1853112C08D22A001FE566 /* FaviconProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1853102C08D22A001FE566 /* FaviconProvider.swift */; };
 		CD1853132C08D972001FE566 /* FaviconCacheTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1853122C08D972001FE566 /* FaviconCacheTable.swift */; };
 		CD1853152C09C210001FE566 /* DalUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1853142C09C210001FE566 /* DalUtils.swift */; };
@@ -221,7 +221,7 @@
 		CD0FA1C02BDBE2BA0065313B /* Inter-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Regular.ttf"; sourceTree = "<group>"; };
 		CD1160C92BD27B9E00345E3E /* NiWebViewUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiWebViewUtils.swift; sourceTree = "<group>"; };
 		CD1160CB2BD286EC00345E3E /* emptyTab-1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "emptyTab-1.jpg"; sourceTree = "<group>"; };
-		CD1427752C735CAC00510FE6 /* CFTabHeadProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CFTabHeadProtocol.swift; sourceTree = "<group>"; };
+		CD1427752C735CAC00510FE6 /* CFProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CFProtocols.swift; sourceTree = "<group>"; };
 		CD1853102C08D22A001FE566 /* FaviconProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaviconProvider.swift; sourceTree = "<group>"; };
 		CD1853122C08D972001FE566 /* FaviconCacheTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaviconCacheTable.swift; sourceTree = "<group>"; };
 		CD1853142C09C210001FE566 /* DalUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DalUtils.swift; sourceTree = "<group>"; };
@@ -476,7 +476,7 @@
 				CD9B96BB2C04C8EE00998CE2 /* CFContentItem.swift */,
 				CD06A9B92BF79EF500312256 /* NiScroller.swift */,
 				CD04974B2C120ABE00C44021 /* CFGroupButton.swift */,
-				CD1427752C735CAC00510FE6 /* CFTabHeadProtocol.swift */,
+				CD1427752C735CAC00510FE6 /* CFProtocols.swift */,
 			);
 			path = contentFrame;
 			sourceTree = "<group>";
@@ -1194,7 +1194,7 @@
 				CDABE64A2C11C54300BB4E85 /* NiMenuItemView.swift in Sources */,
 				CD59FA142C3550F500CFB8DE /* NiViewElementsUtils.swift in Sources */,
 				CDFA8D042C04931600882722 /* NiNoteUtils.swift in Sources */,
-				CD1427762C735CAC00510FE6 /* CFTabHeadProtocol.swift in Sources */,
+				CD1427762C735CAC00510FE6 /* CFProtocols.swift in Sources */,
 				CDF0DD262C2045C8006C4EF4 /* NiSearchWindowProtocol.swift in Sources */,
 				CD5A04C82BEA2BBF004CC3AA /* CFMinimizedView.swift in Sources */,
 			);
@@ -1370,7 +1370,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = "0.1.7 --- 2024-08-30.2";
+				CURRENT_PROJECT_VERSION = "0.1.7 --- 2024-09-02.1";
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = SNXQ3BDQ5V;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -1403,7 +1403,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = "0.1.7 --- 2024-08-30.2";
+				CURRENT_PROJECT_VERSION = "0.1.7 --- 2024-09-02.1";
 				DEAD_CODE_STRIPPING = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;

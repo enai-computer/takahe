@@ -28,6 +28,8 @@ class NiWebView: WKWebView, CFContentItem, CFContentSearch{
 	
 	private var zoomLevel: Int = 7
 	private var titleChangeObserver: NSKeyValueObservation?
+	private var canGobackObserver: NSKeyValueObservation?
+	private var canGoForwardObserver: NSKeyValueObservation?
 	
     init(owner: ContentFrameController, frame: NSRect) {
         self.owner = owner
@@ -46,6 +48,19 @@ class NiWebView: WKWebView, CFContentItem, CFContentSearch{
 			 options: [.new]
 		){niWebView, val in
 			niWebView.titleChanged()
+		}
+		
+		canGobackObserver = self.observe(
+			\.canGoBack,
+			 options: [.initial, .new]
+		){ niWebView, change in
+			self.owner?.niWebViewCanGoBack(change.newValue ?? false, niWebView)
+		}
+		canGoForwardObserver = self.observe(
+			\.canGoForward,
+			 options: [.initial, .new]
+		){ niWebView, change in
+			self.owner?.niWebViewCanGoFwd(change.newValue ?? false, niWebView)
 		}
     }
     
