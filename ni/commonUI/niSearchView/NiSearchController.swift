@@ -88,6 +88,7 @@ class NiSearchController: NSViewController, NSCollectionViewDataSource, NSCollec
 	private func styleSearchResultsScrollContainer(){
 		if(style == .homeView){
 			searchResultsScrollContainer.frame.size.height += 4.0
+			searchResultsScrollContainer.frame.origin.y -= 10
 			return
 		}
 		searchResultsScrollContainer.contentView.wantsLayer = true

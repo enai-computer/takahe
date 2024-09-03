@@ -45,7 +45,7 @@ struct WeatherView: View {
 					.font(.custom("Sohne-Buch", size: 18))
 					.foregroundColor(.sand115)
 			}
-			.padding(.bottom, 9.0)
+			.padding(.bottom, 6.0)
 			HStack(alignment: .lastTextBaseline, spacing: 4) {
 				Text(currentTime)
 					.font(.custom("Sohne-Buch", size: 18))
