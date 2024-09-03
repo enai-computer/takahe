@@ -132,6 +132,13 @@ struct WeatherLocationPicker: View {
 		let results = try await geocoder.geocodeAddressString(find)
 		for r in results{
 			if let loc = r.location{
+				if(r.country == "United States"){
+					return WeatherLocationModel(
+						city: r.name ?? "",
+						country: r.administrativeArea ?? "",
+						coordinates: loc
+					)
+				}
 				return WeatherLocationModel(
 					city: r.name ?? "",
 					country: r.country ?? "",
