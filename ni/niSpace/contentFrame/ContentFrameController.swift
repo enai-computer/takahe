@@ -1098,6 +1098,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 			if(wv.url != nil){
 				self.tabs[wv.tabHeadPosition].content = wv.url!.absoluteString
 			}
+			guard !tabs[wv.tabHeadPosition].inEditingMode else {return}
 			viewWithTabs?.cfTabHeadCollection?.reloadItems(at: Set(arrayLiteral: IndexPath(item: wv.tabHeadPosition, section: 0)))
 		}
 	}
@@ -1219,6 +1220,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		guard viewHasTabs() else {return}
 		
 		if(0 <= webView.tabHeadPosition && webView.tabHeadPosition < tabs.count){
+			guard !tabs[webView.tabHeadPosition].inEditingMode else {return}
 			self.tabs[webView.tabHeadPosition].title = webView.getTitle() ?? tabs[webView.tabHeadPosition].title
 			if let nrOfItems: Int = viewWithTabs?.cfTabHeadCollection?.numberOfItems(inSection: 0){
 				if(webView.tabHeadPosition < nrOfItems){
