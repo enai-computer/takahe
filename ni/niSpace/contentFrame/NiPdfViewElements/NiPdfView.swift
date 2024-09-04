@@ -41,6 +41,7 @@ class NiPdfView: PDFView, CFContentItem, CFContentSearch{
 	
 	@discardableResult
 	func setInactive() -> FollowOnAction {
+		if(owner == nil){return .nothing}
 		overlay = cfOverlay(frame: self.frame, nxtResponder: owner!.view)
 		addSubview(overlay!)
 		window?.makeFirstResponder(overlay)
