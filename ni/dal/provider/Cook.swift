@@ -84,10 +84,10 @@ class Cook{
 				}
 				return true
 			}
+			res.append(NiSearchResultItem(type: .niSpace, id: NiSpaceDocumentController.EMPTY_SPACE_ID, name: "Create a new space", data: nil))
 			if(UserSettings.shared.demoMode){
 				res.append(NiSearchResultItem(type: .niSpace, id: NiSpaceDocumentController.DEMO_GEN_SPACE_ID, name: "Generate a new space", data: nil))
 			}
-			res.append(NiSearchResultItem(type: .niSpace, id: NiSpaceDocumentController.EMPTY_SPACE_ID, name: "Create a new space", data: nil))
 		}
 		return res
 	}
