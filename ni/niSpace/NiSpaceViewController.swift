@@ -188,6 +188,12 @@ class NiSpaceViewController: NSViewController, NSTextFieldDelegate{
 		}
 	}
 	
+	private func saveAndOpenHome(){
+		storeCurrentSpace()
+		let homeView = NiHomeWindow(windowToAppearOn: self.view.window!, allowESC: true)
+		homeView.makeKeyAndOrderFront(nil)
+	}
+	
 	private func openEmptyBackgroundSpace(){
 		let spaceDoc = getEmptySpaceDocument(id: EMPTY_SPACE_ID, name: "")
 		loadSpace(spaceId: EMPTY_SPACE_ID, name: "", spaceDoc: spaceDoc, scrollTo: nil, containsFullscreenFrame: false)
@@ -328,6 +334,7 @@ class NiSpaceViewController: NSViewController, NSTextFieldDelegate{
 		
 		cursorPos = self.view.convert(event.locationInWindow, from: nil)
 		if(NSPointInRect(cursorPos, headerContainer.frame)){
+			saveAndOpenHome()
 			return
 		}
 		

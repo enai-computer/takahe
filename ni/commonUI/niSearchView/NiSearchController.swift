@@ -248,6 +248,12 @@ class NiSearchController: NSViewController, NSCollectionViewDataSource, NSCollec
 				paletteWindow.removeSelf()
 				return
 			}
+			if let homeWindow = view.window as? NiHomeWindow{
+				if(homeWindow.allowESC){
+					homeWindow.removeSelf()
+					return
+				}
+			}
 		}
 		searchField.stringValue = ""
 		updateResultSet()
