@@ -56,7 +56,10 @@ class NiSearchResultViewItemRightIcon: NSView {
 	func select(){
 		shortcut?.removeFromSuperview()
 		keySelectedIcon = ReturnIconView.instance
-		self.addSubview(keySelectedIcon!)
+		//Needs to be async as otherwise deselect may be called on the imageview before select
+		DispatchQueue.main.async {
+			self.addSubview(self.keySelectedIcon!)
+		}
 	}
 	
 	func deselect(){
