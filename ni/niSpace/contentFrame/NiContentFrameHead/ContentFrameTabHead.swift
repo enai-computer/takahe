@@ -29,6 +29,7 @@ class ContentFrameTabHead: NSCollectionViewItem, NSTextFieldDelegate {
 		tabHeadTitle.layer?.cornerRadius = 5
 		tabHeadTitle.layer?.cornerCurve = .continuous
 		tabHeadTitle.focusRingType = .none
+		tabHeadTitle.disableEditing(title: "")
 		
 		hideCloseButton()
 		
@@ -37,11 +38,18 @@ class ContentFrameTabHead: NSCollectionViewItem, NSTextFieldDelegate {
     }
 	
 	override func prepareForReuse() {
-		super.prepareForReuse()
 		tabPosition = -1
 		image.image = Bundle.main.image(forResource: "AppIcon")
 		parentController = nil
 		closeButton.setMouseDownFunction(nil)
+		tabHeadTitle.disableEditing(title: "")
+		inEditingMode = false
+		super.prepareForReuse()
+	}
+	
+	override func viewDidAppear() {
+		super.viewDidAppear()
+		tabHeadTitle.setBlinkingCursor()
 	}
 	
 	func controlTextDidBeginEditing(_ notification: Notification) {
@@ -179,6 +187,7 @@ class ContentFrameTabHead: NSCollectionViewItem, NSTextFieldDelegate {
 				self.tabHeadTitle.enableEditing(urlStr: viewModel.webView?.url?.absoluteString ?? viewModel.content)
 			}
 		}else{
+			self.inEditingMode = false
 			removeEditingStyle()
 			self.tabHeadTitle.disableEditing(title: viewModel.webView?.getTitle() ?? viewModel.title)
 		}
