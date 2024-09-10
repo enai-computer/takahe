@@ -19,6 +19,15 @@ func getNewWebView(owner: ContentFrameController, contentId: UUID, urlReq: URLRe
 	return wkView
 }
 
+func getNewWebView(owner: ImmersiveViewController, urlReq: URLRequest, frame: NSRect) -> NiWebView{
+	let wkView = NiWebView(frame: frame)
+	wkView.load(urlReq)
+	wkView.navigationDelegate = owner
+	wkView.uiDelegate = owner
+	wkView.allowsLinkPreview = true
+	return wkView
+}
+
 func getNewWebView(owner: ContentFrameController, contentId: UUID, frame: NSRect, fileUrl: URL? = nil) -> NiWebView {
 	let niWebView = NiWebView(owner: owner, frame: frame)
 	niWebView.uiDelegate = owner

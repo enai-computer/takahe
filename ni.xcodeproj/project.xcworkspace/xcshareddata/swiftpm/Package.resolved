@@ -6,8 +6,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/will-lumley/FaviconFinder.git",
       "state" : {
-        "revision" : "c87a6d27d472a2013506c3c173a8768f8e7521ee",
-        "version" : "5.0.2"
+        "revision" : "21e00c75fe364f37b5ba89424d38a607db1df2d1",
+        "version" : "5.0.4"
       }
     },
     {
@@ -65,12 +65,21 @@
       }
     },
     {
+      "identity" : "swiftlintplugins",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/SimplyDanny/SwiftLintPlugins",
+      "state" : {
+        "revision" : "7c80ce6f142164b0201871e580b021d1b2c69804",
+        "version" : "0.57.0"
+      }
+    },
+    {
       "identity" : "swiftsoup",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/scinfu/SwiftSoup.git",
       "state" : {
-        "revision" : "e2d11208519549c2e5798d70190472045633f22f",
-        "version" : "2.7.3"
+        "revision" : "3c2c7e1e72b8abd96eafbae80323c5c1e5317437",
+        "version" : "2.7.5"
       }
     }
   ],
