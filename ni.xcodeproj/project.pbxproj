@@ -1003,7 +1003,6 @@
 				CD7578482BC0207E00293930 /* XCRemoteSwiftPackageReference "FaviconFinder" */,
 				CD1160C62BD142D100345E3E /* XCRemoteSwiftPackageReference "swift-url" */,
 				CD0589352BE1837B00E9A01E /* XCRemoteSwiftPackageReference "posthog-ios" */,
-				CD1853092C087E2D001FE566 /* XCRemoteSwiftPackageReference "swift-png" */,
 				CD4D7AE22C49459400B6DBFD /* XCRemoteSwiftPackageReference "swift-atomics" */,
 			);
 			productRefGroup = A1B8E6A32AAFB5EC00AC6566 /* Products */;
@@ -1386,7 +1385,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = "0.1.7 --- 2024-09-09.1";
+				CURRENT_PROJECT_VERSION = "0.1.7 --- 2024-09-10.1";
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = SNXQ3BDQ5V;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -1419,7 +1418,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = "0.1.7 --- 2024-09-09.1";
+				CURRENT_PROJECT_VERSION = "0.1.7 --- 2024-09-10.1";
 				DEAD_CODE_STRIPPING = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -1534,14 +1533,6 @@
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 0.4.1;
-			};
-		};
-		CD1853092C087E2D001FE566 /* XCRemoteSwiftPackageReference "swift-png" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/tayloraswift/swift-png";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 4.4.2;
 			};
 		};
 		CD4D7AE22C49459400B6DBFD /* XCRemoteSwiftPackageReference "swift-atomics" */ = {
