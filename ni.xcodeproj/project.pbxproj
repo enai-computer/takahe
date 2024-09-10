@@ -415,7 +415,6 @@
 			isa = PBXGroup;
 			children = (
 				A1B8E6A42AAFB5EC00AC6566 /* ni */,
-				CD0898292C9057F6007A9A9F /* .swiftlint-disable */,
 				CD1FAAEF2BFCA9BA00C781AC /* niUnitTests */,
 				A1B8E6A32AAFB5EC00AC6566 /* Products */,
 				CDC0BD442C46CAEC00CB2DDB /* Frameworks */,
@@ -452,6 +451,7 @@
 				A1B8E6A92AAFB5EC00AC6566 /* ni.xcdatamodeld */,
 				A1B8E6A52AAFB5EC00AC6566 /* AppDelegate.swift */,
 				A1F33E2D2AB7299500E2E7CD /* DefaultWindow.swift */,
+				CD0898292C9057F6007A9A9F /* .swiftlint-disable */,
 				A14E8F202AD20A2600409DDF /* DefaultWindowController.swift */,
 				CD6317DF2BC3F0F300434D56 /* errors */,
 				CD66CE362B1FD24B0006BB98 /* utils */,
