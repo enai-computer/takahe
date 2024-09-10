@@ -935,7 +935,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		
 		if(reloadTabHeads){
 			viewWithTabs?.cfTabHeadCollection?.reloadData()
-			viewWithTabs?.cfTabHeadCollection?.scrollToItems(at: Set(arrayLiteral: IndexPath(item: at, section: 0)), scrollPosition: .leadingEdge)
+			viewWithTabs?.cfTabHeadCollection?.scrollToItems(at: Set(arrayLiteral: IndexPath(item: at, section: 0)), scrollPosition: .nearestVerticalEdge)
 		}
 	}
 	

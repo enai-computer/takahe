@@ -414,8 +414,8 @@
 		A1B8E6992AAFB5EC00AC6566 = {
 			isa = PBXGroup;
 			children = (
-				CD0898292C9057F6007A9A9F /* .swiftlint-disable */,
 				A1B8E6A42AAFB5EC00AC6566 /* ni */,
+				CD0898292C9057F6007A9A9F /* .swiftlint-disable */,
 				CD1FAAEF2BFCA9BA00C781AC /* niUnitTests */,
 				A1B8E6A32AAFB5EC00AC6566 /* Products */,
 				CDC0BD442C46CAEC00CB2DDB /* Frameworks */,
