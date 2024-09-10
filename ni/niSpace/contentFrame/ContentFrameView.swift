@@ -12,7 +12,6 @@ class ContentFrameView: CFBaseView, CFTabHeadProtocol, CFFwdBackButtonProtocol{
 	@IBOutlet var cfHeadView: ContentFrameHeadView!
 	@IBOutlet var cfTabHeadCollection: NSCollectionView?
 	@IBOutlet var tabHeadsScrollContainer: NSScrollView!
-	private var latestNrOfTabs: Int? = nil
 	@IBOutlet var contentBackButton: NiActionImage!
 	@IBOutlet var contentForwardButton: NiActionImage!
 
@@ -339,7 +338,6 @@ class ContentFrameView: CFBaseView, CFTabHeadProtocol, CFFwdBackButtonProtocol{
 		}
 		tabHeadsScrollContainer.frame.size.width = tabHScrollWidth
 		tabHeadsScrollContainer.documentView?.frame.size.width = tabHCollectionWidth
-		latestNrOfTabs = nrOfTabs
 		
 		if(cfHeadDragAreaWidthConstraint != nil){
 			cfHeadDragArea.removeConstraint(cfHeadDragAreaWidthConstraint!)
@@ -400,15 +398,15 @@ class ContentFrameView: CFBaseView, CFTabHeadProtocol, CFFwdBackButtonProtocol{
 	func recalcDragArea(){
 		//needs to be recalculated a frame later, otherwise we end up with wrong sizes on resize:
 		DispatchQueue.main.async {
-			if(self.latestNrOfTabs != nil){
-				self.recalcDragArea(nrOfTabs: self.latestNrOfTabs!)
+			if let nrOfTabs = self.myController?.tabs.count{
+				self.recalcDragArea(nrOfTabs: nrOfTabs)
 			}
 		}
 	}
 	
 	func recalcDragArea(specialTabWidth: CGFloat){
-		if(latestNrOfTabs != nil){
-			recalcDragArea(nrOfTabs: (latestNrOfTabs! - 1), specialTabWidth: specialTabWidth + 50.0 )
+		if let nrOfTabs = self.myController?.tabs.count{
+			recalcDragArea(nrOfTabs: (nrOfTabs - 1), specialTabWidth: specialTabWidth + 50.0 )
 		}
 	}
 	
