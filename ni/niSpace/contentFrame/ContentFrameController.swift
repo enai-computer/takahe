@@ -664,7 +664,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		
 		let pos = openEmptyWebTab(editURLCalledNext: true)
 		//needs to happen a frame later as otherwise the cursor will not jump into the editing mode
-		DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
+		DispatchQueue.main.asyncAfter(deadline: .now() + 0.020) {
 			self.editTabUrl(at: pos)
 		}
 	}
@@ -998,8 +998,11 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		tabs[at].inEditingMode = true
 		
 		viewWithTabs?.cfTabHeadCollection?.reloadData()
-		DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
+		DispatchQueue.main.asyncAfter(deadline: .now() + 0.020) {
 			self.viewWithTabs?.cfTabHeadCollection?.scrollToItems(at: Set(arrayLiteral: IndexPath(item: at, section: 0)), scrollPosition: .right)
+			if let tabHeadItem = self.viewWithTabs?.cfTabHeadCollection?.item(at: IndexPath(item: at, section: 0)) as? ContentFrameTabHead{
+				self.view.window?.makeFirstResponder(tabHeadItem.tabHeadTitle)
+			}
 		}
 		
 	}
