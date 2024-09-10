@@ -35,6 +35,13 @@ class ContentFrameTabHeadTextNode: NSTextField{
 		self.drawsBackground = true
 		
 		//starts editing
+		setBlinkingCursor()
+	}
+	
+	func setBlinkingCursor(){
+		guard self.isEditable else { return }
+		//needs to be first responder & have a window
+		//--> currentEditor does not return nil and we can get a blinking cursor
 		self.selectText(nil)
 		self.currentEditor()?.selectAll(nil)
 	}
