@@ -12,6 +12,7 @@ class NiSpaceViewController: NSViewController, NSTextFieldDelegate{
     private var niSpaceName: String
 	private var niSpaceID: UUID
 	
+	private var immersiveWindow: ImmersiveWindow? = nil
 	private var pinnedWebsites: [NiPinnedWebsiteVModel] = []
 	
 	//header elements here:
@@ -433,6 +434,16 @@ class NiSpaceViewController: NSViewController, NSTextFieldDelegate{
 	/*
 	 * MARK: - load and store Space here
 	 */
+	func openImmersiveView(url: URL){
+		immersiveWindow = ImmersiveWindow(windowToAppearOn: self.view.window!, urlReq: URLRequest(url: url))
+		immersiveWindow?.makeKeyAndOrderFront(nil)
+	}
+	
+	private func closeImmersiveWindowIfOpen(){
+		immersiveWindow?.removeSelf()
+		immersiveWindow = nil
+	}
+	
 	private func getEmptySpaceDocument(id: UUID, name: String, height: CGFloat? = nil) -> NiSpaceDocumentController{
 		let controller = NiSpaceDocumentController(id: id, name: name, height: height)
 		
@@ -444,6 +455,8 @@ class NiSpaceViewController: NSViewController, NSTextFieldDelegate{
 	}
 	
 	func createSpace(name: String){
+		closeImmersiveWindowIfOpen()
+		
 		let spaceId = UUID()
 		let spaceDoc = getEmptySpaceDocument(id: spaceId, name: name)
 		
@@ -497,6 +510,8 @@ class NiSpaceViewController: NSViewController, NSTextFieldDelegate{
 	}
 	
 	func loadSpace(spaceId id: UUID, name: String){
+		closeImmersiveWindowIfOpen()
+		
 		let (spaceDoc, scrollTo, containsFullscreenFrame) = getSpaceDoc(id, userInputName: name)
 		self.loadSpace(spaceId: id, name: name, spaceDoc: spaceDoc, scrollTo: scrollTo, containsFullscreenFrame: containsFullscreenFrame)
 	}

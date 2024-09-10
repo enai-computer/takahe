@@ -63,6 +63,15 @@ class NiWebView: WKWebView, CFContentItem, CFContentSearch{
 			self.owner?.niWebViewCanGoFwd(change.newValue ?? false, niWebView)
 		}
     }
+	
+	init(frame: NSRect) {
+		let wvConfig = generateWKWebViewConfiguration()
+		super.init(frame: frame, configuration: wvConfig)
+		GlobalScriptMessageHandler.instance.ensureHandles(configuration: self.configuration)
+		findConfig.caseSensitive = false
+		findConfig.wraps = false
+		self.allowsBackForwardNavigationGestures = true
+	}
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

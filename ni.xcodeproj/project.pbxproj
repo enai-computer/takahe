@@ -130,6 +130,8 @@
 		CD9B96C42C075B8A00998CE2 /* ImgDal.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9B96C32C075B8A00998CE2 /* ImgDal.swift */; };
 		CD9C2B252C32EEBD00C6126F /* NiAlertPanelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9C2B242C32EEBD00C6126F /* NiAlertPanelController.swift */; };
 		CD9C2B272C32F8B800C6126F /* NiButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9C2B262C32F8B800C6126F /* NiButton.swift */; };
+		CDA611022C89E3AB00ED4033 /* ImmersiveWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA611012C89E3AB00ED4033 /* ImmersiveWindow.swift */; };
+		CDA611042C89E4A500ED4033 /* ImmersiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA611032C89E4A500ED4033 /* ImmersiveViewController.swift */; };
 		CDA639562BF50596001941DE /* welcomeConfig.json in Resources */ = {isa = PBXBuildFile; fileRef = CDA639552BF50596001941DE /* welcomeConfig.json */; };
 		CDA639582BF508FF001941DE /* WelcomeSpaceGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA639572BF508FF001941DE /* WelcomeSpaceGenerator.swift */; };
 		CDABE6462C11C4FE00BB4E85 /* NiMenuWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDABE6452C11C4FE00BB4E85 /* NiMenuWindow.swift */; };
@@ -323,6 +325,8 @@
 		CD9B96C32C075B8A00998CE2 /* ImgDal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImgDal.swift; sourceTree = "<group>"; };
 		CD9C2B242C32EEBD00C6126F /* NiAlertPanelController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiAlertPanelController.swift; sourceTree = "<group>"; };
 		CD9C2B262C32F8B800C6126F /* NiButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiButton.swift; sourceTree = "<group>"; };
+		CDA611012C89E3AB00ED4033 /* ImmersiveWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImmersiveWindow.swift; sourceTree = "<group>"; };
+		CDA611032C89E4A500ED4033 /* ImmersiveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImmersiveViewController.swift; sourceTree = "<group>"; };
 		CDA639552BF50596001941DE /* welcomeConfig.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = welcomeConfig.json; sourceTree = "<group>"; };
 		CDA639572BF508FF001941DE /* WelcomeSpaceGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeSpaceGenerator.swift; sourceTree = "<group>"; };
 		CDABE6452C11C4FE00BB4E85 /* NiMenuWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiMenuWindow.swift; sourceTree = "<group>"; };
@@ -431,6 +435,7 @@
 				CDBC33F82BDBC896000EEF3D /* Info.plist */,
 				CDD6B94F2B1BFE6500C6144D /* models */,
 				CDD6B9342B1527B700C6144D /* dal */,
+				CDA611002C89E37800ED4033 /* niImmersiveView */,
 				CDD6B94A2B19469000C6144D /* niHome */,
 				CD2B68EC2C2F162F0086756E /* niFullscreenPanel */,
 				CD7AE0A82C5535AB00B3984E /* niLibrary */,
@@ -733,6 +738,15 @@
 				CD9B96C02C0733F800998CE2 /* NiImgViewUtils.swift */,
 			);
 			path = NiImgViewElements;
+			sourceTree = "<group>";
+		};
+		CDA611002C89E37800ED4033 /* niImmersiveView */ = {
+			isa = PBXGroup;
+			children = (
+				CDA611012C89E3AB00ED4033 /* ImmersiveWindow.swift */,
+				CDA611032C89E4A500ED4033 /* ImmersiveViewController.swift */,
+			);
+			path = niImmersiveView;
 			sourceTree = "<group>";
 		};
 		CDABE6432C11C49100BB4E85 /* commonUI */ = {
@@ -1162,6 +1176,7 @@
 				CD6317E32BC3F18300434D56 /* NiBadTypeError.swift in Sources */,
 				CD5A04D12BEA78E4004CC3AA /* CFBaseView.swift in Sources */,
 				CDABE6462C11C4FE00BB4E85 /* NiMenuWindow.swift in Sources */,
+				CDA611022C89E3AB00ED4033 /* ImmersiveWindow.swift in Sources */,
 				CD410AE02C285AC700EC5DF7 /* UserSettings.swift in Sources */,
 				CDFA8CFB2C03B9AE00882722 /* CFFramelessView.swift in Sources */,
 				CDF6C54E2C383A37006B458B /* NiBlur.swift in Sources */,
@@ -1184,6 +1199,7 @@
 				CDF0DD282C20549F006C4EF4 /* NiEmptyViewController.swift in Sources */,
 				CD1853172C09D623001FE566 /* DoubleUtils.swift in Sources */,
 				CDE88CAE2C2415AA000390A6 /* NiSpaceMenuPopup.swift in Sources */,
+				CDA611042C89E4A500ED4033 /* ImmersiveViewController.swift in Sources */,
 				CD4E0E3B2C4164A000273109 /* CFSimpleMinimizedView.swift in Sources */,
 				CD59FA102C345CFC00CFB8DE /* NiPdfViewUtils.swift in Sources */,
 				CDF711B72C66004A00B4A6B8 /* NiPinnedWebsiteVModel.swift in Sources */,
@@ -1370,7 +1386,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = "0.1.7 --- 2024-09-03.3";
+				CURRENT_PROJECT_VERSION = "0.1.7 --- 2024-09-09.1";
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = SNXQ3BDQ5V;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -1403,7 +1419,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = "0.1.7 --- 2024-09-03.3";
+				CURRENT_PROJECT_VERSION = "0.1.7 --- 2024-09-09.1";
 				DEAD_CODE_STRIPPING = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;

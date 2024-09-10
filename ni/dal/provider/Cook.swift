@@ -10,7 +10,7 @@ import SQLite
 
 
 enum NiSearchResultType{
-	case niSpace, webApp
+	case niSpace, pinnedWebsite
 }
 
 struct NiSearchResultItem{
@@ -111,15 +111,26 @@ class Cook{
 		}
 		return query
 	}
-	
-//	//FIXME: very hacky - needs to be done properly
+//	
+//	let preConfigedWebApps: [String: URL] = [
+//		"nebula": URL(string: "https://nebula.tv/featured")!,
+//		"HBO Max": URL(string: "https://www.max.com/")!,
+//		"YouTube": URL(string: "https://www.youtube.com/")!,
+//		"Curiosity Stream": URL(string: "https://curiositystream.com/")!,
+//		"Disney+": URL(string: "https://www.disneyplus.com/")!,
+//		"Paramount+": URL(string: "https://www.paramountplus.com")!,
+//		"hulu": URL(string: "https://www.hulu.com")!,
+//		"Netflix": URL(string: "https://www.netflix.com")!
+//	]
+//	
+////	//FIXME: very hacky - needs to be done properly
 //	private func getWebApps(_ searchTerm: String) -> [NiSearchResultItem]{
 //		var res: [NiSearchResultItem] = []
 //		for item in preConfigedWebApps.keys{
 //			if(item.lowercased().starts(with: searchTerm.lowercased())){
 //				let data = preConfigedWebApps[item]
 //				res.append(
-//					NiSearchResultItem(type: .webApp, id: nil, name: item, data: data)
+//					NiSearchResultItem(type: .video, id: nil, name: item, data: data)
 //				)
 //			}
 //		}

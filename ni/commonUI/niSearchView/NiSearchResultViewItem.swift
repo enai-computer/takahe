@@ -42,6 +42,9 @@ class NiSearchResultViewItem: NSCollectionViewItem {
 		}
 		if(data.id == NiSpaceDocumentController.DEMO_GEN_SPACE_ID){
 			leftSideResultTypeIcon.image = NSImage(named: "magicWand")
+		}else if(data.type == .pinnedWebsite){
+			//TODO: set icon
+//			leftSideResultTypeIcon.image = NSImage(named: "tvIcon")
 		}else{
 			leftSideResultTypeIcon.image = NSImage(named: "SpaceIcon")
 		}
@@ -83,8 +86,9 @@ class NiSearchResultViewItem: NSCollectionViewItem {
 	func tryOpenResult(){
 		if(resultData?.type == .niSpace){
 			openSpaceAndTryRemoveWindow()
-		}else if(resultData?.type == .webApp){
-			//TODO: open WebApp in SimpleFrame
+			//		}else if(resultData?.type == .video){
+			//			openImmersiveView()
+			//		}
 		}
 	}
 	
@@ -102,6 +106,15 @@ class NiSearchResultViewItem: NSCollectionViewItem {
 		}
 		if let paletteWindow = view.window as? NiSearchWindowProtocol{
 			paletteWindow.removeSelf()
+		}
+	}
+	
+	private func openImmersiveView(){
+		if(resultData?.data == nil){return}
+		if let spaceViewController = NSApplication.shared.mainWindow?.contentViewController as? NiSpaceViewController{
+			if let url = resultData?.data as? URL{
+				spaceViewController.openImmersiveView(url: url)
+			}
 		}
 	}
 	
