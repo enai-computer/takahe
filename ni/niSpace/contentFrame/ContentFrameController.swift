@@ -749,11 +749,8 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		tabHeadModel.position = viewPosition
 		tabHeadModel.viewItem = niWebView
 		tabHeadModel.webView!.tabHeadPosition = tabHeadModel.position
-		if(webContentState != nil){
-			tabHeadModel.state = webContentState!
-		}else{
-			tabHeadModel.state = .loading
-		}
+		tabHeadModel.content = urlStr
+		tabHeadModel.state = .loading
 		
 		if(0 <= openNextTo){
 			self.tabs.insert(tabHeadModel, at: viewPosition)
