@@ -643,7 +643,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	/*
 	 * MARK: opening tabs
 	 */
-	func openEmptyWebTab(_ contentId: UUID = UUID()) -> Int{
+	func openEmptyWebTab(_ contentId: UUID = UUID(), editURLCalledNext: Bool = false) -> Int{
 		let niWebView = ni.getNewWebView(owner: self, contentId: contentId, frame: view.frame, fileUrl: nil)
 		
 		var tabHeadModel = TabViewModel(contentId: contentId, type: .web)
@@ -652,7 +652,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		tabHeadModel.webView!.tabHeadPosition = tabHeadModel.position
 		self.tabs.append(tabHeadModel)
 		
-		selectTab(at: tabHeadModel.position)
+		selectTab(at: tabHeadModel.position, reloadTabHeads: !editURLCalledNext)
 		
 		return tabHeadModel.position
 	}
@@ -662,9 +662,9 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 			return
 		}
 		
-		let pos = openEmptyWebTab()
+		let pos = openEmptyWebTab(editURLCalledNext: true)
 		//needs to happen a frame later as otherwise the cursor will not jump into the editing mode
-		DispatchQueue.main.async {
+		DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
 			self.editTabUrl(at: pos)
 		}
 	}
@@ -906,7 +906,10 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		selectTab(at: nxtTab)
 	}
 	
-	func selectTab(at: Int, mouseDownEvent: NSEvent? = nil){
+	/**
+	 reloadTabHeads - set this to `false` if you are forcing a reload later in the main-loop. This is used when creating a new tab that immediately goes into editing mode.
+	 */
+	func selectTab(at: Int, mouseDownEvent: NSEvent? = nil, reloadTabHeads: Bool = true){
 		guard (0 <= at && at < tabs.count) else {return}
 		//No tab switching while CF is not active
 		if(!viewHasTabs() || !self.myView.frameIsActive){
@@ -930,8 +933,10 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		
 		forceSelectTab(at: at)
 		
-		viewWithTabs?.cfTabHeadCollection?.reloadData()
-		viewWithTabs?.cfTabHeadCollection?.scrollToItems(at: Set(arrayLiteral: IndexPath(item: at, section: 0)), scrollPosition: .nearestVerticalEdge)
+		if(reloadTabHeads){
+			viewWithTabs?.cfTabHeadCollection?.reloadData()
+			viewWithTabs?.cfTabHeadCollection?.scrollToItems(at: Set(arrayLiteral: IndexPath(item: at, section: 0)), scrollPosition: .leadingEdge)
+		}
 	}
 	
 	func viewHasTabs() -> Bool{
@@ -996,7 +1001,10 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		tabs[at].inEditingMode = true
 		
 		viewWithTabs?.cfTabHeadCollection?.reloadData()
-		viewWithTabs?.cfTabHeadCollection?.scrollToItems(at: Set(arrayLiteral: IndexPath(item: at, section: 0)), scrollPosition: .nearestVerticalEdge)
+		DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
+			self.viewWithTabs?.cfTabHeadCollection?.scrollToItems(at: Set(arrayLiteral: IndexPath(item: at, section: 0)), scrollPosition: .right)
+		}
+		
 	}
 	
 	func endEditingTabUrl(){
