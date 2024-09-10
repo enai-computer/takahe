@@ -31,7 +31,6 @@ class ContentFrameTabHead: NSCollectionViewItem, NSTextFieldDelegate {
 		tabHeadTitle.focusRingType = .none
 		
 		hideCloseButton()
-		closeButton.setMouseDownFunction(pressedClosedButton)
 		
 		let hoverEffectTrackingArea = NSTrackingArea(rect: view.frame, options: [.mouseEnteredAndExited, .activeInKeyWindow], owner: self, userInfo: nil)
 		view.addTrackingArea(hoverEffectTrackingArea)
@@ -42,6 +41,7 @@ class ContentFrameTabHead: NSCollectionViewItem, NSTextFieldDelegate {
 		tabPosition = -1
 		image.image = Bundle.main.image(forResource: "AppIcon")
 		parentController = nil
+		closeButton.setMouseDownFunction(nil)
 	}
 	
 	func controlTextDidBeginEditing(_ notification: Notification) {
@@ -104,6 +104,7 @@ class ContentFrameTabHead: NSCollectionViewItem, NSTextFieldDelegate {
 		self.setText(viewModel)
 		self.setIcon(viewModel)
 		self.setBackground()
+		closeButton.setMouseDownFunction(pressedClosedButton)
 	}
 	
 	private func pressedClosedButton(with event: NSEvent) {
@@ -282,4 +283,8 @@ class ContentFrameTabHead: NSCollectionViewItem, NSTextFieldDelegate {
 		parentController?.pinTabToTopbar(at: tabPosition)
 	}
 	
+	deinit{
+		parentController = nil
+		closeButton.deinitSelf()
+	}
 }
