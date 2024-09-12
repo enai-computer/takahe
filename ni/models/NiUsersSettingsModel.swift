@@ -17,6 +17,7 @@ enum UserSettingKey: String{
 		 demoMode,
 		 pinnedWebApps,	//maps to pinnedWebsites --- DB migration needed for renaming
 		 userFirstName,
+		 userEmail,
 		 homeViewWeatherLocation
 }
 
@@ -29,6 +30,7 @@ struct NiUsersSettingsModel: Codable{
 	let demoMode: Bool
 	let pinnedWebsites: [PinnedWebsiteItemModel]
 	let userFirstName: String
+	let userEmail: String?
 	let homeViewWeatherLocation: WeatherLocationModel
 }
 
@@ -47,6 +49,7 @@ extension NiUsersSettingsModel{
 		demoMode = false
 		pinnedWebsites = []
 		userFirstName = NSUserName()
+		userEmail = nil
 		homeViewWeatherLocation = defaultWeatherLocation
 	}
 	
@@ -59,10 +62,11 @@ extension NiUsersSettingsModel{
 		demoMode = getValueOrDefault(key: .demoMode, from: dic, defaultVal: false)
 		pinnedWebsites = getValueOrEmptyList(key: .pinnedWebApps, from: dic, of: PinnedWebsiteItemModel.self)
 		userFirstName = getValueOrDefault(key: .userFirstName, from: dic, defaultVal: NSUserName())
+		userEmail = getValueOrDefault(key: .userEmail, from: dic, defaultVal: nil)
 		homeViewWeatherLocation = getValueOrDefault(key: .homeViewWeatherLocation, from: dic, defaultVal: defaultWeatherLocation)
 	}
 	
-	func toDic() -> [UserSettingKey: String]{
+	func toDic() -> [UserSettingKey: String?]{
 		return [
 			.version: String(version),
 			.spaceCachingEnabled: String(spaceCachingEnabled),
@@ -71,6 +75,7 @@ extension NiUsersSettingsModel{
 			.cacheClearedLast: String(cacheClearedLast.timeIntervalSince1970),
 			.pinnedWebApps: encodeListToJsonString(pinnedWebsites),
 			.userFirstName: userFirstName,
+			.userEmail: userEmail,
 			.homeViewWeatherLocation: encodeToJsonString(homeViewWeatherLocation)
 		]
 	}

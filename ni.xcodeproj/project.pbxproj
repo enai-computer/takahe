@@ -145,6 +145,8 @@
 		CDB4830A2C6A623900612AF5 /* CFFullscreenView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDB483092C6A623900612AF5 /* CFFullscreenView.xib */; };
 		CDB4830C2C6A624E00612AF5 /* CFFullscreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB4830B2C6A624E00612AF5 /* CFFullscreenView.swift */; };
 		CDB549D12C2020C90038FB30 /* NiSearchViewScroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB549D02C2020C90038FB30 /* NiSearchViewScroller.swift */; };
+		CDBCBBF82C92F8330069EFE3 /* NiSignupView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDBCBBF72C92F8330069EFE3 /* NiSignupView.xib */; };
+		CDBCBBFA2C92F91C0069EFE3 /* NiSignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBCBBF92C92F91C0069EFE3 /* NiSignupViewController.swift */; };
 		CDC0BD432C45280C00CB2DDB /* NiDownloadHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC0BD422C45280C00CB2DDB /* NiDownloadHandler.swift */; };
 		CDC0BD482C47B6B000CB2DDB /* UserSettingsTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC0BD472C47B6B000CB2DDB /* UserSettingsTable.swift */; };
 		CDC5A1142C25C8F3002F5621 /* EmptyRectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC5A1132C25C8F3002F5621 /* EmptyRectView.swift */; };
@@ -342,6 +344,8 @@
 		CDB4830B2C6A624E00612AF5 /* CFFullscreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CFFullscreenView.swift; sourceTree = "<group>"; };
 		CDB549D02C2020C90038FB30 /* NiSearchViewScroller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiSearchViewScroller.swift; sourceTree = "<group>"; };
 		CDBC33F82BDBC896000EEF3D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		CDBCBBF72C92F8330069EFE3 /* NiSignupView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NiSignupView.xib; sourceTree = "<group>"; };
+		CDBCBBF92C92F91C0069EFE3 /* NiSignupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiSignupViewController.swift; sourceTree = "<group>"; };
 		CDC0BD422C45280C00CB2DDB /* NiDownloadHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiDownloadHandler.swift; sourceTree = "<group>"; };
 		CDC0BD472C47B6B000CB2DDB /* UserSettingsTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettingsTable.swift; sourceTree = "<group>"; };
 		CDC5A1132C25C8F3002F5621 /* EmptyRectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyRectView.swift; sourceTree = "<group>"; };
@@ -870,6 +874,8 @@
 				CD240BD42C80A714000E478F /* WeatherWidget.swift */,
 				CD240BD62C80BFC2000E478F /* WeatherWidgetNSView.swift */,
 				CD240BD82C80C95D000E478F /* WeatherLocationPicker.swift */,
+				CDBCBBF72C92F8330069EFE3 /* NiSignupView.xib */,
+				CDBCBBF92C92F91C0069EFE3 /* NiSignupViewController.swift */,
 			);
 			path = niHome;
 			sourceTree = "<group>";
@@ -1054,6 +1060,7 @@
 				CD2D8E7E2C4EB992003AED25 /* licklider.pdf in Resources */,
 				CD618D9C2C2B4151006869AF /* 43DC5B56-124C-4368-A341-EAA9D2E33CFD.jpg in Resources */,
 				CD6B97732C59544F0046C36B /* loadingAnimation.gif in Resources */,
+				CDBCBBF82C92F8330069EFE3 /* NiSignupView.xib in Resources */,
 				CD569FEC2C53A05700C16B2E /* 76AD3FA8-81D2-4C9D-A5B0-EF190D4F6D81.png in Resources */,
 				CD6DED902C24954500AA8BC4 /* NiWebViewFindPanel.xib in Resources */,
 				CDF0DD242C202BDB006C4EF4 /* NiHomeView.xib in Resources */,
@@ -1171,6 +1178,7 @@
 				CD4D7AE62C4959B800B6DBFD /* DateUtils.swift in Sources */,
 				CD618D962C2B2C28006869AF /* PregenSpaceSkiing.swift in Sources */,
 				CD6D28102C11EE7E0009732A /* RoundedRectView.swift in Sources */,
+				CDBCBBFA2C92F91C0069EFE3 /* NiSignupViewController.swift in Sources */,
 				CDD7ED072C555153007604D9 /* NiLibraryViewController.swift in Sources */,
 				CDF0DD222C202BCD006C4EF4 /* NiHomeController.swift in Sources */,
 				CD8D2B082C00C7A100C44C1D /* NoteTable.swift in Sources */,
