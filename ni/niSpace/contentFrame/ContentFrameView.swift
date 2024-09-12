@@ -531,7 +531,7 @@ class ContentFrameView: CFBaseView, CFTabHeadProtocol, CFFwdBackButtonProtocol{
 		contentForwardButton.deinitSelf()
 		contentBackButton.deinitSelf()
 		cfGroupButton.deinitSelf()
-//		
+		
 		for t in niContentTabView.tabViewItems{
 			if let niContentView = t.view as? CFContentItem{
 				niContentView.spaceRemovedFromMemory()

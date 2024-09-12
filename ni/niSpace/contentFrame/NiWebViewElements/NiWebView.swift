@@ -54,13 +54,13 @@ class NiWebView: WKWebView, CFContentItem, CFContentSearch{
 			\.canGoBack,
 			 options: [.initial, .new]
 		){ niWebView, change in
-			self.owner?.niWebViewCanGoBack(change.newValue ?? false, niWebView)
+			niWebView.owner?.niWebViewCanGoBack(change.newValue ?? false, niWebView)
 		}
 		canGoForwardObserver = self.observe(
 			\.canGoForward,
 			 options: [.initial, .new]
 		){ niWebView, change in
-			self.owner?.niWebViewCanGoFwd(change.newValue ?? false, niWebView)
+			niWebView.owner?.niWebViewCanGoFwd(change.newValue ?? false, niWebView)
 		}
     }
 	
@@ -283,7 +283,13 @@ class NiWebView: WKWebView, CFContentItem, CFContentSearch{
 	}
 	
 	deinit{
+		canGobackObserver?.invalidate()
+		canGoForwardObserver?.invalidate()
 		titleChangeObserver?.invalidate()
+		
+		overlay?.removeFromSuperview()
+		overlay = nil
+		
 		stopLoading()
 	}
 }
