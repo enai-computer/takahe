@@ -9,13 +9,15 @@ import Cocoa
 
 class NiHomeController: NSViewController, NSTextFieldDelegate {
 	
-	@IBOutlet var leftSide: NSView!
-	@IBOutlet var rightSide: NSView!
+	@IBOutlet var leftSideFrame: NSView!
+	@IBOutlet var rightSideFrame: NSView!
 	@IBOutlet var welcomeStackView: NSStackView!
 	@IBOutlet var welcomeTxt: NSTextField!
 	@IBOutlet var userName: NSTextField!
 	
 	private var searchController: NiSearchController
+	private var signupViewController: NiSignupViewController?
+	private weak var rightSideContentView: NSView?
 	private let viewFrame: NSRect
 	private var dropShadow2 = CALayer()
 	
@@ -45,20 +47,46 @@ class NiHomeController: NSViewController, NSTextFieldDelegate {
 		styleLeftSide()
 		styleRightSide()
 		
-		positionAndDisplaySearchView()
+		if(UserSettings.shared.userEmail != nil){
+			displaySearchView()
+		}else{
+			displaySignupView()
+		}
 	}
 	
 	override func viewWillLayout() {
 		super.viewWillLayout()
-		searchController.view.frame.size = CGSize(width: 678.0, height: 450.0)
-		let posY = (welcomeStackView.frame.maxY - searchController.view.frame.height) + 30.0
-		let posX = rightSide.frame.origin.x + 100.0
-		searchController.view.frame.origin = CGPoint(x: posX, y: posY)
+		positionRightSideContentView()
 	}
 	
-	private func positionAndDisplaySearchView(){
+	private func positionRightSideContentView(){
+		if let viewObj = rightSideContentView{
+			viewObj.frame.size = CGSize(width: 678.0, height: 450.0)
+			let posY = (welcomeStackView.frame.maxY - viewObj.frame.height) + 30.0
+			let posX = rightSideFrame.frame.origin.x + 100.0
+			viewObj.frame.origin = CGPoint(x: posX, y: posY)
+		}
+	}
+	
+	private func displaySearchView(){
 		self.view.addSubview(searchController.view)
+		rightSideContentView = searchController.view
 		view.window?.makeFirstResponder(searchController.searchField)
+	}
+	
+	private func displaySignupView(){
+		signupViewController = NiSignupViewController(self)
+		self.view.addSubview(signupViewController!.view)
+		rightSideContentView = signupViewController!.view
+		view.window?.makeFirstResponder(signupViewController!.emailField)
+	}
+	
+	func transitionFromSignupToSearch(){
+		rightSideContentView?.removeFromSuperview()
+		signupViewController?.removeFromParent()
+		signupViewController = nil
+		displaySearchView()
+		positionRightSideContentView()
 	}
 	
 	private func setWelcomeMessage(){
@@ -67,8 +95,8 @@ class NiHomeController: NSViewController, NSTextFieldDelegate {
 	}
 	
 	private func styleLeftSide(){
-		leftSide.wantsLayer = true
-		leftSide.layer?.backgroundColor = NSColor.sand1.cgColor
+		leftSideFrame.wantsLayer = true
+		leftSideFrame.layer?.backgroundColor = NSColor.sand1.cgColor
 	}
 	
 	private func addWeatherWidget(){
@@ -87,8 +115,8 @@ class NiHomeController: NSViewController, NSTextFieldDelegate {
 	}
 	
 	private func styleRightSide(){
-		rightSide.wantsLayer = true
-		rightSide.layer?.backgroundColor = NSColor.sand3.cgColor
+		rightSideFrame.wantsLayer = true
+		rightSideFrame.layer?.backgroundColor = NSColor.sand3.cgColor
 	}
 
 	private func roundedCornersPath(in rect: CGRect, having corners: RectCorner, with radius: CGFloat = .zero) -> CGPath {

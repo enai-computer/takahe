@@ -23,12 +23,13 @@ class UserSettingsTable{
 		})
 	}
 	
-	static func upsertSetting(setting: UserSettingKey, value: String){
+	static func upsertSetting(setting: UserSettingKey, value: String?){
+		guard let absolutValue: String = value else {return}
 		do{
 			try Storage.instance.spacesDB.run(
 				table.upsert(
 					self.setting <- setting.rawValue,
-					self.value <- value,
+					self.value <- absolutValue,
 					self.updatedAt <- Date().timeIntervalSince1970,
 					onConflictOf: self.setting
 				)

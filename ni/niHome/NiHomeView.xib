@@ -8,8 +8,8 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NiHomeController" customModule="ni" customModuleProvider="target">
             <connections>
-                <outlet property="leftSide" destination="8gY-Mf-CWh" id="9Iz-Oq-cbZ"/>
-                <outlet property="rightSide" destination="yGh-k4-h8P" id="yLB-Md-Jww"/>
+                <outlet property="leftSideFrame" destination="8gY-Mf-CWh" id="9Iz-Oq-cbZ"/>
+                <outlet property="rightSideFrame" destination="yGh-k4-h8P" id="yLB-Md-Jww"/>
                 <outlet property="userName" destination="ERP-Od-vPj" id="VUc-jO-98q"/>
                 <outlet property="view" destination="GZf-Vp-zmU" id="yuT-SM-gLc"/>
                 <outlet property="welcomeStackView" destination="ypb-rf-Bnt" id="fKb-d2-GLo"/>
