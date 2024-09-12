@@ -52,6 +52,10 @@ class ContentFrameTabHead: NSCollectionViewItem, NSTextFieldDelegate {
 		tabHeadTitle.setBlinkingCursor()
 	}
 	
+	override func viewDidDisappear() {
+		closeButton.setMouseDownFunction(nil)
+	}
+	
 	func controlTextDidBeginEditing(_ notification: Notification) {
 		inEditingMode = true
 	}
