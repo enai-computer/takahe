@@ -33,11 +33,42 @@ class NiSignupViewController: NSViewController, NSTextFieldDelegate{
 		emailFieldBox.layer?.cornerRadius = 8.0
 		emailFieldBox.layer?.cornerCurve = .continuous
 	}
-
+	
+	@IBAction func confirm(_ sender: NSButton) {
+		setEmail()
+	}
+	
 	func controlTextDidEndEditing(_ notification: Notification) {
+		setEmail()
+	}
+	
+	private func setEmail(){
+		guard validInput() else {
+			failedValidation()
+			return
+		}
 		UserSettings.updateValue(setting: .userEmail, value: emailField.stringValue)
 		homeViewController?.transitionFromSignupToSearch()
-		return
+	}
+	
+	//we don't care that much right now...
+	private func validInput() -> Bool{
+		if(emailField.stringValue.isEmpty){
+			return false
+		}
+		if(!emailField.stringValue.contains("@")){
+			return false
+		}
+		if(!emailField.stringValue.contains(".")){
+			return false
+		}
+		return true
+	}
+	
+	private func failedValidation(){
+		emailFieldBox.wantsLayer = true
+		emailFieldBox.layer?.borderColor = NSColor.birkin.cgColor
+		emailFieldBox.layer?.borderWidth = 2.0
 	}
 	
 	override func cancelOperation(_ sender: Any?) {
