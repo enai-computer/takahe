@@ -3,6 +3,16 @@
     {
       "filename" : "arrowRightFilled.svg",
       "idiom" : "universal"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "arrowRightFilledDark.svg",
+      "idiom" : "universal"
     }
   ],
   "info" : {
