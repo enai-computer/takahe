@@ -11,6 +11,8 @@ class NiSignupViewController: NSViewController, NSTextFieldDelegate{
 	
 	@IBOutlet var emailFieldBox: NSView!
 	@IBOutlet var emailField: NSTextField!
+	@IBOutlet var confirmButton: NiActionImage!
+	@IBOutlet var welcomeMessageLabel: NSTextField!
 	private weak var homeViewController: NiHomeController?
 	
 	init(_ parentController: NiHomeController){
@@ -24,7 +26,14 @@ class NiSignupViewController: NSViewController, NSTextFieldDelegate{
 	
 	override func viewDidLoad() {
 		emailField.focusRingType = .none
+		confirmButton.setMouseDownFunction(confirmButtonClicked)
+		welcomeMessageLabel.attributedStringValue = getWelcomeMessage()
 		stlyeSearchFieldBox()
+	}
+	
+	override func viewDidDisappear() {
+		confirmButton.deinitSelf()
+		super.viewDidDisappear()
 	}
 	
 	private func stlyeSearchFieldBox(){
@@ -34,12 +43,14 @@ class NiSignupViewController: NSViewController, NSTextFieldDelegate{
 		emailFieldBox.layer?.cornerCurve = .continuous
 	}
 	
-	@IBAction func confirm(_ sender: NSButton) {
+	func confirmButtonClicked(_ with: NSEvent){
 		setEmail()
 	}
 	
 	func controlTextDidEndEditing(_ notification: Notification) {
-		setEmail()
+		if(notification.userInfo?["NSTextMovement"] as? Int == 16){	//return
+			setEmail()
+		}
 	}
 	
 	private func setEmail(){
@@ -53,15 +64,6 @@ class NiSignupViewController: NSViewController, NSTextFieldDelegate{
 	
 	//we don't care that much right now...
 	private func validInput() -> Bool{
-		if(emailField.stringValue.isEmpty){
-			return false
-		}
-		if(!emailField.stringValue.contains("@")){
-			return false
-		}
-		if(!emailField.stringValue.contains(".")){
-			return false
-		}
 		return true
 	}
 	
@@ -73,6 +75,41 @@ class NiSignupViewController: NSViewController, NSTextFieldDelegate{
 	
 	override func cancelOperation(_ sender: Any?) {
 		emailField.stringValue = ""
+	}
+	
+	func getWelcomeMessage() -> NSAttributedString{
+		let welcomeMessage: String = """
+		 I’m Curran, one of the people behind Enai.
+		 My email is curran@enai.io.
+		 If you have any questions or feedback,
+		 I’m available any time.
+		 Texts are also welcome:
+
+		 iMessage: +49 151 404 82120
+		 WhatsApp: +1 626 818 4954
+		"""
+		let textParagraph = NSMutableParagraphStyle()
+		textParagraph.lineSpacing = 3.0
+		let attrs = [NSAttributedString.Key.foregroundColor: NSColor.sand11,
+					 NSAttributedString.Key.paragraphStyle: textParagraph,
+					 NSAttributedString.Key.font: NSFont(name: "Sohne-Buch", size: 16.0)]
+		
+		let res = NSMutableAttributedString(
+			string: welcomeMessage,
+			attributes: attrs as [NSAttributedString.Key : Any])
+		
+//		let linkRange = NSRange(location: 56, length: 15)
+//		res.addAttribute(.link,
+//						 value: URL(string: "mailto:curran@enai.io") as Any,
+//						 range: linkRange)
+//		res.addAttribute(.foregroundColor,
+//						 value: NSColor.birkin.cgColor,
+//						 range: linkRange)
+//		res.addAttribute(.backgroundColor,
+//						 value: NSColor.transparent.cgColor,
+//						 range: linkRange)
+//		res.addAttribute(.color, value: <#T##Any#>, range: <#T##NSRange#>)
+		return res
 	}
 	
 }
