@@ -139,7 +139,7 @@ private func getValueOrDefault(key: UserSettingKey, from dic: [String: String], 
 	return defaultVal
 }
 
-private func getValueOrDefault(key: UserSettingKey, from dic: [String: String], defaultVal: String) -> String{
+private func getValueOrDefault(key: UserSettingKey, from dic: [String: String], defaultVal: String?) -> String?{
 	if let valStr: String = dic[key.rawValue]{
 		return valStr
 	}
