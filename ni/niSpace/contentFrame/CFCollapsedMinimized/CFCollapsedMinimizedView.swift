@@ -7,7 +7,7 @@
 
 import Cocoa
 
-class CFCollapsedMinimizedView: CFBaseView{
+class CFCollapsedMinimizedView: CFBaseView, CFHasGroupButtonProtocol{
 	
 	@IBOutlet var cfGroupButton: CFGroupButton!
 	@IBOutlet var cfHeadView: NSView!
@@ -20,7 +20,7 @@ class CFCollapsedMinimizedView: CFBaseView{
 		super.init(coder: coder)
 	}
 	
-	func initAfterViewLoad(groupName: String?){
+	func initAfterViewLoad(nrOfItems: Int, groupName: String?){
 
 		self.wantsLayer = true
 		self.layer?.shadowColor = NSColor.sand9.cgColor
@@ -28,6 +28,8 @@ class CFCollapsedMinimizedView: CFBaseView{
 		self.layer?.shadowOpacity = 0.5
 		self.layer?.shadowRadius = 1.0
 		self.layer?.masksToBounds = false
+	
+		listOfTabs?.frame.size.width = (24.0 + 7.0) * CGFloat(nrOfItems) + 7.0
 		
 		closeButton.setMouseDownFunction(clickedCloseButton)
 		closeButton.isActiveFunction = self.isFrameActive
@@ -121,11 +123,13 @@ class CFCollapsedMinimizedView: CFBaseView{
 			closeButton.tintActive()
 			maximizeButton.tintActive()
 			cfGroupButton.tintActive()
+			expandDownwardsButton.tintActive()
 			self.resetCursorRects()
 		}else{
 			closeButton.tintInactive()
 			maximizeButton.tintInactive()
 			cfGroupButton.tintInactive()
+			expandDownwardsButton.tintInactive()
 			self.discardCursorRects()
 		}
 		retinitItems(frameIsActive)

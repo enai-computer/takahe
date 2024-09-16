@@ -218,7 +218,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		collapsedMinimizedView.listOfTabs?.setViews(stackItems, in: .center)
 		
 		groupName = expandedCFView?.cfGroupButton.getName() ?? groupName
-		collapsedMinimizedView.initAfterViewLoad(groupName: groupName)
+		collapsedMinimizedView.initAfterViewLoad(nrOfItems: tabs.count, groupName: groupName)
 		
 		return collapsedMinimizedView
 	}
@@ -256,8 +256,8 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		if(viewState == .expanded){
 			editNameItem = expandedCFView!.cfGroupButton.getNameTileMenuItem()
 			optionalMenuItem = expandedCFView!.cfGroupButton.getRemoveTitleMenuItem()
-		}else if(viewState == .minimised){
-			let minimizedView = self.view as! CFMinimizedView
+		}else if(viewState == .minimised || viewState == .collapsedMinimised){
+			let minimizedView = self.view as! CFHasGroupButtonProtocol
 			editNameItem = minimizedView.cfGroupButton.getNameTileMenuItem()
 			optionalMenuItem = minimizedView.cfGroupButton.getRemoveTitleMenuItem()
 		}else if(viewState == .simpleFrame){
@@ -287,21 +287,19 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 					y: refernceView.cfHeadView.frame.origin.y + 16.0)
 				return (self.view.convert(pInView, to: view.window?.contentView), true)
 			}
-		}else if(viewState == .minimised){
-			if let minimizedView = self.view as? CFMinimizedView{
-				var pInView = minimizedView.frame.origin
-				pInView.x -= 7.0
-				pInView.y += 13.0
-				let globalPointUp = self.view.superview!.convert(pInView, to: view.window?.contentView)
-				
-				//pops up out of bounds/ opens downwards
-				if(view.superview!.visibleRect.maxY < (globalPointUp.y + predictedHight)){
-					pInView = minimizedView.frame.origin
-					pInView.y += 30.0
-					return (self.view.superview!.convert(pInView, to: view.window?.contentView), true)
-				}else{
-					return (globalPointUp, false)
-				}
+		}else if(viewState == .minimised || viewState == .collapsedMinimised){
+			var pInView = view.frame.origin
+			pInView.x -= 7.0
+			pInView.y += 13.0
+			let globalPointUp = self.view.superview!.convert(pInView, to: view.window?.contentView)
+			
+			//pops up out of bounds/ opens downwards
+			if(view.superview!.visibleRect.maxY < (globalPointUp.y + predictedHight)){
+				pInView = view.frame.origin
+				pInView.y += 30.0
+				return (self.view.superview!.convert(pInView, to: view.window?.contentView), true)
+			}else{
+				return (globalPointUp, false)
 			}
 		}else if(viewState == .simpleFrame){
 			if let refernceView = self.view as? CFSimpleFrameView {
@@ -416,7 +414,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	private func minimizeSelfToDefault(){
 		updateTabViewModel()
 		let minimizedView = loadMinimizedView()
-		
+		minimizedView.setFrameOwner(myView.niParentDoc)
 		positionMinimizedView(for: minimizedView)
 		
 		//replace
@@ -565,7 +563,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	
 	func minimizedToExpanded(_ shallSelectTabAt: Int = -1){
 		
-		if let minimizedView = self.view as? CFMinimizedView{
+		if let minimizedView = self.view as? CFHasGroupButtonProtocol{
 			groupName = minimizedView.cfGroupButton.getName()
 		}
 		
@@ -619,6 +617,9 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	}
 	
 	func collapsedToMinimized(){
+		if let viewWithName = view as? CFHasGroupButtonProtocol{
+			groupName = viewWithName.cfGroupButton.getName()
+		}
 		let minimizedView = loadMinimizedView()
 		positionMinimizedView(for: minimizedView)
 		minimizedView.setFrameOwner(myView.niParentDoc)

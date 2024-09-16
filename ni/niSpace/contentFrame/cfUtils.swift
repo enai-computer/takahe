@@ -37,10 +37,16 @@ func genCollapsedMinimzedStackItems(tabs: [TabViewModel], owner: Any?) -> [NSVie
 		if(i == 6 && toManyToDisplay){
 			//TODO: add +X label & break loop
 		}else{
-			guard let img = tab.icon else{continue}
-			let itemView = NSImageView(image: img)
-			itemView.frame.size = CGSize(width: 24.0, height: 24.0)
-			stackItems.append(itemView)
+			if let img = tab.icon{
+				let itemView = NSImageView(image: img)
+				itemView.frame.size = CGSize(width: 24.0, height: 24.0)
+				stackItems.append(itemView)
+			}else{
+				let itemView = NiAsyncImgView()
+				itemView.loadFavIcon(from: tab.content)
+				itemView.frame.size = CGSize(width: 24.0, height: 24.0)
+				stackItems.append(itemView)
+			}
 		}
 	}
 	return stackItems

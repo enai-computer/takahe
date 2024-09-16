@@ -18,3 +18,7 @@ protocol CFFwdBackButtonProtocol{
 	func setBackButtonTint(_ canGoBack: Bool, trigger: NSView) -> Void
 	func setForwardButtonTint(_ canGoFwd: Bool, trigger: NSView) -> Void
 }
+
+protocol CFHasGroupButtonProtocol{
+	var cfGroupButton: CFGroupButton! {get set}
+}
