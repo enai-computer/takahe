@@ -7,9 +7,8 @@
 
 import Cocoa
 
-class CFMinimizedView: CFBaseView{
-	
-	
+class CFMinimizedView: CFBaseView, CFHasGroupButtonProtocol{
+		
 	@IBOutlet var cfGroupButton: CFGroupButton!
 	@IBOutlet var cfHeadView: NSView!
 	@IBOutlet var listOfTabs: NSStackView?
@@ -124,11 +123,13 @@ class CFMinimizedView: CFBaseView{
 		if frameIsActive{
 			closeButton.tintActive()
 			maximizeButton.tintActive()
+			collapseButton.tintActive()
 			cfGroupButton.tintActive()
 			self.resetCursorRects()
 		}else{
 			closeButton.tintInactive()
 			maximizeButton.tintInactive()
+			collapseButton.tintInactive()
 			cfGroupButton.tintInactive()
 			self.discardCursorRects()
 		}
