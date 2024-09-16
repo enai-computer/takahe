@@ -55,6 +55,8 @@
 		CD33621F2BFE0DD0004DBAFB /* CFSoftDeletedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD33621E2BFE0DD0004DBAFB /* CFSoftDeletedView.swift */; };
 		CD3362212BFE0DDC004DBAFB /* CFSoftDeletedView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD3362202BFE0DDC004DBAFB /* CFSoftDeletedView.xib */; };
 		CD3BF3D02C10A133003DA615 /* NewSpaceNote.json in Resources */ = {isa = PBXBuildFile; fileRef = CD3BF3CF2C10A133003DA615 /* NewSpaceNote.json */; };
+		CD402C2A2C982FEE004D9538 /* CFCollapsedMinimizedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD402C292C982FEE004D9538 /* CFCollapsedMinimizedView.swift */; };
+		CD402C2C2C98300A004D9538 /* CFCollapsedMinimizedView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD402C2B2C98300A004D9538 /* CFCollapsedMinimizedView.xib */; };
 		CD410AE02C285AC700EC5DF7 /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD410ADF2C285AC700EC5DF7 /* UserSettings.swift */; };
 		CD410AE22C285C3C00EC5DF7 /* NiUsersSettingsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD410AE12C285C3C00EC5DF7 /* NiUsersSettingsModel.swift */; };
 		CD42CEC92BDA48180039814D /* NiScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD42CEC82BDA48180039814D /* NiScrollView.swift */; };
@@ -255,6 +257,8 @@
 		CD33621E2BFE0DD0004DBAFB /* CFSoftDeletedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CFSoftDeletedView.swift; sourceTree = "<group>"; };
 		CD3362202BFE0DDC004DBAFB /* CFSoftDeletedView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CFSoftDeletedView.xib; sourceTree = "<group>"; };
 		CD3BF3CF2C10A133003DA615 /* NewSpaceNote.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = NewSpaceNote.json; sourceTree = "<group>"; };
+		CD402C292C982FEE004D9538 /* CFCollapsedMinimizedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CFCollapsedMinimizedView.swift; sourceTree = "<group>"; };
+		CD402C2B2C98300A004D9538 /* CFCollapsedMinimizedView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CFCollapsedMinimizedView.xib; sourceTree = "<group>"; };
 		CD410ADF2C285AC700EC5DF7 /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
 		CD410AE12C285C3C00EC5DF7 /* NiUsersSettingsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiUsersSettingsModel.swift; sourceTree = "<group>"; };
 		CD42CEC82BDA48180039814D /* NiScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiScrollView.swift; sourceTree = "<group>"; };
@@ -468,6 +472,7 @@
 		A1E41BFD2ACB684F00338417 /* contentFrame */ = {
 			isa = PBXGroup;
 			children = (
+				CD402C282C982FB2004D9538 /* CFCollapsedMinimized */,
 				CD59FA0C2C345C9200CFB8DE /* NiPdfViewElements */,
 				CD9B96BD2C0733C800998CE2 /* NiImgViewElements */,
 				CD66CE312B1F7AFF0006BB98 /* NiWebViewElements */,
@@ -564,6 +569,15 @@
 				CD3362202BFE0DDC004DBAFB /* CFSoftDeletedView.xib */,
 			);
 			path = CFSoftDeleted;
+			sourceTree = "<group>";
+		};
+		CD402C282C982FB2004D9538 /* CFCollapsedMinimized */ = {
+			isa = PBXGroup;
+			children = (
+				CD402C292C982FEE004D9538 /* CFCollapsedMinimizedView.swift */,
+				CD402C2B2C98300A004D9538 /* CFCollapsedMinimizedView.xib */,
+			);
+			path = CFCollapsedMinimized;
 			sourceTree = "<group>";
 		};
 		CD4E0E392C41644500273109 /* CFSimpleMinimized */ = {
@@ -1074,6 +1088,7 @@
 				CDA639562BF50596001941DE /* welcomeConfig.json in Resources */,
 				CD6317ED2BC4852300434D56 /* sohne-leicht.ttf in Resources */,
 				CD618D902C2B2B8E006869AF /* EC9DF222-0555-41E2-A1E8-F36CD5CF2456.jpg in Resources */,
+				CD402C2C2C98300A004D9538 /* CFCollapsedMinimizedView.xib in Resources */,
 				CD618D922C2B2B9E006869AF /* DABFED28-717B-4E91-BBCA-3F7936E1ABC9.jpg in Resources */,
 				A14E8F252AD5EADF00409DDF /* NiSpaceView.xib in Resources */,
 				CD2D8E7C2C4EB976003AED25 /* toolsmith.pdf in Resources */,
@@ -1141,6 +1156,7 @@
 				CD410AE22C285C3C00EC5DF7 /* NiUsersSettingsModel.swift in Sources */,
 				CDE76C1C2BC6989000CE9513 /* TabViewModel.swift in Sources */,
 				CDF0DD202C202B71006C4EF4 /* NiHomeWindowDelegate.swift in Sources */,
+				CD402C2A2C982FEE004D9538 /* CFCollapsedMinimizedView.swift in Sources */,
 				CD04974C2C120ABE00C44021 /* CFGroupButton.swift in Sources */,
 				CDD6B9402B169F7700C6144D /* DocumentTable.swift in Sources */,
 				CDD6B9452B16A1A200C6144D /* CachedWebTable.swift in Sources */,
@@ -1401,7 +1417,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = "0.1.7 --- 2024-09-13.1";
+				CURRENT_PROJECT_VERSION = "0.1.7 --- 2024-09-16.1";
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = SNXQ3BDQ5V;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -1434,7 +1450,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = "0.1.7 --- 2024-09-13.1";
+				CURRENT_PROJECT_VERSION = "0.1.7 --- 2024-09-16.1";
 				DEAD_CODE_STRIPPING = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;

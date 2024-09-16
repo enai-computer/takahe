@@ -28,3 +28,20 @@ func genMinimizedStackItems(tabs: [TabViewModel], owner: Any?) -> [CFMinimizedSt
 
 	return stackItems
 }
+
+func genCollapsedMinimzedStackItems(tabs: [TabViewModel], owner: Any?) -> [NSView]{
+	var stackItems: [NSView] = []
+	let toManyToDisplay: Bool = 7 < tabs.count
+	
+	for (i, tab) in tabs.enumerated(){
+		if(i == 6 && toManyToDisplay){
+			//TODO: add +X label & break loop
+		}else{
+			guard let img = tab.icon else{continue}
+			let itemView = NSImageView(image: img)
+			itemView.frame.size = CGSize(width: 24.0, height: 24.0)
+			stackItems.append(itemView)
+		}
+	}
+	return stackItems
+}

@@ -55,18 +55,27 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	}
 	
 	override func loadView() {
-		if(viewState == .minimised){
-			loadAndDisplayMinimizedView()
-		}else if(viewState == .frameless){
-			loadAndDisplayFramelessView()
-		}else if(viewState == .simpleFrame){
-			loadAndDisplaySimpleFrameView()
-		}else if(viewState == .simpleMinimised){
-			loadAndDisplaySimpleMinimizedView()
-		}else if(viewState == .fullscreen){
-			loadAndDisplayFullscreenView()
-		}else{
-			loadAndDisplayDefaultView()
+		switch(viewState){
+			case .minimised:
+				loadAndDisplayMinimizedView()
+				return
+			case .collapsedMinimised:
+				loadAndDisplayCollapsedMinimizedView()
+				return
+			case .simpleMinimised:
+				loadAndDisplaySimpleMinimizedView()
+				return
+			case .frameless:
+				loadAndDisplayFramelessView()
+				return
+			case .simpleFrame:
+				loadAndDisplaySimpleFrameView()
+				return
+			case .fullscreen:
+				loadAndDisplayFullscreenView()
+				return
+			default:
+				loadAndDisplayDefaultView()
 		}
 	}
 	
@@ -172,6 +181,16 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		let minimizedView = loadMinimizedView()
 		minimizedView.cfGroupButton.setView(title: groupName)
 		self.view = minimizedView
+		self.viewState = .minimised
+		
+		sharedLoadViewSetters()
+	}
+	
+	private func loadAndDisplayCollapsedMinimizedView(){
+		let collapsedMinimized = loadCollapsedMinizedView()
+		self.view = collapsedMinimized
+		self.viewState = .collapsedMinimised
+		
 		sharedLoadViewSetters()
 	}
 	
@@ -179,7 +198,6 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		let minimizedView = (NSView.loadFromNib(nibName: "CFMinimizedView", owner: self) as! CFMinimizedView)
 		
 		//if loaded when space is generated from storage this value will be overwritten
-		minimizedView.setFrameOwner(expandedCFView?.niParentDoc)
 		minimizedView.setSelfController(self)
 		
 		let stackItems = genMinimizedStackItems(tabs: tabs, owner: self)
@@ -188,10 +206,21 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		//FIXME: clean up tech debt and do some binding here
 		groupName = expandedCFView?.cfGroupButton.getName() ?? groupName
 		minimizedView.initAfterViewLoad(nrOfItems: stackItems.count, groupName: groupName)
-		
-		self.viewState = .minimised
-		
 		return minimizedView
+	}
+	
+	private func loadCollapsedMinizedView() -> CFCollapsedMinimizedView{
+		let collapsedMinimizedView = (NSView.loadFromNib(nibName: "CFCollapsedMinimizedView", owner: self) as! CFCollapsedMinimizedView)
+		
+		collapsedMinimizedView.setSelfController(self)
+		
+		let stackItems = genCollapsedMinimzedStackItems(tabs: tabs, owner: self)
+		collapsedMinimizedView.listOfTabs?.setViews(stackItems, in: .center)
+		
+		groupName = expandedCFView?.cfGroupButton.getName() ?? groupName
+		collapsedMinimizedView.initAfterViewLoad(groupName: groupName)
+		
+		return collapsedMinimizedView
 	}
 	
 	private func sharedLoadViewSetters(){
@@ -392,8 +421,9 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		
 		//replace
 		self.view.superview?.replaceSubview(self.view, with: minimizedView)
-		
 		self.view = minimizedView
+		self.viewState = .minimised
+		
 		sharedLoadViewSetters()
 		
 		self.myView.niParentDoc?.setTopNiFrame(self)
@@ -556,10 +586,10 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		//replace
 		self.view.superview?.replaceSubview(self.view, with: expandedCFView!)
 		self.view = expandedCFView!
+		self.viewState = .expanded
 		
 		expandedCFView?.cfGroupButton.setView(title: groupName)
 		
-		self.viewState = .expanded
 		if(0 <= shallSelectTabAt){
 			forceSelectTab(at: shallSelectTabAt)
 		}else{
@@ -568,6 +598,36 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		
 		self.expandedCFView!.niParentDoc?.setTopNiFrame(self)
 		
+		sharedLoadViewSetters()
+	}
+	
+	func minimizedToCollapsed(){
+		if let minimizedView = self.view as? CFMinimizedView{
+			groupName = minimizedView.cfGroupButton.getName()
+		}
+		let collapsedView = loadCollapsedMinizedView()
+		positionMinimizedView(for: collapsedView)
+		collapsedView.setFrameOwner(myView.niParentDoc)
+		
+		//replace
+		self.view.superview?.replaceSubview(self.view, with: collapsedView)
+		self.view = collapsedView
+		self.viewState = .collapsedMinimised
+		
+		self.myView.niParentDoc?.setTopNiFrame(self)
+		sharedLoadViewSetters()
+	}
+	
+	func collapsedToMinimized(){
+		let minimizedView = loadMinimizedView()
+		positionMinimizedView(for: minimizedView)
+		minimizedView.setFrameOwner(myView.niParentDoc)
+		
+		self.view.superview?.replaceSubview(self.view, with: minimizedView)
+		self.view = minimizedView
+		self.viewState = .minimised
+		
+		self.myView.niParentDoc?.setTopNiFrame(self)
 		sharedLoadViewSetters()
 	}
 	

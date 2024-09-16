@@ -1,31 +1,27 @@
 //
-//  CFMinimizedView.swift
+//  CFCollapsedMinimizedView.swift
 //  ni
 //
-//  Created by Patrick Lukas on 7/5/24.
+//  Created by Patrick Lukas on 16/9/24.
 //
 
 import Cocoa
 
-class CFMinimizedView: CFBaseView{
-	
+class CFCollapsedMinimizedView: CFBaseView{
 	
 	@IBOutlet var cfGroupButton: CFGroupButton!
 	@IBOutlet var cfHeadView: NSView!
 	@IBOutlet var listOfTabs: NSStackView?
 	@IBOutlet var maximizeButton: NiActionImage!
-	@IBOutlet var collapseButton: NiActionImage!
+	@IBOutlet var expandDownwardsButton: NiActionImage!
 	@IBOutlet var closeButton: NiActionImage!
-	
-	private var groupButtonLeftConstraint: NSLayoutConstraint?
 	
 	required init?(coder: NSCoder) {
 		super.init(coder: coder)
 	}
 	
-	func initAfterViewLoad(nrOfItems: Int, groupName: String?){
-		frame.size.height = Double(nrOfItems) * 39.0 + 36.0
-		
+	func initAfterViewLoad(groupName: String?){
+
 		self.wantsLayer = true
 		self.layer?.shadowColor = NSColor.sand9.cgColor
 		self.layer?.shadowOffset = CGSize(width: 0.0, height: 0.0)
@@ -41,9 +37,9 @@ class CFMinimizedView: CFBaseView{
 		maximizeButton.isActiveFunction = self.isFrameActive
 		maximizeButton.mouseDownInActiveFunction = activateContentFrame
 		
-		collapseButton.setMouseDownFunction(collapseButtonClicked)
-		collapseButton.isActiveFunction = self.isFrameActive
-		collapseButton.mouseDownInActiveFunction = activateContentFrame
+		expandDownwardsButton.setMouseDownFunction(expandDownwardsButtonClicked)
+		expandDownwardsButton.isActiveFunction = self.isFrameActive
+		expandDownwardsButton.mouseDownInActiveFunction = activateContentFrame
 		
 		cfGroupButton.initButton(
 			mouseDownFunction: clickedGroupButton,
@@ -65,8 +61,8 @@ class CFMinimizedView: CFBaseView{
 		myController?.minimizedToExpanded()
 	}
 	
-	func collapseButtonClicked(with event: NSEvent){
-		myController?.minimizedToCollapsed()
+	func expandDownwardsButtonClicked(with event: NSEvent){
+		myController?.collapsedToMinimized()
 	}
 	
 	override func mouseDown(with event: NSEvent) {
@@ -165,5 +161,4 @@ class CFMinimizedView: CFBaseView{
 		let width = maximizeButton.frame.minX - cfGroupButton.frame.maxX
 		return NSRect(x: cfGroupButton.frame.maxX, y: cfHeadView.frame.origin.y, width: width, height: cfHeadView.frame.height)
 	}
-	
 }
