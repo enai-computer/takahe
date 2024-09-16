@@ -30,6 +30,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	private(set) var aTabIsInEditingMode: Bool = false
 	private(set) var tabs: [TabViewModel] = []
 	var viewState: NiConentFrameState = .expanded
+	private var viewIsDrawn = false
 	
 	private var closeCancelled = false
 	private(set) var closeTriggered = false
@@ -67,6 +68,16 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		}else{
 			loadAndDisplayDefaultView()
 		}
+	}
+	
+	override func viewDidAppear() {
+		super.viewDidAppear()
+		viewIsDrawn = true
+	}
+	
+	override func viewWillDisappear() {
+		super.viewWillDisappear()
+		viewIsDrawn = false
 	}
 	
 	private func loadAndDisplayDefaultView(){
@@ -1218,6 +1229,8 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	}
 	
 	func niWebViewTitleChanged(_ webView: NiWebView){
+		guard viewIsDrawn else {return}
+		
 		if(viewState == .simpleFrame){
 			simpleFrame?.cfGroupButton.setView(title: webView.getTitle())
 			return
