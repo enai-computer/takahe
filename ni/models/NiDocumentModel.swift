@@ -127,10 +127,10 @@ struct NiCFTabModel: Codable{
 // MARK: -  Content Frame Model:
 
 enum NiConentFrameState: String, Codable {
-    case minimised, expanded, frameless, simpleFrame, simpleMinimised, fullscreen
+    case collapsedMinimised, minimised, expanded, frameless, simpleFrame, simpleMinimised, fullscreen
 	
 	func isMinimized() -> Bool{
-		if(self == .minimised || self == .simpleMinimised){
+		if(self == .minimised || self == .simpleMinimised || self == .collapsedMinimised){
 			return true
 		}
 		return false

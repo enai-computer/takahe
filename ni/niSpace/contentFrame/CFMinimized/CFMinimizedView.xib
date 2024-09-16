@@ -27,7 +27,7 @@
                                 </constraints>
                             </customView>
                             <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wU3-64-xsG" customClass="NiActionImage" customModule="ni" customModuleProvider="target">
-                                <rect key="frame" x="201" y="7" width="24" height="24"/>
+                                <rect key="frame" x="177" y="7" width="24" height="24"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                 <imageCell key="cell" alignment="left" animates="YES" imageScaling="proportionallyDown" image="maximize" id="7UH-Zl-Nr2"/>
                             </imageView>
@@ -35,6 +35,11 @@
                                 <rect key="frame" x="225" y="7" width="24" height="24"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                 <imageCell key="cell" alignment="left" animates="YES" imageScaling="proportionallyDown" image="close" id="we1-TF-fUo"/>
+                            </imageView>
+                            <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IVm-pg-XRQ" customClass="NiActionImage" customModule="ni" customModuleProvider="target">
+                                <rect key="frame" x="201" y="7" width="24" height="24"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="arrowWBarUp" id="Hbq-8N-2nW"/>
                             </imageView>
                         </subviews>
                         <constraints>
@@ -53,6 +58,7 @@
                 <outlet property="cfGroupButton" destination="XBa-fO-QLJ" id="GUc-O2-N0a"/>
                 <outlet property="cfHeadView" destination="c22-O7-iKe" id="WnO-fb-i7N"/>
                 <outlet property="closeButton" destination="SPA-y8-ymH" id="6IE-dU-G1B"/>
+                <outlet property="collapseButton" destination="IVm-pg-XRQ" id="jTX-cE-0ZI"/>
                 <outlet property="listOfTabs" destination="v3S-NA-oVt" id="reL-19-mRB"/>
                 <outlet property="maximizeButton" destination="wU3-64-xsG" id="Iwa-Nh-s9x"/>
             </connections>
@@ -60,6 +66,7 @@
         </box>
     </objects>
     <resources>
+        <image name="arrowWBarUp" width="24" height="24"/>
         <image name="close" width="24" height="24"/>
         <image name="maximize" width="24" height="24"/>
         <namedColor name="sand4">

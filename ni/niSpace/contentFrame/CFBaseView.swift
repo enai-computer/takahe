@@ -133,7 +133,7 @@ class CFBaseView: NSBox{
 	 * MARK: reposition and resize here. To be called by mouseDragged functions
 	 */
 	func repositionView(_ xDiff: Double, _ yDiff: Double) {
-		
+		guard niParentDoc != nil else {return}
 		let docW = self.niParentDoc!.frame.size.width
 		let docHeight = self.niParentDoc!.frame.size.height
 		
