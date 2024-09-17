@@ -9,6 +9,7 @@ import Cocoa
 
 protocol NiMouseDownHandler{
 	func niLeftMouseDown(trigger: NSView, context: Any?)
+	func isFrameActive() -> Bool
 }
 
 class NiAsyncImgView: NSView{
@@ -32,6 +33,9 @@ class NiAsyncImgView: NSView{
 		}else{
 			super.init(frame: frame!)
 		}
+		let hoverEffect = NSTrackingArea.init(rect: self.bounds, options: [.mouseEnteredAndExited, .activeInKeyWindow], owner: self, userInfo: nil)
+		self.addTrackingArea(hoverEffect)
+		self.alphaValue = 0.7
 	}
 	
 	required init?(coder: NSCoder) {
@@ -70,5 +74,16 @@ class NiAsyncImgView: NSView{
 	override func mouseDown(with event: NSEvent) {
 		guard self.image != nil else {return}
 		mouseHandler?.niLeftMouseDown(trigger: self, context: mouseDownContext)
+	}
+	
+	override func mouseEntered(with event: NSEvent) {
+		if(mouseHandler?.isFrameActive() == false){
+			return
+		}
+		self.alphaValue = 1.0
+	}
+	
+	override func mouseExited(with event: NSEvent) {
+		self.alphaValue = 0.7
 	}
 }
