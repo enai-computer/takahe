@@ -345,9 +345,12 @@ class CFGroupButton: NSView, NSTextFieldDelegate{
 		mouseDownInActiveFunction = nil
 		isActiveFunction = nil
 		titleChangedCallback = nil
-		groupIcon?.setMouseDownFunction(nil)
-		groupIcon?.mouseDownInActiveFunction = nil
-		groupIcon?.isActiveFunction = nil
+		groupIcon?.deinitSelf()
+		
+		if(hoverEffect != nil){
+			self.removeTrackingArea(hoverEffect!)
+		}
+		hoverEffect = nil
 	}
 }
 

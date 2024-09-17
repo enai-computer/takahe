@@ -157,6 +157,7 @@ class CFMinimizedView: CFBaseView, CFHasGroupButtonProtocol{
 		closeButton.deinitSelf()
 		maximizeButton.deinitSelf()
 		cfGroupButton.deinitSelf()
+		collapseButton.deinitSelf()
 		listOfTabs?.removeFromSuperviewWithoutNeedingDisplay()
 		listOfTabs = nil
 		super.deinitSelf()

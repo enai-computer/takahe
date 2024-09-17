@@ -7,9 +7,41 @@
 
 import Cocoa
 
+protocol NiMouseDownHandler{
+	func niLeftMouseDown(trigger: NSView, context: Any?)
+}
+
 class NiAsyncImgView: NSView{
 	
+	private weak var mouseHandlerStorage: NSObject?
+	private var mouseHandler: NiMouseDownHandler? {return mouseHandlerStorage as? NiMouseDownHandler}
+	private var mouseDownContext: Any?
 	private var image: NSImage?
+	
+	init(mouseHandler: NiMouseDownHandler,
+		 mouseDownContext: Any? = nil,
+		 frame: NSRect? = nil
+	){
+		if let mhObj = mouseHandler as? NSObject{
+			self.mouseHandlerStorage = mhObj
+		}
+		self.mouseDownContext = mouseDownContext
+		
+		if(frame == nil){
+			super.init(frame: NSRect(x: 0, y: 0, width: 24, height: 24))
+		}else{
+			super.init(frame: frame!)
+		}
+	}
+	
+	required init?(coder: NSCoder) {
+		fatalError("Not implemented")
+	}
+	
+	func setImage(_ img: NSImage){
+		self.image = img
+		self.needsDisplay = true
+	}
 	
 	func loadFavIcon(from urlStr: String?) {
 		guard let url: String = urlStr else {return}
@@ -33,5 +65,10 @@ class NiAsyncImgView: NSView{
 			return
 		}
 		image.draw(in: bounds)
-	}	
+	}
+	
+	override func mouseDown(with event: NSEvent) {
+		guard self.image != nil else {return}
+		mouseHandler?.niLeftMouseDown(trigger: self, context: mouseDownContext)
+	}
 }
