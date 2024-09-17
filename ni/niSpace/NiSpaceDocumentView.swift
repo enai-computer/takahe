@@ -15,6 +15,7 @@ class NiSpaceDocumentView: NSView{
 	private let DEFAULT_WINDOW_HEIGHT: CGFloat = 1400.0
 	
 	private(set) var topNiFrame: ContentFrameController? = nil
+	private var nxtTopZPosition: CGFloat = 0.0
 	private(set) var contentFrameControllers: Set<ContentFrameController> = []	//rn all niFrames are drawn. Needs to be reworked in future
 	
 	init(with size: CGSize){
@@ -67,6 +68,12 @@ class NiSpaceDocumentView: NSView{
 	
 	func removeNiFrame(_ subViewController: ContentFrameController){
 		contentFrameControllers.remove(subViewController)
+		if(topNiFrame == subViewController){
+			if let zPos = topNiFrame?.view.layer?.zPosition{
+				nxtTopZPosition = zPos
+			}
+			topNiFrame = nil
+		}
 	}
 
 	/**
@@ -80,19 +87,17 @@ class NiSpaceDocumentView: NSView{
 			newTopFrame.toggleActive()
 			return
 		}
-		let zPosOldTopNiFrame = topNiFrame?.view.layer?.zPosition
+		let zPosOldTopNiFrame = topNiFrame?.view.layer?.zPosition ?? nxtTopZPosition
         topNiFrame?.toggleActive()
         
         //switch
 		newTopFrame.view.removeFromSuperview()
 		self.addSubview(newTopFrame.view)
-		if zPosOldTopNiFrame != nil {
-			//TODO: fix at some point. May cause stack-overflow
-			//on document reload zPostions are regiven, so we renumber them from 0 upwards
-			newTopFrame.view.layer?.zPosition = zPosOldTopNiFrame! + 1
-		}else{
-			newTopFrame.view.layer?.zPosition = 0
-		}
+		
+		//TODO: fix at some point. May cause stack-overflow
+		//on document reload zPostions are regiven, so we renumber them from 0 upwards
+		newTopFrame.view.layer?.zPosition = zPosOldTopNiFrame + 1
+
         topNiFrame = newTopFrame
 		
 		//in case the frame was already active before this function call, we do not want to deactivate it
