@@ -137,8 +137,18 @@ enum NiConentFrameState: String, Codable {
 	}
 }
 
+enum NiCFCollapseDirection: String, Codable{
+	case leftToRight, rightToLeft
+}
+
+struct NiPreviousDisplayState: Codable{
+	var state: NiConentFrameState
+	var expandCollapseDirection: NiCFCollapseDirection
+}
+
 struct NiContentFrameModel: Codable{
     var state: NiConentFrameState
+	var previousDisplayState: NiPreviousDisplayState?
     var height: NiCoordinate
     var width: NiCoordinate
     var position: NiViewPosition

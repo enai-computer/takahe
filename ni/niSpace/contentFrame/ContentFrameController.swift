@@ -36,17 +36,22 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	private(set) var closeTriggered = false
 	
 	private var groupName: String?
-	
+	private var prevDisplayState: NiPreviousDisplayState?
 	
 	/*
 	 * MARK: init & view loading here
 	 */
-	init(viewState: NiConentFrameState, groupName: String?, tabsModel: [TabViewModel]? = nil){
+	init(viewState: NiConentFrameState, 
+		 groupName: String?,
+		 tabsModel: [TabViewModel]? = nil,
+		 previousDisplayState: NiPreviousDisplayState? = nil
+	){
 		self.viewState = viewState
 		self.groupName = groupName
 		if(tabsModel != nil){
 			self.tabs = tabsModel!
 		}
+		self.prevDisplayState = previousDisplayState
 		super.init(nibName: nil, bundle: nil)
 	}
 	
@@ -344,7 +349,6 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 			softDeletedView.initAfterViewLoad()
 		}
 		
-		
 		var undoOrigin = topRightCorner
 		undoOrigin.x = undoOrigin.x - softDeletedView.frame.width
 		softDeletedView.frame.origin = undoOrigin
@@ -411,20 +415,38 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	/*
 	 * MARK: minimizing, expanding and maximizing
 	 */
+	func minimizeSelf(){
+		if(viewState == .expanded && (prevDisplayState == nil || prevDisplayState?.state == .minimised)){
+			minimizeSelfToDefault()
+		}else if(viewState == .expanded
+				 && prevDisplayState != nil
+				 && prevDisplayState!.state == .collapsedMinimised){
+			minimizeToCollapsed()
+		}
+		else if(viewState == .simpleFrame){
+			minimizeSelfToSimple()
+		}
+	}
+	
+	func minimizeClicked(_ event: NSEvent) {
+		minimizeSelf()
+	}
+	
 	private func minimizeSelfToDefault(){
 		updateTabViewModel()
 		let minimizedView = loadMinimizedView()
 		minimizedView.setFrameOwner(myView.niParentDoc)
 		positionMinimizedView(for: minimizedView)
 		
+		prevDisplayState = nil
+		
 		//replace
 		self.view.superview?.replaceSubview(self.view, with: minimizedView)
 		self.view = minimizedView
 		self.viewState = .minimised
 		
-		sharedLoadViewSetters()
-		
 		self.myView.niParentDoc?.setTopNiFrame(self)
+		sharedLoadViewSetters()
 	}
 	
 	private func minimizeSelfToSimple(){
@@ -460,18 +482,6 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		if(self.view.layer != nil){
 			minimizedView.layer?.zPosition = self.view.layer!.zPosition
 		}
-	}
-	
-	func minimizeSelf(){
-		if(viewState == .expanded){
-			minimizeSelfToDefault()
-		}else if(viewState == .simpleFrame){
-			minimizeSelfToSimple()
-		}
-	}
-	
-	func minimizeClicked(_ event: NSEvent) {
-		minimizeSelf()
 	}
 	
 	func maximizeClicked(_ event: NSEvent){
@@ -554,7 +564,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	}
 	
 	func maximizeSelf(){
-		if(viewState == .minimised){
+		if(viewState == .minimised || viewState == .collapsedMinimised){
 			minimizedToExpanded()
 		}else if(viewState == .simpleMinimised){
 			simpleMinimizedToSimpleFrame()
@@ -581,6 +591,11 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		}
 		positionBiggerView(for: expandedCFView!)
 		
+		prevDisplayState = NiPreviousDisplayState(
+			state: viewState,
+			expandCollapseDirection: .leftToRight
+		)
+		
 		//replace
 		self.view.superview?.replaceSubview(self.view, with: expandedCFView!)
 		self.view = expandedCFView!
@@ -599,13 +614,16 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		sharedLoadViewSetters()
 	}
 	
-	func minimizedToCollapsed(){
-		if let minimizedView = self.view as? CFMinimizedView{
-			groupName = minimizedView.cfGroupButton.getName()
+	func minimizeToCollapsed(){
+		updateTabViewModel()
+		if let oldView = self.view as? CFHasGroupButtonProtocol{
+			groupName = oldView.cfGroupButton.getName()
 		}
 		let collapsedView = loadCollapsedMinizedView()
 		positionMinimizedView(for: collapsedView)
 		collapsedView.setFrameOwner(myView.niParentDoc)
+		
+		prevDisplayState = nil
 		
 		//replace
 		self.view.superview?.replaceSubview(self.view, with: collapsedView)
@@ -1491,12 +1509,12 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		
 		updateGroupName()
 		
-		//FIXME: this does not work :cry:
 		let posInStack = Int(view.layer!.zPosition)
 		let model = NiDocumentObjectModel(
 			type: NiDocumentObjectTypes.contentFrame,
 			data: NiContentFrameModel(
 				state: self.viewState,
+				previousDisplayState: self.prevDisplayState,
 				height: NiCoordinate(px: view.frame.height),
 				width: NiCoordinate(px: view.frame.width),
 				position: NiViewPosition(
@@ -1533,16 +1551,6 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	}
 	
 	func deinitSelf(){
-//		if let nrOfTabHeadItems: Int = expandedCFView?.cfTabHeadCollection?.numberOfItems(inSection: 0){
-//			var i = 0
-//			while(i < nrOfTabHeadItems){
-//				if let tabHead = expandedCFView?.cfTabHeadCollection?.item(at: i) as? ContentFrameTabHead{
-//					tabHead.deinitSelf()
-//					print("deinited tabHed nr: \(i)")
-//				}
-//				i += 1
-//			}
-//		}
 		myView.removeFromSuperviewWithoutNeedingDisplay()
 		for t in tabs{
 			t.viewItem?.spaceRemovedFromMemory()

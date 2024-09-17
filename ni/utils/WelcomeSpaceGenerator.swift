@@ -40,6 +40,7 @@ class WelcomeSpaceGenerator{
 			let cfController = reopenContentFrameWithOutPositioning(
 				screenWidth: screenSize.width,
 				contentFrameState: window.state,
+				prevState: nil,
 				tabViewModels: tabs,
 				groupName: window.windowName
 			)
@@ -62,6 +63,7 @@ class WelcomeSpaceGenerator{
 			let cfController = reopenContentFrameWithOutPositioning(
 				screenWidth: screenSize.width,
 				contentFrameState: .simpleMinimised,
+				prevState: nil,
 				tabViewModels: [pdfTab],
 				groupName: pdfTab.title)
 			cfController.view.frame = positionWindow(

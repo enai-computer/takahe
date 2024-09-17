@@ -6,7 +6,7 @@ import WebKit
 import QuartzCore
 
 
-class ContentFrameView: CFBaseView, CFTabHeadProtocol, CFFwdBackButtonProtocol{
+class ContentFrameView: CFBaseView, CFTabHeadProtocol, CFFwdBackButtonProtocol, CFHasGroupButtonProtocol{
         
 	//Header
 	@IBOutlet var cfHeadView: ContentFrameHeadView!
