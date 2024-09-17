@@ -147,8 +147,12 @@ class CFCollapsedMinimizedView: CFBaseView, CFHasGroupButtonProtocol, NiMouseDow
 	
 	private func retinitItems(_ frameIsActive: Bool){
 		for item in listOfTabs!.views{
-			if let itemView = item as? CFMinimizedStackItem{
-				itemView.updateTextTint(frameIsActive)
+			if let itemView = item as? NSTextField{
+				if(frameIsActive){
+					itemView.textColor = .sand115
+				}else{
+					itemView.textColor = NSColor(.sand8)
+				}
 			}
 		}
 	}
