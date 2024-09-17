@@ -219,7 +219,9 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		
 		collapsedMinimizedView.setSelfController(self)
 		
-		let stackItems = genCollapsedMinimzedStackItems(tabs: tabs, owner: self)
+		let stackItems = genCollapsedMinimzedStackItems(
+			tabs: tabs,
+			handler: collapsedMinimizedView)
 		collapsedMinimizedView.listOfTabs?.setViews(stackItems, in: .center)
 		
 		groupName = expandedCFView?.cfGroupButton.getName() ?? groupName
@@ -598,6 +600,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		
 		//replace
 		self.view.superview?.replaceSubview(self.view, with: expandedCFView!)
+		self.myView.deinitSelf()
 		self.view = expandedCFView!
 		self.viewState = .expanded
 		

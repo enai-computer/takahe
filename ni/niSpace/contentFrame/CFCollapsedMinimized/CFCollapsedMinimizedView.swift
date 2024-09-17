@@ -7,7 +7,7 @@
 
 import Cocoa
 
-class CFCollapsedMinimizedView: CFBaseView, CFHasGroupButtonProtocol{
+class CFCollapsedMinimizedView: CFBaseView, CFHasGroupButtonProtocol, NiMouseDownHandler{
 	
 	@IBOutlet var cfGroupButton: CFGroupButton!
 	@IBOutlet var cfHeadView: NSView!
@@ -29,7 +29,11 @@ class CFCollapsedMinimizedView: CFBaseView, CFHasGroupButtonProtocol{
 		self.layer?.shadowRadius = 1.0
 		self.layer?.masksToBounds = false
 	
-		listOfTabs?.frame.size.width = (24.0 + 7.0) * CGFloat(nrOfItems) + 7.0
+		if(nrOfItems < 7){
+			listOfTabs?.frame.size.width = (24.0 + 14.0) * CGFloat(nrOfItems) //+ 7.0
+		}else{
+			listOfTabs?.frame.size.width = (24.0 + 14.0) * 7.0 //+ 7.0
+		}
 		
 		closeButton.setMouseDownFunction(clickedCloseButton)
 		closeButton.isActiveFunction = self.isFrameActive
@@ -116,6 +120,12 @@ class CFCollapsedMinimizedView: CFBaseView, CFHasGroupButtonProtocol{
 		deactivateDocumentResize = false
 	}
 	
+	func niLeftMouseDown(trigger: NSView, context: Any?) {
+		if let pos: Int = context as? Int{
+			myController?.minimizedToExpanded(pos)
+		}
+	}
+	
 	override func toggleActive(){
 		frameIsActive = !frameIsActive
 		
@@ -155,6 +165,7 @@ class CFCollapsedMinimizedView: CFBaseView, CFHasGroupButtonProtocol{
 	override func deinitSelf() {
 		closeButton.deinitSelf()
 		maximizeButton.deinitSelf()
+		expandDownwardsButton.deinitSelf()
 		cfGroupButton.deinitSelf()
 		listOfTabs?.removeFromSuperviewWithoutNeedingDisplay()
 		listOfTabs = nil

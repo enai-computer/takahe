@@ -29,25 +29,47 @@ func genMinimizedStackItems(tabs: [TabViewModel], owner: Any?) -> [CFMinimizedSt
 	return stackItems
 }
 
-func genCollapsedMinimzedStackItems(tabs: [TabViewModel], owner: Any?) -> [NSView]{
+func genCollapsedMinimzedStackItems(
+	tabs: [TabViewModel],
+	handler: CFCollapsedMinimizedView
+) -> [NSView]{
 	var stackItems: [NSView] = []
 	let toManyToDisplay: Bool = 7 < tabs.count
 	
 	for (i, tab) in tabs.enumerated(){
 		if(i == 6 && toManyToDisplay){
-			//TODO: add +X label & break loop
+			stackItems.append(genPlusXItems(tabs.count - 6))
+			break
 		}else{
+			let itemView = NiAsyncImgView(
+				mouseHandler: handler,
+				mouseDownContext: tab.position
+			)
+			
 			if let img = tab.icon{
-				let itemView = NSImageView(image: img)
-				itemView.frame.size = CGSize(width: 24.0, height: 24.0)
-				stackItems.append(itemView)
+				itemView.setImage(img)
 			}else{
-				let itemView = NiAsyncImgView()
 				itemView.loadFavIcon(from: tab.content)
-				itemView.frame.size = CGSize(width: 24.0, height: 24.0)
-				stackItems.append(itemView)
 			}
+			styleCollapsedMinimzedStackItem(itemView)
+			stackItems.append(itemView)
 		}
 	}
 	return stackItems
+}
+
+private func genPlusXItems(_ nrOfAddItems: Int) -> NSView{
+	let item = NSTextField(labelWithString: "+ \(nrOfAddItems)")
+	item.frame.size = CGSize(width: 24.0, height: 24.0)
+	item.textColor = NSColor.sand115
+	item.font = NSFont(name: "Sohne-Buch", size: 16.0)
+	
+	return item
+}
+
+private func styleCollapsedMinimzedStackItem(_ item: NSView){
+	item.wantsLayer = true
+	item.layer?.cornerRadius = 2.0
+	item.layer?.cornerCurve = .continuous
+	item.frame.size = CGSize(width: 24.0, height: 24.0)
 }
