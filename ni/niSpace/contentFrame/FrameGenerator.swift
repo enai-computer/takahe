@@ -17,6 +17,7 @@ func reopenContentFrame(screenSize: CGSize, contentFrame: NiContentFrameModel, t
 	let controller = reopenContentFrameWithOutPositioning(
 		screenWidth: screenSize.width,
 		contentFrameState: contentFrame.state,
+		prevState: contentFrame.previousDisplayState,
 		tabViewModels: tabViewModels,
 		groupName: contentFrame.name
 	)
@@ -42,6 +43,7 @@ func reopenContentFrame(screenSize: CGSize, contentFrame: NiContentFrameModel, t
 func reopenContentFrameWithOutPositioning(
 	screenWidth: CGFloat,
 	contentFrameState: NiConentFrameState,
+	prevState: NiPreviousDisplayState?,
 	tabViewModels: [TabViewModel],
 	groupName: String?
 ) -> ContentFrameController {
@@ -49,11 +51,13 @@ func reopenContentFrameWithOutPositioning(
 	let frameController = if(contentFrameState.isMinimized()){
 		ContentFrameController(viewState: contentFrameState,
 							   groupName: groupName,
-							   tabsModel: tabViewModels)
+							   tabsModel: tabViewModels,
+							   previousDisplayState: prevState
+		)
 	}else{
 		// we are not adding tabViewModel here as opening up a tab down there does that.
 		//FIXME: clean up that tech debt
-		ContentFrameController(viewState: contentFrameState, groupName: groupName)
+		ContentFrameController(viewState: contentFrameState, groupName: groupName, previousDisplayState: prevState)
 	}
 
     frameController.loadView()

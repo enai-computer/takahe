@@ -65,7 +65,7 @@ class CFMinimizedView: CFBaseView, CFHasGroupButtonProtocol{
 	}
 	
 	func collapseButtonClicked(with event: NSEvent){
-		myController?.minimizedToCollapsed()
+		myController?.minimizeToCollapsed()
 	}
 	
 	override func mouseDown(with event: NSEvent) {
