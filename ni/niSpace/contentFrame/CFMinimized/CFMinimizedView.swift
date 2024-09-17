@@ -23,7 +23,7 @@ class CFMinimizedView: CFBaseView, CFHasGroupButtonProtocol{
 	}
 	
 	func initAfterViewLoad(nrOfItems: Int, groupName: String?){
-		frame.size.height = Double(nrOfItems) * 39.0 + 36.0
+		frame.size.height = Double(nrOfItems) * 43.0 + 36.0 + 7.0
 		
 		self.wantsLayer = true
 		self.layer?.shadowColor = NSColor.sand9.cgColor

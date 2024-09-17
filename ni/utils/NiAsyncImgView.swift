@@ -51,7 +51,7 @@ class NiAsyncImgView: NSView{
 		guard let url: String = urlStr else {return}
 
 		Task{ [weak self] in
-				guard let image = await FaviconProvider.instance.fetchIcon(url) else {
+				guard let image = await FaviconProvider.instance.fetchIcon(url) ?? NSImage(named: NSImage.Name("AppIcon")) else {
 					return
 				}
 
