@@ -14,11 +14,15 @@ import vproc
 class BilgePump{
 	
 	private let downloadFolder: URL?
+	private let spaceID: UUID
 	
-	private var appStats = WaterAppStats()
-	private var systemStats = WaterSystemStats(availableNetworks: "")
+	private var report = BilgeWater(
+		appStats: WaterAppStats(),
+		systemStats: WaterSystemStats(availableNetworks: "")
+	)
 	
 	init(openSpaceID: UUID){
+		self.spaceID = openSpaceID
 		do {
 			 downloadFolder = try FileManager.default.url(
 				for: FileManager.SearchPathDirectory.downloadsDirectory,
@@ -31,37 +35,44 @@ class BilgePump{
 		}
 	}
 	
-	func collectBilgeWater(){
+	func collectBilgeWater(currentSpace: (NiDocumentObjectModel, [String: Any])?){
 		appStat()
 		reportSystemStats()
+		
+		report.openSpaceAsPersistedOnDisk = NiSpaceViewController.loadStoredSpace(niSpaceID: spaceID)
+		report.openSpaceAsOnScreen = currentSpace?.0
+		report.spaceAsOnScreenStats = cleanSpaceStats(currentSpace?.1)
 	}
 	
-	private func collectSpaceData(){
-		//nr of open WebViews
-		//nr of open PDFs
-		//nr of content frames in total
-		//complete copy of a space
+	private func cleanSpaceStats(_ optStats: [String: Any]?) -> [String: String]{
+		guard let stats = optStats else {return [:]}
+		
+		var res: [String: String] = [:]
+		for s in stats{
+			if let intVal = s.value as? Int{
+				res[s.key] = String(intVal)
+			}
+			if let doubleVal = s.value as? Double{
+				res[s.key] = String(doubleVal)
+			}
+			if let floatVal = s.value as? CGFloat{
+				res[s.key] = String(Double(floatLiteral: floatVal))
+			}
+			if let strVal = s.value as? String{
+				res[s.key] = strVal
+			}
+		}
+		return res
 	}
 	
 	private func appStat(){
-		appStats.releaseVersionNumer = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
-		appStats.buildVersionNumber = Bundle.main.infoDictionary?["CFBundleVersion"] as? String
+		report.appStats.releaseVersionNumer = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
+		report.appStats.buildVersionNumber = Bundle.main.infoDictionary?["CFBundleVersion"] as? String
 	
 		reportMemory()
 		reportThreadCount()
 	}
-	
-	private func networkStats(){
-		let monitor = NWPathMonitor()
-		monitor.pathUpdateHandler = { path in
-			if(path.status == .satisfied){
-				for p in path.availableInterfaces{
-					self.systemStats.availableNetworks += (p.name + " - ")
-				}
-			}
-		}
-	}
-	
+		
 	private func reportMemory() {
 		var taskInfo = mach_task_basic_info()
 		var count = mach_msg_type_number_t(MemoryLayout<mach_task_basic_info>.size)/4
@@ -72,7 +83,7 @@ class BilgePump{
 		}
 
 		if kerr == KERN_SUCCESS {
-			appStats.memoryUsedInKBytes = "\((taskInfo.resident_size/1024))"
+			report.appStats.memoryUsedInKBytes = "\((taskInfo.resident_size/1024))"
 		}
 		else {
 			print("Error with task_info(): " +
@@ -87,20 +98,34 @@ class BilgePump{
 		let result = task_threads(mach_task_self_, &threadList, &threadCount)
 
 		if result == KERN_SUCCESS {
-			appStats.threadCount = "\(threadCount)"
+			report.appStats.threadCount = "\(threadCount)"
 		}
 	}
 	
 	private func reportSystemStats(){
 		let totalMemory = ProcessInfo.processInfo.physicalMemory
-		let totalMemoryInGB = Double(totalMemory) / 1_000_000_000.0
+		report.systemStats.totalMemoryInGB = "\(Double(totalMemory) / 1_000_000_000.0)"
 
-		systemStats.osVersion = ProcessInfo.processInfo.operatingSystemVersionString
+		report.systemStats.osVersion = ProcessInfo.processInfo.operatingSystemVersionString
 			
-		systemStats.activeProcessorCount = ProcessInfo.processInfo.activeProcessorCount
-		systemStats.processorCount = ProcessInfo.processInfo.processorCount
-		systemStats.isLowerPowerModeEnabled = ProcessInfo.processInfo.isLowPowerModeEnabled
-		systemStats.systemUptime = "\(ProcessInfo.processInfo.systemUptime)"
+		report.systemStats.activeProcessorCount = ProcessInfo.processInfo.activeProcessorCount
+		report.systemStats.processorCount = ProcessInfo.processInfo.processorCount
+		report.systemStats.isLowerPowerModeEnabled = ProcessInfo.processInfo.isLowPowerModeEnabled
+		report.systemStats.systemUptime = "\(ProcessInfo.processInfo.systemUptime)"
+	}
+	
+	private func reportNetworkStats(){
+		let monitor = NWPathMonitor()
+		monitor.pathUpdateHandler = { path in
+			if(path.status == .satisfied){
+				for p in path.availableInterfaces{
+					self.report.systemStats.availableNetworks += (p.name + " - ")
+				}
+			}
+			//todo: send signal, that report is ready for export
+		}
+		let queue = DispatchQueue(label: "NetworkMonitor")
+		monitor.start(queue: queue)
 	}
 	
 	func goPump(){
@@ -120,7 +145,7 @@ class BilgePump{
 		let jsonEncoder = JSONEncoder()
 		jsonEncoder.outputFormatting = .prettyPrinted
 		do{
-			return try jsonEncoder.encode("")
+			return try jsonEncoder.encode(report)
 		}catch{
 			print(error)
 			fatalError("Failed to generate debugging report")

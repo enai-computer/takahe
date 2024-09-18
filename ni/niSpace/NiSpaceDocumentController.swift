@@ -231,6 +231,23 @@ class NiSpaceDocumentController: NSViewController{
 	
 	private func genJson(scrollPosition: CGFloat) -> String{
 		
+		let (spaceModel, properties) = spaceViewModelToModel(scrollPosition: scrollPosition)
+		let jsonEncoder = JSONEncoder()
+		jsonEncoder.outputFormatting = .prettyPrinted
+		
+		PostHogSDK.shared.capture("Space_saved",
+								  properties: properties)
+	
+		do{
+			let jsonData = try jsonEncoder.encode(spaceModel)
+			return String(data: jsonData, encoding: .utf8) ?? "FAILED GENERATING JSON"
+		}catch{
+			print(error)
+		}
+		return "FAILED GENERATING JSON"
+	}
+	
+	func spaceViewModelToModel(scrollPosition: CGFloat) -> (NiDocumentObjectModel, [String: Any]){
 		var children: [NiDocumentObjectModel] = []
 		var analyticsMinimized: Int = 0
 		var analyticsExpanded: Int = 0
@@ -260,27 +277,17 @@ class NiSpaceDocumentController: NSViewController{
 				viewPosition: scrollPosition
 			)
 		)
-		let jsonEncoder = JSONEncoder()
-		jsonEncoder.outputFormatting = .prettyPrinted
 		
 		let minInSpace = (Date().timeIntervalSinceReferenceDate - spaceOpenedAt.timeIntervalSinceReferenceDate) / 60
-		PostHogSDK.shared.capture("Space_saved",
-								  properties: [
-									"number_of_windows": children.count,
-									"windows_expanded": analyticsExpanded,
-									"windows_minimized": analyticsMinimized,
-									"number_of_tabs": nrOfTabsInSpace,
-									"length": myView.frame.height,
-									"time_in_space_min": minInSpace
-								  ]
-		)
+		let properties = [
+			"number_of_windows": children.count,
+			"windows_expanded": analyticsExpanded,
+			"windows_minimized": analyticsMinimized,
+			"number_of_tabs": nrOfTabsInSpace,
+			"length": myView.frame.height,
+			"time_in_space_min": minInSpace
+		] as [String : Any]
 		
-		do{
-			let jsonData = try jsonEncoder.encode(toEncode)
-			return String(data: jsonData, encoding: .utf8) ?? "FAILED GENERATING JSON"
-		}catch{
-			print(error)
-		}
-		return "FAILED GENERATING JSON"
+		return (toEncode, properties)
 	}
 }

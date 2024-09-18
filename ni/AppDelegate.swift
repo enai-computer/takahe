@@ -210,7 +210,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	}
 	
 	private func setLocalKeyListeners(){
-		NSEvent.addLocalMonitorForEvents(matching: .keyDown, handler: {(event: NSEvent) in
+		NSEvent.addLocalMonitorForEvents(matching: .keyDown){ event in
+			//, handler: {(event: NSEvent) in
 			if(event.modifierFlags.contains(.command) && event.keyCode == kVK_LeftArrow){
 				self.getNiSpaceViewController()?.switchToPrevWindow()
 				return nil
@@ -236,15 +237,20 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 				return nil
 			}
 			if(event.keyCode == kVK_F8){
-				if let spaceID = self.getNiSpaceViewController()?.niSpaceID{
-					let pump = BilgePump(openSpaceID: spaceID)
-					pump.collectBilgeWater()
-					pump.goPump()
-				}
+				self.pumpBilgeWater()
 				return nil
 			}
 			return event
-		})
+		}
+	}
+	
+	func pumpBilgeWater(){
+		guard let spaceID = self.getNiSpaceViewController()?.niSpaceID else {return}
+		
+		let spaceOnScreen = self.getNiSpaceViewController()?.niDocument.spaceViewModelToModel(scrollPosition: 0.0)
+		let pump = BilgePump(openSpaceID: spaceID)
+		pump.collectBilgeWater(currentSpace: spaceOnScreen)
+		pump.goPump()
 	}
 }
 
