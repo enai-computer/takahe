@@ -9,11 +9,12 @@ import Foundation
 
 /// https://en.wikipedia.org/wiki/Bilge#Bilge_water
 struct BilgeWater: Codable{
-	var appStats: WaterAppStats?
-	var systemStats: WaterSystemStats?
+	var appStats: WaterAppStats
+	var systemStats: WaterSystemStats
 	
-	var openSpaceAsPersistedOnDisk: NiDocumentModel?
-	var openSpaceAsInMemory: NiDocumentModel?
+	var openSpaceAsPersistedOnDisk: NiDocumentObjectModel?
+	var openSpaceAsOnScreen: NiDocumentObjectModel?
+	var spaceAsOnScreenStats: [String: String]?
 }
 
 

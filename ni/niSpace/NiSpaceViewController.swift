@@ -613,7 +613,7 @@ class NiSpaceViewController: NSViewController, NSTextFieldDelegate{
 	}
 	
 	private func getSpaceDoc(_ id: UUID, userInputName: String) -> (NiSpaceDocumentController, NSPoint?, Bool) {
-		let spaceModel = loadStoredSpace(niSpaceID: id)
+		let spaceModel = NiSpaceViewController.loadStoredSpace(niSpaceID: id)
 		let name = DocumentTable.fetchDocumentName(id: id) ?? userInputName
 		var scrollTo: NSPoint? = nil
 		var containsFullscreenFrame = false
@@ -655,7 +655,7 @@ class NiSpaceViewController: NSViewController, NSTextFieldDelegate{
 		return nil
 	}
 	
-	private func loadStoredSpace(niSpaceID: UUID) -> NiDocumentObjectModel?{
+	static func loadStoredSpace(niSpaceID: UUID) -> NiDocumentObjectModel?{
 		do{
 			let docJson = (DocumentTable.fetchDocumentModel(id: niSpaceID)?.data(using: .utf8))
 			if(docJson == nil){
