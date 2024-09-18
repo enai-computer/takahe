@@ -12,11 +12,11 @@ import WebKit
 class CachedWebTable{
     
     static let table = Table("cached_Web")
-    static let contentId = Expression<UUID>("content_id")
-    static let url = Expression<String>("url")
-    static let updatedAt = Expression<Double>("updated_at")
-    static let cache = Expression<SQLite.Blob?>("cache")
-    static let htmlWebsite = Expression<String?>("html_website")
+	static let contentId = SQLite.Expression<UUID>("content_id")
+	static let url = SQLite.Expression<String>("url")
+	static let updatedAt = SQLite.Expression<Double>("updated_at")
+	static let cache = SQLite.Expression<SQLite.Blob?>("cache")
+	static let htmlWebsite = SQLite.Expression<String?>("html_website")
 //    static let history = Expression<String?>("history")
     
     static func create(db: Connection) throws {

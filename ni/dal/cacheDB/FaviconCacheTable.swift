@@ -11,9 +11,9 @@ import SQLite
 class FaviconCacheTable{
 	
 	static let table = Table("favicon_cache")
-	static let domain = Expression<String>("domain")
-	static let updatedAt = Expression<Double>("updated_at")
-	static let storageLocation = Expression<String>("stored_at")
+	static let domain = SQLite.Expression<String>("domain")
+	static let updatedAt = SQLite.Expression<Double>("updated_at")
+	static let storageLocation = SQLite.Expression<String>("stored_at")
 	
 	static func create(db: Connection) throws{
 		try db.run(table.create(ifNotExists: true){ t in

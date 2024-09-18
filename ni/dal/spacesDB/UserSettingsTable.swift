@@ -11,9 +11,9 @@ import SQLite
 class UserSettingsTable{
 	
 	static let table = Table("user_settings")
-	static let setting = Expression<String>("setting")
-	static let value = Expression<String>("value")
-	static let updatedAt = Expression<Double>("updated_at")
+	static let setting = SQLite.Expression<String>("setting")
+	static let value = SQLite.Expression<String>("value")
+	static let updatedAt = SQLite.Expression<Double>("updated_at")
 	
 	static func create(db: Connection) throws{
 		try db.run(table.create(ifNotExists: true){ t in

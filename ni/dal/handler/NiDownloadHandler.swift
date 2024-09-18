@@ -24,7 +24,7 @@ class NiDownloadHandler: NSObject, WKDownloadDelegate{
 				appropriateFor: nil,
 				create: true)
 		} catch{
-			  print(error)
+			print(error)
 			downloadFolder = nil
 		}
 	}

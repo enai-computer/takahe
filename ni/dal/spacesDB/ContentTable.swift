@@ -11,13 +11,13 @@ import Cocoa
 class ContentTable{
     
     static let table = Table("content")
-    static let id = Expression<UUID>("id")
-    static let title = Expression<String?>("title")
-    static let type = Expression<String>("type")
-    static let updatedAt = Expression<Double>("updated_at")
-    static let localStorageLocation = Expression<String?>("local_storage_location")
-	static let sourceUrl = Expression<String?>("source_url")
-    static let refCounter = Expression<Int>("ref_counter")
+	static let id = SQLite.Expression<UUID>("id")
+	static let title = SQLite.Expression<String?>("title")
+	static let type = SQLite.Expression<String>("type")
+	static let updatedAt = SQLite.Expression<Double>("updated_at")
+	static let localStorageLocation = SQLite.Expression<String?>("local_storage_location")
+	static let sourceUrl = SQLite.Expression<String?>("source_url")
+	static let refCounter = SQLite.Expression<Int>("ref_counter")
     
     static func create(db: Connection) throws {
         try db.run(table.create(ifNotExists: true){ t in
