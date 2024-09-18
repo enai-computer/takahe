@@ -11,9 +11,9 @@ import SQLite
 class NoteTable{
 	
 	static let table = Table("user_notes")
-	static let contentId = Expression<UUID>("content_id")
-	static let updatedAt = Expression<Double>("updated_at")
-	static let rawText = Expression<String?>("raw_text")
+	static let contentId = SQLite.Expression<UUID>("content_id")
+	static let updatedAt = SQLite.Expression<Double>("updated_at")
+	static let rawText = SQLite.Expression<String?>("raw_text")
 	
 	static func create(db: Connection) throws{
 		try db.run(table.create(ifNotExists: true){ t in

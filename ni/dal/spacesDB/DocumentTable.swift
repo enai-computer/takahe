@@ -5,8 +5,8 @@
 //  Created by Patrick Lukas on 11/22/23.
 //
 
-import SQLite
 import Cocoa
+import SQLite
 
 struct NiDocumentViewModel: Hashable{
     let id: UUID?
@@ -16,16 +16,16 @@ struct NiDocumentViewModel: Hashable{
 }
 
 class DocumentTable{
-        
+	
     static let table = Table("document")
-    static let id = Expression<UUID>("id")
-    static let name = Expression<String>("name")
-    static let owner = Expression<UUID?>("owner")
-    static let shared = Expression<Bool>("shared")
-    static let createdAt = Expression<Double>("created_at")
-    static let updatedAt = Expression<Double>("updated_at")
-    static let updatedBy = Expression<UUID?>("updated_by")
-    static let document = Expression<String?>("document")
+	static let id = SQLite.Expression<UUID>("id")
+	static let name = SQLite.Expression<String>("name")
+	static let owner = SQLite.Expression<UUID?>("owner")
+	static let shared = SQLite.Expression<Bool>("shared")
+	static let createdAt = SQLite.Expression<Double>("created_at")
+	static let updatedAt = SQLite.Expression<Double>("updated_at")
+	static let updatedBy = SQLite.Expression<UUID?>("updated_by")
+	static let document = SQLite.Expression<String?>("document")
     //TODO: bool if top level document or has a parent
     
     static func create(db: Connection) throws{
