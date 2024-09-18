@@ -235,6 +235,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 				self.getNiSpaceViewController()?.switchToNextTab()
 				return nil
 			}
+			if(event.keyCode == kVK_F8){
+				if let spaceID = self.getNiSpaceViewController()?.niSpaceID{
+					let pump = BilgePump(openSpaceID: spaceID)
+					pump.collectBilgeWater()
+					pump.goPump()
+				}
+				return nil
+			}
 			return event
 		})
 	}

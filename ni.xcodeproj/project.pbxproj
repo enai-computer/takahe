@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 60;
+	objectVersion = 56;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -19,6 +19,7 @@
 		A1E41BFA2ACB57EF00338417 /* ContentFrameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E41BF92ACB57EF00338417 /* ContentFrameView.swift */; };
 		A1E41BFF2ACB6B1300338417 /* FrameGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E41BFE2ACB6B1300338417 /* FrameGenerator.swift */; };
 		A1F33E2E2AB7299500E2E7CD /* DefaultWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F33E2D2AB7299500E2E7CD /* DefaultWindow.swift */; };
+		CD0287D02C9ACA8D0035AEC8 /* BilgeWater.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0287CF2C9ACA8D0035AEC8 /* BilgeWater.swift */; };
 		CD04974C2C120ABE00C44021 /* CFGroupButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD04974B2C120ABE00C44021 /* CFGroupButton.swift */; };
 		CD04974E2C12FA4A00C44021 /* NiTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD04974D2C12FA4A00C44021 /* NiTextField.swift */; };
 		CD0589372BE1837B00E9A01E /* PostHog in Frameworks */ = {isa = PBXBuildFile; productRef = CD0589362BE1837B00E9A01E /* PostHog */; };
@@ -57,6 +58,7 @@
 		CD3BF3D02C10A133003DA615 /* NewSpaceNote.json in Resources */ = {isa = PBXBuildFile; fileRef = CD3BF3CF2C10A133003DA615 /* NewSpaceNote.json */; };
 		CD402C2A2C982FEE004D9538 /* CFCollapsedMinimizedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD402C292C982FEE004D9538 /* CFCollapsedMinimizedView.swift */; };
 		CD402C2C2C98300A004D9538 /* CFCollapsedMinimizedView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD402C2B2C98300A004D9538 /* CFCollapsedMinimizedView.xib */; };
+		CD4088D72C9AF61D005EF6ED /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = CD4088D62C9AF61D005EF6ED /* SQLite */; };
 		CD410AE02C285AC700EC5DF7 /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD410ADF2C285AC700EC5DF7 /* UserSettings.swift */; };
 		CD410AE22C285C3C00EC5DF7 /* NiUsersSettingsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD410AE12C285C3C00EC5DF7 /* NiUsersSettingsModel.swift */; };
 		CD42CEC92BDA48180039814D /* NiScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD42CEC82BDA48180039814D /* NiScrollView.swift */; };
@@ -153,9 +155,9 @@
 		CDC5A1142C25C8F3002F5621 /* EmptyRectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC5A1132C25C8F3002F5621 /* EmptyRectView.swift */; };
 		CDC5A1162C284AD1002F5621 /* NiDocControllerCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC5A1152C284AD1002F5621 /* NiDocControllerCache.swift */; };
 		CDCDD52A2C944B38002693AF /* BilgePump.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCDD5292C944B38002693AF /* BilgePump.swift */; };
+		CDD2B5172C9AEDDB0082972A /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = CDD6B93D2B152D3F00C6144D /* SQLite */; };
 		CDD2C9212C666D3D009DB1C0 /* ArrayUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD2C9202C666D3D009DB1C0 /* ArrayUtil.swift */; };
 		CDD6B9392B152A8000C6144D /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD6B9382B152A8000C6144D /* Storage.swift */; };
-		CDD6B93E2B152D3F00C6144D /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = CDD6B93D2B152D3F00C6144D /* SQLite */; };
 		CDD6B9402B169F7700C6144D /* DocumentTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD6B93F2B169F7700C6144D /* DocumentTable.swift */; };
 		CDD6B9432B16A14300C6144D /* ContentTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD6B9422B16A14300C6144D /* ContentTable.swift */; };
 		CDD6B9452B16A1A200C6144D /* CachedWebTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD6B9442B16A1A200C6144D /* CachedWebTable.swift */; };
@@ -225,6 +227,7 @@
 		A1E41BFE2ACB6B1300338417 /* FrameGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrameGenerator.swift; sourceTree = "<group>"; };
 		A1F33E2D2AB7299500E2E7CD /* DefaultWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultWindow.swift; sourceTree = "<group>"; };
 		CD00B81D2BE4EE230079CF71 /* niDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = niDebug.entitlements; sourceTree = "<group>"; };
+		CD0287CF2C9ACA8D0035AEC8 /* BilgeWater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BilgeWater.swift; sourceTree = "<group>"; };
 		CD04974B2C120ABE00C44021 /* CFGroupButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CFGroupButton.swift; sourceTree = "<group>"; };
 		CD04974D2C12FA4A00C44021 /* NiTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiTextField.swift; sourceTree = "<group>"; };
 		CD06A9B92BF79EF500312256 /* NiScroller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiScroller.swift; sourceTree = "<group>"; };
@@ -407,7 +410,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CDD6B93E2B152D3F00C6144D /* SQLite in Frameworks */,
+				CD4088D72C9AF61D005EF6ED /* SQLite in Frameworks */,
+				CDD2B5172C9AEDDB0082972A /* SQLite in Frameworks */,
 				CDFAC33C2C9865050057F759 /* FaviconFinder in Frameworks */,
 				CD4D7AE42C49459400B6DBFD /* Atomics in Frameworks */,
 				CD1160C82BD142D100345E3E /* WebURL in Frameworks */,
@@ -909,6 +913,7 @@
 				CDD6B9512B1BFE8B00C6144D /* NiDocumentModel.swift */,
 				CD410AE12C285C3C00EC5DF7 /* NiUsersSettingsModel.swift */,
 				CDF711B82C66085800B4A6B8 /* PinnedWebsiteItemModel.swift */,
+				CD0287CF2C9ACA8D0035AEC8 /* BilgeWater.swift */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -979,6 +984,7 @@
 				CD0589362BE1837B00E9A01E /* PostHog */,
 				CD4D7AE32C49459400B6DBFD /* Atomics */,
 				CDFAC33B2C9865050057F759 /* FaviconFinder */,
+				CD4088D62C9AF61D005EF6ED /* SQLite */,
 			);
 			productName = ni;
 			productReference = A1B8E6A22AAFB5EC00AC6566 /* ni.app */;
@@ -1031,11 +1037,11 @@
 			);
 			mainGroup = A1B8E6992AAFB5EC00AC6566;
 			packageReferences = (
-				CDD6B93C2B152D3F00C6144D /* XCLocalSwiftPackageReference "../takahe-dependencies/SQLite.swift" */,
 				CD1160C62BD142D100345E3E /* XCRemoteSwiftPackageReference "swift-url" */,
 				CD0589352BE1837B00E9A01E /* XCRemoteSwiftPackageReference "posthog-ios" */,
 				CD4D7AE22C49459400B6DBFD /* XCRemoteSwiftPackageReference "swift-atomics" */,
 				CDFAC33A2C9865050057F759 /* XCRemoteSwiftPackageReference "FaviconFinder" */,
+				CD4088D52C9AF61D005EF6ED /* XCRemoteSwiftPackageReference "SQLite.swift" */,
 			);
 			productRefGroup = A1B8E6A32AAFB5EC00AC6566 /* Products */;
 			projectDirPath = "";
@@ -1245,6 +1251,7 @@
 				CDF711B92C66085800B4A6B8 /* PinnedWebsiteItemModel.swift in Sources */,
 				CD1853132C08D972001FE566 /* FaviconCacheTable.swift in Sources */,
 				CD1C6D552C5259020019CD09 /* NiPinnedMenuPopup.swift in Sources */,
+				CD0287D02C9ACA8D0035AEC8 /* BilgeWater.swift in Sources */,
 				CD7AE0AA2C55366A00B3984E /* NiLibrary.swift in Sources */,
 				CDABE64A2C11C54300BB4E85 /* NiMenuItemView.swift in Sources */,
 				CD59FA142C3550F500CFB8DE /* NiViewElementsUtils.swift in Sources */,
@@ -1551,13 +1558,6 @@
 		};
 /* End XCConfigurationList section */
 
-/* Begin XCLocalSwiftPackageReference section */
-		CDD6B93C2B152D3F00C6144D /* XCLocalSwiftPackageReference "../takahe-dependencies/SQLite.swift" */ = {
-			isa = XCLocalSwiftPackageReference;
-			relativePath = "../takahe-dependencies/SQLite.swift";
-		};
-/* End XCLocalSwiftPackageReference section */
-
 /* Begin XCRemoteSwiftPackageReference section */
 		CD0589352BE1837B00E9A01E /* XCRemoteSwiftPackageReference "posthog-ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
@@ -1573,6 +1573,14 @@
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 0.4.1;
+			};
+		};
+		CD4088D52C9AF61D005EF6ED /* XCRemoteSwiftPackageReference "SQLite.swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/stephencelis/SQLite.swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.15.3;
 			};
 		};
 		CD4D7AE22C49459400B6DBFD /* XCRemoteSwiftPackageReference "swift-atomics" */ = {
@@ -1603,6 +1611,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = CD1160C62BD142D100345E3E /* XCRemoteSwiftPackageReference "swift-url" */;
 			productName = WebURL;
+		};
+		CD4088D62C9AF61D005EF6ED /* SQLite */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CD4088D52C9AF61D005EF6ED /* XCRemoteSwiftPackageReference "SQLite.swift" */;
+			productName = SQLite;
 		};
 		CD4D7AE32C49459400B6DBFD /* Atomics */ = {
 			isa = XCSwiftPackageProductDependency;

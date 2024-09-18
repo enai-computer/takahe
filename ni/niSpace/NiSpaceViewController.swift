@@ -10,7 +10,7 @@ class NiSpaceViewController: NSViewController, NSTextFieldDelegate{
     
 	private(set) var spaceLoaded: Bool = false
     private var niSpaceName: String
-	private var niSpaceID: UUID
+	private(set) var niSpaceID: UUID
 	
 	private var immersiveWindow: ImmersiveWindow? = nil
 	private var pinnedWebsites: [NiPinnedWebsiteVModel] = []
