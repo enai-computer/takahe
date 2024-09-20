@@ -4,13 +4,20 @@ import Cocoa
 import Carbon.HIToolbox
 
 class DefaultWindow: NSWindow{
- 
+
+	override var canBecomeKey: Bool {return true}
+	override var canBecomeMain: Bool {return true}
+
     override init(contentRect: NSRect, styleMask style: NSWindow.StyleMask, backing backingStoreType: NSWindow.BackingStoreType, defer flag: Bool) {
-        super.init(contentRect: contentRect, styleMask: style, backing: backingStoreType, defer: flag)
+		super.init(contentRect: contentRect, styleMask: style, backing: backingStoreType, defer: flag)
         self.center()
 		self.standardWindowButton(.miniaturizeButton)?.isHidden = true
 		self.standardWindowButton(.zoomButton)?.isHidden = true
     }
+	
+	override func toggleFullScreen(_ sender: Any?) {
+		super.toggleFullScreen(sender)
+	}
 	
 	override func keyDown(with event: NSEvent) {
 		
