@@ -29,12 +29,11 @@ class OutboxTable{
 		})
 	}
 	
-	static func insert(eventType: RestEventType, objectID: UUID, objectType: RestObjectType, message: String) -> UUID{
-		let id = UUID()
+	static func insert(eventType: RestEventType, objectID: UUID, objectType: RestObjectType, message: String){
 		do{
 			try Storage.instance.cacheDB.run(
 				table.insert(
-					self.id <- id,
+					self.id <- UUID(),
 					self.createdAt <- Date.now.timeIntervalSince1970,
 					self.eventType <- eventType.rawValue,
 					self.objectID <- objectID,
@@ -45,12 +44,24 @@ class OutboxTable{
 		}catch{
 			print("failed to insert into Outbox table. May occur data loss, with following error: \(error)")
 		}
-		return id
 	}
 	
-	static func getMessages(first: Int) -> [(UUID, RestEventType, OutboxMessage)]{
-		//TODO: return array with the first x elements - id, type, objID, objType, message
-		return []
+	static func getFirstMessage() -> (UUID, RestEventType, OutboxMessage)?{
+		do{
+			for record in try Storage.instance.cacheDB.prepare(table.order(createdAt .asc).limit(1)){
+				let recId: UUID = try record.get(id)
+				let eventType = RestEventType(rawValue: try record.get(eventType))
+				let outboxMessage = OutboxMessage(
+					objectId: try record.get(objectID),
+					objectType: RestObjectType(rawValue: try record.get(objectType))!,
+					message: try record.get(message)
+				)
+				return ((recId, eventType , outboxMessage) as! (UUID, RestEventType, OutboxMessage))
+			}
+		}catch{
+			print("\(error)")
+		}
+		return nil
 	}
 	
 	static func delete(id: UUID){
@@ -59,6 +70,22 @@ class OutboxTable{
 			try Storage.instance.cacheDB.run(record.delete())
 		} catch {
 			print("Failed to delete message from the outbox table with id: \(id)")
+		}
+	}
+	
+	static func insertNote(objId: UUID, message: NoteMessage){
+		let jsonEncoder = JSONEncoder()
+		jsonEncoder.outputFormatting = .prettyPrinted
+		do{
+			let jsonData = try jsonEncoder.encode(message)
+			guard let jsonStrMessage = String(data: jsonData, encoding: .utf8) else{return}
+			OutboxTable.insert(
+				eventType: .PUT,
+				objectID: objId,
+				objectType: .note,
+				message: jsonStrMessage)
+		}catch{
+			return
 		}
 	}
 }
