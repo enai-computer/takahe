@@ -1,5 +1,5 @@
 {
-  "originHash" : "d9739bf21546c0b39a7c07b47657625e60674f141eb9f00f7bcd4cac1ba2fd4f",
+  "originHash" : "51ad9b88c3458b4fe53837211c9a7b72be51b21bba7e5cd917dfeb12edf42025",
   "pins" : [
     {
       "identity" : "faviconfinder",
@@ -8,6 +8,15 @@
       "state" : {
         "revision" : "21e00c75fe364f37b5ba89424d38a607db1df2d1",
         "version" : "5.0.4"
+      }
+    },
+    {
+      "identity" : "get",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/kean/Get",
+      "state" : {
+        "revision" : "74dba201ebe42e9c15c1db6ee1cc893025bbef94",
+        "version" : "2.2.0"
       }
     },
     {

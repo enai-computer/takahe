@@ -8,6 +8,18 @@ import Foundation
 
 enum RestObjectType: String{
 	case webContent, note, pdf
+	
+	func getRESTSubpath() -> String{
+		switch(self){
+			case .webContent:
+				return "/webContent"
+			case .note:
+				return "/note"
+			case .pdf:
+				return "/pdf"
+		}
+		
+	}
 }
 
 enum RestEventType: String{
@@ -18,4 +30,11 @@ struct OutboxMessage{
 	let objectId: UUID
 	let objectType: RestObjectType
 	let message: String
+}
+
+struct NoteMessage: Codable{
+	let documentID: UUID
+	let title: String?
+	let rawText: String
+	let updatedAt: Date
 }

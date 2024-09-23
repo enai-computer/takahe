@@ -29,6 +29,7 @@ class Storage{
     static let instance = Storage()
     let spacesDB: Connection
 	let cacheDB: Connection
+	let outboxProcessor: OutboxProcessor
 	private let currentWrites = ManagedAtomic<Int>(0)
 	private var path: String?
 
@@ -45,6 +46,8 @@ class Storage{
 		}else{
 			CUSTOM_STORAGE_LOCATION!
 		}
+		
+		outboxProcessor = OutboxProcessor()
         
         do {
 			if(!Storage.doesSQLiteDBExist(path!)){
@@ -64,7 +67,6 @@ class Storage{
             //TODO: try to send crash report
             exit(EXIT_FAILURE)
         }
-
     }
 	
 	private static func doesSQLiteDBExist(_ basepath: String) -> Bool{

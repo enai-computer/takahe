@@ -55,6 +55,8 @@
 		CD2DE87C2CA1A8A3000B5461 /* OutboxTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD2DE87B2CA1A89A000B5461 /* OutboxTable.swift */; };
 		CD2DE8802CA1ABCF000B5461 /* OutboxProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD2DE87F2CA1ABAA000B5461 /* OutboxProcessor.swift */; };
 		CD2DE8832CA1ADB7000B5461 /* RestModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD2DE8822CA1AD98000B5461 /* RestModels.swift */; };
+		CD2DE8862CA1CB44000B5461 /* Get in Frameworks */ = {isa = PBXBuildFile; productRef = CD2DE8852CA1CB44000B5461 /* Get */; };
+		CD2DE8892CA1CDC0000B5461 /* MaraeClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD2DE8882CA1CDAE000B5461 /* MaraeClient.swift */; };
 		CD3362162BFDFF97004DBAFB /* SpaceTopbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD3362152BFDFF97004DBAFB /* SpaceTopbar.swift */; };
 		CD33621F2BFE0DD0004DBAFB /* CFSoftDeletedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD33621E2BFE0DD0004DBAFB /* CFSoftDeletedView.swift */; };
 		CD3362212BFE0DDC004DBAFB /* CFSoftDeletedView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD3362202BFE0DDC004DBAFB /* CFSoftDeletedView.xib */; };
@@ -264,6 +266,7 @@
 		CD2DE87B2CA1A89A000B5461 /* OutboxTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutboxTable.swift; sourceTree = "<group>"; };
 		CD2DE87F2CA1ABAA000B5461 /* OutboxProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutboxProcessor.swift; sourceTree = "<group>"; };
 		CD2DE8822CA1AD98000B5461 /* RestModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestModels.swift; sourceTree = "<group>"; };
+		CD2DE8882CA1CDAE000B5461 /* MaraeClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaraeClient.swift; sourceTree = "<group>"; };
 		CD3362152BFDFF97004DBAFB /* SpaceTopbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpaceTopbar.swift; sourceTree = "<group>"; };
 		CD33621E2BFE0DD0004DBAFB /* CFSoftDeletedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CFSoftDeletedView.swift; sourceTree = "<group>"; };
 		CD3362202BFE0DDC004DBAFB /* CFSoftDeletedView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CFSoftDeletedView.xib; sourceTree = "<group>"; };
@@ -421,6 +424,7 @@
 				CDFAC33C2C9865050057F759 /* FaviconFinder in Frameworks */,
 				CD4D7AE42C49459400B6DBFD /* Atomics in Frameworks */,
 				CD1160C82BD142D100345E3E /* WebURL in Frameworks */,
+				CD2DE8862CA1CB44000B5461 /* Get in Frameworks */,
 				CD0589372BE1837B00E9A01E /* PostHog in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -592,6 +596,14 @@
 				CD2DE8822CA1AD98000B5461 /* RestModels.swift */,
 			);
 			path = restModels;
+			sourceTree = "<group>";
+		};
+		CD2DE8872CA1CDA0000B5461 /* client */ = {
+			isa = PBXGroup;
+			children = (
+				CD2DE8882CA1CDAE000B5461 /* MaraeClient.swift */,
+			);
+			path = client;
 			sourceTree = "<group>";
 		};
 		CD3362172BFE0CCF004DBAFB /* CFSoftDeleted */ = {
@@ -887,6 +899,7 @@
 		CDD6B9342B1527B700C6144D /* dal */ = {
 			isa = PBXGroup;
 			children = (
+				CD2DE8872CA1CDA0000B5461 /* client */,
 				CD2DE8812CA1AD3F000B5461 /* restModels */,
 				CD2DE87E2CA1ABA0000B5461 /* processors */,
 				CDC0BD412C4527E500CB2DDB /* handler */,
@@ -1010,6 +1023,7 @@
 				CD4D7AE32C49459400B6DBFD /* Atomics */,
 				CDFAC33B2C9865050057F759 /* FaviconFinder */,
 				CD4088D62C9AF61D005EF6ED /* SQLite */,
+				CD2DE8852CA1CB44000B5461 /* Get */,
 			);
 			productName = ni;
 			productReference = A1B8E6A22AAFB5EC00AC6566 /* ni.app */;
@@ -1067,6 +1081,7 @@
 				CD4D7AE22C49459400B6DBFD /* XCRemoteSwiftPackageReference "swift-atomics" */,
 				CDFAC33A2C9865050057F759 /* XCRemoteSwiftPackageReference "FaviconFinder" */,
 				CD4088D52C9AF61D005EF6ED /* XCRemoteSwiftPackageReference "SQLite.swift" */,
+				CD2DE8842CA1CB44000B5461 /* XCRemoteSwiftPackageReference "Get" */,
 			);
 			productRefGroup = A1B8E6A32AAFB5EC00AC6566 /* Products */;
 			projectDirPath = "";
@@ -1179,6 +1194,7 @@
 				CDD7D34B2C19B20C0038E6F9 /* NiPaletteContentController.swift in Sources */,
 				CD59FA122C345D6900CFB8DE /* PdfDal.swift in Sources */,
 				CD6D280C2C11D6DA0009732A /* NiMenuWindowDelegate.swift in Sources */,
+				CD2DE8892CA1CDC0000B5461 /* MaraeClient.swift in Sources */,
 				CD9B96BC2C04C8EE00998CE2 /* CFContentItem.swift in Sources */,
 				A1B8E6AB2AAFB5EC00AC6566 /* ni.xcdatamodeld in Sources */,
 				CD9B96C12C0733F800998CE2 /* NiImgViewUtils.swift in Sources */,
@@ -1603,6 +1619,14 @@
 				minimumVersion = 0.4.1;
 			};
 		};
+		CD2DE8842CA1CB44000B5461 /* XCRemoteSwiftPackageReference "Get" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kean/Get";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.2.0;
+			};
+		};
 		CD4088D52C9AF61D005EF6ED /* XCRemoteSwiftPackageReference "SQLite.swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/stephencelis/SQLite.swift.git";
@@ -1639,6 +1663,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = CD1160C62BD142D100345E3E /* XCRemoteSwiftPackageReference "swift-url" */;
 			productName = WebURL;
+		};
+		CD2DE8852CA1CB44000B5461 /* Get */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CD2DE8842CA1CB44000B5461 /* XCRemoteSwiftPackageReference "Get" */;
+			productName = Get;
 		};
 		CD4088D62C9AF61D005EF6ED /* SQLite */ = {
 			isa = XCSwiftPackageProductDependency;
