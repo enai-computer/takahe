@@ -107,6 +107,7 @@ class Storage{
 	
 	private static func createCacheDBIfNotExist(db: Connection) throws {
 		try FaviconCacheTable.create(db: db)
+		try OutboxTable.create(db: db)
 	}
 	
 	func getDir(for type: FileStorageType) -> URL {
