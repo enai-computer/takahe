@@ -467,7 +467,7 @@
 				CD00B81D2BE4EE230079CF71 /* niDebug.entitlements */,
 				CDBC33F82BDBC896000EEF3D /* Info.plist */,
 				CDD6B94F2B1BFE6500C6144D /* models */,
-				CDD6B9342B1527B700C6144D /* dal */,
+				CDD6B9342B1527B700C6144D /* data */,
 				CDA611002C89E37800ED4033 /* niImmersiveView */,
 				CDD6B94A2B19469000C6144D /* niHome */,
 				CD2B68EC2C2F162F0086756E /* niFullscreenPanel */,
@@ -898,7 +898,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		CDD6B9342B1527B700C6144D /* dal */ = {
+		CDD6B9342B1527B700C6144D /* data */ = {
 			isa = PBXGroup;
 			children = (
 				CD2DE8872CA1CDA0000B5461 /* client */,
@@ -912,7 +912,7 @@
 				CD1853142C09C210001FE566 /* DalUtils.swift */,
 				CDCDD5292C944B38002693AF /* BilgePump.swift */,
 			);
-			path = dal;
+			path = data;
 			sourceTree = "<group>";
 		};
 		CDD6B9412B169FC300C6144D /* spacesDB */ = {
