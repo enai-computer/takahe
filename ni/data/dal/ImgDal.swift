@@ -48,7 +48,7 @@ class ImgDal{
 		
 		do{
 			try FileManager.default.removeItem(atPath: urlString!)
-			ContentTable.delete(id: id)
+			DocumentDal.deleteDocument(documentId: id, docType: .img)
 		}catch{
 			print("failed to delete file")
 		}

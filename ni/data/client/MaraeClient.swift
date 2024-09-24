@@ -18,18 +18,29 @@ class MaraeClient{
 		client = APIClient(baseURL: URL(string: hostUrl))
 	}
 	
-	func putRecord(record: OutboxMessage) async throws -> Bool{
-		guard let url = URL(string: record.objectType.getRESTSubpath()) else{return false}
+	func sendRecord(record: OutboxMessage) async throws -> Bool{
 		let relPath = (apiVersion + userID + record.objectType.getRESTSubpath() + "/" + record.objectId.uuidString)
 		
-		var putRequest = Request(
+		let putRequest = Request(
 			path: relPath,
 			method: .put,
 			body: record.message,
 			headers: ["Content-Type": "application/json"]
 		)
-		
-		let res = try await client.send(putRequest)
+		return try await sendRequest(putRequest)
+	}
+	
+	func deleteRecord(record: OutboxMessage) async throws -> Bool{
+		let relPath = (apiVersion + userID + record.objectType.getRESTSubpath() + "/" + record.objectId.uuidString)
+		let delRequest = Request(
+			path: relPath,
+			method: .delete
+		)
+		return try await sendRequest(delRequest)
+	}
+	
+	private func sendRequest(_ req: Request<()>) async throws -> Bool{
+		let res = try await client.send(req)
 		if res.statusCode == 200{
 			return true
 		}

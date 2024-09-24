@@ -188,8 +188,8 @@ func getTabViewModel(for id: UUID, ofType type: TabContentType, positioned at: I
 		tabView = TabViewModel(
 			contentId: id,
 			type: type,
-			title: record.title,
-			content: record.rawText,
+			title: record?.title ?? "",
+			content: record?.rawText ?? "",
 			position: at
 		)
 	}else if(type == .img){

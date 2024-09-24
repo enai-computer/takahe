@@ -18,7 +18,8 @@ enum UserSettingKey: String{
 		 pinnedWebApps,	//maps to pinnedWebsites --- DB migration needed for renaming
 		 userFirstName,
 		 userEmail,
-		 homeViewWeatherLocation
+		 homeViewWeatherLocation,
+		 onlineSync
 }
 
 struct NiUsersSettingsModel: Codable{
@@ -32,6 +33,7 @@ struct NiUsersSettingsModel: Codable{
 	let userFirstName: String
 	let userEmail: String?
 	let homeViewWeatherLocation: WeatherLocationModel
+	let onlineSync: Bool
 }
 
 let defaultWeatherLocation = WeatherLocationModel(city: "Berlin", country: "Germany", coordinates: CLLocation(latitude: 52.5200, longitude: 13.4050))
@@ -51,6 +53,7 @@ extension NiUsersSettingsModel{
 		userFirstName = NSUserName()
 		userEmail = nil
 		homeViewWeatherLocation = defaultWeatherLocation
+		onlineSync = false
 	}
 	
 	init(from dic: [String: String]) throws{
@@ -64,6 +67,7 @@ extension NiUsersSettingsModel{
 		userFirstName = getValueOrDefault(key: .userFirstName, from: dic, defaultVal: NSUserName())
 		userEmail = getValueOrDefault(key: .userEmail, from: dic, defaultVal: nil)
 		homeViewWeatherLocation = getValueOrDefault(key: .homeViewWeatherLocation, from: dic, defaultVal: defaultWeatherLocation)
+		onlineSync = getValueOrDefault(key: .onlineSync, from: dic, defaultVal: false)
 	}
 	
 	func toDic() -> [UserSettingKey: String?]{
@@ -76,7 +80,8 @@ extension NiUsersSettingsModel{
 			.pinnedWebApps: encodeListToJsonString(pinnedWebsites),
 			.userFirstName: userFirstName,
 			.userEmail: userEmail,
-			.homeViewWeatherLocation: encodeToJsonString(homeViewWeatherLocation)
+			.homeViewWeatherLocation: encodeToJsonString(homeViewWeatherLocation),
+			.onlineSync: String(onlineSync)
 		]
 	}
 	

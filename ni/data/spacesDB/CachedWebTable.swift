@@ -31,14 +31,6 @@ class CachedWebTable{
     }
     
     static func upsert(documentId: UUID, id: UUID, title: String?, url: String){
-		let storedRec = CachedWebTable.fetchCachedWebsite(contentId: id)
-		
-		if (storedRec?.title != title || storedRec?.title == nil){
-			ContentTable.upsert(id: id, type: "web", title: title)
-		}
-		if(storedRec?.url == url){
-			return
-		}
         do{
             try Storage.instance.spacesDB.run(
                 table.upsert(
@@ -52,8 +44,6 @@ class CachedWebTable{
         }catch{
             print("Failed to insert into CachedWebTable")
         }
-        
-        DocumentIdContentIdTable.insert(documentId: documentId, contentId: id)
     }
     
     static func fetchCachedWebsite(contentId: UUID) -> CachedWebsite?{
