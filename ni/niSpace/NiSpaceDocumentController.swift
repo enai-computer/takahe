@@ -227,6 +227,8 @@ class NiSpaceDocumentController: NSViewController{
 		DocumentTable.upsertDoc(id: niSpaceID, name: niSpaceName, document: documentJson)
 		//Content of the CFs stored here
 		myView.persistContent(spaceId: niSpaceID)
+		
+		Storage.instance.outboxProcessor.run()
 	}
 	
 	private func genJson(scrollPosition: CGFloat) -> String{

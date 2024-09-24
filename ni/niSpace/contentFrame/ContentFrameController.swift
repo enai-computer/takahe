@@ -972,7 +972,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		}
 		
 		if(deletedTabModel != nil){
-			ContentTable.delete(id: deletedTabModel!.contentId)
+			DocumentDal.deleteDocument(documentId: deletedTabModel!.contentId, docType: deletedTabModel!.type)
 		}
 
 		deletedTabModel?.viewItem = nil
@@ -1425,11 +1425,11 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		for tab in tabs {
 			if(tab.type == .img){
 				ImgDal.deleteImg(id: tab.contentId)
-			}
-			if(tab.type == .pdf){
+			}else if(tab.type == .pdf){
 				PdfDal.deletePdf(id: tab.contentId)
+			}else{
+				DocumentDal.deleteDocument(documentId: tab.contentId, docType: tab.type)
 			}
-			ContentTable.delete(id: tab.contentId)
 		}
 	}
 	

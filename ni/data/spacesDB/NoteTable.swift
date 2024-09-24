@@ -25,8 +25,6 @@ class NoteTable{
 	}
 	
 	static func upsert(documentId: UUID, id: UUID, title: String?, rawText: String){
-		ContentTable.upsert(id: id, type: "note", title: title)
-		
 		do{
 			let updatedAt = Date.now.timeIntervalSince1970
 			try Storage.instance.spacesDB.run(
@@ -37,23 +35,12 @@ class NoteTable{
 					onConflictOf: self.contentId
 				)
 			)
-			OutboxTable.insertNote(
-				objId: id,
-				message: NoteMessage(
-					spaceId: documentId,
-					title: title,
-					rawText: rawText,
-					updatedAt: updatedAt
-				)
-			)
-			Storage.instance.outboxProcessor.run()
 		}catch{
 			print("failed to insert into note table")
 		}
-		DocumentIdContentIdTable.insert(documentId: documentId, contentId: id)
 	}
 	
-	static func fetchNote(contentId: UUID) -> NoteDataModel{
+	static func fetchNote(contentId: UUID) -> NoteDataModel?{
 		do{
 			for record in try Storage.instance.spacesDB.prepare(
 				table.join(ContentTable.table, on: self.contentId==ContentTable.id)
@@ -67,7 +54,7 @@ class NoteTable{
 		}catch{
 			debugPrint("failed to fetch note for content \(contentId) with error: \(error)")
 		}
-		return NoteDataModel(title: "", rawText: "")
+		return nil
 	}
 }
 
