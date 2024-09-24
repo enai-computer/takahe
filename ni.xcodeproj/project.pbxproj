@@ -126,6 +126,7 @@
 		CD7578462BC000F200293930 /* ContentFrameTabHead.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7578442BC000F200293930 /* ContentFrameTabHead.swift */; };
 		CD7578472BC000F200293930 /* ContentFrameTabHead.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD7578452BC000F200293930 /* ContentFrameTabHead.xib */; };
 		CD75784C2BC065FB00293930 /* ContentFrameTabHeadTextNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD75784B2BC065FB00293930 /* ContentFrameTabHeadTextNode.swift */; };
+		CD7691E12CA2E69B008120C5 /* DocumentDal.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7691E02CA2E695008120C5 /* DocumentDal.swift */; };
 		CD781E752C0E1B6E00D02F55 /* NiNoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD781E742C0E1B6E00D02F55 /* NiNoteView.swift */; };
 		CD7AE0AA2C55366A00B3984E /* NiLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7AE0A92C55366A00B3984E /* NiLibrary.swift */; };
 		CD7AE0AC2C553C7300B3984E /* NiLibraryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD7AE0AB2C553C7300B3984E /* NiLibraryView.xib */; };
@@ -335,6 +336,7 @@
 		CD7578442BC000F200293930 /* ContentFrameTabHead.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentFrameTabHead.swift; sourceTree = "<group>"; };
 		CD7578452BC000F200293930 /* ContentFrameTabHead.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContentFrameTabHead.xib; sourceTree = "<group>"; };
 		CD75784B2BC065FB00293930 /* ContentFrameTabHeadTextNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentFrameTabHeadTextNode.swift; sourceTree = "<group>"; };
+		CD7691E02CA2E695008120C5 /* DocumentDal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentDal.swift; sourceTree = "<group>"; };
 		CD781E742C0E1B6E00D02F55 /* NiNoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiNoteView.swift; sourceTree = "<group>"; };
 		CD7AE0A92C55366A00B3984E /* NiLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiLibrary.swift; sourceTree = "<group>"; };
 		CD7AE0AB2C553C7300B3984E /* NiLibraryView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NiLibraryView.xib; sourceTree = "<group>"; };
@@ -916,6 +918,7 @@
 		CDD6B9412B169FC300C6144D /* spacesDB */ = {
 			isa = PBXGroup;
 			children = (
+				CD7691E02CA2E695008120C5 /* DocumentDal.swift */,
 				CDD6B93F2B169F7700C6144D /* DocumentTable.swift */,
 				CDD6B9422B16A14300C6144D /* ContentTable.swift */,
 				CDD6B9442B16A1A200C6144D /* CachedWebTable.swift */,
@@ -1244,6 +1247,7 @@
 				CD66CE382B1FD26A0006BB98 /* NiStringUtils.swift in Sources */,
 				CD8873782BCD649800007BE9 /* TimeUtils.swift in Sources */,
 				CD3362162BFDFF97004DBAFB /* SpaceTopbar.swift in Sources */,
+				CD7691E12CA2E69B008120C5 /* DocumentDal.swift in Sources */,
 				CD9B96BF2C0733E700998CE2 /* NiImgView.swift in Sources */,
 				CD97975E2C57AE1400640750 /* LoadingView.swift in Sources */,
 				CD1160CA2BD27B9E00345E3E /* NiWebViewUtils.swift in Sources */,
