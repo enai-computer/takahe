@@ -28,19 +28,19 @@ class NoteTable{
 		ContentTable.upsert(id: id, type: "note", title: title)
 		
 		do{
-			let updatedAt = Date.now
+			let updatedAt = Date.now.timeIntervalSince1970
 			try Storage.instance.spacesDB.run(
 				table.upsert(
 					self.contentId <- id,
 					self.rawText <- rawText,
-					self.updatedAt <- updatedAt.timeIntervalSince1970,
+					self.updatedAt <- updatedAt,
 					onConflictOf: self.contentId
 				)
 			)
 			OutboxTable.insertNote(
 				objId: id,
 				message: NoteMessage(
-					documentID: documentId,
+					spaceId: documentId,
 					title: title,
 					rawText: rawText,
 					updatedAt: updatedAt

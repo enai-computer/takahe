@@ -1433,40 +1433,13 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		}
 	}
 	
-	func persistContent(documentId: UUID){
+	func persistContent(spaceId: UUID){
 		if(closeTriggered){
 			return
 		}
 		for tab in tabs {
-			if(tab.type == .web){
-				let url = getTabUrl(for: tab)
-				CachedWebTable.upsert(documentId: documentId, id: tab.contentId, title: tab.title, url: url)
-			}
-			if(tab.type == .note){
-				let txt = tab.noteView?.getText()
-				let title = tab.noteView?.getTitle()
-				if(txt != nil){
-					NoteTable.upsert(documentId: documentId, id: tab.contentId, title: title, rawText: txt!)
-				}
-			}
-			if(tab.type == .img){
-				if let img = tab.imgView?.image{
-					ImgDal.insert(documentId: documentId, id: tab.contentId, title: tab.title, img: img, source: tab.source)
-				}
-			}
-			if(tab.type == .pdf){
-				if let pdfDoc = tab.pdfView?.document{
-					PdfDal.insert(documentId: documentId, id: tab.contentId, title: tab.title, pdf: pdfDoc, source: tab.source)
-				}
-			}
+			DocumentDal.persistDocument(spaceId: spaceId, document: tab)
 		}
-	}
-	
-	private func getTabUrl(for tab: TabViewModel) -> String{
-		if(tab.state == .loaded){
-			return tab.webView?.getCurrentURL() ?? tab.content
-		}
-		return tab.content
 	}
 	
 	func toNiContentFrameModel() -> (model: NiDocumentObjectModel?, nrOfTabs: Int, state: NiConentFrameState?){

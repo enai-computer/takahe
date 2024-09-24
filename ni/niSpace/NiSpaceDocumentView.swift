@@ -107,9 +107,9 @@ class NiSpaceDocumentView: NSView{
 		}
 	}
     
-    func persistContent(documentId: UUID){
+    func persistContent(spaceId: UUID){
         for contentFrame in contentFrameControllers{
-            contentFrame.persistContent(documentId: documentId)
+            contentFrame.persistContent(spaceId: spaceId)
         }
     }
 	

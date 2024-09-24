@@ -33,8 +33,21 @@ struct OutboxMessage{
 }
 
 struct NoteMessage: Codable{
-	let documentID: UUID
+	let spaceId: UUID
 	let title: String?
 	let rawText: String
-	let updatedAt: Date
+	let updatedAt: Double
+}
+
+struct WebContentMessage: Codable{
+	let spaceId: UUID
+	let title: String?
+	let url: String
+	let updatedAt: Double
+}
+
+struct PdfMetadataMesssage: Codable{
+	let spaceId: UUID
+	let title: String?
+	let updatedAt: Double
 }
