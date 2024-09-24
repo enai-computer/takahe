@@ -785,6 +785,16 @@
 			path = NiContentFrameHead;
 			sourceTree = "<group>";
 		};
+		CD7691E22CA2F553008120C5 /* dal */ = {
+			isa = PBXGroup;
+			children = (
+				CD7691E02CA2E695008120C5 /* DocumentDal.swift */,
+				CD9B96C32C075B8A00998CE2 /* ImgDal.swift */,
+				CD59FA112C345D6900CFB8DE /* PdfDal.swift */,
+			);
+			path = dal;
+			sourceTree = "<group>";
+		};
 		CD7AE0A82C5535AB00B3984E /* niLibrary */ = {
 			isa = PBXGroup;
 			children = (
@@ -908,6 +918,7 @@
 				CD18530F2C08D1FD001FE566 /* provider */,
 				CD18530E2C08C1FF001FE566 /* cacheDB */,
 				CDD6B9412B169FC300C6144D /* spacesDB */,
+				CD7691E22CA2F553008120C5 /* dal */,
 				CDD6B9382B152A8000C6144D /* Storage.swift */,
 				CD1853142C09C210001FE566 /* DalUtils.swift */,
 				CDCDD5292C944B38002693AF /* BilgePump.swift */,
@@ -918,14 +929,11 @@
 		CDD6B9412B169FC300C6144D /* spacesDB */ = {
 			isa = PBXGroup;
 			children = (
-				CD7691E02CA2E695008120C5 /* DocumentDal.swift */,
 				CDD6B93F2B169F7700C6144D /* DocumentTable.swift */,
 				CDD6B9422B16A14300C6144D /* ContentTable.swift */,
 				CDD6B9442B16A1A200C6144D /* CachedWebTable.swift */,
 				CDD6B9462B16A29100C6144D /* DocumentIdContentIdTable.swift */,
 				CD8D2B072C00C7A100C44C1D /* NoteTable.swift */,
-				CD9B96C32C075B8A00998CE2 /* ImgDal.swift */,
-				CD59FA112C345D6900CFB8DE /* PdfDal.swift */,
 				CDC0BD472C47B6B000CB2DDB /* UserSettingsTable.swift */,
 			);
 			path = spacesDB;
