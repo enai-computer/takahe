@@ -31,8 +31,14 @@ class CachedWebTable{
     }
     
     static func upsert(documentId: UUID, id: UUID, title: String?, url: String){
-        ContentTable.upsert(id: id, type: "web", title: title)
-        
+		let storedRec = CachedWebTable.fetchCachedWebsite(contentId: id)
+		
+		if (storedRec?.title != title || storedRec?.title == nil){
+			ContentTable.upsert(id: id, type: "web", title: title)
+		}
+		if(storedRec?.url == url){
+			return
+		}
         do{
             try Storage.instance.spacesDB.run(
                 table.upsert(
@@ -42,6 +48,7 @@ class CachedWebTable{
                     onConflictOf: self.contentId
                 )
             )
+			
         }catch{
             print("Failed to insert into CachedWebTable")
         }
@@ -49,7 +56,7 @@ class CachedWebTable{
         DocumentIdContentIdTable.insert(documentId: documentId, contentId: id)
     }
     
-    static func fetchCachedWebsite(contentId: UUID) -> CachedWebsite{
+    static func fetchCachedWebsite(contentId: UUID) -> CachedWebsite?{
         do{
             for record in try Storage.instance.spacesDB.prepare(
                 table.join(ContentTable.table, on: self.contentId==ContentTable.id)
@@ -63,7 +70,7 @@ class CachedWebTable{
         }catch{
             debugPrint("failed to fetch url for content \(contentId) with error: \(error)")
         }
-        return CachedWebsite(url: "https://enai.io", title: "Enai")
+        return nil
     }
 }
 

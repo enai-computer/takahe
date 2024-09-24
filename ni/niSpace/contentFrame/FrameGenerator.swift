@@ -178,8 +178,8 @@ func getTabViewModel(for id: UUID, ofType type: TabContentType, positioned at: I
 		tabView = TabViewModel(
 			contentId: id,
 			type: type,
-			title: record.title,
-			content: record.url,
+			title: record?.title ?? "Search or enter Url",
+			content: record?.url ?? "https://enai.io",
 			state: .notLoaded,
 			position: at
 		)
