@@ -35,7 +35,7 @@ struct OutboxMessage{
 struct NoteMessage: Codable{
 	let spaceId: UUID
 	let title: String?
-	let rawText: String
+	let content: String
 	let updatedAt: Double
 }
 

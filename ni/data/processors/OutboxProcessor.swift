@@ -67,7 +67,10 @@ class OutboxProcessor{
 	
 	private func allowSending() -> Bool{
 		//TODO: tech debt,- needs to be cleaned up. Find a good library implementation
-		if(5 < failedSendCounter.count){
+		if(5 < failedSendCounter.count && failedSendCounter.triedLast?.timeIntervalSinceNow ?? 31.0 > -30.0 ){
+			if(failedSendCounter.triedLast == nil){
+				failedSendCounter.triedLast = Date.now
+			}
 			return false
 		}
 		return true

@@ -34,7 +34,7 @@ class FaviconCacheTable{
 				)
 			)
 		}catch{
-			print("failed to insert into note table")
+			print("failed to insert Favicon note table: \(error)")
 		}
 	}
 	
@@ -44,7 +44,7 @@ class FaviconCacheTable{
 			let numbDelRows = try Storage.instance.cacheDB.run(delQuery)
 			print("deleted \(numbDelRows) of rows in FavIcon cache table")
 		}catch{
-			print("Failed to delete content in table")
+			print("Failed to delete content in table:  \(error)")
 		}
 	}
 	

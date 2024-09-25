@@ -15,11 +15,9 @@ class DocumentDal{
 			persistWebcontent(spaceId: spaceId, id: tab.contentId, title: tab.title, url: url)
 		}
 		if(tab.type == .note){
-			let txt = tab.noteView?.getText()
+			guard let txt = tab.noteView?.getText() else {return}
 			let title = tab.noteView?.getTitle()
-			if(txt != nil){
-				NoteTable.upsert(documentId: spaceId, id: tab.contentId, title: title, rawText: txt!)
-			}
+			persistNote(spaceId: spaceId, id: tab.contentId, title: title, rawText: txt)
 		}
 		if(tab.type == .img){
 			if let img = tab.imgView?.image{
@@ -109,7 +107,7 @@ class DocumentDal{
 				message: NoteMessage(
 					spaceId: spaceId,
 					title: title,
-					rawText: rawText,
+					content: rawText,
 					updatedAt: Date.now.timeIntervalSince1970
 				)
 			)
