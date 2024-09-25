@@ -36,7 +36,7 @@ class NoteTable{
 				)
 			)
 		}catch{
-			print("failed to insert into note table")
+			print("failed to insert into note table: \(error)")
 		}
 	}
 	
