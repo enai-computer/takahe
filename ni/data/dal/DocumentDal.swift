@@ -56,7 +56,7 @@ class DocumentDal{
 	private static func persistWebcontent(
 		spaceId: UUID,
 		id: UUID,
-		title: String?,
+		title: String,
 		url:String
 	){
 		var updatedRecord = false
