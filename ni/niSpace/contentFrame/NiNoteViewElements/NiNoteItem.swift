@@ -178,7 +178,7 @@ class NiNoteItem: NSViewController, CFContentItem {
 		}
 		let endOfFirstLine = note!.firstIndex(of: "\n")
 		if(endOfFirstLine == nil){
-			return nil
+			return note
 		}
 		
 		let firstLine = note![..<endOfFirstLine!]
