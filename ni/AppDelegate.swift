@@ -240,6 +240,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 				self.pumpBilgeWater()
 				return nil
 			}
+			if(event.keyCode == kVK_F9){
+				print("[INFO]: kicked off backfill task")
+				Task{
+					Storage.instance.outboxProcessor.backfillCloudDB()
+				}
+			}
 			return event
 		}
 	}
