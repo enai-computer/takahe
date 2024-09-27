@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SQLite
 
 class OutboxProcessor{
 	
@@ -22,10 +23,14 @@ class OutboxProcessor{
 		self.failedSendCounter = FailedSendCounter()
 	}
 	
-	func run(){
+	func run(withDelayInMs: Int? = nil){
 		guard UserSettings.shared.onlineSync else {return}
 		Task{
-			while( await processRecordInTable() ) {}
+			while( await processRecordInTable() ) {
+				if let delay = withDelayInMs{
+					try await Task.sleep(for: .milliseconds(delay))
+				}
+			}
 		}
 	}
 	
@@ -88,4 +93,89 @@ class OutboxProcessor{
 		failedSendCounter.count += 1
 		failedSendCounter.triedLast = Date.now
 	}
+	
+	func backfillCloudDB(){
+//		let webContent = fetchAllWebContent()
+//		for content in webContent {
+//			OutboxTable.insertMessage(
+//				eventType: .PUT,
+//				objectID: content.0,
+//				objectType: .webContent,
+//				message: content.1
+//			)
+//		}
+//		print("[INFO]: finished creating backfill messages. Created \(webContent.count) messages")
+//		let noteMessages = fetchAllNotes()
+//		for noteM in noteMessages{
+//			OutboxTable.insertMessage(
+//				eventType: .PUT,
+//				objectID: noteM.0,
+//				objectType: .note,
+//				message: noteM.1
+//			)
+//		}
+//		print("[INFO]: finished creating note backfill messages. Created \(noteMessages.count) note messages")
+//		
+		self.run(withDelayInMs: 1)
+	}
+	
+	private func fetchAllWebContent() -> [(UUID, WebContentMessage)]{
+		var results: [(UUID, WebContentMessage)] = []
+		do{
+			let q = ContentTable.table
+				.join(
+					CachedWebTable.table,
+					on: ContentTable.id == CachedWebTable.table[CachedWebTable.contentId]
+				)
+				.join(
+					DocumentIdContentIdTable.table,
+					on: DocumentIdContentIdTable.table[DocumentIdContentIdTable.contentId] == ContentTable.id
+				)
+			
+			for record in try Storage.instance.spacesDB.prepare(q){
+				let docId = try record.get(ContentTable.id)
+				let webM = WebContentMessage(
+					spaceId: try record.get(DocumentIdContentIdTable.documentId),
+					title: try record.get(ContentTable.title),
+					url: try record.get(CachedWebTable.url),
+					updatedAt: try record.get(CachedWebTable.table[CachedWebTable.updatedAt])
+				)
+				results.append((docId, webM))
+			}
+		}catch{
+			print(error)
+		}
+		return results
+	}
+	
+	private func fetchAllNotes() -> [(UUID, NoteMessage)]{
+		var results: [(UUID, NoteMessage)] = []
+		
+		do{
+			let q = ContentTable.table
+				.join(
+					NoteTable.table,
+					on: NoteTable.table[NoteTable.contentId] == ContentTable.id
+				)
+				.join(
+					DocumentIdContentIdTable.table,
+					on: DocumentIdContentIdTable.table[DocumentIdContentIdTable.contentId] == ContentTable.id
+				)
+			for record in try Storage.instance.spacesDB.prepare(q){
+				let docId = try record.get(ContentTable.id)
+				let webM = NoteMessage(
+					spaceId: try record.get(DocumentIdContentIdTable.documentId),
+					title: try record.get(ContentTable.title),
+					content: try record.get(NoteTable.rawText) ?? "",
+					updatedAt: try record.get(NoteTable.table[NoteTable.updatedAt])
+				)
+				results.append((docId, webM))
+			}
+		}catch{
+			print(error)
+		}
+		
+		return results
+	}
 }
+
