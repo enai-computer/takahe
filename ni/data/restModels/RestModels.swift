@@ -49,5 +49,6 @@ struct WebContentMessage: Codable{
 struct PdfMetadataMesssage: Codable{
 	let spaceId: UUID
 	let title: String?
+	let url: String
 	let updatedAt: Double
 }

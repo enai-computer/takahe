@@ -20,14 +20,30 @@ class PdfDal{
 		Storage.instance.startedWrite()
 		Task{
 			let fUrl: URL = Storage.instance.genFileUrl(for: id, ofType: .spacePdf)
+			var wroteFile = false
 			if(pdf.write(to: fUrl)){
 				ContentTable.upsert(id: id, type: "pdf", title: title, fileUrl: fUrl.absoluteString, source: source)
 				
 				DocumentIdContentIdTable.insert(documentId: documentId, contentId: id)
+				wroteFile = true
 			}else{
 				print("Failed to write pdf to disk with Title: \(title ?? "")")
 			}
 			Storage.instance.finishedWrite()
+			
+			if(wroteFile){
+				OutboxTable.insertMessage(
+					eventType: .PUT,
+					objectID: id,
+					objectType: .pdf,
+					message: PdfMetadataMesssage(
+						spaceId: documentId,
+						title: title,
+						url: fUrl.absoluteString,
+						updatedAt: Date.now.timeIntervalSince1970
+					)
+				)
+			}
 		}
 	}
 	
