@@ -117,6 +117,10 @@
 		CD6D280C2C11D6DA0009732A /* NiMenuWindowDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6D280B2C11D6DA0009732A /* NiMenuWindowDelegate.swift */; };
 		CD6D280E2C11DC7A0009732A /* NiMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6D280D2C11DC7A0009732A /* NiMenuViewController.swift */; };
 		CD6D28102C11EE7E0009732A /* RoundedRectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6D280F2C11EE7E0009732A /* RoundedRectView.swift */; };
+		CD6D85382CA852CF00A735DA /* Eve.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6D85372CA852C900A735DA /* Eve.swift */; };
+		CD6D853A2CA864E000A735DA /* EveChatView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD6D85392CA864E000A735DA /* EveChatView.xib */; };
+		CD6D853C2CA8668100A735DA /* EveChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6D853B2CA8667D00A735DA /* EveChatView.swift */; };
+		CD6D853E2CA96EDA00A735DA /* WindowBlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6D853D2CA96ED300A735DA /* WindowBlurView.swift */; };
 		CD6DED8F2C24954500AA8BC4 /* NiWebViewFindPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6DED8D2C24954500AA8BC4 /* NiWebViewFindPanel.swift */; };
 		CD6DED902C24954500AA8BC4 /* NiWebViewFindPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD6DED8E2C24954500AA8BC4 /* NiWebViewFindPanel.xib */; };
 		CD6DED922C257A5000AA8BC4 /* NiActionLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6DED912C257A5000AA8BC4 /* NiActionLabel.swift */; };
@@ -126,6 +130,7 @@
 		CD7578462BC000F200293930 /* ContentFrameTabHead.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7578442BC000F200293930 /* ContentFrameTabHead.swift */; };
 		CD7578472BC000F200293930 /* ContentFrameTabHead.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD7578452BC000F200293930 /* ContentFrameTabHead.xib */; };
 		CD75784C2BC065FB00293930 /* ContentFrameTabHeadTextNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD75784B2BC065FB00293930 /* ContentFrameTabHeadTextNode.swift */; };
+		CD75C34F2CA982E20000DA12 /* NativeMarkKit in Frameworks */ = {isa = PBXBuildFile; productRef = CD75C34E2CA982E20000DA12 /* NativeMarkKit */; };
 		CD7691E12CA2E69B008120C5 /* DocumentDal.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7691E02CA2E695008120C5 /* DocumentDal.swift */; };
 		CD781E752C0E1B6E00D02F55 /* NiNoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD781E742C0E1B6E00D02F55 /* NiNoteView.swift */; };
 		CD7AE0AA2C55366A00B3984E /* NiLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7AE0A92C55366A00B3984E /* NiLibrary.swift */; };
@@ -327,6 +332,10 @@
 		CD6D280B2C11D6DA0009732A /* NiMenuWindowDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiMenuWindowDelegate.swift; sourceTree = "<group>"; };
 		CD6D280D2C11DC7A0009732A /* NiMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiMenuViewController.swift; sourceTree = "<group>"; };
 		CD6D280F2C11EE7E0009732A /* RoundedRectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedRectView.swift; sourceTree = "<group>"; };
+		CD6D85372CA852C900A735DA /* Eve.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Eve.swift; sourceTree = "<group>"; };
+		CD6D85392CA864E000A735DA /* EveChatView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EveChatView.xib; sourceTree = "<group>"; };
+		CD6D853B2CA8667D00A735DA /* EveChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EveChatView.swift; sourceTree = "<group>"; };
+		CD6D853D2CA96ED300A735DA /* WindowBlurView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowBlurView.swift; sourceTree = "<group>"; };
 		CD6DED8D2C24954500AA8BC4 /* NiWebViewFindPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiWebViewFindPanel.swift; sourceTree = "<group>"; };
 		CD6DED8E2C24954500AA8BC4 /* NiWebViewFindPanel.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NiWebViewFindPanel.xib; sourceTree = "<group>"; };
 		CD6DED912C257A5000AA8BC4 /* NiActionLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiActionLabel.swift; sourceTree = "<group>"; };
@@ -428,6 +437,7 @@
 				CD1160C82BD142D100345E3E /* WebURL in Frameworks */,
 				CD2DE8862CA1CB44000B5461 /* Get in Frameworks */,
 				CD0589372BE1837B00E9A01E /* PostHog in Frameworks */,
+				CD75C34F2CA982E20000DA12 /* NativeMarkKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -533,6 +543,7 @@
 		CD18530F2C08D1FD001FE566 /* provider */ = {
 			isa = PBXGroup;
 			children = (
+				CD6D85372CA852C900A735DA /* Eve.swift */,
 				CD1853102C08D22A001FE566 /* FaviconProvider.swift */,
 				CD23EBFA2C0F72FF00A2ACD9 /* Cook.swift */,
 				CD410ADF2C285AC700EC5DF7 /* UserSettings.swift */,
@@ -592,17 +603,10 @@
 			path = processors;
 			sourceTree = "<group>";
 		};
-		CD2DE8812CA1AD3F000B5461 /* restModels */ = {
-			isa = PBXGroup;
-			children = (
-				CD2DE8822CA1AD98000B5461 /* RestModels.swift */,
-			);
-			path = restModels;
-			sourceTree = "<group>";
-		};
 		CD2DE8872CA1CDA0000B5461 /* client */ = {
 			isa = PBXGroup;
 			children = (
+				CD2DE8822CA1AD98000B5461 /* RestModels.swift */,
 				CD2DE8882CA1CDAE000B5461 /* MaraeClient.swift */,
 			);
 			path = client;
@@ -912,7 +916,6 @@
 			isa = PBXGroup;
 			children = (
 				CD2DE8872CA1CDA0000B5461 /* client */,
-				CD2DE8812CA1AD3F000B5461 /* restModels */,
 				CD2DE87E2CA1ABA0000B5461 /* processors */,
 				CDC0BD412C4527E500CB2DDB /* handler */,
 				CD18530F2C08D1FD001FE566 /* provider */,
@@ -970,6 +973,7 @@
 		CDD7D3342C198A080038E6F9 /* niPalette */ = {
 			isa = PBXGroup;
 			children = (
+				CD6D853D2CA96ED300A735DA /* WindowBlurView.swift */,
 				CDD7D3352C198A930038E6F9 /* NiPalette.swift */,
 				CDD7D34A2C19B20C0038E6F9 /* NiPaletteContentController.swift */,
 				CD5F7DFC2C19E9B000ADC860 /* NiPaletteWindowDelegate.swift */,
@@ -987,6 +991,8 @@
 				CDD7D3462C19986F0038E6F9 /* NiSearchResultViewItemRightIcon.swift */,
 				CD5F7E002C1EFE7300ADC860 /* SearchViewTextField.swift */,
 				CDB549D02C2020C90038FB30 /* NiSearchViewScroller.swift */,
+				CD6D853B2CA8667D00A735DA /* EveChatView.swift */,
+				CD6D85392CA864E000A735DA /* EveChatView.xib */,
 			);
 			path = niSearchView;
 			sourceTree = "<group>";
@@ -1035,6 +1041,7 @@
 				CDFAC33B2C9865050057F759 /* FaviconFinder */,
 				CD4088D62C9AF61D005EF6ED /* SQLite */,
 				CD2DE8852CA1CB44000B5461 /* Get */,
+				CD75C34E2CA982E20000DA12 /* NativeMarkKit */,
 			);
 			productName = ni;
 			productReference = A1B8E6A22AAFB5EC00AC6566 /* ni.app */;
@@ -1093,6 +1100,7 @@
 				CDFAC33A2C9865050057F759 /* XCRemoteSwiftPackageReference "FaviconFinder" */,
 				CD4088D52C9AF61D005EF6ED /* XCRemoteSwiftPackageReference "SQLite.swift" */,
 				CD2DE8842CA1CB44000B5461 /* XCRemoteSwiftPackageReference "Get" */,
+				CD75C34D2CA982E20000DA12 /* XCRemoteSwiftPackageReference "NativeMarkKit" */,
 			);
 			productRefGroup = A1B8E6A32AAFB5EC00AC6566 /* Products */;
 			projectDirPath = "";
@@ -1160,6 +1168,7 @@
 				CDABE64C2C11C5BC00BB4E85 /* NiMenuView.xib in Resources */,
 				CDB4830A2C6A623900612AF5 /* CFFullscreenView.xib in Resources */,
 				CD618D9E2C2B415F006869AF /* E52F5D89-38ED-42B3-938F-4E52105C7DF7.jpg in Resources */,
+				CD6D853A2CA864E000A735DA /* EveChatView.xib in Resources */,
 				CD6317EE2BC4852300434D56 /* sohne-buch.ttf in Resources */,
 				CDFA8CFD2C03B9D000882722 /* CFFramelessView.xib in Resources */,
 			);
@@ -1192,6 +1201,7 @@
 				CDB4830C2C6A624E00612AF5 /* CFFullscreenView.swift in Sources */,
 				CD240BD92C80C95D000E478F /* WeatherLocationPicker.swift in Sources */,
 				CD2B68EE2C2F166E0086756E /* NiFullscreenPanel.swift in Sources */,
+				CD6D853C2CA8668100A735DA /* EveChatView.swift in Sources */,
 				CD5A04CF2BEA42EB004CC3AA /* cfUtils.swift in Sources */,
 				CD1853152C09C210001FE566 /* DalUtils.swift in Sources */,
 				A1B8E6A62AAFB5EC00AC6566 /* AppDelegate.swift in Sources */,
@@ -1222,6 +1232,7 @@
 				CD5F7DFF2C1EF06300ADC860 /* DataModelUtils.swift in Sources */,
 				CD410AE22C285C3C00EC5DF7 /* NiUsersSettingsModel.swift in Sources */,
 				CDE76C1C2BC6989000CE9513 /* TabViewModel.swift in Sources */,
+				CD6D85382CA852CF00A735DA /* Eve.swift in Sources */,
 				CDF0DD202C202B71006C4EF4 /* NiHomeWindowDelegate.swift in Sources */,
 				CD402C2A2C982FEE004D9538 /* CFCollapsedMinimizedView.swift in Sources */,
 				CD04974C2C120ABE00C44021 /* CFGroupButton.swift in Sources */,
@@ -1308,6 +1319,7 @@
 				CD1853132C08D972001FE566 /* FaviconCacheTable.swift in Sources */,
 				CD1C6D552C5259020019CD09 /* NiPinnedMenuPopup.swift in Sources */,
 				CD0287D02C9ACA8D0035AEC8 /* BilgeWater.swift in Sources */,
+				CD6D853E2CA96EDA00A735DA /* WindowBlurView.swift in Sources */,
 				CD7AE0AA2C55366A00B3984E /* NiLibrary.swift in Sources */,
 				CDABE64A2C11C54300BB4E85 /* NiMenuItemView.swift in Sources */,
 				CD59FA142C3550F500CFB8DE /* NiViewElementsUtils.swift in Sources */,
@@ -1655,6 +1667,14 @@
 				minimumVersion = 1.2.0;
 			};
 		};
+		CD75C34D2CA982E20000DA12 /* XCRemoteSwiftPackageReference "NativeMarkKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/andyfinnell/NativeMarkKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.1.1;
+			};
+		};
 		CDFAC33A2C9865050057F759 /* XCRemoteSwiftPackageReference "FaviconFinder" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/will-lumley/FaviconFinder.git";
@@ -1690,6 +1710,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = CD4D7AE22C49459400B6DBFD /* XCRemoteSwiftPackageReference "swift-atomics" */;
 			productName = Atomics;
+		};
+		CD75C34E2CA982E20000DA12 /* NativeMarkKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CD75C34D2CA982E20000DA12 /* XCRemoteSwiftPackageReference "NativeMarkKit" */;
+			productName = NativeMarkKit;
 		};
 		CDD6B93D2B152D3F00C6144D /* SQLite */ = {
 			isa = XCSwiftPackageProductDependency;

@@ -14,7 +14,7 @@ class NiPalette: NSPanel, NiSearchWindowProtocol {
 	override var canBecomeKey: Bool {return true}
 	override var canBecomeMain: Bool {return false}
 	
-	private var windowBlurView: NSView?
+	private var windowBlurView: WindowBlurView?
 	private var paletteBlurView: NSView?
 	
 	init(_ mainWindow: NSWindow){
@@ -43,8 +43,8 @@ class NiPalette: NSPanel, NiSearchWindowProtocol {
 	}
 	
 	private static func calcPaletteRect(_ screenSize: NSSize) -> NSRect{
-		let w = 586.0
-		let h = 426.0
+		let w = 650.0
+		let h = 431.0
 		
 		//center on x
 		let distToLeftBorder = (screenSize.width - w) / 2
@@ -60,7 +60,9 @@ class NiPalette: NSPanel, NiSearchWindowProtocol {
 	}
 	
 	private func setBlurOnMainWindow(_ mainWindow: NSWindow){
-		windowBlurView = NSView(frame: mainWindow.frame)
+		windowBlurView = WindowBlurView(frame: mainWindow.frame)
+		windowBlurView?.niPalette = self
+		
 		windowBlurView?.frame.origin = CGPoint(x: 0.0, y: 0.0)
 		windowBlurView!.wantsLayer = true
 		setupBlurOnView(windowBlurView!, inputRadius: 1.0, inputSaturation: 0.6)

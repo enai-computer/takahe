@@ -17,6 +17,7 @@ class NiSearchResultViewItem: NSCollectionViewItem {
 	private var keySelected: Bool = false
 	private var birkinHighlight: NSView? = nil
 	private var style: NiSearchViewStyle? = nil
+	private weak var niSearchController: NiSearchController?
 	
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,11 +31,11 @@ class NiSearchResultViewItem: NSCollectionViewItem {
 		view.addTrackingArea(hoverEffectTrackingArea)
     }
     
-	func configureView(_ data: NiSearchResultItem, position: Int, style: NiSearchViewStyle){
+	func configureView(_ data: NiSearchResultItem, position: Int, style: NiSearchViewStyle, controller: NiSearchController){
 		resultTitle.stringValue = data.name
 		self.resultData = data
 		self.style = style
-
+		self.niSearchController = controller
 		self.rightSideElement.configureElement(position)
 		
 		if(style == .homeView){
@@ -42,9 +43,8 @@ class NiSearchResultViewItem: NSCollectionViewItem {
 		}
 		if(data.id == NiSpaceDocumentController.DEMO_GEN_SPACE_ID){
 			leftSideResultTypeIcon.image = NSImage(named: "magicWand")
-		}else if(data.type == .pinnedWebsite){
-			//TODO: set icon
-//			leftSideResultTypeIcon.image = NSImage(named: "tvIcon")
+		}else if(data.type == .eve){
+			leftSideResultTypeIcon.image = NSImage(named: "enai_i")
 		}else{
 			leftSideResultTypeIcon.image = NSImage(named: "SpaceIcon")
 		}
@@ -62,6 +62,7 @@ class NiSearchResultViewItem: NSCollectionViewItem {
 		resultTitle.textColor = NSColor.sand12
 		keySelected = true
 		rightSideElement.select()
+		leftSideResultTypeIcon.contentTintColor = NSColor.sand115
 	}
 	
 	func deselect(){
@@ -77,6 +78,7 @@ class NiSearchResultViewItem: NSCollectionViewItem {
 		
 		resultTitle.textColor = NSColor.sand115
 		rightSideElement.deselect()
+		leftSideResultTypeIcon.contentTintColor = NSColor.sand11
 	}
 	
 	override func mouseDown(with event: NSEvent) {
@@ -86,9 +88,8 @@ class NiSearchResultViewItem: NSCollectionViewItem {
 	func tryOpenResult(){
 		if(resultData?.type == .niSpace){
 			openSpaceAndTryRemoveWindow()
-			//		}else if(resultData?.type == .video){
-			//			openImmersiveView()
-			//		}
+		}else if(resultData?.type == .eve){
+			niSearchController?.getAnswerFromEve()
 		}
 	}
 	

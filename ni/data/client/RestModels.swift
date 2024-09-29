@@ -52,3 +52,7 @@ struct PdfMetadataMesssage: Codable{
 	let url: String
 	let updatedAt: Double
 }
+
+struct EveChatResponseMessage: Codable{
+	let message: String
+}

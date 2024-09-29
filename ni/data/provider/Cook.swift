@@ -10,7 +10,7 @@ import SQLite
 
 
 enum NiSearchResultType{
-	case niSpace, pinnedWebsite
+	case niSpace, pinnedWebsite, eve
 }
 
 struct NiSearchResultItem{
@@ -69,12 +69,7 @@ class Cook{
 				res.append(NiSearchResultItem(type: .niSpace, id: WelcomeSpaceGenerator.WELCOME_SPACE_ID, name: WelcomeSpaceGenerator.WELCOME_SPACE_NAME, data: nil))
 			}
 		}
-		
-//		//adding WebApps to search results
-//		if(UserSettings.shared.demoMode && typedChars != nil && !typedChars!.isEmpty && displayOption == .palette){
-//			res.append(contentsOf: getWebApps(typedChars!))
-//		}
-		
+	
 		//sorting
 		if(giveCreateNewSpaceOption && typedChars != nil && !typedChars!.isEmpty){
 			//FIXME: hacky sorting solution
@@ -85,6 +80,16 @@ class Cook{
 				return true
 			}
 			res.append(NiSearchResultItem(type: .niSpace, id: NiSpaceDocumentController.EMPTY_SPACE_ID, name: "Create a new space", data: nil))
+			if(UserSettings.shared.eveEnabled && 2 < countWords(in: typedChars!)){
+				res.append(
+					NiSearchResultItem(
+						type: .eve,
+						id: nil,
+						name: "Ask Eve",
+						data: nil
+					)
+				)
+			}
 			if(UserSettings.shared.demoMode){
 				res.append(NiSearchResultItem(type: .niSpace, id: NiSpaceDocumentController.DEMO_GEN_SPACE_ID, name: "Generate a new space", data: nil))
 			}
@@ -111,7 +116,12 @@ class Cook{
 		}
 		return query
 	}
-//	
+	
+	func countWords(in text: String) -> Int {
+		let components = text.components(separatedBy: .whitespacesAndNewlines)
+		return components.filter { !$0.isEmpty }.count
+	}
+//
 //	let preConfigedWebApps: [String: URL] = [
 //		"nebula": URL(string: "https://nebula.tv/featured")!,
 //		"HBO Max": URL(string: "https://www.max.com/")!,
