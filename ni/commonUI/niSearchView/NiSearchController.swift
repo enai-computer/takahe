@@ -13,12 +13,14 @@ enum NiSearchViewStyle{
 }
 
 class NiSearchController: NSViewController, NSCollectionViewDataSource, NSCollectionViewDelegateFlowLayout, NSTextFieldDelegate, NSControlTextEditingDelegate {
-
+	
 	@IBOutlet var searchField: NSTextField!
 	@IBOutlet var searchFieldBox: NSView!
 	@IBOutlet var searchResultsScrollContainer: NSScrollView!
 	@IBOutlet var searchResultsCollection: NSCollectionView!
 	
+	private var eveChatResultView: EveChatView?
+	private var chatShown: Bool = false
 	private var selectedPosition: Int = 0
 	private var searchResults: [NiSearchResultItem] = []
 	private let style: NiSearchViewStyle
@@ -37,14 +39,14 @@ class NiSearchController: NSViewController, NSCollectionViewDataSource, NSCollec
 	}
 	
 	override func viewDidLoad() {
-        super.viewDidLoad()
-    }
+		super.viewDidLoad()
+	}
 	
 	override func viewWillAppear() {
 		super.viewWillAppear()
 		updateResultSet()
 	}
-
+	
 	override func viewWillLayout() {
 		stlyeSelf()
 		stlyeSearchField()
@@ -109,6 +111,11 @@ class NiSearchController: NSViewController, NSCollectionViewDataSource, NSCollec
 	}
 	
 	func controlTextDidChange(_ obj: Notification) {
+		if chatShown{
+			eveChatResultView?.removeFromSuperview()
+			view.addSubview(searchResultsScrollContainer)
+			chatShown = false
+		}
 		if let dirtyTxt = (obj.object as? NSTextField)?.stringValue{
 			searchResults = Cook.instance.searchSpaces(typedChars: dirtyTxt, giveCreateNewSpaceOption: true, displayOption: style)
 			searchResultsCollection.reloadData()
@@ -118,11 +125,11 @@ class NiSearchController: NSViewController, NSCollectionViewDataSource, NSCollec
 	
 	func control(_ control: NSControl, textView: NSTextView, doCommandBy commandSelector: Selector) -> Bool {
 		if commandSelector == #selector(NSTextView.moveUp) {
-			 moveSelection(direction: .prev)
-			 return true
+			moveSelection(direction: .prev)
+			return true
 		} else if commandSelector == #selector(NSTextView.moveDown) {
-			 moveSelection(direction: .next)
-			 return true
+			moveSelection(direction: .next)
+			return true
 		} else if commandSelector == #selector(NSTextView.insertNewline) {
 			openSpace()
 			return true
@@ -164,7 +171,7 @@ class NiSearchController: NSViewController, NSCollectionViewDataSource, NSCollec
 			selectedItem.tryOpenResult()
 		}
 	}
-
+	
 	func controlTextDidEndEditing(_ obj: Notification) {
 		return
 	}
@@ -199,7 +206,7 @@ class NiSearchController: NSViewController, NSCollectionViewDataSource, NSCollec
 		if(6 < searchResults.count){
 			searchResultsCollection.scrollToItems(at: Set(arrayLiteral: IndexPath(item: selectedPosition, section: 0)), scrollPosition: .centeredVertically)
 		}
-
+		
 		if let selectedItem = searchResultsCollection.item(at: selectedPosition) as? NiSearchResultViewItem{
 			selectedItem.select()
 		}
@@ -209,7 +216,7 @@ class NiSearchController: NSViewController, NSCollectionViewDataSource, NSCollec
 		return searchResults.count
 	}
 	
-	func collectionView(_ collectionView: NSCollectionView, 
+	func collectionView(_ collectionView: NSCollectionView,
 						itemForRepresentedObjectAt indexPath: IndexPath
 	) -> NSCollectionViewItem {
 		let viewItem = collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier("NiSearchResultViewItem"), for: indexPath)
@@ -218,7 +225,9 @@ class NiSearchController: NSViewController, NSCollectionViewDataSource, NSCollec
 		resultView.configureView(
 			dataItem,
 			position: indexPath.item,
-			style: self.style)
+			style: self.style,
+			controller: self
+		)
 		
 		return resultView
 	}
@@ -236,10 +245,10 @@ class NiSearchController: NSViewController, NSCollectionViewDataSource, NSCollec
 	}
 	
 	private func getCollectionViewItemSize() -> NSSize{
-			if(self.style == .palette){
-				return NSSize(width: 556.0, height: 47.0)
-			}
-			return NSSize(width: 648.0, height: 47.0)
+		if(self.style == .palette){
+			return NSSize(width: 620.0, height: 47.0)
+		}
+		return NSSize(width: 648.0, height: 47.0)
 	}
 	
 	override func cancelOperation(_ sender: Any?) {
@@ -258,4 +267,29 @@ class NiSearchController: NSViewController, NSCollectionViewDataSource, NSCollec
 		searchField.stringValue = ""
 		updateResultSet()
 	}
+	
+	func getAnswerFromEve(){
+		let question = searchField.stringValue
+		searchField.stringValue = "Thinking ..."
+		searchField.isEditable = false
+		
+		eveChatResultView = (NSView.loadFromNib(nibName: "EveChatView", owner: self) as! EveChatView)
+		eveChatResultView?.questionLabel.stringValue = question
+		
+		eveChatResultView?.frame = searchResultsScrollContainer.frame
+		eveChatResultView?.style()
+		
+		searchResultsScrollContainer.removeFromSuperview()
+		view.addSubview(eveChatResultView!)
+		chatShown = true
+		
+		Task{
+			let mdResult = await Eve.instance.ask(question: question)
+			eveChatResultView?.setText(markdown: mdResult)
+			searchField.isEditable = true
+			searchField.stringValue = ""
+		}
+	}
+	
+	
 }

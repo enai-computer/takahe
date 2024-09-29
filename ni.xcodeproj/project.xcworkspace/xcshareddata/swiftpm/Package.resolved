@@ -1,5 +1,5 @@
 {
-  "originHash" : "51ad9b88c3458b4fe53837211c9a7b72be51b21bba7e5cd917dfeb12edf42025",
+  "originHash" : "4313babfcae21509f34822e023b9eba94f6142f46e6c25c34673966bee313970",
   "pins" : [
     {
       "identity" : "faviconfinder",
@@ -17,6 +17,15 @@
       "state" : {
         "revision" : "74dba201ebe42e9c15c1db6ee1cc893025bbef94",
         "version" : "2.2.0"
+      }
+    },
+    {
+      "identity" : "nativemarkkit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/andyfinnell/NativeMarkKit.git",
+      "state" : {
+        "revision" : "4833aa3f62ab3b846b2f8042418c71e5bebe167c",
+        "version" : "2.1.1"
       }
     },
     {

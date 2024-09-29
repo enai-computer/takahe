@@ -27,7 +27,7 @@ class MaraeClient{
 			body: record.message,
 			headers: ["Content-Type": "application/json"]
 		)
-		return try await sendRequest(putRequest)
+		return try await sendRequestNoResponse(putRequest)
 	}
 	
 	func deleteRecord(record: OutboxMessage) async throws -> Bool{
@@ -36,10 +36,28 @@ class MaraeClient{
 			path: relPath,
 			method: .delete
 		)
-		return try await sendRequest(delRequest)
+		return try await sendRequestNoResponse(delRequest)
 	}
 	
-	private func sendRequest(_ req: Request<()>) async throws -> Bool{
+	func askQuestion(_ question: String) async throws -> String{
+		let relPath = apiVersion + userID + "/answer"
+		let req = Request(
+			path: relPath,
+			method: .get,
+			query: [
+				("q", question.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "")
+			]
+		)
+		let res = try await client.send(req)
+		if(res.statusCode == 200){
+			let jsonD = JSONDecoder()
+			let answer = try jsonD.decode(EveChatResponseMessage.self, from: res.data)
+			return answer.message
+		}
+		return "Failed to get answer to your question."
+	}
+
+	private func sendRequestNoResponse(_ req: Request<()>) async throws -> Bool{
 		let res = try await client.send(req)
 		if res.statusCode == 200{
 			return true
