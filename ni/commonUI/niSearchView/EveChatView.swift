@@ -10,8 +10,9 @@ import NativeMarkKit
 
 class EveChatView: NSView{
 	
-	@IBOutlet var questionLabel: NSTextField!	
-	@IBOutlet var answerTextView: NSTextView!
+	@IBOutlet var questionLabel: NSTextField!
+	@IBOutlet var scrollView: NSScrollView!
+	@IBOutlet var answerTextPlaceholder: NSView!
 	
 	private var mdTextView: NativeMarkLabel?
 	
@@ -19,19 +20,19 @@ class EveChatView: NSView{
 		wantsLayer = true
 		layer?.cornerRadius = 4.0
 		layer?.cornerCurve = .continuous
-		
 		layer?.backgroundColor = NSColor.sand2.cgColor
-		answerTextView.backgroundColor = NSColor.sand2
 	}
 	
 	func setText(markdown:String){
 		mdTextView = NativeMarkLabel(nativeMark: markdown, styleSheet: getStylesheet())
-		mdTextView?.frame = answerTextView.frame
+		mdTextView?.frame.origin = answerTextPlaceholder.frame.origin
+		mdTextView?.frame.size.width = answerTextPlaceholder.frame.size.width
+		mdTextView?.frame.size.height = mdTextView!.intrinsicContentSize.height
 		mdTextView?.wantsLayer = true
 		mdTextView?.layer?.borderColor = NSColor.sand2.cgColor
 
-		answerTextView.removeFromSuperview()
-		addSubview(mdTextView!)
+		answerTextPlaceholder.removeFromSuperviewWithoutNeedingDisplay()
+		scrollView.documentView = mdTextView!
 	}
 	
 	private func getStylesheet() -> StyleSheet{
@@ -41,7 +42,7 @@ class EveChatView: NSView{
 		return StyleSheet.default.mutate(
 		  block: [
 			  .document: [
-				.textStyle(.custom(name: myFont, size: FontSize.scaled(to: .body))),
+				.textStyle(.custom(name: myFont, size: FontSize.fixed(16.0))),
 				.backgroundColor(NSColor.sand2)
 			  ],
 			  .heading(level: 1): [
