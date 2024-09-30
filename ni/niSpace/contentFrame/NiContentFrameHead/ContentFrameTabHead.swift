@@ -119,6 +119,11 @@ class ContentFrameTabHead: NSCollectionViewItem, NSTextFieldDelegate {
 		closeButton.setMouseDownFunction(pressedClosedButton)
 	}
 	
+	func updateTitle(newTitle: String){
+		guard !inEditingMode else {return}
+		self.tabHeadTitle.disableEditing(title: newTitle)
+	}
+	
 	private func pressedClosedButton(with event: NSEvent) {
 		parentController?.closeTab(at: tabPosition)
 	}
