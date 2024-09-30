@@ -9,10 +9,11 @@
 import Foundation
 import Cocoa
 import Carbon.HIToolbox
-import WebKit
+@preconcurrency import WebKit
 import PDFKit
 import QuartzCore
 import FaviconFinder
+import PostHog
 
 //TODO: clean up tech debt and move the delegates out of here
 class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelegate, NSCollectionViewDataSource, NSCollectionViewDelegate, NSCollectionViewDelegateFlowLayout{
@@ -1422,6 +1423,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	 */
 	
 	func purgePersistetContent(){
+		var lastType: TabContentType?
 		for tab in tabs {
 			if(tab.type == .img){
 				ImgDal.deleteImg(id: tab.contentId)
@@ -1430,7 +1432,12 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 			}else{
 				DocumentDal.deleteDocument(documentId: tab.contentId, docType: tab.type)
 			}
+			lastType = tab.type
 		}
+		PostHogSDK.shared.capture(
+			"window_closed",
+			properties: ["type": lastType?.rawValue ?? "empty"]
+		)
 	}
 	
 	func persistContent(spaceId: UUID){
