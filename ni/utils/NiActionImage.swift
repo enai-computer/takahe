@@ -114,7 +114,6 @@ class NiActionImage: NSImageView{
 	override func mouseExited(with event: NSEvent) {
 		//if is not active - don't change color
 		if(isActiveFunction != nil && !isActiveFunction!()){
-			self.tintInactive()
 			return
 		}
 		self.contentTintColor = prevDefaultTint ?? defaultTint
