@@ -93,7 +93,8 @@ func openCFTabs(for controller: ContentFrameController, with tabViewModels: [Tab
 	//TODO: refactor,- set TabModel and let the content controllerreopen the tabs
 	for (i, tab) in tabViewModels.enumerated(){
 		if(tab.state == .empty && tab.type == .web){
-			_ = controller.openEmptyWebTab(tab.contentId)
+			//if we reload tabheads here, they will not be loaded after all tab head were added --> not all tab heads would be shown
+			_ = controller.openEmptyWebTab(tab.contentId, reloadTabHeads: false)
 		}else if(tab.type == .web){
 			_ = controller.openWebsiteInNewTab(urlStr: tab.content, contentId: tab.contentId, tabName: tab.title, webContentState: tab.state)
 		}else{

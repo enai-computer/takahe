@@ -737,7 +737,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	/*
 	 * MARK: opening tabs
 	 */
-	func openEmptyWebTab(_ contentId: UUID = UUID(), editURLCalledNext: Bool = false) -> Int{
+	func openEmptyWebTab(_ contentId: UUID = UUID(), reloadTabHeads: Bool = true) -> Int{
 		let niWebView = ni.getNewWebView(owner: self, contentId: contentId, frame: view.frame, fileUrl: nil)
 		
 		var tabHeadModel = TabViewModel(contentId: contentId, type: .web)
@@ -746,7 +746,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		tabHeadModel.webView!.tabHeadPosition = tabHeadModel.position
 		self.tabs.append(tabHeadModel)
 		
-		selectTab(at: tabHeadModel.position, reloadTabHeads: !editURLCalledNext)
+		selectTab(at: tabHeadModel.position, reloadTabHeads: reloadTabHeads)
 		
 		return tabHeadModel.position
 	}
@@ -756,7 +756,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 			return
 		}
 		
-		let pos = openEmptyWebTab(editURLCalledNext: true)
+		let pos = openEmptyWebTab(reloadTabHeads: false)
 		//needs to happen a frame later as otherwise the cursor will not jump into the editing mode
 		DispatchQueue.main.asyncAfter(deadline: .now() + 0.005) {
 			self.editTabUrl(at: pos)
@@ -1198,7 +1198,13 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 				self.tabs[wv.tabHeadPosition].content = wv.url!.absoluteString
 			}
 			guard !tabs[wv.tabHeadPosition].inEditingMode else {return}
-			viewWithTabs?.cfTabHeadCollection?.reloadItems(at: Set(arrayLiteral: IndexPath(item: wv.tabHeadPosition, section: 0)))
+			if let nrOfItems: Int = viewWithTabs?.cfTabHeadCollection?.numberOfItems(inSection: 0){
+				if(wv.tabHeadPosition < nrOfItems){
+					viewWithTabs?.cfTabHeadCollection?.reloadItems(
+						at: Set(arrayLiteral: IndexPath(item: wv.tabHeadPosition, section: 0))
+					)
+				}
+			}
 		}
 	}
 	
@@ -1325,7 +1331,8 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 			self.tabs[webView.tabHeadPosition].title = webView.getTitle() ?? tabs[webView.tabHeadPosition].title
 			if let nrOfItems: Int = viewWithTabs?.cfTabHeadCollection?.numberOfItems(inSection: 0){
 				if(webView.tabHeadPosition < nrOfItems){
-					viewWithTabs?.cfTabHeadCollection?.reloadItems(at: Set(arrayLiteral: IndexPath(item: webView.tabHeadPosition, section: 0)))
+					guard let tabHead = viewWithTabs?.cfTabHeadCollection?.item(at: webView.tabHeadPosition) as? ContentFrameTabHead else {return}
+					tabHead.updateTitle(newTitle: self.tabs[webView.tabHeadPosition].title)
 				}
 			}
 		}
