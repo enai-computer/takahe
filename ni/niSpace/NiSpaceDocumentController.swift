@@ -99,7 +99,10 @@ class NiSpaceDocumentController: NSViewController{
 		}else if(initialTabType == .note){
 			controller.openNoteInNewTab(content: content)
 		}
-		
+		PostHogSDK.shared.capture(
+			"window_created",
+			properties: ["type": initialTabType.rawValue]
+		)
 		return controller
 	}
 	
