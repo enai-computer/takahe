@@ -131,6 +131,7 @@
 		CD7578472BC000F200293930 /* ContentFrameTabHead.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD7578452BC000F200293930 /* ContentFrameTabHead.xib */; };
 		CD75784C2BC065FB00293930 /* ContentFrameTabHeadTextNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD75784B2BC065FB00293930 /* ContentFrameTabHeadTextNode.swift */; };
 		CD75C34F2CA982E20000DA12 /* NativeMarkKit in Frameworks */ = {isa = PBXBuildFile; productRef = CD75C34E2CA982E20000DA12 /* NativeMarkKit */; };
+		CD75C3512CAA9D720000DA12 /* CFFullScreenScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD75C3502CAA9D580000DA12 /* CFFullScreenScrollView.swift */; };
 		CD7691E12CA2E69B008120C5 /* DocumentDal.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7691E02CA2E695008120C5 /* DocumentDal.swift */; };
 		CD781E752C0E1B6E00D02F55 /* NiNoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD781E742C0E1B6E00D02F55 /* NiNoteView.swift */; };
 		CD7AE0AA2C55366A00B3984E /* NiLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7AE0A92C55366A00B3984E /* NiLibrary.swift */; };
@@ -345,6 +346,7 @@
 		CD7578442BC000F200293930 /* ContentFrameTabHead.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentFrameTabHead.swift; sourceTree = "<group>"; };
 		CD7578452BC000F200293930 /* ContentFrameTabHead.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContentFrameTabHead.xib; sourceTree = "<group>"; };
 		CD75784B2BC065FB00293930 /* ContentFrameTabHeadTextNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentFrameTabHeadTextNode.swift; sourceTree = "<group>"; };
+		CD75C3502CAA9D580000DA12 /* CFFullScreenScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CFFullScreenScrollView.swift; sourceTree = "<group>"; };
 		CD7691E02CA2E695008120C5 /* DocumentDal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentDal.swift; sourceTree = "<group>"; };
 		CD781E742C0E1B6E00D02F55 /* NiNoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiNoteView.swift; sourceTree = "<group>"; };
 		CD7AE0A92C55366A00B3984E /* NiLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiLibrary.swift; sourceTree = "<group>"; };
@@ -891,6 +893,7 @@
 		CDB483082C6A612000612AF5 /* CFFullscreen */ = {
 			isa = PBXGroup;
 			children = (
+				CD75C3502CAA9D580000DA12 /* CFFullScreenScrollView.swift */,
 				CDB483092C6A623900612AF5 /* CFFullscreenView.xib */,
 				CDB4830B2C6A624E00612AF5 /* CFFullscreenView.swift */,
 			);
@@ -1233,6 +1236,7 @@
 				CD410AE22C285C3C00EC5DF7 /* NiUsersSettingsModel.swift in Sources */,
 				CDE76C1C2BC6989000CE9513 /* TabViewModel.swift in Sources */,
 				CD6D85382CA852CF00A735DA /* Eve.swift in Sources */,
+				CD75C3512CAA9D720000DA12 /* CFFullScreenScrollView.swift in Sources */,
 				CDF0DD202C202B71006C4EF4 /* NiHomeWindowDelegate.swift in Sources */,
 				CD402C2A2C982FEE004D9538 /* CFCollapsedMinimizedView.swift in Sources */,
 				CD04974C2C120ABE00C44021 /* CFGroupButton.swift in Sources */,

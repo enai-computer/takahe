@@ -189,7 +189,7 @@ class NiSpaceViewController: NSViewController, NSTextFieldDelegate{
 		}
 	}
 	
-	private func saveAndOpenHome(){
+	func saveAndOpenHome(){
 		storeCurrentSpace()
 		let homeView = NiHomeWindow(windowToAppearOn: self.view.window!, allowESC: true)
 		homeView.makeKeyAndOrderFront(nil)
