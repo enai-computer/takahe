@@ -20,6 +20,11 @@ struct NiSearchResultItem{
 	let data: Any?
 }
 
+struct NiSRIOriginData{
+	let id: UUID
+	let name: String
+}
+
 
 /** Named after Captain James Cook
  
@@ -157,11 +162,13 @@ class Cook{
 							type: type,
 							id: try record.get(ContentTable.table[ContentTable.id]),
 							name: try record.get(ContentTable.table[ContentTable.title]) ?? "",
-							data: try record.get(DocumentTable.table[DocumentTable.name])
+							data: NiSRIOriginData(
+								id: try record.get(DocumentTable.table[DocumentTable.id]),
+								name: try record.get(DocumentTable.table[DocumentTable.name])
+							)
 						)
 					)
 				}
-
 			}
 		}catch{
 			print(error)
@@ -175,6 +182,7 @@ class Cook{
 			ContentTable.table[ContentTable.id],
 			ContentTable.table[ContentTable.title],
 			ContentTable.table[ContentTable.type],
+			DocumentTable.table[DocumentTable.id],
 			DocumentTable.table[DocumentTable.name]
 		)
 		.join(
@@ -218,7 +226,10 @@ class Cook{
 						type: .group,
 						id: try record.get(GroupTable.table[GroupTable.id]),
 						name: try record.get(GroupTable.table[GroupTable.name]),
-						data: try record.get(DocumentTable.table[DocumentTable.name])
+						data: NiSRIOriginData(
+							id: try record.get(DocumentTable.table[DocumentTable.id]),
+							name: try record.get(DocumentTable.table[DocumentTable.name])
+						)
 					)
 				)
 			}
@@ -232,6 +243,7 @@ class Cook{
 		return GroupTable.table.select(
 			GroupTable.table[GroupTable.id],
 			GroupTable.table[GroupTable.name],
+			DocumentTable.table[DocumentTable.id],
 			DocumentTable.table[DocumentTable.name]
 		)
 		.join(

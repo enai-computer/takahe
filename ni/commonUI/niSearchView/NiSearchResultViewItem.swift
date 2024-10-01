@@ -65,8 +65,8 @@ class NiSearchResultViewItem: NSCollectionViewItem {
 		}
 		
 		if(data.type == .pdf || data.type == .web || data.type == .group){
-			if let parentSpaceName: String = data.data as? String{
-				resultSubTitle.stringValue = parentSpaceName
+			if let parentSpace: NiSRIOriginData = data.data as? NiSRIOriginData{
+				resultSubTitle.stringValue = parentSpace.name
 			}
 		}
 	}
@@ -109,27 +109,61 @@ class NiSearchResultViewItem: NSCollectionViewItem {
 	
 	func tryOpenResult(){
 		if(resultData?.type == .niSpace){
-			openSpaceAndTryRemoveWindow()
+			guard  let spaceId = resultData?.id else {return}
+			openSpaceAndTryRemoveWindow(for: spaceId, with: resultTitle.stringValue)
 		}else if(resultData?.type == .eve){
 			niSearchController?.getAnswerFromEve()
+		}else if(resultData?.type == .group){
+			guard let spaceToOpen = self.resultData?.data as? NiSRIOriginData else {return}
+			openSpaceAndTryRemoveWindow(groupItem: self.resultData!, in: spaceToOpen)
+		}else if(resultData?.type == .pdf || resultData?.type == .web){
+			guard let spaceToOpen = self.resultData?.data as? NiSRIOriginData else {return}
+			openSpaceAndTryRemoveWindow(contentItem: self.resultData!, in: spaceToOpen)
 		}
 	}
 	
-	private func openSpaceAndTryRemoveWindow(){
-		if(resultData?.id == nil){return}
-		if let spaceViewController = NSApplication.shared.mainWindow?.contentViewController as? NiSpaceViewController{
-			spaceViewController.showHeader()
-			if(resultData?.id == NiSpaceDocumentController.EMPTY_SPACE_ID){
-				if let spaceName = getEnteredSearchText()?.trimmingCharacters(in: .whitespaces){
-					spaceViewController.createSpace(name: spaceName)
-				}
-			}else{
-				spaceViewController.loadSpace(spaceId: resultData!.id!, name: resultTitle.stringValue)
+	private func openSpaceAndTryRemoveWindow(for id: UUID, with name: String){
+		guard let spaceViewController = NSApplication.shared.mainWindow?.contentViewController as? NiSpaceViewController else {return}
+		
+		if(spaceViewController.niSpaceID == id){
+			if let paletteWindow = view.window as? NiSearchWindowProtocol{
+				paletteWindow.removeSelf()
 			}
+			return
 		}
+		
+		spaceViewController.showHeader()
+		if(id == NiSpaceDocumentController.EMPTY_SPACE_ID){
+			if let spaceName = getEnteredSearchText()?.trimmingCharacters(in: .whitespaces){
+				spaceViewController.createSpace(name: spaceName)
+			}
+		}else{
+			spaceViewController.loadSpace(spaceId: id, name: name)
+		}
+		
 		if let paletteWindow = view.window as? NiSearchWindowProtocol{
 			paletteWindow.removeSelf()
 		}
+	}
+	
+	private func openSpaceAndTryRemoveWindow(
+		groupItem: NiSearchResultItem,
+		in spaceOrigin: NiSRIOriginData
+	){
+		openSpaceAndTryRemoveWindow(for: spaceOrigin.id, with: spaceOrigin.name)
+		guard let spaceViewController = NSApplication.shared.mainWindow?.contentViewController as? NiSpaceViewController else {return}
+		guard let groupId = groupItem.id else {return}
+		spaceViewController.niDocument.myView.highlightContentFrame(with: groupId)
+	}
+	
+	private func openSpaceAndTryRemoveWindow(
+		contentItem: NiSearchResultItem,
+		in spaceOrigin: NiSRIOriginData
+	){
+		openSpaceAndTryRemoveWindow(for: spaceOrigin.id, with: spaceOrigin.name)
+		guard let spaceViewController = NSApplication.shared.mainWindow?.contentViewController as? NiSpaceViewController else {return}
+		guard let contentId = contentItem.id else {return}
+		spaceViewController.niDocument.myView.highlightContentObj(contentId: contentId)
 	}
 	
 	private func openImmersiveView(){
