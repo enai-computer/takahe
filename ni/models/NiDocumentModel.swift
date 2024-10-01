@@ -154,5 +154,6 @@ struct NiContentFrameModel: Codable{
     var position: NiViewPosition
     var children: [NiCFTabModel]
 	var name: String?
+	var id: UUID?
 }
 

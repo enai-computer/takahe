@@ -193,6 +193,8 @@
 		CDDBCB2E2BD8FA4C00E7B187 /* errorLoading-1.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = CDDBCB2C2BD8FA4C00E7B187 /* errorLoading-1.jpeg */; };
 		CDDBCB2F2BD8FA4D00E7B187 /* errorLoading.html in Resources */ = {isa = PBXBuildFile; fileRef = CDDBCB2D2BD8FA4C00E7B187 /* errorLoading.html */; };
 		CDE76C1C2BC6989000CE9513 /* TabViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE76C1B2BC6989000CE9513 /* TabViewModel.swift */; };
+		CDE7BAF52CABE2AA00328025 /* GroupTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE7BAF42CABE25500328025 /* GroupTable.swift */; };
+		CDE7BAF72CABE2BC00328025 /* GroupIdContentIdTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE7BAF62CABE2B000328025 /* GroupIdContentIdTable.swift */; };
 		CDE88CAE2C2415AA000390A6 /* NiSpaceMenuPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE88CAD2C2415AA000390A6 /* NiSpaceMenuPopup.swift */; };
 		CDF0DD1E2C202A52006C4EF4 /* NiHomeWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF0DD1D2C202A52006C4EF4 /* NiHomeWindow.swift */; };
 		CDF0DD202C202B71006C4EF4 /* NiHomeWindowDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF0DD1F2C202B71006C4EF4 /* NiHomeWindowDelegate.swift */; };
@@ -408,6 +410,8 @@
 		CDDBCB2C2BD8FA4C00E7B187 /* errorLoading-1.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "errorLoading-1.jpeg"; sourceTree = "<group>"; };
 		CDDBCB2D2BD8FA4C00E7B187 /* errorLoading.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = errorLoading.html; sourceTree = "<group>"; };
 		CDE76C1B2BC6989000CE9513 /* TabViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewModel.swift; sourceTree = "<group>"; };
+		CDE7BAF42CABE25500328025 /* GroupTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupTable.swift; sourceTree = "<group>"; };
+		CDE7BAF62CABE2B000328025 /* GroupIdContentIdTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupIdContentIdTable.swift; sourceTree = "<group>"; };
 		CDE88CAD2C2415AA000390A6 /* NiSpaceMenuPopup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiSpaceMenuPopup.swift; sourceTree = "<group>"; };
 		CDF0DD1D2C202A52006C4EF4 /* NiHomeWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiHomeWindow.swift; sourceTree = "<group>"; };
 		CDF0DD1F2C202B71006C4EF4 /* NiHomeWindowDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiHomeWindowDelegate.swift; sourceTree = "<group>"; };
@@ -935,6 +939,8 @@
 		CDD6B9412B169FC300C6144D /* spacesDB */ = {
 			isa = PBXGroup;
 			children = (
+				CDE7BAF62CABE2B000328025 /* GroupIdContentIdTable.swift */,
+				CDE7BAF42CABE25500328025 /* GroupTable.swift */,
 				CDD6B93F2B169F7700C6144D /* DocumentTable.swift */,
 				CDD6B9422B16A14300C6144D /* ContentTable.swift */,
 				CDD6B9442B16A1A200C6144D /* CachedWebTable.swift */,
@@ -1225,6 +1231,7 @@
 				A14E8F292AD5EB1600409DDF /* NiSpaceViewController.swift in Sources */,
 				CDD6B9522B1BFE8B00C6144D /* NiDocumentModel.swift in Sources */,
 				CDABE64E2C11C63500BB4E85 /* NiMenuView.swift in Sources */,
+				CDE7BAF72CABE2BC00328025 /* GroupIdContentIdTable.swift in Sources */,
 				CD9B96C42C075B8A00998CE2 /* ImgDal.swift in Sources */,
 				A1F33E2E2AB7299500E2E7CD /* DefaultWindow.swift in Sources */,
 				CDB06B612AF84E1F008DB8FF /* NiSpaceDocumentView.swift in Sources */,
@@ -1327,6 +1334,7 @@
 				CD7AE0AA2C55366A00B3984E /* NiLibrary.swift in Sources */,
 				CDABE64A2C11C54300BB4E85 /* NiMenuItemView.swift in Sources */,
 				CD59FA142C3550F500CFB8DE /* NiViewElementsUtils.swift in Sources */,
+				CDE7BAF52CABE2AA00328025 /* GroupTable.swift in Sources */,
 				CDFA8D042C04931600882722 /* NiNoteUtils.swift in Sources */,
 				CD1427762C735CAC00510FE6 /* CFProtocols.swift in Sources */,
 				CDF0DD262C2045C8006C4EF4 /* NiSearchWindowProtocol.swift in Sources */,
