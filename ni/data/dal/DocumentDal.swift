@@ -76,7 +76,7 @@ class DocumentDal{
 		var updatedRecord = false
 		let storedRec = CachedWebTable.fetchCachedWebsite(contentId: id)
 		if (storedRec?.title != title || storedRec?.title == nil){
-			ContentTable.upsert(id: id, type: "web", title: title)
+			ContentTable.upsert(id: id, type: ContentTableRecordType.web, title: title)
 			updatedRecord = true
 		}
 		if(storedRec?.url != url){
@@ -110,7 +110,7 @@ class DocumentDal{
 		let storedRec = NoteTable.fetchNote(contentId: id)
 		
 		if (storedRec?.title != title){
-			ContentTable.upsert(id: id, type: "note", title: title)
+			ContentTable.upsert(id: id, type: ContentTableRecordType.note, title: title)
 			updatedRecord = true
 		}
 		if(storedRec?.rawText != rawText){

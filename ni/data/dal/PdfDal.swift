@@ -22,7 +22,7 @@ class PdfDal{
 			let fUrl: URL = Storage.instance.genFileUrl(for: id, ofType: .spacePdf)
 			var wroteFile = false
 			if(pdf.write(to: fUrl)){
-				ContentTable.upsert(id: id, type: "pdf", title: title, fileUrl: fUrl.absoluteString, source: source)
+				ContentTable.upsert(id: id, type: ContentTableRecordType.pdf, title: title, fileUrl: fUrl.absoluteString, source: source)
 				
 				DocumentIdContentIdTable.insert(documentId: documentId, contentId: id)
 				wroteFile = true
