@@ -11,7 +11,7 @@ import SQLite
 class DocumentIdGroupIdTable{
 	
 	static let table = Table("doc_id_group_id")
-	static let groupId = SQLite.Expression<UUID>("groupId_id")
+	static let groupId = SQLite.Expression<UUID>("group_id")
 	static let documentId = SQLite.Expression<UUID>("document_id")
 	
 	static func create(db: Connection) throws {

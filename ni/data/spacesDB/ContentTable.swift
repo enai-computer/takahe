@@ -8,6 +8,10 @@
 import SQLite
 import Cocoa
 
+enum ContentTableRecordType: String, Codable{
+	case img, pdf, note, web
+}
+
 class ContentTable{
     
     static let table = Table("content")
@@ -77,13 +81,13 @@ class ContentTable{
 	/** do not use this function for rows that require a local storage location as that will be overwrite them with null!!!
 	 
 	 */
-    static func upsert(id: UUID, type: String, title: String?){
+    static func upsert(id: UUID, type: ContentTableRecordType, title: String?){
         do{
             try Storage.instance.spacesDB.run(
                 table.upsert(
                     self.id <- id,
                     self.title <- title,
-                    self.type <- type,
+					self.type <- type.rawValue,
                     self.updatedAt <- Date().timeIntervalSince1970,
 					onConflictOf: self.id
                 )
@@ -93,13 +97,13 @@ class ContentTable{
         }
     }
 	
-	static func upsert(id: UUID, type: String, title: String?, fileUrl: String, source: String?){
+	static func upsert(id: UUID, type: ContentTableRecordType, title: String?, fileUrl: String, source: String?){
 		do{
 			try Storage.instance.spacesDB.run(
 				table.upsert(
 					self.id <- id,
 					self.title <- title,
-					self.type <- type,
+					self.type <- type.rawValue,
 					self.localStorageLocation <- fileUrl,
 					self.sourceUrl <- source,
 					self.updatedAt <- Date().timeIntervalSince1970,
