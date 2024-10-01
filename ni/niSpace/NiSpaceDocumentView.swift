@@ -163,8 +163,35 @@ class NiSpaceDocumentView: NSView{
 			return
 		}
 		
-		setTopNiFrame(orderedCFs[nxtContentFrame])
-		
+		highlightContentFrame(cframe: orderedCFs[nxtContentFrame])
+	}
+	
+	func highlightContentFrame(with id: UUID){
+		for cFrame in contentFrameControllers{
+			if(cFrame.groupId == id){
+				highlightContentFrame(cframe: cFrame)
+				return
+			}
+		}
+	}
+	
+	func highlightContentObj(contentId: UUID){
+		for cFrame in contentFrameControllers{
+			for tab in cFrame.tabs {
+				if(tab.contentId == contentId){
+					highlightContentFrame(cframe: cFrame)
+					cFrame.selectTab(at: tab.position)
+					if(cFrame.viewState.isMinimized()){
+						cFrame.minimizedToExpanded()
+					}
+					return
+				}
+			}
+		}
+	}
+	
+	private func highlightContentFrame(cframe: ContentFrameController){
+		setTopNiFrame(cframe)
 		if(!NSPointInRect(topNiFrame!.view.frame.origin, visibleRect)){
 			var scrollToPoint = topNiFrame!.view.frame.origin
 			if(50.0 < scrollToPoint.y){

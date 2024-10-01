@@ -37,7 +37,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	private(set) var closeTriggered = false
 	
 	private var groupName: String?
-	private var groupId: UUID?
+	private(set) var groupId: UUID?
 	private var prevDisplayState: NiPreviousDisplayState?
 	
 	/*
