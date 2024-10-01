@@ -101,10 +101,10 @@ class NiSearchController: NSViewController, NSCollectionViewDataSource, NSCollec
 	
 	private func updateResultSet(){
 		if(view.window is NiPalette){
-			searchResults = Cook.instance.searchSpaces(typedChars: nil, excludeWelcomeSpaceGeneration: false)
+			searchResults = Cook.instance.search(typedChars: nil, excludeWelcomeSpaceGeneration: false)
 			searchResults.removeFirst()
 		}else{
-			searchResults = Cook.instance.searchSpaces(typedChars: nil, excludeWelcomeSpaceGeneration: false, insertWelcomeSpaceGenFirst: true)
+			searchResults = Cook.instance.search(typedChars: nil, excludeWelcomeSpaceGeneration: false, insertWelcomeSpaceGenFirst: true)
 		}
 		searchResultsCollection.reloadData()
 		resetSelection()
@@ -117,7 +117,7 @@ class NiSearchController: NSViewController, NSCollectionViewDataSource, NSCollec
 			chatShown = false
 		}
 		if let dirtyTxt = (obj.object as? NSTextField)?.stringValue{
-			searchResults = Cook.instance.searchSpaces(typedChars: dirtyTxt, giveCreateNewSpaceOption: true, displayOption: style)
+			searchResults = Cook.instance.search(typedChars: dirtyTxt, giveCreateNewSpaceOption: true)
 			searchResultsCollection.reloadData()
 			resetSelection()
 		}
