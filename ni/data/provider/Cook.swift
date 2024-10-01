@@ -44,7 +44,12 @@ class Cook{
 		)
 		
 		if let searchStr = typedChars{
-			res.append(contentsOf: searchGroups(searchStr))
+			if(1 < searchStr.count){
+				res.append(contentsOf: searchGroups(searchStr))
+			}
+			if(2 < searchStr.count){
+				res.append(contentsOf: searchContent(searchStr))
+			}
 		}
 		
 		//MARK: sorting
@@ -121,7 +126,10 @@ class Cook{
 			DocumentTable.updatedAt
 		)
 		if(typedChars != nil){
-			query = query.filter(DocumentTable.name.like("%\(typedChars!)%"))
+			query = query.filter(
+				DocumentTable.name.like("\(typedChars!)%")
+				|| DocumentTable.name.like("% \(typedChars!)%")
+			)
 		}else{
 			query = query.order(DocumentTable.updatedAt.desc)
 		}
@@ -134,22 +142,22 @@ class Cook{
 		return query
 	}
 	
-	private func searchContent(typedChars: String) -> [NiSearchResultItem]{
+	private func searchContent(_ searchContent: String) -> [NiSearchResultItem]{
 		var res: [NiSearchResultItem] = []
 		
 		do{
 			for record in try Storage.instance.spacesDB.prepare(
-				buildContentSearchQuery(typedChars: typedChars)
+				buildContentSearchQuery(searchContent)
 			){
 				if let type = contentTableTypeToNiSearchResultType(
-					type: try record.get(ContentTable.type)
+					type: try record.get(ContentTable.table[ContentTable.type])
 				){
 					res.append(
 						NiSearchResultItem(
 							type: type,
-							id: try record.get(ContentTable.id),
-							name: try record.get(ContentTable.title) ?? "",
-							data: nil
+							id: try record.get(ContentTable.table[ContentTable.id]),
+							name: try record.get(ContentTable.table[ContentTable.title]) ?? "",
+							data: try record.get(DocumentTable.table[DocumentTable.name])
 						)
 					)
 				}
@@ -162,13 +170,25 @@ class Cook{
 		return res
 	}
 	
-	private func buildContentSearchQuery(typedChars: String) -> Table{
+	private func buildContentSearchQuery(_ searchStr: String) -> Table{
 		return ContentTable.table.select(
-			ContentTable.id,
-			ContentTable.title,
-			ContentTable.type
-		).filter(ContentTable.title.like("%\(typedChars)%"))
-			.order(ContentTable.updatedAt.desc)
+			ContentTable.table[ContentTable.id],
+			ContentTable.table[ContentTable.title],
+			ContentTable.table[ContentTable.type],
+			DocumentTable.table[DocumentTable.name]
+		)
+		.join(
+			DocumentIdContentIdTable.table,
+			on: DocumentIdContentIdTable.contentId == ContentTable.table[ContentTable.id]
+		)
+		.join(
+			DocumentTable.table,
+			on: DocumentIdGroupIdTable.documentId == DocumentTable.table[DocumentTable.id])
+		.filter(
+			ContentTable.table[ContentTable.title].like("\(searchStr)%")
+			|| ContentTable.table[ContentTable.title].like("% \(searchStr)%")
+		)
+		.order(ContentTable.table[ContentTable.updatedAt].desc)
 	}
 	
 	private func contentTableTypeToNiSearchResultType(type: String) -> NiSearchResultType?{
@@ -177,7 +197,7 @@ class Cook{
 			case .img:
 				return nil
 			case .note:
-				return .note
+				return nil
 			case .pdf:
 				return .pdf
 			case .web:
@@ -208,7 +228,7 @@ class Cook{
 		return res
 	}
 	
-	private func buildGroupSearchQuery(_ typedChars: String) -> Table{
+	private func buildGroupSearchQuery(_ searchStr: String) -> Table{
 		return GroupTable.table.select(
 			GroupTable.table[GroupTable.id],
 			GroupTable.table[GroupTable.name],
@@ -221,7 +241,10 @@ class Cook{
 		.join(
 			DocumentTable.table,
 			on: DocumentIdGroupIdTable.documentId == DocumentTable.table[DocumentTable.id])
-		.filter(GroupTable.table[GroupTable.name].like("%\(typedChars)%"))
+		.filter(
+			GroupTable.table[GroupTable.name].like("\(searchStr)%")
+			|| GroupTable.table[GroupTable.name].like("% \(searchStr)%")
+		)
 		.order(GroupTable.table[GroupTable.updatedAt].desc)
 		
 	}

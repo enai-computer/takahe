@@ -11,6 +11,7 @@ class NiSearchResultViewItem: NSCollectionViewItem {
 
 	@IBOutlet var leftSideResultTypeIcon: NSImageView!
 	@IBOutlet var resultTitle: NSTextField!
+	@IBOutlet var resultSubTitle: NSTextField!
 	@IBOutlet var rightSideElement: NiSearchResultViewItemRightIcon!
 	
 	private var resultData: NiSearchResultItem?
@@ -47,14 +48,33 @@ class NiSearchResultViewItem: NSCollectionViewItem {
 			leftSideResultTypeIcon.image = NSImage(named: "enai_i")
 		}else if(data.type == .group){
 			leftSideResultTypeIcon.image = NSImage(named: "groupIcon")
+		}else if(data.type == .pdf){
+			leftSideResultTypeIcon.image = NSImage(named: "pdfFileIcon")
+		}else if(data.type == .web && data.id != nil){
+			Task{
+				let img = await FaviconProvider.instance.fetchIcon(for: data.id!)
+				DispatchQueue.main.async{
+					//need check, as otherwise we'll end up with the wrong icon on the item
+					if(self.resultData?.id == data.id){
+						self.leftSideResultTypeIcon.image = img
+					}
+				}
+			}
 		}else{
 			leftSideResultTypeIcon.image = NSImage(named: "SpaceIcon")
+		}
+		
+		if(data.type == .pdf || data.type == .web || data.type == .group){
+			if let parentSpaceName: String = data.data as? String{
+				resultSubTitle.stringValue = parentSpaceName
+			}
 		}
 	}
 	
 	override func prepareForReuse() {
 		deselect()
 		rightSideElement.prepareForReuse()
+		resultSubTitle.stringValue = ""
 	}
 	
 	func select(){
