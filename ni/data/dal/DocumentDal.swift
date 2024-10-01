@@ -9,13 +9,14 @@ import Foundation
 
 class DocumentDal{
 	
-	static func persistGroup(id: UUID?, name: String?){
+	static func persistGroup(id: UUID?, name: String?, spaceId: UUID){
 		guard name != nil && name?.isEmpty == false else {return}
 		guard let groupId = id else {return}
 		
 		let storedName = GroupTable.fetchName(id: groupId)
 		if(storedName == nil){
 			GroupTable.createRecord(with: groupId, name: name!)
+			DocumentIdGroupIdTable.insert(documentId: spaceId, groupId: groupId)
 		}else if(storedName != name){
 			GroupTable.updateName(id: groupId, name: name!)
 		}

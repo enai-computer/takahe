@@ -195,6 +195,7 @@
 		CDE76C1C2BC6989000CE9513 /* TabViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE76C1B2BC6989000CE9513 /* TabViewModel.swift */; };
 		CDE7BAF52CABE2AA00328025 /* GroupTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE7BAF42CABE25500328025 /* GroupTable.swift */; };
 		CDE7BAF72CABE2BC00328025 /* GroupIdContentIdTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE7BAF62CABE2B000328025 /* GroupIdContentIdTable.swift */; };
+		CDE7BAF92CABFA0900328025 /* DocumentIdGroupIdTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE7BAF82CABF9FF00328025 /* DocumentIdGroupIdTable.swift */; };
 		CDE88CAE2C2415AA000390A6 /* NiSpaceMenuPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE88CAD2C2415AA000390A6 /* NiSpaceMenuPopup.swift */; };
 		CDF0DD1E2C202A52006C4EF4 /* NiHomeWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF0DD1D2C202A52006C4EF4 /* NiHomeWindow.swift */; };
 		CDF0DD202C202B71006C4EF4 /* NiHomeWindowDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF0DD1F2C202B71006C4EF4 /* NiHomeWindowDelegate.swift */; };
@@ -412,6 +413,7 @@
 		CDE76C1B2BC6989000CE9513 /* TabViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewModel.swift; sourceTree = "<group>"; };
 		CDE7BAF42CABE25500328025 /* GroupTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupTable.swift; sourceTree = "<group>"; };
 		CDE7BAF62CABE2B000328025 /* GroupIdContentIdTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupIdContentIdTable.swift; sourceTree = "<group>"; };
+		CDE7BAF82CABF9FF00328025 /* DocumentIdGroupIdTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentIdGroupIdTable.swift; sourceTree = "<group>"; };
 		CDE88CAD2C2415AA000390A6 /* NiSpaceMenuPopup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiSpaceMenuPopup.swift; sourceTree = "<group>"; };
 		CDF0DD1D2C202A52006C4EF4 /* NiHomeWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiHomeWindow.swift; sourceTree = "<group>"; };
 		CDF0DD1F2C202B71006C4EF4 /* NiHomeWindowDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiHomeWindowDelegate.swift; sourceTree = "<group>"; };
@@ -944,6 +946,7 @@
 				CDD6B93F2B169F7700C6144D /* DocumentTable.swift */,
 				CDD6B9422B16A14300C6144D /* ContentTable.swift */,
 				CDD6B9442B16A1A200C6144D /* CachedWebTable.swift */,
+				CDE7BAF82CABF9FF00328025 /* DocumentIdGroupIdTable.swift */,
 				CDD6B9462B16A29100C6144D /* DocumentIdContentIdTable.swift */,
 				CD8D2B072C00C7A100C44C1D /* NoteTable.swift */,
 				CDC0BD472C47B6B000CB2DDB /* UserSettingsTable.swift */,
@@ -1208,6 +1211,7 @@
 				CD5B153A2BDFBFE40030F017 /* NiActionImage.swift in Sources */,
 				CDC5A1162C284AD1002F5621 /* NiDocControllerCache.swift in Sources */,
 				CDB4830C2C6A624E00612AF5 /* CFFullscreenView.swift in Sources */,
+				CDE7BAF92CABFA0900328025 /* DocumentIdGroupIdTable.swift in Sources */,
 				CD240BD92C80C95D000E478F /* WeatherLocationPicker.swift in Sources */,
 				CD2B68EE2C2F166E0086756E /* NiFullscreenPanel.swift in Sources */,
 				CD6D853C2CA8668100A735DA /* EveChatView.swift in Sources */,
