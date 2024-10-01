@@ -1459,7 +1459,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		}
 		// we are only doing this for webGroups rn, as otherwise it would mess up our result sets
 		if(0 < tabs.count && tabs[0].type == .web){
-			DocumentDal.persistGroup(id: groupId, name: groupName)
+			DocumentDal.persistGroup(id: groupId, name: groupName, spaceId: spaceId)
 		}
 		for tab in tabs {
 //			tab.webView?.evaluateJavaScript("document.documentElement.outerHTML.toString()") { html, e in

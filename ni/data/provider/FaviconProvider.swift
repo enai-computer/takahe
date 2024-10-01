@@ -15,7 +15,7 @@ class FaviconProvider{
 	
 	func fetchIcon(_ urlStr: String) async -> NSImage?{
 		do{
-			let url = URL(string: urlStr)!
+			guard let url = URL(string: urlStr) else {return nil}
 			guard let host = url.host() else { return nil}
 			if let cachedIcon = tryFetchFromCache(host){
 				return cachedIcon
@@ -29,6 +29,13 @@ class FaviconProvider{
 			print(error)
 		}
 		return nil
+	}
+	
+	func fetchIcon(for contentId: UUID) async -> NSImage?{
+		let cachedWebsite = CachedWebTable.fetchCachedWebsite(contentId: contentId)
+		
+		guard let url = cachedWebsite?.url else {return nil}
+		return await fetchIcon(url)
 	}
 	
 	func flushCache(){
