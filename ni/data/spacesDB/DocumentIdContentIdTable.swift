@@ -28,12 +28,13 @@ class DocumentIdContentIdTable{
         do{
             try Storage.instance.spacesDB.run(
                 table.insert(
+					or: .ignore,
                     self.documentId <- documentId,
                     self.contentId <- contentId
                 )
             )
         }catch{
-//            print("Failed insert into DocumentIdContentIdTable")
+			print(error)
         }
     }
 }

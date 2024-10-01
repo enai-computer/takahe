@@ -37,6 +37,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	private(set) var closeTriggered = false
 	
 	private var groupName: String?
+	private var groupId: UUID?
 	private var prevDisplayState: NiPreviousDisplayState?
 	
 	/*
@@ -44,11 +45,13 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	 */
 	init(viewState: NiConentFrameState, 
 		 groupName: String?,
+		 groupId: UUID?,
 		 tabsModel: [TabViewModel]? = nil,
 		 previousDisplayState: NiPreviousDisplayState? = nil
 	){
 		self.viewState = viewState
 		self.groupName = groupName
+		self.groupId = groupId
 		if(tabsModel != nil){
 			self.tabs = tabsModel!
 		}
@@ -1451,8 +1454,15 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		if(closeTriggered){
 			return
 		}
+		// we are only doing this for webGroups rn, as otherwise it would mess up our result sets
+		if(0 < tabs.count && tabs[0].type == .web){
+			DocumentDal.persistGroup(id: groupId, name: groupName)
+		}
 		for tab in tabs {
-			DocumentDal.persistDocument(spaceId: spaceId, document: tab)
+//			tab.webView?.evaluateJavaScript("document.documentElement.outerHTML.toString()") { html, e in
+//				print(html)
+//			}
+			DocumentDal.persistDocument(spaceId: spaceId, document: tab, groupId: self.groupId)
 		}
 	}
 	
@@ -1498,6 +1508,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		}
 		
 		updateGroupName()
+		setIdIfNeeded()
 		
 		let posInStack = Int(view.layer!.zPosition)
 		let model = NiDocumentObjectModel(
@@ -1513,7 +1524,8 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 					y: NiCoordinate(px: view.frame.origin.y)
 				),
 				children: children,
-				name: self.groupName
+				name: self.groupName,
+				id: self.groupId
 			)
 		)
 
@@ -1532,6 +1544,14 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 				self.groupName = simpleView.cfGroupButton.getName()
 			}
 		}
+	}
+	
+	private func setIdIfNeeded(){
+		guard self.groupId == nil else {return}
+		if(groupName == nil || groupName?.isEmpty == true){
+			return
+		}
+		self.groupId = UUID()
 	}
 	
 	func pauseMediaPlayback(){

@@ -42,7 +42,8 @@ class WelcomeSpaceGenerator{
 				contentFrameState: window.state,
 				prevState: nil,
 				tabViewModels: tabs,
-				groupName: window.windowName
+				groupName: window.windowName,
+				groupId: nil
 			)
 			//position <- expanded one in the center with some room on the left: minimized CFs vertiacal with some space between each other
 			cfController.view.frame = positionWindow(
@@ -65,7 +66,9 @@ class WelcomeSpaceGenerator{
 				contentFrameState: .simpleMinimised,
 				prevState: nil,
 				tabViewModels: [pdfTab],
-				groupName: pdfTab.title)
+				groupName: pdfTab.title,
+				groupId: nil
+			)
 			cfController.view.frame = positionWindow(
 				screenSize,
 				latestMinimizedWindowY: latestMinimizedWindowY,

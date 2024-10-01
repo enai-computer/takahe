@@ -9,10 +9,16 @@ import Foundation
 
 class DocumentDal{
 	
-	static func persistDocument(spaceId: UUID, document tab: TabViewModel){
+	static func persistGroup(id: UUID?, name: String?){
+		guard name != nil && name?.isEmpty == false else {return}
+		guard let groupId = id else {return}
+		GroupTable.createRecord(with: groupId, name: name!)
+	}
+	
+	static func persistDocument(spaceId: UUID, document tab: TabViewModel, groupId: UUID?){
 		if(tab.type == .web){
 			let url = getTabUrl(for: tab)
-			persistWebcontent(spaceId: spaceId, id: tab.contentId, title: tab.title, url: url)
+			persistWebcontent(spaceId: spaceId, id: tab.contentId, title: tab.title, url: url, groupId: groupId)
 		}
 		if(tab.type == .note){
 			guard let txt = tab.noteView?.getText() else {return}
@@ -57,7 +63,8 @@ class DocumentDal{
 		spaceId: UUID,
 		id: UUID,
 		title: String,
-		url:String
+		url: String,
+		groupId: UUID?
 	){
 		var updatedRecord = false
 		let storedRec = CachedWebTable.fetchCachedWebsite(contentId: id)
@@ -85,6 +92,10 @@ class DocumentDal{
 		}
 		
 		DocumentIdContentIdTable.insert(documentId: spaceId, contentId: id)
+		
+		if let gId = groupId{
+			GroupIdContentIdTable.insert(groupId: gId, contentId: id)
+		}
 	}
 	
 	private static func persistNote(spaceId: UUID, id: UUID, title: String?, rawText: String){

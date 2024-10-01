@@ -46,7 +46,8 @@ class DocumentTable{
 			let rowToUpdate = table.filter(self.id == id)
 			let updatedRows = try Storage.instance.spacesDB.run(
 				rowToUpdate.update(
-					self.name <- name
+					self.name <- name,
+					self.updatedAt <- Date.now.timeIntervalSince1970
 				)
 			)
 			if(updatedRows != 1){

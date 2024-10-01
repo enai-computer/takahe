@@ -6,8 +6,12 @@ import PDFKit
 
 let maxWidthMargin: CGFloat = 30.0
 
-func openEmptyContentFrame(viewState: NiConentFrameState = .expanded, groupName: String? = nil) -> ContentFrameController{
-	let frameController = ContentFrameController(viewState: viewState, groupName: groupName, tabsModel: nil)
+func openEmptyContentFrame(viewState: NiConentFrameState = .expanded, groupName: String? = nil, groupId: UUID?) -> ContentFrameController{
+	let frameController = ContentFrameController(
+		viewState: viewState,
+		groupName: groupName,
+		groupId: groupId,
+		tabsModel: nil)
 	frameController.loadView()
 	return frameController
 }
@@ -19,7 +23,8 @@ func reopenContentFrame(screenSize: CGSize, contentFrame: NiContentFrameModel, t
 		contentFrameState: contentFrame.state,
 		prevState: contentFrame.previousDisplayState,
 		tabViewModels: tabViewModels,
-		groupName: contentFrame.name
+		groupName: contentFrame.name,
+		groupId: contentFrame.id
 	)
 	//positioning
 	if(controller.viewState == .fullscreen){
@@ -45,19 +50,26 @@ func reopenContentFrameWithOutPositioning(
 	contentFrameState: NiConentFrameState,
 	prevState: NiPreviousDisplayState?,
 	tabViewModels: [TabViewModel],
-	groupName: String?
+	groupName: String?,
+	groupId: UUID?
 ) -> ContentFrameController {
     
 	let frameController = if(contentFrameState.isMinimized()){
 		ContentFrameController(viewState: contentFrameState,
 							   groupName: groupName,
+							   groupId: groupId,
 							   tabsModel: tabViewModels,
 							   previousDisplayState: prevState
 		)
 	}else{
 		// we are not adding tabViewModel here as opening up a tab down there does that.
 		//FIXME: clean up that tech debt
-		ContentFrameController(viewState: contentFrameState, groupName: groupName, previousDisplayState: prevState)
+		ContentFrameController(
+			viewState: contentFrameState,
+			groupName: groupName,
+			groupId: groupId,
+			previousDisplayState: prevState
+		)
 	}
 
     frameController.loadView()
