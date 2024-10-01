@@ -1444,6 +1444,9 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 			}
 			lastType = tab.type
 		}
+		if let gId = self.groupId{
+			GroupTable.deleteRecord(gId)
+		}
 		PostHogSDK.shared.capture(
 			"window_closed",
 			properties: ["type": lastType?.rawValue ?? "empty"]
