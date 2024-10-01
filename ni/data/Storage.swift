@@ -100,6 +100,7 @@ class Storage{
 		try UserSettingsTable.create(db: db)
 		try GroupTable.create(db: db)
 		try GroupIdContentIdTable.create(db: db)
+		try DocumentIdGroupIdTable.create(db: db)
     }
     
 	private static func runSpacesMigrations(db: Connection) throws{
