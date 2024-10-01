@@ -10,7 +10,7 @@ import SQLite
 
 
 enum NiSearchResultType{
-	case niSpace, pinnedWebsite, eve
+	case niSpace, pinnedWebsite, eve, group, web, pdf, note
 }
 
 struct NiSearchResultItem{
@@ -42,6 +42,10 @@ class Cook{
 			excludeWelcomeSpaceGeneration: excludeWelcomeSpaceGeneration,
 			insertWelcomeSpaceGenFirst: insertWelcomeSpaceGenFirst )
 		)
+		
+		if let searchStr = typedChars{
+			res.append(contentsOf: searchGroups(searchStr))
+		}
 		
 		//MARK: sorting
 		if(giveCreateNewSpaceOption && typedChars != nil && !typedChars!.isEmpty){
@@ -80,7 +84,7 @@ class Cook{
 
 		do{
 			for record in try Storage.instance.spacesDB.prepare(
-				buildSearchQuery(typedChars: typedChars, maxNrOfResults: maxNrOfResults)
+				buildSpacesSearchQuery(typedChars: typedChars, maxNrOfResults: maxNrOfResults)
 			){
 				res.append(
 					NiSearchResultItem(
@@ -110,7 +114,7 @@ class Cook{
 		return res
 	}
 	
-	private func buildSearchQuery(typedChars: String?, maxNrOfResults: Int? = nil) -> Table{
+	private func buildSpacesSearchQuery(typedChars: String?, maxNrOfResults: Int? = nil) -> Table{
 		var query = DocumentTable.table.select(
 			DocumentTable.id,
 			DocumentTable.name,
@@ -128,6 +132,98 @@ class Cook{
 			query = query.where(NiSpaceDocumentController.DEMO_GEN_SPACE_ID != DocumentTable.id)
 		}
 		return query
+	}
+	
+	private func searchContent(typedChars: String) -> [NiSearchResultItem]{
+		var res: [NiSearchResultItem] = []
+		
+		do{
+			for record in try Storage.instance.spacesDB.prepare(
+				buildContentSearchQuery(typedChars: typedChars)
+			){
+				if let type = contentTableTypeToNiSearchResultType(
+					type: try record.get(ContentTable.type)
+				){
+					res.append(
+						NiSearchResultItem(
+							type: type,
+							id: try record.get(ContentTable.id),
+							name: try record.get(ContentTable.title) ?? "",
+							data: nil
+						)
+					)
+				}
+
+			}
+		}catch{
+			print(error)
+		}
+		
+		return res
+	}
+	
+	private func buildContentSearchQuery(typedChars: String) -> Table{
+		return ContentTable.table.select(
+			ContentTable.id,
+			ContentTable.title,
+			ContentTable.type
+		).filter(ContentTable.title.like("%\(typedChars)%"))
+			.order(ContentTable.updatedAt.desc)
+	}
+	
+	private func contentTableTypeToNiSearchResultType(type: String) -> NiSearchResultType?{
+		let contentTabletype = ContentTableRecordType(rawValue: type)
+		switch(contentTabletype){
+			case .img:
+				return nil
+			case .note:
+				return .note
+			case .pdf:
+				return .pdf
+			case .web:
+				return .web
+			case .none:
+				return nil
+		}
+	}
+	
+	private func searchGroups(_ searchStr: String) -> [NiSearchResultItem]{
+		var res: [NiSearchResultItem] = []
+		do{
+			for record in try Storage.instance.spacesDB.prepare(
+				buildGroupSearchQuery(searchStr)
+			){
+				res.append(
+					NiSearchResultItem(
+						type: .group,
+						id: try record.get(GroupTable.table[GroupTable.id]),
+						name: try record.get(GroupTable.table[GroupTable.name]),
+						data: try record.get(DocumentTable.table[DocumentTable.name])
+					)
+				)
+			}
+		}catch{
+			print(error)
+		}
+		return res
+	}
+	
+	private func buildGroupSearchQuery(_ typedChars: String) -> Table{
+		return GroupTable.table.select(
+			GroupTable.table[GroupTable.id],
+			GroupTable.table[GroupTable.name],
+			DocumentTable.table[DocumentTable.name]
+		)
+		.join(
+			DocumentIdGroupIdTable.table,
+			on: DocumentIdGroupIdTable.groupId == GroupTable.table[GroupTable.id]
+		)
+		.join(
+			DocumentTable.table,
+			on: DocumentIdGroupIdTable.documentId == DocumentTable.table[DocumentTable.id])
+		.filter(GroupTable.table[GroupTable.name].like("%\(typedChars)%"))
+		.order(GroupTable.table[GroupTable.updatedAt].desc)
+		
 	}
 	
 	func countWords(in text: String) -> Int {
