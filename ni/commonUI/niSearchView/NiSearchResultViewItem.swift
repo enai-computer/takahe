@@ -45,6 +45,8 @@ class NiSearchResultViewItem: NSCollectionViewItem {
 			leftSideResultTypeIcon.image = NSImage(named: "magicWand")
 		}else if(data.type == .eve){
 			leftSideResultTypeIcon.image = NSImage(named: "enai_i")
+		}else if(data.type == .group){
+			leftSideResultTypeIcon.image = NSImage(named: "groupIcon")
 		}else{
 			leftSideResultTypeIcon.image = NSImage(named: "SpaceIcon")
 		}
