@@ -12,7 +12,13 @@ class DocumentDal{
 	static func persistGroup(id: UUID?, name: String?){
 		guard name != nil && name?.isEmpty == false else {return}
 		guard let groupId = id else {return}
-		GroupTable.createRecord(with: groupId, name: name!)
+		
+		let storedName = GroupTable.fetchName(id: groupId)
+		if(storedName == nil){
+			GroupTable.createRecord(with: groupId, name: name!)
+		}else if(storedName != name){
+			GroupTable.updateName(id: groupId, name: name!)
+		}
 	}
 	
 	static func persistDocument(spaceId: UUID, document tab: TabViewModel, groupId: UUID?){

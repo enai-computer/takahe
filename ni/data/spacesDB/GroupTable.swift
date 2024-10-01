@@ -30,6 +30,17 @@ class GroupTable{
 		})
 	}
 	
+	static func fetchName(id: UUID) -> String?{
+		do{
+			for record in try Storage.instance.spacesDB.prepare(table.select(name).filter(self.id == id)){
+				return try record.get(name)
+			}
+		}catch{
+			print("Failed to fetch name from group table with id: \(id) and error: \(error)")
+		}
+		return nil
+	}
+	
 	static func updateName(id: UUID, name: String){
 		do{
 			let rowToUpdate = table.filter(self.id == id)
