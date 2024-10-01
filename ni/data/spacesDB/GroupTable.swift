@@ -74,4 +74,13 @@ class GroupTable{
 			print(error)
 		}
 	}
+	
+	static func deleteRecord(_ id: UUID){
+		do{
+			let record = table.filter(self.id == id)
+			try Storage.instance.spacesDB.run(record.delete())
+		} catch {
+			print(error)
+		}
+	}
 }
