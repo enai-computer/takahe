@@ -166,11 +166,15 @@ class Cook{
 				if let type = contentTableTypeToNiSearchResultType(
 					type: try record.get(ContentTable.table[ContentTable.type])
 				){
+					let name = try record.get(ContentTable.table[ContentTable.title]) ?? ""
+					if(name.contains("Google Search")){
+						continue
+					}
 					res.append(
 						NiSearchResultItem(
 							type: type,
 							id: try record.get(ContentTable.table[ContentTable.id]),
-							name: try record.get(ContentTable.table[ContentTable.title]) ?? "",
+							name: name,
 							data: NiSRIOriginData(
 								id: try record.get(DocumentTable.table[DocumentTable.id]),
 								name: try record.get(DocumentTable.table[DocumentTable.name])
