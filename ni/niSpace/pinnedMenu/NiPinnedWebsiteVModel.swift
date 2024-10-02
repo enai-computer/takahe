@@ -74,7 +74,12 @@ class NiPinnedWebsiteVModel: NSObject{
 			)
 			
 			if let frameView = cfController.myView as? CFSimpleFrameView{
-				frameView.changeFrameColor(set: itemData.frameNSColor ?? NSColor.sand4)
+				if isDarkModeEnabled(){
+					frameView.changeFrameColor(set: itemData.darkframeNSColor ?? NSColor.sand4)
+				}else{
+					frameView.changeFrameColor(set: itemData.frameNSColor ?? NSColor.sand4)
+
+				}
 			}
 			cfController.view.window?.makeKeyAndOrderFront(nil)
 		}
