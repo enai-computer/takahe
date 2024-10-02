@@ -166,7 +166,7 @@ class CFCollapsedMinimizedView: CFBaseView, CFHasGroupButtonProtocol, NiMouseDow
 		}
 	}
 	
-	override func deinitSelf() {
+	override func deinitSelf(keepContentView: Bool = false) {
 		closeButton.deinitSelf()
 		maximizeButton.deinitSelf()
 		expandDownwardsButton.deinitSelf()

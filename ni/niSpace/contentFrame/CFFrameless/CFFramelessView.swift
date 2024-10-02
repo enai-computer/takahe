@@ -207,9 +207,11 @@ class CFFramelessView: CFBaseView {
 		}
 	}
 	
-	override func deinitSelf() {
-		myItem?.spaceRemovedFromMemory()
-		myItem = nil
+	override func deinitSelf(keepContentView: Bool = false) {
+		if(!keepContentView){
+			myItem?.spaceRemovedFromMemory()
+			myItem = nil
+		}
 		super.deinitSelf()
 	}
 	

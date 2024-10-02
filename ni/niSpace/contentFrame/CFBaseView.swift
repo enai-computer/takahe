@@ -299,7 +299,7 @@ class CFBaseView: NSBox{
 	}
 	
 	
-	func deinitSelf(){
+	func deinitSelf(keepContentView: Bool = false){
 		niParentDoc = nil
 		myController = nil
 	}

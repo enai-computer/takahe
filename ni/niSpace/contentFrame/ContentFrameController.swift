@@ -534,7 +534,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		fullscreenView.fillView(with: nil)
 		
 		self.view.superview?.replaceSubview(self.view, with: fullscreenView)
-		self.myView.deinitSelf()
+		self.myView.deinitSelf(keepContentView: true)
 		self.view = fullscreenView
 		self.viewState = .fullscreen
 		
