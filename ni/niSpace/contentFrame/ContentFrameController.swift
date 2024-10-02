@@ -419,7 +419,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	}
 	
 	/*
-	 * MARK: minimizing, expanding and maximizing
+	 * MARK: transitions between views
 	 */
 	func minimizeSelf(){
 		if(viewState == .expanded && (prevDisplayState == nil || prevDisplayState?.state == .minimised)){
@@ -534,12 +534,38 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		fullscreenView.fillView(with: nil)
 		
 		self.view.superview?.replaceSubview(self.view, with: fullscreenView)
+		self.myView.deinitSelf()
 		self.view = fullscreenView
 		self.viewState = .fullscreen
 		
 		(NSApplication.shared.delegate as? AppDelegate)?.getNiSpaceViewController()?.hideHeader()
 		
 		self.myView.niParentDoc?.setTopNiFrame(self)
+	}
+	
+	func simpleFrameToExpanded(){
+		groupName = nil
+
+		if(expandedCFView == nil){
+			_ = recreateExpandedCFView()
+			expandedCFView?.setFrameOwner(self.myView.niParentDoc)
+		}
+		expandedCFView?.frame = myView.frame
+		if(self.view.layer != nil){
+			expandedCFView?.layer?.zPosition = self.view.layer!.zPosition
+		}
+				
+		//replace
+		self.view.superview?.replaceSubview(self.view, with: expandedCFView!)
+		self.myView.deinitSelf()
+		self.view = expandedCFView!
+		self.viewState = .expanded
+		
+		forceSelectTab(at: 0)
+		
+		self.expandedCFView!.niParentDoc?.setTopNiFrame(self)
+		
+		sharedLoadViewSetters()
 	}
 	
 	func fullscreenToExpanded(){
@@ -727,8 +753,13 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		var selectedTabPos: Int = 0
 		
 		for i in tabs.indices{
-			let wview = getNewWebView(owner: self, frame: expandedCFView!.frame ,cleanUrl: tabs[i].content, contentId: tabs[i].contentId)
-			tabs[i].viewItem = wview
+			let wview: NiWebView
+			if tabs[i].webView == nil{
+				wview = getNewWebView(owner: self, frame: expandedCFView!.frame ,cleanUrl: tabs[i].content, contentId: tabs[i].contentId)
+				tabs[i].viewItem = wview
+			}else{
+				wview = tabs[i].webView!
+			}
 			tabs[i].position = expandedCFView!.createNewTab(tabView: wview)
 			wview.tabHeadPosition = tabs[i].position
 			if(tabs[i].isSelected){
@@ -1251,11 +1282,21 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 				return
 			}
 		}
+		
+		guard let urlStr: String = navigationAction.request.url?.absoluteString else {
+			decisionHandler(.allow)
+			return
+		}
+		
+		//turning view into one with tabs
+		if(viewState == .simpleFrame && !urlStr.isEmpty && navigationAction.modifierFlags == .command){
+			simpleFrameToExpanded()
+		}
+		
 		//open in new tab, comand clicked on link
 		if(navigationAction.modifierFlags == .command && viewHasTabs()){
-			let urlStr = navigationAction.request.url?.absoluteString
-			if(urlStr != nil && !urlStr!.isEmpty){
-				self.openWebsiteInNewTab(urlStr!, shallSelectTab: false, openNextToSelectedTab: true)
+			if(!urlStr.isEmpty){
+				self.openWebsiteInNewTab(urlStr, shallSelectTab: false, openNextToSelectedTab: true)
 				decisionHandler(.cancel)
 				return
 			}
@@ -1275,11 +1316,20 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 				return
 			}
 		}
+		guard let urlStr: String = navigationAction.request.url?.absoluteString else {
+			decisionHandler(.allow, preferences)
+			return
+		}
+		
+		//turning view into one with tabs
+		if(viewState == .simpleFrame && !urlStr.isEmpty && navigationAction.modifierFlags == .command){
+			simpleFrameToExpanded()
+		}
+		
 		//open in new tab, comand clicked on link
 		if(navigationAction.modifierFlags == .command && viewHasTabs()){
-			let urlStr = navigationAction.request.url?.absoluteString
-			if(urlStr != nil && !urlStr!.isEmpty){
-				self.openWebsiteInNewTab(urlStr!, shallSelectTab: false, openNextToSelectedTab: true)
+			if(!urlStr.isEmpty){
+				self.openWebsiteInNewTab(urlStr, shallSelectTab: false, openNextToSelectedTab: true)
 				decisionHandler(.cancel, preferences)
 				return
 			}
@@ -1287,7 +1337,8 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		decisionHandler(.allow, preferences)
 	}
 	
-	func webView(_ webView: WKWebView, 
+	//1301 - decidePolicyFor navigationResponse
+	func webView(_ webView: WKWebView,
 				 decidePolicyFor navigationResponse: WKNavigationResponse,
 				 decisionHandler: @escaping (WKNavigationResponsePolicy) -> Void
 	) {
@@ -1314,12 +1365,17 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 				 windowFeatures: WKWindowFeatures
 	) -> WKWebView?{
 		
+		guard let urlStr: String = navigationAction.request.url?.absoluteString else {
+			return nil
+		}
+		if(viewState == .simpleFrame && !urlStr.isEmpty && navigationAction.targetFrame == nil){
+			simpleFrameToExpanded()
+		}
 		guard viewHasTabs() else {return nil}
 		
-		if(navigationAction.targetFrame == nil){
-			let urlStr = navigationAction.request.url?.absoluteString
-			if(urlStr != nil && !urlStr!.isEmpty){
-				self.openWebsiteInNewTab(urlStr!, openNextToSelectedTab: true)
+		if(navigationAction.targetFrame == nil && !urlStr.isEmpty){
+			if(!urlStr.isEmpty){
+				self.openWebsiteInNewTab(urlStr, openNextToSelectedTab: true)
 			}
 		}
 		return nil
