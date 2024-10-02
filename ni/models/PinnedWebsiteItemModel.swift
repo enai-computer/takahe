@@ -12,28 +12,37 @@ struct PinnedWebsiteItemModel: Codable, Equatable{
 	let name: String
 	let url: URL
 	let frameColor: String?
+	let darkFrameColor: String?
 	
 	var frameNSColor: NSColor? {
 	   guard let frameColor = frameColor else { return nil }
 	   return NSColor(hex: frameColor)
-   }
+	}
+	
+	var darkframeNSColor: NSColor?{
+		guard let darkFrameColor = darkFrameColor else { return nil }
+		return NSColor(hex: darkFrameColor)
+	}
 	
 	enum CodingKeys: String, CodingKey {
-	   case name
-	   case url
-	   case frameColor
+		case name
+		case url
+		case frameColor
+		case darkFrameColor
 	}
 	
 	init(name: String, url: URL){
 		self.name = name
 		self.url = url
 		self.frameColor = PinnedWebsiteItemModel.getColor(for: url).hex
+		self.darkFrameColor = PinnedWebsiteItemModel.getDarkColor(for: url).hex
 	}
 	
-	init(name: String, url: URL, frameColor: NSColor) {
+	init(name: String, url: URL, frameColor: NSColor, darkFrameColor: NSColor) {
 		self.name = name
 		self.url = url
 		self.frameColor = frameColor.hex
+		self.darkFrameColor = darkFrameColor.hex
 	}
 
 	init(from decoder: Decoder) throws {
@@ -41,6 +50,7 @@ struct PinnedWebsiteItemModel: Codable, Equatable{
 		name = try container.decode(String.self, forKey: .name)
 		url = try container.decode(URL.self, forKey: .url)
 		frameColor = try container.decodeIfPresent(String.self, forKey: .frameColor)
+		darkFrameColor = try container.decodeIfPresent(String.self, forKey: .darkFrameColor)
 	}
 
 	static func == (lhs: PinnedWebsiteItemModel, rhs: PinnedWebsiteItemModel) -> Bool {
@@ -58,21 +68,47 @@ struct PinnedWebsiteItemModel: Codable, Equatable{
 		if let baseURL = url.host(){
 			switch baseURL{
 				case _ where baseURL.contains("linear.app"):
-					return NSColor(r: 236.0, g: 236.0, b: 236.0, alpha: 1.0)
+					return NSColor(r: 236.0, g: 236.0, b: 236.0, alpha: 1.0)	//9.9.9
 				case _ where baseURL.contains("mail.google.com"):
-					return NSColor(r: 235.0, g: 241.0, b: 250.0, alpha: 1.0)
+					return NSColor(r: 235.0, g: 241.0, b: 250.0, alpha: 1.0) 	//17.17.17
 				case _ where baseURL.contains("posthog.com"):
-					return NSColor(r: 238.0, g: 239.0, b: 234.0, alpha: 1.0)
+					return NSColor(r: 238.0, g: 239.0, b: 234.0, alpha: 1.0)	//34.36.42
 				case _ where baseURL.contains("calendar.notion.so"):
-					return NSColor(r: 247.0, g: 247.0, b: 247.0, alpha: 1.0)
+					return NSColor(r: 247.0, g: 247.0, b: 247.0, alpha: 1.0)	//26.26.26
 				case _ where baseURL.contains("slack.com"):
-					return NSColor(r: 76.0, g: 41.0, b: 82.0, alpha: 1.0)
+					return NSColor(r: 76.0, g: 41.0, b: 82.0, alpha: 1.0)		//56.19.64
 				case _ where baseURL.contains("figma.com"):
-					return NSColor(r: 255.0, g: 255.0, b: 255.0, alpha: 1.0)
+					return NSColor(r: 255.0, g: 255.0, b: 255.0, alpha: 1.0)	//44.44.44
 				case _ where baseURL.contains("web.whatsapp.com"):
-					return NSColor(r: 240.0, g: 242.0, b: 245.0, alpha: 1.0)
+					return NSColor(r: 240.0, g: 242.0, b: 245.0, alpha: 1.0)	//13.19.23
 				case _ where baseURL.contains("perplexity.ai"):
-					return NSColor(r: 243.0, g: 243.0, b: 238.0, alpha: 1.0)
+					return NSColor(r: 243.0, g: 243.0, b: 238.0, alpha: 1.0)	//32.34.34
+				default:
+					return NSColor.sand4
+			}
+		}
+		return NSColor.sand4
+	}
+	
+	private static func getDarkColor(for url: URL) -> NSColor{
+		if let baseURL = url.host(){
+			switch baseURL{
+				case _ where baseURL.contains("linear.app"):
+					return NSColor(r: 9.0, g: 9.0, b: 9.0, alpha: 1.0)
+				case _ where baseURL.contains("mail.google.com"):
+					return NSColor(r: 17.0, g: 17.0, b: 17.0, alpha: 1.0)
+				case _ where baseURL.contains("posthog.com"):
+					return NSColor(r: 34.0, g: 36.0, b: 42.0, alpha: 1.0)
+				case _ where baseURL.contains("calendar.notion.so"):
+					return NSColor(r: 26.0, g: 26.0, b: 26.0, alpha: 1.0)
+				case _ where baseURL.contains("slack.com"):
+					return NSColor(r: 56.0, g: 19.0, b: 64.0, alpha: 1.0)
+				case _ where baseURL.contains("figma.com"):
+					return NSColor(r: 44.0, g: 44.0, b: 44.0, alpha: 1.0)
+				case _ where baseURL.contains("web.whatsapp.com"):
+					return NSColor(r: 13.0, g: 19.0, b: 23.0, alpha: 1.0)
+				case _ where baseURL.contains("perplexity.ai"):
+					return NSColor(r: 32.0, g: 34.0, b: 34.0, alpha: 1.0)
 				default:
 					return NSColor.sand4
 			}

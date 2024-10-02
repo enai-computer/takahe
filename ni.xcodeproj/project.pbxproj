@@ -26,6 +26,7 @@
 		CD06A9BA2BF79EF500312256 /* NiScroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD06A9B92BF79EF500312256 /* NiScroller.swift */; };
 		CD08982A2C9057F6007A9A9F /* .swiftlint-disable in Resources */ = {isa = PBXBuildFile; fileRef = CD0898292C9057F6007A9A9F /* .swiftlint-disable */; };
 		CD0FA1C12BDBE2BA0065313B /* Inter-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CD0FA1C02BDBE2BA0065313B /* Inter-Regular.ttf */; };
+		CD0FBEBA2CAD632E00FF19C2 /* AppUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0FBEB92CAD632300FF19C2 /* AppUtils.swift */; };
 		CD1160C82BD142D100345E3E /* WebURL in Frameworks */ = {isa = PBXBuildFile; productRef = CD1160C72BD142D100345E3E /* WebURL */; };
 		CD1160CA2BD27B9E00345E3E /* NiWebViewUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1160C92BD27B9E00345E3E /* NiWebViewUtils.swift */; };
 		CD1160CC2BD286ED00345E3E /* emptyTab-1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CD1160CB2BD286EC00345E3E /* emptyTab-1.jpg */; };
@@ -248,6 +249,7 @@
 		CD06A9B92BF79EF500312256 /* NiScroller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiScroller.swift; sourceTree = "<group>"; };
 		CD0898292C9057F6007A9A9F /* .swiftlint-disable */ = {isa = PBXFileReference; lastKnownFileType = text; path = ".swiftlint-disable"; sourceTree = "<group>"; };
 		CD0FA1C02BDBE2BA0065313B /* Inter-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Regular.ttf"; sourceTree = "<group>"; };
+		CD0FBEB92CAD632300FF19C2 /* AppUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUtils.swift; sourceTree = "<group>"; };
 		CD1160C92BD27B9E00345E3E /* NiWebViewUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiWebViewUtils.swift; sourceTree = "<group>"; };
 		CD1160CB2BD286EC00345E3E /* emptyTab-1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "emptyTab-1.jpg"; sourceTree = "<group>"; };
 		CD1427752C735CAC00510FE6 /* CFProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CFProtocols.swift; sourceTree = "<group>"; };
@@ -755,6 +757,7 @@
 		CD66CE362B1FD24B0006BB98 /* utils */ = {
 			isa = PBXGroup;
 			children = (
+				CD0FBEB92CAD632300FF19C2 /* AppUtils.swift */,
 				CDA639572BF508FF001941DE /* WelcomeSpaceGenerator.swift */,
 				CD8873772BCD649800007BE9 /* TimeUtils.swift */,
 				CD66CE372B1FD26A0006BB98 /* NiStringUtils.swift */,
@@ -1227,6 +1230,7 @@
 				CD6D280E2C11DC7A0009732A /* NiMenuViewController.swift in Sources */,
 				CDD7D34B2C19B20C0038E6F9 /* NiPaletteContentController.swift in Sources */,
 				CD59FA122C345D6900CFB8DE /* PdfDal.swift in Sources */,
+				CD0FBEBA2CAD632E00FF19C2 /* AppUtils.swift in Sources */,
 				CD6D280C2C11D6DA0009732A /* NiMenuWindowDelegate.swift in Sources */,
 				CD2DE8892CA1CDC0000B5461 /* MaraeClient.swift in Sources */,
 				CD9B96BC2C04C8EE00998CE2 /* CFContentItem.swift in Sources */,
