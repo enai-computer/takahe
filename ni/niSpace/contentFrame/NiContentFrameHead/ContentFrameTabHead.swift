@@ -299,6 +299,22 @@ class ContentFrameTabHead: NSCollectionViewItem, NSTextFieldDelegate {
 	
 	func pinToTopbar(with event: NSEvent){
 		parentController?.pinTabToTopbar(at: tabPosition)
+		popUpAndFadePinnedToMenuInfo()
+	}
+	
+	func popUpAndFadePinnedToMenuInfo(){
+		guard let hostingView = view.superview?.superview?.superview?.superview?.superview?.superview as? CFBaseView else {return}
+		
+		let softDeletedView = (NSView.loadFromNib(nibName: "CFSoftDeletedView", owner: self) as! CFSoftDeletedView)
+		softDeletedView.initAfterViewLoad(message: "pinned to menu", showUndoButton: false, animationTime_S: 3.0)
+		
+		let adjustedPos = view.convert(view.visibleRect.origin, to: hostingView)
+		let undoOrigin = CGPoint(x: adjustedPos.x, y: adjustedPos.y - softDeletedView.frame.height)
+		softDeletedView.wantsLayer = true
+		softDeletedView.frame.origin = undoOrigin
+		softDeletedView.layer?.zPosition = 50.0
+		
+		hostingView.addSubview(softDeletedView)
 	}
 	
 	deinit{

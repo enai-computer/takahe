@@ -10,20 +10,20 @@ import Cocoa
 class CFSoftDeletedView: NSBox {
 
 	var myController: ContentFrameController? = nil
+	private var deletionCompletionHandler: (()->Void)?
+	private var mouseDownFunc: (()->Void)?
+	
 	private var animationTriggered: Bool = false
+	private var animationTime_S: Double = 5.0
 	
 	@IBOutlet var messageBox: NSTextField!
 	@IBOutlet var undoIcon: NSImageView!
-	
-	func setSelfController(_ con: ContentFrameController){
-		self.myController = con
-	}
 	
 	override func prepareForReuse() {
 		myController = nil
 	}
 	
-	func initAfterViewLoad(_ itemName: String = "group"){
+	func initAfterViewLoad(message: String, showUndoButton: Bool, animationTime_S: Double = 5.0){
 		wantsLayer = true
 		layer?.cornerRadius = 10
 		layer?.cornerCurve = .continuous
@@ -34,8 +34,32 @@ class CFSoftDeletedView: NSBox {
 		let hoverEffectTrackingArea = NSTrackingArea(rect: frame, options: [.mouseEnteredAndExited, .activeInKeyWindow], owner: self, userInfo: nil)
 		addTrackingArea(hoverEffectTrackingArea)
 		
-		messageBox.stringValue = "restore closed \(itemName)"
+		if(showUndoButton){
+			undoIcon.isHidden = false
+		}else{
+			undoIcon.isHidden = true
+		}
+		
+		self.messageBox.stringValue = message
+		self.animationTime_S = animationTime_S
+		
 		triggerAnimation()
+	}
+	
+	func initAfterViewLoad(_ itemName: String = "group", parentController: ContentFrameController) {
+		self.initAfterViewLoad(message: "restore closed \(itemName)", showUndoButton: true)
+		self.myController = parentController
+		
+		self.deletionCompletionHandler = {
+			self.myController?.confirmClose()
+			self.myController = nil
+			self.removeFromSuperview()
+		}
+		
+		self.mouseDownFunc = {
+			self.myController?.cancelCloseProcess()
+			self.removeFromSuperview()
+		}
 	}
 	
 	override func mouseEntered(with event: NSEvent) {
@@ -49,8 +73,8 @@ class CFSoftDeletedView: NSBox {
 	}
 	
 	override func mouseDown(with event: NSEvent) {
-		myController!.cancelCloseProcess()
-		removeFromSuperview()
+		mouseDownFunc?()
+		self.deinitSelf()
 	}
 	
 	private func triggerAnimation(){
@@ -58,12 +82,16 @@ class CFSoftDeletedView: NSBox {
 			return
 		}
 		NSAnimationContext.runAnimationGroup({ context in
-			context.duration = 5.0
+			context.duration = animationTime_S
 			self.animator().alphaValue = 0.0
 		}, completionHandler: {
-			self.myController?.confirmClose()
-			self.myController = nil
-			self.removeFromSuperview()
+			self.deletionCompletionHandler?()
+			self.deinitSelf()
 		})
+	}
+	
+	private func deinitSelf(){
+		self.deletionCompletionHandler = nil
+		self.mouseDownFunc = nil
 	}
 }
