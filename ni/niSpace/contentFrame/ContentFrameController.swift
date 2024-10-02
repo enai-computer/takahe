@@ -348,11 +348,11 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	
 	private func loadAndDisplaySoftDeletedView(topRightCorner: CGPoint) {
 		let softDeletedView = (NSView.loadFromNib(nibName: "CFSoftDeletedView", owner: self) as! CFSoftDeletedView)
-		softDeletedView.setSelfController(self)
+		
 		if(1 == tabs.count){
-			softDeletedView.initAfterViewLoad(tabs[0].type.toDescriptiveName())
+			softDeletedView.initAfterViewLoad(tabs[0].type.toDescriptiveName(), parentController: self)
 		}else{
-			softDeletedView.initAfterViewLoad()
+			softDeletedView.initAfterViewLoad(parentController: self)
 		}
 		
 		var undoOrigin = topRightCorner
@@ -507,6 +507,26 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		let selectedItem = expandedCFView?.niContentTabView.selectedTabViewItem
 		fullscreenView.niContentTabView.tabViewItems = expandedCFView?.niContentTabView.tabViewItems ?? []
 		fullscreenView.niContentTabView.selectTabViewItem(selectedItem)
+		
+		if let zPos = self.view.layer?.zPosition{
+			fullscreenView.layer?.zPosition = zPos
+		}
+		fullscreenView.fillView(with: nil)
+		
+		self.view.superview?.replaceSubview(self.view, with: fullscreenView)
+		self.view = fullscreenView
+		self.viewState = .fullscreen
+		
+		(NSApplication.shared.delegate as? AppDelegate)?.getNiSpaceViewController()?.hideHeader()
+		
+		self.myView.niParentDoc?.setTopNiFrame(self)
+	}
+	
+	func simpleFrameToFullscreen(){
+		guard let webviewToPass = simpleFrame?.myContent as? NiWebView else {return}
+		let fullscreenView = loadFullscreenView()
+		fullscreenView.setFrameOwner(myView.niParentDoc)
+		_ = fullscreenView.createNewTab(tabView: webviewToPass)
 		
 		if let zPos = self.view.layer?.zPosition{
 			fullscreenView.layer?.zPosition = zPos

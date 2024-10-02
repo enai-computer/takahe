@@ -20,7 +20,7 @@ class CFSimpleFrameView: CFBaseView, CFFwdBackButtonProtocol{
 	@IBOutlet var backButton: NiActionImage!
 	@IBOutlet var forwardButton: NiActionImage!
 	
-	private var myContent: CFContentItem?
+	private(set) var myContent: CFContentItem?
 	
 	private var dropShadow2 = CALayer()
 	private var dropShadow3 = CALayer()
@@ -36,7 +36,7 @@ class CFSimpleFrameView: CFBaseView, CFFwdBackButtonProtocol{
 		closeButton.isActiveFunction = self.isFrameActive
 		closeButton.mouseDownInActiveFunction = activateContentFrame
 		
-		maximizeButton.setMouseDownFunction(fillOrRetractView)
+		maximizeButton.setMouseDownFunction(clickedMaximizedButton)
 		maximizeButton.isActiveFunction = self.isFrameActive
 		maximizeButton.mouseDownInActiveFunction = activateContentFrame
 		
@@ -309,8 +309,12 @@ class CFSimpleFrameView: CFBaseView, CFFwdBackButtonProtocol{
 		
 	}
 	
-	func minimizedButtonClicked(with event: NSEvent){
-		myController?.fullscreenToExpanded()
+	func clickedMaximizedButton(with event: NSEvent){
+		guard let webContent = myContent as? NiWebView else {
+			fillOrRetractView(with: event)
+			return
+		}
+		myController?.simpleFrameToFullscreen()
 	}
 	
 	func forwardButtonClicked(with event: NSEvent){
