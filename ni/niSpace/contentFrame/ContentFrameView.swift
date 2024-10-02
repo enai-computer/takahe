@@ -523,7 +523,10 @@ class ContentFrameView: CFBaseView, CFTabHeadProtocol, CFFwdBackButtonProtocol, 
 		cfGroupButton.tintActive()
 	}
     
-	override func deinitSelf(){
+	override func deinitSelf(keepContentView: Bool = false){
+		if(keepContentView){
+			fatalError("option not implemented")
+		}
 		closeButton.deinitSelf()
 		maximizeButton.deinitSelf()
 		minimizeButton.deinitSelf()

@@ -306,9 +306,8 @@ class CFSimpleFrameView: CFBaseView, CFFwdBackButtonProtocol{
 		
 		forwardButton.setMouseDownFunction(forwardButtonClicked)
 		forwardButton.isActiveFunction = fwdButtonIsActive
-		
 	}
-	
+//	
 	func clickedMaximizedButton(with event: NSEvent){
 		guard let webContent = myContent as? NiWebView else {
 			fillOrRetractView(with: event)
@@ -369,24 +368,17 @@ class CFSimpleFrameView: CFBaseView, CFFwdBackButtonProtocol{
 	}
 	
 	
-	override func deinitSelf() {
-		myContent?.spaceRemovedFromMemory()
+	override func deinitSelf(keepContentView: Bool = false) {
+		if(!keepContentView){
+			myContent?.spaceRemovedFromMemory()
+		}
+		backButton.deinitSelf()
+		forwardButton.deinitSelf()
 		
-		closeButton.setMouseDownFunction(nil)
-		closeButton.isActiveFunction = nil
-		closeButton.mouseDownInActiveFunction = nil
-		
-		maximizeButton.setMouseDownFunction(nil)
-		maximizeButton.isActiveFunction = nil
-		maximizeButton.mouseDownInActiveFunction = nil
-		
-		cfGroupButton.mouseDownFunction = nil
-		cfGroupButton.mouseDownInActiveFunction = nil
-		cfGroupButton.isActiveFunction = nil
-		
-		minimizeButton.setMouseDownFunction(nil)
-		minimizeButton.isActiveFunction = nil
-		minimizeButton.mouseDownInActiveFunction = nil
+		cfGroupButton.deinitSelf()
+		minimizeButton.deinitSelf()
+		maximizeButton.deinitSelf()
+		closeButton.deinitSelf()
 		
 		super.deinitSelf()
 	}
