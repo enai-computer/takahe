@@ -167,24 +167,52 @@ class NiSpaceDocumentView: NSView{
 	}
 	
 	func highlightContentFrame(with id: UUID){
+		var contentFrameToHighlight: ContentFrameController?
 		for cFrame in contentFrameControllers{
 			if(cFrame.groupId == id){
 				highlightContentFrame(cframe: cFrame)
-				return
+				if(cFrame.viewState == .fullscreen){
+					return
+				}
+				contentFrameToHighlight = cFrame
+			}
+			if(cFrame.viewState == .fullscreen){
+				cFrame.fullscreenToExpanded()
+				//Called to make sure it's on top
+				if let cfToHighlight = contentFrameToHighlight{
+					highlightContentFrame(cframe: cfToHighlight)
+				}
 			}
 		}
 	}
 	
 	func highlightContentObj(contentId: UUID){
+		var contentFrameToHighlight: ContentFrameController?
+		
 		for cFrame in contentFrameControllers{
 			for tab in cFrame.tabs {
 				if(tab.contentId == contentId){
 					highlightContentFrame(cframe: cFrame)
-					cFrame.selectTab(at: tab.position)
 					if(cFrame.viewState.isMinimized()){
 						cFrame.minimizedToExpanded()
 					}
-					return
+					DispatchQueue.main.async{
+						cFrame.selectTab(at: tab.position)
+					}
+					
+					contentFrameToHighlight = cFrame
+					
+					if(cFrame.viewState == .fullscreen){
+						return
+					}
+				}
+			}
+			
+			if(cFrame.viewState == .fullscreen){
+				cFrame.fullscreenToExpanded()
+				//Called to make sure it's on top
+				if let cfToHighlight = contentFrameToHighlight{
+					highlightContentFrame(cframe: cfToHighlight)
 				}
 			}
 		}
