@@ -125,7 +125,7 @@ class NiSearchResultViewItem: NSCollectionViewItem {
 	private func openSpaceAndTryRemoveWindow(for id: UUID, with name: String){
 		guard let spaceViewController = NSApplication.shared.mainWindow?.contentViewController as? NiSpaceViewController else {return}
 		
-		if(spaceViewController.niSpaceID == id){
+		if(spaceViewController.niSpaceID == id && id != NiSpaceDocumentController.EMPTY_SPACE_ID){
 			if let paletteWindow = view.window as? NiSearchWindowProtocol{
 				paletteWindow.removeSelf()
 			}
