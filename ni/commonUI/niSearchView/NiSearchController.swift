@@ -57,7 +57,7 @@ class NiSearchController: NSViewController, NSCollectionViewDataSource, NSCollec
 	}
 	
 	private func stlyeSelf(){
-		view.wantsLayer = true
+		
 		
 		if(style == .palette){return}
 		

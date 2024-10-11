@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="23094" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="23094"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="EveViewController" customModule="ni" customModuleProvider="target">
+            <connections>
+                <outlet property="placeholderView" destination="s5h-2K-D9R" id="pmI-OX-UEM"/>
+                <outlet property="searchField" destination="SKH-UN-FZA" id="Jhx-F0-1xr"/>
+                <outlet property="searchFieldBox" destination="Iz0-B2-GBS" id="xaY-kB-gv6"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <box boxType="custom" borderType="none" cornerRadius="4" title="Box" titlePosition="noTitle" id="X54-Hc-POs">
+            <rect key="frame" x="0.0" y="0.0" width="644" height="496"/>
+            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+            <view key="contentView" id="ZpT-8L-YVv">
+                <rect key="frame" x="0.0" y="0.0" width="644" height="496"/>
+                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                <subviews>
+                    <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Iz0-B2-GBS">
+                        <rect key="frame" x="12" y="10" width="620" height="58"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                        <subviews>
+                            <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SKH-UN-FZA" customClass="SearchViewTextField" customModule="ni" customModuleProvider="target">
+                                <rect key="frame" x="46" y="15" width="556" height="28"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" id="Hv9-eE-fme">
+                                    <font key="font" size="21" name="Sohne-Buch"/>
+                                    <color key="textColor" name="sand12"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                                <connections>
+                                    <outlet property="delegate" destination="-2" id="pmW-Ku-hEW"/>
+                                </connections>
+                            </textField>
+                        </subviews>
+                    </customView>
+                </subviews>
+            </view>
+            <color key="borderColor" name="transparent"/>
+            <color key="fillColor" name="sand3"/>
+            <point key="canvasLocation" x="140" y="-218"/>
+        </box>
+        <customView id="s5h-2K-D9R">
+            <rect key="frame" x="0.0" y="0.0" width="618" height="413"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <point key="canvasLocation" x="79" y="-738"/>
+        </customView>
+    </objects>
+    <resources>
+        <namedColor name="sand12">
+            <color red="0.10588235294117647" green="0.10588235294117647" blue="0.094117647058823528" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="sand3">
+            <color red="0.95294117647058818" green="0.95294117647058818" blue="0.94901960784313721" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="transparent">
+            <color red="1" green="1" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

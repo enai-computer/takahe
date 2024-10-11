@@ -56,6 +56,33 @@ class MaraeClient{
 		}
 		return "Failed to get answer to your question."
 	}
+	
+	func askWebsite(_ question: String, websites: [String]) async throws -> String{
+		let jsonE = JSONEncoder()
+		let context = try jsonE.encode(
+			MaraeAskWebsiteRequestMessage(
+				prevMessage: [],
+				webContext: websites
+			)
+		)
+		
+		let relPath = apiVersion + userID + "/answer"
+		let req = Request(
+			path: relPath,
+			method: .post,
+			query: [
+				("q", question.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "")
+			],
+			body: String(data: context, encoding: .utf8) ?? ""
+		)
+		let res = try await client.send(req)
+		if(res.statusCode == 200){
+			let jsonD = JSONDecoder()
+			let answer = try jsonD.decode(EveChatResponseMessage.self, from: res.data)
+			return answer.message
+		}
+		return "Failed to get answer to your question."
+	}
 
 	private func sendRequestNoResponse(_ req: Request<()>) async throws -> Bool{
 		let res = try await client.send(req)

@@ -56,3 +56,8 @@ struct PdfMetadataMesssage: Codable{
 struct EveChatResponseMessage: Codable{
 	let message: String
 }
+
+struct MaraeAskWebsiteRequestMessage: Codable{
+	let prevMessage: [String]
+	let webContext: [String]
+}

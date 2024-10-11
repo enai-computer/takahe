@@ -28,4 +28,16 @@ class Eve{
 		}
 		return "Failed to connect to the AI service."
 	}
+	
+	func askWContext(question: String, context: [String]) async -> String{
+		PostHogSDK.shared.capture(
+			"asked_eve_ai"
+		)
+		do{
+			return try await maraeClient.askQuestion(question)
+		}catch{
+			print(error)
+		}
+		return "Failed to connect to the AI service."
+	}
 }

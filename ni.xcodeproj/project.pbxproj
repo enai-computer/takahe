@@ -31,6 +31,8 @@
 		CD1160CA2BD27B9E00345E3E /* NiWebViewUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1160C92BD27B9E00345E3E /* NiWebViewUtils.swift */; };
 		CD1160CC2BD286ED00345E3E /* emptyTab-1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CD1160CB2BD286EC00345E3E /* emptyTab-1.jpg */; };
 		CD1427762C735CAC00510FE6 /* CFProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1427752C735CAC00510FE6 /* CFProtocols.swift */; };
+		CD16EFFF2CB6D65D003F7428 /* EveView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD16EFFE2CB6D65D003F7428 /* EveView.xib */; };
+		CD16F0012CB6D747003F7428 /* EveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD16F0002CB6D741003F7428 /* EveViewController.swift */; };
 		CD1853112C08D22A001FE566 /* FaviconProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1853102C08D22A001FE566 /* FaviconProvider.swift */; };
 		CD1853132C08D972001FE566 /* FaviconCacheTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1853122C08D972001FE566 /* FaviconCacheTable.swift */; };
 		CD1853152C09C210001FE566 /* DalUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1853142C09C210001FE566 /* DalUtils.swift */; };
@@ -253,6 +255,8 @@
 		CD1160C92BD27B9E00345E3E /* NiWebViewUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiWebViewUtils.swift; sourceTree = "<group>"; };
 		CD1160CB2BD286EC00345E3E /* emptyTab-1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "emptyTab-1.jpg"; sourceTree = "<group>"; };
 		CD1427752C735CAC00510FE6 /* CFProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CFProtocols.swift; sourceTree = "<group>"; };
+		CD16EFFE2CB6D65D003F7428 /* EveView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EveView.xib; sourceTree = "<group>"; };
+		CD16F0002CB6D741003F7428 /* EveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EveViewController.swift; sourceTree = "<group>"; };
 		CD1853102C08D22A001FE566 /* FaviconProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaviconProvider.swift; sourceTree = "<group>"; };
 		CD1853122C08D972001FE566 /* FaviconCacheTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaviconCacheTable.swift; sourceTree = "<group>"; };
 		CD1853142C09C210001FE566 /* DalUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DalUtils.swift; sourceTree = "<group>"; };
@@ -539,6 +543,15 @@
 				CD1427752C735CAC00510FE6 /* CFProtocols.swift */,
 			);
 			path = contentFrame;
+			sourceTree = "<group>";
+		};
+		CD16EFFD2CB6D5DF003F7428 /* eveUI */ = {
+			isa = PBXGroup;
+			children = (
+				CD16F0002CB6D741003F7428 /* EveViewController.swift */,
+				CD16EFFE2CB6D65D003F7428 /* EveView.xib */,
+			);
+			path = eveUI;
 			sourceTree = "<group>";
 		};
 		CD18530E2C08C1FF001FE566 /* cacheDB */ = {
@@ -884,6 +897,7 @@
 		CDB06B5B2AF81CB6008DB8FF /* niSpace */ = {
 			isa = PBXGroup;
 			children = (
+				CD16EFFD2CB6D5DF003F7428 /* eveUI */,
 				CD1C6D532C5256120019CD09 /* pinnedMenu */,
 				CD6752992BFB502A0008A227 /* spaceMenu */,
 				A1E41BFD2ACB684F00338417 /* contentFrame */,
@@ -1151,6 +1165,7 @@
 				CD7578472BC000F200293930 /* ContentFrameTabHead.xib in Resources */,
 				CDD7D33B2C198BE00038E6F9 /* NiSearchView.xib in Resources */,
 				CD5A04CB2BEA3CC7004CC3AA /* CFMinimizedStackItem.xib in Resources */,
+				CD16EFFF2CB6D65D003F7428 /* EveView.xib in Resources */,
 				CD2B68F02C2F26930086756E /* NiAlertPanel.xib in Resources */,
 				CD618D942C2B2BB0006869AF /* 3D33D959-24D6-4EB0-9669-6333ED02AC42.jpg in Resources */,
 				CD569FE72C53A05700C16B2E /* 4432C460-246D-4A72-A3B8-F84A66C93E05.png in Resources */,
@@ -1233,6 +1248,7 @@
 				CD0FBEBA2CAD632E00FF19C2 /* AppUtils.swift in Sources */,
 				CD6D280C2C11D6DA0009732A /* NiMenuWindowDelegate.swift in Sources */,
 				CD2DE8892CA1CDC0000B5461 /* MaraeClient.swift in Sources */,
+				CD16F0012CB6D747003F7428 /* EveViewController.swift in Sources */,
 				CD9B96BC2C04C8EE00998CE2 /* CFContentItem.swift in Sources */,
 				A1B8E6AB2AAFB5EC00AC6566 /* ni.xcdatamodeld in Sources */,
 				CD9B96C12C0733F800998CE2 /* NiImgViewUtils.swift in Sources */,

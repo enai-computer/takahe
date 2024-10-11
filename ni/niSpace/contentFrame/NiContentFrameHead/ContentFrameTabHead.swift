@@ -282,12 +282,12 @@ class ContentFrameTabHead: NSCollectionViewItem, NSTextFieldDelegate {
 					mouseDownFunction: self.pinToTopbar
 				),
 				NiMenuItemViewModel(
-					title: "Move to another space (soon)",
-					isEnabled: false,
-					mouseDownFunction: nil
+					title: "Ask Website",
+					isEnabled: true,
+					mouseDownFunction: self.askWebsite
 				),
 				NiMenuItemViewModel(
-					title: "Provide context (soon)",
+					title: "Move to another space (soon)",
 					isEnabled: false,
 					mouseDownFunction: nil
 				)
@@ -298,6 +298,11 @@ class ContentFrameTabHead: NSCollectionViewItem, NSTextFieldDelegate {
 	}
 	
 	func pinToTopbar(with event: NSEvent){
+		parentController?.pinTabToTopbar(at: tabPosition)
+		popUpAndFadePinnedToMenuInfo()
+	}
+	
+	func askWebsite(with event: NSEvent){
 		parentController?.pinTabToTopbar(at: tabPosition)
 		popUpAndFadePinnedToMenuInfo()
 	}
