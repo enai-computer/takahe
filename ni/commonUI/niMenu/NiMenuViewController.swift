@@ -33,6 +33,10 @@ class NiMenuViewController: NSViewController{
 		view.addSubview(myView)
 	}
 	
+	override func viewWillLayout() {
+		super.viewWillLayout()
+	}
+	
 	private func genMenuItemViews(items: [NiMenuItemViewModel]) -> [NiMenuItemView]{
 		var menuItems: [NiMenuItemView] = []
 		
