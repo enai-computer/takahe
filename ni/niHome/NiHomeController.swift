@@ -40,10 +40,10 @@ class NiHomeController: NSViewController, NSTextFieldDelegate {
 		self.view.frame = viewFrame
 		
 		view.wantsLayer = true
-		
-		setWelcomeMessage()
-		addWeatherWidget()
-		
+
+		self.setWelcomeMessage()
+		self.addWeatherWidget()
+
 		styleLeftSide()
 		styleRightSide()
 		

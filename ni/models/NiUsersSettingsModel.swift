@@ -23,6 +23,7 @@ enum UserSettingKey: String{
 }
 
 struct NiUsersSettingsModel: Codable{
+	let isDefaultConfig: Bool
 	let version: Int
 	let spaceCachingEnabled: Bool
 	let nrOfCachedSpaces: Int
@@ -43,6 +44,7 @@ extension NiUsersSettingsModel{
 	/** init with defaults
 	 */
 	init(){
+		isDefaultConfig = true
 		version = 1	//version to be increased after every breaking change
 		spaceCachingEnabled = false
 		nrOfCachedSpaces = 3
@@ -57,6 +59,7 @@ extension NiUsersSettingsModel{
 	}
 	
 	init(from dic: [String: String]) throws{
+		isDefaultConfig = false
 		version = try getValueOrThrow(key: .version, from: dic)
 		spaceCachingEnabled = try getValueOrThrow(key: .spaceCachingEnabled, from: dic)
 		nrOfCachedSpaces = try getValueOrThrow(key: .nrOfCachedSpaces, from: dic)
