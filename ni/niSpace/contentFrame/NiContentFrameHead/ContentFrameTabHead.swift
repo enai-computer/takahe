@@ -272,7 +272,8 @@ class ContentFrameTabHead: NSCollectionViewItem, NSTextFieldDelegate {
 	
 	private func showRightClickMenu(){
 		var adjustedPos = view.convert(view.visibleRect.origin, to: nil)
-		adjustedPos.x -= 10.0
+		adjustedPos.x -= 2.0
+		adjustedPos.y += 7.0
 		let menuWindow = NiMenuWindow(
 			origin: adjustedPos,
 			dirtyMenuItems: [
