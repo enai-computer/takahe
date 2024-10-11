@@ -22,8 +22,15 @@ class DefaultWindowController: NSWindowController, NSWindowDelegate{
 	}
 	
 	func windowDidEnterFullScreen(_ notification: Notification){
-		let homeView = NiHomeWindow(windowToAppearOn: self.window!)
-		homeView.makeKeyAndOrderFront(nil)
+		if(UserSettings.shared.isDefaultConfig){
+			DispatchQueue.main.asyncAfter(deadline: .now().advanced(by: .milliseconds(500))){
+				let homeView = NiHomeWindow(windowToAppearOn: self.window!)
+				homeView.makeKeyAndOrderFront(nil)
+			}
+		}else{
+			let homeView = NiHomeWindow(windowToAppearOn: self.window!)
+			homeView.makeKeyAndOrderFront(nil)
+		}
 	}
 	
 	func windowDidChangeScreen(_ notification: Notification) {
