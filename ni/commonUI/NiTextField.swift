@@ -11,7 +11,9 @@ import Foundation
 class NiTextField: NSTextField{
 	
 	@IBInspectable public var hasHoverEffect: Bool = false
-	@IBInspectable public var hoverTint: NSColor = NSColor.birkin
+	@IBInspectable public var hoverTint: NSColor? = NSColor.birkin
+	@IBInspectable public var hoverBackground: NSColor? = nil
+	@IBInspectable public var hoverCursor: NSCursor? = nil
 	
 	private var nonHoverTint: NSColor? = nil
 	
@@ -27,10 +29,20 @@ class NiTextField: NSTextField{
 		importsGraphics = false
 		lineBreakMode = .byTruncatingTail
 		alignment = .left
+		
+		setupLayer()
 	}
 	
 	required init?(coder: NSCoder) {
 		super.init(coder: coder)
+		setupLayer()
+	}
+	
+	private func setupLayer(){
+		wantsLayer = true
+		layer?.backgroundColor = .clear
+		layer?.cornerRadius = 4.0
+		layer?.cornerCurve = .continuous
 	}
 
 	let maxChars = 3
@@ -59,15 +71,29 @@ class NiTextField: NSTextField{
 	}
 	
 	override func mouseEntered(with event: NSEvent) {
-		if(hasHoverEffect && isEditable == false){
+		guard isEditable == false && hasHoverEffect else {return}
+		if(hoverTint != nil){
 			nonHoverTint = self.textColor
 			self.textColor = hoverTint
+		}
+		if(hoverBackground != nil){
+			layer?.backgroundColor = hoverBackground?.cgColor
+		}
+		if(hoverCursor != nil){
+			hoverCursor?.push()
 		}
 	}
 	
 	override func mouseExited(with event: NSEvent) {
-		if(hasHoverEffect && isEditable == false){
+		guard isEditable == false && hasHoverEffect else {return}
+		if(hoverTint != nil){
 			self.textColor = nonHoverTint
+		}
+		if(hoverBackground != nil){
+			layer?.backgroundColor = .clear
+		}
+		if(hoverCursor != nil){
+			NSCursor.pop()
 		}
 	}
 }
