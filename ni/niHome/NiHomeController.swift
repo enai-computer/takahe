@@ -13,7 +13,9 @@ class NiHomeController: NSViewController, NSTextFieldDelegate {
 	@IBOutlet var rightSideFrame: NSView!
 	@IBOutlet var welcomeStackView: NSStackView!
 	@IBOutlet var welcomeTxt: NSTextField!
-	@IBOutlet var userName: NSTextField!
+	@IBOutlet var userName: NiTextField!
+	
+	private var weatherView: WeatherNSView?
 	
 	private var searchController: NiSearchController
 	private var signupViewController: NiSignupViewController?
@@ -59,6 +61,10 @@ class NiHomeController: NSViewController, NSTextFieldDelegate {
 		positionRightSideContentView()
 	}
 	
+	override func viewDidLayout(){
+		super.viewDidLayout()
+	}
+	
 	private func positionRightSideContentView(){
 		if let viewObj = rightSideContentView{
 			viewObj.frame.size = CGSize(width: 678.0, height: 450.0)
@@ -97,13 +103,17 @@ class NiHomeController: NSViewController, NSTextFieldDelegate {
 	private func styleLeftSide(){
 		leftSideFrame.wantsLayer = true
 		leftSideFrame.layer?.backgroundColor = NSColor.sand1.cgColor
+		userName.hasHoverEffect = true
+		userName.hoverTint = nil
+		userName.hoverCursor = NSCursor.pointingHand
+		userName.hoverBackground = .sand4
 	}
 	
 	private func addWeatherWidget(){
 		let width = 300.0
 		let height = 60.0
 		let padding = 64.0
-		let weatherView = WeatherNSView(
+		weatherView = WeatherNSView(
 			frame: NSRect(
 				x: welcomeStackView.frame.maxX - width,
 				y: welcomeStackView.frame.minY - padding - height,
@@ -111,7 +121,7 @@ class NiHomeController: NSViewController, NSTextFieldDelegate {
 				height: height
 			)
 		)
-		view.addSubview(weatherView)
+		view.addSubview(weatherView!)
 	}
 	
 	private func styleRightSide(){
@@ -194,7 +204,8 @@ class NiHomeController: NSViewController, NSTextFieldDelegate {
 	
 	
 	func controlTextDidEndEditing(_ obj: Notification){
-
+		userName.layer?.backgroundColor = .clear
+		
 		if(obj.userInfo?["NSTextMovement"] as? NSTextMovement == NSTextMovement.cancel){
 			revertRenamingChanges()
 			endEditing()

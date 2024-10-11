@@ -30,6 +30,8 @@ struct WeatherView: View {
 	let timer = Timer.publish(every: 5, on: .main, in: .common).autoconnect()
 	
 	@State private var showCityPicker = false
+	@State private var isHovered = false
+	@State private var cursorSet = false
 	
 	init(for location: WeatherLocationModel){
 		self.weatherLocation = location
@@ -65,6 +67,11 @@ struct WeatherView: View {
 		.onReceive(timer) { _ in
 			self.currentTime = getLocalisedTime()
 		}
+		.padding(.all, 5.0)
+		.background(
+			self.isHovered ? Color(nsColor: .sand4) : Color.transparent
+		)
+		.cornerRadius(4.0)
 		.task {
 			await fetchWeather()
 		}
@@ -78,6 +85,17 @@ struct WeatherView: View {
 			Task{
 				await fetchWeather()
 			}
+		}
+		.onHover { hovering in
+			isHovered = hovering
+//			DispatchQueue.main.async {
+//			if (hovering && !self.cursorSet) {
+//				NSCursor.pointingHand.push()
+//				cursorSet = true
+//			}else if(!hovering && self.cursorSet){
+//				NSCursor.pop()
+//				cursorSet = false
+//			}
 		}
 	}
 	
