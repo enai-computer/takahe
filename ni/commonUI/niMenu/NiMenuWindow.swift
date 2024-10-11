@@ -65,9 +65,9 @@ class NiMenuWindow: NSPanel {
 	
 	static func calcSize(_ nrOfItems: Int) -> CGSize{
 		let h = if(nrOfItems == 1){
-			40.0 + 20.0 + 20.0	//item + padding + shadow
+			36.0 + 10.0 + 20.0	//item + padding + shadow
 		}else{
-			40.0 * Double(nrOfItems) + 20.0 + 5.0 * Double(nrOfItems - 1) + 20.0
+			36.0 * Double(nrOfItems) + 10.0 + 20.0
 		}
 		return CGSize(width: 280.0, height: h)
 	}
