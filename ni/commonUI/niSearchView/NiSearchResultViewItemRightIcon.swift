@@ -36,7 +36,7 @@ class NiSearchResultViewItemRightIcon: NSView {
 	}
 	
 	override func prepareForReuse(){
-		//we can not just call shortcut.removeFromSuperview(). 
+		//we cannot just call shortcut.removeFromSuperview().
 		//As we may loose the refernce, but it still will be shown in the UI
 		for v in subviews{
 			v.removeFromSuperview()
