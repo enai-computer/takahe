@@ -85,26 +85,6 @@ class NiPinnedWebsiteVModel: NSObject{
 		}
 	}
 
-	func showDeleteIcon(with event: NSEvent, context: Any){
-		guard let referenceIcon: NiActionImage = context as? NiActionImage else{return}
-		guard let deleteIcon = NiActionImage(namedImage: "closeCircle") else{return}
-		deleteIcon.isActiveFunction = {return true}
-		deleteIcon.setMouseDownFunction(self.removeFromPinnedMenu, with: referenceIcon as Any)
-		let deleteOrigin = CGPoint(
-			x: (referenceIcon.bounds.maxX - 11.0),
-			y: (referenceIcon.bounds.maxY - 11.0)
-		)
-		deleteIcon.frame.origin = deleteOrigin
-		referenceIcon.addSubview(deleteIcon)
-	}
-	
-	func removeFromPinnedMenu(with event: NSEvent, with context: Any){
-		guard let spaceController: NiSpaceViewController = (NSApplication.shared.delegate as? AppDelegate)?.getNiSpaceViewController() else {return}
-		guard let referenceIcon: NiActionImage = context as? NiActionImage else{return}
-		referenceIcon.removeFromSuperview()
-		spaceController.removePinnedWebApp(self)
-	}
-
 	func getIcon() -> NSImage{
 		return self.icon ?? NSImage(named: "AppIcon")!
 	}

@@ -14,6 +14,7 @@ class NiActionImage: NSImageView{
 	private var mouseDownFunctionWContext: ((NSEvent, Any) -> Void)?
 	private var rightMouseDownFunction: ((NSEvent) -> Void)?
 	private var rightMouseDownFunctionWContext: ((NSEvent, Any) -> Void)?
+
 	var mouseDownInActiveFunction: ((NSEvent) -> Void)?
 	var isActiveFunction: (() -> Bool)?
 	private var clickContext: Any?
@@ -22,6 +23,7 @@ class NiActionImage: NSImageView{
 	private var mouseDownSince: Int64?
 	
 	@IBInspectable public var defaultTint: NSColor = .sand11
+	@IBInspectable public var hoverTint: NSColor? = .birkin
 	
 	private var prevDefaultTint: NSColor?
 	
@@ -107,8 +109,10 @@ class NiActionImage: NSImageView{
 		if(isActiveFunction != nil && !isActiveFunction!()){
 			return
 		}
-		prevDefaultTint = self.contentTintColor
-		self.contentTintColor = NSColor(.birkin)
+		if(hoverTint != nil){
+			prevDefaultTint = self.contentTintColor
+			self.contentTintColor = hoverTint
+		}
 	}
 	
 	override func mouseExited(with event: NSEvent) {
@@ -116,7 +120,9 @@ class NiActionImage: NSImageView{
 		if(isActiveFunction != nil && !isActiveFunction!()){
 			return
 		}
-		self.contentTintColor = prevDefaultTint ?? defaultTint
+		if(hoverTint != nil){
+			self.contentTintColor = prevDefaultTint ?? defaultTint
+		}
 	}
 	
 	func setMouseDownFunction(_ function: ((NSEvent) -> Void)?){
@@ -136,7 +142,7 @@ class NiActionImage: NSImageView{
 		self.rightMouseDownFunctionWContext = function
 		self.rightClickContext = context
 	}
-	
+		
 	func updateRightMouseDownContext(_ context: Any){
 		self.rightClickContext = context
 	}
