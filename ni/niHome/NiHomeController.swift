@@ -227,7 +227,7 @@ class NiHomeController: NSViewController, NSTextFieldDelegate {
 		userName.isSelectable = false
 		
 		//need to have a different first responder right away,
-		//otherwise we can not click directly onto the spaceName again to rename, as the click will not be registered correctly
+		//otherwise we cannot click directly onto the spaceName again to rename, as the click will not be registered correctly
 		view.window?.makeFirstResponder(searchController.searchField)
 	}
 	
