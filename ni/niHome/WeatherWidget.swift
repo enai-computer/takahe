@@ -31,7 +31,6 @@ struct WeatherView: View {
 	
 	@State private var showCityPicker = false
 	@State private var isHovered = false
-	@State private var cursorSet = false
 	
 	init(for location: WeatherLocationModel){
 		self.weatherLocation = location
@@ -88,14 +87,14 @@ struct WeatherView: View {
 		}
 		.onHover { hovering in
 			isHovered = hovering
-//			DispatchQueue.main.async {
-//			if (hovering && !self.cursorSet) {
-//				NSCursor.pointingHand.push()
-//				cursorSet = true
-//			}else if(!hovering && self.cursorSet){
-//				NSCursor.pop()
-//				cursorSet = false
-//			}
+		}
+		.onContinuousHover{ phase in
+			switch(phase){
+				case .active(_):
+					NSCursor.pointingHand.push()
+				case .ended:
+					NSCursor.pop()
+			}
 		}
 	}
 	
