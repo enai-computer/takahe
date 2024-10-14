@@ -23,6 +23,7 @@ class Eve{
 		)
 		do{
 			return try await maraeClient.askQuestion(question)
+//			return try await maraeClient.testStatus()
 		}catch{
 			print(error)
 		}

@@ -50,7 +50,7 @@ class DocumentDal{
 		guard UserSettings.shared.onlineSync else {return}
 		
 		OutboxTable.insert(eventType: .DELETE, objectID: documentId, objectType: type, message: "")
-		Storage.instance.outboxProcessor.run()
+//		Storage.instance.outboxProcessor.run()
 	}
 	
 	private static func resolveType(_ docType: TabContentType) -> RestObjectType?{
