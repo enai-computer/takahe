@@ -22,8 +22,9 @@ class Eve{
 			"asked_eve_ai"
 		)
 		do{
-			return try await maraeClient.askQuestion(question)
+//			return try await maraeClient.askQuestion(question)
 //			return try await maraeClient.testStatus()
+			return try await maraeClient.getVersion()
 		}catch{
 			print(error)
 		}
