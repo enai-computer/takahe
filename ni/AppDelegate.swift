@@ -34,6 +34,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 				PostHogSDK.shared.getDistinctId(),
 				userPropertiesSetOnce: ["email": userEmail])
 		}
+		
+		_ = Eve.instance
 
 		applicationStarted = Date()
 		setLocalKeyListeners()
@@ -243,7 +245,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 			if(event.keyCode == kVK_F9){
 				print("[INFO]: kicked off backfill task")
 				Task{
-					Storage.instance.outboxProcessor.backfillCloudDB()
+//					Storage.instance.outboxProcessor.backfillCloudDB()
 				}
 			}
 			return event

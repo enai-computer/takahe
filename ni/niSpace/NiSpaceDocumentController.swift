@@ -232,7 +232,7 @@ class NiSpaceDocumentController: NSViewController{
 		//Content of the CFs stored here
 		myView.persistContent(spaceId: niSpaceID)
 		
-		Storage.instance.outboxProcessor.run()
+//		Storage.instance.outboxProcessor.run()
 	}
 	
 	private func genJson(scrollPosition: CGFloat) -> String{

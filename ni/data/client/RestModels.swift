@@ -56,3 +56,8 @@ struct PdfMetadataMesssage: Codable{
 struct EveChatResponseMessage: Codable{
 	let message: String
 }
+
+struct MaraeVerifyResponse: Codable{
+	let access_token: String
+	let token_type: String
+}
