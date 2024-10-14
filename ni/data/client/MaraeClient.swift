@@ -9,8 +9,8 @@ import Get
 import DeviceCheck
 
 class MaraeClient{
-//	private let hostUrl = "https://enai.host"
-	private let hostUrl = "http://127.0.0.1:8000"
+	private let hostUrl = "https://enai.host"
+//	private let hostUrl = "http://127.0.0.1:8000"
 	private let apiVersion = "/v1"
 	private let verify = "/verify"
 	private let userID = "/00000000-0000-0000-0000-000000000003"
@@ -72,7 +72,7 @@ class MaraeClient{
 	
 	func getVersion() async throws -> String{
 		let req = Request(
-			path: "/version",
+			path: apiVersion + "/version",
 			method: .get,
 			headers: auth_header
 		)
@@ -80,7 +80,7 @@ class MaraeClient{
 		if(res?.statusCode == 200 && res != nil){
 			return String(data: res!.data, encoding: .utf8) ?? "failed to decode"
 		}
-		return "Failed to fetch status"
+		return "Failed to fetch version"
 	}
 	
 	func testStatus() async throws -> String{
@@ -103,7 +103,8 @@ class MaraeClient{
 			method: .get,
 			query: [
 				("q", question.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "")
-			]
+			],
+			headers: auth_header
 		)
 		let res = try await sendRequest(req)
 		if(res?.statusCode == 200 && res != nil){
