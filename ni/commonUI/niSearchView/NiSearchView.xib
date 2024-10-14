@@ -29,7 +29,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <subviews>
                             <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="69S-1x-KUI" customClass="SearchViewTextField" customModule="ni" customModuleProvider="target">
-                                <rect key="frame" x="46" y="15" width="556" height="28"/>
+                                <rect key="frame" x="15" y="15" width="587" height="28"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" id="eQk-5F-QMg">
                                     <font key="font" size="21" name="Sohne-Buch"/>
