@@ -39,7 +39,7 @@ class ContentFrameTabHead: NSCollectionViewItem, NSTextFieldDelegate {
 	
 	override func prepareForReuse() {
 		tabPosition = -1
-		image.image = Bundle.main.image(forResource: "AppIcon")
+		image.image = Bundle.main.image(forResource: "enaiIconTransperent")
 		parentController = nil
 		closeButton.setMouseDownFunction(nil)
 		tabHeadTitle.disableEditing(title: "")
@@ -179,7 +179,7 @@ class ContentFrameTabHead: NSCollectionViewItem, NSTextFieldDelegate {
 		
 		Task {
 			if(viewModel.webView?.url?.absoluteString != nil){
-				let img = await FaviconProvider.instance.fetchIcon(viewModel.webView!.url!.absoluteString) ?? NSImage(named: NSImage.Name("AppIcon"))
+				let img = await FaviconProvider.instance.fetchIcon(viewModel.webView!.url!.absoluteString) ?? NSImage(named: NSImage.Name("enaiIcon"))
 				parentController?.setTabIcon(at: tabPosition, icon: img)
 				self.setIcon(img: img)
 			}

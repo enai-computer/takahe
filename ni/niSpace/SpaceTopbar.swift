@@ -16,9 +16,9 @@ class SpaceTopbar: NSView{
 		wantsLayer = true
 		
 		layer?.shadowColor = NSColor.sand9.cgColor
-		layer?.shadowRadius = 2.0
+		layer?.shadowRadius = 1.0
 		layer?.shadowOffset = CGSize(width: 0.0, height: 0.0)
-		layer?.shadowOpacity = 1.0
+		layer?.shadowOpacity = 0.7
 		
 		layer?.cornerRadius = 10.0
 		layer?.cornerCurve = .continuous

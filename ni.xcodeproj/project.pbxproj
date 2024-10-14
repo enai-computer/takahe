@@ -513,7 +513,6 @@
 		A1E41BFD2ACB684F00338417 /* contentFrame */ = {
 			isa = PBXGroup;
 			children = (
-				CD402C282C982FB2004D9538 /* CFCollapsedMinimized */,
 				CD59FA0C2C345C9200CFB8DE /* NiPdfViewElements */,
 				CD9B96BD2C0733C800998CE2 /* NiImgViewElements */,
 				CD66CE312B1F7AFF0006BB98 /* NiWebViewElements */,
@@ -522,6 +521,7 @@
 				CD59FA152C3696CE00CFB8DE /* CFSimpleFrame */,
 				CD4E0E392C41644500273109 /* CFSimpleMinimized */,
 				CDFA8CF92C03B95F00882722 /* CFFrameless */,
+				CD402C282C982FB2004D9538 /* CFCollapsedMinimized */,
 				CD5A04C92BEA3C5E004CC3AA /* CFMinimized */,
 				CDB483082C6A612000612AF5 /* CFFullscreen */,
 				CD7578352BBD9FD100293930 /* NiContentFrameHead */,

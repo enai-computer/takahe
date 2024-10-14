@@ -86,6 +86,6 @@ class NiPinnedWebsiteVModel: NSObject{
 	}
 
 	func getIcon() -> NSImage{
-		return self.icon ?? NSImage(named: "AppIcon")!
+		return self.icon ?? NSImage(named: "enaiIcon")!
 	}
 }

@@ -290,6 +290,4 @@ class NiSearchController: NSViewController, NSCollectionViewDataSource, NSCollec
 			searchField.stringValue = ""
 		}
 	}
-	
-	
 }
