@@ -110,7 +110,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		self.expandedCFView?.initAfterViewLoad(groupName)
 		
 		expandedCFView!.cfHeadView.wantsLayer = true
-		expandedCFView!.cfHeadView.layer?.backgroundColor = NSColor(.sand4).cgColor
+		expandedCFView!.cfHeadView.layer?.backgroundColor = NSColor(.sand5).cgColor
 	}
 	
 	private func loadAndDisplayFullscreenView(){
@@ -158,7 +158,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		simpleFrameView.wantsLayer = true
 		simpleFrameView.layer?.cornerRadius = 10.0
 		simpleFrameView.layer?.cornerCurve = .continuous
-		simpleFrameView.layer?.backgroundColor = NSColor.sand3.cgColor
+		simpleFrameView.layer?.backgroundColor = NSColor.sand5.cgColor
 		return simpleFrameView
 	}
 	
@@ -239,8 +239,8 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		self.view.layer?.cornerRadius = 10
 		self.view.layer?.cornerCurve = .continuous
 		self.view.layer?.borderWidth = 5
-		self.view.layer?.borderColor = NSColor(.sand4).cgColor
-		self.view.layer?.backgroundColor = NSColor(.sand4).cgColor
+		self.view.layer?.borderColor = NSColor(.sand5).cgColor
+		self.view.layer?.backgroundColor = NSColor(.sand5).cgColor
 	}
 	
 	func tryPrintContent(_ sender: Any?){
@@ -1493,7 +1493,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 			self.expandedCFView?.recalcDragArea(specialTabWidth: tabHeadWidth)
 		}
 		
-		return NSSize(width: tabHeadWidth, height: 30)
+		return NSSize(width: tabHeadWidth, height: ContentFrameView.TAB_HEAD_HEIGHT)
 	}
 	
 	func collectionView(

@@ -57,7 +57,7 @@ class CFFullscreenView: CFBaseView, CFTabHeadProtocol, CFFwdBackButtonProtocol{
 		frameIsActive = true
 		
 		cfHeadView.wantsLayer = true
-		cfHeadView.layer?.backgroundColor = NSColor(.sand4).cgColor
+		cfHeadView.layer?.backgroundColor = NSColor(.sand5).cgColor
 	}
 	
 	override func repositionView(_ xDiff: Double, _ yDiff: Double) {

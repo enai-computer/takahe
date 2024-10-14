@@ -18,7 +18,7 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES"/>
                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="NSApplicationIcon" id="E73-vC-lA4"/>
                 </imageView>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cB4-Tg-8Ou">
+                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cB4-Tg-8Ou">
                     <rect key="frame" x="40" y="11" width="200" height="20"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES"/>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" refusesFirstResponder="YES" allowsUndo="NO" placeholderString="tab title" id="EXq-0x-EkO">

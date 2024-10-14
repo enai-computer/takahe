@@ -30,7 +30,8 @@ class ContentFrameView: CFBaseView, CFTabHeadProtocol, CFFwdBackButtonProtocol, 
 	@IBOutlet var niContentTabView: NSTabView!
 	
 	static let SPACE_BETWEEN_TABS: CGFloat = 4.0
-	static let DEFAULT_TAB_SIZE = NSSize(width: 195, height: 30)
+	static let TAB_HEAD_HEIGHT = 28.0
+	static let DEFAULT_TAB_SIZE = NSSize(width: 195, height: TAB_HEAD_HEIGHT)
 	static let MAX_TAB_WIDTH: CGFloat = 300.0
 	
 	override var minFrameWidth: CGFloat { return 575.0}
@@ -436,10 +437,10 @@ class ContentFrameView: CFBaseView, CFTabHeadProtocol, CFFwdBackButtonProtocol, 
         let webView = niContentTabView.selectedTabViewItem?.view as? CFContentItem	//a new content frame will not have a webView yet
         
         if frameIsActive{
-            self.layer?.borderColor = NSColor(.sand4).cgColor
-			self.layer?.backgroundColor = NSColor(.sand4).cgColor
-			cfHeadView.layer?.backgroundColor = NSColor(.sand4).cgColor
-			fillColor = .sand4
+            self.layer?.borderColor = NSColor(.sand5).cgColor
+			self.layer?.backgroundColor = NSColor(.sand5).cgColor
+			cfHeadView.layer?.backgroundColor = NSColor(.sand5).cgColor
+			fillColor = .sand5
 			shadowActive()
             
 			showHeader()

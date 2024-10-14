@@ -95,8 +95,8 @@ class CFSimpleFrameView: CFBaseView, CFFwdBackButtonProtocol{
 		
 		if frameIsActive{
 			myContent?.setActive()
-			self.layer?.borderColor = NSColor(.sand4).cgColor
-			self.layer?.backgroundColor = NSColor(.sand4).cgColor
+			self.layer?.borderColor = NSColor(.sand5).cgColor
+			self.layer?.backgroundColor = NSColor(.sand5).cgColor
 			shadowActive()
 			showHeader()
 			self.resetCursorRects()
