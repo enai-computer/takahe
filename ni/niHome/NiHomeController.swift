@@ -219,6 +219,8 @@ class NiHomeController: NSViewController, NSTextFieldDelegate {
 		endEditing()
 		let cleanName = userName.stringValue.trimmingCharacters(in: .whitespacesAndNewlines).truncate(20)
 		UserSettings.updateValue(setting: .userFirstName, value: cleanName)
+		
+		userName.stringValue = " " + cleanName
 	}
 	
 	private func endEditing(){
