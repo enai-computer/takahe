@@ -237,6 +237,18 @@ class ContentFrameTabHead: NSCollectionViewItem, NSTextFieldDelegate {
 	 * MARK: -mouse down event here
 	 */
 
+	override func mouseDown(with event: NSEvent) {
+		let isFrameActive = parentController?.myView.frameIsActive
+        guard isFrameActive == true,
+              self.isSelected,
+              !tabHeadTitle.isEditable,
+              event.clickCount == 1 else {
+            super.mouseDown(with: event)
+            return
+        }
+        startEditMode()
+	}
+	
 	override func rightMouseDown(with event: NSEvent) {
 		let isFrameActive = parentController?.myView.frameIsActive
 		if(isFrameActive != nil && !isFrameActive!){
