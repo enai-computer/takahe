@@ -133,7 +133,6 @@
 		CD7578462BC000F200293930 /* ContentFrameTabHead.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7578442BC000F200293930 /* ContentFrameTabHead.swift */; };
 		CD7578472BC000F200293930 /* ContentFrameTabHead.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD7578452BC000F200293930 /* ContentFrameTabHead.xib */; };
 		CD75784C2BC065FB00293930 /* ContentFrameTabHeadTextNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD75784B2BC065FB00293930 /* ContentFrameTabHeadTextNode.swift */; };
-		CD75C34F2CA982E20000DA12 /* NativeMarkKit in Frameworks */ = {isa = PBXBuildFile; productRef = CD75C34E2CA982E20000DA12 /* NativeMarkKit */; };
 		CD75C3512CAA9D720000DA12 /* CFFullScreenScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD75C3502CAA9D580000DA12 /* CFFullScreenScrollView.swift */; };
 		CD7691E12CA2E69B008120C5 /* DocumentDal.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7691E02CA2E695008120C5 /* DocumentDal.swift */; };
 		CD781E752C0E1B6E00D02F55 /* NiNoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD781E742C0E1B6E00D02F55 /* NiNoteView.swift */; };
@@ -214,6 +213,7 @@
 		CDFA8CFF2C04815C00882722 /* EventUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDFA8CFE2C04815C00882722 /* EventUtils.swift */; };
 		CDFA8D022C0492F400882722 /* NiNoteItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDFA8D012C0492F400882722 /* NiNoteItem.swift */; };
 		CDFA8D042C04931600882722 /* NiNoteUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDFA8D032C04931600882722 /* NiNoteUtils.swift */; };
+		CDFA990E2CBEB0E5004795C9 /* NativeMarkKit in Frameworks */ = {isa = PBXBuildFile; productRef = CDFA990D2CBEB0E5004795C9 /* NativeMarkKit */; };
 		CDFAC3392C9863F70057F759 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = CDFAC3382C9863F70057F759 /* .swiftlint.yml */; };
 		CDFAC33C2C9865050057F759 /* FaviconFinder in Frameworks */ = {isa = PBXBuildFile; productRef = CDFAC33B2C9865050057F759 /* FaviconFinder */; };
 		CDFAC33E2C986A5D0057F759 /* NiAsyncImgView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDFAC33D2C986A5D0057F759 /* NiAsyncImgView.swift */; };
@@ -451,7 +451,7 @@
 				CD1160C82BD142D100345E3E /* WebURL in Frameworks */,
 				CD2DE8862CA1CB44000B5461 /* Get in Frameworks */,
 				CD0589372BE1837B00E9A01E /* PostHog in Frameworks */,
-				CD75C34F2CA982E20000DA12 /* NativeMarkKit in Frameworks */,
+				CDFA990E2CBEB0E5004795C9 /* NativeMarkKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1070,7 +1070,7 @@
 				CDFAC33B2C9865050057F759 /* FaviconFinder */,
 				CD4088D62C9AF61D005EF6ED /* SQLite */,
 				CD2DE8852CA1CB44000B5461 /* Get */,
-				CD75C34E2CA982E20000DA12 /* NativeMarkKit */,
+				CDFA990D2CBEB0E5004795C9 /* NativeMarkKit */,
 			);
 			productName = ni;
 			productReference = A1B8E6A22AAFB5EC00AC6566 /* ni.app */;
@@ -1129,7 +1129,7 @@
 				CDFAC33A2C9865050057F759 /* XCRemoteSwiftPackageReference "FaviconFinder" */,
 				CD4088D52C9AF61D005EF6ED /* XCRemoteSwiftPackageReference "SQLite.swift" */,
 				CD2DE8842CA1CB44000B5461 /* XCRemoteSwiftPackageReference "Get" */,
-				CD75C34D2CA982E20000DA12 /* XCRemoteSwiftPackageReference "NativeMarkKit" */,
+				CDFA990C2CBEB0E5004795C9 /* XCRemoteSwiftPackageReference "MarkdownKit" */,
 			);
 			productRefGroup = A1B8E6A32AAFB5EC00AC6566 /* Products */;
 			projectDirPath = "";
@@ -1703,12 +1703,12 @@
 				minimumVersion = 1.2.0;
 			};
 		};
-		CD75C34D2CA982E20000DA12 /* XCRemoteSwiftPackageReference "NativeMarkKit" */ = {
+		CDFA990C2CBEB0E5004795C9 /* XCRemoteSwiftPackageReference "MarkdownKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/andyfinnell/NativeMarkKit.git";
+			repositoryURL = "https://github.com/enai-io/MarkdownKit";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.1.1;
+				branch = master;
+				kind = branch;
 			};
 		};
 		CDFAC33A2C9865050057F759 /* XCRemoteSwiftPackageReference "FaviconFinder" */ = {
@@ -1747,14 +1747,14 @@
 			package = CD4D7AE22C49459400B6DBFD /* XCRemoteSwiftPackageReference "swift-atomics" */;
 			productName = Atomics;
 		};
-		CD75C34E2CA982E20000DA12 /* NativeMarkKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = CD75C34D2CA982E20000DA12 /* XCRemoteSwiftPackageReference "NativeMarkKit" */;
-			productName = NativeMarkKit;
-		};
 		CDD6B93D2B152D3F00C6144D /* SQLite */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = SQLite;
+		};
+		CDFA990D2CBEB0E5004795C9 /* NativeMarkKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CDFA990C2CBEB0E5004795C9 /* XCRemoteSwiftPackageReference "MarkdownKit" */;
+			productName = NativeMarkKit;
 		};
 		CDFAC33B2C9865050057F759 /* FaviconFinder */ = {
 			isa = XCSwiftPackageProductDependency;

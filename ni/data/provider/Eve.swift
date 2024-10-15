@@ -19,7 +19,7 @@ class Eve{
 	
 	func ask(question: String) async -> String{
 		PostHogSDK.shared.capture(
-			"asked_eve_ai"
+			"asked_en-ai"
 		)
 		do{
 			return try await maraeClient.askQuestion(question)
