@@ -14,15 +14,30 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
             <subviews>
                 <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" horizontalScrollElasticity="none" verticalScrollElasticity="allowed" id="F9I-AF-d5j">
-                    <rect key="frame" x="16" y="16" width="524" height="228"/>
+                    <rect key="frame" x="16" y="16" width="524" height="288"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <clipView key="contentView" drawsBackground="NO" id="lRc-Ic-2Ss">
-                        <rect key="frame" x="0.0" y="0.0" width="524" height="228"/>
+                        <rect key="frame" x="0.0" y="0.0" width="524" height="288"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view id="BoO-Hu-PYR">
-                                <rect key="frame" x="0.0" y="0.0" width="509" height="213"/>
+                                <rect key="frame" x="0.0" y="0.0" width="524" height="288"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <subviews>
+                                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4qx-nc-nW6">
+                                        <rect key="frame" x="0.0" y="232" width="524" height="56"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                        <textFieldCell key="cell" lineBreakMode="clipping" title="Label" id="wgW-0R-E0G">
+                                            <font key="font" size="21" name="Sohne-Buch"/>
+                                            <color key="textColor" name="sand12"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PcI-0n-8U0">
+                                        <rect key="frame" x="0.0" y="0.0" width="524" height="224"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                    </customView>
+                                </subviews>
                             </view>
                         </subviews>
                     </clipView>
@@ -31,22 +46,13 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
                     <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="UKP-8w-eU4">
-                        <rect key="frame" x="508" y="0.0" width="16" height="228"/>
+                        <rect key="frame" x="508" y="0.0" width="16" height="288"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
                 </scrollView>
-                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4qx-nc-nW6">
-                    <rect key="frame" x="16" y="244" width="524" height="56"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                    <textFieldCell key="cell" lineBreakMode="clipping" title="Label" id="wgW-0R-E0G">
-                        <font key="font" size="21" name="Sohne-Buch"/>
-                        <color key="textColor" name="sand12"/>
-                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                </textField>
             </subviews>
             <connections>
-                <outlet property="answerTextPlaceholder" destination="BoO-Hu-PYR" id="GUJ-rH-bFL"/>
+                <outlet property="answerTextPlaceholder" destination="PcI-0n-8U0" id="D6Q-h5-qws"/>
                 <outlet property="questionLabel" destination="4qx-nc-nW6" id="7o9-Tf-HaJ"/>
                 <outlet property="scrollView" destination="F9I-AF-d5j" id="ko3-65-MzQ"/>
             </connections>
