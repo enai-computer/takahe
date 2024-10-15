@@ -7,6 +7,7 @@
 
 import Foundation
 import SQLite
+import PostHog
 
 
 enum NiSearchResultType{
@@ -65,8 +66,8 @@ class Cook{
 			res.append(NiSearchResultItem(type: .niSpace, id: NiSpaceDocumentController.EMPTY_SPACE_ID, name: "Create a new space", data: nil))
 			
 			let wordCount = countWords(in: typedChars!)
-			if(UserSettings.shared.eveEnabled && 1 < wordCount){
-				let askEveResultItem = NiSearchResultItem(type: .eve, id: nil, name: "Ask Eve", data: nil )
+			if(PostHogSDK.shared.isFeatureEnabled("en-ai") && 1 < wordCount){
+				let askEveResultItem = NiSearchResultItem(type: .eve, id: nil, name: "Ask Enai", data: nil )
 				if(wordCount == 2){
 					res.append(askEveResultItem)
 				}else{

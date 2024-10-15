@@ -27,7 +27,9 @@ class EveChatView: NSView{
 		mdTextView = NativeMarkLabel(nativeMark: markdown, styleSheet: getStylesheet())
 		mdTextView?.frame.origin = answerTextPlaceholder.frame.origin
 		mdTextView?.frame.size.width = answerTextPlaceholder.frame.size.width
-		mdTextView?.frame.size.height = mdTextView!.intrinsicContentSize.height
+		
+		mdTextView?.frame.size.height = mdTextView!.getIntrinsicContentSize(width: answerTextPlaceholder.frame.size.width).height
+		
 		mdTextView?.wantsLayer = true
 		mdTextView?.layer?.borderColor = NSColor.sand2.cgColor
 
@@ -43,7 +45,7 @@ class EveChatView: NSView{
 		  block: [
 			  .document: [
 				.textStyle(.custom(name: myFont, size: FontSize.fixed(16.0))),
-				.backgroundColor(NSColor.sand2)
+				.backgroundColor(NSColor.sand2),
 			  ],
 			  .heading(level: 1): [
 				.textStyle(.custom(name: myFont, size: FontSize.scaled(to: .largeTitle))),
