@@ -29,7 +29,6 @@
 		CD0FBEBA2CAD632E00FF19C2 /* AppUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0FBEB92CAD632300FF19C2 /* AppUtils.swift */; };
 		CD1160C82BD142D100345E3E /* WebURL in Frameworks */ = {isa = PBXBuildFile; productRef = CD1160C72BD142D100345E3E /* WebURL */; };
 		CD1160CA2BD27B9E00345E3E /* NiWebViewUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1160C92BD27B9E00345E3E /* NiWebViewUtils.swift */; };
-		CD1160CC2BD286ED00345E3E /* emptyTab-1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CD1160CB2BD286EC00345E3E /* emptyTab-1.jpg */; };
 		CD1427762C735CAC00510FE6 /* CFProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1427752C735CAC00510FE6 /* CFProtocols.swift */; };
 		CD1853112C08D22A001FE566 /* FaviconProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1853102C08D22A001FE566 /* FaviconProvider.swift */; };
 		CD1853132C08D972001FE566 /* FaviconCacheTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1853122C08D972001FE566 /* FaviconCacheTable.swift */; };
@@ -70,9 +69,12 @@
 		CD42CEC92BDA48180039814D /* NiScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD42CEC82BDA48180039814D /* NiScrollView.swift */; };
 		CD4D7AE42C49459400B6DBFD /* Atomics in Frameworks */ = {isa = PBXBuildFile; productRef = CD4D7AE32C49459400B6DBFD /* Atomics */; };
 		CD4D7AE62C4959B800B6DBFD /* DateUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4D7AE52C4959B800B6DBFD /* DateUtils.swift */; };
+		CD4DBD4E2CBE709600CE5179 /* signifier-regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = CD4DBD4D2CBE709600CE5179 /* signifier-regular.otf */; };
+		CD4DBD512CBE70C700CE5179 /* global.css in Resources */ = {isa = PBXBuildFile; fileRef = CD4DBD502CBE70C700CE5179 /* global.css */; };
+		CD4DBD532CBE70D000CE5179 /* index.css in Resources */ = {isa = PBXBuildFile; fileRef = CD4DBD522CBE70D000CE5179 /* index.css */; };
+		CD4DBD552CBE70D600CE5179 /* emptyTab.html in Resources */ = {isa = PBXBuildFile; fileRef = CD4DBD542CBE70D600CE5179 /* emptyTab.html */; };
 		CD4E0E3B2C4164A000273109 /* CFSimpleMinimizedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4E0E3A2C4164A000273109 /* CFSimpleMinimizedView.swift */; };
 		CD4E0E3D2C4164AF00273109 /* CFSimpleMinimizedView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD4E0E3C2C4164AF00273109 /* CFSimpleMinimizedView.xib */; };
-		CD53ACC02BCEE0ED00D5912B /* emptyTab.html in Resources */ = {isa = PBXBuildFile; fileRef = CD53ACBF2BCEE0ED00D5912B /* emptyTab.html */; };
 		CD569FE72C53A05700C16B2E /* 4432C460-246D-4A72-A3B8-F84A66C93E05.png in Resources */ = {isa = PBXBuildFile; fileRef = CD569FE12C53A05700C16B2E /* 4432C460-246D-4A72-A3B8-F84A66C93E05.png */; };
 		CD569FE82C53A05700C16B2E /* 165C18BB-B531-419D-8EB4-8BBFEC4A9308.png in Resources */ = {isa = PBXBuildFile; fileRef = CD569FE22C53A05700C16B2E /* 165C18BB-B531-419D-8EB4-8BBFEC4A9308.png */; };
 		CD569FE92C53A05700C16B2E /* 9AA500EF-5D06-49EC-B3E3-D122308BCAD2.png in Resources */ = {isa = PBXBuildFile; fileRef = CD569FE32C53A05700C16B2E /* 9AA500EF-5D06-49EC-B3E3-D122308BCAD2.png */; };
@@ -251,7 +253,6 @@
 		CD0FA1C02BDBE2BA0065313B /* Inter-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Regular.ttf"; sourceTree = "<group>"; };
 		CD0FBEB92CAD632300FF19C2 /* AppUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUtils.swift; sourceTree = "<group>"; };
 		CD1160C92BD27B9E00345E3E /* NiWebViewUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiWebViewUtils.swift; sourceTree = "<group>"; };
-		CD1160CB2BD286EC00345E3E /* emptyTab-1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "emptyTab-1.jpg"; sourceTree = "<group>"; };
 		CD1427752C735CAC00510FE6 /* CFProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CFProtocols.swift; sourceTree = "<group>"; };
 		CD1853102C08D22A001FE566 /* FaviconProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaviconProvider.swift; sourceTree = "<group>"; };
 		CD1853122C08D972001FE566 /* FaviconCacheTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaviconCacheTable.swift; sourceTree = "<group>"; };
@@ -289,9 +290,12 @@
 		CD410AE12C285C3C00EC5DF7 /* NiUsersSettingsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiUsersSettingsModel.swift; sourceTree = "<group>"; };
 		CD42CEC82BDA48180039814D /* NiScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiScrollView.swift; sourceTree = "<group>"; };
 		CD4D7AE52C4959B800B6DBFD /* DateUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtils.swift; sourceTree = "<group>"; };
+		CD4DBD4D2CBE709600CE5179 /* signifier-regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "signifier-regular.otf"; sourceTree = "<group>"; };
+		CD4DBD502CBE70C700CE5179 /* global.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = global.css; sourceTree = "<group>"; };
+		CD4DBD522CBE70D000CE5179 /* index.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = index.css; sourceTree = "<group>"; };
+		CD4DBD542CBE70D600CE5179 /* emptyTab.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = emptyTab.html; sourceTree = "<group>"; };
 		CD4E0E3A2C4164A000273109 /* CFSimpleMinimizedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CFSimpleMinimizedView.swift; sourceTree = "<group>"; };
 		CD4E0E3C2C4164AF00273109 /* CFSimpleMinimizedView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CFSimpleMinimizedView.xib; sourceTree = "<group>"; };
-		CD53ACBF2BCEE0ED00D5912B /* emptyTab.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = emptyTab.html; sourceTree = "<group>"; };
 		CD569FE12C53A05700C16B2E /* 4432C460-246D-4A72-A3B8-F84A66C93E05.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "4432C460-246D-4A72-A3B8-F84A66C93E05.png"; sourceTree = "<group>"; };
 		CD569FE22C53A05700C16B2E /* 165C18BB-B531-419D-8EB4-8BBFEC4A9308.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "165C18BB-B531-419D-8EB4-8BBFEC4A9308.png"; sourceTree = "<group>"; };
 		CD569FE32C53A05700C16B2E /* 9AA500EF-5D06-49EC-B3E3-D122308BCAD2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "9AA500EF-5D06-49EC-B3E3-D122308BCAD2.png"; sourceTree = "<group>"; };
@@ -640,6 +644,16 @@
 			path = CFCollapsedMinimized;
 			sourceTree = "<group>";
 		};
+		CD4DBD4F2CBE70B000CE5179 /* emptyTab */ = {
+			isa = PBXGroup;
+			children = (
+				CD4DBD502CBE70C700CE5179 /* global.css */,
+				CD4DBD522CBE70D000CE5179 /* index.css */,
+				CD4DBD542CBE70D600CE5179 /* emptyTab.html */,
+			);
+			path = emptyTab;
+			sourceTree = "<group>";
+		};
 		CD4E0E392C41644500273109 /* CFSimpleMinimized */ = {
 			isa = PBXGroup;
 			children = (
@@ -721,8 +735,7 @@
 				CD2D8E7A2C4EB961003AED25 /* pdfsForWelcomeSpaces */,
 				CD618D8E2C2B2B5D006869AF /* imgsForWelcomeSpaces */,
 				CDA639552BF50596001941DE /* welcomeConfig.json */,
-				CD1160CB2BD286EC00345E3E /* emptyTab-1.jpg */,
-				CD53ACBF2BCEE0ED00D5912B /* emptyTab.html */,
+				CD4DBD4F2CBE70B000CE5179 /* emptyTab */,
 				CDDBCB2C2BD8FA4C00E7B187 /* errorLoading-1.jpeg */,
 				CDDBCB2D2BD8FA4C00E7B187 /* errorLoading.html */,
 				CD6317E72BC484E100434D56 /* fonts */,
@@ -735,6 +748,7 @@
 			isa = PBXGroup;
 			children = (
 				CD0FA1C02BDBE2BA0065313B /* Inter-Regular.ttf */,
+				CD4DBD4D2CBE709600CE5179 /* signifier-regular.otf */,
 				CD6317EA2BC4852300434D56 /* sohne-buch.ttf */,
 				CD6317E82BC4852300434D56 /* sohne-dreiviertelfett.ttf */,
 				CD6317EB2BC4852300434D56 /* sohne-kraftig.ttf */,
@@ -1142,6 +1156,7 @@
 				CD59FA192C369ADD00CFB8DE /* CFSimpleFrameView.xib in Resources */,
 				CD1C6D5B2C525A950019CD09 /* NiPinnedMenuView.xib in Resources */,
 				A1B8E6B02AAFB5EF00AC6566 /* Main.storyboard in Resources */,
+				CD4DBD512CBE70C700CE5179 /* global.css in Resources */,
 				CDFAC3392C9863F70057F759 /* .swiftlint.yml in Resources */,
 				CD97975C2C57AC2C00640750 /* LoadingView.xib in Resources */,
 				CD6317EC2BC4852300434D56 /* sohne-dreiviertelfett.ttf in Resources */,
@@ -1154,25 +1169,26 @@
 				CD2B68F02C2F26930086756E /* NiAlertPanel.xib in Resources */,
 				CD618D942C2B2BB0006869AF /* 3D33D959-24D6-4EB0-9669-6333ED02AC42.jpg in Resources */,
 				CD569FE72C53A05700C16B2E /* 4432C460-246D-4A72-A3B8-F84A66C93E05.png in Resources */,
+				CD4DBD552CBE70D600CE5179 /* emptyTab.html in Resources */,
 				CDDBCB2F2BD8FA4D00E7B187 /* errorLoading.html in Resources */,
 				CD3362212BFE0DDC004DBAFB /* CFSoftDeletedView.xib in Resources */,
 				CD4E0E3D2C4164AF00273109 /* CFSimpleMinimizedView.xib in Resources */,
 				CDD7D3412C19924F0038E6F9 /* NiSearchResultViewItem.xib in Resources */,
 				A1E41BF62ACB533400338417 /* ContentFrameView.xib in Resources */,
 				CD569FE82C53A05700C16B2E /* 165C18BB-B531-419D-8EB4-8BBFEC4A9308.png in Resources */,
-				CD53ACC02BCEE0ED00D5912B /* emptyTab.html in Resources */,
 				CD2D8E7E2C4EB992003AED25 /* licklider.pdf in Resources */,
 				CD618D9C2C2B4151006869AF /* 43DC5B56-124C-4368-A341-EAA9D2E33CFD.jpg in Resources */,
+				CD4DBD532CBE70D000CE5179 /* index.css in Resources */,
 				CD6B97732C59544F0046C36B /* loadingAnimation.gif in Resources */,
 				CDBCBBF82C92F8330069EFE3 /* NiSignupView.xib in Resources */,
 				CD569FEC2C53A05700C16B2E /* 76AD3FA8-81D2-4C9D-A5B0-EF190D4F6D81.png in Resources */,
 				CD6DED902C24954500AA8BC4 /* NiWebViewFindPanel.xib in Resources */,
 				CDF0DD242C202BDB006C4EF4 /* NiHomeView.xib in Resources */,
 				CD569FE92C53A05700C16B2E /* 9AA500EF-5D06-49EC-B3E3-D122308BCAD2.png in Resources */,
-				CD1160CC2BD286ED00345E3E /* emptyTab-1.jpg in Resources */,
 				CDACD35E2C56C81B00B9CBE9 /* 1DA3C6AF-A701-418E-AB8C-B73285A3ECAB.png in Resources */,
 				CD7AE0AC2C553C7300B3984E /* NiLibraryView.xib in Resources */,
 				CDA639562BF50596001941DE /* welcomeConfig.json in Resources */,
+				CD4DBD4E2CBE709600CE5179 /* signifier-regular.otf in Resources */,
 				CD6317ED2BC4852300434D56 /* sohne-leicht.ttf in Resources */,
 				CD618D902C2B2B8E006869AF /* EC9DF222-0555-41E2-A1E8-F36CD5CF2456.jpg in Resources */,
 				CD402C2C2C98300A004D9538 /* CFCollapsedMinimizedView.xib in Resources */,
