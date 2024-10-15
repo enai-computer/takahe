@@ -13,7 +13,7 @@ class EveChatView: NSView{
 	@IBOutlet var questionLabel: NSTextField!
 	@IBOutlet var scrollView: NSScrollView!
 	@IBOutlet var answerTextPlaceholder: NSView!
-	
+	private let padding_QLabel_Answer = 8.0
 	private var mdTextView: NativeMarkLabel?
 	
 	func style(){
@@ -32,9 +32,16 @@ class EveChatView: NSView{
 		
 		mdTextView?.wantsLayer = true
 		mdTextView?.layer?.borderColor = NSColor.sand2.cgColor
-
+		
+		let newFrameHeight = mdTextView!.frame.height + padding_QLabel_Answer + questionLabel.frame.height
+		if(scrollView.documentView!.frame.size.height < newFrameHeight){
+			scrollView.documentView?.frame.size.height = newFrameHeight
+		}else{
+			mdTextView?.frame.origin.y = answerTextPlaceholder.frame.origin.y + (answerTextPlaceholder.frame.height - mdTextView!.frame.height)
+		}
+		
 		answerTextPlaceholder.removeFromSuperviewWithoutNeedingDisplay()
-		scrollView.documentView = mdTextView!
+		scrollView.documentView?.addSubview(mdTextView!)
 	}
 	
 	private func getStylesheet() -> StyleSheet{
