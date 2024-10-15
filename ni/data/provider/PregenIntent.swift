@@ -73,254 +73,254 @@ INSERT INTO "cached_Web" ("content_id", "url", "updated_at", "cache", "html_webs
 INSERT INTO "document" ("id", "name", "owner", "shared", "created_at", "updated_at", "updated_by", "document") VALUES ('2F0DE38D-8215-4DB1-95A0-6F04C2ECE821', 'Intent, attention, and mindfulness', '', '0', '1719337106.93204', '1719337106.93204', '', '{
   "type" : "document",
   "data" : {
+	"viewPosition" : {
+	  "px" : 0
+	},
 	"height" : {
 	  "px" : 2368
 	},
+	"width" : {
+	  "px" : 1512
+	},
 	"children" : [
 	  {
+		"type" : "contentFrame",
 		"data" : {
+		  "state" : "frameless",
 		  "height" : {
-			"px" : 375
-		  },
-		  "width" : {
-			"px" : 437
+			"px" : 265.5
 		  },
 		  "position" : {
 			"x" : {
-			  "px" : 1040
+			  "px" : 662.5
 			},
-			"posInViewStack" : 11,
 			"y" : {
-			  "px" : 60.5
-			}
-		  },
-		  "children" : [
-			{
-			  "id" : "6E68BBC0-5B7A-47EE-AB9D-673F5EAA83D9",
-			  "position" : 0,
-			  "contentState" : "empty",
-			  "contentType" : "note",
-			  "active" : true
-			}
-		  ],
-		  "state" : "frameless"
-		},
-		"type" : "contentFrame"
-	  },
-	  {
-		"data" : {
-		  "position" : {
-			"x" : {
-			  "px" : 648
+			  "px" : 59.5
 			},
-			"posInViewStack" : 12,
-			"y" : {
-			  "px" : 55.5
-			}
+			"posInViewStack" : 4
 		  },
 		  "width" : {
 			"px" : 362.5
 		  },
-		  "height" : {
-			"px" : 266
-		  },
-		  "state" : "frameless",
 		  "children" : [
 			{
 			  "position" : 0,
-			  "contentState" : "empty",
 			  "active" : true,
+			  "contentType" : "note",
 			  "id" : "7749BDE6-61E3-495F-BF92-DB68B631B53E",
-			  "contentType" : "note"
+			  "contentState" : "empty"
 			}
 		  ]
-		},
-		"type" : "contentFrame"
-	  },
-	  {
-		"type" : "contentFrame",
-		"data" : {
-		  "name" : "William James",
-		  "width" : {
-			"px" : 280
-		  },
-		  "position" : {
-			"y" : {
-			  "px" : 53.5
-			},
-			"posInViewStack" : 9,
-			"x" : {
-			  "px" : 352
-			}
-		  },
-		  "id" : "4CCEA0C4-4DE2-46F0-B024-22BE7473CC4D",
-		  "state" : "minimised",
-		  "children" : [
-			{
-			  "position" : 0,
-			  "active" : false,
-			  "contentType" : "web",
-			  "id" : "7C0650C0-2F67-4A7C-BC5F-A3D122878EDD",
-			  "contentState" : "loaded"
-			},
-			{
-			  "active" : false,
-			  "contentType" : "web",
-			  "position" : 1,
-			  "contentState" : "loaded",
-			  "id" : "50E4E6FC-978E-4C9F-BF16-F3A556BEED43"
-			},
-			{
-			  "contentState" : "loaded",
-			  "contentType" : "web",
-			  "position" : 2,
-			  "id" : "AEBDFD03-BDDE-4B9B-834F-6F16680438A1",
-			  "active" : false
-			},
-			{
-			  "active" : false,
-			  "contentType" : "web",
-			  "id" : "D28995F8-E85E-4173-9272-6FA363922FCC",
-			  "contentState" : "loaded",
-			  "position" : 3
-			}
-		  ],
-		  "height" : {
-			"px" : 215
-		  }
 		}
 	  },
 	  {
 		"type" : "contentFrame",
 		"data" : {
-		  "children" : [
-			{
-			  "position" : 0,
-			  "active" : true,
-			  "contentState" : "loaded",
-			  "contentType" : "web",
-			  "id" : "29880BD7-959B-4A6B-994D-6ADE0EA5D0ED"
-			},
-			{
-			  "active" : false,
-			  "contentState" : "loaded",
-			  "id" : "3C2EAF73-078F-4A1C-9A18-02E66571E1DC",
-			  "contentType" : "web",
-			  "position" : 1
-			},
-			{
-			  "contentType" : "web",
-			  "id" : "4D0224DE-09F2-4604-9DA7-DCCFB6592461",
-			  "active" : false,
-			  "position" : 2,
-			  "contentState" : "loaded"
-			},
-			{
-			  "position" : 3,
-			  "id" : "F91CD41D-88A2-4E65-84E4-5D11C7AD9506",
-			  "contentType" : "web",
-			  "active" : false,
-			  "contentState" : "loaded"
-			},
-			{
-			  "position" : 4,
-			  "id" : "60860BC4-098E-46F0-ADA0-218173787EA4",
-			  "contentType" : "web",
-			  "contentState" : "loaded",
-			  "active" : false
-			},
-			{
-			  "active" : false,
-			  "position" : 5,
-			  "contentType" : "web",
-			  "contentState" : "loaded",
-			  "id" : "D99FD174-5AE7-433E-8956-C85644EDC876"
-			},
-			{
-			  "contentState" : "loaded",
-			  "contentType" : "web",
-			  "id" : "D609A82C-4F49-4A2B-BB57-3F2B523DA38A",
-			  "active" : false,
-			  "position" : 6
-			}
-		  ],
-		  "name" : "Intro to Attention Research",
-		  "position" : {
-			"x" : {
-			  "px" : 31
-			},
-			"posInViewStack" : 8,
-			"y" : {
-			  "px" : 49.5
-			}
+		  "previousDisplayState" : {
+			"expandCollapseDirection" : "leftToRight",
+			"state" : "minimised"
 		  },
-		  "height" : {
-			"px" : 344
-		  },
-		  "state" : "minimised",
-		  "id" : "3D30D97A-F76E-4F08-870A-91701C7E9966",
-		  "width" : {
-			"px" : 280
-		  }
-		}
-	  },
-	  {
-		"type" : "contentFrame",
-		"data" : {
 		  "position" : {
-			"x" : {
-			  "px" : 294
-			},
-			"posInViewStack" : 14,
 			"y" : {
 			  "px" : 407
+			},
+			"posInViewStack" : 5,
+			"x" : {
+			  "px" : 294
 			}
 		  },
+		  "state" : "expanded",
+		  "name" : "Simone Weil",
+		  "id" : "C928D41B-64AF-4C32-8AF7-AE3FFD3B589E",
 		  "width" : {
 			"px" : 1186
 		  },
 		  "children" : [
 			{
+			  "active" : true,
+			  "id" : "804AECC8-4217-4775-8795-573C6FC39C52",
 			  "contentType" : "web",
 			  "contentState" : "loaded",
-			  "id" : "804AECC8-4217-4775-8795-573C6FC39C52",
-			  "active" : true,
 			  "position" : 0
 			},
 			{
-			  "position" : 1,
-			  "id" : "D4AE3873-88D7-435C-A374-736BE10A1334",
-			  "contentState" : "loaded",
 			  "contentType" : "web",
-			  "active" : false
+			  "contentState" : "loading",
+			  "position" : 1,
+			  "active" : false,
+			  "id" : "D4AE3873-88D7-435C-A374-736BE10A1334"
 			},
 			{
-			  "contentState" : "loaded",
-			  "position" : 2,
-			  "id" : "4B5F2AD0-825C-44D2-95B6-7F7D40DF140C",
 			  "contentType" : "web",
+			  "contentState" : "loaded",
+			  "id" : "4B5F2AD0-825C-44D2-95B6-7F7D40DF140C",
+			  "position" : 2,
 			  "active" : false
 			}
 		  ],
 		  "height" : {
-			"px" : 526.5
-		  },
-		  "state" : "expanded",
-		  "name" : "Simone Weil",
-		  "previousDisplayState" : {
-			"state" : "minimised",
-			"expandCollapseDirection" : "leftToRight"
-		  },
-		  "id" : "C928D41B-64AF-4C32-8AF7-AE3FFD3B589E"
+			"px" : 790
+		  }
 		}
+	  },
+	  {
+		"type" : "contentFrame",
+		"data" : {
+		  "state" : "minimised",
+		  "width" : {
+			"px" : 280
+		  },
+		  "name" : "Intro to Attention Research",
+		  "height" : {
+			"px" : 344
+		  },
+		  "position" : {
+			"posInViewStack" : 2,
+			"x" : {
+			  "px" : 29.5
+			},
+			"y" : {
+			  "px" : 45
+			}
+		  },
+		  "id" : "3D30D97A-F76E-4F08-870A-91701C7E9966",
+		  "children" : [
+			{
+			  "active" : true,
+			  "contentType" : "web",
+			  "position" : 0,
+			  "contentState" : "loaded",
+			  "id" : "29880BD7-959B-4A6B-994D-6ADE0EA5D0ED"
+			},
+			{
+			  "contentType" : "web",
+			  "contentState" : "loaded",
+			  "id" : "3C2EAF73-078F-4A1C-9A18-02E66571E1DC",
+			  "position" : 1,
+			  "active" : false
+			},
+			{
+			  "active" : false,
+			  "contentType" : "web",
+			  "position" : 2,
+			  "contentState" : "loaded",
+			  "id" : "4D0224DE-09F2-4604-9DA7-DCCFB6592461"
+			},
+			{
+			  "contentType" : "web",
+			  "position" : 3,
+			  "active" : false,
+			  "id" : "F91CD41D-88A2-4E65-84E4-5D11C7AD9506",
+			  "contentState" : "loaded"
+			},
+			{
+			  "position" : 4,
+			  "contentType" : "web",
+			  "contentState" : "loaded",
+			  "id" : "60860BC4-098E-46F0-ADA0-218173787EA4",
+			  "active" : false
+			},
+			{
+			  "id" : "D99FD174-5AE7-433E-8956-C85644EDC876",
+			  "contentState" : "loaded",
+			  "active" : false,
+			  "position" : 5,
+			  "contentType" : "web"
+			},
+			{
+			  "id" : "D609A82C-4F49-4A2B-BB57-3F2B523DA38A",
+			  "contentState" : "loaded",
+			  "active" : false,
+			  "position" : 6,
+			  "contentType" : "web"
+			}
+		  ]
+		}
+	  },
+	  {
+		"type" : "contentFrame",
+		"data" : {
+		  "children" : [
+			{
+			  "contentState" : "empty",
+			  "active" : true,
+			  "id" : "6E68BBC0-5B7A-47EE-AB9D-673F5EAA83D9",
+			  "position" : 0,
+			  "contentType" : "note"
+			}
+		  ],
+		  "state" : "frameless",
+		  "width" : {
+			"px" : 437
+		  },
+		  "height" : {
+			"px" : 375
+		  },
+		  "position" : {
+			"x" : {
+			  "px" : 1040
+			},
+			"posInViewStack" : 1,
+			"y" : {
+			  "px" : 60.5
+			}
+		  }
+		}
+	  },
+	  {
+		"data" : {
+		  "children" : [
+			{
+			  "id" : "7C0650C0-2F67-4A7C-BC5F-A3D122878EDD",
+			  "active" : false,
+			  "position" : 0,
+			  "contentState" : "loaded",
+			  "contentType" : "web"
+			},
+			{
+			  "contentType" : "web",
+			  "contentState" : "loaded",
+			  "active" : false,
+			  "position" : 1,
+			  "id" : "50E4E6FC-978E-4C9F-BF16-F3A556BEED43"
+			},
+			{
+			  "position" : 2,
+			  "active" : false,
+			  "id" : "AEBDFD03-BDDE-4B9B-834F-6F16680438A1",
+			  "contentType" : "web",
+			  "contentState" : "loaded"
+			},
+			{
+			  "id" : "D28995F8-E85E-4173-9272-6FA363922FCC",
+			  "active" : false,
+			  "position" : 3,
+			  "contentState" : "loaded",
+			  "contentType" : "web"
+			}
+		  ],
+		  "height" : {
+			"px" : 215
+		  },
+		  "name" : "William James",
+		  "state" : "minimised",
+		  "width" : {
+			"px" : 280
+		  },
+		  "id" : "4CCEA0C4-4DE2-46F0-B024-22BE7473CC4D",
+		  "position" : {
+			"posInViewStack" : 3,
+			"x" : {
+			  "px" : 323
+			},
+			"y" : {
+			  "px" : 45
+			}
+		  }
+		},
+		"type" : "contentFrame"
 	  }
 	],
-	"viewPosition" : {
-	  "px" : 0
-	},
-	"width" : {
-	  "px" : 1512
-	},
 	"id" : "2F0DE38D-8215-4DB1-95A0-6F04C2ECE821"
   }
 }');
