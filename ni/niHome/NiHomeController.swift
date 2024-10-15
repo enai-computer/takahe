@@ -112,7 +112,7 @@ class NiHomeController: NSViewController, NSTextFieldDelegate {
 	private func addWeatherWidget(){
 		let width = 300.0
 		let height = 60.0
-		let padding = 64.0
+		let padding = 44.0
 		weatherView = WeatherNSView(
 			frame: NSRect(
 				x: welcomeStackView.frame.maxX - width,

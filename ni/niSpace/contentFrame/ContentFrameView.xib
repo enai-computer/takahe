@@ -22,7 +22,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <subviews>
                             <customView horizontalHuggingPriority="1000" horizontalCompressionResistancePriority="250" ambiguous="YES" placeholderIntrinsicWidth="24" placeholderIntrinsicHeight="24" translatesAutoresizingMaskIntoConstraints="NO" id="v2T-OE-fnp" customClass="CFGroupButton" customModule="ni" customModuleProvider="target">
-                                <rect key="frame" x="7" y="4" width="24" height="24"/>
+                                <rect key="frame" x="7" y="6" width="24" height="24"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="24" id="Aiv-VW-yvz"/>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="24" id="CKo-8U-wiq"/>
@@ -30,7 +30,7 @@
                                 </constraints>
                             </customView>
                             <imageView horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rcT-6J-b1L" userLabel="back-button" customClass="NiActionImage" customModule="ni" customModuleProvider="target">
-                                <rect key="frame" x="36" y="4" width="24" height="24"/>
+                                <rect key="frame" x="36" y="6" width="24" height="24"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="24" id="Qru-Us-vsd"/>
                                     <constraint firstAttribute="height" constant="24" id="ncl-NF-Ham"/>
@@ -38,7 +38,7 @@
                                 <imageCell key="cell" alignment="left" animates="YES" imageScaling="proportionallyDown" image="arrowLeft" id="T7D-RU-6Pz"/>
                             </imageView>
                             <imageView horizontalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eFl-A6-f9y" userLabel="forward-button" customClass="NiActionImage" customModule="ni" customModuleProvider="target">
-                                <rect key="frame" x="60" y="4" width="24" height="24"/>
+                                <rect key="frame" x="60" y="6" width="24" height="24"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="24" id="CUe-ot-mHq"/>
                                     <constraint firstAttribute="height" constant="24" id="opl-qh-fYC"/>
@@ -46,7 +46,7 @@
                                 <imageCell key="cell" alignment="left" animates="YES" imageScaling="proportionallyDown" image="arrowRight" id="i8b-xK-NTA"/>
                             </imageView>
                             <imageView horizontalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GMe-PK-SX5" userLabel="Add Button" customClass="NiActionImage" customModule="ni" customModuleProvider="target">
-                                <rect key="frame" x="86" y="4" width="24" height="24"/>
+                                <rect key="frame" x="86" y="6" width="24" height="24"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="24" id="PRg-NH-sRo"/>
                                     <constraint firstAttribute="width" constant="24" id="zk9-fz-wvJ"/>
@@ -96,15 +96,15 @@
                                 </constraints>
                             </customView>
                             <imageView horizontalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="SHD-m6-fVV" customClass="NiActionImage" customModule="ni" customModuleProvider="target">
-                                <rect key="frame" x="978" y="4" width="24" height="24"/>
+                                <rect key="frame" x="978" y="6" width="24" height="24"/>
                                 <imageCell key="cell" alignment="left" animates="YES" imageScaling="proportionallyDown" image="maximize" id="Qze-9W-rWF"/>
                             </imageView>
                             <imageView horizontalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="rUD-4M-Tk9" customClass="NiActionImage" customModule="ni" customModuleProvider="target">
-                                <rect key="frame" x="1002" y="4" width="24" height="24"/>
+                                <rect key="frame" x="1002" y="6" width="24" height="24"/>
                                 <imageCell key="cell" alignment="left" animates="YES" imageScaling="proportionallyDown" image="minimize" id="ysI-fW-YS0"/>
                             </imageView>
                             <imageView autoresizesSubviews="NO" horizontalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="Utx-ML-7oY" userLabel="Close CF Button" customClass="NiActionImage" customModule="ni" customModuleProvider="target">
-                                <rect key="frame" x="1026" y="4" width="24" height="24"/>
+                                <rect key="frame" x="1026" y="6" width="24" height="24"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="24" id="3py-ZL-w11"/>
                                 </constraints>
@@ -113,17 +113,17 @@
                         </subviews>
                         <constraints>
                             <constraint firstItem="tOm-Uf-Gpz" firstAttribute="right" secondItem="SHD-m6-fVV" secondAttribute="left" id="102-mU-5Ll"/>
-                            <constraint firstItem="eFl-A6-f9y" firstAttribute="top" secondItem="Pdl-B9-RoX" secondAttribute="top" constant="4" id="1iY-YS-jeA"/>
-                            <constraint firstItem="Utx-ML-7oY" firstAttribute="top" secondItem="Pdl-B9-RoX" secondAttribute="top" constant="4" id="1yd-v9-Fbz"/>
+                            <constraint firstItem="eFl-A6-f9y" firstAttribute="top" secondItem="Pdl-B9-RoX" secondAttribute="top" constant="2" id="1iY-YS-jeA"/>
+                            <constraint firstItem="Utx-ML-7oY" firstAttribute="top" secondItem="Pdl-B9-RoX" secondAttribute="top" constant="2" id="1yd-v9-Fbz"/>
                             <constraint firstItem="SHD-m6-fVV" firstAttribute="right" secondItem="rUD-4M-Tk9" secondAttribute="left" id="3ES-od-0HN"/>
-                            <constraint firstItem="rcT-6J-b1L" firstAttribute="top" secondItem="Pdl-B9-RoX" secondAttribute="top" constant="4" id="6ki-Qu-KbA"/>
+                            <constraint firstItem="rcT-6J-b1L" firstAttribute="top" secondItem="Pdl-B9-RoX" secondAttribute="top" constant="2" id="6ki-Qu-KbA"/>
                             <constraint firstItem="GMe-PK-SX5" firstAttribute="left" secondItem="eFl-A6-f9y" secondAttribute="right" constant="2" id="Ax5-Wx-BFO"/>
                             <constraint firstItem="AwF-3w-n4g" firstAttribute="right" secondItem="tOm-Uf-Gpz" secondAttribute="left" priority="750" id="CXg-eV-RIV"/>
-                            <constraint firstItem="rUD-4M-Tk9" firstAttribute="top" secondItem="Pdl-B9-RoX" secondAttribute="top" constant="4" id="HJx-Wj-TxC"/>
-                            <constraint firstItem="SHD-m6-fVV" firstAttribute="top" secondItem="Pdl-B9-RoX" secondAttribute="top" constant="4" id="LdH-IC-d60"/>
+                            <constraint firstItem="rUD-4M-Tk9" firstAttribute="top" secondItem="Pdl-B9-RoX" secondAttribute="top" constant="2" id="HJx-Wj-TxC"/>
+                            <constraint firstItem="SHD-m6-fVV" firstAttribute="top" secondItem="Pdl-B9-RoX" secondAttribute="top" constant="2" id="LdH-IC-d60"/>
                             <constraint firstItem="AwF-3w-n4g" firstAttribute="top" secondItem="Pdl-B9-RoX" secondAttribute="top" id="PLV-2w-Lrv"/>
-                            <constraint firstItem="v2T-OE-fnp" firstAttribute="top" secondItem="Pdl-B9-RoX" secondAttribute="top" constant="4" id="TIM-W7-RSI"/>
-                            <constraint firstItem="GMe-PK-SX5" firstAttribute="top" secondItem="Pdl-B9-RoX" secondAttribute="top" constant="4" id="U8r-Un-cNq"/>
+                            <constraint firstItem="v2T-OE-fnp" firstAttribute="top" secondItem="Pdl-B9-RoX" secondAttribute="top" constant="2" id="TIM-W7-RSI"/>
+                            <constraint firstItem="GMe-PK-SX5" firstAttribute="top" secondItem="Pdl-B9-RoX" secondAttribute="top" constant="2" id="U8r-Un-cNq"/>
                             <constraint firstAttribute="right" secondItem="Utx-ML-7oY" secondAttribute="right" constant="8" id="ioS-Gz-gBg"/>
                             <constraint firstItem="rUD-4M-Tk9" firstAttribute="right" secondItem="Utx-ML-7oY" secondAttribute="left" id="jlH-WG-Q4a"/>
                             <constraint firstItem="tOm-Uf-Gpz" firstAttribute="top" secondItem="Pdl-B9-RoX" secondAttribute="top" id="k7l-cR-3QT"/>
