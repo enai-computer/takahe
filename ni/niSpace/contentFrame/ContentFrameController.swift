@@ -239,8 +239,13 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		self.view.layer?.cornerRadius = 10
 		self.view.layer?.cornerCurve = .continuous
 		self.view.layer?.borderWidth = 5
-		self.view.layer?.borderColor = NSColor(.sand5).cgColor
-		self.view.layer?.backgroundColor = NSColor(.sand5).cgColor
+		if(viewState == .minimised || viewState == .collapsedMinimised){
+			self.view.layer?.borderColor = NSColor(.sand4).cgColor
+			self.view.layer?.backgroundColor = NSColor(.sand4).cgColor
+		}else{
+			self.view.layer?.borderColor = NSColor(.sand5).cgColor
+			self.view.layer?.backgroundColor = NSColor(.sand5).cgColor
+		}
 	}
 	
 	func tryPrintContent(_ sender: Any?){
