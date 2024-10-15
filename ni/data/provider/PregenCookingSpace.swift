@@ -149,7 +149,7 @@ INSERT INTO "cached_Web" ("content_id", "url", "updated_at", "cache", "html_webs
 INSERT INTO "cached_Web" ("content_id", "url", "updated_at", "cache", "html_website") VALUES ('CDC67AE9-E637-4035-971F-374498AAAE3B', 'https://www.bbcgoodfood.com/recipes/collection/halloumi-salad-recipes', '1719338454.61887', '', '');
 INSERT INTO "cached_Web" ("content_id", "url", "updated_at", "cache", "html_website") VALUES ('D1EDF87B-1D23-41A9-B0E3-5C0FE48AD4EF', 'https://www.davidlebovitz.com/marcella-hazans-bolognese-sauce-recipe-italian-beef-tomato/', '1719338454.62321', '', '');
 INSERT INTO "cached_Web" ("content_id", "url", "updated_at", "cache", "html_website") VALUES ('DB5074A7-3B0E-4C4C-89CF-C1A963EDF5AC', 'https://www.google.com/search?sca_esv=0a31b4c8707f31fc&sxsrf=ADLYWIIzbr9zX_bH39yDp5bsAUKYXHV2LQ:1718648663861&q=how+to+cut+an+onion+kenji&udm=2&fbs=AEQNm0DrEPo0FB6LsSUQs7QZBvL3ayP6SZA-lOOB31zyTiCs1j6jSwqoTNNwl_MZUpnJvRfvov3LfS8PdD5uRoSf0fJtFhBEqXhlTGhZdUJC-BcWLafAPa6kTzgX9Mmd1lTS_xPPYF6525SuVkVgsDzjZTcqGLqoVzvyZROBbepT52R7f6_Oxpk&sa=X&ved=2ahUKEwjsk-mYoeOGAxXkW_EDHaABD6cQtKgLegQICxAB&biw=1240&bih=686&dpr=2#vhid=FlB7uRtfSJw_KM&vssid=mosaic', '1719338454.61329', '', '');
-INSERT INTO "cached_Web" ("content_id", "url", "updated_at", "cache", "html_website") VALUES ('E4B76C73-9CD8-41D1-9B0A-92E16A198FE3', 'https://www.alisoneroman.com/recipes?offset=1678479141606', '1719338454.60801', '', '');
+INSERT INTO "cached_Web" ("content_id", "url", "updated_at", "cache", "html_website") VALUES ('E4B76C73-9CD8-41D1-9B0A-92E16A198FE3', 'https://www.alisoneroman.com/', '1719338454.60801', '', '');
 INSERT INTO "cached_Web" ("content_id", "url", "updated_at", "cache", "html_website") VALUES ('E4B7CEFB-EEAC-4AF9-82AF-3DED94331656', 'https://www.foodandwine.com/recipes/pasta-bolognese', '1719338454.62522', '', '');
 INSERT INTO "cached_Web" ("content_id", "url", "updated_at", "cache", "html_website") VALUES ('F35FC52D-2673-4899-9E30-8712FE2C97B6', 'https://www.youtube.com/watch?v=UE_P1b56k_s', '1719338454.62792', '', '');
 INSERT INTO "cached_Web" ("content_id", "url", "updated_at", "cache", "html_website") VALUES ('FC067D67-CCA7-4980-9B3E-E011778A19D2', 'https://www.alisoneroman.com/recipes/spicy-chicken-piccata', '1719338454.6125', '', '');
@@ -159,24 +159,151 @@ INSERT INTO "cached_Web" ("content_id", "url", "updated_at", "cache", "html_webs
 INSERT INTO "document" ("id", "name", "owner", "shared", "created_at", "updated_at", "updated_by", "document") VALUES ('4D90F0F2-064D-42B8-9A16-B9A613A2A162', 'Cooking', '', '0', '1719338454.59929', '1719338454.59929', '', '{
   "type" : "document",
   "data" : {
-	"viewPosition" : {
-	  "px" : 0
-	},
-	"width" : {
-	  "px" : 1512
-	},
+	"id" : "4D90F0F2-064D-42B8-9A16-B9A613A2A162",
 	"children" : [
 	  {
 		"type" : "contentFrame",
 		"data" : {
+		  "width" : {
+			"px" : 1156
+		  },
+		  "height" : {
+			"px" : 751
+		  },
+		  "children" : [
+			{
+			  "active" : true,
+			  "contentType" : "web",
+			  "position" : 0,
+			  "contentState" : "loaded",
+			  "id" : "E4B76C73-9CD8-41D1-9B0A-92E16A198FE3"
+			},
+			{
+			  "contentState" : "loaded",
+			  "id" : "B8B5B87D-3779-4616-877A-933A89082D2E",
+			  "active" : false,
+			  "contentType" : "web",
+			  "position" : 1
+			},
+			{
+			  "contentState" : "loaded",
+			  "id" : "AF32C11F-BBC4-47AB-8A31-B25D64659636",
+			  "contentType" : "web",
+			  "position" : 2,
+			  "active" : false
+			},
+			{
+			  "contentState" : "loaded",
+			  "contentType" : "web",
+			  "position" : 3,
+			  "id" : "490242B8-8AC3-445A-947F-7510B212744A",
+			  "active" : false
+			},
+			{
+			  "contentState" : "loaded",
+			  "contentType" : "web",
+			  "active" : false,
+			  "id" : "0A33A159-FE72-42F8-A8DB-B83E79DE710A",
+			  "position" : 4
+			},
+			{
+			  "contentState" : "loaded",
+			  "id" : "FC067D67-CCA7-4980-9B3E-E011778A19D2",
+			  "contentType" : "web",
+			  "active" : false,
+			  "position" : 5
+			}
+		  ],
 		  "position" : {
 			"x" : {
-			  "px" : 935
+			  "px" : 28
 			},
-			"posInViewStack" : 5,
 			"y" : {
-			  "px" : 862
+			  "px" : 47.5
+			},
+			"posInViewStack" : 9
+		  },
+		  "name" : "Alison Roman",
+		  "previousDisplayState" : {
+			"state" : "minimised",
+			"expandCollapseDirection" : "leftToRight"
+		  },
+		  "state" : "expanded",
+		  "id" : "B295A702-92E2-479F-945D-9FC6E8A22FB5"
+		}
+	  },
+	  {
+		"type" : "contentFrame",
+		"data" : {
+		  "state" : "minimised",
+		  "position" : {
+			"y" : {
+			  "px" : 215.5
+			},
+			"x" : {
+			  "px" : 1202
+			},
+			"posInViewStack" : 7
+		  },
+		  "id" : "481841D0-5027-46CE-9FAA-6A325A3066DF",
+		  "children" : [
+			{
+			  "contentType" : "web",
+			  "id" : "6E9350AF-E4CB-4F87-80D7-447314D5797D",
+			  "active" : false,
+			  "position" : 0,
+			  "contentState" : "loaded"
+			},
+			{
+			  "position" : 1,
+			  "contentType" : "web",
+			  "contentState" : "loaded",
+			  "active" : false,
+			  "id" : "642AE5AB-866B-4215-944F-78C25D3C223C"
+			},
+			{
+			  "contentState" : "loaded",
+			  "id" : "CDC67AE9-E637-4035-971F-374498AAAE3B",
+			  "active" : false,
+			  "position" : 2,
+			  "contentType" : "web"
+			},
+			{
+			  "position" : 3,
+			  "contentState" : "loaded",
+			  "active" : false,
+			  "contentType" : "web",
+			  "id" : "9E00074B-94BB-404E-8856-26A3AF13E090"
+			},
+			{
+			  "contentState" : "loaded",
+			  "contentType" : "web",
+			  "id" : "11C5EE45-B783-4FD0-B86B-0931E40196EA",
+			  "position" : 4,
+			  "active" : false
+			},
+			{
+			  "position" : 5,
+			  "contentState" : "loaded",
+			  "id" : "1956344A-40E5-4DD3-97CE-E43190A3AE96",
+			  "contentType" : "web",
+			  "active" : false
 			}
+		  ],
+		  "width" : {
+			"px" : 280
+		  },
+		  "name" : "Halloumi",
+		  "height" : {
+			"px" : 301
+		  }
+		}
+	  },
+	  {
+		"type" : "contentFrame",
+		"data" : {
+		  "width" : {
+			"px" : 500
 		  },
 		  "state" : "frameless",
 		  "height" : {
@@ -184,177 +311,95 @@ INSERT INTO "document" ("id", "name", "owner", "shared", "created_at", "updated_
 		  },
 		  "children" : [
 			{
-			  "position" : 0,
+			  "id" : "E9762558-E0D7-4FAA-9BEA-405FB306E3E6",
 			  "contentType" : "img",
 			  "active" : true,
-			  "contentState" : "empty",
-			  "id" : "E9762558-E0D7-4FAA-9BEA-405FB306E3E6"
+			  "position" : 0,
+			  "contentState" : "empty"
 			}
 		  ],
-		  "width" : {
-			"px" : 500
+		  "position" : {
+			"y" : {
+			  "px" : 862
+			},
+			"posInViewStack" : 4,
+			"x" : {
+			  "px" : 935
+			}
 		  }
 		}
 	  },
 	  {
 		"data" : {
-		  "position" : {
-			"x" : {
-			  "px" : 325.5
-			},
-			"posInViewStack" : 6,
-			"y" : {
-			  "px" : 80.5
-			}
-		  },
-		  "width" : {
-			"px" : 263
-		  },
-		  "state" : "minimised",
-		  "name" : "Halloumi",
-		  "height" : {
-			"px" : 270
-		  },
+		  "state" : "frameless",
 		  "children" : [
 			{
+			  "contentType" : "img",
+			  "id" : "E52F5D89-38ED-42B3-938F-4E52105C7DF7",
+			  "contentState" : "empty",
 			  "position" : 0,
-			  "active" : false,
-			  "id" : "6E9350AF-E4CB-4F87-80D7-447314D5797D",
-			  "contentType" : "web",
-			  "contentState" : "loaded"
-			},
-			{
-			  "contentState" : "loaded",
-			  "id" : "642AE5AB-866B-4215-944F-78C25D3C223C",
-			  "active" : false,
-			  "position" : 1,
-			  "contentType" : "web"
-			},
-			{
-			  "contentType" : "web",
-			  "active" : true,
-			  "position" : 2,
-			  "id" : "CDC67AE9-E637-4035-971F-374498AAAE3B",
-			  "contentState" : "loaded"
-			},
-			{
-			  "active" : false,
-			  "position" : 3,
-			  "id" : "9E00074B-94BB-404E-8856-26A3AF13E090",
-			  "contentType" : "web",
-			  "contentState" : "loaded"
-			},
-			{
-			  "contentState" : "loaded",
-			  "contentType" : "web",
-			  "id" : "11C5EE45-B783-4FD0-B86B-0931E40196EA",
-			  "active" : false,
-			  "position" : 4
-			},
-			{
-			  "id" : "1956344A-40E5-4DD3-97CE-E43190A3AE96",
-			  "position" : 5,
-			  "active" : false,
-			  "contentType" : "web",
-			  "contentState" : "loaded"
+			  "active" : true
 			}
 		  ],
-		  "id" : "481841D0-5027-46CE-9FAA-6A325A3066DF"
-		},
-		"type" : "contentFrame"
-	  },
-	  {
-		"type" : "contentFrame",
-		"data" : {
-		  "state" : "frameless",
-		  "position" : {
-			"y" : {
-			  "px" : 659
-			},
-			"x" : {
-			  "px" : 138.5
-			},
-			"posInViewStack" : 3
-		  },
-		  "width" : {
-			"px" : 500
-		  },
 		  "height" : {
 			"px" : 333.5
 		  },
-		  "children" : [
-			{
-			  "id" : "E52F5D89-38ED-42B3-938F-4E52105C7DF7",
-			  "contentState" : "empty",
-			  "contentType" : "img",
-			  "active" : true,
-			  "position" : 0
-			}
-		  ]
-		}
-	  },
-	  {
-		"data" : {
-		  "children" : [
-			{
-			  "contentState" : "empty",
-			  "contentType" : "img",
-			  "active" : true,
-			  "position" : 0,
-			  "id" : "43DC5B56-124C-4368-A341-EAA9D2E33CFD"
-			}
-		  ],
-		  "width" : {
-			"px" : 500
-		  },
-		  "state" : "frameless",
-		  "height" : {
-			"px" : 500
-		  },
 		  "position" : {
-			"y" : {
-			  "px" : 610
-			},
 			"posInViewStack" : 2,
 			"x" : {
-			  "px" : 36.5
+			  "px" : 138.5
+			},
+			"y" : {
+			  "px" : 659
 			}
+		  },
+		  "width" : {
+			"px" : 500
 		  }
 		},
 		"type" : "contentFrame"
 	  },
 	  {
-		"type" : "contentFrame",
 		"data" : {
-		  "name" : "Flavor bases",
-		  "id" : "F2C5E2C0-562A-46F0-B257-81BADFB51EF6",
+		  "state" : "minimised",
 		  "height" : {
 			"px" : 309
 		  },
+		  "id" : "F2C5E2C0-562A-46F0-B257-81BADFB51EF6",
+		  "position" : {
+			"posInViewStack" : 5,
+			"x" : {
+			  "px" : 587.5
+			},
+			"y" : {
+			  "px" : 1022.5
+			}
+		  },
+		  "name" : "Flavor bases",
 		  "width" : {
 			"px" : 263
 		  },
 		  "children" : [
 			{
-			  "contentType" : "web",
+			  "contentState" : "loaded",
+			  "id" : "8FE9F792-066C-4DCD-A63F-A0F060511345",
 			  "position" : 0,
-			  "active" : false,
-			  "contentState" : "loaded",
-			  "id" : "8FE9F792-066C-4DCD-A63F-A0F060511345"
-			},
-			{
-			  "id" : "C0EC3AF0-01BD-4509-A8D9-FC4A7A0CBD2C",
-			  "position" : 1,
-			  "contentState" : "loaded",
 			  "contentType" : "web",
 			  "active" : false
 			},
 			{
-			  "active" : true,
+			  "contentType" : "web",
+			  "active" : false,
+			  "position" : 1,
+			  "id" : "C0EC3AF0-01BD-4509-A8D9-FC4A7A0CBD2C",
+			  "contentState" : "loaded"
+			},
+			{
 			  "id" : "AD356BEC-5C3A-46FD-B70E-0F521E4E0E31",
-			  "contentState" : "loaded",
+			  "active" : true,
 			  "position" : 2,
-			  "contentType" : "web"
+			  "contentType" : "web",
+			  "contentState" : "loaded"
 			},
 			{
 			  "contentState" : "loaded",
@@ -364,271 +409,164 @@ INSERT INTO "document" ("id", "name", "owner", "shared", "created_at", "updated_
 			  "active" : false
 			},
 			{
-			  "id" : "BC932DC6-C8A9-4876-A5FC-95B52D89E58B",
-			  "contentType" : "web",
-			  "active" : false,
 			  "position" : 4,
-			  "contentState" : "loaded"
+			  "contentState" : "loaded",
+			  "contentType" : "web",
+			  "id" : "BC932DC6-C8A9-4876-A5FC-95B52D89E58B",
+			  "active" : false
 			},
 			{
 			  "id" : "39C04FD8-CCE4-41DD-89C5-74BE981BE9A4",
 			  "active" : false,
 			  "position" : 5,
-			  "contentType" : "web",
-			  "contentState" : "loaded"
-			},
-			{
-			  "position" : 6,
-			  "id" : "5824925C-94DB-4F9B-8094-347308394739",
-			  "contentType" : "web",
-			  "contentState" : "loaded",
-			  "active" : false
-			}
-		  ],
-		  "state" : "minimised",
-		  "position" : {
-			"posInViewStack" : 7,
-			"x" : {
-			  "px" : 587.5
-			},
-			"y" : {
-			  "px" : 1022.5
-			}
-		  }
-		}
-	  },
-	  {
-		"type" : "contentFrame",
-		"data" : {
-		  "id" : "85D301BB-B1BF-4F40-B93C-623366CCEE13",
-		  "children" : [
-			{
-			  "position" : 0,
-			  "active" : true,
-			  "id" : "DB5074A7-3B0E-4C4C-89CF-C1A963EDF5AC",
 			  "contentState" : "loaded",
 			  "contentType" : "web"
 			},
 			{
-			  "contentType" : "web",
-			  "id" : "C1B014B6-4CE6-4D84-88FC-03CE52A1405F",
 			  "contentState" : "loaded",
+			  "id" : "5824925C-94DB-4F9B-8094-347308394739",
+			  "position" : 6,
+			  "contentType" : "web",
+			  "active" : false
+			}
+		  ]
+		},
+		"type" : "contentFrame"
+	  },
+	  {
+		"data" : {
+		  "name" : "Onion math",
+		  "children" : [
+			{
+			  "id" : "DB5074A7-3B0E-4C4C-89CF-C1A963EDF5AC",
+			  "contentType" : "web",
+			  "position" : 0,
+			  "active" : true,
+			  "contentState" : "loaded"
+			},
+			{
+			  "id" : "C1B014B6-4CE6-4D84-88FC-03CE52A1405F",
+			  "active" : false,
 			  "position" : 1,
+			  "contentType" : "web",
+			  "contentState" : "loaded"
+			},
+			{
+			  "position" : 2,
+			  "contentState" : "loaded",
+			  "id" : "7391FD3B-05CA-4BEE-9735-B15C5533AD04",
+			  "contentType" : "web",
 			  "active" : false
 			},
 			{
-			  "active" : false,
-			  "contentType" : "web",
-			  "id" : "7391FD3B-05CA-4BEE-9735-B15C5533AD04",
-			  "contentState" : "loaded",
-			  "position" : 2
-			},
-			{
-			  "contentType" : "web",
 			  "id" : "259E1F69-E675-458B-967A-2C12B75C528A",
 			  "contentState" : "loaded",
+			  "position" : 3,
 			  "active" : false,
-			  "position" : 3
+			  "contentType" : "web"
 			},
 			{
-			  "contentType" : "web",
-			  "id" : "94E207BD-8095-4714-8246-8F8E7BA9B238",
 			  "contentState" : "loaded",
+			  "id" : "94E207BD-8095-4714-8246-8F8E7BA9B238",
 			  "active" : false,
+			  "contentType" : "web",
 			  "position" : 4
 			}
 		  ],
+		  "id" : "85D301BB-B1BF-4F40-B93C-623366CCEE13",
 		  "state" : "minimised",
-		  "name" : "Onion math",
+		  "position" : {
+			"y" : {
+			  "px" : 827.5
+			},
+			"x" : {
+			  "px" : 1017.5
+			},
+			"posInViewStack" : 3
+		  },
 		  "height" : {
 			"px" : 231
 		  },
 		  "width" : {
 			"px" : 263
-		  },
-		  "position" : {
-			"x" : {
-			  "px" : 1017.5
-			},
-			"y" : {
-			  "px" : 827.5
-			},
-			"posInViewStack" : 4
 		  }
+		},
+		"type" : "contentFrame"
+	  },
+	  {
+		"type" : "contentFrame",
+		"data" : {
+		  "position" : {
+			"y" : {
+			  "px" : 610
+			},
+			"x" : {
+			  "px" : 36.5
+			},
+			"posInViewStack" : 1
+		  },
+		  "height" : {
+			"px" : 500
+		  },
+		  "width" : {
+			"px" : 500
+		  },
+		  "children" : [
+			{
+			  "id" : "43DC5B56-124C-4368-A341-EAA9D2E33CFD",
+			  "contentType" : "img",
+			  "active" : true,
+			  "position" : 0,
+			  "contentState" : "empty"
+			}
+		  ],
+		  "state" : "frameless"
 		}
 	  },
 	  {
 		"data" : {
-		  "width" : {
-			"px" : 263
-		  },
+		  "name" : "Bolognese",
 		  "position" : {
-			"x" : {
-			  "px" : 604
-			},
 			"posInViewStack" : 8,
-			"y" : {
-			  "px" : 80.5
-			}
-		  },
-		  "height" : {
-			"px" : 270
-		  },
-		  "id" : "AC8DFF11-19E7-4588-B2A5-5519EAB6A477",
-		  "children" : [
-			{
-			  "id" : "1121EC8E-1CE0-4E96-B831-5D11E0F57E32",
-			  "contentState" : "loaded",
-			  "contentType" : "web",
-			  "position" : 0,
-			  "active" : false
-			},
-			{
-			  "id" : "8C6DCB17-F26F-4A02-9860-306D6B9B3231",
-			  "contentState" : "loaded",
-			  "contentType" : "web",
-			  "position" : 1,
-			  "active" : false
-			},
-			{
-			  "contentType" : "web",
-			  "active" : false,
-			  "position" : 2,
-			  "contentState" : "loaded",
-			  "id" : "36B60973-8060-4C82-AD88-C1674EB9BAEA"
-			},
-			{
-			  "id" : "8700ED25-C51D-4C4D-A1CA-72CEA23D27FF",
-			  "position" : 3,
-			  "contentState" : "loaded",
-			  "contentType" : "web",
-			  "active" : true
-			},
-			{
-			  "id" : "17AC6C87-BD2F-483E-8932-2B91182108E2",
-			  "contentType" : "web",
-			  "active" : false,
-			  "contentState" : "loaded",
-			  "position" : 4
-			},
-			{
-			  "contentType" : "web",
-			  "id" : "55C16471-F3C0-4096-94AF-5CB06B07704B",
-			  "active" : false,
-			  "position" : 5,
-			  "contentState" : "loaded"
-			}
-		  ],
-		  "name" : "Historical Food",
-		  "state" : "minimised"
-		},
-		"type" : "contentFrame"
-	  },
-	  {
-		"data" : {
-		  "width" : {
-			"px" : 1335
-		  },
-		  "state" : "expanded",
-		  "id" : "B295A702-92E2-479F-945D-9FC6E8A22FB5",
-		  "children" : [
-			{
-			  "id" : "E4B76C73-9CD8-41D1-9B0A-92E16A198FE3",
-			  "active" : false,
-			  "contentType" : "web",
-			  "contentState" : "loaded",
-			  "position" : 0
-			},
-			{
-			  "contentState" : "loaded",
-			  "id" : "B8B5B87D-3779-4616-877A-933A89082D2E",
-			  "contentType" : "web",
-			  "position" : 1,
-			  "active" : true
-			},
-			{
-			  "contentType" : "web",
-			  "position" : 2,
-			  "id" : "AF32C11F-BBC4-47AB-8A31-B25D64659636",
-			  "active" : false,
-			  "contentState" : "loaded"
-			},
-			{
-			  "active" : false,
-			  "contentState" : "loaded",
-			  "position" : 3,
-			  "id" : "490242B8-8AC3-445A-947F-7510B212744A",
-			  "contentType" : "web"
-			},
-			{
-			  "active" : false,
-			  "id" : "0A33A159-FE72-42F8-A8DB-B83E79DE710A",
-			  "contentState" : "loaded",
-			  "position" : 4,
-			  "contentType" : "web"
-			},
-			{
-			  "id" : "FC067D67-CCA7-4980-9B3E-E011778A19D2",
-			  "active" : false,
-			  "position" : 5,
-			  "contentState" : "loaded",
-			  "contentType" : "web"
-			}
-		  ],
-		  "name" : "Alison Roman",
-		  "height" : {
-			"px" : 871
-		  },
-		  "position" : {
-			"posInViewStack" : 11,
 			"x" : {
-			  "px" : 72.5
+			  "px" : 1203.5
 			},
 			"y" : {
-			  "px" : 134
+			  "px" : 129.5
 			}
-		  }
-		},
-		"type" : "contentFrame"
-	  },
-	  {
-		"data" : {
+		  },
 		  "width" : {
-			"px" : 263
+			"px" : 280
 		  },
-		  "id" : "F15A5026-BD8A-4CBF-8750-8DECD5387D00",
-		  "height" : {
-			"px" : 465
-		  },
-		  "state" : "minimised",
+		  "state" : "collapsedMinimised",
 		  "children" : [
 			{
-			  "position" : 0,
 			  "contentState" : "loaded",
+			  "position" : 0,
 			  "contentType" : "web",
 			  "id" : "72F6FA20-AA1B-4755-B43B-6EB7440A25BC",
 			  "active" : false
 			},
 			{
-			  "contentType" : "web",
-			  "active" : false,
 			  "contentState" : "loaded",
 			  "position" : 1,
+			  "active" : false,
+			  "contentType" : "web",
 			  "id" : "A6D7749F-D014-4093-9C1F-0E21C317C361"
 			},
 			{
-			  "position" : 2,
 			  "id" : "D1EDF87B-1D23-41A9-B0E3-5C0FE48AD4EF",
-			  "contentType" : "web",
+			  "position" : 2,
+			  "active" : false,
 			  "contentState" : "loaded",
-			  "active" : false
+			  "contentType" : "web"
 			},
 			{
-			  "position" : 3,
+			  "id" : "8D44F7BE-F135-4969-9420-69CFFF83ECED",
 			  "active" : false,
+			  "position" : 3,
 			  "contentType" : "web",
-			  "contentState" : "loaded",
-			  "id" : "8D44F7BE-F135-4969-9420-69CFFF83ECED"
+			  "contentState" : "loaded"
 			},
 			{
 			  "id" : "B31464A1-E987-41A7-89A6-61205FD4E1BD",
@@ -638,58 +576,119 @@ INSERT INTO "document" ("id", "name", "owner", "shared", "created_at", "updated_
 			  "contentState" : "loaded"
 			},
 			{
-			  "contentType" : "web",
 			  "contentState" : "loaded",
+			  "id" : "E4B7CEFB-EEAC-4AF9-82AF-3DED94331656",
 			  "active" : false,
-			  "position" : 5,
-			  "id" : "E4B7CEFB-EEAC-4AF9-82AF-3DED94331656"
+			  "contentType" : "web",
+			  "position" : 5
 			},
 			{
 			  "contentState" : "loaded",
+			  "contentType" : "web",
 			  "id" : "C11E649A-CBE3-45DB-B627-DAFC260F67C3",
 			  "position" : 6,
-			  "contentType" : "web",
-			  "active" : true
+			  "active" : false
 			},
 			{
-			  "active" : false,
-			  "position" : 7,
 			  "id" : "C5570FCB-55A6-48B0-B707-75F88F1AE897",
+			  "active" : false,
 			  "contentType" : "web",
-			  "contentState" : "loaded"
+			  "contentState" : "loaded",
+			  "position" : 7
 			},
 			{
-			  "active" : false,
 			  "position" : 8,
+			  "contentState" : "loaded",
 			  "id" : "388B4C71-A510-4466-94C1-D5795361967C",
 			  "contentType" : "web",
-			  "contentState" : "loaded"
+			  "active" : false
 			},
 			{
 			  "contentState" : "loaded",
 			  "id" : "F35FC52D-2673-4899-9E30-8712FE2C97B6",
-			  "active" : false,
 			  "position" : 9,
+			  "contentType" : "web",
+			  "active" : false
+			},
+			{
+			  "contentState" : "loaded",
+			  "position" : 10,
+			  "contentType" : "web",
+			  "active" : false,
+			  "id" : "3D3F9ACE-543D-449B-8772-86948BBAC9AC"
+			}
+		  ],
+		  "id" : "F15A5026-BD8A-4CBF-8750-8DECD5387D00",
+		  "height" : {
+			"px" : 74
+		  }
+		},
+		"type" : "contentFrame"
+	  },
+	  {
+		"data" : {
+		  "width" : {
+			"px" : 280
+		  },
+		  "name" : "Historical Food",
+		  "id" : "AC8DFF11-19E7-4588-B2A5-5519EAB6A477",
+		  "state" : "collapsedMinimised",
+		  "height" : {
+			"px" : 74
+		  },
+		  "children" : [
+			{
+			  "position" : 0,
+			  "contentState" : "loaded",
+			  "id" : "1121EC8E-1CE0-4E96-B831-5D11E0F57E32",
+			  "active" : false,
 			  "contentType" : "web"
 			},
 			{
-			  "active" : false,
 			  "contentState" : "loaded",
-			  "id" : "3D3F9ACE-543D-449B-8772-86948BBAC9AC",
 			  "contentType" : "web",
-			  "position" : 10
+			  "id" : "8C6DCB17-F26F-4A02-9860-306D6B9B3231",
+			  "active" : false,
+			  "position" : 1
+			},
+			{
+			  "contentState" : "loaded",
+			  "id" : "36B60973-8060-4C82-AD88-C1674EB9BAEA",
+			  "contentType" : "web",
+			  "position" : 2,
+			  "active" : false
+			},
+			{
+			  "position" : 3,
+			  "id" : "8700ED25-C51D-4C4D-A1CA-72CEA23D27FF",
+			  "contentType" : "web",
+			  "contentState" : "loaded",
+			  "active" : false
+			},
+			{
+			  "active" : false,
+			  "position" : 4,
+			  "contentState" : "loaded",
+			  "id" : "17AC6C87-BD2F-483E-8932-2B91182108E2",
+			  "contentType" : "web"
+			},
+			{
+			  "contentType" : "web",
+			  "position" : 5,
+			  "contentState" : "loaded",
+			  "active" : false,
+			  "id" : "55C16471-F3C0-4096-94AF-5CB06B07704B"
 			}
 		  ],
 		  "position" : {
+			"posInViewStack" : 6,
 			"x" : {
-			  "px" : 45
+			  "px" : 1201
 			},
 			"y" : {
-			  "px" : 80
-			},
-			"posInViewStack" : 1
-		  },
-		  "name" : "Bolognese"
+			  "px" : 45
+			}
+		  }
 		},
 		"type" : "contentFrame"
 	  }
@@ -697,7 +696,12 @@ INSERT INTO "document" ("id", "name", "owner", "shared", "created_at", "updated_
 	"height" : {
 	  "px" : 2368
 	},
-	"id" : "4D90F0F2-064D-42B8-9A16-B9A613A2A162"
+	"viewPosition" : {
+	  "px" : 0
+	},
+	"width" : {
+	  "px" : 1512
+	}
   }
 }');
 """
