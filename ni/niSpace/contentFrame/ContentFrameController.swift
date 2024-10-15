@@ -86,8 +86,19 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 			default:
 				loadAndDisplayDefaultView()
 		}
+        if let viewWithTabs = viewWithTabs,
+           let collectionView = viewWithTabs.cfTabHeadCollection {
+            collectionView.isSelectable = true
+        }
 	}
-	
+
+    func collectionView(_ collectionView: NSCollectionView, didSelectItemsAt indexPaths: Set<IndexPath>) {
+        guard let indexPath = indexPaths.first,
+              let tabHead = collectionView.item(at: indexPath) as? ContentFrameTabHead
+        else { return }
+        tabHead.selectSelf()
+    }
+
 	override func viewDidAppear() {
 		super.viewDidAppear()
 		viewIsDrawn = true

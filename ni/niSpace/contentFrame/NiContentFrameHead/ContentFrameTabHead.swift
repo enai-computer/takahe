@@ -236,26 +236,7 @@ class ContentFrameTabHead: NSCollectionViewItem, NSTextFieldDelegate {
 	/*
 	 * MARK: -mouse down event here
 	 */
-	
-	override func mouseDown(with event: NSEvent) {
-		let isFrameActive = parentController?.myView.frameIsActive
-		if(isFrameActive != nil && !isFrameActive!){
-			//sets current frame active
-			parentController?.myView.mouseDown(with: event)
-		}
-		//need to test if we are already selected otherwise we call self select on a double click and screw up where the text editing happens as this Item will process the double click, but may have a different postion, due to view recycling
-		if(!self.isSelected && !tabHeadTitle.isEditable && event.clickCount == 1){
-			selectSelf(mouseDownEvent: event)
-			return
-		}
 
-		if(self.isSelected && !tabHeadTitle.isEditable && event.clickCount == 1){
-			startEditMode()
-			return
-		}
-		nextResponder?.mouseDown(with: event)
-	}
-	
 	override func rightMouseDown(with event: NSEvent) {
 		let isFrameActive = parentController?.myView.frameIsActive
 		if(isFrameActive != nil && !isFrameActive!){
