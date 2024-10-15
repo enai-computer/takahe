@@ -67,9 +67,9 @@ extension NiUsersSettingsModel{
 		cacheClearedLast = try getValueOrThrow(key: .cacheClearedLast, from: dic)
 		demoMode = getValueOrDefault(key: .demoMode, from: dic, defaultVal: false)
 		pinnedWebsites = getValueOrEmptyList(key: .pinnedWebApps, from: dic, of: PinnedWebsiteItemModel.self)
-		userFirstName = getValueOrDefault(key: .userFirstName, from: dic, defaultVal: NSUserName())
+		userFirstName = getValueOrDefault(key: .userFirstName, from: dic, defaultVal: NSUserName()) ?? ""
 		userEmail = getValueOrDefault(key: .userEmail, from: dic, defaultVal: nil)
-		homeViewWeatherLocation = getValueOrDefault(key: .homeViewWeatherLocation, from: dic, defaultVal: defaultWeatherLocation)
+		homeViewWeatherLocation = getStructValueOrDefault(key: .homeViewWeatherLocation, from: dic, defaultVal: defaultWeatherLocation)
 		onlineSync = getValueOrDefault(key: .onlineSync, from: dic, defaultVal: false)
 	}
 	
@@ -154,7 +154,7 @@ private func getValueOrDefault(key: UserSettingKey, from dic: [String: String], 
 	return defaultVal
 }
 
-private func getValueOrDefault<T>(key: UserSettingKey, from dic: [String: String], defaultVal: T) -> T where T : Decodable{
+private func getStructValueOrDefault<T>(key: UserSettingKey, from dic: [String: String], defaultVal: T) -> T where T : Decodable{
 	do{
 		let jsonDecoder = JSONDecoder()
 		if let data: Data = dic[key.rawValue]?.data(using: .utf8){
