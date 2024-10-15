@@ -92,11 +92,18 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
         }
 	}
 
-    func collectionView(_ collectionView: NSCollectionView, didSelectItemsAt indexPaths: Set<IndexPath>) {
+    func collectionView(_ collectionView: NSCollectionView, shouldSelectItemsAt indexPaths: Set<IndexPath>) -> Set<IndexPath> {
         guard let indexPath = indexPaths.first,
               let tabHead = collectionView.item(at: indexPath) as? ContentFrameTabHead
-        else { return }
-        tabHead.selectSelf()
+        else { return indexPaths }
+
+        if tabHead.isSelected {
+            tabHead.startEditMode()
+        } else {
+            tabHead.selectSelf()
+        }
+
+        return indexPaths
     }
 
 	override func viewDidAppear() {
