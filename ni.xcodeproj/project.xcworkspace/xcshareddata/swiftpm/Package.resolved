@@ -1,5 +1,5 @@
 {
-  "originHash" : "1e537194463e5f2f9d456d25d054e9ea9ab21bbca19006d4aae29469e2549566",
+  "originHash" : "7b9601aebf842410df354fe01985a30ea5eea5798c4aa52eb52e83983921bd68",
   "pins" : [
     {
       "identity" : "faviconfinder",
@@ -20,12 +20,12 @@
       }
     },
     {
-      "identity" : "nativemarkkit",
+      "identity" : "markdownkit",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/andyfinnell/NativeMarkKit.git",
+      "location" : "https://github.com/enai-io/MarkdownKit",
       "state" : {
-        "revision" : "4833aa3f62ab3b846b2f8042418c71e5bebe167c",
-        "version" : "2.1.1"
+        "branch" : "master",
+        "revision" : "e16778dc0ca7e127bff83ee386495436f96f33dc"
       }
     },
     {
