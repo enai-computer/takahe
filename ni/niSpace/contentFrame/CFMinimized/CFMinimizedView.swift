@@ -126,12 +126,18 @@ class CFMinimizedView: CFBaseView, CFHasGroupButtonProtocol{
 			collapseButton.tintActive()
 			cfGroupButton.tintActive()
 			self.resetCursorRects()
+			layer?.backgroundColor = NSColor.sand4.cgColor
+			layer?.borderColor = NSColor.sand4.cgColor
+			fillColor = .sand4
 		}else{
 			closeButton.tintInactive()
 			maximizeButton.tintInactive()
 			collapseButton.tintInactive()
 			cfGroupButton.tintInactive()
 			self.discardCursorRects()
+			layer?.backgroundColor = NSColor.sand3.cgColor
+			layer?.borderColor = NSColor.sand3.cgColor
+			fillColor = .sand3
 		}
 		retinitItems(frameIsActive)
 	}

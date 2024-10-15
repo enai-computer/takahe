@@ -135,12 +135,18 @@ class CFCollapsedMinimizedView: CFBaseView, CFHasGroupButtonProtocol, NiMouseDow
 			cfGroupButton.tintActive()
 			expandDownwardsButton.tintActive()
 			self.resetCursorRects()
+			layer?.backgroundColor = NSColor.sand4.cgColor
+			layer?.borderColor = NSColor.sand4.cgColor
+			fillColor = .sand4
 		}else{
 			closeButton.tintInactive()
 			maximizeButton.tintInactive()
 			cfGroupButton.tintInactive()
 			expandDownwardsButton.tintInactive()
 			self.discardCursorRects()
+			layer?.backgroundColor = NSColor.sand3.cgColor
+			layer?.borderColor = NSColor.sand3.cgColor
+			fillColor = .sand3
 		}
 		retinitItems(frameIsActive)
 	}
