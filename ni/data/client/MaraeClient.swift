@@ -114,6 +114,25 @@ class MaraeClient{
 		}
 		return "Failed to get answer to your question."
 	}
+	
+	func getWelcomeText(_ spaceName: String) async throws -> String?{
+		let relPath = apiVersion + userID + "/welcome-text"
+		let req = Request(
+			path: relPath,
+			method: .get,
+			query: [
+				("sname", spaceName.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "")
+			],
+			headers: auth_header
+		)
+		let res = try await sendRequest(req)
+		if(res?.statusCode == 200 && res != nil){
+			let jsonD = JSONDecoder()
+			let answer = try jsonD.decode(EveChatResponseMessage.self, from: res!.data)
+			return answer.message
+		}
+		return nil
+	}
 
 	private func sendRequestNoResponse(_ req: Request<()>) async throws -> Bool{
 		let res = try await client.send(req)

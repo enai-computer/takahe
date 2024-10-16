@@ -473,11 +473,32 @@ class NiSpaceViewController: NSViewController, NSTextFieldDelegate{
 		
 		//Needs to happen here, as we rely on the visible view for size
 		addNoteToEmptySpace(niDocument: niDocument)
-		niDocument.openEmptyCF()
+		let welcomeCFController = niDocument.openEmptyCF()
 		niScrollView.documentView = niDocument.view
 		
 		PostHogSDK.shared.capture("Space_created")
 		_ = (NSApplication.shared.delegate as! AppDelegate).spaceLoadedSinceStart(spaceId)
+		
+		Task{
+			if let welcomeTxt = await Eve.instance.genWelcomeTxt(for: name){
+				guard 0 < welcomeCFController.tabs.count else {return}
+				let sanitizedStr = sanitizeForJavaScript(welcomeTxt)
+				welcomeCFController.tabs[0].webView?.evaluateJavaScript("updateInfoModal('\(sanitizedStr)');"){
+					(result, error) in
+					print(error as Any)
+				}
+			}
+		}
+	}
+	
+	private func sanitizeForJavaScript(_ str: String) -> String {
+		return str.replacingOccurrences(of: "\\", with: "\\\\")
+			   .replacingOccurrences(of: "'", with: "\\'")
+			   .replacingOccurrences(of: "\"", with: "\\\"")
+			   .replacingOccurrences(of: "\n", with: "\\n")
+			   .replacingOccurrences(of: "\r", with: "\\r")
+			   .replacingOccurrences(of: "\u{2028}", with: "\\u2028")
+			   .replacingOccurrences(of: "\u{2029}", with: "\\u2029")
 	}
 	
 	private func addNoteToEmptySpace(niDocument: NiSpaceDocumentController){
