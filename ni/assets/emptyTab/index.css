@@ -30,6 +30,24 @@ body {
     max-width: 34rem;
 }
 
+.top-info-right p:first-of-type {
+  margin-bottom: 5px;
+}
+
+.top-info-right ul {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.top-info-right ul li {
+  margin-top: 4px;
+  margin-bottom: 4px;
+}
+
+.top-info-right p:last-of-type {
+  margin-top: 10px;
+}
+
 .eve-mark-wrapper {
     display: flex;
     flex-direction: row;
