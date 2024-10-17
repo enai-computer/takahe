@@ -474,6 +474,11 @@ class NiSpaceViewController: NSViewController, NSTextFieldDelegate{
 		//Needs to happen here, as we rely on the visible view for size
 		addNoteToEmptySpace(niDocument: niDocument)
 		let welcomeCFController = niDocument.openEmptyCF()
+		if(0 < welcomeCFController.tabs.count){
+			let newSpaceHtmlurl = getNewSpaceWebViewURL()
+			welcomeCFController.tabs[0].webView?.loadFileURL(newSpaceHtmlurl, allowingReadAccessTo: newSpaceHtmlurl)
+		}
+		
 		niScrollView.documentView = niDocument.view
 		
 		PostHogSDK.shared.capture("Space_created")
