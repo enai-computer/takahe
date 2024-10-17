@@ -71,6 +71,10 @@ func getEmtpyWebViewURL() -> URL{
 	return Bundle.main.url(forResource: "emptyTab", withExtension: "html")!
 }
 
+func getNewSpaceWebViewURL() -> URL{
+	return Bundle.main.url(forResource: "newSpaceTab", withExtension: "html")!
+}
+
 func getCouldNotLoadWebViewURL() -> URL{
 	return Bundle.main.url(forResource: "errorLoading", withExtension: "html")!
 }

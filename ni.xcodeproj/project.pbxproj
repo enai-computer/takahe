@@ -162,12 +162,14 @@
 		CDB4830A2C6A623900612AF5 /* CFFullscreenView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDB483092C6A623900612AF5 /* CFFullscreenView.xib */; };
 		CDB4830C2C6A624E00612AF5 /* CFFullscreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB4830B2C6A624E00612AF5 /* CFFullscreenView.swift */; };
 		CDB549D12C2020C90038FB30 /* NiSearchViewScroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB549D02C2020C90038FB30 /* NiSearchViewScroller.swift */; };
+		CDB8E0252CC0EE2600A21EB6 /* newSpaceTab.html in Sources */ = {isa = PBXBuildFile; fileRef = CDB8E0242CC0EE2000A21EB6 /* newSpaceTab.html */; };
 		CDBCBBF82C92F8330069EFE3 /* NiSignupView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDBCBBF72C92F8330069EFE3 /* NiSignupView.xib */; };
 		CDBCBBFA2C92F91C0069EFE3 /* NiSignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBCBBF92C92F91C0069EFE3 /* NiSignupViewController.swift */; };
 		CDC0BD432C45280C00CB2DDB /* NiDownloadHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC0BD422C45280C00CB2DDB /* NiDownloadHandler.swift */; };
 		CDC0BD482C47B6B000CB2DDB /* UserSettingsTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC0BD472C47B6B000CB2DDB /* UserSettingsTable.swift */; };
 		CDC5A1142C25C8F3002F5621 /* EmptyRectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC5A1132C25C8F3002F5621 /* EmptyRectView.swift */; };
 		CDC5A1162C284AD1002F5621 /* NiDocControllerCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC5A1152C284AD1002F5621 /* NiDocControllerCache.swift */; };
+		CDC836412CC0FE5200FD2995 /* newSpaceTab.html in Resources */ = {isa = PBXBuildFile; fileRef = CDB8E0242CC0EE2000A21EB6 /* newSpaceTab.html */; };
 		CDCDD52A2C944B38002693AF /* BilgePump.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCDD5292C944B38002693AF /* BilgePump.swift */; };
 		CDD2B5172C9AEDDB0082972A /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = CDD6B93D2B152D3F00C6144D /* SQLite */; };
 		CDD2C9212C666D3D009DB1C0 /* ArrayUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD2C9202C666D3D009DB1C0 /* ArrayUtil.swift */; };
@@ -384,6 +386,7 @@
 		CDB483092C6A623900612AF5 /* CFFullscreenView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CFFullscreenView.xib; sourceTree = "<group>"; };
 		CDB4830B2C6A624E00612AF5 /* CFFullscreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CFFullscreenView.swift; sourceTree = "<group>"; };
 		CDB549D02C2020C90038FB30 /* NiSearchViewScroller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiSearchViewScroller.swift; sourceTree = "<group>"; };
+		CDB8E0242CC0EE2000A21EB6 /* newSpaceTab.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = newSpaceTab.html; sourceTree = "<group>"; };
 		CDBC33F82BDBC896000EEF3D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		CDBCBBF72C92F8330069EFE3 /* NiSignupView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NiSignupView.xib; sourceTree = "<group>"; };
 		CDBCBBF92C92F91C0069EFE3 /* NiSignupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiSignupViewController.swift; sourceTree = "<group>"; };
@@ -647,6 +650,7 @@
 		CD4DBD4F2CBE70B000CE5179 /* emptyTab */ = {
 			isa = PBXGroup;
 			children = (
+				CDB8E0242CC0EE2000A21EB6 /* newSpaceTab.html */,
 				CD4DBD502CBE70C700CE5179 /* global.css */,
 				CD4DBD522CBE70D000CE5179 /* index.css */,
 				CD4DBD542CBE70D600CE5179 /* emptyTab.html */,
@@ -1146,6 +1150,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CDC836412CC0FE5200FD2995 /* newSpaceTab.html in Resources */,
 				A1B8E6AD2AAFB5EF00AC6566 /* Assets.xcassets in Resources */,
 				CD569FEB2C53A05700C16B2E /* 19898FAF-0C66-446E-AB4E-773CF5EBE1E3.png in Resources */,
 				CDABE6482C11C53100BB4E85 /* NiMenuItemView.xib in Resources */,
@@ -1328,6 +1333,7 @@
 				CDF6C54E2C383A37006B458B /* NiBlur.swift in Sources */,
 				CDD7D3402C19924F0038E6F9 /* NiSearchResultViewItem.swift in Sources */,
 				CD06A9BA2BF79EF500312256 /* NiScroller.swift in Sources */,
+				CDB8E0252CC0EE2600A21EB6 /* newSpaceTab.html in Sources */,
 				CD781E752C0E1B6E00D02F55 /* NiNoteView.swift in Sources */,
 				CD1C6D572C5259D80019CD09 /* NiPinnedMenuWindow.swift in Sources */,
 				CD5F7E012C1EFE7300ADC860 /* SearchViewTextField.swift in Sources */,
@@ -1536,7 +1542,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = "0.2.1 --- 2024-10-16.1";
+				CURRENT_PROJECT_VERSION = "0.2.1 --- 2024-10-17.1";
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = SNXQ3BDQ5V;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -1569,7 +1575,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = "0.2.1 --- 2024-10-16.1";
+				CURRENT_PROJECT_VERSION = "0.2.1 --- 2024-10-17.1";
 				DEAD_CODE_STRIPPING = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;

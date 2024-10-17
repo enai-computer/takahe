@@ -1240,6 +1240,9 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		guard let wv = webView as? NiWebView else{return}
 		wv.viewLoadedWebsite()
 		
+		if(wv.tabHeadPosition == -1){
+			wv.tabHeadPosition = 0
+		}
 		//check if tab was closed by the time this callback happens
 		if(tabs.count <= wv.tabHeadPosition || tabs[wv.tabHeadPosition].webView != wv){
 			return
