@@ -232,6 +232,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		505865D12CBE85FA0099EF34 /* Custom.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Custom.xcconfig; sourceTree = "<group>"; };
+		505865D22CBE85FA0099EF34 /* Project.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Project.xcconfig; sourceTree = "<group>"; };
 		A14E8F202AD20A2600409DDF /* DefaultWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultWindowController.swift; sourceTree = "<group>"; };
 		A14E8F242AD5EADF00409DDF /* NiSpaceView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NiSpaceView.xib; sourceTree = "<group>"; };
 		A14E8F262AD5EAF800409DDF /* NiSpaceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiSpaceView.swift; sourceTree = "<group>"; };
@@ -468,10 +470,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		505865D32CBE85FA0099EF34 /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				505865D12CBE85FA0099EF34 /* Custom.xcconfig */,
+				505865D22CBE85FA0099EF34 /* Project.xcconfig */,
+			);
+			path = Config;
+			sourceTree = "<group>";
+		};
 		A1B8E6992AAFB5EC00AC6566 = {
 			isa = PBXGroup;
 			children = (
 				CDFAC3382C9863F70057F759 /* .swiftlint.yml */,
+				505865D32CBE85FA0099EF34 /* Config */,
 				A1B8E6A42AAFB5EC00AC6566 /* ni */,
 				CD1FAAEF2BFCA9BA00C781AC /* niUnitTests */,
 				A1B8E6A32AAFB5EC00AC6566 /* Products */,
@@ -1405,6 +1417,7 @@
 /* Begin XCBuildConfiguration section */
 		A1B8E6B22AAFB5EF00AC6566 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 505865D22CBE85FA0099EF34 /* Project.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -1440,7 +1453,6 @@
 				COPY_PHASE_STRIP = NO;
 				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = SNXQ3BDQ5V;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -1472,6 +1484,7 @@
 		};
 		A1B8E6B32AAFB5EF00AC6566 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 505865D22CBE85FA0099EF34 /* Project.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -1507,7 +1520,6 @@
 				COPY_PHASE_STRIP = NO;
 				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = SNXQ3BDQ5V;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = NO;
@@ -1544,7 +1556,6 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = "0.2.1 --- 2024-10-17.1";
 				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_TEAM = SNXQ3BDQ5V;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ni/Info.plist;
@@ -1558,7 +1569,6 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MARKETING_VERSION = 0.2.1;
-				PRODUCT_BUNDLE_IDENTIFIER = io.enai.ni;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -1590,7 +1600,6 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MARKETING_VERSION = 0.2.1;
-				PRODUCT_BUNDLE_IDENTIFIER = io.enai.ni;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
