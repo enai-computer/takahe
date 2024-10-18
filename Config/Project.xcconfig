@@ -1,0 +1,4 @@
+DEVELOPMENT_TEAM = SNXQ3BDQ5V;
+PRODUCT_BUNDLE_IDENTIFIER = io.enai.ni;
+
+#include? "./Custom.xcconfig"
