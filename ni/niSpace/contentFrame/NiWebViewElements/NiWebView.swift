@@ -94,10 +94,6 @@ class NiWebView: WKWebView, CFContentItem, CFContentSearch{
         menu.items = [niOpenInNewTab]
     }
 	
-	func startDownload(using request: URLRequest, completionHandler: @escaping (WKDownload) -> Void) {
-		super.startDownload(using: request, completionHandler: completionHandler)
-	}
-    
 	@IBAction override func printView(_ sender: Any?){
 		return
 	}
