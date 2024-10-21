@@ -490,6 +490,7 @@
 				CDC0BD442C46CAEC00CB2DDB /* Frameworks */,
 			);
 			sourceTree = "<group>";
+			usesTabs = 1;
 		};
 		A1B8E6A32AAFB5EC00AC6566 /* Products */ = {
 			isa = PBXGroup;
