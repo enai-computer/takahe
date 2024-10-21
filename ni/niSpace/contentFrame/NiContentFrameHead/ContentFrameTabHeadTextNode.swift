@@ -11,18 +11,7 @@ import Carbon.HIToolbox
 
 class ContentFrameTabHeadTextNode: NSTextField{
 	
-	weak var parentController: ContentFrameTabHead?{
-		set { delegate = newValue }
-		get { (delegate as! ContentFrameTabHead) }
-	}
-	
 	var defaultSize: CGSize?
-	
-	//needed to handle ESC
-	override func cancelOperation(_ sender: Any?) {
-		parentController?.endEditMode()
-	}
-	
 
 	func enableEditing(urlStr: String){
 		self.stringValue = urlStr
