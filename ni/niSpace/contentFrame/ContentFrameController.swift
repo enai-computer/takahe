@@ -86,108 +86,108 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 			default:
 				loadAndDisplayDefaultView()
 		}
-        if let viewWithTabs = viewWithTabs,
-           let collectionView = viewWithTabs.cfTabHeadCollection {
-            collectionView.isSelectable = true
-            // See <https://developer.apple.com/documentation/appkit/nscollectionviewdelegate/supporting_collection_view_drag_and_drop_through_file_promises>
-            collectionView.registerForDraggedTypes([.tabHeadDragType])
-        }
+		if let viewWithTabs = viewWithTabs,
+		   let collectionView = viewWithTabs.cfTabHeadCollection {
+			collectionView.isSelectable = true
+			// See <https://developer.apple.com/documentation/appkit/nscollectionviewdelegate/supporting_collection_view_drag_and_drop_through_file_promises>
+			collectionView.registerForDraggedTypes([.tabHeadDragType])
+		}
 	}
-
-    func collectionView(_ collectionView: NSCollectionView, shouldSelectItemsAt indexPaths: Set<IndexPath>) -> Set<IndexPath> {
-        guard let indexPath = indexPaths.first,
-              let tabHead = collectionView.item(at: indexPath) as? ContentFrameTabHead
-        else { return indexPaths }
-
-        if tabHead.isSelected {
-            tabHead.startEditMode()
-        } else {
-            tabHead.selectSelf()
-        }
-
-        return indexPaths
-    }
-
-    private var draggedIndexPath: IndexPath? = nil
-
-    func collectionView(_ collectionView: NSCollectionView, pasteboardWriterForItemAt indexPath: IndexPath) -> (any NSPasteboardWriting)? {
-        guard let tabHead = collectionView.item(at: indexPath) as? ContentFrameTabHead else { return nil }
-
-        let item = NSPasteboardItem(
-            pasteboardPropertyList: [
-                 // TODO: Serialization of tabs
-                "tabPosition": tabHead.tabPosition,
-                "fromIndexPathSection": indexPath.section,
-                "fromIndexPathItem": indexPath.item,
-            ],
-            ofType: .tabHeadDragType
-        )
-        
-        draggedIndexPath = indexPath
-
-        return item
-    }
-
-
-    func collectionView(
-        _ collectionView: NSCollectionView,
-        validateDrop draggingInfo: any NSDraggingInfo,
-        proposedIndexPath proposedDropIndexPath: AutoreleasingUnsafeMutablePointer<NSIndexPath>,
-        dropOperation proposedDropOperation: UnsafeMutablePointer<NSCollectionView.DropOperation>
-    ) -> NSDragOperation {
-        if proposedDropOperation.pointee == .on {
-            proposedDropOperation.pointee = .before
-        }
-        return .move
-    }
-
-    /// See <https://developer.apple.com/documentation/appkit/nscollectionviewdelegate/supporting_collection_view_drag_and_drop_through_file_promises>
-    func collectionView(
-        _ collectionView: NSCollectionView,
-        acceptDrop draggingInfo: any NSDraggingInfo,
-        indexPath: IndexPath,
-        dropOperation: NSCollectionView.DropOperation
-    ) -> Bool {
-        if let draggingSource = draggingInfo.draggingSource as? NSCollectionView,
-           draggingSource == collectionView,
-           // let tabDragTypePlist = draggingInfo.draggingPasteboard.pasteboardItems?.lazy.compactMap({ $0.propertyList(forType: .tabDragType) }).first as? Dictionary<String, Any>, // TODO: Use serialized representation
-           let draggedIndexPath {
-            assert(draggedIndexPath.section == 0)
-            let draggedItem = collectionView.item(at: draggedIndexPath.item) as! ContentFrameTabHead  // FIXME: force unwrap
-
-            draggedItem.tabPosition = -1  // sentinel value to mark this as to-be-moved
-            
-            let count = collectionView.numberOfItems(inSection: 0)
-            
-            // Move all tabs after the moved one to the left in the 'model'
-            if draggedIndexPath.item < count {
-                (draggedIndexPath.item..<count)
-                    .map(collectionView.item(at:))
-                    .compactMap { $0 as? ContentFrameTabHead }
-                    .forEach { $0.tabPosition -= 1 }
-            }
-
-            NSAnimationContext.runAnimationGroup { context in
-                collectionView
-                    .animator()
-                    .moveItem(
-                        at: draggedIndexPath,
-                        to: (indexPath.item <= draggedIndexPath.item) ? indexPath : IndexPath(item: indexPath.item - 1, section: 0)
-                    )
-            } completionHandler: {
-                //  Make room at the drop target
-                if indexPath.item < count {
-                    (indexPath.item + 1 ..< count)
-                        .map(collectionView.item(at:))
-                        .compactMap { $0 as? ContentFrameTabHead }
-                        .forEach { $0.tabPosition += 1 }
-                }
-                draggedItem.tabPosition = indexPath.item
-            }
-        }
-
-        return false
-    }
+	
+	func collectionView(_ collectionView: NSCollectionView, shouldSelectItemsAt indexPaths: Set<IndexPath>) -> Set<IndexPath> {
+		guard let indexPath = indexPaths.first,
+			  let tabHead = collectionView.item(at: indexPath) as? ContentFrameTabHead
+		else { return indexPaths }
+		
+		if tabHead.isSelected {
+			tabHead.startEditMode()
+		} else {
+			tabHead.selectSelf()
+		}
+		
+		return indexPaths
+	}
+	
+	private var draggedIndexPath: IndexPath? = nil
+	
+	func collectionView(_ collectionView: NSCollectionView, pasteboardWriterForItemAt indexPath: IndexPath) -> (any NSPasteboardWriting)? {
+		guard let tabHead = collectionView.item(at: indexPath) as? ContentFrameTabHead else { return nil }
+		
+		let item = NSPasteboardItem(
+			pasteboardPropertyList: [
+				// TODO: Serialization of tabs
+				"tabPosition": tabHead.tabPosition,
+				"fromIndexPathSection": indexPath.section,
+				"fromIndexPathItem": indexPath.item,
+			],
+			ofType: .tabHeadDragType
+		)
+		
+		draggedIndexPath = indexPath
+		
+		return item
+	}
+	
+	
+	func collectionView(
+		_ collectionView: NSCollectionView,
+		validateDrop draggingInfo: any NSDraggingInfo,
+		proposedIndexPath proposedDropIndexPath: AutoreleasingUnsafeMutablePointer<NSIndexPath>,
+		dropOperation proposedDropOperation: UnsafeMutablePointer<NSCollectionView.DropOperation>
+	) -> NSDragOperation {
+		if proposedDropOperation.pointee == .on {
+			proposedDropOperation.pointee = .before
+		}
+		return .move
+	}
+	
+	/// See <https://developer.apple.com/documentation/appkit/nscollectionviewdelegate/supporting_collection_view_drag_and_drop_through_file_promises>
+	func collectionView(
+		_ collectionView: NSCollectionView,
+		acceptDrop draggingInfo: any NSDraggingInfo,
+		indexPath: IndexPath,
+		dropOperation: NSCollectionView.DropOperation
+	) -> Bool {
+		if let draggingSource = draggingInfo.draggingSource as? NSCollectionView,
+		   draggingSource == collectionView,
+		   // let tabDragTypePlist = draggingInfo.draggingPasteboard.pasteboardItems?.lazy.compactMap({ $0.propertyList(forType: .tabDragType) }).first as? Dictionary<String, Any>, // TODO: Use serialized representation
+		   let draggedIndexPath {
+			assert(draggedIndexPath.section == 0)
+			let draggedItem = collectionView.item(at: draggedIndexPath.item) as! ContentFrameTabHead  // FIXME: force unwrap
+			
+			draggedItem.tabPosition = -1  // sentinel value to mark this as to-be-moved
+			
+			let count = collectionView.numberOfItems(inSection: 0)
+			
+			// Move all tabs after the moved one to the left in the 'model'
+			if draggedIndexPath.item < count {
+				(draggedIndexPath.item..<count)
+					.map(collectionView.item(at:))
+					.compactMap { $0 as? ContentFrameTabHead }
+					.forEach { $0.tabPosition -= 1 }
+			}
+			
+			NSAnimationContext.runAnimationGroup { context in
+				collectionView
+					.animator()
+					.moveItem(
+						at: draggedIndexPath,
+						to: (indexPath.item <= draggedIndexPath.item) ? indexPath : IndexPath(item: indexPath.item - 1, section: 0)
+					)
+			} completionHandler: {
+				//  Make room at the drop target
+				if indexPath.item < count {
+					(indexPath.item + 1 ..< count)
+						.map(collectionView.item(at:))
+						.compactMap { $0 as? ContentFrameTabHead }
+						.forEach { $0.tabPosition += 1 }
+				}
+				draggedItem.tabPosition = indexPath.item
+			}
+		}
+		
+		return false
+	}
 
 	override func viewDidAppear() {
 		super.viewDidAppear()

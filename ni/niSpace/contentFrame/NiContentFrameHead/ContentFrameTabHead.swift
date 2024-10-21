@@ -19,7 +19,7 @@ class ContentFrameTabHead: NSCollectionViewItem, NSTextFieldDelegate {
 	var tabPosition: Int = -1
 	
 	override func viewDidLoad() {
-        super.viewDidLoad()
+		super.viewDidLoad()
 
 		view.wantsLayer = true
 		view.layer?.cornerRadius = 5
@@ -239,14 +239,14 @@ class ContentFrameTabHead: NSCollectionViewItem, NSTextFieldDelegate {
 
 	override func mouseDown(with event: NSEvent) {
 		let isFrameActive = parentController?.myView.frameIsActive
-        guard isFrameActive == true,
-              self.isSelected,
-              !tabHeadTitle.isEditable,
-              event.clickCount == 1 else {
-            super.mouseDown(with: event)
-            return
-        }
-        startEditMode()
+		guard isFrameActive == true,
+			  self.isSelected,
+			  !tabHeadTitle.isEditable,
+			  event.clickCount == 1 else {
+			super.mouseDown(with: event)
+			return
+		}
+		startEditMode()
 	}
 	
 	override func rightMouseDown(with event: NSEvent) {
