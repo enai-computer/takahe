@@ -71,7 +71,7 @@ class CFFramelessView: CFBaseView {
 	override func keyDown(with event: NSEvent) {
 		if(event.keyCode == kVK_Delete || event.keyCode == kVK_ForwardDelete){
 			if(frameIsActive){
-				myItem?.owner?.triggerCloseProcess(with: event)
+				myController?.triggerCloseProcess(with: event)
 				return
 			}
 		}
