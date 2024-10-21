@@ -95,6 +95,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	}
 	
 	func collectionView(_ collectionView: NSCollectionView, shouldSelectItemsAt indexPaths: Set<IndexPath>) -> Set<IndexPath> {
+		assert(collectionView === viewWithTabs?.cfTabHeadCollection)
 		guard let indexPath = indexPaths.first,
 			  let tabHead = collectionView.item(at: indexPath) as? ContentFrameTabHead
 		else { return indexPaths }
@@ -111,6 +112,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	private var draggedIndexPath: IndexPath? = nil
 	
 	func collectionView(_ collectionView: NSCollectionView, pasteboardWriterForItemAt indexPath: IndexPath) -> (any NSPasteboardWriting)? {
+		assert(collectionView === viewWithTabs?.cfTabHeadCollection)
 		guard let tabHead = collectionView.item(at: indexPath) as? ContentFrameTabHead else { return nil }
 		
 		let item = NSPasteboardItem(
@@ -135,6 +137,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		proposedIndexPath proposedDropIndexPath: AutoreleasingUnsafeMutablePointer<NSIndexPath>,
 		dropOperation proposedDropOperation: UnsafeMutablePointer<NSCollectionView.DropOperation>
 	) -> NSDragOperation {
+		assert(collectionView === viewWithTabs?.cfTabHeadCollection)
 		if proposedDropOperation.pointee == .on {
 			proposedDropOperation.pointee = .before
 		}
@@ -148,6 +151,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		indexPath: IndexPath,
 		dropOperation: NSCollectionView.DropOperation
 	) -> Bool {
+		assert(collectionView === viewWithTabs?.cfTabHeadCollection)
 		if let draggingSource = draggingInfo.draggingSource as? NSCollectionView,
 		   draggingSource == collectionView,
 		   // let tabDragTypePlist = draggingInfo.draggingPasteboard.pasteboardItems?.lazy.compactMap({ $0.propertyList(forType: .tabDragType) }).first as? Dictionary<String, Any>, // TODO: Use serialized representation
