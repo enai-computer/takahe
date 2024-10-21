@@ -15,10 +15,6 @@ import QuartzCore
 import FaviconFinder
 import PostHog
 
-extension NSPasteboard.PasteboardType {
-    static let tabDragType = NSPasteboard.PasteboardType("io.enai.ni.tab")
-}
-
 //TODO: clean up tech debt and move the delegates out of here
 class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelegate, NSCollectionViewDataSource, NSCollectionViewDelegate, NSCollectionViewDelegateFlowLayout{
 
@@ -94,7 +90,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
            let collectionView = viewWithTabs.cfTabHeadCollection {
             collectionView.isSelectable = true
             // See <https://developer.apple.com/documentation/appkit/nscollectionviewdelegate/supporting_collection_view_drag_and_drop_through_file_promises>
-            collectionView.registerForDraggedTypes([.tabDragType])
+            collectionView.registerForDraggedTypes([.tabHeadDragType])
         }
 	}
 
@@ -124,7 +120,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
                 "fromIndexPathSection": indexPath.section,
                 "fromIndexPathItem": indexPath.item,
             ],
-            ofType: .tabDragType
+            ofType: .tabHeadDragType
         )
         
         draggedIndexPath = indexPath

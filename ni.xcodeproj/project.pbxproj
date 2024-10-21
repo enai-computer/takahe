@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		501C289B2CC6615400393837 /* ContentFrameTabHead+Dragging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501C289A2CC6615400393837 /* ContentFrameTabHead+Dragging.swift */; };
 		A14E8F212AD20A2600409DDF /* DefaultWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14E8F202AD20A2600409DDF /* DefaultWindowController.swift */; };
 		A14E8F252AD5EADF00409DDF /* NiSpaceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A14E8F242AD5EADF00409DDF /* NiSpaceView.xib */; };
 		A14E8F272AD5EAF800409DDF /* NiSpaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14E8F262AD5EAF800409DDF /* NiSpaceView.swift */; };
@@ -232,6 +233,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		501C289A2CC6615400393837 /* ContentFrameTabHead+Dragging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ContentFrameTabHead+Dragging.swift"; sourceTree = "<group>"; };
 		505865D12CBE85FA0099EF34 /* Custom.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Custom.xcconfig; sourceTree = "<group>"; };
 		505865D22CBE85FA0099EF34 /* Project.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Project.xcconfig; sourceTree = "<group>"; };
 		A14E8F202AD20A2600409DDF /* DefaultWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultWindowController.swift; sourceTree = "<group>"; };
@@ -823,6 +825,7 @@
 			children = (
 				CD7578362BBDA98700293930 /* ContentFrameHeadView.swift */,
 				CD7578442BC000F200293930 /* ContentFrameTabHead.swift */,
+				501C289A2CC6615400393837 /* ContentFrameTabHead+Dragging.swift */,
 				CD7578452BC000F200293930 /* ContentFrameTabHead.xib */,
 				CD75784B2BC065FB00293930 /* ContentFrameTabHeadTextNode.swift */,
 				CDE76C1B2BC6989000CE9513 /* TabViewModel.swift */,
@@ -1280,6 +1283,7 @@
 				CD6DED8F2C24954500AA8BC4 /* NiWebViewFindPanel.swift in Sources */,
 				CD72B83F2C24714800104802 /* CAUtils.swift in Sources */,
 				CD1C6D5D2C525C540019CD09 /* NiPinnedMenuView.swift in Sources */,
+				501C289B2CC6615400393837 /* ContentFrameTabHead+Dragging.swift in Sources */,
 				CD5F7DFF2C1EF06300ADC860 /* DataModelUtils.swift in Sources */,
 				CD410AE22C285C3C00EC5DF7 /* NiUsersSettingsModel.swift in Sources */,
 				CDE76C1C2BC6989000CE9513 /* TabViewModel.swift in Sources */,
