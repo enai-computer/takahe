@@ -25,7 +25,7 @@ class ContentFrameTabHead: NSCollectionViewItem, NSTextFieldDelegate {
 		view.layer?.cornerRadius = 5
 		view.layer?.cornerCurve = .continuous
 		
-		tabHeadTitle.parentController = self
+		tabHeadTitle.delegate = self
 		tabHeadTitle.layer?.cornerRadius = 5
 		tabHeadTitle.layer?.cornerCurve = .continuous
 		tabHeadTitle.focusRingType = .none
@@ -73,7 +73,12 @@ class ContentFrameTabHead: NSCollectionViewItem, NSTextFieldDelegate {
 		}
 		return false
 	}
-	
+
+	override func cancelOperation(_ sender: Any?) {
+		self.endEditMode()
+		// No need to call `super`: the base class doesn't actually implement cancelOperation(_:).
+	}
+
 	private func handleNoopCommand(with event: NSEvent) -> Bool{
 		if(event.modifierFlags.contains(.command) && event.keyCode == kVK_ANSI_W){
 			nextResponder?.keyDown(with: event)
@@ -152,7 +157,7 @@ class ContentFrameTabHead: NSCollectionViewItem, NSTextFieldDelegate {
 			hideCloseButton()
 		}
 	}
-	
+
 	private func activateCloseButton(){
 		closeButton.isEnabled = true
 		closeButton.isHidden = false
