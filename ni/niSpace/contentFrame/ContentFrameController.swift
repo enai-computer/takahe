@@ -887,11 +887,15 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		urlStr: String,
 		contentId: UUID,
 		tabName: String,
-		webContentState: TabViewModelState? = nil,
+		webContentState: TabViewModelState = .loading,
 		openNextTo: Int = -1,
 		as type: TabContentType = .web
 	) -> Int{
-		let niWebView = getNewWebView(owner: self, frame: view.frame, dirtyUrl: urlStr, contentId: contentId)
+		let niWebView = if(type == .eveChat){
+			ni.getNewWebView(owner: self, contentId: contentId, frame: view.frame, fileUrl: nil)
+		}else{
+			getNewWebView(owner: self, frame: view.frame, dirtyUrl: urlStr, contentId: contentId)
+		}
 		let viewPosition = myView.createNewTab(tabView: niWebView, openNextTo: openNextTo)
 		
 		if(0 <= openNextTo){
@@ -903,7 +907,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		tabHeadModel.viewItem = niWebView
 		tabHeadModel.webView!.tabHeadPosition = tabHeadModel.position
 		tabHeadModel.content = urlStr
-		tabHeadModel.state = .loading
+		tabHeadModel.state = webContentState
 		
 		if(0 <= openNextTo){
 			self.tabs.insert(tabHeadModel, at: viewPosition)
@@ -942,6 +946,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	func loadWebsite(_ url: URL, forTab at: Int){
 		let urlReq = URLRequest(url: url)
 		
+		tabs[at].type = .web
 		tabs[at].state = .loading
 		tabs[at].webView?.load(urlReq)
 	}
@@ -961,6 +966,13 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	/*
 	 * MARK: selecting, closing, editing tabs
 	 */
+	func safeGetTab(at position: Int) -> TabViewModel?{
+		if(position < tabs.count && 0 <= position){
+			return tabs[position]
+		}
+		return nil
+	}
+	
 	func closeTab(at position: Int){
 		if(position != selectedTabModel){
 			//TODO: Before exposing close UI element on non-selected tabs.
@@ -1254,7 +1266,10 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		self.tabs[wv.tabHeadPosition].icon = nil
 		
 		//an empty tab still loads a local html
-		if(self.tabs[wv.tabHeadPosition].state != .empty && self.tabs[wv.tabHeadPosition].state != .error ){
+		if(self.tabs[wv.tabHeadPosition].state != .empty &&
+		   self.tabs[wv.tabHeadPosition].state != .error &&
+		   self.tabs[wv.tabHeadPosition].type != .eveChat
+		){
 			self.tabs[wv.tabHeadPosition].state = .loaded
 			if(wv.url != nil){
 				self.tabs[wv.tabHeadPosition].content = wv.url!.absoluteString
@@ -1572,11 +1587,12 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 					scrollPosition = 0
 				}
 			}
-			if(tab.type == .web
-			   || (tab.type == .note && tab.noteView?.getText() != nil)
-			   || tab.type == .img
-			   || tab.type == .pdf
-			){
+			
+			if(tab.isEveChat()){
+				tabs[i].type = .eveChat
+			}
+			
+			if(tab.shouldPersistContent()){
 				children.append(
 					NiCFTabModel(
 						id: tab.contentId,

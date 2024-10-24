@@ -95,6 +95,14 @@ func openCFTabs(for controller: ContentFrameController, with tabViewModels: [Tab
 				controller.openPdfInNewTab(contentId: tab.contentId, tabTitle: tab.title, content: (tab.data as! PDFDocument), source: tab.source, scrollTo: tab.scrollPosition)
 			}else if(tab.type == .web){
 				_ = controller.openWebsiteInNewTab(urlStr: tab.content, contentId: tab.contentId, tabName: tab.title, webContentState: tab.state)
+			}else if(tab.type == .eveChat){
+				let eveChatController = controller.openWebsiteInNewTab(
+					urlStr: tab.content,
+					contentId: tab.contentId,
+					tabName: tab.title,
+					webContentState: .loaded,
+					as: .eveChat
+				)
 			}
 		}
 		return
@@ -109,9 +117,16 @@ func openCFTabs(for controller: ContentFrameController, with tabViewModels: [Tab
 			_ = controller.openEmptyWebTab(tab.contentId, reloadTabHeads: false)
 		}else if(tab.type == .web){
 			_ = controller.openWebsiteInNewTab(urlStr: tab.content, contentId: tab.contentId, tabName: tab.title, webContentState: tab.state)
+		}else if(tab.type == .eveChat){
+			_ = controller.openWebsiteInNewTab(
+				urlStr: tab.content,
+				contentId: tab.contentId,
+				tabName: tab.title,
+				webContentState: .loaded,
+				as: .eveChat
+			)
 		}else{
 			//Everything else is not supported
-
 			preconditionFailure("type: \(tab.type) is not supported in a tabbed contentFrame.")
 		}
 		if(tab.isSelected){
@@ -186,7 +201,7 @@ func niCFTabModelToTabViewModel(tabs: [NiCFTabModel]) -> [TabViewModel]{
 
 func getTabViewModel(for id: UUID, ofType type: TabContentType, positioned at: Int, scrollPosition: Int?) -> TabViewModel{
 	var tabView: TabViewModel
-	if(type == .web){
+	if(type == .web || type == .eveChat){
 		let record = CachedWebTable.fetchCachedWebsite(contentId: id)
 		tabView = TabViewModel(
 			contentId: id,

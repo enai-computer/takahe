@@ -14,7 +14,7 @@ enum TabViewModelState: String{
 
 struct TabViewModel{
 	let contentId: UUID
-	let type: TabContentType
+	var type: TabContentType
 
 	var title: String = ""
 	var content: String = ""
@@ -33,4 +33,19 @@ struct TabViewModel{
 	var position: Int = -1
 	var isSelected: Bool = false
 	var inEditingMode: Bool = false
+	
+	func shouldPersistContent() -> Bool{
+		return self.type == .web
+		|| (self.type == .note && self.noteView?.getText() != nil)
+		|| self.type == .img
+		|| self.type == .pdf
+		|| self.type == .eveChat
+	}
+	
+	func isEveChat() -> Bool{
+		if(self.type == .eveChat){
+			return true
+		}
+		return self.type == .web && self.state == .empty
+	}
 }

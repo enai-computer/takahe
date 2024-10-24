@@ -10,7 +10,7 @@ import Foundation
 
 func urlOrSearchUrl(from dirtyInput: String) throws -> URL{
 	let greyInput = dirtyInput.trimmingCharacters(in: .whitespaces)
-	if(isValidWebUrl(url: greyInput)){
+	if(greyInput.isValidURL){
 		return try createWebUrl(from: greyInput)
 	}
 	
@@ -38,12 +38,14 @@ func createWebUrl(from urlDirty: String) throws -> URL{
 	return url
 }
 
-//TODO: this needs to be checked against official specifications: https://url.spec.whatwg.org/
-func isValidWebUrl(url: String) -> Bool {
-	let urlRegEx = "^(https?://)?(www\\.)?([-a-z0-9]{1,63}\\.)*?[-a-z0-9]{0,61}[a-z0-9]\\.[a-z]{2,6}(/[-\\w@\\+\\.~#\\?&/=%]*)?$"
-	let urlTest = NSPredicate(format:"SELF MATCHES %@", urlRegEx)
-	let result = urlTest.evaluate(with: url)
-	return result
+func sanitizeForJavaScript(_ str: String) -> String {
+	return str.replacingOccurrences(of: "\\", with: "\\\\")
+		   .replacingOccurrences(of: "'", with: "\\'")
+		   .replacingOccurrences(of: "\"", with: "\\\"")
+		   .replacingOccurrences(of: "\n", with: "\\n")
+		   .replacingOccurrences(of: "\r", with: "\\r")
+		   .replacingOccurrences(of: "\u{2028}", with: "\\u2028")
+		   .replacingOccurrences(of: "\u{2029}", with: "\\u2029")
 }
 
 extension String {
@@ -54,9 +56,20 @@ extension String {
     
    - Returns: 'String' object.
   */
-  func truncate(_ maxLength: Int, trailing: String = "…") -> String {
-    return (self.count > maxLength) ? self.prefix(maxLength) + trailing : self
-  }
+	func truncate(_ maxLength: Int, trailing: String = "…") -> String {
+		return (self.count > maxLength) ? self.prefix(maxLength) + trailing : self
+	}
+	
+	//from: https://stackoverflow.com/a/49072718
+	var isValidURL: Bool {
+		let detector = try! NSDataDetector(types: NSTextCheckingResult.CheckingType.link.rawValue)
+		if let match = detector.firstMatch(in: self, options: [], range: NSRange(location: 0, length: self.utf16.count)) {
+			// it is a link, if the match covers the whole string
+			return match.range.length == self.utf16.count
+		} else {
+			return false
+		}
+	}
 }
 
 func hasImgExtension(_ path: String) -> Bool {
