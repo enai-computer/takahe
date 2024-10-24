@@ -42,6 +42,13 @@ class DocumentDal{
 				PdfDal.insert(documentId: spaceId, id: tab.contentId, title: tab.title, pdf: pdfDoc, source: tab.source)
 			}
 		}
+		if(tab.type == .eveChat){
+			Task{
+				if let eveMessages = await tab.webView?.fetchEveMessages() as? String{
+					persistEveChat(spaceId: spaceId, id: tab.contentId, title: tab.title, messages: eveMessages, groupId: groupId)
+				}
+			}
+		}
 	}
 	
 	static func deleteDocument(documentId: UUID, docType: TabContentType){
@@ -49,7 +56,7 @@ class DocumentDal{
 		guard let type = resolveType(docType) else {return}
 		guard UserSettings.shared.onlineSync else {return}
 		
-		OutboxTable.insert(eventType: .DELETE, objectID: documentId, objectType: type, message: "")
+//		OutboxTable.insert(eventType: .DELETE, objectID: documentId, objectType: type, message: "")
 //		Storage.instance.outboxProcessor.run()
 	}
 	
@@ -98,6 +105,26 @@ class DocumentDal{
 			)
 		}
 		
+		DocumentIdContentIdTable.insert(documentId: spaceId, contentId: id)
+		
+		if let gId = groupId{
+			GroupIdContentIdTable.insert(groupId: gId, contentId: id)
+		}
+	}
+
+	private static func persistEveChat(
+		spaceId: UUID,
+		id: UUID,
+		title: String,
+		messages: String,
+		groupId: UUID?
+	){
+		let storedRec = CachedWebTable.fetchCachedWebsite(contentId: id)
+		if (storedRec?.title != title || storedRec?.title == nil){
+			ContentTable.upsert(id: id, type: ContentTableRecordType.web, title: title)
+		}
+
+		EveChatTable.upsert(id: id, messages: messages)
 		DocumentIdContentIdTable.insert(documentId: spaceId, contentId: id)
 		
 		if let gId = groupId{

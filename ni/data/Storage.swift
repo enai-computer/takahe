@@ -29,7 +29,6 @@ class Storage{
     static let instance = Storage()
     let spacesDB: Connection
 	let cacheDB: Connection
-//	let outboxProcessor: OutboxProcessor
 	private let currentWrites = ManagedAtomic<Int>(0)
 	private var path: String?
 
@@ -46,9 +45,7 @@ class Storage{
 		}else{
 			CUSTOM_STORAGE_LOCATION!
 		}
-		
-//		outboxProcessor = OutboxProcessor()
-        
+
         do {
 			if(!Storage.doesSQLiteDBExist(path!)){
 				AppDelegate.dbExists = false
@@ -101,6 +98,7 @@ class Storage{
 		try GroupTable.create(db: db)
 		try GroupIdContentIdTable.create(db: db)
 		try DocumentIdGroupIdTable.create(db: db)
+		try EveChatTable.create(db: db)
     }
     
 	private static func runSpacesMigrations(db: Connection) throws{
