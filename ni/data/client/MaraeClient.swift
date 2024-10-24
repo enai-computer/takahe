@@ -7,17 +7,19 @@
 import Foundation
 import Get
 import DeviceCheck
+import PostHog
 
 class MaraeClient{
-	private let hostUrl = "https://enai.host"
-//	private let hostUrl = "http://127.0.0.1:8000"
+	let hostUrl = "https://enai.host"
+//	let hostUrl = "http://127.0.0.1:8000"
 	private let apiVersion = "/v1"
 	private let verify = "/verify"
-	private let userID = "/00000000-0000-0000-0000-000000000003"
+	private let userID = "00000000-0000-0000-0000-000000000003"
 	
 	private let client: APIClient
 	private let AUTH_HEADER_KEY = "Authorization"
 	private var auth_header: [String: String] = [:]
+	private var bearerToken: String = ""
 	private var updatedAuthToken: Date?
 	private let minTimeBetweenAuth_sec: Double = -60.0
 	
@@ -35,13 +37,13 @@ class MaraeClient{
 				method: .get,
 				headers: ["Apple-Device-Token": deviceToken ?? ""]
 			)
-
 			Task{
 				let res = try await self.client.send(getRequest)
 				if(res.statusCode == 200){
 					let jsonD = JSONDecoder()
 					let body = try jsonD.decode(MaraeVerifyResponse.self, from: res.data)
-					self.auth_header = [self.AUTH_HEADER_KEY: "Bearer " + body.access_token]
+					self.bearerToken = body.access_token
+					self.auth_header = [self.AUTH_HEADER_KEY: "Bearer " + self.bearerToken]
 					self.updatedAuthToken = .now
 				}
 			}
@@ -49,8 +51,13 @@ class MaraeClient{
 		return
 	}
 	
+	func authKey() -> (String, String){
+		let uId = PostHogSDK.shared.getDistinctId()
+		return (uId, bearerToken)
+	}
+	
 	func sendRecord(record: OutboxMessage) async throws -> Bool{
-		let relPath = (apiVersion + userID + record.objectType.getRESTSubpath() + "/" + record.objectId.uuidString)
+		let relPath = (apiVersion + "/" + userID + record.objectType.getRESTSubpath() + "/" + record.objectId.uuidString)
 		
 		let putRequest = Request(
 			path: relPath,
@@ -62,7 +69,7 @@ class MaraeClient{
 	}
 	
 	func deleteRecord(record: OutboxMessage) async throws -> Bool{
-		let relPath = (apiVersion + userID + record.objectType.getRESTSubpath() + "/" + record.objectId.uuidString)
+		let relPath = (apiVersion + "/" + userID + record.objectType.getRESTSubpath() + "/" + record.objectId.uuidString)
 		let delRequest = Request(
 			path: relPath,
 			method: .delete
@@ -97,7 +104,7 @@ class MaraeClient{
 	}
 	
 	func askQuestion(_ question: String) async throws -> String{
-		let relPath = apiVersion + userID + "/answer"
+		let relPath = apiVersion + "/" + userID + "/answer"
 		let req = Request(
 			path: relPath,
 			method: .get,
@@ -116,7 +123,7 @@ class MaraeClient{
 	}
 	
 	func getWelcomeText(_ spaceName: String) async throws -> String?{
-		let relPath = apiVersion + userID + "/welcome-text"
+		let relPath = apiVersion + "/" + userID + "/welcome-text"
 		let req = Request(
 			path: relPath,
 			method: .get,
