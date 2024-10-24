@@ -301,6 +301,15 @@ class NiWebView: WKWebView, CFContentItem, CFContentSearch{
 	   }
 	}
 	
+	func setWelcomeMessage(_ messageHtml: String){
+		guard isEveChatURL() else {return}
+		let sanitizedStr = sanitizeForJavaScript(messageHtml)
+		self.evaluateJavaScript("updateInfoModal('\(sanitizedStr)');"){
+			(result, error) in
+			print(error as Any)
+		}
+	}
+	
 	func fetchEveMessages() async -> String?{
 		guard isEveChatURL() else {return nil}
 		do{
