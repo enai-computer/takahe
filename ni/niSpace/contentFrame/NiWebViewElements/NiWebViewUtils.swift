@@ -39,6 +39,11 @@ func getNewWebView(owner: ContentFrameController, contentId: UUID, frame: NSRect
 	}
 	niWebView.loadFileURL(localHTMLurl, allowingReadAccessTo: localHTMLurl)
 	niWebView.navigationDelegate = owner
+	if(fileUrl == nil) {
+		DispatchQueue.main.asyncAfter(deadline: .now().advanced(by: .seconds(1))){
+			niWebView.passEnaiAPIAuth()
+		}
+	}
 	return niWebView
 }
 
@@ -68,11 +73,7 @@ func getNewWebView(owner: ContentFrameController, frame: NSRect, cleanUrl: Strin
 }
 
 func getEmtpyWebViewURL() -> URL{
-	return Bundle.main.url(forResource: "emptyTab", withExtension: "html")!
-}
-
-func getNewSpaceWebViewURL() -> URL{
-	return Bundle.main.url(forResource: "newSpaceTab", withExtension: "html")!
+	return Bundle.main.url(forResource: "aiChat", withExtension: "html")!
 }
 
 func getCouldNotLoadWebViewURL() -> URL{
