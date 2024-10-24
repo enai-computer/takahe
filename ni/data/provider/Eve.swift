@@ -11,7 +11,7 @@ import PostHog
 class Eve{
 	static let instance = Eve()
 	
-	private let maraeClient: MaraeClient
+	let maraeClient: MaraeClient
 	
 	init(){
 		maraeClient = MaraeClient()
@@ -19,7 +19,8 @@ class Eve{
 	
 	func ask(question: String) async -> String{
 		PostHogSDK.shared.capture(
-			"asked_en-ai"
+			"asked_en-ai",
+			properties: ["ui-component": "palette"]
 		)
 		do{
 			return try await maraeClient.askQuestion(question)
