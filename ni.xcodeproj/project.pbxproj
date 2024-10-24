@@ -140,6 +140,7 @@
 		CD7AE0AC2C553C7300B3984E /* NiLibraryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD7AE0AB2C553C7300B3984E /* NiLibraryView.xib */; };
 		CD8873782BCD649800007BE9 /* TimeUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8873772BCD649800007BE9 /* TimeUtils.swift */; };
 		CD8D2B082C00C7A100C44C1D /* NoteTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8D2B072C00C7A100C44C1D /* NoteTable.swift */; };
+		CD8E580B2CC909F0007550CF /* EveChatTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8E580A2CC909EB007550CF /* EveChatTable.swift */; };
 		CD97975C2C57AC2C00640750 /* LoadingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD97975B2C57AC2C00640750 /* LoadingView.xib */; };
 		CD97975E2C57AE1400640750 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD97975D2C57AE1400640750 /* LoadingView.swift */; };
 		CD9B96BC2C04C8EE00998CE2 /* CFContentItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9B96BB2C04C8EE00998CE2 /* CFContentItem.swift */; };
@@ -366,6 +367,7 @@
 		CD7AE0AB2C553C7300B3984E /* NiLibraryView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NiLibraryView.xib; sourceTree = "<group>"; };
 		CD8873772BCD649800007BE9 /* TimeUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeUtils.swift; sourceTree = "<group>"; };
 		CD8D2B072C00C7A100C44C1D /* NoteTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteTable.swift; sourceTree = "<group>"; };
+		CD8E580A2CC909EB007550CF /* EveChatTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EveChatTable.swift; sourceTree = "<group>"; };
 		CD97975B2C57AC2C00640750 /* LoadingView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoadingView.xib; sourceTree = "<group>"; };
 		CD97975D2C57AE1400640750 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		CD9B96BB2C04C8EE00998CE2 /* CFContentItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CFContentItem.swift; sourceTree = "<group>"; };
@@ -975,6 +977,7 @@
 		CDD6B9412B169FC300C6144D /* spacesDB */ = {
 			isa = PBXGroup;
 			children = (
+				CD8E580A2CC909EB007550CF /* EveChatTable.swift */,
 				CDE7BAF62CABE2B000328025 /* GroupIdContentIdTable.swift */,
 				CDE7BAF42CABE25500328025 /* GroupTable.swift */,
 				CDD6B93F2B169F7700C6144D /* DocumentTable.swift */,
@@ -1246,6 +1249,7 @@
 				CD6317F12BC53A9600434D56 /* cfOverlay.swift in Sources */,
 				A14E8F212AD20A2600409DDF /* DefaultWindowController.swift in Sources */,
 				CD5B153A2BDFBFE40030F017 /* NiActionImage.swift in Sources */,
+				CD8E580B2CC909F0007550CF /* EveChatTable.swift in Sources */,
 				CDC5A1162C284AD1002F5621 /* NiDocControllerCache.swift in Sources */,
 				CDB4830C2C6A624E00612AF5 /* CFFullscreenView.swift in Sources */,
 				CDE7BAF92CABFA0900328025 /* DocumentIdGroupIdTable.swift in Sources */,
@@ -1556,6 +1560,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = "0.2.1 --- 2024-10-17.1";
+				CURRENT_PROJECT_VERSION = "0.2.1 --- 2024-10-23.1";
 				DEAD_CODE_STRIPPING = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
