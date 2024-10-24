@@ -474,10 +474,6 @@ class NiSpaceViewController: NSViewController, NSTextFieldDelegate{
 		//Needs to happen here, as we rely on the visible view for size
 		addNoteToEmptySpace(niDocument: niDocument)
 		let welcomeCFController = niDocument.openEmptyCF()
-		if(0 < welcomeCFController.tabs.count){
-			let newSpaceHtmlurl = getNewSpaceWebViewURL()
-			welcomeCFController.tabs[0].webView?.loadFileURL(newSpaceHtmlurl, allowingReadAccessTo: newSpaceHtmlurl)
-		}
 		
 		niScrollView.documentView = niDocument.view
 		
@@ -492,18 +488,9 @@ class NiSpaceViewController: NSViewController, NSTextFieldDelegate{
 					(result, error) in
 					print(error as Any)
 				}
+				welcomeCFController.tabs[0].webView?.passEnaiAPIAuth()
 			}
 		}
-	}
-	
-	private func sanitizeForJavaScript(_ str: String) -> String {
-		return str.replacingOccurrences(of: "\\", with: "\\\\")
-			   .replacingOccurrences(of: "'", with: "\\'")
-			   .replacingOccurrences(of: "\"", with: "\\\"")
-			   .replacingOccurrences(of: "\n", with: "\\n")
-			   .replacingOccurrences(of: "\r", with: "\\r")
-			   .replacingOccurrences(of: "\u{2028}", with: "\\u2028")
-			   .replacingOccurrences(of: "\u{2029}", with: "\\u2029")
 	}
 	
 	private func addNoteToEmptySpace(niDocument: NiSpaceDocumentController){
