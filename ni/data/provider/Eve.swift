@@ -30,16 +30,22 @@ class Eve{
 		return "Failed to connect to the AI service."
 	}
 	
-	func genWelcomeTxt(for name: String) async -> String?{
+	func genWelcomeTxt(for spaceName: String, groupName: String? = nil, tabTitles: [String] = []) async -> String?{
 		guard PostHogSDK.shared.isFeatureEnabled("en-ai") else {return en_ai_disabled_response}
 		do{
-			return try await maraeClient.getWelcomeText(name)
+			return try await maraeClient.getWelcomeText(
+				WelcomeTextPayload(
+					space_name: spaceName,
+					group_name: groupName,
+					context_tabs: tabTitles
+				)
+			)
 		}catch{
 			print(error)
 		}
 		return en_ai_disabled_response
 	}
-	
+
 	private let en_ai_disabled_response = """
   <p>
 	  In a few days, Enai will be the fastest way to chat with an AI. Thank you for your patience!
