@@ -482,12 +482,7 @@ class NiSpaceViewController: NSViewController, NSTextFieldDelegate{
 		
 		Task{
 			if let welcomeTxt = await Eve.instance.genWelcomeTxt(for: name){
-				guard 0 < welcomeCFController.tabs.count else {return}
-				let sanitizedStr = sanitizeForJavaScript(welcomeTxt)
-				welcomeCFController.tabs[0].webView?.evaluateJavaScript("updateInfoModal('\(sanitizedStr)');"){
-					(result, error) in
-					print(error as Any)
-				}
+				welcomeCFController.safeGetTab(at: 0)?.webView?.setWelcomeMessage(welcomeTxt)
 				welcomeCFController.tabs[0].webView?.passEnaiAPIAuth()
 			}
 		}

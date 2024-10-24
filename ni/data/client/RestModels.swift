@@ -61,3 +61,9 @@ struct MaraeVerifyResponse: Codable{
 	let access_token: String
 	let token_type: String
 }
+
+struct WelcomeTextPayload: Codable{
+	let space_name: String
+	let group_name: String?
+	let context_tabs: [String]
+}

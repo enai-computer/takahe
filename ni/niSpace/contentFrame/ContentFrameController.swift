@@ -814,11 +814,22 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		if(!viewHasTabs()){
 			return
 		}
-		
+		var lstOfTitles: [String] = []
+		for t in tabs{
+			lstOfTitles.append(t.title)
+		}
 		let pos = openEmptyWebTab(reloadTabHeads: false)
 		//needs to happen a frame later as otherwise the cursor will not jump into the editing mode
 		DispatchQueue.main.asyncAfter(deadline: .now() + 0.005) {
 			self.editTabUrl(at: pos)
+		}
+		let spaceName: String = (myView.niParentDoc?.nextResponder as? NiSpaceDocumentController)?.niSpaceName ?? ""
+		Task{
+			if let welcomeTxt = await Eve.instance.genWelcomeTxt(
+				for: spaceName, groupName: self.groupName, tabTitles: lstOfTitles
+			){
+				self.safeGetTab(at: pos)?.webView?.setWelcomeMessage(welcomeTxt)
+			}
 		}
 	}
 	
