@@ -112,7 +112,6 @@ class ContentFrameView: CFBaseView, CFTabHeadProtocol, CFFwdBackButtonProtocol, 
 			tabViewPos = openNextTo + 1
 			niContentTabView.insertTabViewItem(tabViewItem, at: tabViewPos)
 		}
-		
 	    return tabViewPos
     }
     
