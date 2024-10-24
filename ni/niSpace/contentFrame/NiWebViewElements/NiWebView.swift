@@ -10,6 +10,7 @@ import Cocoa
 import Carbon.HIToolbox
 import WebKit
 import PDFKit
+import PostHog
 
 class NiWebView: WKWebView, CFContentItem, CFContentSearch{
     
@@ -19,6 +20,7 @@ class NiWebView: WKWebView, CFContentItem, CFContentSearch{
 	var retries: Int = 0
 	let findConfig = WKFindConfiguration()
 	private(set) var websiteLoaded = false
+	private var eveHandler: EveChatHandler?
 	
 	// overlays own view to deactivate clicks and visualise deactivation state
 	private var overlay: NSView?
@@ -37,11 +39,14 @@ class NiWebView: WKWebView, CFContentItem, CFContentSearch{
         
         super.init(frame: frame, configuration: wvConfig)
         GlobalScriptMessageHandler.instance.ensureHandles(configuration: self.configuration)
+		eveHandler = EveChatHandler(self)
+		eveHandler?.ensureHandles(configuration: self.configuration)
 		
 		findConfig.caseSensitive = false
 		findConfig.wraps = false
 		
 		self.allowsBackForwardNavigationGestures = true
+		self.allowsLinkPreview = true
 		
 		titleChangeObserver = self.observe(
 			\.title,
@@ -68,9 +73,13 @@ class NiWebView: WKWebView, CFContentItem, CFContentSearch{
 		let wvConfig = generateWKWebViewConfiguration()
 		super.init(frame: frame, configuration: wvConfig)
 		GlobalScriptMessageHandler.instance.ensureHandles(configuration: self.configuration)
+		eveHandler = EveChatHandler(self)
+		eveHandler?.ensureHandles(configuration: self.configuration)
+		
 		findConfig.caseSensitive = false
 		findConfig.wraps = false
 		self.allowsBackForwardNavigationGestures = true
+		self.allowsLinkPreview = true
 	}
     
     required init?(coder: NSCoder) {
@@ -278,6 +287,53 @@ class NiWebView: WKWebView, CFContentItem, CFContentSearch{
 		owner?.niWebViewTitleChanged(self)
 	}
 	
+	func passEnaiAPIAuth(){
+		guard PostHogSDK.shared.isFeatureEnabled("en-ai") else {return}
+		guard isEveChatURL() else {return}
+		let (userId, bearerToken) = Eve.instance.maraeClient.authKey()
+		self.evaluateJavaScript("API_BASE_HOST = \"\(Eve.instance.maraeClient.hostUrl)\""){
+			(result, error) in
+			print(error as Any)
+		}
+		self.evaluateJavaScript("updateAuthDetails({userId: \"\(userId)\", bearerToken: \"\(bearerToken)\"});"){
+		   (result, error) in
+		   print(error as Any)
+	   }
+	}
+	
+	func fetchEveMessages() async -> String?{
+		guard isEveChatURL() else {return nil}
+		do{
+			let dic = try await self.evaluateJavaScript("getMessages()")
+			let jsonData: Data = try JSONSerialization.data(withJSONObject: dic, options: .prettyPrinted)
+			return String(data: jsonData, encoding: .utf8)
+		}catch{
+			print(error)
+		}
+		return nil
+	}
+	
+	func setEveMessageHistory(){
+		guard isEveChatURL() else {return}
+		guard let contentId = owner?.safeGetTab(at: tabHeadPosition)?.contentId else {return}
+		guard let messageData = EveChatTable.fetchMessageHistory(contentId: contentId)?.data(using: .utf8) else {return}
+		Task{
+			do{
+				let messDic = try JSONSerialization.jsonObject(with: messageData)
+				try await self.callAsyncJavaScript("setMessages(data);",
+					 arguments: ["data": messDic],
+					 contentWorld: WKContentWorld.page
+				)
+			}catch{
+				print(error)
+			}
+		}
+	}
+	
+	func isEveChatURL() -> Bool{
+		return self.url == getEmtpyWebViewURL()
+	}
+	
 	deinit{
 		canGobackObserver?.invalidate()
 		canGoForwardObserver?.invalidate()
@@ -285,6 +341,7 @@ class NiWebView: WKWebView, CFContentItem, CFContentSearch{
 		
 		overlay?.removeFromSuperview()
 		overlay = nil
+		eveHandler = nil
 		
 		stopLoading()
 	}
@@ -354,12 +411,44 @@ class GlobalScriptMessageHandler: NSObject, WKScriptMessageHandler {
     
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
         if let body = message.body as? NSDictionary {
-            contextMenu_nodeName = body["nodeName"] as? String
-            contextMenu_nodeId = body["id"] as? String
-            contextMenu_hrefNodeName = body["hrefNodeName"] as? String
-            contextMenu_hrefNodeId = body["hrefId"] as? String
-            contextMenu_href = body["href"] as? String
+			contextMenu_nodeName = body["nodeName"] as? String
+			contextMenu_nodeId = body["id"] as? String
+			contextMenu_hrefNodeName = body["hrefNodeName"] as? String
+			contextMenu_hrefNodeId = body["hrefId"] as? String
+			contextMenu_href = body["href"] as? String
 			contextMenu_selectedText = body["selectedText"] as? String
         }
     }
+}
+
+class EveChatHandler: NSObject, WKScriptMessageHandlerWithReply {
+	private weak var niWebView: NiWebView?
+	
+	init(_ webView: NiWebView) {
+		self.niWebView = webView
+		super.init()
+	}
+	
+	public func ensureHandles(configuration: WKWebViewConfiguration) {
+		let userContentController = configuration.userContentController
+		userContentController.addScriptMessageHandler(
+			self,
+			contentWorld: WKContentWorld.page,
+			name: "en_ai_handler"
+		)
+	}
+	
+	func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) async -> (Any?, String?) {
+		guard let body = message.body as? NSDictionary else {return (nil, nil)}
+		guard body["source"] as? String == "enai-agent" else{return (nil, nil)}
+		if let type = body["type"] as? String{
+			if(type == "request-history"){
+				niWebView?.setEveMessageHistory()
+			}
+		}
+		print(body)
+		return (nil, nil)
+	}
+	
+	
 }
