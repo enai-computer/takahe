@@ -140,7 +140,9 @@
 		CD7AE0AC2C553C7300B3984E /* NiLibraryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD7AE0AB2C553C7300B3984E /* NiLibraryView.xib */; };
 		CD8873782BCD649800007BE9 /* TimeUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8873772BCD649800007BE9 /* TimeUtils.swift */; };
 		CD8D2B082C00C7A100C44C1D /* NoteTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8D2B072C00C7A100C44C1D /* NoteTable.swift */; };
+		CD8E58052CC8F1A9007550CF /* enai-icon.svg in Resources */ = {isa = PBXBuildFile; fileRef = CD8E58042CC8F1A9007550CF /* enai-icon.svg */; };
 		CD8E580B2CC909F0007550CF /* EveChatTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8E580A2CC909EB007550CF /* EveChatTable.swift */; };
+		CD8E58112CCA36DD007550CF /* aiChat.html in Resources */ = {isa = PBXBuildFile; fileRef = CD8E58102CCA36DD007550CF /* aiChat.html */; };
 		CD97975C2C57AC2C00640750 /* LoadingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD97975B2C57AC2C00640750 /* LoadingView.xib */; };
 		CD97975E2C57AE1400640750 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD97975D2C57AE1400640750 /* LoadingView.swift */; };
 		CD9B96BC2C04C8EE00998CE2 /* CFContentItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9B96BB2C04C8EE00998CE2 /* CFContentItem.swift */; };
@@ -367,7 +369,9 @@
 		CD7AE0AB2C553C7300B3984E /* NiLibraryView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NiLibraryView.xib; sourceTree = "<group>"; };
 		CD8873772BCD649800007BE9 /* TimeUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeUtils.swift; sourceTree = "<group>"; };
 		CD8D2B072C00C7A100C44C1D /* NoteTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteTable.swift; sourceTree = "<group>"; };
+		CD8E58042CC8F1A9007550CF /* enai-icon.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = "enai-icon.svg"; sourceTree = "<group>"; };
 		CD8E580A2CC909EB007550CF /* EveChatTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EveChatTable.swift; sourceTree = "<group>"; };
+		CD8E58102CCA36DD007550CF /* aiChat.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = aiChat.html; sourceTree = "<group>"; };
 		CD97975B2C57AC2C00640750 /* LoadingView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoadingView.xib; sourceTree = "<group>"; };
 		CD97975D2C57AE1400640750 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		CD9B96BB2C04C8EE00998CE2 /* CFContentItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CFContentItem.swift; sourceTree = "<group>"; };
@@ -749,6 +753,8 @@
 		CD6317E62BC4845100434D56 /* assets */ = {
 			isa = PBXGroup;
 			children = (
+				CD8E58102CCA36DD007550CF /* aiChat.html */,
+				CD8E58042CC8F1A9007550CF /* enai-icon.svg */,
 				CDACD35C2C56C80C00B9CBE9 /* forDemo */,
 				CD61F8B12C52879100F5A1EA /* webAppIcons */,
 				CD2D8E7A2C4EB961003AED25 /* pdfsForWelcomeSpaces */,
@@ -1176,6 +1182,7 @@
 				CD618DA02C2B416E006869AF /* E9762558-E0D7-4FAA-9BEA-405FB306E3E6.jpg in Resources */,
 				CD59FA192C369ADD00CFB8DE /* CFSimpleFrameView.xib in Resources */,
 				CD1C6D5B2C525A950019CD09 /* NiPinnedMenuView.xib in Resources */,
+				CD8E58112CCA36DD007550CF /* aiChat.html in Resources */,
 				A1B8E6B02AAFB5EF00AC6566 /* Main.storyboard in Resources */,
 				CD4DBD512CBE70C700CE5179 /* global.css in Resources */,
 				CDFAC3392C9863F70057F759 /* .swiftlint.yml in Resources */,
@@ -1202,6 +1209,7 @@
 				CD4DBD532CBE70D000CE5179 /* index.css in Resources */,
 				CD6B97732C59544F0046C36B /* loadingAnimation.gif in Resources */,
 				CDBCBBF82C92F8330069EFE3 /* NiSignupView.xib in Resources */,
+				CD8E58052CC8F1A9007550CF /* enai-icon.svg in Resources */,
 				CD569FEC2C53A05700C16B2E /* 76AD3FA8-81D2-4C9D-A5B0-EF190D4F6D81.png in Resources */,
 				CD6DED902C24954500AA8BC4 /* NiWebViewFindPanel.xib in Resources */,
 				CDF0DD242C202BDB006C4EF4 /* NiHomeView.xib in Resources */,
@@ -1559,7 +1567,6 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = "0.2.1 --- 2024-10-17.1";
 				CURRENT_PROJECT_VERSION = "0.2.1 --- 2024-10-23.1";
 				DEAD_CODE_STRIPPING = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -1572,6 +1579,10 @@
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/ni/assets/enai-chat/node_modules/@rollup/rollup-darwin-arm64",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MARKETING_VERSION = 0.2.1;
@@ -1591,7 +1602,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = "0.2.1 --- 2024-10-17.1";
+				CURRENT_PROJECT_VERSION = "0.2.1 --- 2024-10-23.1";
 				DEAD_CODE_STRIPPING = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -1603,6 +1614,10 @@
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/ni/assets/enai-chat/node_modules/@rollup/rollup-darwin-arm64",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MARKETING_VERSION = 0.2.1;
