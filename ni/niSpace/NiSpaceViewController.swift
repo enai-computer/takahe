@@ -473,7 +473,7 @@ class NiSpaceViewController: NSViewController, NSTextFieldDelegate{
 		
 		//Needs to happen here, as we rely on the visible view for size
 		addNoteToEmptySpace(niDocument: niDocument)
-		let welcomeCFController = niDocument.openEmptyCF()
+		let welcomeCFController = niDocument.openEmptyCF(createInfoText: false)
 		
 		niScrollView.documentView = niDocument.view
 		

@@ -68,7 +68,8 @@ class NiSpaceDocumentController: NSViewController{
 					 content: String? = nil,
 					 groupName: String? = nil,
 					 groupId: UUID? = nil,
-					 positionAlwaysCenter: Bool = false
+					 positionAlwaysCenter: Bool = false,
+					 createInfoText: Bool = true
 	) -> ContentFrameController {
 		let controller = openEmptyContentFrame(viewState: viewState, groupName: groupName, groupId: groupId)
 		let newCFView = controller.myView
@@ -96,7 +97,7 @@ class NiSpaceDocumentController: NSViewController{
 		
 		//TODO: set inital tab type bassed on passed parameter
 		if(initialTabType == .web && openInitalTab){
-			controller.openAndEditEmptyWebTab()
+			controller.openAndEditEmptyWebTab(createInfoText: createInfoText)
 		}else if(initialTabType == .note){
 			controller.openNoteInNewTab(content: content)
 		}
