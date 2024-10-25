@@ -825,7 +825,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		}
 		let spaceName: String = (myView.niParentDoc?.nextResponder as? NiSpaceDocumentController)?.niSpaceName ?? ""
 		Task{
-			if let welcomeTxt = await Eve.instance.genWelcomeTxt(
+			if let welcomeTxt = await Eve.instance.getInfoText(
 				for: spaceName, groupName: self.groupName, tabTitles: lstOfTitles
 			){
 				self.safeGetTab(at: pos)?.webView?.setWelcomeMessage(welcomeTxt)
