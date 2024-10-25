@@ -810,7 +810,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		return tabHeadModel.position
 	}
 	
-	func openAndEditEmptyWebTab(){
+	func openAndEditEmptyWebTab(createInfoText: Bool = true){
 		if(!viewHasTabs()){
 			return
 		}
@@ -824,11 +824,14 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 			self.editTabUrl(at: pos)
 		}
 		let spaceName: String = (myView.niParentDoc?.nextResponder as? NiSpaceDocumentController)?.niSpaceName ?? ""
-		Task{
-			if let welcomeTxt = await Eve.instance.getInfoText(
-				for: spaceName, groupName: self.groupName, tabTitles: lstOfTitles
-			){
-				self.safeGetTab(at: pos)?.webView?.setWelcomeMessage(welcomeTxt)
+		
+		if(createInfoText){
+			Task{
+				if let welcomeTxt = await Eve.instance.getInfoText(
+					for: spaceName, groupName: self.groupName, tabTitles: lstOfTitles
+				){
+					self.safeGetTab(at: pos)?.webView?.setWelcomeMessage(welcomeTxt)
+				}
 			}
 		}
 	}
