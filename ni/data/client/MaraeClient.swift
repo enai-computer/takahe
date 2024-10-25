@@ -130,7 +130,10 @@ class MaraeClient{
 			query: [
 				("sname", spaceName.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "")
 			],
-			headers: auth_header
+			headers: [
+				"Accept": "text/markdown",
+				AUTH_HEADER_KEY: auth_header[AUTH_HEADER_KEY] ?? ""
+			]
 		)
 		let res = try await sendRequest(req)
 		if(res?.statusCode == 200 && res != nil){
@@ -141,7 +144,7 @@ class MaraeClient{
 		return nil
 	}
 	
-	func getWelcomeText(_ body: WelcomeTextPayload) async throws -> String?{
+	func getInfoText(_ body: WelcomeTextPayload) async throws -> String?{
 		let relPath = apiVersion + "/" + userID + "/welcome-text"
 		let req = Request(
 			path: relPath,

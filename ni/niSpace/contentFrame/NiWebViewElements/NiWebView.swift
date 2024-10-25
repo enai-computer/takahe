@@ -301,12 +301,18 @@ class NiWebView: WKWebView, CFContentItem, CFContentSearch{
 	   }
 	}
 	
-	func setWelcomeMessage(_ messageHtml: String){
+	func setWelcomeMessage(_ message: String){
 		guard isEveChatURL() else {return}
-		let sanitizedStr = sanitizeForJavaScript(messageHtml)
-		self.evaluateJavaScript("updateInfoModal('\(sanitizedStr)');"){
-			(result, error) in
-			print(error as Any)
+		let messDic: [[String:String]] = [["role": "assistant", "content": message]]
+		Task{
+			do{
+				try await self.callAsyncJavaScript("setMessages(data);",
+					 arguments: ["data": messDic],
+					 contentWorld: WKContentWorld.page
+				)
+			}catch{
+				print(error)
+			}
 		}
 	}
 	

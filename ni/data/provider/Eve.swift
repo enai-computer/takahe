@@ -43,7 +43,7 @@ class Eve{
 	func getInfoText(for spaceName: String, groupName: String? = nil, tabTitles: [String] = []) async -> String?{
 		guard PostHogSDK.shared.isFeatureEnabled("en-ai") else {return en_ai_disabled_response}
 		do{
-			return try await maraeClient.getWelcomeText(
+			return try await maraeClient.getInfoText(
 				WelcomeTextPayload(
 					space_name: spaceName,
 					group_name: groupName,
