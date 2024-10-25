@@ -30,7 +30,17 @@ class Eve{
 		return "Failed to connect to the AI service."
 	}
 	
-	func genWelcomeTxt(for spaceName: String, groupName: String? = nil, tabTitles: [String] = []) async -> String?{
+	func getWelcomeText(for spaceName: String) async -> String?{
+		guard PostHogSDK.shared.isFeatureEnabled("en-ai") else {return en_ai_disabled_response}
+		do{
+			return try await maraeClient.getWelcomeText(spaceName)
+		}catch{
+			print(error)
+		}
+		return en_ai_disabled_response
+	}
+	
+	func getInfoText(for spaceName: String, groupName: String? = nil, tabTitles: [String] = []) async -> String?{
 		guard PostHogSDK.shared.isFeatureEnabled("en-ai") else {return en_ai_disabled_response}
 		do{
 			return try await maraeClient.getWelcomeText(
