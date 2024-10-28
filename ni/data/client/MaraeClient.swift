@@ -28,7 +28,7 @@ class MaraeClient{
 		verifyDevice()
 	}
 	
-	func verifyDevice(){
+	func verifyDevice(callback: (()-> Void)? = nil){
 		let relPath = (apiVersion + verify)
 
 		getDeviceToken { deviceToken in
@@ -46,6 +46,7 @@ class MaraeClient{
 					self.auth_header = [self.AUTH_HEADER_KEY: "Bearer " + self.bearerToken]
 					self.updatedAuthToken = .now
 				}
+				callback?()
 			}
 		}
 		return

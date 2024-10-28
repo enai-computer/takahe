@@ -301,6 +301,18 @@ class NiWebView: WKWebView, CFContentItem, CFContentSearch{
 	   }
 	}
 	
+	func passEnaiAPIAuthOnMain(){
+		DispatchQueue.main.async {
+			self.passEnaiAPIAuth()
+		}
+	}
+	
+	func passRefreshedEnaiAPIAuth(){
+		guard PostHogSDK.shared.isFeatureEnabled("en-ai") else {return}
+		guard isEveChatURL() else {return}
+		Eve.instance.maraeClient.verifyDevice(callback: self.passEnaiAPIAuthOnMain)
+	}
+	
 	func setWelcomeMessage(_ message: String){
 		guard isEveChatURL() else {return}
 		let messDic: [[String:String]] = [["role": "assistant", "content": message]]
@@ -459,9 +471,10 @@ class EveChatHandler: NSObject, WKScriptMessageHandlerWithReply {
 		if let type = body["type"] as? String{
 			if(type == "request-history"){
 				niWebView?.setEveMessageHistory()
+			}else if(type == "token-request"){
+				niWebView?.passRefreshedEnaiAPIAuth()
 			}
 		}
-		print(body)
 		return (nil, nil)
 	}
 	
