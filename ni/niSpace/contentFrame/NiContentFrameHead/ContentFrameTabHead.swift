@@ -14,7 +14,11 @@ class ContentFrameTabHead: NSCollectionViewItem, NSTextFieldDelegate {
 	@IBOutlet var closeButton: NiActionImage!
 	@IBOutlet var tabHeadTitle: ContentFrameTabHeadTextNode!
 	
-	private var inEditingMode = false
+	private var inEditingMode = false {
+		didSet {
+			updateEditingStyle()
+		}
+	}
 	weak var parentController: ContentFrameController?
 	var tabPosition: Int = -1
 	
@@ -192,7 +196,6 @@ class ContentFrameTabHead: NSCollectionViewItem, NSTextFieldDelegate {
 	private func setText(_ viewModel: TabViewModel){
 		if(viewModel.inEditingMode){
 			self.inEditingMode = true
-			addEditingStyle()
 			if(viewModel.state == .empty || viewModel.state == .error){
 				self.tabHeadTitle.enableEditing(urlStr: "")
 			}else{
@@ -200,10 +203,9 @@ class ContentFrameTabHead: NSCollectionViewItem, NSTextFieldDelegate {
 			}
 		}else{
 			self.inEditingMode = false
-			removeEditingStyle()
 			self.tabHeadTitle.disableEditing(title: viewModel.webView?.getTitle() ?? viewModel.title)
 		}
-		
+
 		if(viewModel.isSelected){
 			self.tabHeadTitle.textColor = NSColor.sand12
 		}else{
@@ -227,13 +229,13 @@ class ContentFrameTabHead: NSCollectionViewItem, NSTextFieldDelegate {
 		parentController?.endEditingTabUrl(at: tabPosition)
 	}
 	
-	private func addEditingStyle(){
-		self.view.layer?.borderWidth = 1.0
-		self.view.layer?.borderColor = NSColor(.birkin).cgColor
-	}
-	
-	private func removeEditingStyle(){
-		self.view.layer?.borderWidth = 0.0
+	private func updateEditingStyle() {
+		if inEditingMode {
+			self.view.layer?.borderWidth = 1.0
+			self.view.layer?.borderColor = NSColor(.birkin).cgColor
+		} else {
+			self.view.layer?.borderWidth = 0.0
+		}
 	}
 	
 	/*
