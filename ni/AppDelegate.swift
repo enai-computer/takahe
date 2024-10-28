@@ -29,11 +29,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		let POSTHOG_HOST = "https://eu.i.posthog.com"
 		let postHogConfig = PostHogConfig(apiKey: POSTHOG_API_KEY, host: POSTHOG_HOST)
 		PostHogSDK.shared.setup(postHogConfig)
-		if let userEmail = UserSettings.shared.userEmail{
-			PostHogSDK.shared.identify(
-				PostHogSDK.shared.getDistinctId(),
-				userPropertiesSetOnce: ["email": userEmail])
-		}
 		
 		_ = Eve.instance
 

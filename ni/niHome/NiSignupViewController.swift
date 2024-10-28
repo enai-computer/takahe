@@ -6,6 +6,7 @@
 //
 
 import Cocoa
+import PostHog
 
 class NiSignupViewController: NSViewController, NSTextFieldDelegate{
 	
@@ -58,7 +59,15 @@ class NiSignupViewController: NSViewController, NSTextFieldDelegate{
 			failedValidation()
 			return
 		}
-		UserSettings.updateValue(setting: .userEmail, value: emailField.stringValue)
+		let usrEmail = emailField.stringValue.trimmingCharacters(in: .whitespacesAndNewlines)
+		UserSettings.updateValue(setting: .userEmail, value: usrEmail)
+		if !usrEmail.isEmpty{
+			PostHogSDK.shared.identify(
+				PostHogSDK.shared.getDistinctId(),
+				userPropertiesSetOnce: ["email": usrEmail]
+			)
+			PostHogSDK.shared.flush()
+		}
 		homeViewController?.transitionFromSignupToSearch()
 	}
 	
