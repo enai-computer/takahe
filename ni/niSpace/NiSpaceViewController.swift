@@ -483,7 +483,7 @@ class NiSpaceViewController: NSViewController, NSTextFieldDelegate{
 		Task{
 			if let welcomeTxt = await Eve.instance.getWelcomeText(for: name){
 				welcomeCFController.safeGetTab(at: 0)?.webView?.setWelcomeMessage(welcomeTxt)
-				welcomeCFController.tabs[0].webView?.passEnaiAPIAuth()
+				welcomeCFController.safeGetTab(at: 0)?.webView?.passEnaiAPIAuth()
 			}
 		}
 	}
