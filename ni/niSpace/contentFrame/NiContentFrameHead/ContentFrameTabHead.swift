@@ -169,8 +169,6 @@ class ContentFrameTabHead: NSCollectionViewItem, NSTextFieldDelegate {
 		closeButton.isHidden = true
 	}
 	
-	
-	@MainActor
 	func setIcon(img: NSImage?){
 		self.image.image = img
 		self.image.alphaValue = 1.0
