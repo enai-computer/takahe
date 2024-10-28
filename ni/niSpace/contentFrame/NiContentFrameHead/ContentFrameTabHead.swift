@@ -177,16 +177,16 @@ class ContentFrameTabHead: NSCollectionViewItem, NSTextFieldDelegate {
 	}
     
 	private func setIcon(_ viewModel: TabViewModel){
-		if(viewModel.icon != nil){
-			setIcon(img: viewModel.icon!)
-			return
-		}
-		
-		Task {
-			if(viewModel.webView?.url?.absoluteString != nil){
-				let img = await FaviconProvider.instance.fetchIcon(viewModel.webView!.url!.absoluteString) ?? NSImage(named: NSImage.Name("enaiIcon"))
-				parentController?.setTabIcon(at: tabPosition, icon: img)
-				self.setIcon(img: img)
+		if let icon = viewModel.icon {
+			setIcon(img: icon)
+		} else if let webViewURL = viewModel.webView?.url {
+			Task { // Note: weak-ifying self doesn't help change the capture semantics here. See Matthew Massicotte: "The Bleeding Edge of Swift Concurrency", 2023-08-30 <https://www.youtube.com/watch?v=HqjqwW12wpw> at 2:45min
+				let img = await FaviconProvider.instance.fetchIcon(webViewURL)
+					?? NSImage(named: NSImage.Name("enaiIcon"))
+				await MainActor.run {
+					self.parentController?.setTabIcon(at: self.tabPosition, icon: img)
+					self.setIcon(img: img)
+				}
 			}
 		}
 	}
