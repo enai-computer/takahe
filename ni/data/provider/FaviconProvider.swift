@@ -13,22 +13,25 @@ class FaviconProvider{
 	static let instance = FaviconProvider()
 	private init(){}
 	
-	func fetchIcon(_ urlStr: String) async -> NSImage?{
+	func fetchIcon(_ urlStr: String) async -> NSImage? {
+		guard let url = URL(string: urlStr) else { return nil }
+		return await fetchIcon(url)
+	}
+
+	func fetchIcon(_ url: URL) async -> NSImage? {
 		do{
-			guard let url = URL(string: urlStr) else {return nil}
 			guard let host = url.host() else { return nil}
 			if let cachedIcon = tryFetchFromCache(host){
 				return cachedIcon
 			}
 			
-			if let icon = try await getFromWeb(url){
-				cacheIcon(icon, domain: host)
-				return icon
-			}
-		}catch{
+			guard let icon = try await getFromWeb(url) else { return nil }
+			cacheIcon(icon, domain: host)
+			return icon
+		} catch {
 			print(error)
+			return nil
 		}
-		return nil
 	}
 	
 	func fetchIcon(for contentId: UUID) async -> NSImage?{
