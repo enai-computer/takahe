@@ -201,13 +201,23 @@ func niCFTabModelToTabViewModel(tabs: [NiCFTabModel]) -> [TabViewModel]{
 
 func getTabViewModel(for id: UUID, ofType type: TabContentType, positioned at: Int, scrollPosition: Int?) -> TabViewModel{
 	var tabView: TabViewModel
-	if(type == .web || type == .eveChat){
+	if(type == .web){
 		let record = CachedWebTable.fetchCachedWebsite(contentId: id)
 		tabView = TabViewModel(
 			contentId: id,
 			type: type,
-			title: record?.title ?? "Search or enter Url",
+			title: record?.title ?? "Blank Page",
 			content: record?.url ?? "https://enai.io",
+			state: .notLoaded,
+			position: at
+		)
+	}else if(type == .eveChat){
+		let record = CachedWebTable.fetchCachedWebsite(contentId: id)
+		tabView = TabViewModel(
+			contentId: id,
+			type: .eveChat,
+			title: record?.title ?? "Blank Page",
+			content: getEmtpyWebViewURL().absoluteString,
 			state: .notLoaded,
 			position: at
 		)
