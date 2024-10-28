@@ -43,8 +43,10 @@ class DocumentDal{
 			}
 		}
 		if(tab.type == .eveChat){
+			//creating a reference to the webview, so it doesn't get removed from memory before we fetched the messages
+			let eveWebview = tab.webView
 			Task{
-				if let eveMessages = await tab.webView?.fetchEveMessages() as? String{
+				if let eveMessages = await eveWebview?.fetchEveMessages() as? String{
 					persistEveChat(spaceId: spaceId, id: tab.contentId, title: tab.title, messages: eveMessages, groupId: groupId)
 				}
 			}
