@@ -20,6 +20,12 @@
                                                 <action selector="orderFrontStandardAboutPanel:" target="Ady-hI-5gd" id="Exp-CZ-Vem"/>
                                             </connections>
                                         </menuItem>
+                                        <menuItem title="Check for Updates" id="yga-zl-aKv">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="checkForUpdates:" target="Ug8-x7-TPt" id="Fj0-X9-joZ"/>
+                                            </connections>
+                                        </menuItem>
                                         <menuItem title="Preferences…" enabled="NO" keyEquivalent="," id="BOF-NM-1cW"/>
                                         <menuItem isSeparatorItem="YES" id="kCx-OE-vgT"/>
                                         <menuItem title="Quit Enai" keyEquivalent="q" allowsKeyEquivalentWhenHidden="YES" id="4sb-4s-VLi">
@@ -367,6 +373,7 @@ GQ
                 </application>
                 <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="ni" customModuleProvider="target"/>
                 <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
+                <customObject id="Ug8-x7-TPt" customClass="SPUStandardUpdaterController" customModule="ni" customModuleProvider="target"/>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="75" y="0.0"/>

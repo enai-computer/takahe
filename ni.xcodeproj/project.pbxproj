@@ -135,6 +135,7 @@
 		CD781E752C0E1B6E00D02F55 /* NiNoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD781E742C0E1B6E00D02F55 /* NiNoteView.swift */; };
 		CD7AE0AA2C55366A00B3984E /* NiLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7AE0A92C55366A00B3984E /* NiLibrary.swift */; };
 		CD7AE0AC2C553C7300B3984E /* NiLibraryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD7AE0AB2C553C7300B3984E /* NiLibraryView.xib */; };
+		CD8867D52CD1152D00C8B880 /* Sparkle in Frameworks */ = {isa = PBXBuildFile; productRef = CD8867D42CD1152D00C8B880 /* Sparkle */; };
 		CD8873782BCD649800007BE9 /* TimeUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8873772BCD649800007BE9 /* TimeUtils.swift */; };
 		CD8D2B082C00C7A100C44C1D /* NoteTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8D2B072C00C7A100C44C1D /* NoteTable.swift */; };
 		CD8E58052CC8F1A9007550CF /* enai-icon.svg in Resources */ = {isa = PBXBuildFile; fileRef = CD8E58042CC8F1A9007550CF /* enai-icon.svg */; };
@@ -446,6 +447,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CD8867D52CD1152D00C8B880 /* Sparkle in Frameworks */,
 				CD4088D72C9AF61D005EF6ED /* SQLite in Frameworks */,
 				CDD2B5172C9AEDDB0082972A /* SQLite in Frameworks */,
 				CDFAC33C2C9865050057F759 /* FaviconFinder in Frameworks */,
@@ -1076,6 +1078,7 @@
 				CD4088D62C9AF61D005EF6ED /* SQLite */,
 				CD2DE8852CA1CB44000B5461 /* Get */,
 				CDFA990D2CBEB0E5004795C9 /* NativeMarkKit */,
+				CD8867D42CD1152D00C8B880 /* Sparkle */,
 			);
 			productName = ni;
 			productReference = A1B8E6A22AAFB5EC00AC6566 /* ni.app */;
@@ -1135,6 +1138,7 @@
 				CD4088D52C9AF61D005EF6ED /* XCRemoteSwiftPackageReference "SQLite.swift" */,
 				CD2DE8842CA1CB44000B5461 /* XCRemoteSwiftPackageReference "Get" */,
 				CDFA990C2CBEB0E5004795C9 /* XCRemoteSwiftPackageReference "MarkdownKit" */,
+				CD8867D32CD1152D00C8B880 /* XCRemoteSwiftPackageReference "Sparkle" */,
 			);
 			productRefGroup = A1B8E6A32AAFB5EC00AC6566 /* Products */;
 			projectDirPath = "";
@@ -1713,6 +1717,14 @@
 				minimumVersion = 1.2.0;
 			};
 		};
+		CD8867D32CD1152D00C8B880 /* XCRemoteSwiftPackageReference "Sparkle" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sparkle-project/Sparkle";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.6.4;
+			};
+		};
 		CDFA990C2CBEB0E5004795C9 /* XCRemoteSwiftPackageReference "MarkdownKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/enai-io/MarkdownKit";
@@ -1756,6 +1768,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = CD4D7AE22C49459400B6DBFD /* XCRemoteSwiftPackageReference "swift-atomics" */;
 			productName = Atomics;
+		};
+		CD8867D42CD1152D00C8B880 /* Sparkle */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CD8867D32CD1152D00C8B880 /* XCRemoteSwiftPackageReference "Sparkle" */;
+			productName = Sparkle;
 		};
 		CDD6B93D2B152D3F00C6144D /* SQLite */ = {
 			isa = XCSwiftPackageProductDependency;
