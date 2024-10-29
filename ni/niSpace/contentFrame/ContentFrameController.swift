@@ -93,11 +93,6 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		viewIsDrawn = true
 	}
 	
-	override func viewWillDisappear() {
-		super.viewWillDisappear()
-		viewIsDrawn = false
-	}
-	
 	private func loadAndDisplayDefaultView(){
 		loadExpandedView()
 		self.view = expandedCFView!
@@ -1611,7 +1606,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 				children.append(
 					NiCFTabModel(
 						id: tab.contentId,
-						contentType: tab.type,
+						contentType: tabs[i].type,
 						contentState: tab.state.rawValue,
 						active: tab.isSelected,
 						position: i,
