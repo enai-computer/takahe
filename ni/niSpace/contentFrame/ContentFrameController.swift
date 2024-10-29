@@ -461,6 +461,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	}
 	
 	private func minimizeSelfToSimple(){
+		guard safeGetTab(at: 0)?.type == .pdf else {return}
 		let simpleMinimizedView = loadSimpleMinimzedView()
 		simpleMinimizedView.setFrameOwner(myView.niParentDoc)
 		
