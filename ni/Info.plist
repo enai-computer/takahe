@@ -29,6 +29,6 @@
 		<string>Inter-Regular.ttf</string>
 	</array>
 	<key>SUFeedURL</key>
-	<string>https://mac.enai.host/appcast.xml</string>
+	<string>https://update.enai.host/appcast.xml</string>
 </dict>
 </plist>
