@@ -284,6 +284,7 @@ class NiWebView: WKWebView, CFContentItem, CFContentSearch{
 	}
 	
 	func titleChanged(){
+		if (isEveChatURL() && title == "Blank page"){return}
 		owner?.niWebViewTitleChanged(self)
 	}
 	
@@ -346,6 +347,16 @@ class NiWebView: WKWebView, CFContentItem, CFContentSearch{
 		guard let messageData = EveChatTable.fetchMessageHistory(contentId: contentId)?.data(using: .utf8) else {return}
 		Task{
 			do{
+				if let storedChatTitle: String = ContentTable.fetchURLTitleSource(for: contentId)?.1 {
+					try await self.callAsyncJavaScript("document.title = data;",
+													   arguments: ["data": storedChatTitle],
+													   contentWorld: WKContentWorld.page
+					)
+					DispatchQueue.main.asyncAfter(deadline: .now().advanced(by: .seconds(1))) {
+						//execution delayed, as this otherwise get's called before contentframe controller is drawn
+						self.titleChanged()
+					}
+				}
 				let messDic = try JSONSerialization.jsonObject(with: messageData)
 				try await self.callAsyncJavaScript("setMessages(data);",
 					 arguments: ["data": messDic],

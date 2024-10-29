@@ -212,11 +212,11 @@ func getTabViewModel(for id: UUID, ofType type: TabContentType, positioned at: I
 			position: at
 		)
 	}else if(type == .eveChat){
-		let record = CachedWebTable.fetchCachedWebsite(contentId: id)
+		let record = ContentTable.fetchURLTitleSource(for: id)
 		tabView = TabViewModel(
 			contentId: id,
 			type: .eveChat,
-			title: record?.title ?? "Blank Page",
+			title: record?.1 ?? "Blank Page",
 			content: getEmtpyWebViewURL().absoluteString,
 			state: .notLoaded,
 			position: at
