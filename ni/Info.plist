@@ -28,5 +28,7 @@
 		<string>sohne-kraftig.ttf</string>
 		<string>Inter-Regular.ttf</string>
 	</array>
+	<key>SUFeedURL</key>
+	<string>https://mac.enai.host/appcast.xml</string>
 </dict>
 </plist>
