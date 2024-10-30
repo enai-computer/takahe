@@ -50,12 +50,11 @@ class NiAsyncImgView: NSView{
 	func loadFavIcon(from urlStr: String?) {
 		guard let urlStr else {return}
 
-		Task{ [weak self] in
-			guard let image = await FaviconProvider.instance.fetchIcon(urlStr) ?? NSImage(named: NSImage.Name("enaiIcon")) else {
-				return
-			}
-
-			DispatchQueue.main.async {
+		Task { [weak self] in
+			guard let image = await FaviconProvider.instance.fetchIcon(urlStr) ?? NSImage(named: NSImage.Name("enaiIcon")) else { return }
+			// Abort if the view went away in the meantime.
+			guard let self else { return }
+			await MainActor.run { [weak self] in
 				self?.image = image
 				self?.needsDisplay = true
 			}
