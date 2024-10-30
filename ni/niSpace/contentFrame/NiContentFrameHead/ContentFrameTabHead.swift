@@ -182,10 +182,12 @@ class ContentFrameTabHead: NSCollectionViewItem, NSTextFieldDelegate {
 		if let icon = viewModel.icon {
 			setIcon(img: icon)
 		} else if let webViewURL = viewModel.webView?.url {
-			Task { // Note: weak-ifying self doesn't help change the capture semantics here. See Matthew Massicotte: "The Bleeding Edge of Swift Concurrency", 2023-08-30 <https://www.youtube.com/watch?v=HqjqwW12wpw> at 2:45min
+			Task { [weak self] in
 				let img = await FaviconProvider.instance.fetchIcon(webViewURL)
 					?? NSImage(named: NSImage.Name("enaiIcon"))
-				await MainActor.run {
+				guard let self else { return }
+				await MainActor.run { [weak self] in
+					guard let self else { return }
 					self.parentController?.updateViewModelIcon(at: self.tabPosition, icon: img)
 					self.setIcon(img: img)
 				}
