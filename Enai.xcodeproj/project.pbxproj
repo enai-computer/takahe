@@ -237,7 +237,7 @@
 		A14E8F242AD5EADF00409DDF /* NiSpaceView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NiSpaceView.xib; sourceTree = "<group>"; };
 		A14E8F262AD5EAF800409DDF /* NiSpaceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiSpaceView.swift; sourceTree = "<group>"; };
 		A14E8F282AD5EB1600409DDF /* NiSpaceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiSpaceViewController.swift; sourceTree = "<group>"; };
-		A1B8E6A22AAFB5EC00AC6566 /* ni.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ni.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A1B8E6A22AAFB5EC00AC6566 /* Enai.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Enai.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1B8E6A52AAFB5EC00AC6566 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A1B8E6AA2AAFB5EC00AC6566 /* ni.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ni.xcdatamodel; sourceTree = "<group>"; };
 		A1B8E6AC2AAFB5EF00AC6566 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -269,7 +269,7 @@
 		CD1C6D582C525A630019CD09 /* NiPinnedMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiPinnedMenuViewController.swift; sourceTree = "<group>"; };
 		CD1C6D5A2C525A950019CD09 /* NiPinnedMenuView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NiPinnedMenuView.xib; sourceTree = "<group>"; };
 		CD1C6D5C2C525C540019CD09 /* NiPinnedMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiPinnedMenuView.swift; sourceTree = "<group>"; };
-		CD1FAAEE2BFCA9BA00C781AC /* niTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = niTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CD1FAAEE2BFCA9BA00C781AC /* EnaiTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EnaiTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD1FAAF02BFCA9BA00C781AC /* niTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = niTests.swift; sourceTree = "<group>"; };
 		CD23EBFA2C0F72FF00A2ACD9 /* Cook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cook.swift; sourceTree = "<group>"; };
 		CD240BD42C80A714000E478F /* WeatherWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherWidget.swift; sourceTree = "<group>"; };
@@ -494,8 +494,8 @@
 		A1B8E6A32AAFB5EC00AC6566 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				A1B8E6A22AAFB5EC00AC6566 /* ni.app */,
-				CD1FAAEE2BFCA9BA00C781AC /* niTests.xctest */,
+				A1B8E6A22AAFB5EC00AC6566 /* Enai.app */,
+				CD1FAAEE2BFCA9BA00C781AC /* EnaiTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1056,9 +1056,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		A1B8E6A12AAFB5EC00AC6566 /* ni */ = {
+		A1B8E6A12AAFB5EC00AC6566 /* Enai */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A1B8E6B42AAFB5EF00AC6566 /* Build configuration list for PBXNativeTarget "ni" */;
+			buildConfigurationList = A1B8E6B42AAFB5EF00AC6566 /* Build configuration list for PBXNativeTarget "Enai" */;
 			buildPhases = (
 				A1B8E69E2AAFB5EC00AC6566 /* Sources */,
 				A1B8E69F2AAFB5EC00AC6566 /* Frameworks */,
@@ -1068,7 +1068,7 @@
 			);
 			dependencies = (
 			);
-			name = ni;
+			name = Enai;
 			packageProductDependencies = (
 				CDD6B93D2B152D3F00C6144D /* SQLite */,
 				CD1160C72BD142D100345E3E /* WebURL */,
@@ -1081,12 +1081,12 @@
 				CD8867D42CD1152D00C8B880 /* Sparkle */,
 			);
 			productName = ni;
-			productReference = A1B8E6A22AAFB5EC00AC6566 /* ni.app */;
+			productReference = A1B8E6A22AAFB5EC00AC6566 /* Enai.app */;
 			productType = "com.apple.product-type.application";
 		};
-		CD1FAAED2BFCA9BA00C781AC /* niTests */ = {
+		CD1FAAED2BFCA9BA00C781AC /* EnaiTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = CD1FAAF42BFCA9BA00C781AC /* Build configuration list for PBXNativeTarget "niTests" */;
+			buildConfigurationList = CD1FAAF42BFCA9BA00C781AC /* Build configuration list for PBXNativeTarget "EnaiTests" */;
 			buildPhases = (
 				CD1FAAEA2BFCA9BA00C781AC /* Sources */,
 				CD1FAAEB2BFCA9BA00C781AC /* Frameworks */,
@@ -1097,9 +1097,9 @@
 			dependencies = (
 				CD1FAAF32BFCA9BA00C781AC /* PBXTargetDependency */,
 			);
-			name = niTests;
+			name = EnaiTests;
 			productName = niTests;
-			productReference = CD1FAAEE2BFCA9BA00C781AC /* niTests.xctest */;
+			productReference = CD1FAAEE2BFCA9BA00C781AC /* EnaiTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -1121,7 +1121,7 @@
 					};
 				};
 			};
-			buildConfigurationList = A1B8E69D2AAFB5EC00AC6566 /* Build configuration list for PBXProject "ni" */;
+			buildConfigurationList = A1B8E69D2AAFB5EC00AC6566 /* Build configuration list for PBXProject "Enai" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -1144,8 +1144,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				A1B8E6A12AAFB5EC00AC6566 /* ni */,
-				CD1FAAED2BFCA9BA00C781AC /* niTests */,
+				A1B8E6A12AAFB5EC00AC6566 /* Enai */,
+				CD1FAAED2BFCA9BA00C781AC /* EnaiTests */,
 			);
 		};
 /* End PBXProject section */
@@ -1389,7 +1389,7 @@
 /* Begin PBXTargetDependency section */
 		CD1FAAF32BFCA9BA00C781AC /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = A1B8E6A12AAFB5EC00AC6566 /* ni */;
+			target = A1B8E6A12AAFB5EC00AC6566 /* Enai */;
 			targetProxy = CD1FAAF22BFCA9BA00C781AC /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -1621,7 +1621,7 @@
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ni.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/ni";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Enai.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Enai";
 			};
 			name = Debug;
 		};
@@ -1640,14 +1640,14 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ni.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/ni";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Enai.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Enai";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		A1B8E69D2AAFB5EC00AC6566 /* Build configuration list for PBXProject "ni" */ = {
+		A1B8E69D2AAFB5EC00AC6566 /* Build configuration list for PBXProject "Enai" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A1B8E6B22AAFB5EF00AC6566 /* Debug */,
@@ -1656,7 +1656,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A1B8E6B42AAFB5EF00AC6566 /* Build configuration list for PBXNativeTarget "ni" */ = {
+		A1B8E6B42AAFB5EF00AC6566 /* Build configuration list for PBXNativeTarget "Enai" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A1B8E6B52AAFB5EF00AC6566 /* Debug */,
@@ -1665,7 +1665,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		CD1FAAF42BFCA9BA00C781AC /* Build configuration list for PBXNativeTarget "niTests" */ = {
+		CD1FAAF42BFCA9BA00C781AC /* Build configuration list for PBXNativeTarget "EnaiTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CD1FAAF52BFCA9BA00C781AC /* Debug */,
