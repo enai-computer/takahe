@@ -49,7 +49,7 @@ class NiPinnedWebsiteVModel: NSObject{
 	}
 	
 	func loadIcon() async{
-		self.icon = await FaviconProvider.instance.fetchIcon(itemData.url.absoluteString)
+		self.icon = await FaviconProvider.instance.fetchIcon(itemData.url)
 	}
 	
 	static func == (lhs: NiPinnedWebsiteVModel, rhs: NiPinnedWebsiteVModel) -> Bool {
