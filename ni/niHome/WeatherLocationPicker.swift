@@ -115,13 +115,13 @@ struct WeatherLocationPicker: View {
 		Task {
 			do{
 				let res = try await threadsafeSearch(searchText)
-				DispatchQueue.main.async {
+				await MainActor.run {
 					self.locationSearchResults = res
 					self.isLoading = false
 				}
 			}catch{
 				print(error)
-				DispatchQueue.main.async {
+				await MainActor.run {
 					self.isLoading = false
 				}
 			}
