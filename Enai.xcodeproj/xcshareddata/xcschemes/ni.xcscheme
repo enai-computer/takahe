@@ -16,9 +16,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "A1B8E6A12AAFB5EC00AC6566"
-               BuildableName = "ni.app"
-               BlueprintName = "ni"
-               ReferencedContainer = "container:ni.xcodeproj">
+               BuildableName = "Enai.app"
+               BlueprintName = "Enai"
+               ReferencedContainer = "container:Enai.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -36,9 +36,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "CD1FAAED2BFCA9BA00C781AC"
-               BuildableName = "niTests.xctest"
-               BlueprintName = "niTests"
-               ReferencedContainer = "container:ni.xcodeproj">
+               BuildableName = "EnaiTests.xctest"
+               BlueprintName = "EnaiTests"
+               ReferencedContainer = "container:Enai.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -58,9 +58,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "A1B8E6A12AAFB5EC00AC6566"
-            BuildableName = "ni.app"
-            BlueprintName = "ni"
-            ReferencedContainer = "container:ni.xcodeproj">
+            BuildableName = "Enai.app"
+            BlueprintName = "Enai"
+            ReferencedContainer = "container:Enai.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <CommandLineArguments>
@@ -88,9 +88,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "A1B8E6A12AAFB5EC00AC6566"
-            BuildableName = "ni.app"
-            BlueprintName = "ni"
-            ReferencedContainer = "container:ni.xcodeproj">
+            BuildableName = "Enai.app"
+            BlueprintName = "Enai"
+            ReferencedContainer = "container:Enai.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

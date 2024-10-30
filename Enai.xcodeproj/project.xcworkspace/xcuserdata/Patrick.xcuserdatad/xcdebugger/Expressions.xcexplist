@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "NiPinnedMenuViewController.loadView():NiPinnedMenuViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "(myView.lstOfMenuItems.views[0] as? NiActionImage)?.image">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "NiPinnedMenuViewController.genMenuItemViews(items:):NiPinnedMenuViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "itemView.image">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "NSColor.hex.getter:WebAppItemModel.swift">
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>
