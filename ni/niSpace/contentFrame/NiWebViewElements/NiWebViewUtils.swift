@@ -69,7 +69,7 @@ func getNewWebView(owner: ContentFrameController, frame: NSRect, cleanUrl: Strin
 		return getNewWebView(owner: owner, contentId: contentId, frame: frame, fileUrl: url)
 	}
 	let urlReq = URLRequest(url: url!)
-	return ni.getNewWebView(owner: owner, contentId: contentId, urlReq: urlReq, frame: frame)
+	return Enai.getNewWebView(owner: owner, contentId: contentId, urlReq: urlReq, frame: frame)
 }
 
 func getEmtpyWebViewURL() -> URL{

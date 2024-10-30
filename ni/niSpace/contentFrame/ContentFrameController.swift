@@ -793,7 +793,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	 * MARK: opening tabs
 	 */
 	func openEmptyWebTab(_ contentId: UUID = UUID(), reloadTabHeads: Bool = true) -> Int{
-		let niWebView = ni.getNewWebView(owner: self, contentId: contentId, frame: view.frame, fileUrl: nil)
+		let niWebView = Enai.getNewWebView(owner: self, contentId: contentId, frame: view.frame, fileUrl: nil)
 		
 		var tabHeadModel = TabViewModel(contentId: contentId, type: .web)
 		tabHeadModel.position = myView.createNewTab(tabView: niWebView)
@@ -833,7 +833,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	}
 	
 	func openPdfInNewTab(contentId: UUID = UUID(), tabTitle: String? = nil, content: PDFDocument, source: String? = nil, scrollTo pageNr: Int? = nil){
-		let pdfView = ni.getNewPdfView(owner: self, frame: self.view.frame, document: content)
+		let pdfView = Enai.getNewPdfView(owner: self, frame: self.view.frame, document: content)
 		
 		var tabHeadModel = TabViewModel(contentId: contentId, type: .pdf, source: source, data: content, isSelected: true)
 		if let title = tabTitle{
@@ -859,7 +859,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	}
 	
 	func openImgInNewTab(contentId: UUID = UUID(), tabTitle: String? = nil, content: NSImage, source: String? = nil){
-		let imgView = ni.getNewImgView(owner: self, parentView: self.view, img: content)
+		let imgView = Enai.getNewImgView(owner: self, parentView: self.view, img: content)
 		
 		var tabHeadModel = TabViewModel(contentId: contentId, type: .img, source: source, isSelected: true)
 		if let title = tabTitle{
@@ -880,7 +880,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	}
 	
 	func openNoteInNewTab(contentId: UUID = UUID(), tabTitle: String? = nil, content: String? = nil){
-		let noteItem = ni.getNewNoteItem(owner: self, parentView: self.view, frame: self.view.frame, text: content)
+		let noteItem = Enai.getNewNoteItem(owner: self, parentView: self.view, frame: self.view.frame, text: content)
 		
 		var tabHeadModel = TabViewModel(contentId: contentId, type: .note, isSelected: true)
 		tabHeadModel.position = 0
@@ -902,7 +902,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		as type: TabContentType = .web
 	) -> Int{
 		let niWebView = if(type == .eveChat){
-			ni.getNewWebView(owner: self, contentId: contentId, frame: view.frame, fileUrl: nil)
+			Enai.getNewWebView(owner: self, contentId: contentId, frame: view.frame, fileUrl: nil)
 		}else{
 			getNewWebView(owner: self, frame: view.frame, dirtyUrl: urlStr, contentId: contentId)
 		}
