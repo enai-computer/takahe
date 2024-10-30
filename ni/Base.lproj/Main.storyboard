@@ -23,7 +23,7 @@
                                         <menuItem title="Check for Updates" id="yga-zl-aKv">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
-                                                <action selector="checkForUpdates:" target="Ug8-x7-TPt" id="Fj0-X9-joZ"/>
+                                                <action selector="checkForUpdates:" target="Ug8-x7-TPt" id="K7K-ed-Cgm"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem title="Preferences…" enabled="NO" keyEquivalent="," id="BOF-NM-1cW"/>
@@ -373,7 +373,7 @@ GQ
                 </application>
                 <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="ni" customModuleProvider="target"/>
                 <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
-                <customObject id="Ug8-x7-TPt" customClass="SPUStandardUpdaterController" customModule="ni" customModuleProvider="target"/>
+                <customObject id="Ug8-x7-TPt" customClass="SPUStandardUpdaterController"/>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="75" y="0.0"/>
