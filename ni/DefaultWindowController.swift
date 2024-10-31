@@ -39,8 +39,6 @@ class DefaultWindowController: NSWindowController, NSWindowDelegate{
 		
 		prevScreenSize = windowObj.frame.size
 		
-//		print("[space resizing] prev: \(prevScreenWidth), nxt: \(windowObj.frame.width), active: \(NSApplication.shared.isActive), shown: \(windowObj.isOnActiveSpace), space saved: \(spaceSaved) ")
-		
 		//otherwise we have a screen reload on App start
 		if(prevScreenWidth == nil){
 			prevScreenWidth = windowObj.frame.width
@@ -58,7 +56,6 @@ class DefaultWindowController: NSWindowController, NSWindowDelegate{
 			guard let spaceViewController = contentViewController as? NiSpaceViewController else {return}
 			spaceViewController.storeCurrentSpace()
 			self.spaceSaved = true
-//			print("stored space, for width: \(prevScreenWidth)")
 		}
 		
 		//application will be active soon
@@ -82,7 +79,6 @@ class DefaultWindowController: NSWindowController, NSWindowDelegate{
 		self.spaceSaved = false
 		
 		prevScreenWidth = windowObj.frame.width
-//		print("reloaded space, for width: \(windowObj.frame.width)")
 	}
 
 	func windowWillClose(_ notification: Notification) {
