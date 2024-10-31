@@ -51,15 +51,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationSupportsSecureRestorableState(_ app: NSApplication) -> Bool {
         return true
     }
-
-	func applicationWillResignActive(_ notification: Notification) {
-		if let window = NSApplication.shared.mainWindow as? DefaultWindow{
-			if let controller = window.contentViewController as? NiSpaceViewController{
-				controller.storeCurrentSpace()
-			}
-		}
-		lastActive = Date()
-	}
 	
 	func applicationWillBecomeActive(_ notification: Notification) {
 		if(lastActive == nil){
@@ -82,6 +73,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 //		}
 //		
 		PostHogSDK.shared.capture("Application_became_active", properties: ["time_inactive_mins": minInactive, "sent_back_home": userSentBackHome])
+	}
+	
+	func applicationWillResignActive(_ notification: Notification) {
+		if let window = NSApplication.shared.mainWindow as? DefaultWindow{
+			if let controller = window.contentViewController as? NiSpaceViewController{
+				controller.storeCurrentSpace()
+			}
+		}
+		lastActive = Date()
 	}
 	
 	private func getDefaultWindow(_ notification: Notification) -> DefaultWindow?{
