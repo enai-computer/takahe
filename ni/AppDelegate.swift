@@ -18,6 +18,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	private var spacesLoaded: [UUID:Int] = [:]
 	
 	private var lastActive: Date? = nil
+	private var saveSpaceTimer: Timer? = nil
+	private var saveSpaceTimerActive: Bool = false
 	//if loading fails we do not want to overwrite the space!
 	private var dontStoreSpace = Set<UUID>()
 	
@@ -37,6 +39,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		runPostLunchChecks()
 		
 		print("Enai has access to downloads folder: \(NiDownloadHandler.instance.hasAccessToDownloadsFolder())")
+		
+		saveSpaceTimer = Timer.scheduledTimer(withTimeInterval: 30.0, repeats: true) { timer in
+			if(self.saveSpaceTimerActive){
+				self.saveCurrentSpace()
+			}
+		}
     }
 	
     func applicationWillTerminate(_ aNotification: Notification) {
@@ -51,15 +59,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationSupportsSecureRestorableState(_ app: NSApplication) -> Bool {
         return true
     }
-
-	func applicationWillResignActive(_ notification: Notification) {
-		if let window = NSApplication.shared.mainWindow as? DefaultWindow{
-			if let controller = window.contentViewController as? NiSpaceViewController{
-				controller.storeCurrentSpace()
-			}
-		}
-		lastActive = Date()
-	}
 	
 	func applicationWillBecomeActive(_ notification: Notification) {
 		if(lastActive == nil){
@@ -84,6 +83,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		PostHogSDK.shared.capture("Application_became_active", properties: ["time_inactive_mins": minInactive, "sent_back_home": userSentBackHome])
 	}
 	
+	func applicationDidBecomeActive(_ notification: Notification) {
+		saveSpaceTimerActive = true
+	}
+	
+	func applicationWillResignActive(_ notification: Notification) {
+		lastActive = Date()
+		saveSpaceTimerActive = false
+		self.saveCurrentSpace()
+	}
+	
 	private func getDefaultWindow(_ notification: Notification) -> DefaultWindow?{
 		guard let appWind = (notification.object as? NSApplication)?.windows else {return nil}
 		for win in appWind {
@@ -95,17 +104,22 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	}
 	
     func applicationShouldTerminate(_ sender: NSApplication) -> NSApplication.TerminateReply {
+		saveSpaceTimer?.invalidate()
         // Save changes in the application's managed object context before the application terminates.
-		let window = NSApplication.shared.mainWindow
-		if (window != nil && window is DefaultWindow){
-			if let controller = window!.contentViewController as? NiSpaceViewController{
-				//TODO: set notification observer that tracks that everything has been saved before termination
-				controller.storeCurrentSpace()
-			}
-		}
+		//TODO: set notification observer that tracks that everything has been saved before termination
+		self.saveCurrentSpace()
 		self.terminateEnai()
         return .terminateLater
     }
+	
+	private func saveCurrentSpace(){
+		let window = NSApplication.shared.mainWindow
+		if (window != nil && window is DefaultWindow){
+			if let controller = window!.contentViewController as? NiSpaceViewController{
+				controller.storeCurrentSpace()
+			}
+		}
+	}
 	
 	private func terminateEnai(){
 		Task{
