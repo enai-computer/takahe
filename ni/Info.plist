@@ -30,8 +30,6 @@
 	</array>
 	<key>SUFeedURL</key>
 	<string>https://update.enai.host/appcast.xml</string>
-	<key>CFBundleVersion</key>
-	<string>0.2.1</string>
 	<key>SUEnableInstallerLauncherService</key>
 	<true/>
 	<key>SUEnableAutomaticChecks</key>
@@ -40,5 +38,7 @@
 	<true/>
 	<key>SUShowReleaseNotes</key>
 	<false/>
+	<key>SUPublicEDKey</key>
+	<string>ru+839A0Jvk6oUm2IV5nv62G4hEn3oMJH5nzONl+E7Q=</string>
 </dict>
 </plist>
