@@ -48,20 +48,14 @@ class NiAsyncImgView: NSView{
 	}
 	
 	func loadFavIcon(from urlStr: String?) {
-		guard let url: String = urlStr else {return}
+		guard let urlStr else {return}
 
-		Task{ [weak self] in
-				guard let image = await FaviconProvider.instance.fetchIcon(url) ?? NSImage(named: NSImage.Name("enaiIcon")) else {
-					return
-				}
-
-			DispatchQueue.main.async {
-				self?.image = image
-				self?.needsDisplay = true
-			}
+		Task.detached { [weak self] in
+			guard let image = await FaviconProvider.instance.fetchIcon(urlStr) ?? NSImage(named: NSImage.Name("enaiIcon")) else { return }
+			await self?.setImage(image)
 		}
 	}
-	
+
 	override func draw(_ dirtyRect: NSRect) {
 		super.draw(dirtyRect)
 		

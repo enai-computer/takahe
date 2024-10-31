@@ -93,11 +93,6 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		viewIsDrawn = true
 	}
 	
-	override func viewWillDisappear() {
-		super.viewWillDisappear()
-		viewIsDrawn = false
-	}
-	
 	private func loadAndDisplayDefaultView(){
 		loadExpandedView()
 		self.view = expandedCFView!
@@ -1204,7 +1199,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		}
 	}
 	
-	func setTabIcon(at: Int, icon: NSImage?){
+	func updateViewModelIcon(at: Int, icon: NSImage?){
 		//We need this check due to the async nature of setting tabIcons.
 		//It may be that the tab is already closed by the time we fetched the icon
 		if(at < tabs.count && 0 <= at){
@@ -1611,7 +1606,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 				children.append(
 					NiCFTabModel(
 						id: tab.contentId,
-						contentType: tab.type,
+						contentType: tabs[i].type,
 						contentState: tab.state.rawValue,
 						active: tab.isSelected,
 						position: i,
