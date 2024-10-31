@@ -19,6 +19,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	
 	private var lastActive: Date? = nil
 	private var saveSpaceTimer: Timer? = nil
+	private var saveSpaceTimerActive: Bool = false
 	//if loading fails we do not want to overwrite the space!
 	private var dontStoreSpace = Set<UUID>()
 	
@@ -38,6 +39,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		runPostLunchChecks()
 		
 		print("Enai has access to downloads folder: \(NiDownloadHandler.instance.hasAccessToDownloadsFolder())")
+		
+		saveSpaceTimer = Timer.scheduledTimer(withTimeInterval: 30.0, repeats: true) { timer in
+			if(self.saveSpaceTimerActive){
+				self.saveCurrentSpace()
+			}
+		}
     }
 	
     func applicationWillTerminate(_ aNotification: Notification) {
@@ -77,14 +84,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	}
 	
 	func applicationDidBecomeActive(_ notification: Notification) {
-		saveSpaceTimer = Timer.scheduledTimer(withTimeInterval: 30.0, repeats: true) { timer in
-			self.saveCurrentSpace()
-		}
+		saveSpaceTimerActive = true
 	}
 	
 	func applicationWillResignActive(_ notification: Notification) {
 		lastActive = Date()
-		saveSpaceTimer?.invalidate()
+		saveSpaceTimerActive = false
 		self.saveCurrentSpace()
 	}
 	
@@ -99,6 +104,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	}
 	
     func applicationShouldTerminate(_ sender: NSApplication) -> NSApplication.TerminateReply {
+		saveSpaceTimer?.invalidate()
         // Save changes in the application's managed object context before the application terminates.
 		//TODO: set notification observer that tracks that everything has been saved before termination
 		self.saveCurrentSpace()
