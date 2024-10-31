@@ -75,12 +75,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		PostHogSDK.shared.capture("Application_became_active", properties: ["time_inactive_mins": minInactive, "sent_back_home": userSentBackHome])
 	}
 	
-	func applicationWillResignActive(_ notification: Notification) {
-		if let window = NSApplication.shared.mainWindow as? DefaultWindow{
-			if let controller = window.contentViewController as? NiSpaceViewController{
-				controller.storeCurrentSpace()
-			}
 		}
+	func applicationWillResignActive(_ notification: Notification) {
+		self.saveCurrentSpace()
 		lastActive = Date()
 	}
 	
@@ -96,16 +93,20 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	
     func applicationShouldTerminate(_ sender: NSApplication) -> NSApplication.TerminateReply {
         // Save changes in the application's managed object context before the application terminates.
-		let window = NSApplication.shared.mainWindow
-		if (window != nil && window is DefaultWindow){
-			if let controller = window!.contentViewController as? NiSpaceViewController{
-				//TODO: set notification observer that tracks that everything has been saved before termination
-				controller.storeCurrentSpace()
-			}
-		}
+		//TODO: set notification observer that tracks that everything has been saved before termination
+		self.saveCurrentSpace()
 		self.terminateEnai()
         return .terminateLater
     }
+	
+	private func saveCurrentSpace(){
+		let window = NSApplication.shared.mainWindow
+		if (window != nil && window is DefaultWindow){
+			if let controller = window!.contentViewController as? NiSpaceViewController{
+				controller.storeCurrentSpace()
+			}
+		}
+	}
 	
 	private func terminateEnai(){
 		Task{
