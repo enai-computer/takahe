@@ -18,6 +18,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	private var spacesLoaded: [UUID:Int] = [:]
 	
 	private var lastActive: Date? = nil
+	private var saveSpaceTimer: Timer? = nil
 	//if loading fails we do not want to overwrite the space!
 	private var dontStoreSpace = Set<UUID>()
 	
@@ -75,10 +76,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		PostHogSDK.shared.capture("Application_became_active", properties: ["time_inactive_mins": minInactive, "sent_back_home": userSentBackHome])
 	}
 	
+	func applicationDidBecomeActive(_ notification: Notification) {
+		saveSpaceTimer = Timer.scheduledTimer(withTimeInterval: 30.0, repeats: true) { timer in
+			self.saveCurrentSpace()
 		}
+	}
+	
 	func applicationWillResignActive(_ notification: Notification) {
-		self.saveCurrentSpace()
 		lastActive = Date()
+		saveSpaceTimer?.invalidate()
+		self.saveCurrentSpace()
 	}
 	
 	private func getDefaultWindow(_ notification: Notification) -> DefaultWindow?{
