@@ -252,10 +252,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 				return nil
 			}
 			if(event.keyCode == kVK_F9){
-				print("[INFO]: kicked off backfill task")
-				Task{
-//					Storage.instance.outboxProcessor.backfillCloudDB()
-				}
+				self.getNiSpaceViewController()?.niDocument.myView.topNiFrame?.tryfetchConfirmationid()
+				print("[INFO]: tried shared group")
 			}
 			return event
 		}

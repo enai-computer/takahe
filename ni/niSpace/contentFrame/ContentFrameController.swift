@@ -1538,6 +1538,32 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	}
 	
 	/*
+	 * MARK: - save online
+	 */
+	func tryfetchConfirmationid(){
+		var shareableTabs: [ShareObject] = []
+		for t in tabs{
+			if (t.type == .web){
+				shareableTabs.append(
+					ShareObject(
+						type: .webpage,
+						title: t.title,
+						data: t.webView?.getCurrentURL() ?? ""
+					)
+				)
+			}
+		}
+		let groupData = SharePayload(
+			type: .group,
+			title: title ?? "",
+			data: shareableTabs
+		)
+		Task.detached{
+			try await Eve.instance.maraeClient.shareWebgroup(groupData)
+		}
+	}
+	
+	/*
 	 * MARK: - store and load here
 	 */
 	

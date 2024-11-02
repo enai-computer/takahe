@@ -67,3 +67,24 @@ struct WelcomeTextPayload: Codable{
 	let group_name: String?
 	let context_tabs: [String]
 }
+
+
+enum ShareObjectType: String, Codable{
+	case group, webpage
+}
+
+struct ShareObject: Codable{
+	let type: ShareObjectType
+	let title: String
+	var data: String
+}
+
+struct SharePayload: Codable{
+	let type: ShareObjectType
+	let title: String
+	let data: [ShareObject]
+}
+
+struct ShareConfirmationResponse: Codable{
+	let share_id: String
+}

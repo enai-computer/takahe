@@ -14,7 +14,7 @@ class MaraeClient{
 //	let hostUrl = "http://127.0.0.1:8000"
 	private let apiVersion = "/v1"
 	private let verify = "/verify"
-	private let userID = "00000000-0000-0000-0000-000000000003"
+	private var userID = "00000000-0000-0000-0000-000000000003"
 	
 	private let client: APIClient
 	private let AUTH_HEADER_KEY = "Authorization"
@@ -25,6 +25,7 @@ class MaraeClient{
 	
 	init(){
 		client = APIClient(baseURL: URL(string: hostUrl))
+		userID = PostHogSDK.shared.getDistinctId()
 		verifyDevice()
 	}
 	
@@ -53,8 +54,7 @@ class MaraeClient{
 	}
 	
 	func authKey() -> (String, String){
-		let uId = PostHogSDK.shared.getDistinctId()
-		return (uId, bearerToken)
+		return (userID, bearerToken)
 	}
 	
 	func sendRecord(record: OutboxMessage) async throws -> Bool{
@@ -165,6 +165,26 @@ class MaraeClient{
 		return nil
 	}
 
+	func shareWebgroup(_ body: SharePayload) async throws -> String?{
+		let relPath = apiVersion + "/" + userID + "/share"
+		let req = Request(
+			path: relPath,
+			method: .post,
+			body: body,
+			headers: [
+				"Content-Type": "application/json",
+				AUTH_HEADER_KEY: auth_header[AUTH_HEADER_KEY] ?? ""
+			]
+		)
+		let res = try await sendRequest(req)
+		if(res?.statusCode == 200 && res != nil){
+			let jsonD = JSONDecoder()
+			let answer = try jsonD.decode(ShareConfirmationResponse.self, from: res!.data)
+			return answer.share_id
+		}
+		return nil
+	}
+	
 	private func sendRequestNoResponse(_ req: Request<()>) async throws -> Bool{
 		let res = try await client.send(req)
 		if res.statusCode == 200{
