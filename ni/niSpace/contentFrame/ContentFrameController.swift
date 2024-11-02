@@ -619,10 +619,13 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	}
 	
 	func maximizeSelf(){
-		if(viewState == .minimised || viewState == .collapsedMinimised){
+		switch viewState {
+		case .minimised, .collapsedMinimised:
 			minimizedToExpanded()
-		}else if(viewState == .simpleMinimised){
+		case .simpleMinimised:
 			simpleMinimizedToSimpleFrame()
+		case .expanded, .frameless, .simpleFrame, .fullscreen:
+			assertionFailure("Unhandled view state to self-maximize")
 		}
 	}
 	
