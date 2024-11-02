@@ -124,6 +124,9 @@ class CFFullscreenView: CFBaseView, CFTabHeadProtocol, CFFwdBackButtonProtocol{
 	}
 
 	func switchGroupInSpace(with event: NSEvent) {
+		assert(niParentDoc != nil)
+		guard let groups = niParentDoc?.groupsInSpace() else { return }
+		print(groups)
 	}
 
 	func searchIconClicked(with event: NSEvent){

@@ -235,14 +235,18 @@ class NiSpaceDocumentView: NSView{
 		let orderedCFs = contentFrameControllers.sorted {
 			return $0.view.frame.origin.y <= $1.view.frame.origin.y
 		}
-		let currentPos: Int = if(topNiFrame != nil){
-			orderedCFs.firstIndex(of: topNiFrame!) ?? -1
+		let currentPos: Int = if let topNiFrame {
+			orderedCFs.firstIndex(of: topNiFrame) ?? -1
 		} else{
 			-1
 		}
 		return (currentPos, orderedCFs)
 	}
-	
+
+	func groupsInSpace() -> [ContentFrameController] {
+		return cfOrdered().1
+	}
+
 	func deinitSelf(){
 		for conFrame in contentFrameControllers{
 			conFrame.deinitSelf()
