@@ -422,15 +422,17 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	 * MARK: transitions between views
 	 */
 	func minimizeSelf(){
-		if(viewState == .expanded && (prevDisplayState == nil || prevDisplayState?.state == .minimised)){
+		switch (viewState, prevDisplayState?.state) {
+		case (.expanded, .minimised),
+			 (.expanded, nil):
 			minimizeSelfToDefault()
-		}else if(viewState == .expanded
-				 && prevDisplayState != nil
-				 && prevDisplayState!.state == .collapsedMinimised){
+		case (.expanded, .collapsedMinimised):
 			minimizeToCollapsed()
-		}
-		else if(viewState == .simpleFrame){
+		case (.simpleFrame, _):
 			minimizeSelfToSimple()
+		default:
+			assertionFailure("Unhandled combination of current and previous view state")
+			break
 		}
 	}
 	
