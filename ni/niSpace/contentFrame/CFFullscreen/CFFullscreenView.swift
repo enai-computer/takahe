@@ -18,6 +18,7 @@ class CFFullscreenView: CFBaseView, CFTabHeadProtocol, CFFwdBackButtonProtocol{
 	@IBOutlet var time: NSTextField!
 	@IBOutlet var cfTabHeadCollection: NSCollectionView?
 	@IBOutlet var addTabButton: NiActionImage!
+	@IBOutlet var switchSpaceButton: NiActionImage!
 	@IBOutlet var contentForwardButton: NiActionImage!
 	@IBOutlet var contentBackButton: NiActionImage!
 	@IBOutlet var spaceName: NiTextField!
@@ -28,7 +29,8 @@ class CFFullscreenView: CFBaseView, CFTabHeadProtocol, CFFwdBackButtonProtocol{
 		
 		addTabButton.setMouseDownFunction(addTabClicked)
 		addTabButton.isActiveFunction = {return true}
-		
+
+		switchSpaceButton.setMouseDownFunction(switchSpace)
 		contentBackButton.setMouseDownFunction(backButtonClicked)
 		contentBackButton.isActiveFunction = backButtonIsActive
 		
@@ -120,7 +122,11 @@ class CFFullscreenView: CFBaseView, CFTabHeadProtocol, CFFwdBackButtonProtocol{
 			cfc.openAndEditEmptyWebTab()
 		}
 	}
-	
+
+	func switchSpace(with event: NSEvent) {
+		return
+	}
+
 	func searchIconClicked(with event: NSEvent){
 		(NSApplication.shared.delegate as? AppDelegate)?.showPalette()
 	}

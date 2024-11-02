@@ -9,7 +9,7 @@
         <customObject id="-2" userLabel="File's Owner"/>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
-        <box boxType="custom" borderWidth="0.0" cornerRadius="4" title="Box" id="l8v-af-eQM" customClass="CFFullscreenView" customModule="ni" customModuleProvider="target">
+        <box boxType="custom" borderWidth="0.0" cornerRadius="4" title="Box" id="l8v-af-eQM" userLabel="CFFullscreenView" customClass="CFFullscreenView" customModule="Enai" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="1600" height="900"/>
             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
             <view key="contentView" id="Oxx-rY-cxW">
@@ -20,7 +20,7 @@
                         <rect key="frame" x="0.0" y="860" width="1600" height="40"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <subviews>
-                            <imageView translatesAutoresizingMaskIntoConstraints="NO" id="2gZ-pG-JxN" customClass="NiActionImage" customModule="ni" customModuleProvider="target">
+                            <imageView translatesAutoresizingMaskIntoConstraints="NO" id="2gZ-pG-JxN" customClass="NiActionImage" customModule="Enai" customModuleProvider="target">
                                 <rect key="frame" x="8" y="8" width="24" height="24"/>
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="SpaceIcon" id="Y1w-h3-tKv"/>
                                 <color key="contentTintColor" name="sand9"/>
@@ -199,6 +199,7 @@
                 <outlet property="pinnedAppIcon" destination="fkI-7B-epu" id="fp3-Ug-pvy"/>
                 <outlet property="searchIcon" destination="B86-Dq-rUQ" id="RbZ-OT-PoM"/>
                 <outlet property="spaceName" destination="8Q0-6a-YiJ" id="lZ9-ta-nJK"/>
+                <outlet property="switchSpaceButton" destination="2gZ-pG-JxN" id="MSo-LW-fLh"/>
                 <outlet property="time" destination="ZjQ-rG-c3I" id="Zwq-yq-arU"/>
             </connections>
             <point key="canvasLocation" x="70" y="180"/>
