@@ -199,7 +199,7 @@
                 <outlet property="pinnedAppIcon" destination="fkI-7B-epu" id="fp3-Ug-pvy"/>
                 <outlet property="searchIcon" destination="B86-Dq-rUQ" id="RbZ-OT-PoM"/>
                 <outlet property="spaceName" destination="8Q0-6a-YiJ" id="lZ9-ta-nJK"/>
-                <outlet property="switchSpaceButton" destination="2gZ-pG-JxN" id="MSo-LW-fLh"/>
+                <outlet property="switchGroupInSpaceButton" destination="2gZ-pG-JxN" id="MSo-LW-fLh"/>
                 <outlet property="time" destination="ZjQ-rG-c3I" id="Zwq-yq-arU"/>
             </connections>
             <point key="canvasLocation" x="70" y="180"/>
