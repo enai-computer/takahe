@@ -126,7 +126,21 @@ class CFFullscreenView: CFBaseView, CFTabHeadProtocol, CFFwdBackButtonProtocol{
 	func switchGroupInSpace(with event: NSEvent) {
 		assert(niParentDoc != nil)
 		guard let groups = niParentDoc?.groupsInSpace() else { return }
-		print(groups)
+
+		let items: [NiMenuItemViewModel] = groups.map { group in
+			switch group {
+			case .active(let controller):
+				NiMenuItemViewModel(title: controller.groupName ?? "(Untitled)", isEnabled: false, mouseDownFunction: nil)
+			case .inactive(let controller):
+				NiMenuItemViewModel(title: controller.groupName ?? "(Untitled)", isEnabled: true, mouseDownFunction: nil)
+			}
+		}
+		let menuWin = NiMenuWindow(
+			origin: event.locationInWindow,
+			dirtyMenuItems: items,
+			currentScreen: self.window!.screen!
+		)
+		menuWin.makeKeyAndOrderFront(nil)
 	}
 
 	func searchIconClicked(with event: NSEvent){

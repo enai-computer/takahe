@@ -243,8 +243,21 @@ class NiSpaceDocumentView: NSView{
 		return (currentPos, orderedCFs)
 	}
 
-	func groupsInSpace() -> [ContentFrameController] {
-		return cfOrdered().1
+	enum Group {
+		case active(ContentFrameController)
+		case inactive(ContentFrameController)
+	}
+
+	func groupsInSpace() -> [Group] {
+		return contentFrameControllers
+			.sorted { $0.view.frame.origin.y <= $1.view.frame.origin.y }
+			.map { group in
+				if group === topNiFrame {
+					.active(group)
+				} else {
+					.inactive(group)
+				}
+			}
 	}
 
 	func deinitSelf(){
