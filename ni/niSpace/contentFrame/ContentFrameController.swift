@@ -570,7 +570,32 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		
 		sharedLoadViewSetters()
 	}
-	
+
+	func fullscreenToPreviousState() {
+		assert(self.viewState == .fullscreen)
+		let previousState = prevDisplayState?.state ?? .expanded
+
+		// Minimizing is only supported from expanded state, so transition to expanded first.
+		fullscreenToExpanded()
+
+		switch previousState {
+		case .expanded:
+			break // Already handled by default `fullscreenToExpanded`
+		case .fullscreen:
+			break // Keep expanded view if we don't know any non-fullscreen state
+
+		case .collapsedMinimised:
+			minimizeToCollapsed()
+		case .minimised:
+			minimizeSelfToDefault()
+		case .simpleFrame,
+			 .simpleMinimised:
+			minimizeSelfToSimple()
+		case .frameless:
+			assertionFailure("Frameless views should never have been in fullscreen mode")
+		}
+	}
+
 	func fullscreenToExpanded(){
 		var reloadTabHeads = false
 		if(expandedCFView == nil){
