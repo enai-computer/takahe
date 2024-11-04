@@ -9,7 +9,7 @@
         <customObject id="-2" userLabel="File's Owner"/>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
-        <box wantsLayer="YES" boxType="custom" borderWidth="5" cornerRadius="10" titlePosition="noTitle" id="ZxU-iR-5De" customClass="CFMinimizedView" customModule="ni" customModuleProvider="target">
+        <box wantsLayer="YES" boxType="custom" borderWidth="5" cornerRadius="10" titlePosition="noTitle" id="ZxU-iR-5De" customClass="CFMinimizedView" customModule="Enai" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="280" height="272"/>
             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
             <view key="contentView" id="4wu-Mf-Unf">
@@ -20,23 +20,23 @@
                         <rect key="frame" x="0.0" y="228" width="270" height="36"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <subviews>
-                            <customView ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XBa-fO-QLJ" customClass="CFGroupButton" customModule="ni" customModuleProvider="target">
+                            <customView ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XBa-fO-QLJ" customClass="CFGroupButton" customModule="Enai" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="7" width="24" height="24"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="155" id="MLD-v5-bNr"/>
                                 </constraints>
                             </customView>
-                            <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wU3-64-xsG" customClass="NiActionImage" customModule="ni" customModuleProvider="target">
+                            <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wU3-64-xsG" customClass="NiActionImage" customModule="Enai" customModuleProvider="target">
                                 <rect key="frame" x="194" y="7" width="24" height="24"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                 <imageCell key="cell" alignment="left" animates="YES" imageScaling="proportionallyDown" image="maximize" id="7UH-Zl-Nr2"/>
                             </imageView>
-                            <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SPA-y8-ymH" customClass="NiActionImage" customModule="ni" customModuleProvider="target">
+                            <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SPA-y8-ymH" customClass="NiActionImage" customModule="Enai" customModuleProvider="target">
                                 <rect key="frame" x="242" y="7" width="24" height="24"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                 <imageCell key="cell" alignment="left" animates="YES" imageScaling="proportionallyDown" image="close" id="we1-TF-fUo"/>
                             </imageView>
-                            <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IVm-pg-XRQ" customClass="NiActionImage" customModule="ni" customModuleProvider="target">
+                            <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IVm-pg-XRQ" customClass="NiActionImage" customModule="Enai" customModuleProvider="target">
                                 <rect key="frame" x="218" y="7" width="24" height="24"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="arrowWBarUp" id="Hbq-8N-2nW"/>
