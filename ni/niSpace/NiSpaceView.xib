@@ -6,7 +6,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner" customClass="NiSpaceViewController" customModule="ni" customModuleProvider="target">
+        <customObject id="-2" userLabel="File's Owner" customClass="NiSpaceViewController" customModule="Enai" customModuleProvider="target">
             <connections>
                 <outlet property="header" destination="iIa-km-m0P" id="aNT-h4-Qbh"/>
                 <outlet property="headerContainer" destination="m2w-Th-Zhg" id="dvi-IC-NR0"/>
@@ -22,18 +22,18 @@
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
-        <customView wantsLayer="YES" id="c22-O7-iKe" customClass="NiSpaceView" customModule="ni" customModuleProvider="target">
+        <customView wantsLayer="YES" id="c22-O7-iKe" customClass="NiSpaceView" customModule="Enai" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="1600" height="900"/>
             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
             <subviews>
-                <scrollView fixedFrame="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="none" verticalScrollElasticity="allowed" translatesAutoresizingMaskIntoConstraints="NO" id="eEh-KB-aea" customClass="NiScrollView" customModule="ni" customModuleProvider="target">
+                <scrollView fixedFrame="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="none" verticalScrollElasticity="allowed" translatesAutoresizingMaskIntoConstraints="NO" id="eEh-KB-aea" customClass="NiScrollView" customModule="Enai" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="0.0" width="1600" height="900"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <clipView key="contentView" id="yNc-sE-qT2">
                         <rect key="frame" x="0.0" y="0.0" width="1600" height="900"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view autoresizesSubviews="NO" id="93b-vm-ObV" customClass="NiSpaceDocumentView" customModule="ni" customModuleProvider="target">
+                            <view autoresizesSubviews="NO" id="93b-vm-ObV" customClass="NiSpaceDocumentView" customModule="Enai" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="1585" height="885"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </view>
@@ -53,7 +53,7 @@
                     <rect key="frame" x="30" y="865" width="1540" height="36"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                     <subviews>
-                        <customView id="iIa-km-m0P" customClass="SpaceTopbar" customModule="ni" customModuleProvider="target">
+                        <customView id="iIa-km-m0P" customClass="SpaceTopbar" customModule="Enai" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="0.0" width="1540" height="36"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                             <subviews>
@@ -61,7 +61,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="1540" height="35"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 </visualEffectView>
-                                <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Yne-Pi-Jml" customClass="NiActionImage" customModule="ni" customModuleProvider="target">
+                                <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Yne-Pi-Jml" customClass="NiActionImage" customModule="Enai" customModuleProvider="target">
                                     <rect key="frame" x="24" y="4" width="24" height="24"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="SpaceIcon" id="mpw-cc-7kz"/>
@@ -72,7 +72,7 @@
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
                                 </imageView>
-                                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IcY-Xb-pUo" customClass="NiTextField" customModule="ni" customModuleProvider="target">
+                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IcY-Xb-pUo" customClass="NiTextField" customModule="Enai" customModuleProvider="target">
                                     <rect key="frame" x="58" y="8" width="424" height="20"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <textFieldCell key="cell" lineBreakMode="clipping" allowsUndo="NO" title="SpaceName" id="ioC-6E-T33">
@@ -88,7 +88,7 @@
                                         <userDefinedRuntimeAttribute type="boolean" keyPath="willAllowVibrancy" value="YES"/>
                                     </userDefinedRuntimeAttributes>
                                 </textField>
-                                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" id="yLB-kD-fbD">
+                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="yLB-kD-fbD">
                                     <rect key="frame" x="1370" y="9" width="84" height="18"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                     <textFieldCell key="cell" lineBreakMode="clipping" refusesFirstResponder="YES" allowsUndo="NO" alignment="right" title="10:00 AM" id="q69-4k-xlx">
@@ -97,7 +97,7 @@
                                         <color key="backgroundColor" name="Sand2"/>
                                     </textFieldCell>
                                 </textField>
-                                <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uIA-xm-pTo" customClass="NiActionImage" customModule="ni" customModuleProvider="target">
+                                <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uIA-xm-pTo" customClass="NiActionImage" customModule="Enai" customModuleProvider="target">
                                     <rect key="frame" x="1466" y="7" width="20" height="20"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="search" id="uVf-dX-FXz"/>
@@ -108,7 +108,7 @@
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
                                 </imageView>
-                                <imageView wantsLayer="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FKx-O8-pCs" customClass="NiActionImage" customModule="ni" customModuleProvider="target">
+                                <imageView wantsLayer="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FKx-O8-pCs" customClass="NiActionImage" customModule="Enai" customModuleProvider="target">
                                     <rect key="frame" x="1494" y="7" width="20" height="20"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="pinnedAppIcon" id="LNn-B4-hp2"/>
@@ -130,7 +130,7 @@
             <point key="canvasLocation" x="29" y="154"/>
         </customView>
         <userDefaultsController representsSharedInstance="YES" id="Jkl-Uc-Uy6"/>
-        <viewController id="AOV-if-yNQ" customClass="NiSpaceDocumentController" customModule="ni" customModuleProvider="target">
+        <viewController id="AOV-if-yNQ" customClass="NiSpaceDocumentController" customModule="Enai" customModuleProvider="target">
             <connections>
                 <outlet property="view" destination="93b-vm-ObV" id="1hH-en-x7n"/>
             </connections>
