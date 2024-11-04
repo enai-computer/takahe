@@ -6,7 +6,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner" customClass="NiSearchController" customModule="ni" customModuleProvider="target">
+        <customObject id="-2" userLabel="File's Owner" customClass="NiSearchController" customModule="Enai" customModuleProvider="target">
             <connections>
                 <outlet property="searchField" destination="69S-1x-KUI" id="br7-NT-GQs"/>
                 <outlet property="searchFieldBox" destination="FGc-aX-z1x" id="m6k-xq-lgM"/>
@@ -28,7 +28,7 @@
                         <rect key="frame" x="15" y="357" width="620" height="58"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <subviews>
-                            <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="69S-1x-KUI" customClass="SearchViewTextField" customModule="ni" customModuleProvider="target">
+                            <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="69S-1x-KUI" customClass="SearchViewTextField" customModule="Enai" customModuleProvider="target">
                                 <rect key="frame" x="15" y="15" width="587" height="28"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" id="eQk-5F-QMg">
@@ -70,7 +70,7 @@
                             <rect key="frame" x="-100" y="-100" width="233" height="15"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
-                        <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="oHa-QP-zOL" customClass="NiSearchViewScroller" customModule="ni" customModuleProvider="target">
+                        <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="oHa-QP-zOL" customClass="NiSearchViewScroller" customModule="Enai" customModuleProvider="target">
                             <rect key="frame" x="602" y="0.0" width="16" height="316"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>

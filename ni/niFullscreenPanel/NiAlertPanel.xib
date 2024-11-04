@@ -6,7 +6,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner" customClass="NiAlertPanelController" customModule="ni" customModuleProvider="target">
+        <customObject id="-2" userLabel="File's Owner" customClass="NiAlertPanelController" customModule="Enai" customModuleProvider="target">
             <connections>
                 <outlet property="cancelButton" destination="1kn-0t-IVJ" id="dif-jH-ASn"/>
                 <outlet property="contentBox" destination="JrN-pQ-Oxo" id="95u-pr-eXy"/>
@@ -24,7 +24,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="640" height="280"/>
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
-                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="g4x-9G-6VZ">
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="g4x-9G-6VZ">
                         <rect key="frame" x="40" y="208" width="560" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <textFieldCell key="cell" lineBreakMode="clipping" allowsUndo="NO" title="Are you sure you want to delete this space?" id="eNE-cW-RBa">
@@ -33,7 +33,7 @@
                             <color key="backgroundColor" name="transparent"/>
                         </textFieldCell>
                     </textField>
-                    <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fPl-Ao-MfY">
+                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fPl-Ao-MfY">
                         <rect key="frame" x="40" y="114" width="560" height="70"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <textFieldCell key="cell" allowsUndo="NO" title="Once deleted, it cannot be recovered. " id="OUP-bN-IuC">
@@ -42,7 +42,7 @@
                             <color key="backgroundColor" name="transparent"/>
                         </textFieldCell>
                     </textField>
-                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sW0-lr-GcA" customClass="NiButton" customModule="ni" customModuleProvider="target">
+                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sW0-lr-GcA" customClass="NiButton" customModule="Enai" customModuleProvider="target">
                         <rect key="frame" x="339" y="40" width="110" height="52"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                         <buttonCell key="cell" type="bevel" title="Delete" bezelStyle="regularSquare" alignment="center" borderStyle="border" inset="2" id="hZG-k5-pmZ">
@@ -97,7 +97,7 @@
                             <action selector="deleteAction:" target="-2" id="tAs-As-DWF"/>
                         </connections>
                     </button>
-                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1kn-0t-IVJ" customClass="NiButton" customModule="ni" customModuleProvider="target">
+                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1kn-0t-IVJ" customClass="NiButton" customModule="Enai" customModuleProvider="target">
                         <rect key="frame" x="483" y="40" width="110" height="52"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                         <buttonCell key="cell" type="bevel" title="Cancel" bezelStyle="regularSquare" alignment="center" borderStyle="border" inset="2" id="BvR-pp-LuW">

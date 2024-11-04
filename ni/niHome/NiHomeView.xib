@@ -6,7 +6,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner" customClass="NiHomeController" customModule="ni" customModuleProvider="target">
+        <customObject id="-2" userLabel="File's Owner" customClass="NiHomeController" customModule="Enai" customModuleProvider="target">
             <connections>
                 <outlet property="leftSideFrame" destination="8gY-Mf-CWh" id="9Iz-Oq-cbZ"/>
                 <outlet property="rightSideFrame" destination="yGh-k4-h8P" id="yLB-Md-Jww"/>
@@ -33,7 +33,7 @@
                                 <rect key="frame" x="58" y="611" width="440" height="28"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                 <subviews>
-                                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="wXH-Zl-aHh">
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="wXH-Zl-aHh">
                                         <rect key="frame" x="-2" y="0.0" width="392" height="28"/>
                                         <textFieldCell key="cell" lineBreakMode="clipping" refusesFirstResponder="YES" allowsUndo="NO" alignment="right" title="Good morning," id="vU7-cL-hDd">
                                             <font key="font" size="21" name="Sohne-Buch"/>
@@ -41,7 +41,7 @@
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </textField>
-                                    <textField focusRingType="none" horizontalHuggingPriority="252" verticalHuggingPriority="750" horizontalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="ERP-Od-vPj" customClass="NiTextField" customModule="ni" customModuleProvider="target">
+                                    <textField horizontalHuggingPriority="252" verticalHuggingPriority="750" horizontalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="ERP-Od-vPj" customClass="NiTextField" customModule="Enai" customModuleProvider="target">
                                         <rect key="frame" x="386" y="0.0" width="56" height="28"/>
                                         <textFieldCell key="cell" lineBreakMode="clipping" allowsUndo="NO" alignment="left" title=" Alice" id="ieM-7X-FTC">
                                             <font key="font" size="21" name="Sohne-Buch"/>
