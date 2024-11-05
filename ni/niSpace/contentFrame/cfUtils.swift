@@ -31,7 +31,7 @@ func genMinimizedStackItems(tabs: [TabViewModel], owner: Any?) -> [CFMinimizedSt
 
 func genCollapsedMinimzedStackItems(
 	tabs: [TabViewModel],
-	handler: CFCollapsedMinimizedView
+	handler: CFCollapsedMinimizedView? = nil
 ) -> [NSView]{
 	func stackItem(tab: TabViewModel) -> NSView {
 		let itemView = NiAsyncImgView(

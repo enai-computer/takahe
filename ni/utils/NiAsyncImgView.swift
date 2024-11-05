@@ -19,7 +19,7 @@ class NiAsyncImgView: NSView{
 	private var mouseDownContext: Any?
 	private var image: NSImage?
 	
-	init(mouseHandler: NiMouseDownHandler,
+	init(mouseHandler: NiMouseDownHandler?,
 		 mouseDownContext: Any? = nil,
 		 frame: NSRect? = nil
 	){
