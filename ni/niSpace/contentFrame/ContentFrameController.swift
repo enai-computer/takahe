@@ -512,7 +512,23 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 			expandedToFullscreen()
 		}
 	}
-	
+
+	func minimizedToFullscreen() {
+		assert([.minimised, .collapsedMinimised].contains(viewState))
+
+		let oldState = viewState
+
+		// Workaround: Directly expanding to fullscreen will not display the controller on the topmost Z level: other expanded views will be displayed on top. Expanding minimized views first takes care of that.
+		self.minimizedToExpanded()
+		self.expandedToFullscreen()
+
+		// Set previous display state to the minimised state (would be `.expanded` with the workaround above all the time otherwise)
+		self.prevDisplayState = NiPreviousDisplayState(
+			state: oldState,
+			expandCollapseDirection: .leftToRight
+		)
+	}
+
 	func expandedToFullscreen(){
 		let fullscreenView = loadFullscreenView()
 		fullscreenView.setFrameOwner(myView.niParentDoc)
