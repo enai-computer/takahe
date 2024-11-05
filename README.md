@@ -25,40 +25,44 @@ The view of the content frame controller depends on the NiViewElement to be disp
 
 ```mermaid
 stateDiagram
-
-state group{
-    state min_choice <<choice>>
+  direction TB
+  state group {
+    direction TB
     [*] --> expanded
-    expanded --> min_choice: minimize
-    min_choice --> minimized: default choice
-    min_choice --> collapsed_minimized: previous state was collapsed minimized
+    state min_choice <<choice>>
+
+    expanded --> min_choice:minimize
+    min_choice --> minimized:default choice
+    min_choice --> collapsed_minimized:previous state was collapsed minimized
     minimized --> collapsed_minimized
     collapsed_minimized --> minimized
-
+    collapsed_minimized --> expanded
+    minimized --> expanded
     expanded --> fullscreen
     fullscreen --> expanded
-
-    collapsed_minimized: collapsed minimized
-}
-note right of group
-    websites use the group view
-end note
-
-state simple_frame{
+[*]    expanded
+    min_choice
+    minimized
+    collapsed_minimized
+    fullscreen
+  }
+  state simple_frame {
+    direction TB
     [*] --> CFSimpleFrame
     CFSimpleFrame --> simpleMinimised
     simpleMinimised --> CFSimpleFrame
-}
-note right of simple_frame
-    pdfs and webapps use a simple frame
-end note
-
-state frameless{
+[*]    CFSimpleFrame
+    simpleMinimised
+  }
+  state frameless {
+    direction TB
     [*] --> CFFrameless
-}
-note right of frameless
-    images and notes use a frameless view. Frameless does not have a minimized state.
-end note
+[*]    CFFrameless
+  }
+  collapsed_minimized:collapsed minimized
+  note right of group : websites use the group view
+  note right of simple_frame : pdfs and webapps use a simple frame
+  note right of frameless : images and notes use a frameless view. Frameless does not have a minimized state.
 ```
 
 ---  
