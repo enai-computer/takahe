@@ -697,6 +697,8 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		if(expandedCFView == nil){
 			tabSelectedInModel = recreateExpandedCFView()
 			expandedCFView?.setFrameOwner(self.myView.niParentDoc)
+		}else{
+			tabSelectedInModel = selectedTabModel
 		}
 		positionBiggerView(for: expandedCFView!)
 
