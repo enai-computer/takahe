@@ -66,8 +66,13 @@ class NiAsyncImgView: NSView{
 	}
 	
 	override func mouseDown(with event: NSEvent) {
+		guard let mouseHandler else {
+			// Let clicks fall-through if no click handler is set.
+			super.mouseDown(with: event)
+			return
+		}
 		guard self.image != nil else {return}
-		mouseHandler?.niLeftMouseDown(trigger: self, context: mouseDownContext)
+		mouseHandler.niLeftMouseDown(trigger: self, context: mouseDownContext)
 	}
 	
 	override func mouseEntered(with event: NSEvent) {
