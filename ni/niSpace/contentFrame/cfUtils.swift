@@ -33,29 +33,38 @@ func genCollapsedMinimzedStackItems(
 	tabs: [TabViewModel],
 	handler: CFCollapsedMinimizedView
 ) -> [NSView]{
-	var stackItems: [NSView] = []
-	let toManyToDisplay: Bool = 7 < tabs.count
-	
-	for (i, tab) in tabs.enumerated(){
-		if(i == 6 && toManyToDisplay){
-			stackItems.append(genPlusXItems(tabs.count - 6))
-			break
+	func stackItem(tab: TabViewModel) -> NSView {
+		let itemView = NiAsyncImgView(
+			mouseHandler: handler,
+			mouseDownContext: tab.position
+		)
+
+		if let img = tab.icon{
+			itemView.setImage(img)
 		}else{
-			let itemView = NiAsyncImgView(
-				mouseHandler: handler,
-				mouseDownContext: tab.position
-			)
-			
-			if let img = tab.icon{
-				itemView.setImage(img)
-			}else{
-				itemView.loadFavIcon(from: tab.content)
-			}
-			styleCollapsedMinimzedStackItem(itemView)
-			stackItems.append(itemView)
+			itemView.loadFavIcon(from: tab.content)
 		}
+		styleCollapsedMinimzedStackItem(itemView)
+		return itemView
 	}
-	return stackItems
+
+	let limit = 7
+
+	return if tabs.count > limit {
+		tabs[..<limit]
+			.map(stackItem(tab:))
+			.appending(genPlusXItems(tabs.count - (limit - 1)))
+	} else {
+		tabs.map(stackItem(tab:))
+	}
+}
+
+extension RangeReplaceableCollection {
+	@inlinable func appending(_ newElement: Element) -> Self {
+		var result = self
+		result.append(newElement)
+		return result
+	}
 }
 
 private func genPlusXItems(_ nrOfAddItems: Int) -> NSView{
