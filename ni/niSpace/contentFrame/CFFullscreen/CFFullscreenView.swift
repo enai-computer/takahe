@@ -130,27 +130,35 @@ class CFFullscreenView: CFBaseView, CFTabHeadProtocol, CFFwdBackButtonProtocol{
 		let items: [NiMenuItemViewModel] = groups.map { groupController in
 			// TODO: Show icons instead of "(Untitled)" for unnamed groups.
 			if self.frameIsActive && groupController === myController {
-				NiMenuItemViewModel(title: groupController.groupName ?? "(Untitled)", isEnabled: false, mouseDownFunction: nil)
+				NiMenuItemViewModel(
+					label: .init(fromContentFrameController: groupController),
+					isEnabled: false,
+					mouseDownFunction: nil
+				)
 			} else {
-				NiMenuItemViewModel(title: groupController.groupName ?? "(Untitled)", isEnabled: true, mouseDownFunction: { [myController] _ in
-					// Exit fullscreen first, otherwise the space's header will not be hidden correctly as shrinking to expanded would re-display it.
-					myController?.fullscreenToExpanded()
-					myController?.toggleActive()
+				NiMenuItemViewModel(
+					label: .init(fromContentFrameController: groupController),
+					isEnabled: true,
+					mouseDownFunction: { [myController] _ in
+						// Exit fullscreen first, otherwise the space's header will not be hidden correctly as shrinking to expanded would re-display it.
+						myController?.fullscreenToExpanded()
+						myController?.toggleActive()
 
-					groupController.toggleActive()
-					switch groupController.viewState {
-					case .collapsedMinimised, .minimised:
-						// TODO: Directly expanding to fullscreen will not display `controller` on the topmost Z level: other expanded views will be displayed on top. Expanding minimized views first takes care of that, but that's an odd detail.
-						groupController.minimizedToExpanded()
-						groupController.expandedToFullscreen()
-					case .expanded:
-						groupController.expandedToFullscreen()
-					case .fullscreen:
-						assert(groupController === myController, "No other group should have been in fullscreen mode")
-					case .frameless, .simpleFrame, .simpleMinimised:
-						assertionFailure("Unexpected state change from \(groupController.viewState) to full screen")
+						groupController.toggleActive()
+						switch groupController.viewState {
+						case .collapsedMinimised, .minimised:
+							// TODO: Directly expanding to fullscreen will not display `controller` on the topmost Z level: other expanded views will be displayed on top. Expanding minimized views first takes care of that, but that's an odd detail.
+							groupController.minimizedToExpanded()
+							groupController.expandedToFullscreen()
+						case .expanded:
+							groupController.expandedToFullscreen()
+						case .fullscreen:
+							assert(groupController === myController, "No other group should have been in fullscreen mode")
+						case .frameless, .simpleFrame, .simpleMinimised:
+							assertionFailure("Unexpected state change from \(groupController.viewState) to full screen")
+						}
 					}
-				})
+				)
 			}
 		}
 		let menuWin = NiMenuWindow(

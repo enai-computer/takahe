@@ -40,3 +40,21 @@ extension NiMenuItemViewModel {
 		)
 	}
 }
+
+extension NiMenuItemViewModel.Label {
+	init(fromContentFrameController controller: ContentFrameController) {
+		if let groupName = controller.groupName {
+			self = .title(groupName)
+		} else {
+			guard !controller.tabs.isEmpty else {
+				assertionFailure("ContentFrameController expected to have either a groupName or tabs")
+				self = .title("(Empty)")
+				return
+			}
+			self = .views(genCollapsedMinimzedStackItems(
+				tabs: controller.tabs,
+				handler: nil
+			))
+		}
+	}
+}
