@@ -22,16 +22,16 @@ class NiAsyncImgView: NSView{
 
 	override var intrinsicContentSize: NSSize { Self.faviconSize }
 
-	init(mouseHandler: NiMouseDownHandler?,
-		 mouseDownContext: Any? = nil,
-		 frame: NSRect? = nil
+	init(
+		mouseHandler: NiMouseDownHandler?,
+		mouseDownContext: Any? = nil
 	){
 		if let mhObj = mouseHandler as? NSObject{
 			self.mouseHandlerStorage = mhObj
 		}
 		self.mouseDownContext = mouseDownContext
 
-		super.init(frame: frame ?? NSRect(origin: .zero, size: Self.faviconSize))
+		super.init(frame: NSRect(origin: .zero, size: Self.faviconSize))
 
 		let hoverEffect = NSTrackingArea.init(rect: self.bounds, options: [.mouseEnteredAndExited, .activeInKeyWindow], owner: self, userInfo: nil)
 		self.addTrackingArea(hoverEffect)
