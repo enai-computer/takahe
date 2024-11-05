@@ -125,7 +125,7 @@ class CFFullscreenView: CFBaseView, CFTabHeadProtocol, CFFwdBackButtonProtocol{
 
 	func switchGroupInSpace(with event: NSEvent) {
 		assert(niParentDoc != nil)
-		guard let groups = niParentDoc?.orderedContentFrames() else { return }
+		guard let groups = niParentDoc?.orderedContentFrames().filter(\.viewState.canBecomeFullscreen) else { return }
 
 		let items: [NiMenuItemViewModel] = groups.map { groupController in
 			// TODO: Show icons instead of "(Untitled)" for unnamed groups.
