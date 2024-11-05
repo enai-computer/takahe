@@ -84,3 +84,15 @@ class NiMenuItemView: NSView{
 		return birkinRect
 	}
 }
+
+extension NiMenuItemView {
+	func display(viewModel: NiMenuItemViewModel) {
+		self.isEnabled = viewModel.isEnabled
+		self.title.stringValue = viewModel.title
+		self.mouseDownFunction = viewModel.mouseDownFunction
+
+		if let keyboardShortcut = viewModel.keyboardShortcut{
+			self.setKeyboardshortcut(keyboardShortcut)
+		}
+	}
+}
