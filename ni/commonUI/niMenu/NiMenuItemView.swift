@@ -11,7 +11,28 @@ class NiMenuItemView: NSView{
 	
 	@IBOutlet var title: NSTextField!
 	@IBOutlet var keyboardShortcut: NSTextField!
-	
+
+	private lazy var menuItemStack: NSStackView = {
+		let menuItemStack = NSStackView(frame: self.bounds)
+		menuItemStack.orientation = .horizontal
+		menuItemStack.alignment = .centerY
+		menuItemStack.distribution = .fillEqually
+
+		// Vertical center the 24pt stack in e.g. a 46pt menu item view
+		let height: CGFloat = 24  // Value from CFCollapsedMinimizedView
+		let horizontalInset: CGFloat = 7 // Value from CFCollapsedMinimizedView
+		let verticalInset = (self.bounds.height - height) / 2
+		menuItemStack.edgeInsets = .init(
+			top: verticalInset,
+			left: horizontalInset,
+			bottom: verticalInset,
+			right: horizontalInset
+		)
+		menuItemStack.spacing = 14 // Value from CFCollapsedMinimizedView
+
+		return menuItemStack
+	}()
+
 	private var birkinHighlight: NSView? = nil
 	private var isEnabledStorage = true
 	
@@ -88,11 +109,20 @@ class NiMenuItemView: NSView{
 extension NiMenuItemView {
 	func display(viewModel: NiMenuItemViewModel) {
 		self.isEnabled = viewModel.isEnabled
-		self.title.stringValue = viewModel.title
 		self.mouseDownFunction = viewModel.mouseDownFunction
 
 		if let keyboardShortcut = viewModel.keyboardShortcut{
 			self.setKeyboardshortcut(keyboardShortcut)
+		}
+
+		switch viewModel.label {
+		case .title(let title):
+			self.title.stringValue = title
+			menuItemStack.removeFromSuperview()
+		case .views(let stackedViews):
+			self.title.stringValue = ""
+			menuItemStack.setViews(stackedViews, in: .center)
+			self.addSubview(menuItemStack)
 		}
 	}
 }
