@@ -139,7 +139,7 @@ class CFFullscreenView: CFBaseView, CFTabHeadProtocol, CFFwdBackButtonProtocol{
 
 					groupController.toggleActive()
 					switch groupController.viewState {
-					case .collapsedMinimised, .minimised, .simpleMinimised:
+					case .collapsedMinimised, .minimised:
 						// TODO: Directly expanding to fullscreen will not display `controller` on the topmost Z level: other expanded views will be displayed on top. Expanding minimized views first takes care of that, but that's an odd detail.
 						groupController.minimizedToExpanded()
 						groupController.expandedToFullscreen()
@@ -147,8 +147,8 @@ class CFFullscreenView: CFBaseView, CFTabHeadProtocol, CFFwdBackButtonProtocol{
 						groupController.expandedToFullscreen()
 					case .fullscreen:
 						assert(groupController === myController, "No other group should have been in fullscreen mode")
-					case .frameless, .simpleFrame:
-						break // TODO: What to do with these?
+					case .frameless, .simpleFrame, .simpleMinimised:
+						assertionFailure("Unexpected state change from \(groupController.viewState) to full screen")
 					}
 				})
 			}
