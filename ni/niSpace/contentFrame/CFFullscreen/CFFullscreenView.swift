@@ -18,6 +18,7 @@ class CFFullscreenView: CFBaseView, CFTabHeadProtocol, CFFwdBackButtonProtocol{
 	@IBOutlet var time: NSTextField!
 	@IBOutlet var cfTabHeadCollection: NSCollectionView?
 	@IBOutlet var addTabButton: NiActionImage!
+	@IBOutlet var switchGroupInSpaceButton: NiActionImage!
 	@IBOutlet var contentForwardButton: NiActionImage!
 	@IBOutlet var contentBackButton: NiActionImage!
 	@IBOutlet var spaceName: NiTextField!
@@ -28,7 +29,8 @@ class CFFullscreenView: CFBaseView, CFTabHeadProtocol, CFFwdBackButtonProtocol{
 		
 		addTabButton.setMouseDownFunction(addTabClicked)
 		addTabButton.isActiveFunction = {return true}
-		
+
+		switchGroupInSpaceButton.setMouseDownFunction(switchGroupInSpace)
 		contentBackButton.setMouseDownFunction(backButtonClicked)
 		contentBackButton.isActiveFunction = backButtonIsActive
 		
@@ -120,7 +122,45 @@ class CFFullscreenView: CFBaseView, CFTabHeadProtocol, CFFwdBackButtonProtocol{
 			cfc.openAndEditEmptyWebTab()
 		}
 	}
-	
+
+	func switchGroupInSpace(with event: NSEvent) {
+		assert(niParentDoc != nil)
+		guard let groups = niParentDoc?.orderedContentFrames().filter(\.viewState.canBecomeFullscreen) else { return }
+
+		let items: [NiMenuItemViewModel] = groups.map { groupController in
+			// TODO: Show icons instead of "(Untitled)" for unnamed groups.
+			if self.frameIsActive && groupController === myController {
+				NiMenuItemViewModel(title: groupController.groupName ?? "(Untitled)", isEnabled: false, mouseDownFunction: nil)
+			} else {
+				NiMenuItemViewModel(title: groupController.groupName ?? "(Untitled)", isEnabled: true, mouseDownFunction: { [myController] _ in
+					// Exit fullscreen first, otherwise the space's header will not be hidden correctly as shrinking to expanded would re-display it.
+					myController?.fullscreenToExpanded()
+					myController?.toggleActive()
+
+					groupController.toggleActive()
+					switch groupController.viewState {
+					case .collapsedMinimised, .minimised:
+						// TODO: Directly expanding to fullscreen will not display `controller` on the topmost Z level: other expanded views will be displayed on top. Expanding minimized views first takes care of that, but that's an odd detail.
+						groupController.minimizedToExpanded()
+						groupController.expandedToFullscreen()
+					case .expanded:
+						groupController.expandedToFullscreen()
+					case .fullscreen:
+						assert(groupController === myController, "No other group should have been in fullscreen mode")
+					case .frameless, .simpleFrame, .simpleMinimised:
+						assertionFailure("Unexpected state change from \(groupController.viewState) to full screen")
+					}
+				})
+			}
+		}
+		let menuWin = NiMenuWindow(
+			origin: event.locationInWindow,
+			dirtyMenuItems: items,
+			currentScreen: self.window!.screen!
+		)
+		menuWin.makeKeyAndOrderFront(nil)
+	}
+
 	func searchIconClicked(with event: NSEvent){
 		(NSApplication.shared.delegate as? AppDelegate)?.showPalette()
 	}

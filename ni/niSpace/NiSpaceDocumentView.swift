@@ -232,17 +232,21 @@ class NiSpaceDocumentView: NSView{
 	}
 	
 	private func cfOrdered() -> (Int, [ContentFrameController]){
-		let orderedCFs = contentFrameControllers.sorted {
-			return $0.view.frame.origin.y <= $1.view.frame.origin.y
-		}
-		let currentPos: Int = if(topNiFrame != nil){
-			orderedCFs.firstIndex(of: topNiFrame!) ?? -1
+		let orderedCFs = orderedContentFrames()
+		let currentPos: Int = if let topNiFrame {
+			orderedCFs.firstIndex(of: topNiFrame) ?? -1
 		} else{
 			-1
 		}
 		return (currentPos, orderedCFs)
 	}
-	
+
+	/// Returns ``ContentFrameController``s in `self`, ordered by the Y position from top to bottom.
+	func orderedContentFrames() -> [ContentFrameController] {
+		return contentFrameControllers
+			.sorted { $0.view.frame.origin.y <= $1.view.frame.origin.y }
+	}
+
 	func deinitSelf(){
 		for conFrame in contentFrameControllers{
 			conFrame.deinitSelf()
