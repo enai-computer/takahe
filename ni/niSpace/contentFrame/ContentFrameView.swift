@@ -25,6 +25,7 @@ class ContentFrameView: CFBaseView, CFTabHeadProtocol, CFFwdBackButtonProtocol, 
 	private var cfHeadDragAreaWidthConstraint: NSLayoutConstraint?
 	private var niContentTabViewWidthConstraint: NSLayoutConstraint?
 	private var groupButtonLeftConstraint: NSLayoutConstraint?
+	private var mouseHoldcfHeadTimer: Timer?
 	
 	//Tabbed ContentView
 	@IBOutlet var niContentTabView: NSTabView!
@@ -222,11 +223,16 @@ class ContentFrameView: CFBaseView, CFTabHeadProtocol, CFFwdBackButtonProtocol, 
 				fillOrRetractView(with: event)
 				return
 			}
-			NSCursor.closedHand.push()
+			let interval = TimeInterval(floatLiteral: 0.7)
+			mouseHoldcfHeadTimer = Timer.scheduledTimer(withTimeInterval: interval, repeats: false){_ in
+				NSCursor.closedHand.push()
+			}
 		}
     }
     
     override func mouseUp(with event: NSEvent) {
+		mouseHoldcfHeadTimer?.invalidate()
+		mouseHoldcfHeadTimer = nil
         if !frameIsActive{
             nextResponder?.mouseUp(with: event)
 			return
@@ -308,7 +314,7 @@ class ContentFrameView: CFBaseView, CFTabHeadProtocol, CFFwdBackButtonProtocol, 
     }
     
     override func isOnBoarder(_ cursorLocation: CGPoint) -> OnBorder{
-        if (NSPointInRect(cursorLocation, getTopBorderActionArea()) || NSPointInRect(cursorLocation, getDragArea())){
+		if (NSPointInRect(cursorLocation, getTopBorderActionArea()) || NSPointInRect(cursorLocation, cfHeadView.frame)){
             return .top
         }
 		return super.isOnBoarder(cursorLocation)

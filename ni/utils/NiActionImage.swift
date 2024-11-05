@@ -15,6 +15,8 @@ class NiActionImage: NSImageView{
 	private var rightMouseDownFunction: ((NSEvent) -> Void)?
 	private var rightMouseDownFunctionWContext: ((NSEvent, Any) -> Void)?
 
+	var mouseUpFunction: ((NSEvent) -> Void)?
+	
 	var mouseDownInActiveFunction: ((NSEvent) -> Void)?
 	var isActiveFunction: (() -> Bool)?
 	private var clickContext: Any?
@@ -76,6 +78,10 @@ class NiActionImage: NSImageView{
 	}
 	
 	override func mouseUp(with event: NSEvent) {
+		if(mouseUpFunction != nil){
+			mouseUpFunction?(event)
+			return
+		}
 		guard !triggerOnDown else{return}
 		
 		//if is not active - don't change color
@@ -166,6 +172,8 @@ class NiActionImage: NSImageView{
 		mouseDownFunctionWContext = nil
 		rightMouseDownFunction = nil
 		rightMouseDownFunctionWContext = nil
+		
+		mouseUpFunction = nil
 		
 		mouseDownInActiveFunction = nil
 		isActiveFunction = nil
