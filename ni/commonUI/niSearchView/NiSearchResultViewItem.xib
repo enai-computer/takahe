@@ -24,7 +24,7 @@
                         </constraints>
                         <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" image="SpaceIcon" id="fMr-KB-Hhu"/>
                     </imageView>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="t8U-1E-53I">
+                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="t8U-1E-53I">
                         <rect key="frame" x="46" y="12" width="216" height="23"/>
                         <constraints>
                             <constraint firstAttribute="width" relation="lessThanOrEqual" constant="380" id="00m-jR-EEk"/>
@@ -36,6 +36,17 @@
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
+                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" ambiguous="YES" verifyAmbiguity="ignoreSizes" translatesAutoresizingMaskIntoConstraints="NO" id="xhO-J3-ST2">
+                        <rect key="frame" x="473" y="12" width="124" height="23"/>
+                        <constraints>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="120" id="4Kh-2h-Aob"/>
+                        </constraints>
+                        <textFieldCell key="cell" lineBreakMode="truncatingTail" alignment="right" id="oJA-qa-Cd2">
+                            <font key="font" size="18" name="Sohne-Buch"/>
+                            <color key="textColor" name="sand9"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
                     <customView horizontalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="G6o-tn-ihA" customClass="NiSearchResultViewItemRightIcon" customModule="Enai" customModuleProvider="target">
                         <rect key="frame" x="605" y="12" width="30" height="23"/>
                         <constraints>
@@ -44,24 +55,13 @@
                             <constraint firstAttribute="height" constant="23" id="zOz-Xa-loa"/>
                         </constraints>
                     </customView>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" ambiguous="YES" verifyAmbiguity="ignoreSizes" translatesAutoresizingMaskIntoConstraints="NO" id="xhO-J3-ST2">
-                        <rect key="frame" x="473" y="12" width="124" height="23"/>
-                        <constraints>
-                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="120" id="4Kh-2h-Aob"/>
-                        </constraints>
-                        <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" id="oJA-qa-Cd2">
-                            <font key="font" size="18" name="Sohne-Buch"/>
-                            <color key="textColor" name="sand9"/>
-                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                    </textField>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="right" secondItem="G6o-tn-ihA" secondAttribute="right" constant="15" id="W8S-B7-hU5"/>
                     <constraint firstItem="xhO-J3-ST2" firstAttribute="right" secondItem="t8U-1E-53I" secondAttribute="left" priority="750" constant="547" id="a9s-i7-MiG"/>
                     <constraint firstItem="G6o-tn-ihA" firstAttribute="left" secondItem="xhO-J3-ST2" secondAttribute="right" constant="10" id="cTd-yT-TNz"/>
                     <constraint firstItem="t8U-1E-53I" firstAttribute="left" secondItem="1sL-Lx-nik" secondAttribute="right" constant="12" id="gFk-oF-EIA"/>
-                    <constraint firstItem="xhO-J3-ST2" firstAttribute="left" secondItem="t8U-1E-53I" secondAttribute="right" priority="250" id="qWd-6y-HuG"/>
+                    <constraint firstItem="xhO-J3-ST2" firstAttribute="left" relation="greaterThanOrEqual" secondItem="t8U-1E-53I" secondAttribute="right" constant="40" id="qWd-6y-HuG"/>
                     <constraint firstItem="1sL-Lx-nik" firstAttribute="left" secondItem="zK4-rg-z5x" secondAttribute="left" constant="15" id="qaX-RM-d51"/>
                     <constraint firstItem="G6o-tn-ihA" firstAttribute="top" secondItem="zK4-rg-z5x" secondAttribute="top" constant="12" id="qab-eO-S7b"/>
                 </constraints>
