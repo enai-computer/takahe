@@ -31,6 +31,7 @@ func genMinimizedStackItems(tabs: [TabViewModel], owner: Any?) -> [CFMinimizedSt
 
 func genCollapsedMinimzedStackItems(
 	tabs: [TabViewModel],
+	limit: Int = 7,
 	handler: CFCollapsedMinimizedView? = nil
 ) -> [NSView]{
 	func stackItem(tab: TabViewModel) -> NSView {
@@ -47,8 +48,6 @@ func genCollapsedMinimzedStackItems(
 		styleCollapsedMinimzedStackItem(itemView)
 		return itemView
 	}
-
-	let limit = 7
 
 	return if tabs.count > limit {
 		tabs[..<limit]

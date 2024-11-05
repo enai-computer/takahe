@@ -53,6 +53,7 @@ extension NiMenuItemViewModel.Label {
 			}
 			self = .views(genCollapsedMinimzedStackItems(
 				tabs: controller.tabs,
+				limit: NiMenuItemView.menuItemIconLimit,
 				handler: nil
 			))
 		}

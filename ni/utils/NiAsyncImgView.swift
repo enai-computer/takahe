@@ -13,12 +13,15 @@ protocol NiMouseDownHandler{
 }
 
 class NiAsyncImgView: NSView{
-	
+	static var faviconSize: NSSize { .init(width: 24, height: 24) }
+
 	private weak var mouseHandlerStorage: NSObject?
 	private var mouseHandler: NiMouseDownHandler? {return mouseHandlerStorage as? NiMouseDownHandler}
 	private var mouseDownContext: Any?
 	private var image: NSImage?
-	
+
+	override var intrinsicContentSize: NSSize { Self.faviconSize }
+
 	init(mouseHandler: NiMouseDownHandler?,
 		 mouseDownContext: Any? = nil,
 		 frame: NSRect? = nil
@@ -27,12 +30,9 @@ class NiAsyncImgView: NSView{
 			self.mouseHandlerStorage = mhObj
 		}
 		self.mouseDownContext = mouseDownContext
-		
-		if(frame == nil){
-			super.init(frame: NSRect(x: 0, y: 0, width: 24, height: 24))
-		}else{
-			super.init(frame: frame!)
-		}
+
+		super.init(frame: frame ?? NSRect(origin: .zero, size: Self.faviconSize))
+
 		let hoverEffect = NSTrackingArea.init(rect: self.bounds, options: [.mouseEnteredAndExited, .activeInKeyWindow], owner: self, userInfo: nil)
 		self.addTrackingArea(hoverEffect)
 		self.alphaValue = 0.7
@@ -45,6 +45,8 @@ class NiAsyncImgView: NSView{
 	func setImage(_ img: NSImage){
 		self.image = img
 		self.needsDisplay = true
+		self.needsLayout = true
+		self.invalidateIntrinsicContentSize()
 	}
 	
 	func loadFavIcon(from urlStr: String?) {
