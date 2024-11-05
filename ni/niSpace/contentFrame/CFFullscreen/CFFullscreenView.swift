@@ -125,29 +125,28 @@ class CFFullscreenView: CFBaseView, CFTabHeadProtocol, CFFwdBackButtonProtocol{
 
 	func switchGroupInSpace(with event: NSEvent) {
 		assert(niParentDoc != nil)
-		guard let groups = niParentDoc?.groupsInSpace() else { return }
+		guard let groups = niParentDoc?.orderedContentFrames() else { return }
 
-		let items: [NiMenuItemViewModel] = groups.map { group in
+		let items: [NiMenuItemViewModel] = groups.map { groupController in
 			// TODO: Show icons instead of "(Untitled)" for unnamed groups.
-			switch group {
-			case .active(let controller):
-				NiMenuItemViewModel(title: controller.groupName ?? "(Untitled)", isEnabled: false, mouseDownFunction: nil)
-			case .inactive(let controller):
-				NiMenuItemViewModel(title: controller.groupName ?? "(Untitled)", isEnabled: true, mouseDownFunction: { [myController] _ in
+			if self.frameIsActive && groupController === myController {
+				NiMenuItemViewModel(title: groupController.groupName ?? "(Untitled)", isEnabled: false, mouseDownFunction: nil)
+			} else {
+				NiMenuItemViewModel(title: groupController.groupName ?? "(Untitled)", isEnabled: true, mouseDownFunction: { [myController] _ in
 					// Exit fullscreen first, otherwise the space's header will not be hidden correctly as shrinking to expanded would re-display it.
 					myController?.fullscreenToExpanded()
 					myController?.toggleActive()
 
-					controller.toggleActive()
-					switch controller.viewState {
+					groupController.toggleActive()
+					switch groupController.viewState {
 					case .collapsedMinimised, .minimised, .simpleMinimised:
 						// TODO: Directly expanding to fullscreen will not display `controller` on the topmost Z level: other expanded views will be displayed on top. Expanding minimized views first takes care of that, but that's an odd detail.
-						controller.minimizedToExpanded()
-						controller.expandedToFullscreen()
+						groupController.minimizedToExpanded()
+						groupController.expandedToFullscreen()
 					case .expanded:
-						controller.expandedToFullscreen()
+						groupController.expandedToFullscreen()
 					case .fullscreen:
-						assert(controller === myController, "No other group should have been in fullscreen mode")
+						assert(groupController === myController, "No other group should have been in fullscreen mode")
 					case .frameless, .simpleFrame:
 						break // TODO: What to do with these?
 					}
