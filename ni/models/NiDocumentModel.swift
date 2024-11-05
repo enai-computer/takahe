@@ -137,6 +137,13 @@ enum NiConentFrameState: String, Codable {
 		}
 		return false
 	}
+
+	var canBecomeFullscreen: Bool {
+		return switch self {
+		case .collapsedMinimised, .minimised, .expanded: true
+		case .frameless, .simpleFrame, .simpleMinimised, .fullscreen: false
+		}
+	}
 }
 
 enum NiCFCollapseDirection: String, Codable{
