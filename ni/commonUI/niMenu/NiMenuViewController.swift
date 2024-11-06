@@ -42,12 +42,7 @@ class NiMenuViewController: NSViewController{
 		
 		for item in items{
 			let itemView = (NSView.loadFromNib(nibName: "NiMenuItemView", owner: self) as! NiMenuItemView)
-			itemView.isEnabled = item.isEnabled
-			itemView.title.stringValue = item.title
-			itemView.mouseDownFunction = item.mouseDownFunction
-			if(item.keyboardShortcut != nil){
-				itemView.setKeyboardshortcut(item.keyboardShortcut!)
-			}
+			itemView.display(viewModel: item)
 			menuItems.append(itemView)
 		}
 		
