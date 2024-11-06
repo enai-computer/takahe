@@ -9,7 +9,7 @@ import Cocoa
 
 class NiMenuItemView: NSView{
 	/// Amount of favicons that can fit the ``NiMenuItemView``.
-	static var menuItemIconLimit = 6
+	static var menuItemIconLimit = 5
 
 	@IBOutlet var title: NSTextField!
 	@IBOutlet var keyboardShortcut: NSTextField!
@@ -18,7 +18,7 @@ class NiMenuItemView: NSView{
 		let menuItemStack = NSStackView(frame: self.bounds)
 		menuItemStack.orientation = .horizontal
 		menuItemStack.alignment = .centerY
-		menuItemStack.distribution = .equalSpacing  // Respects intrinsic size of favicons
+		menuItemStack.distribution = .gravityAreas
 
 		// Vertical center the 24pt stack in e.g. a 46pt menu item view
 		let height: CGFloat = 24  // Value from CFCollapsedMinimizedView
