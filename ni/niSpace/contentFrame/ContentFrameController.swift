@@ -30,7 +30,18 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	private var nxtTabPosOpenNxtTo: Int? = nil
 	private(set) var aTabIsInEditingMode: Bool = false
 	private(set) var tabs: [TabViewModel] = []
-	var viewState: NiConentFrameState = .expanded
+	var viewState: NiConentFrameState = .expanded {
+		didSet {
+			self.prevDisplayState = switch oldValue {
+			case .fullscreen: nil
+			case .minimised, .collapsedMinimised, .simpleMinimised, .simpleFrame, .frameless, .expanded:
+				NiPreviousDisplayState(
+					state: oldValue,
+					expandCollapseDirection: .leftToRight
+				)
+			}
+		}
+	}
 	private var viewIsDrawn = false
 	
 	private var closeCancelled = false
@@ -446,13 +457,12 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		minimizedView.setFrameOwner(myView.niParentDoc)
 		positionMinimizedView(for: minimizedView)
 		
-		prevDisplayState = nil
-		
 		//replace
 		self.view.superview?.replaceSubview(self.view, with: minimizedView)
 		self.view = minimizedView
 		self.viewState = .minimised
-		
+		self.prevDisplayState = nil
+
 		self.myView.niParentDoc?.setTopNiFrame(self)
 		sharedLoadViewSetters()
 	}
@@ -502,7 +512,23 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 			expandedToFullscreen()
 		}
 	}
-	
+
+	func minimizedToFullscreen() {
+		assert([.minimised, .collapsedMinimised].contains(viewState))
+
+		let oldState = viewState
+
+		// Workaround: Directly expanding to fullscreen will not display the controller on the topmost Z level: other expanded views will be displayed on top. Expanding minimized views first takes care of that.
+		self.minimizedToExpanded()
+		self.expandedToFullscreen()
+
+		// Set previous display state to the minimised state (would be `.expanded` with the workaround above all the time otherwise)
+		self.prevDisplayState = NiPreviousDisplayState(
+			state: oldState,
+			expandCollapseDirection: .leftToRight
+		)
+	}
+
 	func expandedToFullscreen(){
 		let fullscreenView = loadFullscreenView()
 		fullscreenView.setFrameOwner(myView.niParentDoc)
@@ -671,14 +697,11 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		if(expandedCFView == nil){
 			tabSelectedInModel = recreateExpandedCFView()
 			expandedCFView?.setFrameOwner(self.myView.niParentDoc)
+		}else{
+			tabSelectedInModel = selectedTabModel
 		}
 		positionBiggerView(for: expandedCFView!)
-		
-		prevDisplayState = NiPreviousDisplayState(
-			state: viewState,
-			expandCollapseDirection: .leftToRight
-		)
-		
+
 		//replace
 		self.view.superview?.replaceSubview(self.view, with: expandedCFView!)
 		self.myView.deinitSelf()
@@ -706,14 +729,13 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		let collapsedView = loadCollapsedMinizedView()
 		positionMinimizedView(for: collapsedView)
 		collapsedView.setFrameOwner(myView.niParentDoc)
-		
-		prevDisplayState = nil
-		
+
 		//replace
 		self.view.superview?.replaceSubview(self.view, with: collapsedView)
 		self.view = collapsedView
 		self.viewState = .collapsedMinimised
-		
+		self.prevDisplayState = nil
+
 		self.myView.niParentDoc?.setTopNiFrame(self)
 		sharedLoadViewSetters()
 	}

@@ -141,15 +141,14 @@ class CFFullscreenView: CFBaseView, CFTabHeadProtocol, CFFwdBackButtonProtocol{
 					isEnabled: true,
 					mouseDownFunction: { [myController] _ in
 						// Exit fullscreen first, otherwise the space's header will not be hidden correctly as shrinking to expanded would re-display it.
-						myController?.fullscreenToExpanded()
+						myController?.fullscreenToPreviousState()
 						myController?.toggleActive()
 
 						groupController.toggleActive()
+
 						switch groupController.viewState {
 						case .collapsedMinimised, .minimised:
-							// TODO: Directly expanding to fullscreen will not display `controller` on the topmost Z level: other expanded views will be displayed on top. Expanding minimized views first takes care of that, but that's an odd detail.
-							groupController.minimizedToExpanded()
-							groupController.expandedToFullscreen()
+							groupController.minimizedToFullscreen()
 						case .expanded:
 							groupController.expandedToFullscreen()
 						case .fullscreen:
