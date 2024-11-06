@@ -130,26 +130,34 @@ class CFFullscreenView: CFBaseView, CFTabHeadProtocol, CFFwdBackButtonProtocol{
 		let items: [NiMenuItemViewModel] = groups.map { groupController in
 			// TODO: Show icons instead of "(Untitled)" for unnamed groups.
 			if self.frameIsActive && groupController === myController {
-				NiMenuItemViewModel(title: groupController.groupName ?? "(Untitled)", isEnabled: false, mouseDownFunction: nil)
+				NiMenuItemViewModel(
+					label: .init(fromContentFrameController: groupController),
+					isEnabled: false,
+					mouseDownFunction: nil
+				)
 			} else {
-				NiMenuItemViewModel(title: groupController.groupName ?? "(Untitled)", isEnabled: true, mouseDownFunction: { [myController] _ in
-					// Exit fullscreen first, otherwise the space's header will not be hidden correctly as shrinking to expanded would re-display it.
-					myController?.fullscreenToPreviousState()
-					myController?.toggleActive()
+				NiMenuItemViewModel(
+					label: .init(fromContentFrameController: groupController),
+					isEnabled: true,
+					mouseDownFunction: { [myController] _ in
+						// Exit fullscreen first, otherwise the space's header will not be hidden correctly as shrinking to expanded would re-display it.
+						myController?.fullscreenToPreviousState()
+						myController?.toggleActive()
 
-					groupController.toggleActive()
+						groupController.toggleActive()
 
-					switch groupController.viewState {
-					case .collapsedMinimised, .minimised:
-						groupController.minimizedToFullscreen()
-					case .expanded:
-						groupController.expandedToFullscreen()
-					case .fullscreen:
-						assert(groupController === myController, "No other group should have been in fullscreen mode")
-					case .frameless, .simpleFrame, .simpleMinimised:
-						assertionFailure("Unexpected state change from \(groupController.viewState) to full screen")
+						switch groupController.viewState {
+						case .collapsedMinimised, .minimised:
+							groupController.minimizedToFullscreen()
+						case .expanded:
+							groupController.expandedToFullscreen()
+						case .fullscreen:
+							assert(groupController === myController, "No other group should have been in fullscreen mode")
+						case .frameless, .simpleFrame, .simpleMinimised:
+							assertionFailure("Unexpected state change from \(groupController.viewState) to full screen")
+						}
 					}
-				})
+				)
 			}
 		}
 		let menuWin = NiMenuWindow(
