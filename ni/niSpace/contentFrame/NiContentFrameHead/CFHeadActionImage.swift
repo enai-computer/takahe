@@ -31,6 +31,7 @@ class CFHeadActionImage: NSImageView{
 	
 	@IBOutlet weak var mouseDelegate: CFHeadActionImageDelegate!
 	
+	private var prevDefaultTint: NSColor?
 	private var mouseDragged: Bool = false
 	
 	override init(frame frameRect: NSRect) {
@@ -60,7 +61,9 @@ class CFHeadActionImage: NSImageView{
 	
 	override func mouseDragged(with event: NSEvent) {
 		mouseDragged = true
-		//TODO: tint inactive
+		if(hoverTint != nil){
+			self.contentTintColor = prevDefaultTint ?? defaultTint
+		}
 		super.mouseDragged(with: event)
 	}
 	
@@ -77,6 +80,7 @@ class CFHeadActionImage: NSImageView{
 			return
 		}
 		if(hoverTint != nil){
+			prevDefaultTint = self.contentTintColor
 			self.contentTintColor = hoverTint
 		}
 	}
@@ -87,7 +91,7 @@ class CFHeadActionImage: NSImageView{
 			return
 		}
 		if(hoverTint != nil){
-			self.contentTintColor = defaultTint
+			self.contentTintColor = prevDefaultTint ?? defaultTint
 		}
 	}
 	
