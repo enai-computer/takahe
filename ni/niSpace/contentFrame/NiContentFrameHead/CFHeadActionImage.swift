@@ -15,6 +15,7 @@ import QuartzCore
 	case expand = 3
 	case minimize = 4
 	case close = 5
+	case maximize = 6
 }
 
 @objc protocol CFHeadActionImageDelegate: AnyObject {

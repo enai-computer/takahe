@@ -26,20 +26,35 @@
                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="155" id="YjH-sc-EmQ"/>
                                 </constraints>
                             </customView>
-                            <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DNU-4H-Ufr" customClass="NiActionImage" customModule="Enai" customModuleProvider="target">
+                            <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DNU-4H-Ufr" customClass="CFHeadActionImage" customModule="Enai" customModuleProvider="target">
                                 <rect key="frame" x="194" y="7" width="24" height="24"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="maximize" id="Xfj-bJ-gpz"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="buttonType">
+                                        <integer key="value" value="3"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </imageView>
-                            <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KBe-1J-qrM" customClass="NiActionImage" customModule="Enai" customModuleProvider="target">
+                            <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KBe-1J-qrM" customClass="CFHeadActionImage" customModule="Enai" customModuleProvider="target">
                                 <rect key="frame" x="242" y="7" width="24" height="24"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="close" id="Dke-bu-Z7b"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="buttonType">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </imageView>
-                            <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="n37-ln-inD" customClass="NiActionImage" customModule="Enai" customModuleProvider="target">
+                            <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="n37-ln-inD" customClass="CFHeadActionImage" customModule="Enai" customModuleProvider="target">
                                 <rect key="frame" x="218" y="7" width="24" height="24"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="arrowWBarDown" id="ZDb-QE-uHm"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="buttonType">
+                                        <integer key="value" value="6"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </imageView>
                         </subviews>
                         <constraints>

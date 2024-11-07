@@ -7,14 +7,14 @@
 
 import Cocoa
 
-class CFCollapsedMinimizedView: CFBaseView, CFHasGroupButtonProtocol, NiMouseDownHandler{
+class CFCollapsedMinimizedView: CFBaseView, CFHasGroupButtonProtocol, NiMouseDownHandler, CFHeadActionImageDelegate{
 	
 	@IBOutlet var cfGroupButton: CFGroupButton!
 	@IBOutlet var cfHeadView: NSView!
 	@IBOutlet var listOfTabs: NSStackView?
-	@IBOutlet var maximizeButton: NiActionImage!
-	@IBOutlet var expandDownwardsButton: NiActionImage!
-	@IBOutlet var closeButton: NiActionImage!
+	@IBOutlet var maximizeButton: CFHeadActionImage!
+	@IBOutlet var expandDownwardsButton: CFHeadActionImage!
+	@IBOutlet var closeButton: CFHeadActionImage!
 	
 	required init?(coder: NSCoder) {
 		super.init(coder: coder)
@@ -35,18 +35,6 @@ class CFCollapsedMinimizedView: CFBaseView, CFHasGroupButtonProtocol, NiMouseDow
 			listOfTabs?.frame.size.width = (24.0 + 14.0) * 7.0 //+ 7.0
 		}
 		
-		closeButton.setMouseDownFunction(clickedCloseButton)
-		closeButton.isActiveFunction = self.isFrameActive
-		closeButton.mouseDownInActiveFunction = activateContentFrame
-		
-		maximizeButton.setMouseDownFunction(maximizeButtonClicked)
-		maximizeButton.isActiveFunction = self.isFrameActive
-		maximizeButton.mouseDownInActiveFunction = activateContentFrame
-		
-		expandDownwardsButton.setMouseDownFunction(expandDownwardsButtonClicked)
-		expandDownwardsButton.isActiveFunction = self.isFrameActive
-		expandDownwardsButton.mouseDownInActiveFunction = activateContentFrame
-		
 		cfGroupButton.initButton(
 			mouseDownFunction: clickedGroupButton,
 			mouseDownInActiveFunction: activateContentFrame,
@@ -63,7 +51,7 @@ class CFCollapsedMinimizedView: CFBaseView, CFHasGroupButtonProtocol, NiMouseDow
 		return .no
 	}
 	
-	func maximizeButtonClicked(with event: NSEvent){
+	func expandButtonClicked(with event: NSEvent){
 		myController?.minimizedToExpanded()
 	}
 	
@@ -120,6 +108,27 @@ class CFCollapsedMinimizedView: CFBaseView, CFHasGroupButtonProtocol, NiMouseDow
 		deactivateDocumentResize = false
 	}
 	
+	func mouseUp(with event: NSEvent, for type: CFHeadButtonType) {
+		switch(type){
+			case .expand:
+				expandButtonClicked(with: event)
+				return
+			case .maximize:
+				expandDownwardsButtonClicked(with: event)
+				return
+			case .close:
+				clickedCloseButton(with: event)
+				return
+			default:
+				assertionFailure("button type not implemented")
+				return
+		}
+	}
+	
+	override func isFrameActive() -> Bool{
+		super.isFrameActive()
+	}
+	
 	func niLeftMouseDown(trigger: NSView, context: Any?) {
 		if let pos: Int = context as? Int{
 			myController?.minimizedToExpanded(pos)
@@ -173,9 +182,6 @@ class CFCollapsedMinimizedView: CFBaseView, CFHasGroupButtonProtocol, NiMouseDow
 	}
 	
 	override func deinitSelf(keepContentView: Bool = false) {
-		closeButton.deinitSelf()
-		maximizeButton.deinitSelf()
-		expandDownwardsButton.deinitSelf()
 		cfGroupButton.deinitSelf()
 		listOfTabs?.removeFromSuperviewWithoutNeedingDisplay()
 		listOfTabs = nil
