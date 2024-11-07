@@ -8,7 +8,9 @@
 import Cocoa
 
 class CFCollapsedMinimizedView: CFBaseView, CFHasGroupButtonProtocol, NiMouseDownHandler{
-	
+	/// Amount of favicons that can fit the ``CFCollapsedMinimizedView/listOfTabs``.
+	static var tabListLimit = 6
+
 	@IBOutlet var cfGroupButton: CFGroupButton!
 	@IBOutlet var cfHeadView: NSView!
 	@IBOutlet var listOfTabs: NSStackView?
@@ -29,10 +31,10 @@ class CFCollapsedMinimizedView: CFBaseView, CFHasGroupButtonProtocol, NiMouseDow
 		self.layer?.shadowRadius = 1.0
 		self.layer?.masksToBounds = false
 	
-		if(nrOfItems < 7){
+		if(nrOfItems < Self.tabListLimit){
 			listOfTabs?.frame.size.width = (24.0 + 14.0) * CGFloat(nrOfItems) //+ 7.0
 		}else{
-			listOfTabs?.frame.size.width = (24.0 + 14.0) * 7.0 //+ 7.0
+			listOfTabs?.frame.size.width = (24.0 + 14.0) * CGFloat(Self.tabListLimit) //+ 7.0
 		}
 		
 		closeButton.setMouseDownFunction(clickedCloseButton)
