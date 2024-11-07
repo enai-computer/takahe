@@ -67,7 +67,11 @@ extension String {
 			// it is a link, if the match covers the whole string
 			return match.range.length == self.utf16.count
 		} else {
-			return false
+			//the other ceck alone is not engough :/ 
+			let urlRegEx = "^(https?://)?(www\\.)?([-a-z0-9]{1,63}\\.)*?[-a-z0-9]{0,61}[a-z0-9]\\.[a-z]{2,6}(/[-\\w@\\+\\.~#\\?&/=%]*)?$"
+			let urlTest = NSPredicate(format:"SELF MATCHES %@", urlRegEx)
+			let result = urlTest.evaluate(with: self)
+			return result
 		}
 	}
 }
