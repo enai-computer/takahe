@@ -6,20 +6,20 @@ import WebKit
 import QuartzCore
 
 
-class ContentFrameView: CFBaseView, CFTabHeadProtocol, CFFwdBackButtonProtocol, CFHasGroupButtonProtocol{
+class ContentFrameView: CFBaseView, CFTabHeadProtocol, CFFwdBackButtonProtocol, CFHasGroupButtonProtocol, CFHeadActionImageDelegate{
         
 	//Header
 	@IBOutlet var cfHeadView: ContentFrameHeadView!
 	@IBOutlet var cfTabHeadCollection: NSCollectionView?
 	@IBOutlet var tabHeadsScrollContainer: NSScrollView!
-	@IBOutlet var contentBackButton: NiActionImage!
-	@IBOutlet var contentForwardButton: NiActionImage!
+	@IBOutlet var contentBackButton: CFHeadActionImage!
+	@IBOutlet var contentForwardButton: CFHeadActionImage!
 
-	@IBOutlet var closeButton: NiActionImage!
-	@IBOutlet var addTabButton: NiActionImage!
+	@IBOutlet var closeButton: CFHeadActionImage!
+	@IBOutlet var addTabButton: CFHeadActionImage!
 	@IBOutlet var cfHeadDragArea: NSView!
-	@IBOutlet var minimizeButton: NiActionImage!
-	@IBOutlet var maximizeButton: NiActionImage!
+	@IBOutlet var minimizeButton: CFHeadActionImage!
+	@IBOutlet var maximizeButton: CFHeadActionImage!
 	@IBOutlet var cfGroupButton: CFGroupButton!
 	
 	private var cfHeadDragAreaWidthConstraint: NSLayoutConstraint?
@@ -49,30 +49,6 @@ class ContentFrameView: CFBaseView, CFTabHeadProtocol, CFFwdBackButtonProtocol, 
 		niContentTabView.layer?.cornerRadius = 10.0
 		niContentTabView.layer?.cornerCurve = .continuous
 		
-		closeButton.setMouseDownFunction(clickedCloseButton)
-		closeButton.isActiveFunction = self.isFrameActive
-		closeButton.mouseDownInActiveFunction = activateContentFrame
-		
-		maximizeButton.setMouseDownFunction(clickedMakeFullscreen)
-		maximizeButton.isActiveFunction = self.isFrameActive
-		maximizeButton.mouseDownInActiveFunction = activateContentFrame
-		
-		minimizeButton.setMouseDownFunction(clickedMinimizeButton)
-		minimizeButton.isActiveFunction = self.isFrameActive
-		minimizeButton.mouseDownInActiveFunction = activateContentFrame
-		
-		addTabButton.setMouseDownFunction(addTabClicked)
-		addTabButton.isActiveFunction = self.isFrameActive
-		addTabButton.mouseDownInActiveFunction = activateContentFrame
-		
-		contentBackButton.setMouseDownFunction(backButtonClicked)
-		contentBackButton.isActiveFunction = backButtonIsActive
-		contentBackButton.mouseDownInActiveFunction = activateContentFrame
-		
-		contentForwardButton.setMouseDownFunction(forwardButtonClicked)
-		contentForwardButton.isActiveFunction = fwdButtonIsActive
-		contentForwardButton.mouseDownInActiveFunction = activateContentFrame
-
 		cfGroupButton.initButton(
 			mouseDownFunction: clickedGroupButton,
 			mouseDownInActiveFunction: activateContentFrame,
@@ -249,6 +225,36 @@ class ContentFrameView: CFBaseView, CFTabHeadProtocol, CFFwdBackButtonProtocol, 
         resetCursorRects()
     }
     
+	func mouseUp(with event: NSEvent, for type: CFHeadButtonType) {
+		switch(type){
+			case .back:
+				backButtonClicked(with: event)
+				return
+			case .fwd:
+				forwardButtonClicked(with: event)
+				return
+			case .add:
+				addTabClicked(with: event)
+				return
+			case .expand:
+				clickedMakeFullscreen(with: event)
+				return
+			case .minimize:
+				clickedMinimizeButton(with: event)
+				return
+			case .close:
+				clickedCloseButton(with: event)
+				return
+			default:
+				assertionFailure("button type not implemented")
+				return
+		}
+	}
+	
+	override func isFrameActive() -> Bool{
+		super.isFrameActive()
+	}
+	
     override func mouseDragged(with event: NSEvent) {
         if !frameIsActive{
             nextResponder?.mouseDragged(with: event)
@@ -533,12 +539,6 @@ class ContentFrameView: CFBaseView, CFTabHeadProtocol, CFFwdBackButtonProtocol, 
 		if(keepContentView){
 			fatalError("option not implemented")
 		}
-		closeButton.deinitSelf()
-		maximizeButton.deinitSelf()
-		minimizeButton.deinitSelf()
-		addTabButton.deinitSelf()
-		contentForwardButton.deinitSelf()
-		contentBackButton.deinitSelf()
 		cfGroupButton.deinitSelf()
 		
 		for t in niContentTabView.tabViewItems{
