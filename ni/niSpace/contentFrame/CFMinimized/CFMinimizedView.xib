@@ -26,20 +26,44 @@
                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="155" id="MLD-v5-bNr"/>
                                 </constraints>
                             </customView>
-                            <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wU3-64-xsG" customClass="NiActionImage" customModule="Enai" customModuleProvider="target">
+                            <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wU3-64-xsG" customClass="CFHeadActionImage" customModule="Enai" customModuleProvider="target">
                                 <rect key="frame" x="194" y="7" width="24" height="24"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                 <imageCell key="cell" alignment="left" animates="YES" imageScaling="proportionallyDown" image="maximize" id="7UH-Zl-Nr2"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="buttonType">
+                                        <integer key="value" value="3"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <outlet property="mouseDelegate" destination="ZxU-iR-5De" id="y7b-qo-l2k"/>
+                                </connections>
                             </imageView>
-                            <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SPA-y8-ymH" customClass="NiActionImage" customModule="Enai" customModuleProvider="target">
+                            <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SPA-y8-ymH" customClass="CFHeadActionImage" customModule="Enai" customModuleProvider="target">
                                 <rect key="frame" x="242" y="7" width="24" height="24"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                 <imageCell key="cell" alignment="left" animates="YES" imageScaling="proportionallyDown" image="close" id="we1-TF-fUo"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="buttonType">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <outlet property="mouseDelegate" destination="ZxU-iR-5De" id="bdr-tj-qw6"/>
+                                </connections>
                             </imageView>
-                            <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IVm-pg-XRQ" customClass="NiActionImage" customModule="Enai" customModuleProvider="target">
+                            <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IVm-pg-XRQ" customClass="CFHeadActionImage" customModule="Enai" customModuleProvider="target">
                                 <rect key="frame" x="218" y="7" width="24" height="24"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="arrowWBarUp" id="Hbq-8N-2nW"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="buttonType">
+                                        <integer key="value" value="4"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <outlet property="mouseDelegate" destination="ZxU-iR-5De" id="NKw-6i-fbN"/>
+                                </connections>
                             </imageView>
                         </subviews>
                         <constraints>

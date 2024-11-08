@@ -28,6 +28,8 @@ class CFGroupButton: NSView, NSTextFieldDelegate{
 	private var displayType: NiConentFrameState?
 	var contentType: TabContentType?
 	
+	private var mouseDragged: Bool = false
+	
 	func initButton(mouseDownFunction: ((NSEvent) -> Void)?,
 					mouseDownInActiveFunction: ((NSEvent) -> Void)?,
 					isActiveFunction: (() -> Bool)?,
@@ -76,14 +78,15 @@ class CFGroupButton: NSView, NSTextFieldDelegate{
 			return
 		}
 		let icon = NiActionImage(image: NSImage.groupIcon)
-		icon.setMouseDownFunction(mouseDownFunction)
+		icon.setMouseDownFunction(self.mouseDown)
 		icon.mouseDownInActiveFunction = mouseDownInActiveFunction
 		icon.isActiveFunction = isActiveFunction
+		icon.mouseUpFunction = self.mouseUp
 		addSubview(icon)
 		groupIcon = icon
 		setWidthConstraintToIcon()
 	}
-	
+		
 	func menuClickStartsEditing(with event: NSEvent){
 		self.startEditing()
 	}
@@ -234,13 +237,30 @@ class CFGroupButton: NSView, NSTextFieldDelegate{
 		field.isSelectable = false
 		return field
 	}
-	
+
 	override func mouseDown(with event: NSEvent) {
+		mouseDragged = false
+		super.mouseDown(with: event)
+	}
+	
+	override func mouseUp(with event: NSEvent) {
+		super.mouseUp(with: event)
+		if(mouseDragged){
+			return
+		}
 		if(isActiveFunction != nil && !isActiveFunction!()){
 			mouseDownInActiveFunction?(event)
 			return
 		}
 		mouseDownFunction?(event)
+	}
+	
+	//dragging contentframe on the groupButton
+	override func mouseDragged(with event: NSEvent) {
+		mouseDragged = true
+		groupTitle?.textColor = NSColor.sand11
+		groupIcon?.contentTintColor = groupIcon?.defaultTint
+		super.mouseDragged(with: event)
 	}
 	
 	override func mouseEntered(with event: NSEvent) {
