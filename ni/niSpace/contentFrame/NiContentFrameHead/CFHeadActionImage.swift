@@ -76,12 +76,13 @@ class CFHeadActionImage: NSImageView{
 	}
 	
 	override func mouseEntered(with event: NSEvent) {
+		prevDefaultTint = self.contentTintColor
+		
 		//if is not active - don't change color
 		if(!mouseDelegate.isButtonActive(buttonType)){
 			return
 		}
 		if(hoverTint != nil){
-			prevDefaultTint = self.contentTintColor
 			self.contentTintColor = hoverTint
 		}
 	}
