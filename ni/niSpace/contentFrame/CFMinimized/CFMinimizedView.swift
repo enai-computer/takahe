@@ -7,14 +7,14 @@
 
 import Cocoa
 
-class CFMinimizedView: CFBaseView, CFHasGroupButtonProtocol{
+class CFMinimizedView: CFBaseView, CFHasGroupButtonProtocol, CFHeadActionImageDelegate{
 		
 	@IBOutlet var cfGroupButton: CFGroupButton!
 	@IBOutlet var cfHeadView: NSView!
 	@IBOutlet var listOfTabs: NSStackView?
-	@IBOutlet var maximizeButton: NiActionImage!
-	@IBOutlet var collapseButton: NiActionImage!
-	@IBOutlet var closeButton: NiActionImage!
+	@IBOutlet var maximizeButton: CFHeadActionImage!
+	@IBOutlet var collapseButton: CFHeadActionImage!
+	@IBOutlet var closeButton: CFHeadActionImage!
 	
 	private var groupButtonLeftConstraint: NSLayoutConstraint?
 	
@@ -31,18 +31,6 @@ class CFMinimizedView: CFBaseView, CFHasGroupButtonProtocol{
 		self.layer?.shadowOpacity = 0.5
 		self.layer?.shadowRadius = 1.0
 		self.layer?.masksToBounds = false
-		
-		closeButton.setMouseDownFunction(clickedCloseButton)
-		closeButton.isActiveFunction = self.isFrameActive
-		closeButton.mouseDownInActiveFunction = activateContentFrame
-		
-		maximizeButton.setMouseDownFunction(maximizeButtonClicked)
-		maximizeButton.isActiveFunction = self.isFrameActive
-		maximizeButton.mouseDownInActiveFunction = activateContentFrame
-		
-		collapseButton.setMouseDownFunction(collapseButtonClicked)
-		collapseButton.isActiveFunction = self.isFrameActive
-		collapseButton.mouseDownInActiveFunction = activateContentFrame
 		
 		cfGroupButton.initButton(
 			mouseDownFunction: clickedGroupButton,
@@ -117,6 +105,27 @@ class CFMinimizedView: CFBaseView, CFHasGroupButtonProtocol{
 		deactivateDocumentResize = false
 	}
 	
+	func isButtonActive(_ type: CFHeadButtonType) -> Bool{
+		super.isFrameActive()
+	}
+	
+	func mouseUp(with event: NSEvent, for type: CFHeadButtonType){
+		switch(type){
+			case .minimize:
+				collapseButtonClicked(with: event)
+				return
+			case .expand:
+				maximizeButtonClicked(with: event)
+				return
+			case .close:
+				clickedCloseButton(with: event)
+				return
+			default:
+				assertionFailure("button type not implemented")
+				return
+		}
+	}
+	
 	override func toggleActive(){
 		frameIsActive = !frameIsActive
 		
@@ -161,12 +170,10 @@ class CFMinimizedView: CFBaseView, CFHasGroupButtonProtocol{
 	
 	override func deinitSelf(keepContentView: Bool = false) {
 		if(keepContentView){
-			fatalError("option not implemented")
+			assertionFailure("option not implemented")
+			return
 		}
-		closeButton.deinitSelf()
-		maximizeButton.deinitSelf()
 		cfGroupButton.deinitSelf()
-		collapseButton.deinitSelf()
 		listOfTabs?.removeFromSuperviewWithoutNeedingDisplay()
 		listOfTabs = nil
 		super.deinitSelf()

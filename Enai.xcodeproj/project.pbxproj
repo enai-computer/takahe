@@ -163,6 +163,7 @@
 		CDB4830A2C6A623900612AF5 /* CFFullscreenView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDB483092C6A623900612AF5 /* CFFullscreenView.xib */; };
 		CDB4830C2C6A624E00612AF5 /* CFFullscreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB4830B2C6A624E00612AF5 /* CFFullscreenView.swift */; };
 		CDB549D12C2020C90038FB30 /* NiSearchViewScroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB549D02C2020C90038FB30 /* NiSearchViewScroller.swift */; };
+		CDB942122CDD0517003F553E /* CFHeadActionImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB942112CDD050B003F553E /* CFHeadActionImage.swift */; };
 		CDBCBBF82C92F8330069EFE3 /* NiSignupView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDBCBBF72C92F8330069EFE3 /* NiSignupView.xib */; };
 		CDBCBBFA2C92F91C0069EFE3 /* NiSignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBCBBF92C92F91C0069EFE3 /* NiSignupViewController.swift */; };
 		CDC0BD432C45280C00CB2DDB /* NiDownloadHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC0BD422C45280C00CB2DDB /* NiDownloadHandler.swift */; };
@@ -387,6 +388,7 @@
 		CDB483092C6A623900612AF5 /* CFFullscreenView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CFFullscreenView.xib; sourceTree = "<group>"; };
 		CDB4830B2C6A624E00612AF5 /* CFFullscreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CFFullscreenView.swift; sourceTree = "<group>"; };
 		CDB549D02C2020C90038FB30 /* NiSearchViewScroller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiSearchViewScroller.swift; sourceTree = "<group>"; };
+		CDB942112CDD050B003F553E /* CFHeadActionImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CFHeadActionImage.swift; sourceTree = "<group>"; };
 		CDBC33F82BDBC896000EEF3D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		CDBCBBF72C92F8330069EFE3 /* NiSignupView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NiSignupView.xib; sourceTree = "<group>"; };
 		CDBCBBF92C92F91C0069EFE3 /* NiSignupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiSignupViewController.swift; sourceTree = "<group>"; };
@@ -811,6 +813,7 @@
 		CD7578352BBD9FD100293930 /* NiContentFrameHead */ = {
 			isa = PBXGroup;
 			children = (
+				CDB942112CDD050B003F553E /* CFHeadActionImage.swift */,
 				CD7578362BBDA98700293930 /* ContentFrameHeadView.swift */,
 				CD7578442BC000F200293930 /* ContentFrameTabHead.swift */,
 				CD7578452BC000F200293930 /* ContentFrameTabHead.xib */,
@@ -1229,6 +1232,7 @@
 			files = (
 				CD2DE8802CA1ABCF000B5461 /* OutboxProcessor.swift in Sources */,
 				CD1853192C09EA96001FE566 /* PasteboardUtils.swift in Sources */,
+				CDB942122CDD0517003F553E /* CFHeadActionImage.swift in Sources */,
 				CD2DE87C2CA1A8A3000B5461 /* OutboxTable.swift in Sources */,
 				CD6DED922C257A5000AA8BC4 /* NiActionLabel.swift in Sources */,
 				CD75784C2BC065FB00293930 /* ContentFrameTabHeadTextNode.swift in Sources */,
