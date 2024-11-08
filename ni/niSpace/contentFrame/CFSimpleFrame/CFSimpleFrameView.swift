@@ -8,17 +8,17 @@
 import Cocoa
 import SwiftSoup
 
-class CFSimpleFrameView: CFBaseView, CFFwdBackButtonProtocol{
+class CFSimpleFrameView: CFBaseView, CFFwdBackButtonProtocol, CFHeadActionImageDelegate{
 	
 	@IBOutlet var cfHeadView: ContentFrameHeadView!
 	@IBOutlet var cfHeadDragArea: NSView!
 	@IBOutlet var cfGroupButton: CFGroupButton!
-	@IBOutlet var maximizeButton: NiActionImage!
-	@IBOutlet var minimizeButton: NiActionImage!
-	@IBOutlet var closeButton: NiActionImage!
+	@IBOutlet var maximizeButton: CFHeadActionImage!
+	@IBOutlet var minimizeButton: CFHeadActionImage!
+	@IBOutlet var closeButton: CFHeadActionImage!
 	@IBOutlet var placeholderView: NSView!
-	@IBOutlet var backButton: NiActionImage!
-	@IBOutlet var forwardButton: NiActionImage!
+	@IBOutlet var backButton: CFHeadActionImage!
+	@IBOutlet var forwardButton: CFHeadActionImage!
 	
 	private(set) var myContent: CFContentItem?
 	
@@ -32,14 +32,6 @@ class CFSimpleFrameView: CFBaseView, CFFwdBackButtonProtocol{
 	
 	func initAfterViewLoad(_ groupName: String?, 
 						   titleChangedCallback: ((String)->Void)?){
-		closeButton.setMouseDownFunction(clickedCloseButton)
-		closeButton.isActiveFunction = self.isFrameActive
-		closeButton.mouseDownInActiveFunction = activateContentFrame
-		
-		maximizeButton.setMouseDownFunction(clickedMaximizedButton)
-		maximizeButton.isActiveFunction = self.isFrameActive
-		maximizeButton.mouseDownInActiveFunction = activateContentFrame
-		
 		cfGroupButton.initButton(
 			mouseDownFunction: clickedGroupButton,
 			mouseDownInActiveFunction: activateContentFrame,
@@ -48,10 +40,6 @@ class CFSimpleFrameView: CFBaseView, CFFwdBackButtonProtocol{
 			displayType: .simpleFrame
 		)
 		cfGroupButton.setView(title: groupName)
-		
-		minimizeButton.setMouseDownFunction(clickedMinimizeButton)
-		minimizeButton.isActiveFunction = self.isFrameActive
-		minimizeButton.mouseDownInActiveFunction = activateContentFrame
 		
 		backButton.isHidden = true
 		forwardButton.isHidden = true
@@ -71,13 +59,12 @@ class CFSimpleFrameView: CFBaseView, CFFwdBackButtonProtocol{
 		if let contentItem = tabView as? CFContentItem{
 			myContent = contentItem
 			if(contentItem is NiWebView){
-				minimizeButton.isActiveFunction = {return false}
 				minimizeButton.tintInactive()
 				cfGroupButton.isActiveFunction = {return false}
 				setUpFwdBackButton()
 			}
 		}
-		return -1
+		return 0
 	}
 	
 	override func layout() {
@@ -148,6 +135,42 @@ class CFSimpleFrameView: CFBaseView, CFFwdBackButtonProtocol{
 		resetCursorRects()
 	}
 	
+	func isButtonActive(_ type: CFHeadButtonType) -> Bool{
+		if(type == .back){
+			return backButtonIsActive()
+		}
+		if(type == .fwd){
+			return fwdButtonIsActive()
+		}
+		if(type == .minimize){
+			return super.isFrameActive() && !(myContent is NiWebView)
+		}
+		return super.isFrameActive()
+	}
+	
+	func mouseUp(with event: NSEvent, for type: CFHeadButtonType){
+		switch(type){
+			case .fwd:
+				forwardButtonClicked(with: event)
+				return
+			case .back:
+				backButtonClicked(with: event)
+				return
+			case .minimize:
+				clickedMinimizeButton(with: event)
+				return
+			case .maximize:
+				clickedMaximizedButton(with: event)
+				return
+			case .close:
+				clickedCloseButton(with: event)
+				return
+			default:
+				assertionFailure("button type not implemented")
+				return
+		}
+	}
+	
 	override func mouseDragged(with event: NSEvent) {
 		if !frameIsActive{
 			nextResponder?.mouseDragged(with: event)
@@ -216,7 +239,7 @@ class CFSimpleFrameView: CFBaseView, CFFwdBackButtonProtocol{
 	}
 	
 	override func isOnBoarder(_ cursorLocation: CGPoint) -> OnBorder{
-		if (NSPointInRect(cursorLocation, getTopBorderActionArea()) || NSPointInRect(cursorLocation, getDragArea())){
+		if (NSPointInRect(cursorLocation, getTopBorderActionArea()) || NSPointInRect(cursorLocation, cfHeadView.frame)){
 			return .top
 		}
 		return super.isOnBoarder(cursorLocation)
@@ -289,25 +312,21 @@ class CFSimpleFrameView: CFBaseView, CFFwdBackButtonProtocol{
 	
 	private func showHeader(){
 		closeButton.tintActive()
-		minimizeButton.tintActive()
+		if(!(myContent is NiWebView)){
+			minimizeButton.tintActive()
+		}
 		maximizeButton.tintActive()
 		cfGroupButton.tintActive()
 	}
 	
 	// MARK: - fwd/back button
 	private func setUpFwdBackButton(){
-		guard let niWebView = myContent as? NiWebView else { return }
+		guard myContent is NiWebView else { return }
 		
 		backButton.isHidden = false
 		forwardButton.isHidden = false
-		
-		backButton.setMouseDownFunction(backButtonClicked)
-		backButton.isActiveFunction = backButtonIsActive
-		
-		forwardButton.setMouseDownFunction(forwardButtonClicked)
-		forwardButton.isActiveFunction = fwdButtonIsActive
 	}
-//	
+
 	func clickedMaximizedButton(with event: NSEvent){
 		guard let webContent = myContent as? NiWebView else {
 			fillOrRetractView(with: event)
@@ -372,14 +391,7 @@ class CFSimpleFrameView: CFBaseView, CFFwdBackButtonProtocol{
 		if(!keepContentView){
 			myContent?.spaceRemovedFromMemory()
 		}
-		backButton.deinitSelf()
-		forwardButton.deinitSelf()
-		
 		cfGroupButton.deinitSelf()
-		minimizeButton.deinitSelf()
-		maximizeButton.deinitSelf()
-		closeButton.deinitSelf()
-		
 		super.deinitSelf()
 	}
 	

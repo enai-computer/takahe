@@ -98,9 +98,11 @@ class CFHeadActionImage: NSImageView{
 	
 	func tintInactive(){
 		self.contentTintColor = NSColor(.sand8)
+		prevDefaultTint = NSColor(.sand8)
 	}
 	
 	func tintActive(){
 		self.contentTintColor = defaultTint
+		prevDefaultTint = defaultTint
 	}
 }
