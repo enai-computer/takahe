@@ -125,7 +125,7 @@ class CFCollapsedMinimizedView: CFBaseView, CFHasGroupButtonProtocol, NiMouseDow
 		}
 	}
 	
-	override func isFrameActive() -> Bool{
+	func isButtonActive(_ type: CFHeadButtonType) -> Bool{
 		super.isFrameActive()
 	}
 	

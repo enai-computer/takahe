@@ -251,8 +251,14 @@ class ContentFrameView: CFBaseView, CFTabHeadProtocol, CFFwdBackButtonProtocol, 
 		}
 	}
 	
-	override func isFrameActive() -> Bool{
-		super.isFrameActive()
+	func isButtonActive(_ type: CFHeadButtonType) -> Bool{
+		if(type == .back){
+			return backButtonIsActive()
+		}
+		if(type == .fwd){
+			return fwdButtonIsActive()
+		}
+		return super.isFrameActive()
 	}
 	
     override func mouseDragged(with event: NSEvent) {

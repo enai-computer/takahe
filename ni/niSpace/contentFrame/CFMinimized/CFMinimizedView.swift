@@ -105,7 +105,7 @@ class CFMinimizedView: CFBaseView, CFHasGroupButtonProtocol, CFHeadActionImageDe
 		deactivateDocumentResize = false
 	}
 	
-	override func isFrameActive() -> Bool{
+	func isButtonActive(_ type: CFHeadButtonType) -> Bool{
 		super.isFrameActive()
 	}
 	

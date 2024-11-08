@@ -19,7 +19,7 @@ import QuartzCore
 }
 
 @objc protocol CFHeadActionImageDelegate: AnyObject {
-	func isFrameActive() -> Bool
+	func isButtonActive(_ type: CFHeadButtonType) -> Bool
 	func mouseUp(with event: NSEvent, for type: CFHeadButtonType)
 }
 
@@ -71,13 +71,13 @@ class CFHeadActionImage: NSImageView{
 	override func mouseUp(with event: NSEvent){
 		super.mouseUp(with: event)
 		if(mouseDragged){return}
-		guard mouseDelegate.isFrameActive() else {return}
+		guard mouseDelegate.isButtonActive(buttonType) else {return}
 		mouseDelegate.mouseUp(with: event, for: buttonType)
 	}
 	
 	override func mouseEntered(with event: NSEvent) {
 		//if is not active - don't change color
-		if(!mouseDelegate.isFrameActive()){
+		if(!mouseDelegate.isButtonActive(buttonType)){
 			return
 		}
 		if(hoverTint != nil){
@@ -88,7 +88,7 @@ class CFHeadActionImage: NSImageView{
 	
 	override func mouseExited(with event: NSEvent) {
 		//if is not active - don't change color
-		if(!mouseDelegate.isFrameActive()){
+		if(!mouseDelegate.isButtonActive(buttonType)){
 			return
 		}
 		if(hoverTint != nil){
