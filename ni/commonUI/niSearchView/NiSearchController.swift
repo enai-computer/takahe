@@ -23,6 +23,7 @@ class NiSearchController: NSViewController, NSCollectionViewDataSource, NSCollec
 	private var chatShown: Bool = false
 	private var selectedPosition: Int = 0
 	private var searchResults: [NiSearchResultItem] = []
+	private var currentSpaceId: UUID? = nil
 	private let style: NiSearchViewStyle
 	
 	init(style: NiSearchViewStyle){
@@ -45,6 +46,13 @@ class NiSearchController: NSViewController, NSCollectionViewDataSource, NSCollec
 	override func viewWillAppear() {
 		super.viewWillAppear()
 		updateResultSet()
+	}
+	
+	override func viewDidAppear(){
+		super.viewDidAppear()
+		if let appDelegate = NSApplication.shared.delegate as? AppDelegate{
+			currentSpaceId = appDelegate.getNiSpaceViewController()?.niSpaceID
+		}
 	}
 	
 	override func viewWillLayout() {
@@ -118,7 +126,7 @@ class NiSearchController: NSViewController, NSCollectionViewDataSource, NSCollec
 		}
 		if let dirtyTxt = (obj.object as? NSTextField)?.stringValue{
 			if(view.window is NiPalette){
-				searchResults = Cook.instance.search(typedChars: dirtyTxt, giveCreateNewSpaceOption: true)
+				searchResults = Cook.instance.search(typedChars: dirtyTxt, giveCreateNewSpaceOption: true, currentSpaceId: currentSpaceId)
 			}else{
 				searchResults = Cook.instance.search(typedChars: dirtyTxt, giveCreateNewSpaceOption: true, returnAskEnaiOption: false)
 			}
