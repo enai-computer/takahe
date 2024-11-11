@@ -24,6 +24,8 @@ class CFFullscreenView: CFBaseView, CFTabHeadProtocol, CFFwdBackButtonProtocol{
 	@IBOutlet var spaceName: NiTextField!
 	@IBOutlet var groupName: NiTextField!
 	
+	override var frameType: NiContentFrameState {return .fullscreen}
+	
 	func initAfterViewLoad(spaceName: String, groupName: String?){
 		niContentTabView.wantsLayer = true
 		

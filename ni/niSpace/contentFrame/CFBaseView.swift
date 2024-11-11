@@ -29,6 +29,10 @@ class CFBaseView: NSBox{
 	
 	var previousCFSize: NSRect? = nil
 	
+	var frameType: NiContentFrameState{
+		preconditionFailure("This method must be overridden")
+	}
+	
 	struct CFConstants {
 		// const needed for resizing:
 		static let actionAreaMargin: CGFloat = 8.0
