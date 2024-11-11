@@ -12,6 +12,15 @@ import PostHog
 
 enum NiSearchResultType{
 	case niSpace, pinnedWebsite, eve, group, web, pdf, note
+	
+	func isContentItem() -> Bool{
+		switch(self){
+			case .niSpace, .group, .eve:
+				return false
+			default:
+				return true
+		}
+	}
 }
 
 struct NiSearchResultItem{
@@ -40,7 +49,8 @@ class Cook{
 				excludeWelcomeSpaceGeneration: Bool = true,
 				giveCreateNewSpaceOption: Bool = false,
 				insertWelcomeSpaceGenFirst: Bool = false,
-				returnAskEnaiOption: Bool = true
+				returnAskEnaiOption: Bool = true,
+				currentSpaceId: UUID? = nil
 	) -> [NiSearchResultItem]{
 		var res: [NiSearchResultItem] = []
 
@@ -62,14 +72,14 @@ class Cook{
 		//MARK: sorting
 		if(giveCreateNewSpaceOption && typedChars != nil && !typedChars!.isEmpty){
 			let searchStr = typedChars!.lowercased()
-			res = res.sorted{compareResult(r0: $0, r1: $1, searchStr: searchStr)}
+			res = res.sorted{compareResult(r0: $0, r1: $1, searchStr: searchStr, currentSpaceId: currentSpaceId)}
 			
 			res.append(NiSearchResultItem(type: .niSpace, id: NiSpaceDocumentController.EMPTY_SPACE_ID, name: "Create a new space", data: nil))
 			
 			let wordCount = countWords(in: typedChars!)
-			if(PostHogSDK.shared.isFeatureEnabled("en-ai") && 1 < wordCount && returnAskEnaiOption){
+			if(PostHogSDK.shared.isFeatureEnabled("en-ai") && 4 < wordCount && returnAskEnaiOption){
 				let askEveResultItem = NiSearchResultItem(type: .eve, id: nil, name: "Ask Enai", data: nil )
-				if(wordCount == 2){
+				if(wordCount < 8){
 					res.append(askEveResultItem)
 				}else{
 					res.insert(askEveResultItem, at: 0)
@@ -82,17 +92,42 @@ class Cook{
 		return res
 	}
 	
-	private func compareResult(r0: NiSearchResultItem, r1: NiSearchResultItem, searchStr: String) -> Bool{
+	private func compareResult(r0: NiSearchResultItem, r1: NiSearchResultItem, searchStr: String, currentSpaceId: UUID?) -> Bool{
 		if(r0.type == .niSpace && r1.type != .niSpace){
 			return true
 		}
 		if(r1.type == .niSpace && r0.type != .niSpace){
 			return false
 		}
+		if let currentSpaceId = currentSpaceId{
+			let result = resultsInSameSpaceReorder(r0: r0, r1: r1, currentSpaceId: currentSpaceId)
+			if let result = result{
+				return result
+			}
+		}
 		if(r1.name.lowercased().starts(with: searchStr)){
 			return false
 		}
 		return true
+	}
+	
+	/**
+	 checks if the two results are content items and if yes checks if one of them is in the same space. If thats the case true if in correct order otherwise false. Nil if both are not in the same space
+	 */
+	private func resultsInSameSpaceReorder(r0: NiSearchResultItem, r1: NiSearchResultItem, currentSpaceId: UUID) -> Bool?{
+		if(r0.type.isContentItem() && r1.type.isContentItem()){
+			if let d0 = r0.data as? NiSRIOriginData{
+				if let d1 = r1.data as? NiSRIOriginData{
+					if(d1.id != d0.id){
+						if(d0.id == currentSpaceId){
+							return true
+						}
+						return false
+					}
+				}
+			}
+		}
+		return nil
 	}
 	
 	private func searchSpaces(typedChars: String?,
@@ -158,9 +193,15 @@ class Cook{
 		return query
 	}
 	
+	private struct SearchResultContentHash: Hashable{
+		let title: String
+		let type: NiSearchResultType
+		let spaceId: UUID
+	}
+	
 	private func searchContent(_ searchContent: String) -> [NiSearchResultItem]{
 		var res: [NiSearchResultItem] = []
-		
+		var titleTypeSpaceIdSet: Set<SearchResultContentHash> = []
 		do{
 			for record in try Storage.instance.spacesDB.prepare(
 				buildContentSearchQuery(searchContent)
@@ -172,13 +213,20 @@ class Cook{
 					if(name.contains("Google Search")){
 						continue
 					}
+					let spaceId = try record.get(DocumentTable.table[DocumentTable.id])
+					
+					//Users might have multiple tabs with the same title in the same space. For now we are filtering out these duplicates.
+					let newResult = titleTypeSpaceIdSet.insert(SearchResultContentHash(title: name, type: type, spaceId: spaceId))
+					if(!newResult.inserted){
+						continue
+					}
 					res.append(
 						NiSearchResultItem(
 							type: type,
 							id: try record.get(ContentTable.table[ContentTable.id]),
 							name: name,
 							data: NiSRIOriginData(
-								id: try record.get(DocumentTable.table[DocumentTable.id]),
+								id: spaceId,
 								name: try record.get(DocumentTable.table[DocumentTable.name])
 							)
 						)

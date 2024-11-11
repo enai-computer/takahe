@@ -189,9 +189,13 @@ class NiSpaceDocumentView: NSView{
 	func highlightContentObj(contentId: UUID){
 		var contentFrameToHighlight: ContentFrameController?
 		
+		//in old instances we have ghost objects, that do not exist anymore. This way we catch them and remove from result set
+		var foundContentId: Bool = false
+		
 		for cFrame in contentFrameControllers{
 			for tab in cFrame.tabs {
 				if(tab.contentId == contentId){
+					foundContentId = true
 					highlightContentFrame(cframe: cFrame)
 					if(cFrame.viewState.isMinimized()){
 						cFrame.minimizedToExpanded()
@@ -215,6 +219,10 @@ class NiSpaceDocumentView: NSView{
 					highlightContentFrame(cframe: cfToHighlight)
 				}
 			}
+		}
+		
+		if(!foundContentId){
+			ContentTable.delete(id: contentId)
 		}
 	}
 	

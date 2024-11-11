@@ -452,8 +452,10 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 				break
 			case (.expanded, _):
 				minimizeSelfToDefault(to: prevDisplayState?.minimisedOrigin?.toNSPoint())
+				break
 			case (.simpleFrame, _):
 				minimizeSelfToSimple(to: prevDisplayState?.minimisedOrigin?.toNSPoint())
+				break
 			default:
 				assertionFailure("Unhandled combination of current and previous view state")
 				break
