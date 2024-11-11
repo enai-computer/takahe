@@ -12,6 +12,15 @@ import PostHog
 
 enum NiSearchResultType{
 	case niSpace, pinnedWebsite, eve, group, web, pdf, note
+	
+	func isContentItem() -> Bool{
+		switch(self){
+			case .niSpace, .group, .eve:
+				return false
+			default:
+				return true
+		}
+	}
 }
 
 struct NiSearchResultItem{
@@ -40,7 +49,8 @@ class Cook{
 				excludeWelcomeSpaceGeneration: Bool = true,
 				giveCreateNewSpaceOption: Bool = false,
 				insertWelcomeSpaceGenFirst: Bool = false,
-				returnAskEnaiOption: Bool = true
+				returnAskEnaiOption: Bool = true,
+				currentSpaceId: UUID? = nil
 	) -> [NiSearchResultItem]{
 		var res: [NiSearchResultItem] = []
 
@@ -62,7 +72,7 @@ class Cook{
 		//MARK: sorting
 		if(giveCreateNewSpaceOption && typedChars != nil && !typedChars!.isEmpty){
 			let searchStr = typedChars!.lowercased()
-			res = res.sorted{compareResult(r0: $0, r1: $1, searchStr: searchStr)}
+			res = res.sorted{compareResult(r0: $0, r1: $1, searchStr: searchStr, currentSpaceId: currentSpaceId)}
 			
 			res.append(NiSearchResultItem(type: .niSpace, id: NiSpaceDocumentController.EMPTY_SPACE_ID, name: "Create a new space", data: nil))
 			
@@ -82,17 +92,42 @@ class Cook{
 		return res
 	}
 	
-	private func compareResult(r0: NiSearchResultItem, r1: NiSearchResultItem, searchStr: String) -> Bool{
+	private func compareResult(r0: NiSearchResultItem, r1: NiSearchResultItem, searchStr: String, currentSpaceId: UUID?) -> Bool{
 		if(r0.type == .niSpace && r1.type != .niSpace){
 			return true
 		}
 		if(r1.type == .niSpace && r0.type != .niSpace){
 			return false
 		}
+		if let currentSpaceId = currentSpaceId{
+			let result = resultsInSameSpaceReorder(r0: r0, r1: r1, currentSpaceId: currentSpaceId)
+			if let result = result{
+				return result
+			}
+		}
 		if(r1.name.lowercased().starts(with: searchStr)){
 			return false
 		}
 		return true
+	}
+	
+	/**
+	 checks if the two results are content items and if yes checks if one of them is in the same space. If thats the case true if in correct order otherwise false. Nil if both are not in the same space
+	 */
+	private func resultsInSameSpaceReorder(r0: NiSearchResultItem, r1: NiSearchResultItem, currentSpaceId: UUID) -> Bool?{
+		if(r0.type.isContentItem() && r1.type.isContentItem()){
+			if let d0 = r0.data as? NiSRIOriginData{
+				if let d1 = r1.data as? NiSRIOriginData{
+					if(d1.id != d0.id){
+						if(d0.id == currentSpaceId){
+							return true
+						}
+						return false
+					}
+				}
+			}
+		}
+		return nil
 	}
 	
 	private func searchSpaces(typedChars: String?,
