@@ -438,16 +438,16 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	 */
 	func minimizeSelf(){
 		switch (viewState, prevDisplayState?.state) {
-		case (.expanded, .minimised),
-			 (.expanded, nil):
-			minimizeSelfToDefault()
-		case (.expanded, .collapsedMinimised):
-			minimizeToCollapsed()
-		case (.simpleFrame, _):
-			minimizeSelfToSimple()
-		default:
-			assertionFailure("Unhandled combination of current and previous view state")
-			break
+			case (.expanded, .minimised),
+				 (.expanded, nil):
+				minimizeSelfToDefault()
+			case (.expanded, .collapsedMinimised):
+				minimizeToCollapsed()
+			case (.simpleFrame, _):
+				minimizeSelfToSimple()
+			default:
+				assertionFailure("Unhandled combination of current and previous view state")
+				break
 		}
 	}
 	
@@ -507,18 +507,14 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		}
 	}
 	
-	func maximizeClicked(_ event: NSEvent){
-		maximizeSelf()
-	}
-	
 	func maximizeSelf(){
 		switch viewState {
-		case .minimised, .collapsedMinimised:
-			minimizedToExpanded()
-		case .simpleMinimised:
-			simpleMinimizedToSimpleFrame()
-		case .expanded, .frameless, .simpleFrame, .fullscreen:
-			assertionFailure("Unhandled view state to self-maximize")
+			case .minimised, .collapsedMinimised:
+				minimizedToExpanded()
+			case .simpleMinimised:
+				simpleMinimizedToSimpleFrame()
+			case .expanded, .frameless, .simpleFrame, .fullscreen:
+				assertionFailure("Unhandled view state to self-maximize")
 		}
 	}
 	
