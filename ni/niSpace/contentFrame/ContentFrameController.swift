@@ -30,7 +30,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	private var nxtTabPosOpenNxtTo: Int? = nil
 	private(set) var aTabIsInEditingMode: Bool = false
 	private(set) var tabs: [TabViewModel] = []
-	var viewState: NiConentFrameState = .expanded {
+	var viewState: NiConentFrameState {
 		didSet {
 			self.prevDisplayState = switch oldValue {
 			case .fullscreen: nil
@@ -416,6 +416,9 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	/*
 	 * MARK: passToView Functions
 	 */
+	
+	/** Call this function ONLY from `setTopNiFrame` in `NiSpaceDocumentView`. Otherwise you will screw up the hierarchy on the canvas!
+	 */
 	func toggleActive(){
 		myView.toggleActive()
 	}
@@ -506,6 +509,17 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	
 	func maximizeClicked(_ event: NSEvent){
 		maximizeSelf()
+	}
+	
+	func maximizeSelf(){
+		switch viewState {
+		case .minimised, .collapsedMinimised:
+			minimizedToExpanded()
+		case .simpleMinimised:
+			simpleMinimizedToSimpleFrame()
+		case .expanded, .frameless, .simpleFrame, .fullscreen:
+			assertionFailure("Unhandled view state to self-maximize")
+		}
 	}
 	
 	func makeFullscreenClicked(_ event: NSEvent){
@@ -667,17 +681,6 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		
 		if(reloadTabHeads){
 			viewWithTabs?.cfTabHeadCollection?.reloadData()
-		}
-	}
-	
-	func maximizeSelf(){
-		switch viewState {
-		case .minimised, .collapsedMinimised:
-			minimizedToExpanded()
-		case .simpleMinimised:
-			simpleMinimizedToSimpleFrame()
-		case .expanded, .frameless, .simpleFrame, .fullscreen:
-			assertionFailure("Unhandled view state to self-maximize")
 		}
 	}
 	

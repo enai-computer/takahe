@@ -147,14 +147,14 @@ class CFFullscreenView: CFBaseView, CFTabHeadProtocol, CFFwdBackButtonProtocol{
 						groupController.toggleActive()
 
 						switch groupController.viewState {
-						case .collapsedMinimised, .minimised:
-							groupController.minimizedToFullscreen()
-						case .expanded:
-							groupController.expandedToFullscreen()
-						case .fullscreen:
-							assert(groupController === myController, "No other group should have been in fullscreen mode")
-						case .frameless, .simpleFrame, .simpleMinimised:
-							assertionFailure("Unexpected state change from \(groupController.viewState) to full screen")
+							case .collapsedMinimised, .minimised:
+								groupController.minimizedToFullscreen()
+							case .expanded:
+								groupController.expandedToFullscreen()
+							case .fullscreen:
+								assert(groupController === myController, "No other group should have been in fullscreen mode")
+							case .frameless, .simpleFrame, .simpleMinimised:
+								assertionFailure("Unexpected state change from \(groupController.viewState) to full screen")
 						}
 					}
 				)
