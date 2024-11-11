@@ -15,6 +15,7 @@ class CFSimpleMinimizedView: CFBaseView{
 
 	private var cursorClosedHandPushed = false
 	override var minContentFrameExposure: CGFloat {return 85}
+	override var frameType: NiContentFrameState {return .simpleMinimised}
 	
 	override func awakeFromNib() {
 		self.wantsLayer = true

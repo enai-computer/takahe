@@ -16,6 +16,8 @@ class CFMinimizedView: CFBaseView, CFHasGroupButtonProtocol, CFHeadActionImageDe
 	@IBOutlet var collapseButton: CFHeadActionImage!
 	@IBOutlet var closeButton: CFHeadActionImage!
 	
+	override var frameType: NiContentFrameState {return .minimised}
+	
 	private var groupButtonLeftConstraint: NSLayoutConstraint?
 	
 	required init?(coder: NSCoder) {

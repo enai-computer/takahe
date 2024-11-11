@@ -18,6 +18,8 @@ class CFCollapsedMinimizedView: CFBaseView, CFHasGroupButtonProtocol, NiMouseDow
 	@IBOutlet var expandDownwardsButton: CFHeadActionImage!
 	@IBOutlet var closeButton: CFHeadActionImage!
 	
+	override var frameType: NiContentFrameState {return .collapsedMinimised}
+	
 	required init?(coder: NSCoder) {
 		super.init(coder: coder)
 	}
