@@ -40,6 +40,7 @@ stateDiagram
     minimized --> expanded
     expanded --> fullscreen
     fullscreen --> expanded
+    simpleMinimised --> fullscreen:if the content is a webview
 [*]    expanded
     min_choice
     minimized
@@ -48,9 +49,9 @@ stateDiagram
   }
   state simple_frame {
     direction TB
-    [*] --> CFSimpleFrame
-    CFSimpleFrame --> simpleMinimised
     simpleMinimised --> CFSimpleFrame
+    CFSimpleFrame --> simpleMinimised:if the content is not a webview
+    [*] --> CFSimpleFrame
 [*]    CFSimpleFrame
     simpleMinimised
   }
@@ -60,7 +61,7 @@ stateDiagram
 [*]    CFFrameless
   }
   collapsed_minimized:collapsed minimized
-  note right of group : websites use the group view
+  note left of group : websites use the group view
   note right of simple_frame : pdfs and webapps use a simple frame
   note right of frameless : images and notes use a frameless view. Frameless does not have a minimized state.
 ```
