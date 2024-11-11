@@ -34,6 +34,7 @@ class CFHeadActionImage: NSImageView{
 	
 	private var prevDefaultTint: NSColor?
 	private var mouseDragged: Bool = false
+	private var mouseDownLocation: NSPoint? = nil
 	
 	override init(frame frameRect: NSRect) {
 		super.init(frame: frameRect)
@@ -57,6 +58,7 @@ class CFHeadActionImage: NSImageView{
 	
 	override func mouseDown(with event: NSEvent) {
 		mouseDragged = false
+		mouseDownLocation = event.locationInWindow
 		super.mouseDown(with: event)
 	}
 	
@@ -70,7 +72,8 @@ class CFHeadActionImage: NSImageView{
 	
 	override func mouseUp(with event: NSEvent){
 		super.mouseUp(with: event)
-		if(mouseDragged){return}
+		let dist = mouseDownLocation?.distanceTo(event.locationInWindow)
+		if(mouseDragged && !(dist ?? 0.0 < 2.0)){return}
 		guard mouseDelegate.isButtonActive(buttonType) else {return}
 		mouseDelegate.mouseUp(with: event, for: buttonType)
 	}
