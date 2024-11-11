@@ -501,6 +501,10 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	}
 	
 	private func positionMinimizedView(for minimizedView: CFBaseView, predefinedPos: CGPoint? = nil){
+		if(self.view.layer != nil){
+			minimizedView.layer?.zPosition = self.view.layer!.zPosition
+		}
+		
 		if let predefinedPos{
 			minimizedView.frame.origin = predefinedPos
 			return
@@ -512,10 +516,6 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 			if(niDocWidth < (minimizedView.frame.origin.x + minimizedView.frame.width)){
 				minimizedView.frame.origin.x = niDocWidth - minimizedView.frame.width - CFBaseView.CFConstants.defaultMargin
 			}
-		}
-
-		if(self.view.layer != nil){
-			minimizedView.layer?.zPosition = self.view.layer!.zPosition
 		}
 	}
 	
