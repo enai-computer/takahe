@@ -142,10 +142,6 @@ class CFFullscreenView: CFBaseView, CFTabHeadProtocol, CFFwdBackButtonProtocol{
 					mouseDownFunction: { [myController] _ in
 						// Exit fullscreen first, otherwise the space's header will not be hidden correctly as shrinking to expanded would re-display it.
 						myController?.fullscreenToPreviousState()
-						myController?.toggleActive()
-
-						groupController.toggleActive()
-
 						switch groupController.viewState {
 							case .collapsedMinimised, .minimised:
 								groupController.minimizedToFullscreen()
