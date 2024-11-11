@@ -60,7 +60,7 @@ class NiSpaceDocumentController: NSViewController{
 	 Do not use before view is loaded, as CF View size gets calculated by the visibleRect
 	*/
 	@discardableResult
-	func openEmptyCF(viewState: NiConentFrameState = .expanded,
+	func openEmptyCF(viewState: NiContentFrameState = .expanded,
 					 initialTabType: TabContentType = .web,
 					 openInitalTab: Bool = true,
 					 positioned relavtiveTo: CGPoint? = nil,

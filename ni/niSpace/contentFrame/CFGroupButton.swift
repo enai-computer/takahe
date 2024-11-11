@@ -25,7 +25,7 @@ class CFGroupButton: NSView, NSTextFieldDelegate{
 	
 	private let groupTitleMargin = 7.0
 	private let groupTitleOriginY = 2.0
-	private var displayType: NiConentFrameState?
+	private var displayType: NiContentFrameState?
 	var contentType: TabContentType?
 	
 	private var mouseDragged: Bool = false
@@ -34,7 +34,7 @@ class CFGroupButton: NSView, NSTextFieldDelegate{
 					mouseDownInActiveFunction: ((NSEvent) -> Void)?,
 					isActiveFunction: (() -> Bool)?,
 					titleChangedCallback: ((String) -> Void)? = nil,
-					displayType: NiConentFrameState,
+					displayType: NiContentFrameState,
 					displayedContent: TabContentType = .web
 	){
 		self.mouseDownFunction = mouseDownFunction
