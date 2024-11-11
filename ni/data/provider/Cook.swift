@@ -67,9 +67,9 @@ class Cook{
 			res.append(NiSearchResultItem(type: .niSpace, id: NiSpaceDocumentController.EMPTY_SPACE_ID, name: "Create a new space", data: nil))
 			
 			let wordCount = countWords(in: typedChars!)
-			if(PostHogSDK.shared.isFeatureEnabled("en-ai") && 1 < wordCount && returnAskEnaiOption){
+			if(PostHogSDK.shared.isFeatureEnabled("en-ai") && 4 < wordCount && returnAskEnaiOption){
 				let askEveResultItem = NiSearchResultItem(type: .eve, id: nil, name: "Ask Enai", data: nil )
-				if(wordCount == 2){
+				if(wordCount < 8){
 					res.append(askEveResultItem)
 				}else{
 					res.insert(askEveResultItem, at: 0)
