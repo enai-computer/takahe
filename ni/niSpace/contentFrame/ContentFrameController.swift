@@ -617,8 +617,13 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		assert(self.viewState == .fullscreen)
 		let previousState = prevDisplayState
 
-		// Minimizing is only supported from expanded state, so transition to expanded first.
-		fullscreenToExpanded()
+		
+		if(prevDisplayState?.state == .expanded){
+			fullscreenToExpanded()
+		}else{
+			// Minimizing is only supported from expanded state, so transition to expanded first.
+			fullscreenToExpanded()
+		}
 
 		switch previousState?.state {
 			case .collapsedMinimised:
@@ -636,7 +641,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		}
 	}
 
-	func fullscreenToExpanded(){
+	func fullscreenToExpanded(to predefinedOrigin: NSPoint? = nil){
 		var reloadTabHeads = false
 		if(expandedCFView == nil){
 			loadExpandedView()
@@ -646,12 +651,17 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 			reloadTabHeads = true
 		}
 		
-		if(expandedCFView!.frame.origin.y < 50.0){
-			expandedCFView?.frame.origin.y = 50.0
+		if let predefinedOrigin{
+			expandedCFView?.frame.origin = predefinedOrigin
+		}else{
+			if(expandedCFView!.frame.origin.y < 50.0){
+				expandedCFView?.frame.origin.y = 50.0
+			}
+			if(expandedCFView!.frame.origin.x < 50.0){
+				expandedCFView?.frame.origin.x = 50.0
+			}
 		}
-		if(expandedCFView!.frame.origin.x < 50.0){
-			expandedCFView?.frame.origin.x = 50.0
-		}
+		
 		if let zPos = self.view.layer?.zPosition{
 			expandedCFView?.layer?.zPosition = zPos
 		}
