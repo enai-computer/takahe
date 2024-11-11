@@ -616,20 +616,20 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		fullscreenToExpanded()
 
 		switch previousState {
-		case .expanded:
-			break // Already handled by default `fullscreenToExpanded`
-		case .fullscreen:
-			break // Keep expanded view if we don't know any non-fullscreen state
+			case .expanded:
+				break // Already handled by default `fullscreenToExpanded`
+			case .fullscreen:
+				break // Keep expanded view if we don't know any non-fullscreen state
 
-		case .collapsedMinimised:
-			minimizeToCollapsed()
-		case .minimised:
-			minimizeSelfToDefault()
-		case .simpleFrame,
-			 .simpleMinimised:
-			minimizeSelfToSimple()
-		case .frameless:
-			assertionFailure("Frameless views should never have been in fullscreen mode")
+			case .collapsedMinimised:
+				minimizeToCollapsed()
+			case .minimised:
+				minimizeSelfToDefault()
+			case .simpleFrame,
+				 .simpleMinimised:
+				minimizeSelfToSimple()
+			case .frameless:
+				assertionFailure("Frameless views should never have been in fullscreen mode")
 		}
 	}
 
