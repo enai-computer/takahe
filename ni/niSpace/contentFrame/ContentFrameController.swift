@@ -455,11 +455,11 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		minimizeSelf()
 	}
 	
-	private func minimizeSelfToDefault(){
+	private func minimizeSelfToDefault(to origin: NSPoint? = nil){
 		updateTabViewModel()
 		let minimizedView = loadMinimizedView()
 		minimizedView.setFrameOwner(myView.niParentDoc)
-		positionMinimizedView(for: minimizedView)
+		positionMinimizedView(for: minimizedView, predefinedPos: origin)
 		
 		//replace
 		self.view.superview?.replaceSubview(self.view, with: minimizedView)
@@ -492,7 +492,11 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		oldView.deinitSelf()
 	}
 	
-	private func positionMinimizedView(for minimizedView: CFBaseView){
+	private func positionMinimizedView(for minimizedView: CFBaseView, predefinedPos: CGPoint? = nil){
+		if let predefinedPos{
+			minimizedView.frame.origin = predefinedPos
+			return
+		}
 		minimizedView.frame.origin.y = self.view.frame.origin.y
 		minimizedView.frame.origin.x = self.view.frame.origin.x + self.view.frame.width - minimizedView.frame.width
 		
@@ -528,7 +532,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		assert([.minimised, .collapsedMinimised].contains(viewState))
 
 		let oldState = viewState
-
+		let oldPosition = NiOrigin(view.frame.origin)
 		// Workaround: Directly expanding to fullscreen will not display the controller on the topmost Z level: other expanded views will be displayed on top. Expanding minimized views first takes care of that.
 		self.minimizedToExpanded()
 		self.expandedToFullscreen()
@@ -536,7 +540,8 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		// Set previous display state to the minimised state (would be `.expanded` with the workaround above all the time otherwise)
 		self.prevDisplayState = NiPreviousDisplayState(
 			state: oldState,
-			expandCollapseDirection: .leftToRight
+			expandCollapseDirection: .leftToRight,
+			origin: oldPosition
 		)
 	}
 
@@ -610,26 +615,24 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 
 	func fullscreenToPreviousState() {
 		assert(self.viewState == .fullscreen)
-		let previousState = prevDisplayState?.state ?? .expanded
+		let previousState = prevDisplayState
 
 		// Minimizing is only supported from expanded state, so transition to expanded first.
 		fullscreenToExpanded()
 
-		switch previousState {
-			case .expanded:
-				break // Already handled by default `fullscreenToExpanded`
-			case .fullscreen:
-				break // Keep expanded view if we don't know any non-fullscreen state
-
+		switch previousState?.state {
 			case .collapsedMinimised:
-				minimizeToCollapsed()
+				minimizeToCollapsed(to: previousState?.origin?.toNSPoint())
 			case .minimised:
-				minimizeSelfToDefault()
-			case .simpleFrame,
-				 .simpleMinimised:
-				minimizeSelfToSimple()
-			case .frameless:
-				assertionFailure("Frameless views should never have been in fullscreen mode")
+				minimizeSelfToDefault(to: previousState?.origin?.toNSPoint())
+			case .simpleMinimised,
+				 .frameless:
+				assertionFailure("\(String(describing: previousState?.state)) view should never have been in fullscreen mode")
+			default:
+				// .expanded Already handled by default `fullscreenToExpanded`
+				// .fullscreen Keep expanded view if we don't know any non-fullscreen state
+				// .simpleFrame returns to expanded after being in fullscreen, as the user may have added tabs
+				break
 		}
 	}
 
@@ -721,13 +724,13 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		sharedLoadViewSetters()
 	}
 	
-	func minimizeToCollapsed(){
+	func minimizeToCollapsed(to origin: NSPoint? = nil){
 		updateTabViewModel()
 		if let oldView = self.view as? CFHasGroupButtonProtocol{
 			groupName = oldView.cfGroupButton.getName()
 		}
 		let collapsedView = loadCollapsedMinizedView()
-		positionMinimizedView(for: collapsedView)
+		positionMinimizedView(for: collapsedView, predefinedPos: origin)
 		collapsedView.setFrameOwner(myView.niParentDoc)
 
 		//replace
