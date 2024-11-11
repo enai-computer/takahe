@@ -17,6 +17,22 @@ struct NiViewPosition: Codable{
     let y: NiCoordinate
 }
 
+struct NiOrigin: Codable {
+	let x: NiCoordinate
+	let y: NiCoordinate
+	
+	init(_ p: NSPoint){
+		x = NiCoordinate(px: p.x)
+		y = NiCoordinate(px: p.y)
+	}
+	
+	func toNSPoint() -> NSPoint{
+		return NSPoint(
+			x: x.px,
+			y: y.px
+		)
+	}
+}
 
 enum NiDocumentObjectTypes: String, Codable{
     case document, contentFrame
@@ -153,6 +169,7 @@ enum NiCFCollapseDirection: String, Codable{
 struct NiPreviousDisplayState: Codable{
 	var state: NiConentFrameState
 	var expandCollapseDirection: NiCFCollapseDirection
+	var origin: NiOrigin?
 }
 
 struct NiContentFrameModel: Codable{
