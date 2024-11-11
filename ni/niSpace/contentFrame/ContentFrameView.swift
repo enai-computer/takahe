@@ -36,6 +36,7 @@ class ContentFrameView: CFBaseView, CFTabHeadProtocol, CFFwdBackButtonProtocol, 
 	static let MAX_TAB_WIDTH: CGFloat = 300.0
 	
 	override var minFrameWidth: CGFloat { return 575.0}
+	override var frameType: NiContentFrameState {return .expanded}
 	
 	private var dropShadow2 = CALayer()
 	private var dropShadow3 = CALayer()

@@ -24,6 +24,8 @@ class CFFullscreenView: CFBaseView, CFTabHeadProtocol, CFFwdBackButtonProtocol{
 	@IBOutlet var spaceName: NiTextField!
 	@IBOutlet var groupName: NiTextField!
 	
+	override var frameType: NiContentFrameState {return .fullscreen}
+	
 	func initAfterViewLoad(spaceName: String, groupName: String?){
 		niContentTabView.wantsLayer = true
 		
@@ -142,19 +144,15 @@ class CFFullscreenView: CFBaseView, CFTabHeadProtocol, CFFwdBackButtonProtocol{
 					mouseDownFunction: { [myController] _ in
 						// Exit fullscreen first, otherwise the space's header will not be hidden correctly as shrinking to expanded would re-display it.
 						myController?.fullscreenToPreviousState()
-						myController?.toggleActive()
-
-						groupController.toggleActive()
-
 						switch groupController.viewState {
-						case .collapsedMinimised, .minimised:
-							groupController.minimizedToFullscreen()
-						case .expanded:
-							groupController.expandedToFullscreen()
-						case .fullscreen:
-							assert(groupController === myController, "No other group should have been in fullscreen mode")
-						case .frameless, .simpleFrame, .simpleMinimised:
-							assertionFailure("Unexpected state change from \(groupController.viewState) to full screen")
+							case .collapsedMinimised, .minimised:
+								groupController.minimizedToFullscreen()
+							case .expanded:
+								groupController.expandedToFullscreen()
+							case .fullscreen:
+								assert(groupController === myController, "No other group should have been in fullscreen mode")
+							case .frameless, .simpleFrame, .simpleMinimised:
+								assertionFailure("Unexpected state change from \(groupController.viewState) to full screen")
 						}
 					}
 				)

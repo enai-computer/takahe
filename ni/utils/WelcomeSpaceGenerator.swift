@@ -166,7 +166,7 @@ struct WelcomeSpaceTabModel: Codable{
 
 struct WelcomeSpaceWindowModel: Codable{
 	var windowName: String?
-	var state: NiConentFrameState
+	var state: NiContentFrameState
 	var tabs: [WelcomeSpaceTabModel]
 }
 

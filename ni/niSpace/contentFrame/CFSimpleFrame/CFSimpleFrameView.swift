@@ -20,6 +20,8 @@ class CFSimpleFrameView: CFBaseView, CFFwdBackButtonProtocol, CFHeadActionImageD
 	@IBOutlet var backButton: CFHeadActionImage!
 	@IBOutlet var forwardButton: CFHeadActionImage!
 	
+	override var frameType: NiContentFrameState {return .simpleFrame}
+	
 	private(set) var myContent: CFContentItem?
 	
 	private var dropShadow2 = CALayer()

@@ -18,6 +18,26 @@ import PostHog
 //TODO: clean up tech debt and move the delegates out of here
 class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelegate, NSCollectionViewDataSource, NSCollectionViewDelegate, NSCollectionViewDelegateFlowLayout{
 
+	private(set) var viewState: NiContentFrameState
+	/**Call this function when resetting the view. **Do not use it the in init flow, to set the inital view value.***/
+	private func resetView(newView: CFBaseView){
+		if(viewState != .fullscreen){
+			let minimizedOrigin = if(viewState.isMinimized()){
+				NiOrigin(view.frame.origin)
+			}else{
+				prevDisplayState?.minimisedOrigin
+			}
+			self.prevDisplayState = NiPreviousDisplayState(
+				state: self.viewState,
+				expandCollapseDirection: .leftToRight,
+				minimisedOrigin: minimizedOrigin
+			)
+		}
+		
+		self.view = newView
+		self.viewState = myView.frameType
+	}
+	
 	var myView: CFBaseView {return self.view as! CFBaseView}
 	var framelessView: CFFramelessView? {return self.view as? CFFramelessView}
 	var simpleFrame: CFSimpleFrameView? {return self.view as? CFSimpleFrameView}
@@ -30,18 +50,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	private var nxtTabPosOpenNxtTo: Int? = nil
 	private(set) var aTabIsInEditingMode: Bool = false
 	private(set) var tabs: [TabViewModel] = []
-	var viewState: NiConentFrameState = .expanded {
-		didSet {
-			self.prevDisplayState = switch oldValue {
-			case .fullscreen: nil
-			case .minimised, .collapsedMinimised, .simpleMinimised, .simpleFrame, .frameless, .expanded:
-				NiPreviousDisplayState(
-					state: oldValue,
-					expandCollapseDirection: .leftToRight
-				)
-			}
-		}
-	}
+
 	private var viewIsDrawn = false
 	
 	private var closeCancelled = false
@@ -54,7 +63,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	/*
 	 * MARK: init & view loading here
 	 */
-	init(viewState: NiConentFrameState, 
+	init(viewState: NiContentFrameState, 
 		 groupName: String?,
 		 groupId: UUID?,
 		 tabsModel: [TabViewModel]? = nil,
@@ -416,6 +425,9 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	/*
 	 * MARK: passToView Functions
 	 */
+	
+	/** Call this function ONLY from `setTopNiFrame` in `NiSpaceDocumentView`. Otherwise you will screw up the hierarchy on the canvas!
+	 */
 	func toggleActive(){
 		myView.toggleActive()
 	}
@@ -436,12 +448,14 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	func minimizeSelf(){
 		switch (viewState, prevDisplayState?.state) {
 			case (.expanded, .collapsedMinimised):
-				minimizeToCollapsed()
+				minimizeToCollapsed(to: prevDisplayState?.minimisedOrigin?.toNSPoint())
 				break
 			case (.expanded, _):
-				minimizeSelfToDefault()
+				minimizeSelfToDefault(to: prevDisplayState?.minimisedOrigin?.toNSPoint())
+        break
 			case (.simpleFrame, _):
-				minimizeSelfToSimple()
+				minimizeSelfToSimple(to: prevDisplayState?.minimisedOrigin?.toNSPoint())
+        break
 			default:
 				assertionFailure("Unhandled combination of current and previous view state")
 				break
@@ -452,28 +466,27 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		minimizeSelf()
 	}
 	
-	private func minimizeSelfToDefault(){
+	private func minimizeSelfToDefault(to origin: NSPoint? = nil){
 		updateTabViewModel()
 		let minimizedView = loadMinimizedView()
 		minimizedView.setFrameOwner(myView.niParentDoc)
-		positionMinimizedView(for: minimizedView)
+		positionMinimizedView(for: minimizedView, predefinedPos: origin)
 		
 		//replace
 		self.view.superview?.replaceSubview(self.view, with: minimizedView)
-		self.view = minimizedView
-		self.viewState = .minimised
+		resetView(newView: minimizedView)
 		self.prevDisplayState = nil
 
 		self.myView.niParentDoc?.setTopNiFrame(self)
 		sharedLoadViewSetters()
 	}
 	
-	private func minimizeSelfToSimple(){
+	private func minimizeSelfToSimple(to origin: NSPoint? = nil){
 		guard safeGetTab(at: 0)?.type == .pdf else {return}
 		let simpleMinimizedView = loadSimpleMinimzedView()
 		simpleMinimizedView.setFrameOwner(myView.niParentDoc)
 		
-		positionMinimizedView(for: simpleMinimizedView)
+		positionMinimizedView(for: simpleMinimizedView, predefinedPos: origin)
 		//replace
 		if let zPos = self.view.layer?.zPosition{
 			simpleMinimizedView.layer?.zPosition = zPos
@@ -481,15 +494,17 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		let oldView = self.myView
 		self.view.superview?.replaceSubview(self.view,
 											with: simpleMinimizedView)
-		self.view = simpleMinimizedView
+		resetView(newView: simpleMinimizedView)
+		
 		self.myView.niParentDoc?.setTopNiFrame(self)
-		
-		self.viewState = .simpleMinimised
-		
 		oldView.deinitSelf()
 	}
 	
-	private func positionMinimizedView(for minimizedView: CFBaseView){
+	private func positionMinimizedView(for minimizedView: CFBaseView, predefinedPos: CGPoint? = nil){
+		if let predefinedPos{
+			minimizedView.frame.origin = predefinedPos
+			return
+		}
 		minimizedView.frame.origin.y = self.view.frame.origin.y
 		minimizedView.frame.origin.x = self.view.frame.origin.x + self.view.frame.width - minimizedView.frame.width
 		
@@ -504,8 +519,15 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		}
 	}
 	
-	func maximizeClicked(_ event: NSEvent){
-		maximizeSelf()
+	func maximizeSelf(){
+		switch viewState {
+			case .minimised, .collapsedMinimised:
+				minimizedToExpanded()
+			case .simpleMinimised:
+				simpleMinimizedToSimpleFrame()
+			case .expanded, .frameless, .simpleFrame, .fullscreen:
+				assertionFailure("Unhandled view state to self-maximize")
+		}
 	}
 	
 	func makeFullscreenClicked(_ event: NSEvent){
@@ -518,7 +540,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		assert([.minimised, .collapsedMinimised].contains(viewState))
 
 		let oldState = viewState
-
+		let oldPosition = NiOrigin(view.frame.origin)
 		// Workaround: Directly expanding to fullscreen will not display the controller on the topmost Z level: other expanded views will be displayed on top. Expanding minimized views first takes care of that.
 		self.minimizedToExpanded()
 		self.expandedToFullscreen()
@@ -526,7 +548,8 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		// Set previous display state to the minimised state (would be `.expanded` with the workaround above all the time otherwise)
 		self.prevDisplayState = NiPreviousDisplayState(
 			state: oldState,
-			expandCollapseDirection: .leftToRight
+			expandCollapseDirection: .leftToRight,
+			minimisedOrigin: oldPosition
 		)
 	}
 
@@ -544,8 +567,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		fullscreenView.fillView(with: nil)
 		
 		self.view.superview?.replaceSubview(self.view, with: fullscreenView)
-		self.view = fullscreenView
-		self.viewState = .fullscreen
+		resetView(newView: fullscreenView)
 		
 		(NSApplication.shared.delegate as? AppDelegate)?.getNiSpaceViewController()?.hideHeader()
 		
@@ -565,8 +587,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		
 		self.view.superview?.replaceSubview(self.view, with: fullscreenView)
 		self.myView.deinitSelf(keepContentView: true)
-		self.view = fullscreenView
-		self.viewState = .fullscreen
+		resetView(newView: fullscreenView)
 		
 		(NSApplication.shared.delegate as? AppDelegate)?.getNiSpaceViewController()?.hideHeader()
 		
@@ -588,8 +609,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		//replace
 		self.view.superview?.replaceSubview(self.view, with: expandedCFView!)
 		self.myView.deinitSelf()
-		self.view = expandedCFView!
-		self.viewState = .expanded
+		resetView(newView: expandedCFView!)
 		
 		forceSelectTab(at: 0)
 		
@@ -600,30 +620,33 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 
 	func fullscreenToPreviousState() {
 		assert(self.viewState == .fullscreen)
-		let previousState = prevDisplayState?.state ?? .expanded
+		let previousState = prevDisplayState
 
-		// Minimizing is only supported from expanded state, so transition to expanded first.
-		fullscreenToExpanded()
+		
+		if(prevDisplayState?.state == .expanded){
+			fullscreenToExpanded()
+		}else{
+			// Minimizing is only supported from expanded state, so transition to expanded first.
+			fullscreenToExpanded()
+		}
 
-		switch previousState {
-		case .expanded:
-			break // Already handled by default `fullscreenToExpanded`
-		case .fullscreen:
-			break // Keep expanded view if we don't know any non-fullscreen state
-
-		case .collapsedMinimised:
-			minimizeToCollapsed()
-		case .minimised:
-			minimizeSelfToDefault()
-		case .simpleFrame,
-			 .simpleMinimised:
-			minimizeSelfToSimple()
-		case .frameless:
-			assertionFailure("Frameless views should never have been in fullscreen mode")
+		switch previousState?.state {
+			case .collapsedMinimised:
+				minimizeToCollapsed(to: previousState?.minimisedOrigin?.toNSPoint())
+			case .minimised:
+				minimizeSelfToDefault(to: previousState?.minimisedOrigin?.toNSPoint())
+			case .simpleMinimised,
+				 .frameless:
+				assertionFailure("\(String(describing: previousState?.state)) view should never have been in fullscreen mode")
+			default:
+				// .expanded Already handled by default `fullscreenToExpanded`
+				// .fullscreen Keep expanded view if we don't know any non-fullscreen state
+				// .simpleFrame returns to expanded after being in fullscreen, as the user may have added tabs
+				break
 		}
 	}
 
-	func fullscreenToExpanded(){
+	func fullscreenToExpanded(to predefinedOrigin: NSPoint? = nil){
 		var reloadTabHeads = false
 		if(expandedCFView == nil){
 			loadExpandedView()
@@ -633,12 +656,17 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 			reloadTabHeads = true
 		}
 		
-		if(expandedCFView!.frame.origin.y < 50.0){
-			expandedCFView?.frame.origin.y = 50.0
+		if let predefinedOrigin{
+			expandedCFView?.frame.origin = predefinedOrigin
+		}else{
+			if(expandedCFView!.frame.origin.y < 50.0){
+				expandedCFView?.frame.origin.y = 50.0
+			}
+			if(expandedCFView!.frame.origin.x < 50.0){
+				expandedCFView?.frame.origin.x = 50.0
+			}
 		}
-		if(expandedCFView!.frame.origin.x < 50.0){
-			expandedCFView?.frame.origin.x = 50.0
-		}
+		
 		if let zPos = self.view.layer?.zPosition{
 			expandedCFView?.layer?.zPosition = zPos
 		}
@@ -652,9 +680,9 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		
 		//replace
 		self.view.superview?.replaceSubview(self.view, with: expandedCFView!)
-		self.view = expandedCFView!
-		
-		self.viewState = .expanded
+
+		resetView(newView: expandedCFView!)
+
 		self.expandedCFView!.niParentDoc?.setTopNiFrame(self)
 		sharedLoadViewSetters()
 		
@@ -667,17 +695,6 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		
 		if(reloadTabHeads){
 			viewWithTabs?.cfTabHeadCollection?.reloadData()
-		}
-	}
-	
-	func maximizeSelf(){
-		switch viewState {
-		case .minimised, .collapsedMinimised:
-			minimizedToExpanded()
-		case .simpleMinimised:
-			simpleMinimizedToSimpleFrame()
-		case .expanded, .frameless, .simpleFrame, .fullscreen:
-			assertionFailure("Unhandled view state to self-maximize")
 		}
 	}
 	
@@ -706,8 +723,8 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		//replace
 		self.view.superview?.replaceSubview(self.view, with: expandedCFView!)
 		self.myView.deinitSelf()
-		self.view = expandedCFView!
-		self.viewState = .expanded
+
+		resetView(newView: expandedCFView!)
 		
 		expandedCFView?.cfGroupButton.setView(title: groupName)
 		
@@ -722,19 +739,19 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		sharedLoadViewSetters()
 	}
 	
-	func minimizeToCollapsed(){
+	func minimizeToCollapsed(to origin: NSPoint? = nil){
 		updateTabViewModel()
 		if let oldView = self.view as? CFHasGroupButtonProtocol{
 			groupName = oldView.cfGroupButton.getName()
 		}
 		let collapsedView = loadCollapsedMinizedView()
-		positionMinimizedView(for: collapsedView)
+		positionMinimizedView(for: collapsedView, predefinedPos: origin)
 		collapsedView.setFrameOwner(myView.niParentDoc)
 
 		//replace
 		self.view.superview?.replaceSubview(self.view, with: collapsedView)
-		self.view = collapsedView
-		self.viewState = .collapsedMinimised
+
+		resetView(newView: collapsedView)
 		self.prevDisplayState = nil
 
 		self.myView.niParentDoc?.setTopNiFrame(self)
@@ -750,8 +767,8 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		minimizedView.setFrameOwner(myView.niParentDoc)
 		
 		self.view.superview?.replaceSubview(self.view, with: minimizedView)
-		self.view = minimizedView
-		self.viewState = .minimised
+
+		resetView(newView: minimizedView)
 		
 		self.myView.niParentDoc?.setTopNiFrame(self)
 		sharedLoadViewSetters()
@@ -772,8 +789,9 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		}
 		let oldView = self.myView
 		self.view.superview?.replaceSubview(self.view, with: simpleFrameView)
-		self.view = simpleFrameView
-		self.viewState = .simpleFrame
+
+		resetView(newView: simpleFrameView)
+		
 		self.myView.niParentDoc?.setTopNiFrame(self)
 		
 		oldView.deinitSelf()
@@ -1631,7 +1649,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		}
 	}
 	
-	func toNiContentFrameModel() -> (model: NiDocumentObjectModel?, nrOfTabs: Int, state: NiConentFrameState?){
+	func toNiContentFrameModel() -> (model: NiDocumentObjectModel?, nrOfTabs: Int, state: NiContentFrameState?){
 		
 		//do nothing, as we are in the deletion process
 		if(closeTriggered){

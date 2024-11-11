@@ -14,6 +14,8 @@ class CFFramelessView: CFBaseView {
 	override var minFrameWidth: CGFloat {return 80.0}
 	var myItem: CFContentItem?
 	
+	override var frameType: NiContentFrameState {return .frameless}
+	
 	private var hoverEffect: NSTrackingArea? = nil
 	
 	override func toggleActive(){

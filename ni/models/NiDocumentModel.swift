@@ -17,6 +17,22 @@ struct NiViewPosition: Codable{
     let y: NiCoordinate
 }
 
+struct NiOrigin: Codable {
+	let x: NiCoordinate
+	let y: NiCoordinate
+	
+	init(_ p: NSPoint){
+		x = NiCoordinate(px: p.x)
+		y = NiCoordinate(px: p.y)
+	}
+	
+	func toNSPoint() -> NSPoint{
+		return NSPoint(
+			x: x.px,
+			y: y.px
+		)
+	}
+}
 
 enum NiDocumentObjectTypes: String, Codable{
     case document, contentFrame
@@ -128,7 +144,7 @@ struct NiCFTabModel: Codable{
 
 // MARK: -  Content Frame Model:
 
-enum NiConentFrameState: String, Codable {
+enum NiContentFrameState: String, Codable {
     case collapsedMinimised, minimised, expanded, frameless, simpleFrame, simpleMinimised, fullscreen
 	
 	func isMinimized() -> Bool{
@@ -151,12 +167,13 @@ enum NiCFCollapseDirection: String, Codable{
 }
 
 struct NiPreviousDisplayState: Codable{
-	var state: NiConentFrameState
+	var state: NiContentFrameState
 	var expandCollapseDirection: NiCFCollapseDirection
+	var minimisedOrigin: NiOrigin?
 }
 
 struct NiContentFrameModel: Codable{
-    var state: NiConentFrameState
+    var state: NiContentFrameState
 	var previousDisplayState: NiPreviousDisplayState?
     var height: NiCoordinate
     var width: NiCoordinate
