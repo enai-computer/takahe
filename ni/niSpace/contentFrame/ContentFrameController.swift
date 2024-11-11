@@ -18,6 +18,19 @@ import PostHog
 //TODO: clean up tech debt and move the delegates out of here
 class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelegate, NSCollectionViewDataSource, NSCollectionViewDelegate, NSCollectionViewDelegateFlowLayout{
 
+	private(set) var viewState: NiContentFrameState
+	/**Call this function when resetting the view. **Do not use it the in init flow, to set the inital view value.***/
+	private func resetView(_ newView: CFBaseView){
+		self.prevDisplayState = NiPreviousDisplayState(
+			state: self.viewState,
+			expandCollapseDirection: .leftToRight,
+			origin: NiOrigin(self.view.frame.origin)
+		)
+		
+		self.view = newView
+		self.viewState = myView.frameType
+	}
+	
 	var myView: CFBaseView {return self.view as! CFBaseView}
 	var framelessView: CFFramelessView? {return self.view as? CFFramelessView}
 	var simpleFrame: CFSimpleFrameView? {return self.view as? CFSimpleFrameView}
@@ -30,18 +43,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	private var nxtTabPosOpenNxtTo: Int? = nil
 	private(set) var aTabIsInEditingMode: Bool = false
 	private(set) var tabs: [TabViewModel] = []
-	var viewState: NiContentFrameState {
-		didSet {
-			self.prevDisplayState = switch oldValue {
-			case .fullscreen: nil
-			case .minimised, .collapsedMinimised, .simpleMinimised, .simpleFrame, .frameless, .expanded:
-				NiPreviousDisplayState(
-					state: oldValue,
-					expandCollapseDirection: .leftToRight
-				)
-			}
-		}
-	}
+
 	private var viewIsDrawn = false
 	
 	private var closeCancelled = false
@@ -463,8 +465,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		
 		//replace
 		self.view.superview?.replaceSubview(self.view, with: minimizedView)
-		self.view = minimizedView
-		self.viewState = .minimised
+		resetView(minimizedView)
 		self.prevDisplayState = nil
 
 		self.myView.niParentDoc?.setTopNiFrame(self)
@@ -484,11 +485,9 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		let oldView = self.myView
 		self.view.superview?.replaceSubview(self.view,
 											with: simpleMinimizedView)
-		self.view = simpleMinimizedView
+		resetView(simpleMinimizedView)
+		
 		self.myView.niParentDoc?.setTopNiFrame(self)
-		
-		self.viewState = .simpleMinimised
-		
 		oldView.deinitSelf()
 	}
 	
@@ -559,8 +558,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		fullscreenView.fillView(with: nil)
 		
 		self.view.superview?.replaceSubview(self.view, with: fullscreenView)
-		self.view = fullscreenView
-		self.viewState = .fullscreen
+		resetView(fullscreenView)
 		
 		(NSApplication.shared.delegate as? AppDelegate)?.getNiSpaceViewController()?.hideHeader()
 		
@@ -580,8 +578,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		
 		self.view.superview?.replaceSubview(self.view, with: fullscreenView)
 		self.myView.deinitSelf(keepContentView: true)
-		self.view = fullscreenView
-		self.viewState = .fullscreen
+		resetView(fullscreenView)
 		
 		(NSApplication.shared.delegate as? AppDelegate)?.getNiSpaceViewController()?.hideHeader()
 		
@@ -603,8 +600,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		//replace
 		self.view.superview?.replaceSubview(self.view, with: expandedCFView!)
 		self.myView.deinitSelf()
-		self.view = expandedCFView!
-		self.viewState = .expanded
+		resetView(expandedCFView!)
 		
 		forceSelectTab(at: 0)
 		
@@ -675,9 +671,9 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		
 		//replace
 		self.view.superview?.replaceSubview(self.view, with: expandedCFView!)
-		self.view = expandedCFView!
-		
-		self.viewState = .expanded
+
+		resetView(expandedCFView!)
+
 		self.expandedCFView!.niParentDoc?.setTopNiFrame(self)
 		sharedLoadViewSetters()
 		
@@ -718,8 +714,8 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		//replace
 		self.view.superview?.replaceSubview(self.view, with: expandedCFView!)
 		self.myView.deinitSelf()
-		self.view = expandedCFView!
-		self.viewState = .expanded
+
+		resetView(expandedCFView!)
 		
 		expandedCFView?.cfGroupButton.setView(title: groupName)
 		
@@ -745,8 +741,8 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 
 		//replace
 		self.view.superview?.replaceSubview(self.view, with: collapsedView)
-		self.view = collapsedView
-		self.viewState = .collapsedMinimised
+
+		resetView(collapsedView)
 		self.prevDisplayState = nil
 
 		self.myView.niParentDoc?.setTopNiFrame(self)
@@ -762,8 +758,8 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		minimizedView.setFrameOwner(myView.niParentDoc)
 		
 		self.view.superview?.replaceSubview(self.view, with: minimizedView)
-		self.view = minimizedView
-		self.viewState = .minimised
+
+		resetView(minimizedView)
 		
 		self.myView.niParentDoc?.setTopNiFrame(self)
 		sharedLoadViewSetters()
@@ -784,8 +780,9 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		}
 		let oldView = self.myView
 		self.view.superview?.replaceSubview(self.view, with: simpleFrameView)
-		self.view = simpleFrameView
-		self.viewState = .simpleFrame
+
+		resetView(simpleFrameView)
+		
 		self.myView.niParentDoc?.setTopNiFrame(self)
 		
 		oldView.deinitSelf()
