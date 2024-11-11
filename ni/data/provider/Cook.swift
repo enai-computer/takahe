@@ -158,9 +158,15 @@ class Cook{
 		return query
 	}
 	
+	private struct SearchResultContentHash: Hashable{
+		let title: String
+		let type: NiSearchResultType
+		let spaceId: UUID
+	}
+	
 	private func searchContent(_ searchContent: String) -> [NiSearchResultItem]{
 		var res: [NiSearchResultItem] = []
-		
+		var titleTypeSpaceIdSet: Set<SearchResultContentHash> = []
 		do{
 			for record in try Storage.instance.spacesDB.prepare(
 				buildContentSearchQuery(searchContent)
@@ -172,13 +178,20 @@ class Cook{
 					if(name.contains("Google Search")){
 						continue
 					}
+					let spaceId = try record.get(DocumentTable.table[DocumentTable.id])
+					
+					//Users might have multiple tabs with the same title in the same space. For now we are filtering out these duplicates.
+					let newResult = titleTypeSpaceIdSet.insert(SearchResultContentHash(title: name, type: type, spaceId: spaceId))
+					if(!newResult.inserted){
+						continue
+					}
 					res.append(
 						NiSearchResultItem(
 							type: type,
 							id: try record.get(ContentTable.table[ContentTable.id]),
 							name: name,
 							data: NiSRIOriginData(
-								id: try record.get(DocumentTable.table[DocumentTable.id]),
+								id: spaceId,
 								name: try record.get(DocumentTable.table[DocumentTable.name])
 							)
 						)
