@@ -169,7 +169,7 @@ enum NiCFCollapseDirection: String, Codable{
 struct NiPreviousDisplayState: Codable{
 	var state: NiContentFrameState
 	var expandCollapseDirection: NiCFCollapseDirection
-	var origin: NiOrigin?
+	var minimisedOrigin: NiOrigin?
 }
 
 struct NiContentFrameModel: Codable{
