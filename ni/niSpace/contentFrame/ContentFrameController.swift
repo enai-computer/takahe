@@ -30,7 +30,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	private var nxtTabPosOpenNxtTo: Int? = nil
 	private(set) var aTabIsInEditingMode: Bool = false
 	private(set) var tabs: [TabViewModel] = []
-	var viewState: NiConentFrameState {
+	var viewState: NiContentFrameState {
 		didSet {
 			self.prevDisplayState = switch oldValue {
 			case .fullscreen: nil
@@ -54,7 +54,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	/*
 	 * MARK: init & view loading here
 	 */
-	init(viewState: NiConentFrameState, 
+	init(viewState: NiContentFrameState, 
 		 groupName: String?,
 		 groupId: UUID?,
 		 tabsModel: [TabViewModel]? = nil,
@@ -1633,7 +1633,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		}
 	}
 	
-	func toNiContentFrameModel() -> (model: NiDocumentObjectModel?, nrOfTabs: Int, state: NiConentFrameState?){
+	func toNiContentFrameModel() -> (model: NiDocumentObjectModel?, nrOfTabs: Int, state: NiContentFrameState?){
 		
 		//do nothing, as we are in the deletion process
 		if(closeTriggered){

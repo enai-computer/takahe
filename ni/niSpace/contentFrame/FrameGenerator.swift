@@ -6,7 +6,7 @@ import PDFKit
 
 let maxWidthMargin: CGFloat = 30.0
 
-func openEmptyContentFrame(viewState: NiConentFrameState = .expanded, groupName: String? = nil, groupId: UUID?) -> ContentFrameController{
+func openEmptyContentFrame(viewState: NiContentFrameState = .expanded, groupName: String? = nil, groupId: UUID?) -> ContentFrameController{
 	let frameController = ContentFrameController(
 		viewState: viewState,
 		groupName: groupName,
@@ -47,7 +47,7 @@ func reopenContentFrame(screenSize: CGSize, contentFrame: NiContentFrameModel, t
 
 func reopenContentFrameWithOutPositioning(
 	screenWidth: CGFloat,
-	contentFrameState: NiConentFrameState,
+	contentFrameState: NiContentFrameState,
 	prevState: NiPreviousDisplayState?,
 	tabViewModels: [TabViewModel],
 	groupName: String?,
