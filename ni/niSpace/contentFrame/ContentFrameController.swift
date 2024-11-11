@@ -435,16 +435,16 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	 */
 	func minimizeSelf(){
 		switch (viewState, prevDisplayState?.state) {
-		case (.expanded, .minimised),
-			 (.expanded, nil):
-			minimizeSelfToDefault()
-		case (.expanded, .collapsedMinimised):
-			minimizeToCollapsed()
-		case (.simpleFrame, _):
-			minimizeSelfToSimple()
-		default:
-			assertionFailure("Unhandled combination of current and previous view state")
-			break
+			case (.expanded, .collapsedMinimised):
+				minimizeToCollapsed()
+				break
+			case (.expanded, _):
+				minimizeSelfToDefault()
+			case (.simpleFrame, _):
+				minimizeSelfToSimple()
+			default:
+				assertionFailure("Unhandled combination of current and previous view state")
+				break
 		}
 	}
 	
