@@ -54,6 +54,7 @@ class ContentFrameView: CFBaseView, CFTabHeadProtocol, CFFwdBackButtonProtocol, 
 			mouseDownFunction: clickedGroupButton,
 			mouseDownInActiveFunction: activateContentFrame,
 			isActiveFunction: self.isFrameActive,
+			titleChangedCallback: myController?.updateGroupName,
 			displayType: .expanded
 		)
 		cfGroupButton.setView(title: groupName)

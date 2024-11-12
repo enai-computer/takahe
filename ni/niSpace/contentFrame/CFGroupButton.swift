@@ -12,7 +12,7 @@ class CFGroupButton: NSView, NSTextFieldDelegate{
 	var mouseDownFunction: ((NSEvent) -> Void)?
 	var mouseDownInActiveFunction: ((NSEvent) -> Void)?
 	var isActiveFunction: (() -> Bool)?
-	var titleChangedCallback: ((String) -> Void)?
+	var titleChangedCallback: ((String?) -> Void)?
 	
 	private var groupIcon: NiActionImage?
 	private var groupTitle: NSTextField?
@@ -33,7 +33,7 @@ class CFGroupButton: NSView, NSTextFieldDelegate{
 	func initButton(mouseDownFunction: ((NSEvent) -> Void)?,
 					mouseDownInActiveFunction: ((NSEvent) -> Void)?,
 					isActiveFunction: (() -> Bool)?,
-					titleChangedCallback: ((String) -> Void)? = nil,
+					titleChangedCallback: ((String?) -> Void)? = nil,
 					displayType: NiContentFrameState,
 					displayedContent: TabContentType = .web
 	){
@@ -193,6 +193,7 @@ class CFGroupButton: NSView, NSTextFieldDelegate{
 		groupTitle?.removeFromSuperview()
 		groupTitle = nil
 		setView()
+		titleChangedCallback?(nil)
 	}
 
 	private func styleEndEditing(){

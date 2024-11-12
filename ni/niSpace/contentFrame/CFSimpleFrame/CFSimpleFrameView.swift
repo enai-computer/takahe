@@ -33,7 +33,7 @@ class CFSimpleFrameView: CFBaseView, CFFwdBackButtonProtocol, CFHeadActionImageD
 	}
 	
 	func initAfterViewLoad(_ groupName: String?, 
-						   titleChangedCallback: ((String)->Void)?){
+						   titleChangedCallback: ((String?)->Void)?){
 		cfGroupButton.initButton(
 			mouseDownFunction: clickedGroupButton,
 			mouseDownInActiveFunction: activateContentFrame,
