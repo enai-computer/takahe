@@ -46,7 +46,12 @@ class NiHomeWindow: NSPanel, NiSearchWindowProtocol{
 		let selfSize = screenSize
 		return NSRect(origin: CGPoint(x: 0.0, y: 0.0), size: selfSize)
 	}
-	
+
+	override func cancelOperation(_ sender: Any?) {
+		guard canBeDismissed else { return }
+		removeSelf()
+	}
+
 	func removeSelf(){
 		resignKey()
 		
