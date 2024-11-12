@@ -181,9 +181,11 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	 
 	 The tabGroup title reflects the document name. These need to be kept in sync in case the single tab is moved into a group.
 	 */
-	func simpleViewTitleChangedCallback(_ newTitle: String){
-		guard !newTitle.isEmpty && newTitle != "/" else {return}
-		tabs[0].title = newTitle
+	func simpleViewTitleChangedCallback(_ newTitle: String?){
+		if let newTitle = newTitle{
+			guard !newTitle.isEmpty && newTitle != "/" else {return}
+			tabs[0].title = newTitle
+		}
 	}
 	
 	private func loadAndDisplaySimpleMinimizedView(){
@@ -1728,6 +1730,10 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 				self.groupName = simpleView.cfGroupButton.getName()
 			}
 		}
+	}
+	
+	func updateGroupName(_ n: String?){
+		self.groupName = n
 	}
 	
 	private func setIdIfNeeded(){

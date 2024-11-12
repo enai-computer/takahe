@@ -38,6 +38,7 @@ class CFMinimizedView: CFBaseView, CFHasGroupButtonProtocol, CFHeadActionImageDe
 			mouseDownFunction: clickedGroupButton,
 			mouseDownInActiveFunction: activateContentFrame,
 			isActiveFunction: self.isFrameActive,
+			titleChangedCallback: myController?.updateGroupName,
 			displayType: .minimised
 		)
 		cfGroupButton.setView(title: groupName)
