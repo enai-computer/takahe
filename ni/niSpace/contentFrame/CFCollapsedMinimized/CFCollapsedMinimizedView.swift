@@ -36,7 +36,7 @@ class CFCollapsedMinimizedView: CFBaseView, CFHasGroupButtonProtocol, NiMouseDow
 		if(nrOfItems < Self.tabListLimit){
 			listOfTabs?.frame.size.width = (24.0 + 14.0) * CGFloat(nrOfItems) //+ 7.0
 		}else{
-			listOfTabs?.frame.size.width = (24.0 + 14.0) * CGFloat(Self.tabListLimit) //+ 7.0
+			listOfTabs?.frame.size.width = (24.0 + 14.0) * (CGFloat(Self.tabListLimit)+1.0) //+ 7.0
 		}
 		
 		cfGroupButton.initButton(

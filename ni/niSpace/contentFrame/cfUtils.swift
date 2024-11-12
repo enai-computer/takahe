@@ -49,7 +49,7 @@ func genCollapsedMinimzedStackItems(
 		return itemView
 	}
 
-	return if tabs.count > limit {
+	return if limit <= tabs.count {
 		tabs[..<limit]
 			.map(stackItem(tab:))
 			.appending(genPlusXItems(tabs.count - (limit - 1)))

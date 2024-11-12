@@ -242,7 +242,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 			tabs: tabs,
 			limit: CFCollapsedMinimizedView.tabListLimit,
 			handler: collapsedMinimizedView)
-		collapsedMinimizedView.listOfTabs?.setViews(stackItems, in: .leading)
+		collapsedMinimizedView.listOfTabs?.setViews(stackItems, in: .center)
 		
 		groupName = expandedCFView?.cfGroupButton.getName() ?? groupName
 		collapsedMinimizedView.initAfterViewLoad(nrOfItems: tabs.count, groupName: groupName)
