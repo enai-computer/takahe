@@ -48,7 +48,10 @@ class NiHomeWindow: NSPanel, NiSearchWindowProtocol{
 	}
 
 	override func cancelOperation(_ sender: Any?) {
-		guard canBeDismissed else { return }
+		guard canBeDismissed else {
+			NSSound.beep()
+			return
+		}
 		removeSelf()
 	}
 
