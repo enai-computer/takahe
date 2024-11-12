@@ -12,14 +12,14 @@ import Carbon.HIToolbox
 class NiHomeWindow: NSPanel, NiSearchWindowProtocol{
 	
 	private let niDelegate: NiHomeWindowDelegate
-	let allowESC: Bool
+	let canBeDismissed: Bool
 	override var canBecomeKey: Bool {return true}
 	override var canBecomeMain: Bool {return false}
 
-	init(windowToAppearOn: NSWindow, allowESC: Bool = false){
+	init(windowToAppearOn: NSWindow, canBeDismissed: Bool = false){
 		let homeViewRect = NiHomeWindow.calcHomeViewRect(windowToAppearOn.frame.size)
 
-		self.allowESC = allowESC
+		self.canBeDismissed = canBeDismissed
 		niDelegate = NiHomeWindowDelegate()
 		
 		super.init(

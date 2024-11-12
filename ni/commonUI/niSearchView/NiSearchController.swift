@@ -270,7 +270,7 @@ class NiSearchController: NSViewController, NSCollectionViewDataSource, NSCollec
 				return
 			}
 			if let homeWindow = view.window as? NiHomeWindow{
-				if(homeWindow.allowESC){
+				if(homeWindow.canBeDismissed){
 					homeWindow.removeSelf()
 					return
 				}
