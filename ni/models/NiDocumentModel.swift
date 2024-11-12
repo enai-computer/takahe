@@ -154,6 +154,13 @@ enum NiContentFrameState: String, Codable {
 		return false
 	}
 
+	func isDefaultViewState() -> Bool{
+		return switch self{
+			case .expanded, .simpleFrame, .frameless: true
+			default: false
+		}
+	}
+	
 	var canBecomeFullscreen: Bool {
 		return switch self {
 		case .collapsedMinimised, .minimised, .expanded: true
@@ -170,6 +177,7 @@ struct NiPreviousDisplayState: Codable{
 	var state: NiContentFrameState
 	var expandCollapseDirection: NiCFCollapseDirection
 	var minimisedOrigin: NiOrigin?
+	var defaultWindowOrigin: NiOrigin?
 }
 
 struct NiContentFrameModel: Codable{

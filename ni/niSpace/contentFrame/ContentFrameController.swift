@@ -27,10 +27,16 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 			}else{
 				prevDisplayState?.minimisedOrigin
 			}
+			let defaultWindowOrigin = if(viewState.isDefaultViewState()){
+				NiOrigin(view.frame.origin)
+			}else{
+				prevDisplayState?.defaultWindowOrigin
+			}
 			self.prevDisplayState = NiPreviousDisplayState(
 				state: self.viewState,
 				expandCollapseDirection: .leftToRight,
-				minimisedOrigin: minimizedOrigin
+				minimisedOrigin: minimizedOrigin,
+				defaultWindowOrigin: defaultWindowOrigin
 			)
 		}
 		
@@ -477,7 +483,6 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		//replace
 		self.view.superview?.replaceSubview(self.view, with: minimizedView)
 		resetView(newView: minimizedView)
-		self.prevDisplayState = nil
 
 		self.myView.niParentDoc?.setTopNiFrame(self)
 		sharedLoadViewSetters()
@@ -661,6 +666,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 			loadExpandedView()
 			expandedCFView?.setFrameOwner(self.myView.niParentDoc)
 			expandedCFView?.cfGroupButton.setView(title: groupName)
+			
 		}else{
 			reloadTabHeads = true
 		}
@@ -727,7 +733,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		}else{
 			tabSelectedInModel = selectedTabModel
 		}
-		positionBiggerView(for: expandedCFView!)
+		positionBiggerView(for: expandedCFView!, predefinedPos: prevDisplayState?.defaultWindowOrigin?.toNSPoint())
 
 		//replace
 		self.view.superview?.replaceSubview(self.view, with: expandedCFView!)
@@ -761,7 +767,6 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		self.view.superview?.replaceSubview(self.view, with: collapsedView)
 
 		resetView(newView: collapsedView)
-		self.prevDisplayState = nil
 
 		self.myView.niParentDoc?.setTopNiFrame(self)
 		sharedLoadViewSetters()
@@ -792,7 +797,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		}
 		simpleFrameView.setFrameOwner(myView.niParentDoc)
 		simpleFrameView.createNewTab(tabView: tabs[0].viewItem as! NSView)
-		positionBiggerView(for: simpleFrameView)
+		positionBiggerView(for: simpleFrameView, predefinedPos: prevDisplayState?.defaultWindowOrigin?.toNSPoint())
 		if let zPos = self.view.layer?.zPosition{
 			simpleFrameView.layer?.zPosition = zPos
 		}
@@ -809,7 +814,16 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	/**
 	 used to position expanded and simpleFrame views, after clicking the maximizeButton in their minimized Versions
 	 */
-	private func positionBiggerView(for biggerView: CFBaseView){
+	private func positionBiggerView(for biggerView: CFBaseView, predefinedPos: CGPoint? = nil){
+		if(self.view.layer != nil){
+			biggerView.layer?.zPosition = self.view.layer!.zPosition
+		}
+		
+		if let predefinedPos{
+			biggerView.frame.origin = predefinedPos
+			moveWithinBounds(biggerView)
+			return
+		}
 		//TODO: ensure it's not out of bounds?
 		biggerView.frame.origin.y = self.view.frame.origin.y
 		
@@ -824,9 +838,6 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 			newXorigin = myView.niParentDoc!.frame.width - biggerView.frame.width - CFBaseView.CFConstants.defaultMargin
 		}
 		biggerView.frame.origin.x = newXorigin
-		if(self.view.layer != nil){
-			biggerView.layer?.zPosition = self.view.layer!.zPosition
-		}
 	}
 	
 	func recreateExpandedCFView() -> Int {
