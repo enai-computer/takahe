@@ -509,6 +509,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		
 		if let predefinedPos{
 			minimizedView.frame.origin = predefinedPos
+			moveWithinBounds(minimizedView)
 			return
 		}
 		minimizedView.frame.origin.y = self.view.frame.origin.y
@@ -519,6 +520,12 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 				minimizedView.frame.origin.x = niDocWidth - minimizedView.frame.width - CFBaseView.CFConstants.defaultMargin
 			}
 		}
+	}
+	
+	private func moveWithinBounds(_ cfView: CFBaseView){
+		guard let superViewMaxX: CGFloat = view.superview?.frame.maxX else {return}
+		guard (superViewMaxX < cfView.frame.maxX) else {return}
+		cfView.frame.origin.x = superViewMaxX - cfView.frame.width
 	}
 	
 	func maximizeSelf(){
