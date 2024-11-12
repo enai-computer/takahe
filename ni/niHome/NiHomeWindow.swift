@@ -11,7 +11,6 @@ import Carbon.HIToolbox
 
 class NiHomeWindow: NSPanel, NiSearchWindowProtocol{
 	
-	private let niDelegate: NiHomeWindowDelegate
 	let canBeDismissed: Bool
 	override var canBecomeKey: Bool {return true}
 	override var canBecomeMain: Bool {return false}
@@ -20,7 +19,6 @@ class NiHomeWindow: NSPanel, NiSearchWindowProtocol{
 		let homeViewRect = NiHomeWindow.calcHomeViewRect(windowToAppearOn.frame.size)
 
 		self.canBeDismissed = canBeDismissed
-		niDelegate = NiHomeWindowDelegate()
 		
 		super.init(
 			contentRect: windowToAppearOn.frame,
@@ -32,7 +30,6 @@ class NiHomeWindow: NSPanel, NiSearchWindowProtocol{
 		collectionBehavior = NSWindow.CollectionBehavior.moveToActiveSpace
 		titleVisibility = .hidden
 		titlebarAppearsTransparent = true
-		delegate = niDelegate
 		contentViewController = NiEmptyViewController(viewFrame: windowToAppearOn.frame,
 											contentController: NiHomeController(frame: homeViewRect))
 
