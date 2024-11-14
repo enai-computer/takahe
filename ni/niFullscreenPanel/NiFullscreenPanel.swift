@@ -9,8 +9,7 @@ import Cocoa
 import Carbon.HIToolbox
 
 class NiFullscreenPanel: NSPanel{
-	
-	private let niDelegate: NiPaletteWindowDelegate
+
 	override var canBecomeKey: Bool {return true}
 	override var canBecomeMain: Bool {return false}
 	
@@ -20,9 +19,7 @@ class NiFullscreenPanel: NSPanel{
 	init(mainWindow: NSWindow, contentViewController: NiAlertPanelController){
 		let contentRect = NiFullscreenPanel.calcContentRect(contentViewController.view.frame.size, screenSize: mainWindow.frame.size)
 		let frameRect = NSPanel.rectForScreen(contentRect, screen: mainWindow.screen!)
-		
-		niDelegate = NiPaletteWindowDelegate()
-		
+
 		super.init(
 			contentRect: frameRect,
 			styleMask: .borderless,
@@ -33,7 +30,6 @@ class NiFullscreenPanel: NSPanel{
 		collectionBehavior = NSWindow.CollectionBehavior.moveToActiveSpace
 		titleVisibility = .hidden
 		titlebarAppearsTransparent = true
-		delegate = niDelegate
 		self.contentViewController = contentViewController
 		
 		hasShadow = false
@@ -92,7 +88,7 @@ class NiFullscreenPanel: NSPanel{
 	override func cancelOperation(_ sender: Any?) {
 		removeSelf()
 	}
-	
+
 	override func keyDown(with event: NSEvent) {
 		if(event.keyCode == kVK_Escape){
 			removeSelf()
@@ -106,5 +102,10 @@ class NiFullscreenPanel: NSPanel{
 		contentBlurView = nil
 		self.orderOut(nil)
 		self.close()
+	}
+
+	override func resignKey() {
+		super.resignKey()
+		removeSelf()
 	}
 }

@@ -10,12 +10,10 @@ import Carbon.HIToolbox
 
 class ImmersiveWindow: NSPanel{
 	
-	private let niDelegate: NiHomeWindowDelegate
 	override var canBecomeKey: Bool {return true}
 	override var canBecomeMain: Bool {return false}
 
 	init(windowToAppearOn: NSWindow, urlReq: URLRequest){
-		niDelegate = NiHomeWindowDelegate()
 		let immersiveViewRect = ImmersiveWindow.calcHomeViewRect(windowToAppearOn.frame.size)
 		super.init(
 			contentRect: windowToAppearOn.frame,
@@ -27,7 +25,6 @@ class ImmersiveWindow: NSPanel{
 		collectionBehavior = NSWindow.CollectionBehavior.moveToActiveSpace
 		titleVisibility = .hidden
 		titlebarAppearsTransparent = true
-		delegate = niDelegate
 		contentViewController = NiEmptyViewController(
 			viewFrame: windowToAppearOn.frame,
 			contentController: ImmersiveViewController(

@@ -262,19 +262,12 @@ class NiSearchController: NSViewController, NSCollectionViewDataSource, NSCollec
 		}
 		return NSSize(width: 648.0, height: 47.0)
 	}
-	
+
 	override func cancelOperation(_ sender: Any?) {
-		if(searchField.stringValue.isEmpty){
-			if let paletteWindow = view.window as? NiPalette{
-				paletteWindow.removeSelf()
-				return
-			}
-			if let homeWindow = view.window as? NiHomeWindow{
-				if(homeWindow.allowESC){
-					homeWindow.removeSelf()
-					return
-				}
-			}
+		if searchField.stringValue.isEmpty,
+		   let window = view.window,
+		   window.responds(to: #selector(cancelOperation(_:))) {
+			window.cancelOperation(sender)
 		}
 		searchField.stringValue = ""
 		updateResultSet()
