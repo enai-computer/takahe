@@ -34,6 +34,7 @@ class NiSpaceMenuPopup: NSObject{
 		return [
 			NiMenuItemViewModel(title: "Open a window", isEnabled: true, mouseDownFunction: openAWindow, keyboardShortcut: "⌘ N"),
 			NiMenuItemViewModel(title: "Write a note", isEnabled: true, mouseDownFunction: createANote),
+			NiMenuItemViewModel(title: "test swiftDown", isEnabled: true, mouseDownFunction: createANote),
 			pasteItem
 		]
 	}
@@ -44,6 +45,10 @@ class NiSpaceMenuPopup: NSObject{
 	
 	private func createANote(with event: NSEvent){
 		parentController.createANote(positioned: self.originInDocument)
+	}
+	
+	private func swiftDown(with event: NSEvent){
+		parentController.swiftDown(positioned: self.originInDocument)
 	}
 	
 	private func pasteTxt(with event: NSEvent){

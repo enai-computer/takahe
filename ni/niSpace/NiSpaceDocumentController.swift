@@ -100,6 +100,8 @@ class NiSpaceDocumentController: NSViewController{
 			controller.openAndEditEmptyWebTab(createInfoText: createInfoText)
 		}else if(initialTabType == .note){
 			controller.openNoteInNewTab(content: content)
+		}else if(initialTabType == .markdown){
+			controller.openMarkdownInNewTab(content: content)
 		}
 		PostHogSDK.shared.capture(
 			"window_created",

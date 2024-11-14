@@ -984,6 +984,20 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		myView.window?.makeFirstResponder(noteItem)
 	}
 	
+	func openMarkdownInNewTab(contentId: UUID = UUID(), tabTitle: String? = nil, content: String? = nil){
+		let noteItem = Enai.getNewMarkDownItem(owner: self, parentView: self.view, frame: self.view.frame, text: content)
+		
+		var tabHeadModel = TabViewModel(contentId: contentId, type: .note, isSelected: true)
+		tabHeadModel.position = 0
+		tabHeadModel.viewItem = noteItem
+		self.tabs.append(tabHeadModel)
+		
+//		_ = myView.createNewTab(tabView: noteItem.scrollView)
+//		framelessView?.setContentItem(item: noteItem)
+//		noteItem.startEditing()
+		myView.window?.makeFirstResponder(noteItem)
+	}
+	
 	func openWebsiteInNewTab(
 		urlStr: String,
 		contentId: UUID,

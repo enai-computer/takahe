@@ -112,13 +112,13 @@ class NiDocumentModel: Codable{
 // MARK: - Content Frame _Tab_ Model:
 
 enum TabContentType: String, Codable{
-    case web, note, img, pdf, webApp, eveChat    //to come: other file types...
+    case web, note, img, pdf, webApp, eveChat, markdown    //to come: other file types...
 	
 	func toDescriptiveName()->String{
 		switch (self){
 			case .web:
 				return "website"
-			case .note:
+			case .note, .markdown:
 				return "note"
 			case .img:
 				return "image"

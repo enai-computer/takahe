@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 60;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -174,6 +174,8 @@
 		CDCDD52A2C944B38002693AF /* BilgePump.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCDD5292C944B38002693AF /* BilgePump.swift */; };
 		CDD2B5172C9AEDDB0082972A /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = CDD6B93D2B152D3F00C6144D /* SQLite */; };
 		CDD2C9212C666D3D009DB1C0 /* ArrayUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD2C9202C666D3D009DB1C0 /* ArrayUtil.swift */; };
+		CDD5A4462CE518E400EBCF95 /* NiMarkDownUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD5A4452CE518DA00EBCF95 /* NiMarkDownUtils.swift */; };
+		CDD5A4482CE5194300EBCF95 /* NiMarkDownItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD5A4472CE5193700EBCF95 /* NiMarkDownItem.swift */; };
 		CDD6B9392B152A8000C6144D /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD6B9382B152A8000C6144D /* Storage.swift */; };
 		CDD6B9402B169F7700C6144D /* DocumentTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD6B93F2B169F7700C6144D /* DocumentTable.swift */; };
 		CDD6B9432B16A14300C6144D /* ContentTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD6B9422B16A14300C6144D /* ContentTable.swift */; };
@@ -197,6 +199,7 @@
 		CDDBCB2B2BD7C23E00E7B187 /* NiSpaceDocumentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDDBCB2A2BD7C23E00E7B187 /* NiSpaceDocumentController.swift */; };
 		CDDBCB2E2BD8FA4C00E7B187 /* errorLoading-1.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = CDDBCB2C2BD8FA4C00E7B187 /* errorLoading-1.jpeg */; };
 		CDDBCB2F2BD8FA4D00E7B187 /* errorLoading.html in Resources */ = {isa = PBXBuildFile; fileRef = CDDBCB2D2BD8FA4C00E7B187 /* errorLoading.html */; };
+		CDDEF02D2CE5DA5600EDA145 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDDEF02C2CE5DA5200EDA145 /* ContentView.swift */; };
 		CDE76C1C2BC6989000CE9513 /* TabViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE76C1B2BC6989000CE9513 /* TabViewModel.swift */; };
 		CDE7BAF52CABE2AA00328025 /* GroupTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE7BAF42CABE25500328025 /* GroupTable.swift */; };
 		CDE7BAF72CABE2BC00328025 /* GroupIdContentIdTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE7BAF62CABE2B000328025 /* GroupIdContentIdTable.swift */; };
@@ -400,6 +403,8 @@
 		CDC5A1152C284AD1002F5621 /* NiDocControllerCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiDocControllerCache.swift; sourceTree = "<group>"; };
 		CDCDD5292C944B38002693AF /* BilgePump.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BilgePump.swift; sourceTree = "<group>"; };
 		CDD2C9202C666D3D009DB1C0 /* ArrayUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayUtil.swift; sourceTree = "<group>"; };
+		CDD5A4452CE518DA00EBCF95 /* NiMarkDownUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiMarkDownUtils.swift; sourceTree = "<group>"; };
+		CDD5A4472CE5193700EBCF95 /* NiMarkDownItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiMarkDownItem.swift; sourceTree = "<group>"; };
 		CDD6B9382B152A8000C6144D /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		CDD6B93F2B169F7700C6144D /* DocumentTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentTable.swift; sourceTree = "<group>"; };
 		CDD6B9422B16A14300C6144D /* ContentTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentTable.swift; sourceTree = "<group>"; };
@@ -423,6 +428,7 @@
 		CDDBCB2A2BD7C23E00E7B187 /* NiSpaceDocumentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiSpaceDocumentController.swift; sourceTree = "<group>"; };
 		CDDBCB2C2BD8FA4C00E7B187 /* errorLoading-1.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "errorLoading-1.jpeg"; sourceTree = "<group>"; };
 		CDDBCB2D2BD8FA4C00E7B187 /* errorLoading.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = errorLoading.html; sourceTree = "<group>"; };
+		CDDEF02C2CE5DA5200EDA145 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		CDE76C1B2BC6989000CE9513 /* TabViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewModel.swift; sourceTree = "<group>"; };
 		CDE7BAF42CABE25500328025 /* GroupTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupTable.swift; sourceTree = "<group>"; };
 		CDE7BAF62CABE2B000328025 /* GroupIdContentIdTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupIdContentIdTable.swift; sourceTree = "<group>"; };
@@ -536,6 +542,7 @@
 		A1E41BFD2ACB684F00338417 /* contentFrame */ = {
 			isa = PBXGroup;
 			children = (
+				CDD5A4442CE518C800EBCF95 /* NiMarkDownElements */,
 				CD59FA0C2C345C9200CFB8DE /* NiPdfViewElements */,
 				CD9B96BD2C0733C800998CE2 /* NiImgViewElements */,
 				CD66CE312B1F7AFF0006BB98 /* NiWebViewElements */,
@@ -950,6 +957,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		CDD5A4442CE518C800EBCF95 /* NiMarkDownElements */ = {
+			isa = PBXGroup;
+			children = (
+				CDD5A4472CE5193700EBCF95 /* NiMarkDownItem.swift */,
+				CDD5A4452CE518DA00EBCF95 /* NiMarkDownUtils.swift */,
+			);
+			path = NiMarkDownElements;
+			sourceTree = "<group>";
+		};
 		CDD6B9342B1527B700C6144D /* data */ = {
 			isa = PBXGroup;
 			children = (
@@ -987,6 +1003,7 @@
 		CDD6B94A2B19469000C6144D /* niHome */ = {
 			isa = PBXGroup;
 			children = (
+				CDDEF02C2CE5DA5200EDA145 /* ContentView.swift */,
 				CD19BC952BC7E5BF002AF14E /* HomeViewUtils.swift */,
 				CDF0DD1D2C202A52006C4EF4 /* NiHomeWindow.swift */,
 				CDF0DD1F2C202B71006C4EF4 /* NiHomeWindowDelegate.swift */,
@@ -1145,6 +1162,7 @@
 				CD2DE8842CA1CB44000B5461 /* XCRemoteSwiftPackageReference "Get" */,
 				CDFA990C2CBEB0E5004795C9 /* XCRemoteSwiftPackageReference "MarkdownKit" */,
 				CD8867D32CD1152D00C8B880 /* XCRemoteSwiftPackageReference "Sparkle" */,
+				CD1E4ABB2CE5E3E4004C6C3D /* XCLocalSwiftPackageReference "../SwiftDown" */,
 			);
 			productRefGroup = A1B8E6A32AAFB5EC00AC6566 /* Products */;
 			projectDirPath = "";
@@ -1259,6 +1277,7 @@
 				CDD6B9562B1C326A00C6144D /* ContentFrameController.swift in Sources */,
 				CDF0DD1E2C202A52006C4EF4 /* NiHomeWindow.swift in Sources */,
 				A1E41BFF2ACB6B1300338417 /* FrameGenerator.swift in Sources */,
+				CDDEF02D2CE5DA5600EDA145 /* ContentView.swift in Sources */,
 				CD19BC962BC7E5BF002AF14E /* HomeViewUtils.swift in Sources */,
 				CD6D280E2C11DC7A0009732A /* NiMenuViewController.swift in Sources */,
 				CDD7D34B2C19B20C0038E6F9 /* NiPaletteContentController.swift in Sources */,
@@ -1283,6 +1302,7 @@
 				CD5F7DFF2C1EF06300ADC860 /* DataModelUtils.swift in Sources */,
 				CD410AE22C285C3C00EC5DF7 /* NiUsersSettingsModel.swift in Sources */,
 				CDE76C1C2BC6989000CE9513 /* TabViewModel.swift in Sources */,
+				CDD5A4482CE5194300EBCF95 /* NiMarkDownItem.swift in Sources */,
 				CD6D85382CA852CF00A735DA /* Eve.swift in Sources */,
 				CD75C3512CAA9D720000DA12 /* CFFullScreenScrollView.swift in Sources */,
 				CDF0DD202C202B71006C4EF4 /* NiHomeWindowDelegate.swift in Sources */,
@@ -1312,6 +1332,7 @@
 				CD240BD72C80BFC2000E478F /* WeatherWidgetNSView.swift in Sources */,
 				CDD7ED032C554D6E007604D9 /* NiLibraryView.swift in Sources */,
 				CD59FA0E2C345CB700CFB8DE /* NiPdfView.swift in Sources */,
+				CDD5A4462CE518E400EBCF95 /* NiMarkDownUtils.swift in Sources */,
 				CDD6B9472B16A29100C6144D /* DocumentIdContentIdTable.swift in Sources */,
 				CDD7ED0B2C555A76007604D9 /* NiLibraryConnectionViewElement.swift in Sources */,
 				CD1853112C08D22A001FE566 /* FaviconProvider.swift in Sources */,

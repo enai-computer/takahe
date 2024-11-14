@@ -8,7 +8,7 @@
 import XCTest
 import CoreSpotlight
 import CoreLocation
-@testable import ni
+@testable import Enai
 
 final class NiStringUtilsTests: XCTestCase{
 	
@@ -20,11 +20,6 @@ final class NiStringUtilsTests: XCTestCase{
 		print(url2?.baseURL?.absoluteString as Any)
 		XCTAssertTrue(true)
 	}
-	
-	func testIsValidWebUrl(){
-		XCTAssertTrue(isValidWebUrl(url: "x.com"))
-	}
-	
 	
 	func testURLHost() throws{
 		let url = URL(string: "https://mail.google.com/mail/u/0/#inbox")

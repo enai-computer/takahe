@@ -294,6 +294,10 @@ class NiSpaceViewController: NSViewController, NSTextFieldDelegate{
 		niDocument.openEmptyCF(viewState: .frameless, initialTabType: .note, positioned: at, content: content)
 	}
 	
+	func swiftDown(positioned at: CGPoint, with content: String? = nil){
+		niDocument.openEmptyCF(viewState: .frameless, initialTabType: .markdown, positioned: at, content: content)
+	}
+	
 	func closeTabOfTopCF(){
 		niDocument.closeTabOfTopCF()
 	}
