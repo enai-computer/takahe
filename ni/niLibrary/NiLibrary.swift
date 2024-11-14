@@ -8,8 +8,7 @@
 import Cocoa
 
 class NiLibrary: NSPanel{
-	
-	private let niDelegate: NiPaletteWindowDelegate
+
 	override var canBecomeKey: Bool {return true}
 	override var canBecomeMain: Bool {return false}
 	
@@ -18,9 +17,7 @@ class NiLibrary: NSPanel{
 	init(_ mainWindow: NSWindow){
 		let paletteRect = NiLibrary.calcLibraryRect(mainWindow.frame.size)
 		let frameRect = NSPanel.rectForScreen(paletteRect, screen: mainWindow.screen!)
-		
-		niDelegate = NiPaletteWindowDelegate()
-		
+
 		super.init(
 			contentRect: frameRect,
 			styleMask: .borderless,
@@ -31,7 +28,6 @@ class NiLibrary: NSPanel{
 		collectionBehavior = NSWindow.CollectionBehavior.moveToActiveSpace
 		titleVisibility = .hidden
 		titlebarAppearsTransparent = true
-		delegate = niDelegate
 		contentViewController = NiLibraryViewController()
 		
 		hasShadow = false
@@ -46,7 +42,12 @@ class NiLibrary: NSPanel{
 		self.orderOut(nil)
 		self.close()
 	}
-	
+
+	override func resignKey() {
+		super.resignKey()
+		removeSelf()
+	}
+
 	private func setBlurOnMainWindow(_ mainWindow: NSWindow){
 		windowBlurView = NSView(frame: mainWindow.frame)
 		windowBlurView?.frame.origin = CGPoint(x: 0.0, y: 0.0)

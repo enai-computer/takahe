@@ -11,16 +11,14 @@ import Carbon.HIToolbox
 
 class NiHomeWindow: NSPanel, NiSearchWindowProtocol{
 	
-	private let niDelegate: NiHomeWindowDelegate
-	let allowESC: Bool
+	let canBeDismissed: Bool
 	override var canBecomeKey: Bool {return true}
 	override var canBecomeMain: Bool {return false}
 
-	init(windowToAppearOn: NSWindow, allowESC: Bool = false){
+	init(windowToAppearOn: NSWindow, canBeDismissed: Bool = false){
 		let homeViewRect = NiHomeWindow.calcHomeViewRect(windowToAppearOn.frame.size)
 
-		self.allowESC = allowESC
-		niDelegate = NiHomeWindowDelegate()
+		self.canBeDismissed = canBeDismissed
 		
 		super.init(
 			contentRect: windowToAppearOn.frame,
@@ -32,7 +30,6 @@ class NiHomeWindow: NSPanel, NiSearchWindowProtocol{
 		collectionBehavior = NSWindow.CollectionBehavior.moveToActiveSpace
 		titleVisibility = .hidden
 		titlebarAppearsTransparent = true
-		delegate = niDelegate
 		contentViewController = NiEmptyViewController(viewFrame: windowToAppearOn.frame,
 											contentController: NiHomeController(frame: homeViewRect))
 
@@ -46,7 +43,15 @@ class NiHomeWindow: NSPanel, NiSearchWindowProtocol{
 		let selfSize = screenSize
 		return NSRect(origin: CGPoint(x: 0.0, y: 0.0), size: selfSize)
 	}
-	
+
+	override func cancelOperation(_ sender: Any?) {
+		guard canBeDismissed else {
+			NSSound.beep()
+			return
+		}
+		removeSelf()
+	}
+
 	func removeSelf(){
 		resignKey()
 		

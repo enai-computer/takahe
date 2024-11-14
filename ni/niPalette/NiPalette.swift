@@ -9,8 +9,7 @@ import Cocoa
 import Carbon.HIToolbox
 
 class NiPalette: NSPanel, NiSearchWindowProtocol {
-	
-	private let niDelegate: NiPaletteWindowDelegate
+
 	override var canBecomeKey: Bool {return true}
 	override var canBecomeMain: Bool {return false}
 	
@@ -20,9 +19,7 @@ class NiPalette: NSPanel, NiSearchWindowProtocol {
 	init(_ mainWindow: NSWindow){
 		let paletteRect = NiPalette.calcPaletteRect(mainWindow.frame.size)
 		let frameRect = NSPanel.rectForScreen(paletteRect, screen: mainWindow.screen!)
-		
-		niDelegate = NiPaletteWindowDelegate()
-		
+
 		super.init(
 			contentRect: frameRect,
 			styleMask: .borderless,
@@ -33,7 +30,6 @@ class NiPalette: NSPanel, NiSearchWindowProtocol {
 		collectionBehavior = NSWindow.CollectionBehavior.moveToActiveSpace
 		titleVisibility = .hidden
 		titlebarAppearsTransparent = true
-		delegate = niDelegate
 		contentViewController = NiPaletteContentController(paletteSize: paletteRect.size)
 		
 		hasShadow = false
@@ -95,7 +91,7 @@ class NiPalette: NSPanel, NiSearchWindowProtocol {
 			removeSelf()
 		}
 	}
-	
+
 	func removeSelf(){
 		windowBlurView?.removeFromSuperview()
 		windowBlurView = nil
@@ -103,5 +99,10 @@ class NiPalette: NSPanel, NiSearchWindowProtocol {
 		paletteBlurView = nil
 		self.orderOut(nil)
 		self.close()
+	}
+
+	override func resignKey() {
+		super.resignKey()
+		removeSelf()
 	}
 }

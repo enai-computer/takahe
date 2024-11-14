@@ -93,7 +93,6 @@
 		CD5A04CF2BEA42EB004CC3AA /* cfUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5A04CE2BEA42EB004CC3AA /* cfUtils.swift */; };
 		CD5A04D12BEA78E4004CC3AA /* CFBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5A04D02BEA78E4004CC3AA /* CFBaseView.swift */; };
 		CD5B153A2BDFBFE40030F017 /* NiActionImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5B15392BDFBFE40030F017 /* NiActionImage.swift */; };
-		CD5F7DFD2C19E9B000ADC860 /* NiPaletteWindowDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5F7DFC2C19E9B000ADC860 /* NiPaletteWindowDelegate.swift */; };
 		CD5F7DFF2C1EF06300ADC860 /* DataModelUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5F7DFE2C1EF06300ADC860 /* DataModelUtils.swift */; };
 		CD5F7E012C1EFE7300ADC860 /* SearchViewTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5F7E002C1EFE7300ADC860 /* SearchViewTextField.swift */; };
 		CD618D902C2B2B8E006869AF /* EC9DF222-0555-41E2-A1E8-F36CD5CF2456.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CD618D8F2C2B2B8E006869AF /* EC9DF222-0555-41E2-A1E8-F36CD5CF2456.jpg */; };
@@ -203,7 +202,6 @@
 		CDE7BAF92CABFA0900328025 /* DocumentIdGroupIdTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE7BAF82CABF9FF00328025 /* DocumentIdGroupIdTable.swift */; };
 		CDE88CAE2C2415AA000390A6 /* NiSpaceMenuPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE88CAD2C2415AA000390A6 /* NiSpaceMenuPopup.swift */; };
 		CDF0DD1E2C202A52006C4EF4 /* NiHomeWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF0DD1D2C202A52006C4EF4 /* NiHomeWindow.swift */; };
-		CDF0DD202C202B71006C4EF4 /* NiHomeWindowDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF0DD1F2C202B71006C4EF4 /* NiHomeWindowDelegate.swift */; };
 		CDF0DD222C202BCD006C4EF4 /* NiHomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF0DD212C202BCD006C4EF4 /* NiHomeController.swift */; };
 		CDF0DD242C202BDB006C4EF4 /* NiHomeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDF0DD232C202BDB006C4EF4 /* NiHomeView.xib */; };
 		CDF0DD262C2045C8006C4EF4 /* NiSearchWindowProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF0DD252C2045C8006C4EF4 /* NiSearchWindowProtocol.swift */; };
@@ -319,7 +317,6 @@
 		CD5A04CE2BEA42EB004CC3AA /* cfUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cfUtils.swift; sourceTree = "<group>"; };
 		CD5A04D02BEA78E4004CC3AA /* CFBaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CFBaseView.swift; sourceTree = "<group>"; };
 		CD5B15392BDFBFE40030F017 /* NiActionImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiActionImage.swift; sourceTree = "<group>"; };
-		CD5F7DFC2C19E9B000ADC860 /* NiPaletteWindowDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiPaletteWindowDelegate.swift; sourceTree = "<group>"; };
 		CD5F7DFE2C1EF06300ADC860 /* DataModelUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModelUtils.swift; sourceTree = "<group>"; };
 		CD5F7E002C1EFE7300ADC860 /* SearchViewTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewTextField.swift; sourceTree = "<group>"; };
 		CD618D8F2C2B2B8E006869AF /* EC9DF222-0555-41E2-A1E8-F36CD5CF2456.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "EC9DF222-0555-41E2-A1E8-F36CD5CF2456.jpg"; sourceTree = "<group>"; };
@@ -429,7 +426,6 @@
 		CDE7BAF82CABF9FF00328025 /* DocumentIdGroupIdTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentIdGroupIdTable.swift; sourceTree = "<group>"; };
 		CDE88CAD2C2415AA000390A6 /* NiSpaceMenuPopup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiSpaceMenuPopup.swift; sourceTree = "<group>"; };
 		CDF0DD1D2C202A52006C4EF4 /* NiHomeWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiHomeWindow.swift; sourceTree = "<group>"; };
-		CDF0DD1F2C202B71006C4EF4 /* NiHomeWindowDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiHomeWindowDelegate.swift; sourceTree = "<group>"; };
 		CDF0DD212C202BCD006C4EF4 /* NiHomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiHomeController.swift; sourceTree = "<group>"; };
 		CDF0DD232C202BDB006C4EF4 /* NiHomeView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NiHomeView.xib; sourceTree = "<group>"; };
 		CDF0DD252C2045C8006C4EF4 /* NiSearchWindowProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiSearchWindowProtocol.swift; sourceTree = "<group>"; };
@@ -989,7 +985,6 @@
 			children = (
 				CD19BC952BC7E5BF002AF14E /* HomeViewUtils.swift */,
 				CDF0DD1D2C202A52006C4EF4 /* NiHomeWindow.swift */,
-				CDF0DD1F2C202B71006C4EF4 /* NiHomeWindowDelegate.swift */,
 				CDF0DD212C202BCD006C4EF4 /* NiHomeController.swift */,
 				CD240BD42C80A714000E478F /* WeatherWidget.swift */,
 				CDF0DD232C202BDB006C4EF4 /* NiHomeView.xib */,
@@ -1018,7 +1013,6 @@
 				CD6D853D2CA96ED300A735DA /* WindowBlurView.swift */,
 				CDD7D3352C198A930038E6F9 /* NiPalette.swift */,
 				CDD7D34A2C19B20C0038E6F9 /* NiPaletteContentController.swift */,
-				CD5F7DFC2C19E9B000ADC860 /* NiPaletteWindowDelegate.swift */,
 			);
 			path = niPalette;
 			sourceTree = "<group>";
@@ -1285,7 +1279,6 @@
 				CDE76C1C2BC6989000CE9513 /* TabViewModel.swift in Sources */,
 				CD6D85382CA852CF00A735DA /* Eve.swift in Sources */,
 				CD75C3512CAA9D720000DA12 /* CFFullScreenScrollView.swift in Sources */,
-				CDF0DD202C202B71006C4EF4 /* NiHomeWindowDelegate.swift in Sources */,
 				CD402C2A2C982FEE004D9538 /* CFCollapsedMinimizedView.swift in Sources */,
 				CD04974C2C120ABE00C44021 /* CFGroupButton.swift in Sources */,
 				CDD6B9402B169F7700C6144D /* DocumentTable.swift in Sources */,
@@ -1324,7 +1317,6 @@
 				CD1160CA2BD27B9E00345E3E /* NiWebViewUtils.swift in Sources */,
 				CDD7D3492C19AD7D0038E6F9 /* NSPanelUtils.swift in Sources */,
 				CDD87ED02BF23C650045B84B /* NiCursorUtils.swift in Sources */,
-				CD5F7DFD2C19E9B000ADC860 /* NiPaletteWindowDelegate.swift in Sources */,
 				CDFAC33E2C986A5D0057F759 /* NiAsyncImgView.swift in Sources */,
 				CDD2C9212C666D3D009DB1C0 /* ArrayUtil.swift in Sources */,
 				CD4D7AE62C4959B800B6DBFD /* DateUtils.swift in Sources */,
