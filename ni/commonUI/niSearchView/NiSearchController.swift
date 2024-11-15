@@ -143,7 +143,7 @@ class NiSearchController: NSViewController, NSCollectionViewDataSource, NSCollec
 			moveSelection(direction: .next)
 			return true
 		} else if commandSelector == #selector(NSTextView.insertNewline) {
-			openSpace()
+			preActionStyle()
 			return true
 		} else if commandSelector == NSSelectorFromString("noop:") {
 			if let event = view.window?.currentEvent{
@@ -153,6 +153,14 @@ class NiSearchController: NSViewController, NSCollectionViewDataSource, NSCollec
 			return false
 		}
 		return false
+	}
+	
+	override func keyUp(with event: NSEvent){
+		if(event.keyCode == kVK_Return || event.keyCode == kVK_ANSI_KeypadEnter){
+			openSpace()
+			return
+		}
+		super.keyUp(with: event)
 	}
 	
 	private func handleNoopCommand(with event: NSEvent){
@@ -181,6 +189,16 @@ class NiSearchController: NSViewController, NSCollectionViewDataSource, NSCollec
 		}
 		if let selectedItem = searchResultsCollection.item(at: selectedPos!) as? NiSearchResultViewItem{
 			selectedItem.tryOpenResult()
+		}
+	}
+	
+	private func preActionStyle(_ selected: Int? = nil){
+		var selectedPos: Int? = selected
+		if(selectedPos == nil){
+			selectedPos = selectedPosition
+		}
+		if let selectedItem = searchResultsCollection.item(at: selectedPos!) as? NiSearchResultViewItem{
+			selectedItem.preActionStyle()
 		}
 	}
 	
