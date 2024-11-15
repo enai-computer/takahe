@@ -103,7 +103,18 @@ class NiSearchResultViewItem: NSCollectionViewItem {
 		leftSideResultTypeIcon.contentTintColor = NSColor.sand11
 	}
 	
+	func preActionStyle() {
+		leftSideResultTypeIcon.contentTintColor = NSColor.sand1
+		resultTitle.textColor = NSColor.sand1
+		rightSideElement.preActionStyle()
+		view.layer?.backgroundColor = NSColor.birkin.cgColor
+	}
+	
 	override func mouseDown(with event: NSEvent) {
+		preActionStyle()
+	}
+	
+	override func mouseUp(with event: NSEvent){
 		tryOpenResult()
 	}
 	

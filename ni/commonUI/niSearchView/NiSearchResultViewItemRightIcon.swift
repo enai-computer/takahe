@@ -18,6 +18,10 @@ class ReturnIconView: NSImageView{
 	required init?(coder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
 	}
+	
+	override func prepareForReuse() {
+		ReturnIconView.instance.contentTintColor = NSColor.sand9
+	}
 }
 
 class NiSearchResultViewItemRightIcon: NSView {
@@ -55,6 +59,7 @@ class NiSearchResultViewItemRightIcon: NSView {
 	
 	func select(){
 		shortcut?.removeFromSuperview()
+		ReturnIconView.instance.prepareForReuse()
 		keySelectedIcon = ReturnIconView.instance
 		//Needs to be async as otherwise deselect may be called on the imageview before select
 		DispatchQueue.main.async {
@@ -65,6 +70,11 @@ class NiSearchResultViewItemRightIcon: NSView {
 	func deselect(){
 		keySelectedIcon?.removeFromSuperview()
 		displayShortcut()
+	}
+	
+	func preActionStyle(){
+		keySelectedIcon?.contentTintColor = NSColor.sand1
+		shortcut?.textColor = NSColor.sand1
 	}
 	
 	private func getText(_ position: Int) -> String{
