@@ -19,6 +19,10 @@ class SearchViewTextField: NSTextField{
 //		super.sendAction(action, to: target)
 //	}
 	
+	override func keyUp(with event: NSEvent){
+		super.keyUp(with: event)
+	}
+	
 	override func cancelOperation(_ sender: Any?) {
 		var nxtResp = nextResponder
 		while nxtResp != nil{
