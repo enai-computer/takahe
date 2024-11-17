@@ -16,7 +16,6 @@ class NiHomeWindow: NSPanel, NiSearchWindowProtocol{
 	override var canBecomeMain: Bool {return false}
 
 	init(windowToAppearOn: NSWindow, canBeDismissed: Bool = false){
-		let homeViewRect = NiHomeWindow.calcHomeViewRect(windowToAppearOn.frame.size)
 
 		self.canBeDismissed = canBeDismissed
 		
@@ -30,18 +29,14 @@ class NiHomeWindow: NSPanel, NiSearchWindowProtocol{
 		collectionBehavior = NSWindow.CollectionBehavior.moveToActiveSpace
 		titleVisibility = .hidden
 		titlebarAppearsTransparent = true
-		contentViewController = NiEmptyViewController(viewFrame: windowToAppearOn.frame,
-											contentController: NiHomeController(frame: homeViewRect))
+		contentViewController = NiEmptyViewController(
+			viewFrame: windowToAppearOn.frame,
+			contentController: NiHomeController(frame: NSRect(origin: .zero, size: windowToAppearOn.frame.size)))
 
 		hasShadow = false
 		isOpaque = false
 		backgroundColor = NSColor.clear
 		hidesOnDeactivate = false
-	}
-	
-	private static func calcHomeViewRect(_ screenSize: NSSize) -> NSRect{
-		let selfSize = screenSize
-		return NSRect(origin: CGPoint(x: 0.0, y: 0.0), size: selfSize)
 	}
 
 	override func cancelOperation(_ sender: Any?) {
