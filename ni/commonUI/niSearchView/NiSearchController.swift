@@ -183,23 +183,15 @@ class NiSearchController: NSViewController, NSCollectionViewDataSource, NSCollec
 	}
 	
 	private func openSpace(_ selected: Int? = nil){
-		var selectedPos: Int? = selected
-		if(selectedPos == nil){
-			selectedPos = selectedPosition
-		}
-		if let selectedItem = searchResultsCollection.item(at: selectedPos!) as? NiSearchResultViewItem{
-			selectedItem.tryOpenResult()
-		}
+		let selectedItemIndex = selected ?? self.selectedPosition
+		guard let selectedItem = searchResultsCollection.item(at: selectedItemIndex) as? NiSearchResultViewItem else { return }
+		selectedItem.tryOpenResult()
 	}
 	
 	private func preActionStyle(_ selected: Int? = nil){
-		var selectedPos: Int? = selected
-		if(selectedPos == nil){
-			selectedPos = selectedPosition
-		}
-		if let selectedItem = searchResultsCollection.item(at: selectedPos!) as? NiSearchResultViewItem{
-			selectedItem.preActionStyle()
-		}
+		let selectedItemIndex = selected ?? self.selectedPosition
+		guard let selectedItem = searchResultsCollection.item(at: selectedItemIndex) as? NiSearchResultViewItem else { return }
+		selectedItem.preActionStyle()
 	}
 	
 	func controlTextDidEndEditing(_ obj: Notification) {

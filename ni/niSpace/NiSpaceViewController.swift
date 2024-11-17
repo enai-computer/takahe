@@ -184,15 +184,18 @@ class NiSpaceViewController: NSViewController, NSTextFieldDelegate{
 	func openHome(){
 		openEmptyBackgroundSpace()
 		DispatchQueue.main.asyncAfter(deadline: .now() + 0.2){
-			let homeView = NiHomeWindow(windowToAppearOn: self.view.window!)
-			homeView.makeKeyAndOrderFront(nil)
+			self.showHomeView(canBeDismissed: false)
 		}
 	}
-	
+
+	func showHomeView(canBeDismissed: Bool = true) {
+		let homeView = NiHomeWindow(windowToAppearOn: self.view.window!, canBeDismissed: canBeDismissed)
+		homeView.makeKeyAndOrderFront(nil)
+	}
+
 	func saveAndOpenHome(){
 		storeCurrentSpace()
-		let homeView = NiHomeWindow(windowToAppearOn: self.view.window!, canBeDismissed: true)
-		homeView.makeKeyAndOrderFront(nil)
+		self.showHomeView(canBeDismissed: true)
 	}
 	
 	private func openEmptyBackgroundSpace(){
