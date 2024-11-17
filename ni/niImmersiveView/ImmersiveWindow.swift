@@ -14,7 +14,6 @@ class ImmersiveWindow: NSPanel{
 	override var canBecomeMain: Bool {return false}
 
 	init(windowToAppearOn: NSWindow, urlReq: URLRequest){
-		let immersiveViewRect = ImmersiveWindow.calcHomeViewRect(windowToAppearOn.frame.size)
 		super.init(
 			contentRect: windowToAppearOn.frame,
 			styleMask: .borderless,
@@ -28,7 +27,7 @@ class ImmersiveWindow: NSPanel{
 		contentViewController = NiEmptyViewController(
 			viewFrame: windowToAppearOn.frame,
 			contentController: ImmersiveViewController(
-				frame: immersiveViewRect,
+				frame: NSRect(origin: .zero, size: windowToAppearOn.frame.size),
 				urlReq: urlReq
 			)
 		)
@@ -37,11 +36,6 @@ class ImmersiveWindow: NSPanel{
 		isOpaque = false
 		backgroundColor = NSColor.clear
 		hidesOnDeactivate = false
-	}
-	
-	private static func calcHomeViewRect(_ screenSize: NSSize) -> NSRect{
-		let selfSize = screenSize
-		return NSRect(origin: CGPoint(x: 0.0, y: 0.0), size: selfSize)
 	}
 	
 	func removeSelf(){
