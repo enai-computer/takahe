@@ -138,9 +138,7 @@ class NiSearchResultViewItem: NSCollectionViewItem {
 		
 		if(spaceViewController.niSpaceID == id && id != NiSpaceDocumentController.EMPTY_SPACE_ID){
 			// Triggered from the initial app's display of a non-dismissable home view.
-			if let paletteWindow = view.window as? NiSearchWindowProtocol{
-				paletteWindow.removeSelf()
-			}
+			// FIXME: (view.window as? NiSearchWindowProtocol).removeSelf() was called, but that information now needs to reach NiSpaceDocumentController to hide the home view
 			return
 		}
 		

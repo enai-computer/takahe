@@ -189,8 +189,19 @@ class NiSpaceViewController: NSViewController, NSTextFieldDelegate{
 	}
 
 	func showHomeView(canBeDismissed: Bool) {
-		let homeView = NiHomeWindow(windowToAppearOn: self.view.window!, canBeDismissed: true)
-		homeView.makeKeyAndOrderFront(nil)
+		let homeContainerViewController = HomeContainerViewController(canBeDismissed: canBeDismissed) { [unowned self] controller in
+			self.children.removeFirst(object: controller)
+			controller.view.removeFromSuperview()
+		}
+		self.addChild(homeContainerViewController)
+		self.view.addSubview(
+			homeContainerViewController.view,
+			positioned: .above,
+			relativeTo: nil
+		)
+		homeContainerViewController.view.addConstraintsToFillSuperview()
+		self.view.window?.recalculateKeyViewLoop()
+		// FIXME: Search control doesn't obtain first responder status.
 	}
 
 	func saveAndOpenHome(){

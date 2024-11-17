@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		50B7E6792CE9FE5500D59145 /* NSView+constrainToSuperview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B7E6782CE9FE5000D59145 /* NSView+constrainToSuperview.swift */; };
+		50B7E67B2CE9FF5100D59145 /* HomeContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B7E67A2CE9FF5100D59145 /* HomeContainerViewController.swift */; };
 		A14E8F212AD20A2600409DDF /* DefaultWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14E8F202AD20A2600409DDF /* DefaultWindowController.swift */; };
 		A14E8F252AD5EADF00409DDF /* NiSpaceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A14E8F242AD5EADF00409DDF /* NiSpaceView.xib */; };
 		A14E8F272AD5EAF800409DDF /* NiSpaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14E8F262AD5EAF800409DDF /* NiSpaceView.swift */; };
@@ -202,7 +203,6 @@
 		CDE7BAF72CABE2BC00328025 /* GroupIdContentIdTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE7BAF62CABE2B000328025 /* GroupIdContentIdTable.swift */; };
 		CDE7BAF92CABFA0900328025 /* DocumentIdGroupIdTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE7BAF82CABF9FF00328025 /* DocumentIdGroupIdTable.swift */; };
 		CDE88CAE2C2415AA000390A6 /* NiSpaceMenuPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE88CAD2C2415AA000390A6 /* NiSpaceMenuPopup.swift */; };
-		CDF0DD1E2C202A52006C4EF4 /* NiHomeWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF0DD1D2C202A52006C4EF4 /* NiHomeWindow.swift */; };
 		CDF0DD222C202BCD006C4EF4 /* NiHomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF0DD212C202BCD006C4EF4 /* NiHomeController.swift */; };
 		CDF0DD242C202BDB006C4EF4 /* NiHomeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDF0DD232C202BDB006C4EF4 /* NiHomeView.xib */; };
 		CDF0DD262C2045C8006C4EF4 /* NiSearchWindowProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF0DD252C2045C8006C4EF4 /* NiSearchWindowProtocol.swift */; };
@@ -235,6 +235,7 @@
 		505865D12CBE85FA0099EF34 /* Custom.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Custom.xcconfig; sourceTree = "<group>"; };
 		505865D22CBE85FA0099EF34 /* Project.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Project.xcconfig; sourceTree = "<group>"; };
 		50B7E6782CE9FE5000D59145 /* NSView+constrainToSuperview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSView+constrainToSuperview.swift"; sourceTree = "<group>"; };
+		50B7E67A2CE9FF5100D59145 /* HomeContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeContainerViewController.swift; sourceTree = "<group>"; };
 		A14E8F202AD20A2600409DDF /* DefaultWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultWindowController.swift; sourceTree = "<group>"; };
 		A14E8F242AD5EADF00409DDF /* NiSpaceView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NiSpaceView.xib; sourceTree = "<group>"; };
 		A14E8F262AD5EAF800409DDF /* NiSpaceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiSpaceView.swift; sourceTree = "<group>"; };
@@ -427,7 +428,6 @@
 		CDE7BAF62CABE2B000328025 /* GroupIdContentIdTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupIdContentIdTable.swift; sourceTree = "<group>"; };
 		CDE7BAF82CABF9FF00328025 /* DocumentIdGroupIdTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentIdGroupIdTable.swift; sourceTree = "<group>"; };
 		CDE88CAD2C2415AA000390A6 /* NiSpaceMenuPopup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiSpaceMenuPopup.swift; sourceTree = "<group>"; };
-		CDF0DD1D2C202A52006C4EF4 /* NiHomeWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiHomeWindow.swift; sourceTree = "<group>"; };
 		CDF0DD212C202BCD006C4EF4 /* NiHomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiHomeController.swift; sourceTree = "<group>"; };
 		CDF0DD232C202BDB006C4EF4 /* NiHomeView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NiHomeView.xib; sourceTree = "<group>"; };
 		CDF0DD252C2045C8006C4EF4 /* NiSearchWindowProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiSearchWindowProtocol.swift; sourceTree = "<group>"; };
@@ -987,7 +987,7 @@
 			isa = PBXGroup;
 			children = (
 				CD19BC952BC7E5BF002AF14E /* HomeViewUtils.swift */,
-				CDF0DD1D2C202A52006C4EF4 /* NiHomeWindow.swift */,
+				50B7E67A2CE9FF5100D59145 /* HomeContainerViewController.swift */,
 				CDF0DD212C202BCD006C4EF4 /* NiHomeController.swift */,
 				CD240BD42C80A714000E478F /* WeatherWidget.swift */,
 				CDF0DD232C202BDB006C4EF4 /* NiHomeView.xib */,
@@ -1255,7 +1255,6 @@
 				CD6317E12BC3F11000434D56 /* NiUserInputError.swift in Sources */,
 				CD66CE332B1F819E0006BB98 /* NiWebView.swift in Sources */,
 				CDD6B9562B1C326A00C6144D /* ContentFrameController.swift in Sources */,
-				CDF0DD1E2C202A52006C4EF4 /* NiHomeWindow.swift in Sources */,
 				A1E41BFF2ACB6B1300338417 /* FrameGenerator.swift in Sources */,
 				CD19BC962BC7E5BF002AF14E /* HomeViewUtils.swift in Sources */,
 				CD6D280E2C11DC7A0009732A /* NiMenuViewController.swift in Sources */,
@@ -1325,6 +1324,7 @@
 				CDD2C9212C666D3D009DB1C0 /* ArrayUtil.swift in Sources */,
 				CD4D7AE62C4959B800B6DBFD /* DateUtils.swift in Sources */,
 				CD618D962C2B2C28006869AF /* PregenSpaceSkiing.swift in Sources */,
+				50B7E67B2CE9FF5100D59145 /* HomeContainerViewController.swift in Sources */,
 				CD6D28102C11EE7E0009732A /* RoundedRectView.swift in Sources */,
 				CDBCBBFA2C92F91C0069EFE3 /* NiSignupViewController.swift in Sources */,
 				CDD7ED072C555153007604D9 /* NiLibraryViewController.swift in Sources */,

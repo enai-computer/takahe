@@ -20,27 +20,30 @@ class NiHomeController: NSViewController, NSTextFieldDelegate {
 	private var searchController: NiSearchController
 	private var signupViewController: NiSignupViewController?
 	private weak var rightSideContentView: NSView?
-	private let viewFrame: NSRect
+	@available(*, deprecated, message: "Prefer to auto-size the `view` to its container view")
+	private var viewFrame: NSRect?
 	private var dropShadow2 = CALayer()
-	
-	init(frame: NSRect) {
+
+	@available(*, deprecated, message: "Prefer to auto-size the `view` to its container view")
+	convenience init(frame: NSRect? = nil) {
+		self.init()
 		self.viewFrame = frame
+	}
+
+	required init() {
 		self.searchController = NiSearchController(style: .homeView)
 		super.init(nibName: NSNib.Name("NiHomeView"), bundle: Bundle.main)
 	}
-	
-	required init?(coder: NSCoder) {
-		fatalError("init(coder:) has not been implemented")
-	}
-	
-	override func loadView() {
-		super.loadView()
-	}
+
+	@available(*, unavailable)
+	required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		self.view.frame = viewFrame
-		
+		if let viewFrame {
+			self.view.frame = viewFrame
+		}
+
 		view.wantsLayer = true
 
 		self.setWelcomeMessage()

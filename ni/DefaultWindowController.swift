@@ -53,13 +53,7 @@ class DefaultWindowController: NSWindowController, NSWindowDelegate{
 			prevScreenWidth = windowObj.frame.width
 			return
 		}
-		
-		if let homeWindow = NSApplication.shared.keyWindow as? NiHomeWindow{
-			homeWindow.setFrame(windowObj.frame, display: true)
-			homeWindow.contentView?.resize(withOldSuperviewSize: prevScreenSize!)
-			return
-		}
-		
+
 		//application might be inactive soon
 		if((NSApplication.shared.isActive || windowObj.isOnActiveSpace) && prevScreenWidth != windowObj.frame.width && !spaceSaved){
 			guard let spaceViewController = contentViewController as? NiSpaceViewController else {return}

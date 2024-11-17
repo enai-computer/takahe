@@ -191,9 +191,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	
 	func showPalette(){
 		guard let mainWindow: NSWindow = NSApplication.shared.mainWindow else{return}
-		if (NSApplication.shared.keyWindow is NiHomeWindow){
-			return
-		}
+		// FIXME: Ensure that the palette is only available when we're not on the home view, e.g. with `if getNiSpaceViewController().isOnHomeView { return }`
+
 		//TODO: make async
 		getNiSpaceViewController()?.storeCurrentSpace()
 		
