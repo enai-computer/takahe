@@ -48,7 +48,7 @@ class NiNoteItem: NSViewController, CFContentItem {
 	}
 	
 	private func configureTxtDocView(){
-		txtDocView.backgroundColor = NSColor.sand3
+		txtDocView.backgroundColor = NSColor.sand1
 		txtDocView.insertionPointColor = NSColor.birkin
 		txtDocView.importsGraphics = false
 		txtDocView.allowsImageEditing = false
@@ -62,7 +62,6 @@ class NiNoteItem: NSViewController, CFContentItem {
 		txtDocView.isEditable = false
 		txtDocView.textContainerInset = NSSize(width: 8.0, height: 8.0)
 		
-		txtDocView.backgroundColor = NSColor.sand3
 		txtDocView.font = NSFont(name: "Sohne-Buch", size: 16.0)
 		txtDocView.textColor = NSColor.sand115
 		txtDocView.wantsLayer = true
@@ -161,7 +160,7 @@ class NiNoteItem: NSViewController, CFContentItem {
 	
 	private func setStyling(){
 		txtDocView.wantsLayer = true
-		txtDocView.backgroundColor = NSColor.sand3
+		txtDocView.backgroundColor = NSColor.sand1
 		txtDocView.layer?.cornerRadius = 5
 		txtDocView.layer?.cornerCurve = .continuous
 	}

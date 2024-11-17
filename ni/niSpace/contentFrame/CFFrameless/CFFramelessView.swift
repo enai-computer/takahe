@@ -34,12 +34,16 @@ class CFFramelessView: CFBaseView {
 	}
 	
 	func removeBorder(){
-		self.borderColor = NSColor.sand3
+		if(myItem is NiNoteItem){
+			self.borderColor = NSColor.sand1
+		}else{
+			self.borderColor = NSColor.sand3
+		}
 		shadow = nil
 	}
 	
 	func removeBorderAddDropShadow(){
-		borderColor = NSColor.sand3
+		borderColor = NSColor.sand1
 		wantsLayer = true
 		shadow = NSShadow()
 		layer?.shadowOffset = CGSize(width: 2.0, height: -4.0)
