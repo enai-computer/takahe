@@ -14,6 +14,7 @@ class DefaultWindowController: NSWindowController, NSWindowDelegate{
 		window?.toggleFullScreen(nil)
 		window?.isReleasedWhenClosed = true
 		window?.delegate = self
+
 		contentViewController = NiSpaceViewController()
 
 		//HELP: in case you need to know the fonts
@@ -21,7 +22,15 @@ class DefaultWindowController: NSWindowController, NSWindowDelegate{
 //			print(family)
 //		}
 	}
-	
+
+	func window(_ window: NSWindow, willUseFullScreenPresentationOptions proposedOptions: NSApplication.PresentationOptions = []) -> NSApplication.PresentationOptions {
+		return [
+			.fullScreen,
+			// Both need to be combined to work: <https://developer.apple.com/documentation/appkit/nsapplication/presentationoptions>
+			.hideMenuBar, .hideDock
+		]
+	}
+
 	func windowDidEnterFullScreen(_ notification: Notification){
 		guard let spaceViewController else { assertionFailure(); return }
 		if(UserSettings.shared.isDefaultConfig){
