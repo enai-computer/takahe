@@ -21,12 +21,18 @@ class NiHomeWindow: NSPanel, NiSearchWindowProtocol{
 		
 		super.init(
 			contentRect: windowToAppearOn.frame,
-			styleMask: .borderless,
+			styleMask: [
+				.borderless,
+				.nonactivatingPanel,
+				.utilityWindow,
+			],
 			backing: .buffered,
 			defer: true
 		)
 		//set, as otherwise the desktop on the 2nd display will switch to a different desktop if an application is running fullscreen on that display
-		collectionBehavior = NSWindow.CollectionBehavior.moveToActiveSpace
+		collectionBehavior = [
+			.managed, .stationary,
+		]
 		titleVisibility = .hidden
 		titlebarAppearsTransparent = true
 		contentViewController = NiEmptyViewController(
@@ -35,6 +41,7 @@ class NiHomeWindow: NSPanel, NiSearchWindowProtocol{
 
 		hasShadow = false
 		isOpaque = false
+		isFloatingPanel = true
 		backgroundColor = NSColor.clear
 		hidesOnDeactivate = false
 	}
