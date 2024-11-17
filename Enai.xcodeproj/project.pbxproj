@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		50B7E6792CE9FE5500D59145 /* NSView+constrainToSuperview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B7E6782CE9FE5000D59145 /* NSView+constrainToSuperview.swift */; };
 		A14E8F212AD20A2600409DDF /* DefaultWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14E8F202AD20A2600409DDF /* DefaultWindowController.swift */; };
 		A14E8F252AD5EADF00409DDF /* NiSpaceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A14E8F242AD5EADF00409DDF /* NiSpaceView.xib */; };
 		A14E8F272AD5EAF800409DDF /* NiSpaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14E8F262AD5EAF800409DDF /* NiSpaceView.swift */; };
@@ -234,7 +233,6 @@
 /* Begin PBXFileReference section */
 		505865D12CBE85FA0099EF34 /* Custom.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Custom.xcconfig; sourceTree = "<group>"; };
 		505865D22CBE85FA0099EF34 /* Project.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Project.xcconfig; sourceTree = "<group>"; };
-		50B7E6782CE9FE5000D59145 /* NSView+constrainToSuperview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSView+constrainToSuperview.swift"; sourceTree = "<group>"; };
 		A14E8F202AD20A2600409DDF /* DefaultWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultWindowController.swift; sourceTree = "<group>"; };
 		A14E8F242AD5EADF00409DDF /* NiSpaceView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NiSpaceView.xib; sourceTree = "<group>"; };
 		A14E8F262AD5EAF800409DDF /* NiSpaceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiSpaceView.swift; sourceTree = "<group>"; };
@@ -788,7 +786,6 @@
 				CD6DED912C257A5000AA8BC4 /* NiActionLabel.swift */,
 				CDD87ECF2BF23C650045B84B /* NiCursorUtils.swift */,
 				CD9C2B262C32F8B800C6126F /* NiButton.swift */,
-				50B7E6782CE9FE5000D59145 /* NSView+constrainToSuperview.swift */,
 				CDFA8CFE2C04815C00882722 /* EventUtils.swift */,
 				CD1853162C09D623001FE566 /* DoubleUtils.swift */,
 				CD1853182C09EA96001FE566 /* PasteboardUtils.swift */,
@@ -1233,7 +1230,6 @@
 				CD2DE8802CA1ABCF000B5461 /* OutboxProcessor.swift in Sources */,
 				CD1853192C09EA96001FE566 /* PasteboardUtils.swift in Sources */,
 				CDB942122CDD0517003F553E /* CFHeadActionImage.swift in Sources */,
-				50B7E6792CE9FE5500D59145 /* NSView+constrainToSuperview.swift in Sources */,
 				CD2DE87C2CA1A8A3000B5461 /* OutboxTable.swift in Sources */,
 				CD6DED922C257A5000AA8BC4 /* NiActionLabel.swift in Sources */,
 				CD75784C2BC065FB00293930 /* ContentFrameTabHeadTextNode.swift in Sources */,
