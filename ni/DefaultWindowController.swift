@@ -7,7 +7,8 @@ class DefaultWindowController: NSWindowController, NSWindowDelegate{
 	private var prevScreenWidth: CGFloat? = nil
 	private var prevScreenSize: CGSize? = nil
 	private var spaceSaved = false
-	
+	private var spaceViewController: NiSpaceViewController? { contentViewController as? NiSpaceViewController }
+
     override func windowDidLoad() {
         super.windowDidLoad()
 		window?.toggleFullScreen(nil)
@@ -22,14 +23,13 @@ class DefaultWindowController: NSWindowController, NSWindowDelegate{
 	}
 	
 	func windowDidEnterFullScreen(_ notification: Notification){
+		guard let spaceViewController else { assertionFailure(); return }
 		if(UserSettings.shared.isDefaultConfig){
 			DispatchQueue.main.asyncAfter(deadline: .now().advanced(by: .milliseconds(500))){
-				let homeView = NiHomeWindow(windowToAppearOn: self.window!)
-				homeView.makeKeyAndOrderFront(nil)
+				spaceViewController.showHomeView(canBeDismissed: false)
 			}
 		}else{
-			let homeView = NiHomeWindow(windowToAppearOn: self.window!)
-			homeView.makeKeyAndOrderFront(nil)
+			spaceViewController.showHomeView(canBeDismissed: false)
 		}
 	}
 	
