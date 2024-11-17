@@ -188,8 +188,8 @@ class NiSpaceViewController: NSViewController, NSTextFieldDelegate{
 		}
 	}
 
-	func showHomeView(canBeDismissed: Bool) {
-		let homeView = NiHomeWindow(windowToAppearOn: self.view.window!, canBeDismissed: true)
+	func showHomeView(canBeDismissed: Bool = true) {
+		let homeView = NiHomeWindow(windowToAppearOn: self.view.window!, canBeDismissed: canBeDismissed)
 		homeView.makeKeyAndOrderFront(nil)
 	}
 
