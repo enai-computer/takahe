@@ -137,6 +137,7 @@ class NiSearchResultViewItem: NSCollectionViewItem {
 		guard let spaceViewController = NSApplication.shared.mainWindow?.contentViewController as? NiSpaceViewController else {return}
 		
 		if(spaceViewController.niSpaceID == id && id != NiSpaceDocumentController.EMPTY_SPACE_ID){
+			// Triggered from the initial app's display of a non-dismissable home view.
 			if let paletteWindow = view.window as? NiSearchWindowProtocol{
 				paletteWindow.removeSelf()
 			}
