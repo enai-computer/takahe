@@ -82,6 +82,7 @@ class NiSearchResultViewItem: NSCollectionViewItem {
 		view.addSubview(birkinHighlight!)
 		view.layer?.backgroundColor = NSColor.sand1.cgColor
 		resultTitle.textColor = NSColor.sand12
+		resultSubTitle.textColor = NSColor.sand12
 		keySelected = true
 		rightSideElement.select()
 		leftSideResultTypeIcon.contentTintColor = NSColor.sand115
@@ -99,6 +100,7 @@ class NiSearchResultViewItem: NSCollectionViewItem {
 		}
 		
 		resultTitle.textColor = NSColor.sand115
+		resultSubTitle.textColor = NSColor.sand115
 		rightSideElement.deselect()
 		leftSideResultTypeIcon.contentTintColor = NSColor.sand11
 	}
@@ -106,6 +108,7 @@ class NiSearchResultViewItem: NSCollectionViewItem {
 	func preActionStyle() {
 		leftSideResultTypeIcon.contentTintColor = NSColor.sand1
 		resultTitle.textColor = NSColor.sand1
+		resultSubTitle.textColor = NSColor.sand1
 		rightSideElement.preActionStyle()
 		view.layer?.backgroundColor = NSColor.birkin.cgColor
 	}
