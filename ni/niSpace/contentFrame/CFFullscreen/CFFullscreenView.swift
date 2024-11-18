@@ -158,8 +158,11 @@ class CFFullscreenView: CFBaseView, CFTabHeadProtocol, CFFwdBackButtonProtocol{
 				)
 			}
 		}
+		var menuOrigin = cfHeadView.convert(switchGroupInSpaceButton.frame.origin, to: nil)
+		menuOrigin.y += 9
+		menuOrigin.x -= 9
 		let menuWin = NiMenuWindow(
-			origin: event.locationInWindow,
+			origin: menuOrigin,
 			dirtyMenuItems: items,
 			currentScreen: self.window!.screen!
 		)
