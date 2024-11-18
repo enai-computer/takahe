@@ -236,17 +236,22 @@ class NiSpaceDocumentView: NSView{
 		}
 	}
 	
-	private func highlightContentFrame(cframe: ContentFrameController){
+	func highlightContentFrame(cframe: ContentFrameController){
 		setTopNiFrame(cframe)
-		if(!NSPointInRect(topNiFrame!.view.frame.origin, visibleRect)){
-			var scrollToPoint = topNiFrame!.view.frame.origin
-			if(50.0 < scrollToPoint.y){
-				scrollToPoint.y = scrollToPoint.y - 40.0
-			}else{
-				scrollToPoint.y = 0
-			}
-			scroll(scrollToPoint)
+		let maxXY = NSPoint(x: cframe.view.frame.maxX, y: cframe.view.frame.maxY)
+		if(!NSPointInRect(cframe.view.frame.origin, visibleRect) || !NSPointInRect(maxXY, visibleRect)){
+			scrollIntoView(for: cframe.view.frame.origin)
 		}
+	}
+	
+	private func scrollIntoView(for point: CGPoint){
+		var scrollToPoint = point
+		if(50.0 < point.y){
+			scrollToPoint.y = scrollToPoint.y - 40.0
+		}else{
+			scrollToPoint.y = 0
+		}
+		scroll(scrollToPoint)
 	}
 	
 	private func cfOrdered() -> (Int, [ContentFrameController]){

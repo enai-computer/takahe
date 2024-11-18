@@ -67,8 +67,8 @@ class NiSpaceViewController: NSViewController, NSTextFieldDelegate{
 		pinnedAppIcon.isActiveFunction = {return true}
 		pinnedAppIcon.setMouseDownFunction(openPinnedMenu)
 		
-		spaceIcon.isActiveFunction = {return UserSettings.shared.demoMode}
-		spaceIcon.setMouseDownFunction(openLibrary)
+		spaceIcon.isActiveFunction = {return true}
+		spaceIcon.setMouseDownFunction(openGroupSwitcher)
 	}
 	
     override func viewDidLoad() {
@@ -180,6 +180,49 @@ class NiSpaceViewController: NSViewController, NSTextFieldDelegate{
 		let lib = NiLibrary(mainWindow)
 		lib.makeKeyAndOrderFront(nil)
 	}
+	
+	func openGroupSwitcher(with event: NSEvent){
+		let groups = niDocument.myView.orderedContentFrames().filter(\.viewState.canBecomeFullscreen)
+		var items: [NiMenuItemViewModel] = groups.map{ groupController in
+			NiMenuItemViewModel(
+				label: .init(fromContentFrameController: groupController),
+				isEnabled: true,
+				mouseDownFunction: { _ in
+					switch groupController.viewState {
+						case .collapsedMinimised, .minimised:
+							groupController.minimizedToExpanded()
+						default:
+							break
+					}
+					self.niDocument.myView.highlightContentFrame(cframe: groupController)
+				}
+			)
+		}
+		if(UserSettings.shared.demoMode){
+			items.append(NiMenuItemViewModel(
+				title: "Go to Library",
+				isEnabled: true,
+				mouseDownFunction: openLibrary)
+			)
+		}else{
+			items.append(NiMenuItemViewModel(
+				title: "Go to Library (soon)",
+				isEnabled: false,
+				mouseDownFunction: nil)
+			)
+		}
+		
+		var menuOrigin = header.convert(spaceIcon.frame.origin, to: nil)
+		menuOrigin.y += 9
+		menuOrigin.x -= 9
+		let menuWin = NiMenuWindow(
+			origin: menuOrigin,
+			dirtyMenuItems: items,
+			currentScreen: view.window!.screen!
+		)
+		menuWin.makeKeyAndOrderFront(nil)
+	}
+	
 	
 	func openHome(){
 		openEmptyBackgroundSpace()
