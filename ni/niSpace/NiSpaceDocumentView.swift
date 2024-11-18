@@ -53,6 +53,16 @@ class NiSpaceDocumentView: NSView{
 		return
 	}
 	
+	override func mouseDown(with event: NSEvent) {
+		topNiFrame?.toggleActive()
+		if let zPos = topNiFrame?.view.layer?.zPosition{
+			nxtTopZPosition = zPos
+		}
+		topNiFrame = nil
+		
+		super.mouseDown(with: event)
+	}
+	
     /*
      * MARK: Window like functions for niFrames below:
      *
