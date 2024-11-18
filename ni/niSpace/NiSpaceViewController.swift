@@ -182,20 +182,33 @@ class NiSpaceViewController: NSViewController, NSTextFieldDelegate{
 	}
 	
 	func openGroupSwitcher(with event: NSEvent){
-//		let groups = niDocument.myView.orderedContentFrames()
-//		var items: [NiMenuItemViewModel] = groups.map{ groupController in
-//			NiMenuItemViewModel(
-//				label: .init(fromContentFrameController: groupController),
-//				isEnabled: true,
-//				mouseDownFunction: {
-//				}
-//			)
-//		}
-//		items.append(NiMenuItemViewModel(
-//			title: "Go to Library (soon)",
-//			isEnabled: false,
-//			mouseDownFunction: nil)
-//		)
+		let groups = niDocument.myView.orderedContentFrames().filter(\.viewState.canBecomeFullscreen)
+		var items: [NiMenuItemViewModel] = groups.map{ groupController in
+			NiMenuItemViewModel(
+				label: .init(fromContentFrameController: groupController),
+				isEnabled: true,
+				mouseDownFunction: { _ in
+					switch groupController.viewState {
+						case .collapsedMinimised, .minimised:
+							groupController.minimizedToExpanded()
+						default:
+							break
+					}
+					self.niDocument.myView.highlightContentFrame(cframe: groupController)
+				}
+			)
+		}
+		items.append(NiMenuItemViewModel(
+			title: "Go to Library (soon)",
+			isEnabled: false,
+			mouseDownFunction: nil)
+		)
+		let menuWin = NiMenuWindow(
+			origin: event.locationInWindow,
+			dirtyMenuItems: items,
+			currentScreen: view.window!.screen!
+		)
+		menuWin.makeKeyAndOrderFront(nil)
 	}
 	
 	func openHome(){
