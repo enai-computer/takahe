@@ -67,8 +67,8 @@ class NiSpaceViewController: NSViewController, NSTextFieldDelegate{
 		pinnedAppIcon.isActiveFunction = {return true}
 		pinnedAppIcon.setMouseDownFunction(openPinnedMenu)
 		
-		spaceIcon.isActiveFunction = {return UserSettings.shared.demoMode}
-		spaceIcon.setMouseDownFunction(openLibrary)
+		spaceIcon.isActiveFunction = {return true}
+		spaceIcon.setMouseDownFunction(openGroupSwitcher)
 	}
 	
     override func viewDidLoad() {
@@ -179,6 +179,23 @@ class NiSpaceViewController: NSViewController, NSTextFieldDelegate{
 		guard let mainWindow: NSWindow = NSApplication.shared.mainWindow else{return}
 		let lib = NiLibrary(mainWindow)
 		lib.makeKeyAndOrderFront(nil)
+	}
+	
+	func openGroupSwitcher(with event: NSEvent){
+//		let groups = niDocument.myView.orderedContentFrames()
+//		var items: [NiMenuItemViewModel] = groups.map{ groupController in
+//			NiMenuItemViewModel(
+//				label: .init(fromContentFrameController: groupController),
+//				isEnabled: true,
+//				mouseDownFunction: {
+//				}
+//			)
+//		}
+//		items.append(NiMenuItemViewModel(
+//			title: "Go to Library (soon)",
+//			isEnabled: false,
+//			mouseDownFunction: nil)
+//		)
 	}
 	
 	func openHome(){

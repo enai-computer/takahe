@@ -130,7 +130,6 @@ class CFFullscreenView: CFBaseView, CFTabHeadProtocol, CFFwdBackButtonProtocol{
 		guard let groups = niParentDoc?.orderedContentFrames().filter(\.viewState.canBecomeFullscreen) else { return }
 
 		let items: [NiMenuItemViewModel] = groups.map { groupController in
-			// TODO: Show icons instead of "(Untitled)" for unnamed groups.
 			if self.frameIsActive && groupController === myController {
 				NiMenuItemViewModel(
 					label: .init(fromContentFrameController: groupController),
