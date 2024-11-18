@@ -981,7 +981,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		_ = myView.createNewTab(tabView: noteItem.scrollView)
 		framelessView?.setContentItem(item: noteItem)
 		noteItem.startEditing()
-		myView.window?.makeFirstResponder(noteItem)
+		self.myView.window?.makeFirstResponder(noteItem.scrollView.documentView)
 	}
 	
 	func openWebsiteInNewTab(
