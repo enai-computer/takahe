@@ -198,6 +198,14 @@ class NiSpaceViewController: NSViewController, NSTextFieldDelegate{
 				}
 			)
 		}
+		items.append(NiMenuItemViewModel(
+			title: "open a new group",
+			isEnabled: true,
+			mouseDownFunction: { _ in
+				guard let appDel = NSApplication.shared.delegate as? AppDelegate else{return}
+				appDel.getNiSpaceViewController()?.openEmptyCF()
+			})
+		)
 		if(UserSettings.shared.demoMode){
 			items.append(NiMenuItemViewModel(
 				title: "Go to Library",
@@ -246,9 +254,10 @@ class NiSpaceViewController: NSViewController, NSTextFieldDelegate{
 		loadSpace(spaceId: EMPTY_SPACE_ID, name: "", spaceDoc: spaceDoc, scrollTo: nil, containsFullscreenFrame: false)
 	}
 	
-	func openEmptyCF(){
-		guard !header.isHidden else {return}
-		niDocument.openEmptyCF()
+	@discardableResult
+	func openEmptyCF() -> ContentFrameController?{
+		guard !header.isHidden else {return nil}
+		return niDocument.openEmptyCF()
 	}
 	
 	func pastePdf(pdf: PDFDocument, title: String?, source: String?){

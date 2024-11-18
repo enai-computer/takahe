@@ -129,8 +129,7 @@ class CFFullscreenView: CFBaseView, CFTabHeadProtocol, CFFwdBackButtonProtocol{
 		assert(niParentDoc != nil)
 		guard let groups = niParentDoc?.orderedContentFrames().filter(\.viewState.canBecomeFullscreen) else { return }
 
-		let items: [NiMenuItemViewModel] = groups.map { groupController in
-			// TODO: Show icons instead of "(Untitled)" for unnamed groups.
+		var items: [NiMenuItemViewModel] = groups.map { groupController in
 			if self.frameIsActive && groupController === myController {
 				NiMenuItemViewModel(
 					label: .init(fromContentFrameController: groupController),
@@ -158,6 +157,17 @@ class CFFullscreenView: CFBaseView, CFTabHeadProtocol, CFFwdBackButtonProtocol{
 				)
 			}
 		}
+		items.append(NiMenuItemViewModel(
+			title: "open a new group",
+			isEnabled: true,
+			mouseDownFunction: { [myController] _ in
+				myController?.fullscreenToPreviousState()
+				guard let appDel = NSApplication.shared.delegate as? AppDelegate else{return}
+				
+				let newGroup = appDel.getNiSpaceViewController()?.openEmptyCF()
+				newGroup?.expandedToFullscreen()
+			})
+		)
 		var menuOrigin = cfHeadView.convert(switchGroupInSpaceButton.frame.origin, to: nil)
 		menuOrigin.y += 9
 		menuOrigin.x -= 9
