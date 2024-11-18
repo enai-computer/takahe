@@ -31,7 +31,9 @@ class NiHomeWindow: NSPanel, NiSearchWindowProtocol{
 		)
 		//set, as otherwise the desktop on the 2nd display will switch to a different desktop if an application is running fullscreen on that display
 		collectionBehavior = [
-			.auxiliary, .fullScreenAuxiliary, .stationary,
+			.auxiliary, .fullScreenAuxiliary,
+			// Stationary is required to prevent flickering of this window and the default window when switching out of, and back to, this app with ⌘+Tab.
+			.stationary,
 		]
 		titleVisibility = .hidden
 		titlebarAppearsTransparent = true
