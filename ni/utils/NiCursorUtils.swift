@@ -7,7 +7,7 @@
 
 import Cocoa
 
-let niUpDownCursor = NSCursor(image: .cursorUpDown, hotSpot: NSPoint(x: 7, y: 9))
-let niLeftRightCursor = NSCursor(image: .cursorLeftRight, hotSpot: NSPoint(x: 9, y: 7))
+let niUpDownCursor = NSCursor(image: .cursorUpDown, hotSpot: NSPoint(x: 8, y: 8))
+let niLeftRightCursor = NSCursor(image: .cursorLeftRight, hotSpot: NSPoint(x: 8, y: 8))
 let niDiagonalCursor = NSCursor(image: .cursorDiagonal, hotSpot: NSPoint(x: 8, y: 8))
 let niDiagonalFlippedCursor = NSCursor(image: .cursorDiagonalFlipped, hotSpot: NSPoint(x: 8, y: 8))
