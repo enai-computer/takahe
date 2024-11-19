@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="23504" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="23504"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="NiPopUpViewController" customModule="Enai" customModuleProvider="target">
+            <connections>
+                <outlet property="contentView" destination="eak-mh-zNk" id="fZ7-Ov-bP8"/>
+                <outlet property="handlebar" destination="24x-xq-vzU" id="1in-nk-V4f"/>
+                <outlet property="view" destination="pRK-Q9-8Pd" id="zKE-k0-dv9"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <box boxType="custom" borderWidth="2" cornerRadius="10" title="NiPopUp" id="pRK-Q9-8Pd">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="400"/>
+            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+            <view key="contentView" id="eak-mh-zNk">
+                <rect key="frame" x="2" y="2" width="596" height="396"/>
+                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                <subviews>
+                    <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="24x-xq-vzU">
+                        <rect key="frame" x="566" y="372" width="30" height="24"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                        <subviews>
+                            <imageView autoresizesSubviews="NO" horizontalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" id="3FC-vk-eii" userLabel="Close CF Button" customClass="CFHeadActionImage" customModule="Enai" customModuleProvider="target">
+                                <rect key="frame" x="5" y="0.0" width="24" height="24"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="24" id="nPj-RN-1n4"/>
+                                </constraints>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageAlignment="topRight" image="close" id="LuC-vo-oB2"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="buttonType">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </imageView>
+                        </subviews>
+                    </customView>
+                </subviews>
+            </view>
+            <color key="borderColor" name="sand5"/>
+            <color key="fillColor" name="sand5"/>
+            <point key="canvasLocation" x="-7" y="154"/>
+        </box>
+    </objects>
+    <resources>
+        <image name="close" width="24" height="24"/>
+        <namedColor name="sand5">
+            <color red="0.9137254901960784" green="0.9137254901960784" blue="0.90196078431372551" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>
