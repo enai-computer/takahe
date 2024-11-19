@@ -8,7 +8,7 @@
 import Cocoa
 import WebKit
 
-class NiPopUpViewController: NSViewController, WKUIDelegate{
+class NiPopUpViewController: NSViewController, WKUIDelegate, CFHeadActionImageDelegate{
 
 	@IBOutlet var contentView: NSView!
 	var niWebView: NiWebPopUp?
@@ -28,7 +28,6 @@ class NiPopUpViewController: NSViewController, WKUIDelegate{
 	override func loadView() {
 		super.loadView()
 		niWebView = NiWebPopUp(frame: contentView.bounds, configuration: desiredConfig)
-		contentView.addSubview(niWebView!)
 		if let niWebView = niWebView {
 			niWebView.translatesAutoresizingMaskIntoConstraints = false
 			contentView.addSubview(niWebView)
@@ -118,7 +117,21 @@ class NiPopUpViewController: NSViewController, WKUIDelegate{
 	
 	
 	func webViewDidClose(_ webView: WKWebView) {
-		view.removeFromSuperview()
 		removeFromParent()
+	}
+	
+	func isButtonActive(_ type: CFHeadButtonType) -> Bool {
+		return true
+	}
+	
+	func mouseUp(with event: NSEvent, for type: CFHeadButtonType) {
+		if(type == .close){
+			removeFromParent()
+		}
+	}
+
+	override func removeFromParent() {
+		view.removeFromSuperview()
+		super.removeFromParent()
 	}
 }

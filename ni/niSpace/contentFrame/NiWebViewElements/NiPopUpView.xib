@@ -39,6 +39,9 @@
                                         <integer key="value" value="5"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <outlet property="mouseDelegate" destination="-2" id="hEF-mF-3k2"/>
+                                </connections>
                             </imageView>
                         </subviews>
                     </customView>
