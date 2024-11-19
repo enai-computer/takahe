@@ -52,19 +52,29 @@
 		  color: #2E2E2B;
 		}
 		
+    .container{
+      padding-left: 40px;
+    }
+
 		.container img{
-			padding-left: 40px;
 			padding-bottom: 40px;
 			padding-top: 25px;
 		}
 
-		.container p{
+		.container h1{
 			padding-top: 57px;
-			padding-left: 40px;
+      padding-bottom: 20px;
 			font-size: 40px;
 			font-weight: 400;
 			line-height: 53px;
 			font-family: soehne;
+		}
+
+		.container p{
+      padding-bottom: 20px;
+			font-size: 24px;
+			line-height: 28px;
+      font-family: soehne;
 		}
 
 		@font-face {
@@ -82,11 +92,20 @@
 	</style>
 <body>
 	<div class="container">
-		<p>
-			There&rsquo;s some issue with loading the page. <br/>
-			Please check the URL or your internet connection.
-		</p>
+    <h1>There&rsquo;s some issue with loading the page. </h1>
+    <p id="errorMessage">
+      Please check the URL or your internet connection.
+    </p>
 		<img src="errorLoading-1.jpeg" style="max-width: 70%; max-height: 100%;">
+
+    <script>
+      function updateErrorMessage(message) {
+          const errorElement = document.getElementById('errorMessage');
+          if (errorElement) {
+              errorElement.textContent = message;
+          }
+      }
+    </script>
 
 		<div class="bottom-right"><svg width="76" height="38" viewBox="0 0 76 38" fill="none" xmlns="http://www.w3.org/2000/svg">
 			<path d="M5.78282 35.5798L14.9673 31.2581C13.8901 33.2173 13.1195 34.1392 11.1919 35.5798C9.26428 37.078 6.34977 38 4.70563 38C3.23158 38 2.09769 37.3661 1.24728 36.0984C0.39686 34.8307 0 33.102 0 30.9123C0 29.0684 0.340166 27.0516 1.13389 24.8619C1.87091 22.6722 2.89141 20.5401 4.25208 18.5233C5.78282 16.2184 7.48365 14.3744 9.29787 13.0491C11.1121 11.7237 12.8696 11.0323 14.5704 11.0323C15.761 11.0323 16.7248 11.4356 17.4619 12.1847C18.1989 12.9338 18.5957 13.9134 18.5957 15.0659C18.5957 17.7742 17.2351 20.0215 14.5138 21.8078C11.7924 23.6518 8.56085 24.6314 4.81902 24.8042C4.47885 25.7838 4.25208 26.7058 4.13869 27.5125C4.0253 28.3193 3.9686 29.0684 3.9686 29.7599C3.9686 31.0276 4.08199 32.18 4.42216 33.2173C4.76233 34.2545 5.21588 35.0612 5.78282 35.5798ZM14.9673 15.2388C14.9673 14.5473 14.8539 13.9134 14.6271 13.4524C14.4004 12.9915 14.0035 12.6457 13.5499 12.4152C12.1326 12.9338 10.5451 14.3744 8.84432 16.7946C7.14349 19.2148 5.83952 21.8078 4.93241 24.5161C8.0506 23.4789 10.4885 22.0959 12.3027 20.4249C14.0602 18.8114 14.9673 17.0827 14.9673 15.2388Z" fill="#FF4F00"/>

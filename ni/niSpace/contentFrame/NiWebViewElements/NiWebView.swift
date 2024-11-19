@@ -149,6 +149,15 @@ class NiWebView: WKWebView, CFContentItem, CFContentSearch{
 		return nil
 	}
 	
+	/*
+	 returns false if str conversation to URLRequest failed
+	 */
+	func load(_ urlStr: String) -> Bool{
+		guard let url = URL(string: urlStr) else {return false}
+		super.load(URLRequest(url: url))
+		return true
+	}
+	
 	private func replaceSearchWithGoogleAction(_ menu: NSMenu){
 		for item in menu.items{
 			if(item.title == "Search with Google"){
