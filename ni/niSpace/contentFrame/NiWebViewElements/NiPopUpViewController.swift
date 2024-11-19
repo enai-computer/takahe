@@ -34,6 +34,9 @@ class NiPopUpViewController: NSViewController, WKUIDelegate{
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		styleHandlebar()
+	override func viewDidLayout() {
+		super.viewDidLayout()
+		updateShadowPaths()
 	}
 	
 	private func styleHandlebar(){
@@ -44,6 +47,49 @@ class NiPopUpViewController: NSViewController, WKUIDelegate{
 		handlebar.layer?.maskedCorners = .layerMinXMinYCorner
 		handlebar.layer?.zPosition = 1
 	}
+	
+	private func setDropShadow(){
+		view.clipsToBounds = false
+		view.wantsLayer = true
+		
+		view.layer?.shadowColor = NSColor.sand115.cgColor
+		view.layer?.shadowOffset = CGSize(width: 0.0, height: -1.0)
+		view.layer?.shadowOpacity = 0.33
+		view.layer?.shadowRadius = 3.0
+		view.layer?.masksToBounds = false
+		
+		let dropShadow2 = CALayer(layer: view.layer!)
+		dropShadow2.shadowPath = NSBezierPath(rect: view.bounds).cgPath
+		dropShadow2.shadowColor = NSColor.sand115.cgColor
+		dropShadow2.shadowOffset = CGSize(width: 2.0, height: -4.0)
+		dropShadow2.shadowOpacity = 0.2
+		dropShadow2.shadowRadius = 6.0
+		dropShadow2.masksToBounds = false
+
+		view.layer?.insertSublayer(dropShadow2, at: 0)
+		
+		let dropShadow3 = CALayer(layer: view.layer!)
+		dropShadow3.shadowPath = NSBezierPath(rect: view.bounds).cgPath
+		dropShadow3.shadowColor = NSColor.sand115.cgColor
+		dropShadow3.shadowOffset = CGSize(width: 4.0, height: -8.0)
+		dropShadow3.shadowOpacity = 0.2
+		dropShadow3.shadowRadius = 20.0
+		dropShadow3.masksToBounds = false
+
+		dropShadow2.insertSublayer(dropShadow3, at: 0)
+	}
+	
+	private func updateShadowPaths() {
+		let path = NSBezierPath(rect: view.bounds).cgPath
+		view.layer?.shadowPath = path
+		if let dropShadow2 = view.layer?.sublayers?.first as? CALayer {
+			dropShadow2.shadowPath = path
+			if let dropShadow3 = dropShadow2.sublayers?.first as? CALayer {
+				dropShadow3.shadowPath = path
+			}
+		}
+	}
+	
 	
 	func webViewDidClose(_ webView: WKWebView) {
 		view.removeFromSuperview()
