@@ -29,11 +29,30 @@ class NiPopUpViewController: NSViewController, WKUIDelegate{
 		super.loadView()
 		niWebView = NiWebPopUp(frame: contentView.bounds, configuration: desiredConfig)
 		contentView.addSubview(niWebView!)
+		if let niWebView = niWebView {
+			niWebView.translatesAutoresizingMaskIntoConstraints = false
+			contentView.addSubview(niWebView)
+			
+			// Add constraints to bind niWebView to contentView
+			NSLayoutConstraint.activate([
+				niWebView.topAnchor.constraint(equalTo: contentView.topAnchor),
+				niWebView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+				niWebView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+				niWebView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+			])
+		}
+		
+		handlebar.removeFromSuperview()
+		contentView.addSubview(handlebar)
 	}
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		styleHandlebar()
+		stlyeWebview()
+		setDropShadow()
+	}
+	
 	override func viewDidLayout() {
 		super.viewDidLayout()
 		updateShadowPaths()
@@ -46,6 +65,13 @@ class NiPopUpViewController: NSViewController, WKUIDelegate{
 		handlebar.layer?.cornerCurve = .continuous
 		handlebar.layer?.maskedCorners = .layerMinXMinYCorner
 		handlebar.layer?.zPosition = 1
+	}
+	
+	private func stlyeWebview(){
+		niWebView?.wantsLayer = true
+		niWebView?.layer?.cornerCurve = .continuous
+		niWebView?.layer?.cornerRadius = 10.0
+		
 	}
 	
 	private func setDropShadow(){
