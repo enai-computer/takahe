@@ -1482,12 +1482,16 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		decisionHandler(.download)
 	}
 	
-	//open in new tab, example clicked file in gDrive
+
 	func webView(_ webView: WKWebView, 
 				 createWebViewWith configuration: WKWebViewConfiguration,
 				 for navigationAction: WKNavigationAction,
 				 windowFeatures: WKWindowFeatures
 	) -> WKWebView?{
+		
+		if(navigationAction.navigationType == .reload){
+			webView.reload()
+		}
 		
 		guard let urlStr: String = navigationAction.request.url?.absoluteString else {
 			return nil
@@ -1498,8 +1502,20 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		guard viewHasTabs() else {return nil}
 		
 		if(navigationAction.targetFrame == nil && !urlStr.isEmpty){
-			if(!urlStr.isEmpty){
+			//open in new tab, example clicked file in gDrive
+			if(navigationAction.navigationType == .linkActivated){
 				self.openWebsiteInNewTab(urlStr, openNextToSelectedTab: true)
+				return nil
+			}
+			//open pop-up for SSO for example
+			if(navigationAction.navigationType == .other){
+				//see example code here: https://stackoverflow.com/questions/52987509/xcode-wkwebview-code-to-allow-webview-to-process-popups
+				if let niWebView = webView as? NiWebView{
+					return niWebView.displayUpPop(
+						configuration: configuration,
+						windowFeatures: windowFeatures
+					)
+				}
 			}
 		}
 		return nil
