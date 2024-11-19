@@ -24,3 +24,43 @@ extension NSPoint{
 	}
 	
 }
+
+func getNSSizeFrom(width: NSNumber?, height: NSNumber?) -> NSSize?{
+	guard let width: Double = width?.doubleValue else{return nil}
+	guard let height: Double = height?.doubleValue else{return nil}
+	return NSSize(width: width, height: height)
+}
+
+func maxSize(enclosingFrameSize: CGSize, subFrame: CGSize, margin: CGFloat) -> CGSize{
+	var resultingSize = subFrame
+	let maxHeight = enclosingFrameSize.height - margin * 2
+	let maxWidth = enclosingFrameSize.width - margin * 2
+	
+	if maxHeight < subFrame.height{
+		resultingSize.height = maxHeight
+	}
+	if maxWidth < subFrame.width{
+		resultingSize.width = maxWidth
+	}
+	return resultingSize
+}
+
+func centeredFrameOrigin(enclosingRect: NSRect, subFrame: CGSize, margin: CGFloat) -> CGPoint{
+	
+	let x_center: CGFloat = enclosingRect.origin.x + enclosingRect.width / 2
+	let y_center: CGFloat = enclosingRect.origin.y + enclosingRect.height / 2
+	
+	
+	let x_dist_to_center = subFrame.width / 2
+	let y_dist_to_center = subFrame.height / 2
+	
+	var yOrigin = (y_center - y_dist_to_center)
+	if(yOrigin < margin){
+		yOrigin = margin
+	}
+	var xOrigin = (x_center-x_dist_to_center)
+	if(xOrigin < margin){
+		xOrigin = margin
+	}
+	return CGPoint(x: xOrigin, y: yOrigin)
+}

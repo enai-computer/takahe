@@ -295,8 +295,26 @@ class NiWebView: WKWebView, CFContentItem, CFContentSearch{
 	) -> NiWebPopUp? {
 		guard popUp == nil else {return nil}
 		popUp = NiPopUpViewController(with: configuration)
+		positionAndSize(popUpView: popUp!.view, windowFeatures: windowFeatures)
 		self.addSubview(popUp!.view)
 		return popUp?.niWebView
+	}
+	
+	private func positionAndSize(
+		popUpView: NSView,
+		windowFeatures: WKWindowFeatures
+	){
+		let margin = 20.0
+		
+		if let targetSize = getNSSizeFrom(width: windowFeatures.width, height: windowFeatures.height){
+			popUpView.frame.size = targetSize
+		}else{
+			popUpView.frame.size = CGSize(width: 500.0, height: 400.0)
+		}
+		
+		popUpView.frame.size = maxSize(enclosingFrameSize: bounds.size, subFrame: popUpView.frame.size, margin: margin)
+
+		popUpView.frame.origin = centeredFrameOrigin(enclosingRect: bounds, subFrame: popUpView.frame.size, margin: margin)
 	}
 	
 	//MARK: - Eve AI handler
