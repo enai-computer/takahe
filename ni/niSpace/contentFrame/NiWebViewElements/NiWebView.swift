@@ -21,6 +21,7 @@ class NiWebView: WKWebView, CFContentItem, CFContentSearch{
 	let findConfig = WKFindConfiguration()
 	private(set) var websiteLoaded = false
 	private var eveHandler: EveChatHandler?
+	private var popUp: NiPopUpViewController? = nil
 	
 	// overlays own view to deactivate clicks and visualise deactivation state
 	private var overlay: NSView?
@@ -288,6 +289,17 @@ class NiWebView: WKWebView, CFContentItem, CFContentSearch{
 		owner?.niWebViewTitleChanged(self)
 	}
 	
+	//MARK: handle pop-ups
+	func displayUpPop(configuration: WKWebViewConfiguration,
+					 windowFeatures: WKWindowFeatures
+	) -> NiWebPopUp? {
+		guard popUp == nil else {return nil}
+		popUp = NiPopUpViewController(with: configuration)
+		self.addSubview(popUp!.view)
+		return popUp?.niWebView
+	}
+	
+	//MARK: - Eve AI handler
 	func passEnaiAPIAuth(){
 		guard PostHogSDK.shared.isFeatureEnabled("en-ai") else {return}
 		guard isEveChatURL() else {return}
@@ -372,6 +384,7 @@ class NiWebView: WKWebView, CFContentItem, CFContentSearch{
 		return self.url == getEmtpyWebViewURL()
 	}
 	
+	//MARK: - Deinit
 	deinit{
 		canGobackObserver?.invalidate()
 		canGoForwardObserver?.invalidate()
@@ -380,6 +393,9 @@ class NiWebView: WKWebView, CFContentItem, CFContentSearch{
 		overlay?.removeFromSuperview()
 		overlay = nil
 		eveHandler = nil
+		popUp?.view.removeFromSuperview()
+		popUp?.removeFromParent()
+		popUp = nil
 		
 		stopLoading()
 	}

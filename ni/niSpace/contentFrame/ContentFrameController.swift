@@ -1507,6 +1507,19 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 				self.openWebsiteInNewTab(urlStr, openNextToSelectedTab: true)
 				return nil
 			}
+			//open pop-up for SSO for example
+			if(navigationAction.navigationType == .other){
+				//TODO: create (pop-up) webview, that is owned by the corresponding NiWebView
+				//pop-up view shall be a subview of the niWebView
+				//pop-up view shall have it's own delegate and special rules
+				//see example code here: https://stackoverflow.com/questions/52987509/xcode-wkwebview-code-to-allow-webview-to-process-popups
+				//TODO: return pop-up view.
+				if let niWebView = webView as? NiWebView{
+					return niWebView.displayUpPop(
+						configuration: configuration,
+						windowFeatures: windowFeatures
+					)
+				}
 			}
 		}
 		return nil
