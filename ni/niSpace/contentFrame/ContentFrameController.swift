@@ -1387,11 +1387,11 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	}
 	
 	func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: any Error){
-		handleFailedLoad(webView)
+		handleFailedLoad(webView, with: error)
 	}
 	
 	func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: any Error){
-		handleFailedLoad(webView)
+		handleFailedLoad(webView, with: error)
 	}
 
 	func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
@@ -1567,22 +1567,38 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		fwdBackView.setForwardButtonTint(newValue, trigger: webView)
 	}
 	
-	private func handleFailedLoad(_ webView: WKWebView){
+	private func handleFailedLoad(_ webView: WKWebView, with error: any Error){
 		guard let wv = webView as? NiWebView else{
 			let errorURL = getCouldNotLoadWebViewURL()
 			webView.loadFileURL(errorURL, allowingReadAccessTo: errorURL.deletingLastPathComponent())
 			return
 		}
-		if (wv.retries < 2){
-			wv.reload()
-			wv.retries += 1
-			return
+		if let retryUrl = error._userInfo?["NSErrorFailingURLStringKey"] as? String{
+			if (wv.retries < 2 && wv.load(retryUrl)){
+				wv.retries += 1
+				return
+			}
 		}
+
 		let errorURL = getCouldNotLoadWebViewURL()
 		webView.loadFileURL(errorURL, allowingReadAccessTo: errorURL.deletingLastPathComponent())
+
+		if let errorMessage = (error._userInfo?["NSLocalizedDescription"] as? String){
+			DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+				replaceText(errorMessage)
+			}
+		}
+		
+		func replaceText(_ errorMessage: String) {
+			let jsCode = "updateErrorMessage('\(errorMessage)');"
+			webView.evaluateJavaScript(jsCode) { result, error in
+				if let error = error {
+					print("Error executing JavaScript: \(error.localizedDescription)")
+				}
+			}
+		}
 		
 		guard viewHasTabs() else {return}
-		
 		self.tabs[wv.tabHeadPosition].state = .error
 	}
 	
