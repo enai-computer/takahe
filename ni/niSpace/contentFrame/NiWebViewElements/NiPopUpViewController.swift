@@ -12,12 +12,14 @@ class NiPopUpViewController: NSViewController, WKUIDelegate, CFHeadActionImageDe
 
 	@IBOutlet var contentView: NSView!
 	var niWebView: NiWebPopUp?
+	weak var parentWV: NiWebView?
 	@IBOutlet var handlebar: NSView!
 	
 	private let desiredConfig: WKWebViewConfiguration
 	
-	init(with wkConfig: WKWebViewConfiguration){
+	init(with wkConfig: WKWebViewConfiguration, for parentWV: NiWebView){
 		desiredConfig = wkConfig
+		self.parentWV = parentWV
 		super.init(nibName: NSNib.Name("NiPopUpView"), bundle: Bundle.main)
 	}
 	
@@ -40,7 +42,7 @@ class NiPopUpViewController: NSViewController, WKUIDelegate, CFHeadActionImageDe
 				niWebView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
 			])
 		}
-		
+		niWebView?.uiDelegate = self
 		handlebar.removeFromSuperview()
 		contentView.addSubview(handlebar)
 	}
@@ -115,11 +117,6 @@ class NiPopUpViewController: NSViewController, WKUIDelegate, CFHeadActionImageDe
 		}
 	}
 	
-	
-	func webViewDidClose(_ webView: WKWebView) {
-		removeFromParent()
-	}
-	
 	func isButtonActive(_ type: CFHeadButtonType) -> Bool {
 		return true
 	}
@@ -131,7 +128,30 @@ class NiPopUpViewController: NSViewController, WKUIDelegate, CFHeadActionImageDe
 	}
 
 	override func removeFromParent() {
+		parentWV?.popUpClosed()
 		view.removeFromSuperview()
 		super.removeFromParent()
+	}
+	
+	//MARK: WKUIDelegate functions
+	func webViewDidClose(_ webView: WKWebView) {
+		removeFromParent()
+	}
+	
+	func webView(_ webView: WKWebView, didFinish: WKNavigation!){
+		print("called didFinish")
+	}
+	
+	func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: any Error){
+		handleFailedLoad(webView)
+	}
+	
+	func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: any Error){
+		handleFailedLoad(webView)
+	}
+	
+	private func handleFailedLoad(_ webView: WKWebView){
+		let errorURL = getCouldNotLoadWebViewURL()
+		webView.loadFileURL(errorURL, allowingReadAccessTo: errorURL.deletingLastPathComponent())
 	}
 }

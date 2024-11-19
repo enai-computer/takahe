@@ -294,10 +294,14 @@ class NiWebView: WKWebView, CFContentItem, CFContentSearch{
 					 windowFeatures: WKWindowFeatures
 	) -> NiWebPopUp? {
 		guard popUp == nil else {return nil}
-		popUp = NiPopUpViewController(with: configuration)
+		popUp = NiPopUpViewController(with: configuration, for: self)
 		positionAndSize(popUpView: popUp!.view, windowFeatures: windowFeatures)
 		self.addSubview(popUp!.view)
 		return popUp?.niWebView
+	}
+	
+	func popUpClosed(){
+		popUp = nil
 	}
 	
 	private func positionAndSize(
@@ -411,9 +415,7 @@ class NiWebView: WKWebView, CFContentItem, CFContentSearch{
 		overlay?.removeFromSuperview()
 		overlay = nil
 		eveHandler = nil
-		popUp?.view.removeFromSuperview()
 		popUp?.removeFromParent()
-		popUp = nil
 		
 		stopLoading()
 	}
