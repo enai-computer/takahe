@@ -1385,7 +1385,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 			}
 		}
 	}
-	
+
 	func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: any Error){
 		handleFailedLoad(webView, with: error)
 	}
@@ -1568,6 +1568,9 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	}
 	
 	private func handleFailedLoad(_ webView: WKWebView, with error: any Error){
+		if error._domain == "WebKitErrorDomain" && error._code == 102{
+			return
+		}
 		guard let wv = webView as? NiWebView else{
 			let errorURL = getCouldNotLoadWebViewURL()
 			webView.loadFileURL(errorURL, allowingReadAccessTo: errorURL.deletingLastPathComponent())
