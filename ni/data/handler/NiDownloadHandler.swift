@@ -133,12 +133,12 @@ class NiDownloadHandler: NSObject, WKDownloadDelegate{
 	private func visualDownloadFeedback(for webView: WKWebView?, successful: Bool){
 		if let niWebView = webView as? NiWebView{
 			if(successful){
-				let confirmationView = loadConfirmationView(with: "download saved to 'Downloads'", into: niWebView.frame.size, durationOnScreen: 6.0)
+				let confirmationView = loadConfirmationView(with: "also saved to Mac 'Downloads'", into: niWebView.frame.size, durationOnScreen: 8.0)
 				niWebView.addSubview(confirmationView)
 				niWebView.layoutSubtreeIfNeeded()
 				positionConfirmationViewOnScreen(view: confirmationView, enclosingFrame: niWebView.frame.size)
 			}else{
-				let confirmationView = loadConfirmationView(with: "failed to download file", into: niWebView.frame.size, durationOnScreen: 6.0)
+				let confirmationView = loadConfirmationView(with: "failed to download file", into: niWebView.frame.size, durationOnScreen: 8.0)
 				niWebView.addSubview(confirmationView)
 				niWebView.layoutSubtreeIfNeeded()
 				positionConfirmationViewOnScreen(view: confirmationView, enclosingFrame: niWebView.frame.size)
@@ -149,7 +149,7 @@ class NiDownloadHandler: NSObject, WKDownloadDelegate{
 		}
 	}
 	
-	private func loadConfirmationView(with message: String, into frame: CGSize, durationOnScreen: CGFloat = 3.0) -> NSView{
+	private func loadConfirmationView(with message: String, into frame: CGSize, durationOnScreen: CGFloat = 4.0) -> NSView{
 
 		let confirmationView = (NSView.loadFromNib(nibName: "CFSoftDeletedView", owner: self) as! CFSoftDeletedView)
 		confirmationView.initAfterViewLoad(
@@ -157,7 +157,7 @@ class NiDownloadHandler: NSObject, WKDownloadDelegate{
 			showUndoButton: false,
 			animationTime_S: durationOnScreen,
 			borderWidth: 2.0,
-			borderColor: .birkinT50,
+			borderColor: .birkinT70,
 			borderDisappears: true
 		)
 		
