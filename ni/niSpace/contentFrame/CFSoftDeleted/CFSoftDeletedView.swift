@@ -24,7 +24,7 @@ class CFSoftDeletedView: NSBox {
 	}
 	
 	func initAfterViewLoad(message: String, showUndoButton: Bool, animationTime_S: Double = 5.0,
-						   borderWidth: CGFloat = 5.0, borderColor: NSColor = .sand4, borderDisappears: Bool = false){
+						   borderWidth: CGFloat = 5.0, borderColor: NSColor = .sand4, borderDisappears: Bool = false, withAnimationDelay: CGFloat? = nil){
 		wantsLayer = true
 		layer?.cornerRadius = 10
 		layer?.cornerCurve = .continuous
@@ -49,9 +49,12 @@ class CFSoftDeletedView: NSBox {
 			layer?.borderWidth = borderWidth
 			layer?.borderColor = borderColor.cgColor
 		}
+		if (withAnimationDelay != nil && .zero <= withAnimationDelay!){
+			triggerAnimation(with: withAnimationDelay!)
+		}else{
+			triggerAnimation()
+		}
 		
-		
-		triggerAnimation()
 	}
 	
 	func initAfterViewLoad(_ itemName: String = "group", parentController: ContentFrameController) {
@@ -85,9 +88,15 @@ class CFSoftDeletedView: NSBox {
 		self.deinitSelf()
 	}
 	
+	private func triggerAnimation(with delay: Double){
+		DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
+			self.triggerAnimation()
+		}
+	}
+	
 	private func triggerAnimation(){
 		NSAnimationContext.runAnimationGroup({ context in
-			context.duration = animationTime_S
+			context.duration = self.animationTime_S
 			self.animator().alphaValue = 0.0
 		}, completionHandler: {
 			self.deletionCompletionHandler?()
