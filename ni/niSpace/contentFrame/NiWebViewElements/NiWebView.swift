@@ -107,6 +107,17 @@ class NiWebView: WKWebView, CFContentItem, CFContentSearch{
 	@IBAction override func printView(_ sender: Any?){
 		return
 	}
+	
+	override func otherMouseDown(with event: NSEvent){
+		switch event.buttonNumber{
+			case 3:	//usually back button
+				goBack()
+			case 4:	//usually forward button
+				goForward()
+			default:
+				super.otherMouseDown(with: event)
+		}
+	}
 
 	func viewLoadedWebsite(){
 		websiteLoaded = true
