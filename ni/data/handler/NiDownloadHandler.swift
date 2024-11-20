@@ -5,7 +5,7 @@
 //  Created by Patrick Lukas on 15/7/24.
 //
 
-import WebKit
+@preconcurrency import WebKit
 import PDFKit
 import Foundation
 
@@ -45,6 +45,11 @@ class NiDownloadHandler: NSObject, WKDownloadDelegate{
 		if let originalRequest: URLRequest = download.originalRequest{
 			downloadsInProgress[originalRequest] = destinationUrl
 		}
+		
+		if let niWebView = download.webView as? NiWebView{
+			let confirmationView = loadConfirmationView(with: "download started", into: niWebView.frame.size)
+			niWebView.addSubview(confirmationView)
+		}
 	}
 	
 	func downloadDidFinish(_ download: WKDownload) {
@@ -54,15 +59,12 @@ class NiDownloadHandler: NSObject, WKDownloadDelegate{
 				Task{
 					do{
 						try handleDownloadedFile(in: cachedDownloadLocation, from: source)
+						visualDownloadFeedback(for: download.webView, successful: true)
 					}catch{
 						print(error)
+						visualDownloadFeedback(for: download.webView, successful: false)
 					}
 				}
-			}
-		}
-		if let niWebView = download.webView as? NiWebView{
-			if(tabsToClose.remove(niWebView) != nil){
-				niWebView.owner?.closeTab(at: niWebView.tabHeadPosition)
 			}
 		}
 	}
@@ -126,6 +128,50 @@ class NiDownloadHandler: NSObject, WKDownloadDelegate{
 			return genDestUrl(destPath: destPath, destFileName: destFileName, fileExtension: fileExtension, iteration: iteration + 1)
 		}
 		return URL(fileURLWithPath: filePath)
+	}
+	
+	private func visualDownloadFeedback(for webView: WKWebView?, successful: Bool){
+		if let niWebView = webView as? NiWebView{
+			if(successful){
+				let confirmationView = loadConfirmationView(with: "download saved to 'Downloads'", into: niWebView.frame.size, durationOnScreen: 6.0)
+				niWebView.addSubview(confirmationView)
+				niWebView.layoutSubtreeIfNeeded()
+				positionConfirmationViewOnScreen(view: confirmationView, enclosingFrame: niWebView.frame.size)
+			}else{
+				let confirmationView = loadConfirmationView(with: "failed to download file", into: niWebView.frame.size, durationOnScreen: 6.0)
+				niWebView.addSubview(confirmationView)
+				niWebView.layoutSubtreeIfNeeded()
+				positionConfirmationViewOnScreen(view: confirmationView, enclosingFrame: niWebView.frame.size)
+			}
+			if(tabsToClose.remove(niWebView) != nil){
+				niWebView.owner?.closeTab(at: niWebView.tabHeadPosition)
+			}
+		}
+	}
+	
+	private func loadConfirmationView(with message: String, into frame: CGSize, durationOnScreen: CGFloat = 3.0) -> NSView{
+
+		let confirmationView = (NSView.loadFromNib(nibName: "CFSoftDeletedView", owner: self) as! CFSoftDeletedView)
+		confirmationView.initAfterViewLoad(
+			message: message,
+			showUndoButton: false,
+			animationTime_S: durationOnScreen,
+			borderWidth: 2.0,
+			borderColor: .birkinT50,
+			borderDisappears: true
+		)
+		
+		positionConfirmationViewOnScreen(view: confirmationView, enclosingFrame: frame)
+		
+		return confirmationView
+	}
+	
+	private func positionConfirmationViewOnScreen(view: NSView, enclosingFrame: CGSize){
+		let margin = 20.0
+		view.frame.origin = CGPoint(
+			x: enclosingFrame.width - margin - view.frame.width,
+			y: 0 + margin
+		)
 	}
 	
 	// Check permission is granted or not
