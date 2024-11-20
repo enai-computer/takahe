@@ -133,12 +133,12 @@ class NiDownloadHandler: NSObject, WKDownloadDelegate{
 	private func visualDownloadFeedback(for webView: WKWebView?, successful: Bool){
 		if let niWebView = webView as? NiWebView{
 			if(successful){
-				let confirmationView = loadConfirmationView(with: "also saved to Mac 'Downloads'", into: niWebView.frame.size, durationOnScreen: 8.0)
+				let confirmationView = loadConfirmationView(with: "also saved to Mac 'Downloads'", into: niWebView.frame.size, fadeoutDuration: 6.0, animationDelay: 2.0)
 				niWebView.addSubview(confirmationView)
 				niWebView.layoutSubtreeIfNeeded()
 				positionConfirmationViewOnScreen(view: confirmationView, enclosingFrame: niWebView.frame.size)
 			}else{
-				let confirmationView = loadConfirmationView(with: "failed to download file", into: niWebView.frame.size, durationOnScreen: 8.0)
+				let confirmationView = loadConfirmationView(with: "failed to download file", into: niWebView.frame.size, fadeoutDuration: 6.0, animationDelay: 2.0)
 				niWebView.addSubview(confirmationView)
 				niWebView.layoutSubtreeIfNeeded()
 				positionConfirmationViewOnScreen(view: confirmationView, enclosingFrame: niWebView.frame.size)
@@ -149,16 +149,17 @@ class NiDownloadHandler: NSObject, WKDownloadDelegate{
 		}
 	}
 	
-	private func loadConfirmationView(with message: String, into frame: CGSize, durationOnScreen: CGFloat = 4.0) -> NSView{
+	private func loadConfirmationView(with message: String, into frame: CGSize, fadeoutDuration: CGFloat = 4.0, animationDelay: CGFloat? = nil) -> NSView{
 
 		let confirmationView = (NSView.loadFromNib(nibName: "CFSoftDeletedView", owner: self) as! CFSoftDeletedView)
 		confirmationView.initAfterViewLoad(
 			message: message,
 			showUndoButton: false,
-			animationTime_S: durationOnScreen,
+			animationTime_S: fadeoutDuration,
 			borderWidth: 2.0,
 			borderColor: .birkinT70,
-			borderDisappears: true
+			borderDisappears: true,
+			withAnimationDelay: animationDelay
 		)
 		
 		positionConfirmationViewOnScreen(view: confirmationView, enclosingFrame: frame)
