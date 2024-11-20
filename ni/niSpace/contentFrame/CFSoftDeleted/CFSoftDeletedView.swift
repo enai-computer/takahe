@@ -13,7 +13,7 @@ class CFSoftDeletedView: NSBox {
 	private var deletionCompletionHandler: (()->Void)?
 	private var mouseDownFunc: (()->Void)?
 	
-	private var animationTriggered: Bool = false
+	private var borderLayer: CAShapeLayer?
 	private var animationTime_S: Double = 5.0
 	
 	@IBOutlet var messageBox: NSTextField!
@@ -23,12 +23,12 @@ class CFSoftDeletedView: NSBox {
 		myController = nil
 	}
 	
-	func initAfterViewLoad(message: String, showUndoButton: Bool, animationTime_S: Double = 5.0){
+	func initAfterViewLoad(message: String, showUndoButton: Bool, animationTime_S: Double = 5.0,
+						   borderWidth: CGFloat = 5.0, borderColor: NSColor = .sand4, borderDisappears: Bool = false){
 		wantsLayer = true
 		layer?.cornerRadius = 10
 		layer?.cornerCurve = .continuous
-		layer?.borderWidth = 5
-		layer?.borderColor = NSColor(.sand4).cgColor
+
 		layer?.backgroundColor = NSColor(.sand4).cgColor
 		
 		let hoverEffectTrackingArea = NSTrackingArea(rect: frame, options: [.mouseEnteredAndExited, .activeInKeyWindow], owner: self, userInfo: nil)
@@ -42,6 +42,14 @@ class CFSoftDeletedView: NSBox {
 		
 		self.messageBox.stringValue = message
 		self.animationTime_S = animationTime_S
+		
+		if(borderDisappears){
+			setupBorder(color: borderColor, width: borderWidth)
+		}else{
+			layer?.borderWidth = borderWidth
+			layer?.borderColor = borderColor.cgColor
+		}
+		
 		
 		triggerAnimation()
 	}
@@ -78,9 +86,6 @@ class CFSoftDeletedView: NSBox {
 	}
 	
 	private func triggerAnimation(){
-		if(animationTriggered){
-			return
-		}
 		NSAnimationContext.runAnimationGroup({ context in
 			context.duration = animationTime_S
 			self.animator().alphaValue = 0.0
@@ -88,6 +93,35 @@ class CFSoftDeletedView: NSBox {
 			self.deletionCompletionHandler?()
 			self.deinitSelf()
 		})
+	}
+	
+	override func layout() {
+		super.layout()
+		borderLayer?.frame = bounds
+		let path = NSBezierPath(roundedRect: bounds, xRadius: 10, yRadius: 10)
+		borderLayer?.path = path.cgPath
+	}
+	
+	private func startBorderAnimation() {
+		let opacityAnimation = CABasicAnimation(keyPath: "opacity")
+		opacityAnimation.fromValue = 1.0
+		opacityAnimation.toValue = 0.0
+		opacityAnimation.duration = (animationTime_S / 2.0)
+		opacityAnimation.isRemovedOnCompletion = false
+		opacityAnimation.fillMode = .forwards
+		borderLayer?.add(opacityAnimation, forKey: "strokeColorAnimation")
+	}
+	
+	private func setupBorder(color: NSColor, width borderWidth: CGFloat) {
+		let shapeLayer = CAShapeLayer()
+		shapeLayer.strokeColor = color.cgColor
+		shapeLayer.fillColor = NSColor.clear.cgColor
+		shapeLayer.lineWidth = borderWidth
+		
+		layer?.addSublayer(shapeLayer)
+		borderLayer = shapeLayer
+		
+		startBorderAnimation()
 	}
 	
 	private func deinitSelf(){
