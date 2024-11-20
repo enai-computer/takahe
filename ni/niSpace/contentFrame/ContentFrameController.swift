@@ -1301,7 +1301,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	
 	/*
 	 * MARK: - keyboard caputure here:
-	 */
+	 */	
 	override func keyDown(with event: NSEvent) {
 		//key responder chain does not get updated properly
 		if(!myView.frameIsActive){
@@ -1413,12 +1413,12 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		}
 		
 		//turning view into one with tabs
-		if(viewState == .simpleFrame && !urlStr.isEmpty && navigationAction.modifierFlags == .command){
+		if(viewState == .simpleFrame && !urlStr.isEmpty && navigationAction.modifierFlags.contains(.command)){
 			simpleFrameToExpanded()
 		}
 		
 		//open in new tab, comand clicked on link
-		if(navigationAction.modifierFlags == .command && viewHasTabs()){
+		if(navigationAction.modifierFlags.contains(.command) && viewHasTabs()){
 			if(!urlStr.isEmpty){
 				self.openWebsiteInNewTab(urlStr, shallSelectTab: false, openNextToSelectedTab: true)
 				decisionHandler(.cancel)
@@ -1446,12 +1446,12 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		}
 		
 		//turning view into one with tabs
-		if(viewState == .simpleFrame && !urlStr.isEmpty && navigationAction.modifierFlags == .command){
+		if(viewState == .simpleFrame && !urlStr.isEmpty && navigationAction.modifierFlags.contains(.command)){
 			simpleFrameToExpanded()
 		}
 		
 		//open in new tab, comand clicked on link
-		if(navigationAction.modifierFlags == .command && viewHasTabs()){
+		if(navigationAction.modifierFlags.contains(.command) && viewHasTabs()){
 			if(!urlStr.isEmpty){
 				self.openWebsiteInNewTab(urlStr, shallSelectTab: false, openNextToSelectedTab: true)
 				decisionHandler(.cancel, preferences)
@@ -1508,7 +1508,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 				return nil
 			}
 			//cmd + click twitter
-			if(navigationAction.modifierFlags == .command){
+			if((windowFeatures.height == nil && windowFeatures.x == nil) || navigationAction.modifierFlags.contains(.command)){
 				self.openWebsiteInNewTab(urlStr, openNextToSelectedTab: true)
 				return nil
 			}
