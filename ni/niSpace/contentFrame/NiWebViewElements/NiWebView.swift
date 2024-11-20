@@ -22,6 +22,7 @@ class NiWebView: WKWebView, CFContentItem, CFContentSearch{
 	private(set) var websiteLoaded = false
 	private var eveHandler: EveChatHandler?
 	private var popUp: NiPopUpViewController? = nil
+	private var downloadInfoView: NSView? = nil
 	
 	// overlays own view to deactivate clicks and visualise deactivation state
 	private var overlay: NSView?
@@ -341,6 +342,41 @@ class NiWebView: WKWebView, CFContentItem, CFContentSearch{
 		popUpView.frame.origin = centeredFrameOrigin(enclosingRect: bounds, subFrame: popUpView.frame.size, margin: margin)
 	}
 	
+	func showDownloadInfoView(with message: String, fadeoutDuration: Double? = 4.0, animationDelay: CGFloat? = nil){
+		downloadInfoView?.removeFromSuperview()
+		
+		downloadInfoView = loadConfirmationView(with: message, into: frame.size, fadeoutDuration: fadeoutDuration, animationDelay: animationDelay)
+		addSubview(downloadInfoView!)
+		layoutSubtreeIfNeeded()
+		positionConfirmationViewOnScreen(view: downloadInfoView!, enclosingFrame: frame.size)
+	}
+	
+	private func loadConfirmationView(with message: String, into frame: CGSize, fadeoutDuration: Double? = 4.0, animationDelay: CGFloat? = nil) -> NSView{
+
+		let confirmationView = (NSView.loadFromNib(nibName: "CFSoftDeletedView", owner: self) as! CFSoftDeletedView)
+		confirmationView.initAfterViewLoad(
+			message: message,
+			showUndoButton: false,
+			animationTime_S: fadeoutDuration,
+			borderWidth: 2.0,
+			borderColor: .birkinT70,
+			borderDisappears: true,
+			withAnimationDelay: animationDelay
+		)
+		
+		positionConfirmationViewOnScreen(view: confirmationView, enclosingFrame: frame)
+		
+		return confirmationView
+	}
+	
+	private func positionConfirmationViewOnScreen(view: NSView, enclosingFrame: CGSize){
+		let margin = 20.0
+		view.frame.origin = CGPoint(
+			x: enclosingFrame.width - margin - view.frame.width,
+			y: 0 + margin
+		)
+	}
+	
 	//MARK: - Eve AI handler
 	func passEnaiAPIAuth(){
 		guard PostHogSDK.shared.isFeatureEnabled("en-ai") else {return}
@@ -436,6 +472,8 @@ class NiWebView: WKWebView, CFContentItem, CFContentSearch{
 		overlay = nil
 		eveHandler = nil
 		popUp?.removeFromParent()
+		downloadInfoView?.removeFromSuperview()
+		downloadInfoView = nil
 		
 		stopLoading()
 	}
