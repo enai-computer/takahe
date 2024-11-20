@@ -14,7 +14,7 @@ class CFSoftDeletedView: NSBox {
 	private var mouseDownFunc: (()->Void)?
 	
 	private var borderLayer: CAShapeLayer?
-	private var animationTime_S: Double = 5.0
+	private var animationTime_S: Double?
 	
 	@IBOutlet var messageBox: NSTextField!
 	@IBOutlet var undoIcon: NSImageView!
@@ -23,7 +23,7 @@ class CFSoftDeletedView: NSBox {
 		myController = nil
 	}
 	
-	func initAfterViewLoad(message: String, showUndoButton: Bool, animationTime_S: Double = 5.0,
+	func initAfterViewLoad(message: String, showUndoButton: Bool, animationTime_S: Double? = 5.0,
 						   borderWidth: CGFloat = 5.0, borderColor: NSColor = .sand4, borderDisappears: Bool = false, withAnimationDelay: CGFloat? = nil){
 		wantsLayer = true
 		layer?.cornerRadius = 10
@@ -95,8 +95,9 @@ class CFSoftDeletedView: NSBox {
 	}
 	
 	private func triggerAnimation(){
+		guard let animationTime = self.animationTime_S else {return}
 		NSAnimationContext.runAnimationGroup({ context in
-			context.duration = self.animationTime_S
+			context.duration = animationTime
 			self.animator().alphaValue = 0.0
 		}, completionHandler: {
 			self.deletionCompletionHandler?()
@@ -115,7 +116,7 @@ class CFSoftDeletedView: NSBox {
 		let opacityAnimation = CABasicAnimation(keyPath: "opacity")
 		opacityAnimation.fromValue = 1.0
 		opacityAnimation.toValue = 0.0
-		opacityAnimation.duration = (animationTime_S / 2.0)
+		opacityAnimation.duration = (animationTime_S ?? 4.0 / 2.0)
 		opacityAnimation.isRemovedOnCompletion = false
 		opacityAnimation.fillMode = .forwards
 		borderLayer?.add(opacityAnimation, forKey: "strokeColorAnimation")

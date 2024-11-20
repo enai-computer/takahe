@@ -47,8 +47,7 @@ class NiDownloadHandler: NSObject, WKDownloadDelegate{
 		}
 		
 		if let niWebView = download.webView as? NiWebView{
-			let confirmationView = loadConfirmationView(with: "download started", into: niWebView.frame.size)
-			niWebView.addSubview(confirmationView)
+			niWebView.showDownloadInfoView(with: "downloading ...", fadeoutDuration: nil)
 		}
 	}
 	
@@ -133,46 +132,14 @@ class NiDownloadHandler: NSObject, WKDownloadDelegate{
 	private func visualDownloadFeedback(for webView: WKWebView?, successful: Bool){
 		if let niWebView = webView as? NiWebView{
 			if(successful){
-				let confirmationView = loadConfirmationView(with: "also saved to Mac 'Downloads'", into: niWebView.frame.size, fadeoutDuration: 6.0, animationDelay: 2.0)
-				niWebView.addSubview(confirmationView)
-				niWebView.layoutSubtreeIfNeeded()
-				positionConfirmationViewOnScreen(view: confirmationView, enclosingFrame: niWebView.frame.size)
+				niWebView.showDownloadInfoView(with: "also saved to Mac 'Downloads'", fadeoutDuration: 6.0, animationDelay: 2.0)
 			}else{
-				let confirmationView = loadConfirmationView(with: "failed to download file", into: niWebView.frame.size, fadeoutDuration: 6.0, animationDelay: 2.0)
-				niWebView.addSubview(confirmationView)
-				niWebView.layoutSubtreeIfNeeded()
-				positionConfirmationViewOnScreen(view: confirmationView, enclosingFrame: niWebView.frame.size)
+				niWebView.showDownloadInfoView(with: "failed to download file", fadeoutDuration: 6.0, animationDelay: 2.0)
 			}
 			if(tabsToClose.remove(niWebView) != nil){
 				niWebView.owner?.closeTab(at: niWebView.tabHeadPosition)
 			}
 		}
-	}
-	
-	private func loadConfirmationView(with message: String, into frame: CGSize, fadeoutDuration: CGFloat = 4.0, animationDelay: CGFloat? = nil) -> NSView{
-
-		let confirmationView = (NSView.loadFromNib(nibName: "CFSoftDeletedView", owner: self) as! CFSoftDeletedView)
-		confirmationView.initAfterViewLoad(
-			message: message,
-			showUndoButton: false,
-			animationTime_S: fadeoutDuration,
-			borderWidth: 2.0,
-			borderColor: .birkinT70,
-			borderDisappears: true,
-			withAnimationDelay: animationDelay
-		)
-		
-		positionConfirmationViewOnScreen(view: confirmationView, enclosingFrame: frame)
-		
-		return confirmationView
-	}
-	
-	private func positionConfirmationViewOnScreen(view: NSView, enclosingFrame: CGSize){
-		let margin = 20.0
-		view.frame.origin = CGPoint(
-			x: enclosingFrame.width - margin - view.frame.width,
-			y: 0 + margin
-		)
 	}
 	
 	// Check permission is granted or not
