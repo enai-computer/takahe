@@ -127,5 +127,6 @@ class CFSoftDeletedView: NSBox {
 	private func deinitSelf(){
 		self.deletionCompletionHandler = nil
 		self.mouseDownFunc = nil
+		self.removeFromSuperviewWithoutNeedingDisplay()
 	}
 }
