@@ -1507,6 +1507,11 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 				self.openWebsiteInNewTab(urlStr, openNextToSelectedTab: true)
 				return nil
 			}
+			//cmd + click twitter
+			if(navigationAction.modifierFlags == .command){
+				self.openWebsiteInNewTab(urlStr, openNextToSelectedTab: true)
+				return nil
+			}
 			//open pop-up for SSO for example
 			if(navigationAction.navigationType == .other){
 				//see example code here: https://stackoverflow.com/questions/52987509/xcode-wkwebview-code-to-allow-webview-to-process-popups
@@ -1697,9 +1702,6 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 			DocumentDal.persistGroup(id: groupId, name: groupName, spaceId: spaceId)
 		}
 		for tab in tabs {
-//			tab.webView?.evaluateJavaScript("document.documentElement.outerHTML.toString()") { html, e in
-//				print(html)
-//			}
 			DocumentDal.persistDocument(spaceId: spaceId, document: tab, groupId: self.groupId)
 		}
 	}
