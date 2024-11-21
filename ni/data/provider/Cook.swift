@@ -23,11 +23,15 @@ enum NiSearchResultType{
 	}
 }
 
-struct NiSearchResultItem{
+struct NiSearchResultItem: Equatable{
 	let type: NiSearchResultType
 	let id: UUID?
 	let name: String
 	let data: Any?
+	
+	static func == (lhs: NiSearchResultItem, rhs: NiSearchResultItem) -> Bool {
+		return lhs.type == rhs.type && lhs.id == rhs.id && lhs.name == rhs.name
+	}
 }
 
 struct NiSRIOriginData{
