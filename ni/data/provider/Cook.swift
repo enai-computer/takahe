@@ -96,6 +96,17 @@ class Cook{
 		return res
 	}
 	
+	/**
+	 returns true if its first argument should be ordered before its second argument; otherwise, false.
+	 
+	 Desired order:
+		 1. spaces
+		 2. groups
+		 3. content items
+		 4. sub-order:
+			names/titles that start with the search string first.
+			others that contain that string 2nd
+	 */
 	private func compareResult(r0: NiSearchResultItem, r1: NiSearchResultItem, searchStr: String, currentSpaceId: UUID?) -> Bool{
 		if(r0.type == .niSpace && r1.type != .niSpace){
 			return true
@@ -103,9 +114,8 @@ class Cook{
 		if(r1.type == .niSpace && r0.type != .niSpace){
 			return false
 		}
-		if let currentSpaceId = currentSpaceId{
-			let result = resultsInSameSpaceReorder(r0: r0, r1: r1, currentSpaceId: currentSpaceId)
-			if let result = result{
+		if let currentSpaceId: UUID = currentSpaceId{
+			if let result: Bool = resultsInSameSpaceReorder(r0: r0, r1: r1, currentSpaceId: currentSpaceId){
 				return result
 			}
 		}
@@ -118,20 +128,21 @@ class Cook{
 	/**
 	 checks if the two results are content items and if yes checks if one of them is in the same space. If thats the case true if in correct order otherwise false. Nil if both are not in the same space
 	 */
-	private func resultsInSameSpaceReorder(r0: NiSearchResultItem, r1: NiSearchResultItem, currentSpaceId: UUID) -> Bool?{
-		if(r0.type.isContentItem() && r1.type.isContentItem()){
-			if let d0 = r0.data as? NiSRIOriginData{
-				if let d1 = r1.data as? NiSRIOriginData{
-					if(d1.id != d0.id){
-						if(d0.id == currentSpaceId){
-							return true
-						}
-						return false
-					}
-				}
-			}
+	private func resultsInSameSpaceReorder(
+		r0: NiSearchResultItem, r1: NiSearchResultItem, currentSpaceId: UUID
+	) -> Bool?{
+		guard (r0.type.isContentItem() && r1.type.isContentItem()) else {
+			return nil
 		}
-		return nil
+		guard let d0 = r0.data as? NiSRIOriginData else {return nil}
+		guard let d1 = r1.data as? NiSRIOriginData else {return nil}
+
+		guard (d1.id != d0.id) else {return nil}
+
+		if(d0.id == currentSpaceId){
+			return true
+		}
+		return false
 	}
 	
 	private func searchSpaces(typedChars: String?,
