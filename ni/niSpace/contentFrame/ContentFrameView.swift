@@ -95,6 +95,7 @@ class ContentFrameView: CFBaseView, CFTabHeadProtocol, CFFwdBackButtonProtocol, 
     }
     
 	func deleteSelectedTab(at position: Int){
+		guard 0 <= position && position < niContentTabView.tabViewItems.count else {return}
 		niContentTabView.removeTabViewItem(niContentTabView.tabViewItem(at: position))
 	}
 	
