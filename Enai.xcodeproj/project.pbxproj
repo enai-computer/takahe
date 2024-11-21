@@ -70,6 +70,7 @@
 		CD410AE02C285AC700EC5DF7 /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD410ADF2C285AC700EC5DF7 /* UserSettings.swift */; };
 		CD410AE22C285C3C00EC5DF7 /* NiUsersSettingsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD410AE12C285C3C00EC5DF7 /* NiUsersSettingsModel.swift */; };
 		CD42CEC92BDA48180039814D /* NiScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD42CEC82BDA48180039814D /* NiScrollView.swift */; };
+		CD454C392CEFAA720085E151 /* NiCollectionViewUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD454C382CEFAA670085E151 /* NiCollectionViewUtils.swift */; };
 		CD4D7AE42C49459400B6DBFD /* Atomics in Frameworks */ = {isa = PBXBuildFile; productRef = CD4D7AE32C49459400B6DBFD /* Atomics */; };
 		CD4D7AE62C4959B800B6DBFD /* DateUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4D7AE52C4959B800B6DBFD /* DateUtils.swift */; };
 		CD4DBD4E2CBE709600CE5179 /* signifier-regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = CD4DBD4D2CBE709600CE5179 /* signifier-regular.otf */; };
@@ -298,6 +299,7 @@
 		CD410ADF2C285AC700EC5DF7 /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
 		CD410AE12C285C3C00EC5DF7 /* NiUsersSettingsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiUsersSettingsModel.swift; sourceTree = "<group>"; };
 		CD42CEC82BDA48180039814D /* NiScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiScrollView.swift; sourceTree = "<group>"; };
+		CD454C382CEFAA670085E151 /* NiCollectionViewUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiCollectionViewUtils.swift; sourceTree = "<group>"; };
 		CD4D7AE52C4959B800B6DBFD /* DateUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtils.swift; sourceTree = "<group>"; };
 		CD4DBD4D2CBE709600CE5179 /* signifier-regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "signifier-regular.otf"; sourceTree = "<group>"; };
 		CD4E0E3A2C4164A000273109 /* CFSimpleMinimizedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CFSimpleMinimizedView.swift; sourceTree = "<group>"; };
@@ -786,6 +788,7 @@
 		CD66CE362B1FD24B0006BB98 /* utils */ = {
 			isa = PBXGroup;
 			children = (
+				CD454C382CEFAA670085E151 /* NiCollectionViewUtils.swift */,
 				CD078DD12CE21682005C0B58 /* NSPointUtils.swift */,
 				CD0FBEB92CAD632300FF19C2 /* AppUtils.swift */,
 				CDA639572BF508FF001941DE /* WelcomeSpaceGenerator.swift */,
@@ -1274,6 +1277,7 @@
 				A1B8E6AB2AAFB5EC00AC6566 /* ni.xcdatamodeld in Sources */,
 				CD9B96C12C0733F800998CE2 /* NiImgViewUtils.swift in Sources */,
 				A14E8F292AD5EB1600409DDF /* NiSpaceViewController.swift in Sources */,
+				CD454C392CEFAA720085E151 /* NiCollectionViewUtils.swift in Sources */,
 				CDD6B9522B1BFE8B00C6144D /* NiDocumentModel.swift in Sources */,
 				CDABE64E2C11C63500BB4E85 /* NiMenuView.swift in Sources */,
 				CDE7BAF72CABE2BC00328025 /* GroupIdContentIdTable.swift in Sources */,

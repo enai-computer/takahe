@@ -125,13 +125,38 @@ class NiSearchController: NSViewController, NSCollectionViewDataSource, NSCollec
 			chatShown = false
 		}
 		if let dirtyTxt = (obj.object as? NSTextField)?.stringValue{
+			let updatedResults: [NiSearchResultItem]
 			if(view.window is NiPalette){
-				searchResults = Cook.instance.search(typedChars: dirtyTxt, giveCreateNewSpaceOption: true, currentSpaceId: currentSpaceId)
+				updatedResults = Cook.instance.search(typedChars: dirtyTxt, giveCreateNewSpaceOption: true, currentSpaceId: currentSpaceId)
 			}else{
-				searchResults = Cook.instance.search(typedChars: dirtyTxt, giveCreateNewSpaceOption: true, returnAskEnaiOption: false)
+				updatedResults = Cook.instance.search(typedChars: dirtyTxt, giveCreateNewSpaceOption: true, returnAskEnaiOption: false)
 			}
-			searchResultsCollection.reloadData()
+
+			updateResultsCollection(updatedResults)
 			resetSelection()
+		}
+	}
+	
+	private func updateResultsCollection(_ updatedResults:[NiSearchResultItem]){
+		// 0. Diff
+		let diff = ListDiffHelper.diff(searchResults, updatedResults)
+
+		searchResultsCollection.performBatchUpdates({
+			// 1. update data-source
+			self.searchResults = updatedResults
+			
+			// 2. update UI
+			searchResultsCollection.deleteItems(at: diff.removals)
+			for item in diff.moves{
+				searchResultsCollection.moveItem(at: item.0, to: item.1)
+			}
+			searchResultsCollection.insertItems(at: diff.insertions)
+		})
+		
+		for item in diff.moves{
+			if let resultViewItem = searchResultsCollection.item(at: item.1.item) as? NiSearchResultViewItem{
+				resultViewItem.moved(to: item.1.item)
+			}
 		}
 	}
 	
@@ -251,6 +276,7 @@ class NiSearchController: NSViewController, NSCollectionViewDataSource, NSCollec
 			controller: self
 		)
 		
+		resultView.deselect(skippRightSideElement: true)
 		return resultView
 	}
 	

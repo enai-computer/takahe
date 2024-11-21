@@ -75,9 +75,17 @@ class NiSearchResultViewItem: NSCollectionViewItem {
 		deselect()
 		rightSideElement.prepareForReuse()
 		resultSubTitle.stringValue = ""
+		leftSideResultTypeIcon?.image = nil
+	}
+	
+	func moved(to: Int){
+		deselect(skippRightSideElement: true)
+		self.rightSideElement.configureElement(to)
 	}
 	
 	func select(){
+		birkinHighlight?.removeFromSuperview()
+		birkinHighlight = nil
 		birkinHighlight = getBirkinView()
 		view.addSubview(birkinHighlight!)
 		view.layer?.backgroundColor = NSColor.sand1.cgColor
@@ -88,7 +96,7 @@ class NiSearchResultViewItem: NSCollectionViewItem {
 		leftSideResultTypeIcon.contentTintColor = NSColor.sand115
 	}
 	
-	func deselect(){
+	func deselect(skippRightSideElement: Bool = false){
 		birkinHighlight?.removeFromSuperview()
 		birkinHighlight = nil
 		keySelected = false
@@ -101,7 +109,9 @@ class NiSearchResultViewItem: NSCollectionViewItem {
 		
 		resultTitle.textColor = NSColor.sand115
 		resultSubTitle.textColor = NSColor.sand115
-		rightSideElement.deselect()
+		if(!skippRightSideElement){
+			rightSideElement.deselect()
+		}
 		leftSideResultTypeIcon.contentTintColor = NSColor.sand11
 	}
 	
