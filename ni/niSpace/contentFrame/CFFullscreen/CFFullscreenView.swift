@@ -158,7 +158,7 @@ class CFFullscreenView: CFBaseView, CFTabHeadProtocol, CFFwdBackButtonProtocol{
 			}
 		}
 		items.append(NiMenuItemViewModel(
-			title: "open a new group",
+			title: "Open a new group",
 			isEnabled: true,
 			mouseDownFunction: { [myController] _ in
 				myController?.fullscreenToPreviousState()
