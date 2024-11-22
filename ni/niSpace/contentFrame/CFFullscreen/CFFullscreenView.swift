@@ -282,4 +282,33 @@ class CFFullscreenView: CFBaseView, CFTabHeadProtocol, CFFwdBackButtonProtocol{
 		removeAutoUpdatingTime()
 		super.removeFromSuperview()
 	}
+	
+	override func deinitSelf(keepContentView: Bool = false){
+		if(keepContentView){
+			assertionFailure("option not implemented")
+		}
+		
+		for t in niContentTabView.tabViewItems{
+			if let niContentView = t.view as? CFContentItem{
+				niContentView.spaceRemovedFromMemory()
+			}
+			niContentTabView.removeTabViewItem(t)
+		}
+		niContentTabView.tabViewItems = []
+		niContentTabView.removeFromSuperviewWithoutNeedingDisplay()
+
+		cfTabHeadCollection?.dataSource = nil
+		cfTabHeadCollection?.delegate = nil
+		cfTabHeadCollection?.removeFromSuperviewWithoutNeedingDisplay()
+
+		minimizedIcon.deinitSelf()
+		pinnedAppIcon.deinitSelf()
+		searchIcon.deinitSelf()
+		addTabButton.deinitSelf()
+		switchGroupInSpaceButton.deinitSelf()
+		contentForwardButton.deinitSelf()
+		contentBackButton.deinitSelf()
+		
+		super.deinitSelf()
+	}
 }
