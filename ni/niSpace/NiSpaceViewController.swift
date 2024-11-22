@@ -199,7 +199,7 @@ class NiSpaceViewController: NSViewController, NSTextFieldDelegate{
 			)
 		}
 		items.append(NiMenuItemViewModel(
-			title: "open a new group",
+			title: "Open a new group",
 			isEnabled: true,
 			mouseDownFunction: { _ in
 				guard let appDel = NSApplication.shared.delegate as? AppDelegate else{return}
