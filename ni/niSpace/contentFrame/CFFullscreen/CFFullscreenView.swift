@@ -286,6 +286,7 @@ class CFFullscreenView: CFBaseView, CFTabHeadProtocol, CFFwdBackButtonProtocol{
 	override func deinitSelf(keepContentView: Bool = false){
 		if(keepContentView){
 			assertionFailure("option not implemented")
+			return
 		}
 		
 		for t in niContentTabView.tabViewItems{
