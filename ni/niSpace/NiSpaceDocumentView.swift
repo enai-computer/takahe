@@ -206,22 +206,27 @@ class NiSpaceDocumentView: NSView{
 			for tab in cFrame.tabs {
 				if(tab.contentId == contentId){
 					foundContentId = true
-					highlightContentFrame(cframe: cFrame)
+					
+					//first we need to expand and then we call highlight, as otherwise the canvas will jump to the minimized position and not expanded position
 					if(cFrame.viewState.isMinimized()){
 						cFrame.minimizedToExpanded()
 					}
+					
+					highlightContentFrame(cframe: cFrame)
 					DispatchQueue.main.async{
 						cFrame.selectTab(at: tab.position)
 					}
 					
 					contentFrameToHighlight = cFrame
 					
+					//exit here, as the wished item is in fullscreen on top
 					if(cFrame.viewState == .fullscreen){
 						return
 					}
 				}
 			}
 			
+			//if there is another contentframe that is in full screen we downsize it to expand so it does not cover the search result
 			if(cFrame.viewState == .fullscreen){
 				cFrame.fullscreenToExpanded()
 				//Called to make sure it's on top
