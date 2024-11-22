@@ -546,7 +546,7 @@ class ContentFrameView: CFBaseView, CFTabHeadProtocol, CFFwdBackButtonProtocol, 
     
 	override func deinitSelf(keepContentView: Bool = false){
 		if(keepContentView){
-			fatalError("option not implemented")
+			assertionFailure("option not implemented")
 		}
 		cfGroupButton.deinitSelf()
 		

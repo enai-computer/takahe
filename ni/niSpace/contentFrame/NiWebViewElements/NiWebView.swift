@@ -464,6 +464,9 @@ class NiWebView: WKWebView, CFContentItem, CFContentSearch{
 	
 	//MARK: - Deinit
 	deinit{
+		self.configuration.userContentController.removeAllUserScripts()
+		loadHTMLString("", baseURL: nil)
+		
 		canGobackObserver?.invalidate()
 		canGoForwardObserver?.invalidate()
 		titleChangeObserver?.invalidate()
