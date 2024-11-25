@@ -382,6 +382,7 @@ class NiWebView: WKWebView, CFContentItem, CFContentSearch{
 		guard PostHogSDK.shared.isFeatureEnabled("en-ai") else {return}
 		guard isEveChatURL() else {return}
 		let (userId, bearerToken) = Eve.instance.maraeClient.authKey()
+		let aiModels: NSArray = Eve.instance.maraeClient.jsConformAiModels() 
 		self.evaluateJavaScript("API_BASE_HOST = \"\(Eve.instance.maraeClient.hostUrl)\""){
 			(result, error) in
 			print(error as Any)
@@ -390,6 +391,16 @@ class NiWebView: WKWebView, CFContentItem, CFContentSearch{
 		   (result, error) in
 		   print(error as Any)
 	   }
+		Task{
+			do{
+				try await self.callAsyncJavaScript("setAvailableModels(aiModels);",
+												   arguments: ["aiModels": aiModels],
+												   contentWorld: WKContentWorld.page)
+			}catch{
+				print(error)
+			}
+		}
+
 	}
 	
 	func passEnaiAPIAuthOnMain(){
