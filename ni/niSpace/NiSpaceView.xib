@@ -18,6 +18,7 @@
                 <outlet property="spaceIcon" destination="Yne-Pi-Jml" id="l5U-YG-TqC"/>
                 <outlet property="spaceName" destination="IcY-Xb-pUo" id="ECl-ux-gyo"/>
                 <outlet property="time" destination="yLB-kD-fbD" id="LJa-ji-zdb"/>
+                <outlet property="toolbar" destination="He2-5i-e2D" id="kOi-cS-a7x"/>
                 <outlet property="visEffectView" destination="OTL-Hy-eFp" id="KEH-QA-Cwy"/>
             </connections>
         </customObject>
@@ -50,6 +51,10 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
                 </scrollView>
+                <customView id="He2-5i-e2D" customClass="SpaceToolIslandView" customModule="Enai" customModuleProvider="target">
+                    <rect key="frame" x="1458" y="18" width="124" height="32"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxY="YES"/>
+                </customView>
                 <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="m2w-Th-Zhg">
                     <rect key="frame" x="30" y="865" width="1540" height="36"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
