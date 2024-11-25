@@ -21,6 +21,7 @@ class MaraeClient{
 	private var auth_header: [String: String] = [:]
 	private var bearerToken: String = ""
 	private var updatedAuthToken: Date?
+	private var availableAiModels: [AiModel] = []
 	private let minTimeBetweenAuth_sec: Double = -60.0
 	
 	init(){
@@ -46,6 +47,7 @@ class MaraeClient{
 					self.auth_header = [self.AUTH_HEADER_KEY: "Bearer " + self.bearerToken]
 					self.updatedAuthToken = .now
 				}
+				self.availableAiModels = try await self.getAvailableModels()
 				callback?()
 			}
 		}
@@ -55,6 +57,14 @@ class MaraeClient{
 	func authKey() -> (String, String){
 		let uId = PostHogSDK.shared.getDistinctId()
 		return (uId, bearerToken)
+	}
+	
+	func jsConformAiModels() -> NSArray{
+		var res: [NSDictionary] = []
+		for m in availableAiModels{
+			res.append(m.toDictionary())
+		}
+		return NSArray(array: res)
 	}
 	
 	func sendRecord(record: OutboxMessage) async throws -> Bool{
@@ -89,6 +99,22 @@ class MaraeClient{
 			return String(data: res!.data, encoding: .utf8) ?? "failed to decode"
 		}
 		return "Failed to fetch version"
+	}
+	
+	private func getAvailableModels() async throws -> [AiModel]{
+		let relPath = apiVersion + "/" + userID + "/ai-models"
+		let req = Request(
+			path: relPath,
+			method: .get,
+			headers: auth_header
+		)
+		let res = try await sendRequest(req)
+		if(res?.statusCode == 200 && res != nil){
+			let jsonD = JSONDecoder()
+			let answer = try jsonD.decode(AiModelsResponse.self, from: res!.data)
+			return answer.models
+		}
+		return []
 	}
 	
 	func testStatus() async throws -> String{

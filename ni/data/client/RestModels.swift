@@ -62,6 +62,20 @@ struct MaraeVerifyResponse: Codable{
 	let token_type: String
 }
 
+struct AiModel: Codable{
+	let id: String
+	let name: String
+	let description: String
+	
+	func toDictionary() -> NSDictionary {
+		return NSDictionary(dictionaryLiteral: ("id", id), ("name", name), ("description", description))
+	}
+}
+
+struct AiModelsResponse: Codable{
+	let models: [AiModel]
+}
+
 struct WelcomeTextPayload: Codable{
 	let space_name: String
 	let group_name: String?
