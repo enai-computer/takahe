@@ -28,6 +28,7 @@
 		CD078DD22CE2168B005C0B58 /* NSPointUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD078DD12CE21682005C0B58 /* NSPointUtils.swift */; };
 		CD08982A2C9057F6007A9A9F /* .swiftlint-disable in Resources */ = {isa = PBXBuildFile; fileRef = CD0898292C9057F6007A9A9F /* .swiftlint-disable */; };
 		CD0B63582CF494D000927F54 /* aiChat.html in Resources */ = {isa = PBXBuildFile; fileRef = CD0B63572CF494D000927F54 /* aiChat.html */; };
+		CD0B635A2CF4A16300927F54 /* SpaceToolIslandView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0B63592CF4A13B00927F54 /* SpaceToolIslandView.swift */; };
 		CD0FA1C12BDBE2BA0065313B /* Inter-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CD0FA1C02BDBE2BA0065313B /* Inter-Regular.ttf */; };
 		CD0FBEBA2CAD632E00FF19C2 /* AppUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0FBEB92CAD632300FF19C2 /* AppUtils.swift */; };
 		CD1160C82BD142D100345E3E /* WebURL in Frameworks */ = {isa = PBXBuildFile; productRef = CD1160C72BD142D100345E3E /* WebURL */; };
@@ -260,6 +261,7 @@
 		CD078DD12CE21682005C0B58 /* NSPointUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSPointUtils.swift; sourceTree = "<group>"; };
 		CD0898292C9057F6007A9A9F /* .swiftlint-disable */ = {isa = PBXFileReference; lastKnownFileType = text; path = ".swiftlint-disable"; sourceTree = "<group>"; };
 		CD0B63572CF494D000927F54 /* aiChat.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = aiChat.html; sourceTree = "<group>"; };
+		CD0B63592CF4A13B00927F54 /* SpaceToolIslandView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpaceToolIslandView.swift; sourceTree = "<group>"; };
 		CD0FA1C02BDBE2BA0065313B /* Inter-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Regular.ttf"; sourceTree = "<group>"; };
 		CD0FBEB92CAD632300FF19C2 /* AppUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUtils.swift; sourceTree = "<group>"; };
 		CD1160C92BD27B9E00345E3E /* NiWebViewUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiWebViewUtils.swift; sourceTree = "<group>"; };
@@ -918,6 +920,7 @@
 		CDB06B5B2AF81CB6008DB8FF /* niSpace */ = {
 			isa = PBXGroup;
 			children = (
+				CD0B63592CF4A13B00927F54 /* SpaceToolIslandView.swift */,
 				CD1C6D532C5256120019CD09 /* pinnedMenu */,
 				CD6752992BFB502A0008A227 /* spaceMenu */,
 				A1E41BFD2ACB684F00338417 /* contentFrame */,
@@ -1350,6 +1353,7 @@
 				CD410AE02C285AC700EC5DF7 /* UserSettings.swift in Sources */,
 				CDFA8CFB2C03B9AE00882722 /* CFFramelessView.swift in Sources */,
 				CDF6C54E2C383A37006B458B /* NiBlur.swift in Sources */,
+				CD0B635A2CF4A16300927F54 /* SpaceToolIslandView.swift in Sources */,
 				CDD7D3402C19924F0038E6F9 /* NiSearchResultViewItem.swift in Sources */,
 				CD06A9BA2BF79EF500312256 /* NiScroller.swift in Sources */,
 				CD781E752C0E1B6E00D02F55 /* NiNoteView.swift in Sources */,

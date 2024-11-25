@@ -26,6 +26,8 @@ class NiSpaceViewController: NSViewController, NSTextFieldDelegate{
 	private var currentSpaceName: String?
 	@IBOutlet var visEffectView: NSVisualEffectView!
 	
+	@IBOutlet var toolbar: SpaceToolIslandView!
+	
 	@IBOutlet var niScrollView: NiScrollView!
 	@IBOutlet var niDocument: NiSpaceDocumentController!
 	private let documentCache = NiDocControllerCache()
@@ -738,11 +740,13 @@ class NiSpaceViewController: NSViewController, NSTextFieldDelegate{
 	//function needed for fullscreen contentframes
 	func hideHeader(){
 		header.isHidden = true
+		toolbar.isHidden = true
 		niScrollView.allowScrolling = false
 	}
 	
 	func showHeader(){
 		header.isHidden = false
+		toolbar.isHidden = false
 		niScrollView.allowScrolling = true
 	}
 	
