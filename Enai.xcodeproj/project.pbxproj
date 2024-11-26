@@ -30,6 +30,7 @@
 		CD0B63582CF494D000927F54 /* aiChat.html in Resources */ = {isa = PBXBuildFile; fileRef = CD0B63572CF494D000927F54 /* aiChat.html */; };
 		CD0B635A2CF4A16300927F54 /* SpaceToolIslandView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0B63592CF4A13B00927F54 /* SpaceToolIslandView.swift */; };
 		CD0B635C2CF4C8A500927F54 /* NiSpaceViewUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0B635B2CF4C89F00927F54 /* NiSpaceViewUtils.swift */; };
+		CD0B635E2CF5DD1800927F54 /* StickyUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0B635D2CF5DD0F00927F54 /* StickyUtils.swift */; };
 		CD0FA1C12BDBE2BA0065313B /* Inter-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CD0FA1C02BDBE2BA0065313B /* Inter-Regular.ttf */; };
 		CD0FBEBA2CAD632E00FF19C2 /* AppUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0FBEB92CAD632300FF19C2 /* AppUtils.swift */; };
 		CD1160C82BD142D100345E3E /* WebURL in Frameworks */ = {isa = PBXBuildFile; productRef = CD1160C72BD142D100345E3E /* WebURL */; };
@@ -264,6 +265,7 @@
 		CD0B63572CF494D000927F54 /* aiChat.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = aiChat.html; sourceTree = "<group>"; };
 		CD0B63592CF4A13B00927F54 /* SpaceToolIslandView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpaceToolIslandView.swift; sourceTree = "<group>"; };
 		CD0B635B2CF4C89F00927F54 /* NiSpaceViewUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiSpaceViewUtils.swift; sourceTree = "<group>"; };
+		CD0B635D2CF5DD0F00927F54 /* StickyUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StickyUtils.swift; sourceTree = "<group>"; };
 		CD0FA1C02BDBE2BA0065313B /* Inter-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Regular.ttf"; sourceTree = "<group>"; };
 		CD0FBEB92CAD632300FF19C2 /* AppUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUtils.swift; sourceTree = "<group>"; };
 		CD1160C92BD27B9E00345E3E /* NiWebViewUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiWebViewUtils.swift; sourceTree = "<group>"; };
@@ -922,13 +924,14 @@
 		CDB06B5B2AF81CB6008DB8FF /* niSpace */ = {
 			isa = PBXGroup;
 			children = (
-				CD0B63592CF4A13B00927F54 /* SpaceToolIslandView.swift */,
 				CD1C6D532C5256120019CD09 /* pinnedMenu */,
 				CD6752992BFB502A0008A227 /* spaceMenu */,
 				A1E41BFD2ACB684F00338417 /* contentFrame */,
 				A14E8F242AD5EADF00409DDF /* NiSpaceView.xib */,
 				A14E8F262AD5EAF800409DDF /* NiSpaceView.swift */,
 				CD0B635B2CF4C89F00927F54 /* NiSpaceViewUtils.swift */,
+				CD0B635D2CF5DD0F00927F54 /* StickyUtils.swift */,
+				CD0B63592CF4A13B00927F54 /* SpaceToolIslandView.swift */,
 				CD3362152BFDFF97004DBAFB /* SpaceTopbar.swift */,
 				A14E8F282AD5EB1600409DDF /* NiSpaceViewController.swift */,
 				CDB06B602AF84E1F008DB8FF /* NiSpaceDocumentView.swift */,
@@ -1258,6 +1261,7 @@
 				CD5B153A2BDFBFE40030F017 /* NiActionImage.swift in Sources */,
 				CD8E580B2CC909F0007550CF /* EveChatTable.swift in Sources */,
 				CDC5A1162C284AD1002F5621 /* NiDocControllerCache.swift in Sources */,
+				CD0B635E2CF5DD1800927F54 /* StickyUtils.swift in Sources */,
 				CDB4830C2C6A624E00612AF5 /* CFFullscreenView.swift in Sources */,
 				CDE7BAF92CABFA0900328025 /* DocumentIdGroupIdTable.swift in Sources */,
 				CD240BD92C80C95D000E478F /* WeatherLocationPicker.swift in Sources */,
