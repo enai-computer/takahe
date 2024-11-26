@@ -27,6 +27,7 @@ class NiSpaceViewController: NSViewController, NSTextFieldDelegate{
 	@IBOutlet var visEffectView: NSVisualEffectView!
 	
 	@IBOutlet var toolbar: SpaceToolIslandView!
+	@IBOutlet var toolbarStack: NSStackView!
 	
 	@IBOutlet var niScrollView: NiScrollView!
 	@IBOutlet var niDocument: NiSpaceDocumentController!
@@ -62,6 +63,7 @@ class NiSpaceViewController: NSViewController, NSTextFieldDelegate{
 		
 		styleEndEditSpaceName()
 		setAutoUpdatingTime()
+		setUpToolbar()
 		
 		searchIcon.isActiveFunction = {return true}
 		searchIcon.setMouseDownFunction(openPalette)
@@ -141,12 +143,17 @@ class NiSpaceViewController: NSViewController, NSTextFieldDelegate{
 		removeAutoUpdatingTime()
 	}
 	
-	func setAutoUpdatingTime(){
+	private func setAutoUpdatingTime(){
 		Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(setDisplayedTime), userInfo: nil, repeats: true)
 	}
 	
-	func removeAutoUpdatingTime(){
+	private func removeAutoUpdatingTime(){
 		Timer.cancelPreviousPerformRequests(withTarget: setDisplayedTime())
+	}
+	
+	private func setUpToolbar(){
+		let stack = genToolbarStack()
+		toolbarStack.setViews(stack, in: .leading)
 	}
 	
 	@objc func setDisplayedTime(){
@@ -156,6 +163,9 @@ class NiSpaceViewController: NSViewController, NSTextFieldDelegate{
 		}
 	}
     
+	/*
+	 MARK: - functionality from here down
+	 */
 	func openPalette(with event: NSEvent) {
 		storeCurrentSpace()
 		guard let mainWindow: NSWindow = NSApplication.shared.mainWindow else{return}
@@ -736,7 +746,9 @@ class NiSpaceViewController: NSViewController, NSTextFieldDelegate{
 		return nil
 	}
     
-	
+	/*
+	 MARK: functions called via the app delegate
+	 */
 	//function needed for fullscreen contentframes
 	func hideHeader(){
 		header.isHidden = true

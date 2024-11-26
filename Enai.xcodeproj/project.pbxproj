@@ -29,6 +29,7 @@
 		CD08982A2C9057F6007A9A9F /* .swiftlint-disable in Resources */ = {isa = PBXBuildFile; fileRef = CD0898292C9057F6007A9A9F /* .swiftlint-disable */; };
 		CD0B63582CF494D000927F54 /* aiChat.html in Resources */ = {isa = PBXBuildFile; fileRef = CD0B63572CF494D000927F54 /* aiChat.html */; };
 		CD0B635A2CF4A16300927F54 /* SpaceToolIslandView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0B63592CF4A13B00927F54 /* SpaceToolIslandView.swift */; };
+		CD0B635C2CF4C8A500927F54 /* NiSpaceViewUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0B635B2CF4C89F00927F54 /* NiSpaceViewUtils.swift */; };
 		CD0FA1C12BDBE2BA0065313B /* Inter-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CD0FA1C02BDBE2BA0065313B /* Inter-Regular.ttf */; };
 		CD0FBEBA2CAD632E00FF19C2 /* AppUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0FBEB92CAD632300FF19C2 /* AppUtils.swift */; };
 		CD1160C82BD142D100345E3E /* WebURL in Frameworks */ = {isa = PBXBuildFile; productRef = CD1160C72BD142D100345E3E /* WebURL */; };
@@ -262,6 +263,7 @@
 		CD0898292C9057F6007A9A9F /* .swiftlint-disable */ = {isa = PBXFileReference; lastKnownFileType = text; path = ".swiftlint-disable"; sourceTree = "<group>"; };
 		CD0B63572CF494D000927F54 /* aiChat.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = aiChat.html; sourceTree = "<group>"; };
 		CD0B63592CF4A13B00927F54 /* SpaceToolIslandView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpaceToolIslandView.swift; sourceTree = "<group>"; };
+		CD0B635B2CF4C89F00927F54 /* NiSpaceViewUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiSpaceViewUtils.swift; sourceTree = "<group>"; };
 		CD0FA1C02BDBE2BA0065313B /* Inter-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Regular.ttf"; sourceTree = "<group>"; };
 		CD0FBEB92CAD632300FF19C2 /* AppUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUtils.swift; sourceTree = "<group>"; };
 		CD1160C92BD27B9E00345E3E /* NiWebViewUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiWebViewUtils.swift; sourceTree = "<group>"; };
@@ -926,6 +928,7 @@
 				A1E41BFD2ACB684F00338417 /* contentFrame */,
 				A14E8F242AD5EADF00409DDF /* NiSpaceView.xib */,
 				A14E8F262AD5EAF800409DDF /* NiSpaceView.swift */,
+				CD0B635B2CF4C89F00927F54 /* NiSpaceViewUtils.swift */,
 				CD3362152BFDFF97004DBAFB /* SpaceTopbar.swift */,
 				A14E8F282AD5EB1600409DDF /* NiSpaceViewController.swift */,
 				CDB06B602AF84E1F008DB8FF /* NiSpaceDocumentView.swift */,
@@ -1307,6 +1310,7 @@
 				CDD7D3472C19986F0038E6F9 /* NiSearchResultViewItemRightIcon.swift in Sources */,
 				CDD7ED052C554E24007604D9 /* DemoLibraryImage.swift in Sources */,
 				CD2DE8832CA1ADB7000B5461 /* RestModels.swift in Sources */,
+				CD0B635C2CF4C8A500927F54 /* NiSpaceViewUtils.swift in Sources */,
 				CD42CEC92BDA48180039814D /* NiScrollView.swift in Sources */,
 				CD618D982C2B3863006869AF /* PregenIntent.swift in Sources */,
 				CDB549D12C2020C90038FB30 /* NiSearchViewScroller.swift in Sources */,
