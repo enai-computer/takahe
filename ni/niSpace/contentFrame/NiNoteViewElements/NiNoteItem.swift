@@ -16,6 +16,10 @@ class NiNoteItem: NSViewController, CFContentItem {
 	
 	var scrollView: NSScrollView
 	private var txtDocView: NiNoteView
+	private var backgroundColor: NSColor? = nil
+	private var textColor: NSColor? = nil
+	private var cursorColor: NSColor? = nil
+	private var scrollerKnobColor: NSColor? = nil
 	
 	required init(frame: NSRect, initText: String?) {
 		scrollView = NSScrollView(frame: frame)
@@ -37,6 +41,14 @@ class NiNoteItem: NSViewController, CFContentItem {
 		view = scrollView
 	}
 	
+	convenience init(frame: NSRect, initText: String?, backgroundColor: StickyColor) {
+		self.init(frame: frame, initText: initText)
+		self.backgroundColor = backgroundColor.toNSColor()
+		self.textColor = NSColor.stickyText
+		self.cursorColor = NSColor.stickyText
+		self.scrollerKnobColor = NSColor.stickyText
+	}
+	
 	required init?(coder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
 	}
@@ -48,8 +60,8 @@ class NiNoteItem: NSViewController, CFContentItem {
 	}
 	
 	private func configureTxtDocView(){
-		txtDocView.backgroundColor = NSColor.sand1
-		txtDocView.insertionPointColor = NSColor.birkin
+		txtDocView.backgroundColor = self.backgroundColor ?? NSColor.sand1
+		txtDocView.insertionPointColor = self.cursorColor ?? NSColor.birkin
 		txtDocView.importsGraphics = false
 		txtDocView.allowsImageEditing = false
 		txtDocView.displaysLinkToolTips = false
@@ -63,7 +75,7 @@ class NiNoteItem: NSViewController, CFContentItem {
 		txtDocView.textContainerInset = NSSize(width: 8.0, height: 8.0)
 		
 		txtDocView.font = NSFont(name: "Sohne-Buch", size: 16.0)
-		txtDocView.textColor = NSColor.sand115
+		txtDocView.textColor = self.textColor ?? NSColor.sand115
 		txtDocView.wantsLayer = true
 		if let radius = parentView?.layer?.cornerRadius{
 			txtDocView.layer?.cornerRadius = radius
@@ -79,16 +91,12 @@ class NiNoteItem: NSViewController, CFContentItem {
 			
 			txtDocView.topAnchor.constraint(greaterThanOrEqualTo: scrollView.topAnchor)
 		])
-			
-//		if(txtDocView.frame.height < txtDocView.contentSize.height){
-//			txtDocView.frame.size.height = txtDocView.contentSize.height
-//		}
 	}
 	
 	private func configureScrollView(){
 		let scrollerPos: NSRect = NSRect(x: scrollView.frame.width - 2.0, y: 0, width: 2.0, height: scrollView.frame.height)
 		scrollView.hasVerticalScroller = true
-		scrollView.verticalScroller = NiNoteViewScroller(frame: scrollerPos)
+		scrollView.verticalScroller = NiNoteViewScroller(frame: scrollerPos, knobColor: scrollerKnobColor ?? .birkin)
 		scrollView.verticalScrollElasticity = .allowed
 		scrollView.horizontalScroller = nil
 		scrollView.hasHorizontalScroller = false
@@ -151,7 +159,7 @@ class NiNoteItem: NSViewController, CFContentItem {
 	
 	func startEditing(){
 		txtDocView.isEditable = true
-		parentView?.removeBorderAddDropShadow()
+		parentView?.setBorder()
 	}
 	
 	func stopEditing(){
@@ -160,11 +168,10 @@ class NiNoteItem: NSViewController, CFContentItem {
 	
 	private func setStyling(){
 		txtDocView.wantsLayer = true
-		txtDocView.backgroundColor = NSColor.sand1
+		txtDocView.backgroundColor = backgroundColor ?? NSColor.sand1
 		txtDocView.layer?.cornerRadius = 5
 		txtDocView.layer?.cornerCurve = .continuous
 	}
-	
 	
 	func getText() -> String? {
 		return txtDocView.textStorage?.string.trimmingCharacters(in: .whitespaces)

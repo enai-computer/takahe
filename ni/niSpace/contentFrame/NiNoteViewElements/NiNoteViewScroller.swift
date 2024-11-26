@@ -10,8 +10,10 @@ import Cocoa
 class NiNoteViewScroller: NSScroller{
 
 	private var hideKnob = true
+	private let knobColor: NSColor
 
-	override init(frame frameRect: NSRect) {
+	init(frame frameRect: NSRect, knobColor: NSColor = NSColor.birkin) {
+		self.knobColor = knobColor
 		super.init(frame: frameRect)
 	}
 	
@@ -32,7 +34,7 @@ class NiNoteViewScroller: NSScroller{
 		if(hideKnob){
 			NSColor.sand4.setFill()
 		}else{
-			NSColor.birkin.setFill()
+			knobColor.setFill()
 		}
 		
 		var knobFrame = rect(for: .knob)
