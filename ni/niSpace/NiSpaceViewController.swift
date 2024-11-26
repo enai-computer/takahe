@@ -152,7 +152,7 @@ class NiSpaceViewController: NSViewController, NSTextFieldDelegate{
 	}
 	
 	private func setUpToolbar(){
-		let stack = genToolbarStack()
+		let stack = genToolbarStack(for: self)
 		toolbarStack.setViews(stack, in: .leading)
 	}
 	
