@@ -357,7 +357,7 @@ class NiSpaceViewController: NSViewController, NSTextFieldDelegate{
 		return size
 	}
 	
-	func createANote(positioned at: CGPoint, with content: String? = nil){
+	func createANote(positioned at: CGPoint?, with content: String? = nil){
 		niDocument.openEmptyCF(viewState: .frameless, initialTabType: .note, positioned: at, content: content)
 	}
 	
