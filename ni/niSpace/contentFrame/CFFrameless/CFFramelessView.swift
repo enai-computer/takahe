@@ -13,6 +13,7 @@ class CFFramelessView: CFBaseView {
 	override var minFrameHeight: CGFloat {return 50.0}
 	override var minFrameWidth: CGFloat {return 80.0}
 	var myItem: CFContentItem?
+	private var myItemType: TabContentType? = nil
 	
 	override var frameType: NiContentFrameState {return .frameless}
 	
@@ -34,8 +35,10 @@ class CFFramelessView: CFBaseView {
 	}
 	
 	func removeBorder(){
-		if(myItem is NiNoteItem){
+		if(myItemType == .note){
 			self.borderColor = NSColor.sand1
+		}else if(myItemType == .sticky){
+			self.borderColor = .transparent
 		}else{
 			self.borderColor = NSColor.sand3
 		}
@@ -43,22 +46,38 @@ class CFFramelessView: CFBaseView {
 	}
 	
 	func removeBorderAddDropShadow(){
-		borderColor = NSColor.sand1
-		wantsLayer = true
-		shadow = NSShadow()
-		layer?.shadowOffset = CGSize(width: 2.0, height: -4.0)
-		layer?.shadowColor = NSColor.sand11.cgColor
-		layer?.shadowRadius = 6.0
-		layer?.shadowOpacity = 0.3
+//		borderColor = NSColor.sand1
+//		wantsLayer = true
+//		shadow = NSShadow()
+//		layer?.shadowOffset = CGSize(width: 2.0, height: -4.0)
+//		layer?.shadowColor = NSColor.sand11.cgColor
+//		layer?.shadowRadius = 6.0
+//		layer?.shadowOpacity = 0.3
 	}
 	
 	func setBorder(){
-		self.borderColor = NSColor.birkin
-		shadow = nil
+		if(myItemType == .note || myItemType == .sticky){
+			wantsLayer = true
+			shadow = NSShadow()
+			layer?.shadowOffset = CGSize(width: 2.0, height: -4.0)
+			layer?.shadowColor = NSColor.sand11.cgColor
+			layer?.shadowRadius = 6.0
+			layer?.shadowOpacity = 0.3
+		}
+		
+		if (myItemType == .note){
+			borderColor = NSColor.sand1
+		}else if(myItemType != .sticky){
+			self.borderColor = NSColor.birkin
+			shadow = nil
+		}else{
+			borderColor = .transparent
+		}
 	}
 	
-	func setContentItem(item: CFContentItem){
+	func setContentItem(item: CFContentItem, of type: TabContentType? = nil){
 		self.myItem = item
+		self.myItemType = type
 	}
 	
 	/** If the passed view does not confirm to CFContentItem, you have to call setContentItem speratly!
@@ -71,7 +90,13 @@ class CFFramelessView: CFBaseView {
 		}
 		self.contentView?.layer?.cornerCurve = .continuous
 		self.contentView?.layer?.cornerRadius = 5.0
-		return -1
+		return 0
+	}
+	
+	@discardableResult
+	func createNewTab(tabView: NSView, openNextTo: Int = -1, of type: TabContentType) -> Int{
+		self.myItemType = type
+		return createNewTab(tabView: tabView, openNextTo: openNextTo)
 	}
 	
 	override func keyDown(with event: NSEvent) {
