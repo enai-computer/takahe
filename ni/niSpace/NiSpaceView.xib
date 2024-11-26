@@ -19,6 +19,7 @@
                 <outlet property="spaceName" destination="IcY-Xb-pUo" id="ECl-ux-gyo"/>
                 <outlet property="time" destination="yLB-kD-fbD" id="LJa-ji-zdb"/>
                 <outlet property="toolbar" destination="He2-5i-e2D" id="kOi-cS-a7x"/>
+                <outlet property="toolbarStack" destination="8yg-or-kjj" id="V91-aM-sNh"/>
                 <outlet property="visEffectView" destination="OTL-Hy-eFp" id="KEH-QA-Cwy"/>
             </connections>
         </customObject>
@@ -51,9 +52,19 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
                 </scrollView>
-                <customView id="He2-5i-e2D" customClass="SpaceToolIslandView" customModule="Enai" customModuleProvider="target">
-                    <rect key="frame" x="1458" y="18" width="124" height="32"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxY="YES"/>
+                <customView horizontalCompressionResistancePriority="1000" placeholderIntrinsicWidth="72" placeholderIntrinsicHeight="32" translatesAutoresizingMaskIntoConstraints="NO" id="He2-5i-e2D" customClass="SpaceToolIslandView" customModule="Enai" customModuleProvider="target">
+                    <rect key="frame" x="1510" y="18" width="72" height="32"/>
+                    <subviews>
+                        <stackView distribution="fill" orientation="horizontal" alignment="centerY" spacing="4" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" horizontalCompressionResistancePriority="1000" placeholderIntrinsicWidth="56" placeholderIntrinsicHeight="24" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8yg-or-kjj">
+                            <rect key="frame" x="8" y="4" width="56" height="24"/>
+                        </stackView>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="right" secondItem="8yg-or-kjj" secondAttribute="right" constant="8" id="1Nh-Cq-wvJ"/>
+                        <constraint firstItem="8yg-or-kjj" firstAttribute="left" secondItem="He2-5i-e2D" secondAttribute="left" constant="8" id="Med-KP-WXd"/>
+                        <constraint firstItem="8yg-or-kjj" firstAttribute="top" secondItem="He2-5i-e2D" secondAttribute="top" constant="4" id="hCh-xa-K80"/>
+                        <constraint firstAttribute="height" constant="32" id="rt0-aw-PAo"/>
+                    </constraints>
                 </customView>
                 <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="m2w-Th-Zhg">
                     <rect key="frame" x="30" y="865" width="1540" height="36"/>
@@ -139,6 +150,10 @@
                     </shadow>
                 </customView>
             </subviews>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="He2-5i-e2D" secondAttribute="bottom" constant="18" id="jVg-N8-nOf"/>
+                <constraint firstAttribute="right" secondItem="He2-5i-e2D" secondAttribute="right" constant="18" id="nHn-se-M8H"/>
+            </constraints>
             <point key="canvasLocation" x="29" y="154"/>
         </customView>
         <userDefaultsController representsSharedInstance="YES" id="Jkl-Uc-Uy6"/>
