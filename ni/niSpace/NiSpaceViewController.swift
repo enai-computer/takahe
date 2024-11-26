@@ -357,6 +357,10 @@ class NiSpaceViewController: NSViewController, NSTextFieldDelegate{
 		return size
 	}
 	
+	func createSticky(with color: StickyColor){
+		niDocument.openEmptyCF(viewState: .frameless, initialTabType: .sticky, content: color.rawValue, backgroundColor: color)
+	}
+	
 	func createANote(positioned at: CGPoint?, with content: String? = nil){
 		niDocument.openEmptyCF(viewState: .frameless, initialTabType: .note, positioned: at, content: content)
 	}
