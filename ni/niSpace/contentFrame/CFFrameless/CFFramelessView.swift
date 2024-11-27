@@ -68,7 +68,9 @@ class CFFramelessView: CFBaseView {
 	
 	func setContentItem(item: CFContentItem, of type: TabContentType? = nil){
 		self.myItem = item
-		self.myItemType = type
+		if let type: TabContentType = type{
+			self.myItemType = type
+		}
 	}
 	
 	/** If the passed view does not confirm to CFContentItem, you have to call setContentItem speratly!
@@ -118,6 +120,13 @@ class CFFramelessView: CFBaseView {
 		}
 	}
 	
+	override func isOnBoarder(_ cursorLocation: CGPoint) -> OnBorder{
+		if(myItemType == .sticky){
+			return .no
+		}
+		return super.isOnBoarder(cursorLocation)
+	}
+	
 	override func mouseUp(with event: NSEvent) {
 		if !frameIsActive{
 			nextResponder?.mouseUp(with: event)
@@ -136,7 +145,7 @@ class CFFramelessView: CFBaseView {
 	}
 	
 	override func mouseEntered(with event: NSEvent) {
-		if(!frameIsActive){
+		if(!frameIsActive && myItemType != .sticky){
 			borderColor = NSColor.birkinLight
 		}
 	}
@@ -181,6 +190,7 @@ class CFFramelessView: CFBaseView {
 	}
 	
 	override func resetCursorRects() {
+		guard myItemType != .sticky else {return}
 		if(frameIsActive){
 			//otherwise hand opens while dragging
 			if(cursorDownPoint == .zero){
