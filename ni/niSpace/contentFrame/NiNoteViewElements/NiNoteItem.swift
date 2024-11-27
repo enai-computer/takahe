@@ -129,8 +129,6 @@ class NiNoteItem: NSViewController, CFContentItem {
 		
 		setStyling()
 		scrollView.window?.makeFirstResponder(txtDocView)
-		
-		parentView?.removeBorderAddDropShadow()
 	}
 	
 	func spaceClosed(){}

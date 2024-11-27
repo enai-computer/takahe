@@ -45,16 +45,6 @@ class CFFramelessView: CFBaseView {
 		shadow = nil
 	}
 	
-	func removeBorderAddDropShadow(){
-//		borderColor = NSColor.sand1
-//		wantsLayer = true
-//		shadow = NSShadow()
-//		layer?.shadowOffset = CGSize(width: 2.0, height: -4.0)
-//		layer?.shadowColor = NSColor.sand11.cgColor
-//		layer?.shadowRadius = 6.0
-//		layer?.shadowOpacity = 0.3
-	}
-	
 	func setBorder(){
 		if(myItemType == .note || myItemType == .sticky){
 			wantsLayer = true
@@ -67,11 +57,12 @@ class CFFramelessView: CFBaseView {
 		
 		if (myItemType == .note){
 			borderColor = NSColor.sand1
-		}else if(myItemType != .sticky){
+		}else if(myItemType == .sticky){
+			borderColor = .transparent
+			borderWidth = 0.0
+		}else{
 			self.borderColor = NSColor.birkin
 			shadow = nil
-		}else{
-			borderColor = .transparent
 		}
 	}
 	
