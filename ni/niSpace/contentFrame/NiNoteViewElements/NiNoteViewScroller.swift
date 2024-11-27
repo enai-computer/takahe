@@ -11,10 +11,13 @@ class NiNoteViewScroller: NSScroller{
 
 	private var hideKnob = true
 	private let knobColor: NSColor
+	private let backgroundColor: NSColor
 
-	init(frame frameRect: NSRect, knobColor: NSColor = NSColor.birkin) {
+	init(frame frameRect: NSRect, knobColor: NSColor = NSColor.birkin, backgroundColor: NSColor = NSColor.sand1) {
 		self.knobColor = knobColor
+		self.backgroundColor = backgroundColor
 		super.init(frame: frameRect)
+		self.wantsLayer = false
 	}
 	
 	required init?(coder: NSCoder) {
@@ -22,9 +25,7 @@ class NiNoteViewScroller: NSScroller{
 	}
 	
 	override func draw(_ dirtyRect: NSRect) {
-		super.draw(dirtyRect)
-
-		NSColor.sand4.setFill()
+		backgroundColor.setFill()
 		dirtyRect.fill()
 
 		self.drawKnob()
@@ -32,7 +33,7 @@ class NiNoteViewScroller: NSScroller{
 	
 	override func drawKnob() {
 		if(hideKnob){
-			NSColor.sand4.setFill()
+			return
 		}else{
 			knobColor.setFill()
 		}
@@ -41,6 +42,11 @@ class NiNoteViewScroller: NSScroller{
 		knobFrame.origin.x = 0
 		knobFrame.size.width = 2.0
 		NSBezierPath.init(roundedRect: knobFrame, xRadius: 1, yRadius: 1).fill()
+	}
+	
+	override func drawKnobSlot(in slotRect: NSRect, highlight flag: Bool){
+		backgroundColor.setFill()
+		slotRect.fill()
 	}
 	
 	override class func scrollerWidth(for controlSize: NSControl.ControlSize, scrollerStyle: NSScroller.Style) -> CGFloat {

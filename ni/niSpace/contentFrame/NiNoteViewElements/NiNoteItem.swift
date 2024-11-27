@@ -96,7 +96,7 @@ class NiNoteItem: NSViewController, CFContentItem {
 	private func configureScrollView(){
 		let scrollerPos: NSRect = NSRect(x: scrollView.frame.width - 2.0, y: 0, width: 2.0, height: scrollView.frame.height)
 		scrollView.hasVerticalScroller = true
-		scrollView.verticalScroller = NiNoteViewScroller(frame: scrollerPos, knobColor: scrollerKnobColor ?? .birkin)
+		scrollView.verticalScroller = NiNoteViewScroller(frame: scrollerPos, knobColor: scrollerKnobColor ?? .birkin, backgroundColor: backgroundColor ?? NSColor.sand1)
 		scrollView.verticalScrollElasticity = .allowed
 		scrollView.horizontalScroller = nil
 		scrollView.hasHorizontalScroller = false
@@ -105,13 +105,13 @@ class NiNoteItem: NSViewController, CFContentItem {
 		scrollView.scrollerInsets = NSEdgeInsets(top: 0.0, left: 0.0, bottom: 0.0, right: 0.0)
 		
 		scrollView.wantsLayer = true
-		scrollView.layer?.backgroundColor = NSColor.sand3.cgColor
-		
+		scrollView.layer?.backgroundColor = backgroundColor?.cgColor ?? NSColor.sand1.cgColor
+		scrollView.backgroundColor = backgroundColor ?? NSColor.sand1
+
 		if let radius = parentView?.layer?.cornerRadius{
 			scrollView.layer?.cornerRadius = radius
 		}
 		scrollView.layer?.cornerCurve = .continuous
-		
 	}
 	
 	func printView(_ sender: Any?) {
