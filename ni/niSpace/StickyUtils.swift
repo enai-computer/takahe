@@ -28,6 +28,57 @@ enum StickyColor: String, CaseIterable{
 	}
 }
 
+class StickyColorPickerWindow: NSPanel {
+
+	private let niDelegate: NiMenuWindowDelegate
+	override var canBecomeKey: Bool {return true}
+	override var canBecomeMain: Bool {return false}
+	private var screenToDisplayOn: NSScreen?
+	
+	init(origin: NSPoint, currentScreen: NSScreen, spaceController: NiSpaceViewController){
+		niDelegate = NiMenuWindowDelegate()
+		
+		screenToDisplayOn = currentScreen
+		
+		let size = StickyColorPickerWindow.calcSize()
+		let adjustedOrigin = NSPoint(
+			x: (currentScreen.frame.maxX - (size.width + 18.0)),
+			y: origin.y
+		)
+		let frameRect = NSPanel.rectForScreen(NSRect(origin: adjustedOrigin, size: size), screen: currentScreen)
+		
+		super.init(
+			contentRect: frameRect,
+			styleMask: NSWindow.StyleMask.borderless,
+			backing: .buffered,
+			defer: true
+		)
+		//set, as otherwise the desktop on the 2nd display will switch to a different desktop if an application is running fullscreen on that display
+		collectionBehavior = NSWindow.CollectionBehavior.moveToActiveSpace
+		titleVisibility = .hidden
+		titlebarAppearsTransparent = true
+		delegate = niDelegate
+		contentViewController = StickyColorPicker(spaceController: spaceController, pos: NSPoint(x: 0.0, y: 0.0))
+		
+		hasShadow = false
+		isOpaque = false
+		backgroundColor = NSColor.clear
+	}
+	
+	static func calcSize() -> CGSize{
+		let padding = 4.0
+		let colorFieldWidth = 16.0
+		let nrOfColors = Double(StickyColor.allCases.count)
+		let w: Double = padding * nrOfColors + colorFieldWidth * nrOfColors
+		return CGSize(width: w, height: (colorFieldWidth + padding))
+	}
+
+	override func cancelOperation(_ sender: Any?) {
+		orderOut(nil)
+		close()
+	}
+}
+
 class StickyColorPicker: NSViewController{
 	
 	let initPos: NSPoint
@@ -120,6 +171,8 @@ class SingleStickyColorPickerColorView: NSView{
 	
 	override func mouseDown(with event: NSEvent){
 		spaceController?.createSticky(with: color)
+		//closes window and orders out
+		window?.cancelOperation(nil)
 	}
 	
 	override func mouseExited(with event: NSEvent) {

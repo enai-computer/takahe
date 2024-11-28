@@ -10,8 +10,14 @@ func genToolbarStack(for controller: NiSpaceViewController) -> [NSView]{
 	let sticky = NiActionImage(namedImage: "stickyIcon", with: NSSize(width: 24.0, height: 24.0))!
 	sticky.isActiveFunction = {return true}
 	sticky.setMouseDownFunction({ _ in
-		let colorPicker = StickyColorPicker(spaceController: controller, pos: NSPoint(x: 500.0, y: 500.0))
-		controller.view.addSubview(colorPicker.view)
+		guard var pointOnScreen = sticky.superview?.convert(sticky.frame.origin, to: nil) else {return}
+		pointOnScreen.y += sticky.frame.height + 9.0
+		let colorPicker = StickyColorPickerWindow(
+			origin: pointOnScreen,
+			currentScreen: sticky.window!.screen!,
+			spaceController: controller
+		)
+		colorPicker.makeKeyAndOrderFront(nil)
 	})
 	
 	let note = NiActionImage(namedImage: "noteIcon", with: NSSize(width: 24.0, height: 24.0))!
