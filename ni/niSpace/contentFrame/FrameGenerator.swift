@@ -89,6 +89,9 @@ func openCFTabs(for controller: ContentFrameController, with tabViewModels: [Tab
 			let tab = tabViewModels[0]
 			if(tab.type == .note){
 				controller.openNoteInNewTab(contentId: tab.contentId, tabTitle: tab.title, content: tab.content)
+			}else if(tab.type == .sticky){
+				let color: StickyColor = (tab.data as? StickyColor) ?? .yellow
+				controller.openStickyInNewTab(contentId: tab.contentId, tabTitle: tab.title, content: tab.content, color: color)
 			}else if(tab.type == .img && tab.icon != nil){
 				controller.openImgInNewTab(contentId: tab.contentId, tabTitle: tab.title, content: tab.icon!, source: tab.source)
 			}else if(tab.type == .pdf && tab.data != nil){
@@ -174,7 +177,13 @@ func niCFTabModelToTabViewModel(tabs: [NiCFTabModel]) -> [TabViewModel]{
 	var tabViews: [TabViewModel] = []
 	
 	for tabModel in tabs {
-		var tabView = getTabViewModel(for: tabModel.id, ofType: tabModel.contentType, positioned: tabModel.position, scrollPosition: tabModel.scrollPosition)
+		var tabView = getTabViewModel(
+			for: tabModel.id,
+			ofType: tabModel.contentType,
+			positioned: tabModel.position,
+		 	scrollPosition: tabModel.scrollPosition,
+			state: tabModel.contentState
+		)
 		if(tabModel.position < 0 || tabs.count <= tabModel.position){
 			tabPositionCorrectionNeeded = true
 		}
@@ -185,8 +194,6 @@ func niCFTabModelToTabViewModel(tabs: [NiCFTabModel]) -> [TabViewModel]{
 		}else{
 			tabView.isSelected = false
 		}
-		tabView.state = TabViewModelState(rawValue: tabModel.contentState)!
-
 		tabViews.append(tabView)
 	}
 	
@@ -199,7 +206,7 @@ func niCFTabModelToTabViewModel(tabs: [NiCFTabModel]) -> [TabViewModel]{
 	return tabViews
 }
 
-func getTabViewModel(for id: UUID, ofType type: TabContentType, positioned at: Int, scrollPosition: Int?) -> TabViewModel{
+func getTabViewModel(for id: UUID, ofType type: TabContentType, positioned at: Int, scrollPosition: Int?, state: String?) -> TabViewModel{
 	var tabView: TabViewModel
 	if(type == .web){
 		let record = CachedWebTable.fetchCachedWebsite(contentId: id)
@@ -208,7 +215,7 @@ func getTabViewModel(for id: UUID, ofType type: TabContentType, positioned at: I
 			type: type,
 			title: record?.title ?? "Blank Page",
 			content: record?.url ?? "https://enai.io",
-			state: .notLoaded,
+			state: TabViewModelState(rawValue: state ?? "notLoaded") ?? .notLoaded,
 			position: at
 		)
 	}else if(type == .eveChat){
@@ -218,7 +225,7 @@ func getTabViewModel(for id: UUID, ofType type: TabContentType, positioned at: I
 			type: .eveChat,
 			title: record?.1 ?? "Blank Page",
 			content: getEmtpyWebViewURL().absoluteString,
-			state: .notLoaded,
+			state: TabViewModelState(rawValue: state ?? "notLoaded") ?? .notLoaded,
 			position: at
 		)
 	}else if(type == .note){
@@ -228,6 +235,16 @@ func getTabViewModel(for id: UUID, ofType type: TabContentType, positioned at: I
 			type: type,
 			title: record?.title ?? "",
 			content: record?.rawText ?? "",
+			position: at
+		)
+	}else if(type == .sticky){
+		let record = NoteTable.fetchNote(contentId: id)
+		tabView = TabViewModel(
+			contentId: id,
+			type: type,
+			title: record?.title ?? "",
+			content: record?.rawText ?? "",
+			data: StickyColor(rawValue: state ?? "yellow"),
 			position: at
 		)
 	}else if(type == .img){

@@ -69,13 +69,14 @@ class NiSpaceDocumentController: NSViewController{
 					 groupName: String? = nil,
 					 groupId: UUID? = nil,
 					 positionAlwaysCenter: Bool = false,
-					 createInfoText: Bool = true
+					 createInfoText: Bool = true,
+					 backgroundColor: StickyColor? = nil
 	) -> ContentFrameController {
 		let controller = openEmptyContentFrame(viewState: viewState, groupName: groupName, groupId: groupId)
 		let newCFView = controller.myView
 		
 		//TODO: set location & size dependent on viewState
-		if(initialTabType == .note && size == nil){
+		if((initialTabType == .note || initialTabType == .sticky) && size == nil){
 			newCFView.frame.size = defaultNoteSize
 		}else if(size != nil){
 			newCFView.frame.size = size!
@@ -100,7 +101,11 @@ class NiSpaceDocumentController: NSViewController{
 			controller.openAndEditEmptyWebTab(createInfoText: createInfoText)
 		}else if(initialTabType == .note){
 			controller.openNoteInNewTab(content: content)
+		}else if(initialTabType == .sticky){
+			guard let color = backgroundColor else {assertionFailure("color must be passed for a sticky"); controller.openNoteInNewTab(content: content); return controller}
+			controller.openStickyInNewTab(color: color)
 		}
+		
 		PostHogSDK.shared.capture(
 			"window_created",
 			properties: ["type": initialTabType.rawValue]

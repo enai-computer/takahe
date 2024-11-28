@@ -960,7 +960,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		tabHeadModel.viewItem = imgView
 		self.tabs.append(tabHeadModel)
 		
-		_ = myView.createNewTab(tabView: imgView)
+		framelessView?.createNewTab(tabView: imgView, of: .img)
 		myView.fixedFrameRatio = content.size.width / content.size.height
 
 		//FIXME: dirty hack to ensure first responder status after space load
@@ -978,7 +978,21 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		tabHeadModel.viewItem = noteItem
 		self.tabs.append(tabHeadModel)
 		
-		_ = myView.createNewTab(tabView: noteItem.scrollView)
+		framelessView?.createNewTab(tabView: noteItem.scrollView, of: .note)
+		framelessView?.setContentItem(item: noteItem)
+		noteItem.startEditing()
+		self.myView.window?.makeFirstResponder(noteItem.scrollView.documentView)
+	}
+	
+	func openStickyInNewTab(contentId: UUID = UUID(), tabTitle: String? = nil, content: String? = nil, color: StickyColor){
+		let noteItem = Enai.getNewStickyItem(owner: self, parentView: self.view, color: color, frame: self.view.frame, text: content)
+		
+		var tabHeadModel = TabViewModel(contentId: contentId, type: .sticky, isSelected: true)
+		tabHeadModel.position = 0
+		tabHeadModel.viewItem = noteItem
+		self.tabs.append(tabHeadModel)
+		
+		framelessView?.createNewTab(tabView: noteItem.scrollView, of: .sticky)
 		framelessView?.setContentItem(item: noteItem)
 		noteItem.startEditing()
 		self.myView.window?.makeFirstResponder(noteItem.scrollView.documentView)
@@ -1717,29 +1731,13 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		var children: [NiCFTabModel] = []
 		
 		for (i, tab) in tabs.enumerated(){
-			var scrollPosition: Int? = nil
-			
-			if(tab.type == .pdf){
-				scrollPosition = (tab.pdfView?.currentPage?.pageRef?.pageNumber ?? 1) - 1
-				if(scrollPosition! < 0){
-					scrollPosition = 0
-				}
-			}
-			
 			if(tab.isEveChat()){
 				tabs[i].type = .eveChat
 			}
 			
 			if(tab.shouldPersistContent()){
 				children.append(
-					NiCFTabModel(
-						id: tab.contentId,
-						contentType: tabs[i].type,
-						contentState: tab.state.rawValue,
-						active: tab.isSelected,
-						position: i,
-						scrollPosition: scrollPosition
-					)
+					tabs[i].toNiCFTabModel(at: i)
 				)
 			}
 		}

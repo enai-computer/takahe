@@ -27,7 +27,7 @@ class DocumentDal{
 			let url = getTabUrl(for: tab)
 			persistWebcontent(spaceId: spaceId, id: tab.contentId, title: tab.title, url: url, groupId: groupId)
 		}
-		if(tab.type == .note){
+		if(tab.type == .note || tab.type == .sticky){
 			guard let txt = tab.noteView?.getText() else {return}
 			let title = tab.noteView?.getTitle()
 			persistNote(spaceId: spaceId, id: tab.contentId, title: title, rawText: txt)
@@ -93,7 +93,7 @@ class DocumentDal{
 			updatedRecord = true
 		}
 		
-		if(updatedRecord && UserSettings.shared.onlineSync){
+		if(false){ 	//updatedRecord && UserSettings.shared.onlineSync
 			OutboxTable.insertMessage(
 				eventType: .PUT,
 				objectID: id,
@@ -146,7 +146,7 @@ class DocumentDal{
 			NoteTable.upsert(documentId: spaceId, id: id, title: title, rawText: rawText)
 			updatedRecord = true
 		}
-		if(updatedRecord && UserSettings.shared.onlineSync){
+		if(false){ //updatedRecord && UserSettings.shared.onlineSync
 			OutboxTable.insertMessage(
 				eventType: .PUT,
 				objectID: id,
