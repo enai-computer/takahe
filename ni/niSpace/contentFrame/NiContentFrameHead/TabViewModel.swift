@@ -37,6 +37,7 @@ struct TabViewModel{
 	func shouldPersistContent() -> Bool{
 		return self.type == .web
 		|| (self.type == .note && self.noteView?.getText() != nil)
+		|| (self.type == .sticky && self.noteView?.getText() != nil)
 		|| self.type == .img
 		|| self.type == .pdf
 		|| self.type == .eveChat
@@ -47,5 +48,29 @@ struct TabViewModel{
 			return true
 		}
 		return self.type == .web && self.state == .empty
+	}
+	
+	func toNiCFTabModel(at position: Int) -> NiCFTabModel{
+		var scrollPos = scrollPosition
+		if(type == .pdf){
+			scrollPos = (pdfView?.currentPage?.pageRef?.pageNumber ?? 1) - 1
+			if(scrollPos ?? 0 < 0){
+				scrollPos = 0
+			}
+		}
+		var tabModelState: String = if(type == .sticky){
+			noteView?.stickyColor?.rawValue ?? StickyColor.yellow.rawValue
+		}else{
+			state.rawValue
+		}
+		
+		return NiCFTabModel(
+			id: contentId,
+			contentType: type,
+			contentState: tabModelState,
+			active: isSelected,
+			position: position,
+			scrollPosition: scrollPos
+		)
 	}
 }

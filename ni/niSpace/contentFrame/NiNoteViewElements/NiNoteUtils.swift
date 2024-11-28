@@ -13,3 +13,11 @@ func getNewNoteItem(owner: ContentFrameController, parentView: NSView, frame: NS
 	item.loadView()
 	return item
 }
+
+func getNewStickyItem(owner: ContentFrameController, parentView: NSView, color: StickyColor, frame: NSRect, text: String? = nil) -> NiNoteItem{
+	let item = NiNoteItem(frame: frame, initText: text, backgroundColor: color)
+	item.owner = owner
+	item.loadView()
+	
+	return item
+}
