@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="23504" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="23504"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="NiOnboardingViewController" customModule="Enai" customModuleProvider="target">
+            <connections>
+                <outlet property="backButton" destination="Z5T-Ou-gNQ" id="LcX-R8-iKD"/>
+                <outlet property="fwdButton" destination="7S7-ED-uOw" id="Yfh-Tx-ITj"/>
+                <outlet property="leftSideBackgroundFrame" destination="2dY-kT-Fzw" id="jxi-xA-0nM"/>
+                <outlet property="leftSideInfoView" destination="Rif-IA-nh8" id="6mr-K4-ExH"/>
+                <outlet property="rightSideBackgroundFrame" destination="idy-AN-vnT" id="oMw-ls-BNE"/>
+                <outlet property="view" destination="L0c-0Q-FDU" id="Mpq-vn-AOA"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <box boxType="custom" cornerRadius="4" title="Box" id="L0c-0Q-FDU">
+            <rect key="frame" x="0.0" y="0.0" width="1600" height="900"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <view key="contentView" id="Xh7-lQ-RGW">
+                <rect key="frame" x="1" y="1" width="1598" height="898"/>
+                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                <subviews>
+                    <customView id="2dY-kT-Fzw">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="900"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <customView ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Rif-IA-nh8">
+                                <rect key="frame" x="0.0" y="184" width="600" height="716"/>
+                            </customView>
+                            <customView horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZRa-LC-hXe">
+                                <rect key="frame" x="272" y="140" width="56" height="24"/>
+                                <subviews>
+                                    <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Z5T-Ou-gNQ" customClass="NiActionImage" customModule="Enai" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="24" height="24"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="arrowLeftFilled" id="Cjl-w4-jMu"/>
+                                    </imageView>
+                                    <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7S7-ED-uOw" customClass="NiActionImage" customModule="Enai" customModuleProvider="target">
+                                        <rect key="frame" x="32" y="0.0" width="24" height="24"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="arrowRightFilledHighlighted" id="XcB-hM-Cyv"/>
+                                    </imageView>
+                                </subviews>
+                            </customView>
+                            <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" horizontalCompressionResistancePriority="1000" ambiguous="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3vV-YQ-GZd">
+                                <rect key="frame" x="288" y="90" width="25" height="10"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="25" id="MN8-WA-QTd"/>
+                                    <constraint firstAttribute="height" constant="10" id="iX1-Tq-8rr"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="ZRa-LC-hXe" secondAttribute="bottom" constant="140" id="3Fn-f3-eI3"/>
+                            <constraint firstItem="Rif-IA-nh8" firstAttribute="left" secondItem="2dY-kT-Fzw" secondAttribute="left" id="Bk8-5a-Hib"/>
+                            <constraint firstItem="Rif-IA-nh8" firstAttribute="top" secondItem="2dY-kT-Fzw" secondAttribute="top" id="Sla-ZB-WNm"/>
+                            <constraint firstItem="ZRa-LC-hXe" firstAttribute="top" secondItem="Rif-IA-nh8" secondAttribute="bottom" constant="20" id="gqK-7a-fCO"/>
+                            <constraint firstItem="3vV-YQ-GZd" firstAttribute="top" secondItem="ZRa-LC-hXe" secondAttribute="bottom" constant="40" id="jl7-r3-X2h"/>
+                            <constraint firstAttribute="right" secondItem="Rif-IA-nh8" secondAttribute="right" id="uVc-2g-mz6"/>
+                            <constraint firstItem="ZRa-LC-hXe" firstAttribute="centerX" secondItem="2dY-kT-Fzw" secondAttribute="centerX" id="y8L-Ru-zVF"/>
+                        </constraints>
+                    </customView>
+                    <customView id="idy-AN-vnT">
+                        <rect key="frame" x="600" y="0.0" width="1000" height="900"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" heightSizable="YES"/>
+                    </customView>
+                </subviews>
+            </view>
+            <point key="canvasLocation" x="-120" y="-608"/>
+        </box>
+    </objects>
+    <resources>
+        <image name="arrowLeftFilled" width="24" height="24"/>
+        <image name="arrowRightFilledHighlighted" width="24" height="24"/>
+    </resources>
+</document>

@@ -146,6 +146,7 @@
 		CD8D2B082C00C7A100C44C1D /* NoteTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8D2B072C00C7A100C44C1D /* NoteTable.swift */; };
 		CD8E58052CC8F1A9007550CF /* enai-icon.svg in Resources */ = {isa = PBXBuildFile; fileRef = CD8E58042CC8F1A9007550CF /* enai-icon.svg */; };
 		CD8E580B2CC909F0007550CF /* EveChatTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8E580A2CC909EB007550CF /* EveChatTable.swift */; };
+		CD945F3C2CF8C65E00C67214 /* NiOnboardingWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD945F3B2CF8C65400C67214 /* NiOnboardingWindow.swift */; };
 		CD97975C2C57AC2C00640750 /* LoadingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD97975B2C57AC2C00640750 /* LoadingView.xib */; };
 		CD97975E2C57AE1400640750 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD97975D2C57AE1400640750 /* LoadingView.swift */; };
 		CD9B96BC2C04C8EE00998CE2 /* CFContentItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9B96BB2C04C8EE00998CE2 /* CFContentItem.swift */; };
@@ -165,6 +166,8 @@
 		CDABE64E2C11C63500BB4E85 /* NiMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDABE64D2C11C63500BB4E85 /* NiMenuView.swift */; };
 		CDACD35E2C56C81B00B9CBE9 /* 1DA3C6AF-A701-418E-AB8C-B73285A3ECAB.png in Resources */ = {isa = PBXBuildFile; fileRef = CDACD35D2C56C81B00B9CBE9 /* 1DA3C6AF-A701-418E-AB8C-B73285A3ECAB.png */; };
 		CDB06B612AF84E1F008DB8FF /* NiSpaceDocumentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB06B602AF84E1F008DB8FF /* NiSpaceDocumentView.swift */; };
+		CDB24CFF2CF8CC64002B8D79 /* NiOnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB24CFE2CF8CC58002B8D79 /* NiOnboardingViewController.swift */; };
+		CDB24D012CF8CE1B002B8D79 /* NiOnboardingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDB24D002CF8CE1B002B8D79 /* NiOnboardingView.xib */; };
 		CDB4830A2C6A623900612AF5 /* CFFullscreenView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDB483092C6A623900612AF5 /* CFFullscreenView.xib */; };
 		CDB4830C2C6A624E00612AF5 /* CFFullscreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB4830B2C6A624E00612AF5 /* CFFullscreenView.swift */; };
 		CDB549D12C2020C90038FB30 /* NiSearchViewScroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB549D02C2020C90038FB30 /* NiSearchViewScroller.swift */; };
@@ -377,6 +380,7 @@
 		CD8D2B072C00C7A100C44C1D /* NoteTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteTable.swift; sourceTree = "<group>"; };
 		CD8E58042CC8F1A9007550CF /* enai-icon.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = "enai-icon.svg"; sourceTree = "<group>"; };
 		CD8E580A2CC909EB007550CF /* EveChatTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EveChatTable.swift; sourceTree = "<group>"; };
+		CD945F3B2CF8C65400C67214 /* NiOnboardingWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiOnboardingWindow.swift; sourceTree = "<group>"; };
 		CD97975B2C57AC2C00640750 /* LoadingView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoadingView.xib; sourceTree = "<group>"; };
 		CD97975D2C57AE1400640750 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		CD9B96BB2C04C8EE00998CE2 /* CFContentItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CFContentItem.swift; sourceTree = "<group>"; };
@@ -396,6 +400,8 @@
 		CDABE64D2C11C63500BB4E85 /* NiMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiMenuView.swift; sourceTree = "<group>"; };
 		CDACD35D2C56C81B00B9CBE9 /* 1DA3C6AF-A701-418E-AB8C-B73285A3ECAB.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "1DA3C6AF-A701-418E-AB8C-B73285A3ECAB.png"; sourceTree = "<group>"; };
 		CDB06B602AF84E1F008DB8FF /* NiSpaceDocumentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiSpaceDocumentView.swift; sourceTree = "<group>"; };
+		CDB24CFE2CF8CC58002B8D79 /* NiOnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiOnboardingViewController.swift; sourceTree = "<group>"; };
+		CDB24D002CF8CE1B002B8D79 /* NiOnboardingView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NiOnboardingView.xib; sourceTree = "<group>"; };
 		CDB483092C6A623900612AF5 /* CFFullscreenView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CFFullscreenView.xib; sourceTree = "<group>"; };
 		CDB4830B2C6A624E00612AF5 /* CFFullscreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CFFullscreenView.swift; sourceTree = "<group>"; };
 		CDB549D02C2020C90038FB30 /* NiSearchViewScroller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiSearchViewScroller.swift; sourceTree = "<group>"; };
@@ -523,6 +529,7 @@
 				CDD6B9342B1527B700C6144D /* data */,
 				CDA611002C89E37800ED4033 /* niImmersiveView */,
 				CDD6B94A2B19469000C6144D /* niHome */,
+				CD945F3A2CF8C5A100C67214 /* niOnboarding */,
 				CD2B68EC2C2F162F0086756E /* niFullscreenPanel */,
 				CD7AE0A82C5535AB00B3984E /* niLibrary */,
 				CDD7D3342C198A080038E6F9 /* niPalette */,
@@ -535,8 +542,8 @@
 				A1B8E6A92AAFB5EC00AC6566 /* ni.xcdatamodeld */,
 				A1B8E6A52AAFB5EC00AC6566 /* AppDelegate.swift */,
 				A1F33E2D2AB7299500E2E7CD /* DefaultWindow.swift */,
-				CD0898292C9057F6007A9A9F /* .swiftlint-disable */,
 				A14E8F202AD20A2600409DDF /* DefaultWindowController.swift */,
+				CD0898292C9057F6007A9A9F /* .swiftlint-disable */,
 				CD6317DF2BC3F0F300434D56 /* errors */,
 				CD66CE362B1FD24B0006BB98 /* utils */,
 			);
@@ -864,6 +871,16 @@
 				CD7201CC2C5A3ACF00A6A2E7 /* NiLibraryInfoBox.swift */,
 			);
 			path = niLibrary;
+			sourceTree = "<group>";
+		};
+		CD945F3A2CF8C5A100C67214 /* niOnboarding */ = {
+			isa = PBXGroup;
+			children = (
+				CD945F3B2CF8C65400C67214 /* NiOnboardingWindow.swift */,
+				CDB24CFE2CF8CC58002B8D79 /* NiOnboardingViewController.swift */,
+				CDB24D002CF8CE1B002B8D79 /* NiOnboardingView.xib */,
+			);
+			path = niOnboarding;
 			sourceTree = "<group>";
 		};
 		CD9B96BD2C0733C800998CE2 /* NiImgViewElements */ = {
@@ -1210,6 +1227,7 @@
 				CD618D9C2C2B4151006869AF /* 43DC5B56-124C-4368-A341-EAA9D2E33CFD.jpg in Resources */,
 				CD6B97732C59544F0046C36B /* loadingAnimation.gif in Resources */,
 				CDBCBBF82C92F8330069EFE3 /* NiSignupView.xib in Resources */,
+				CDB24D012CF8CE1B002B8D79 /* NiOnboardingView.xib in Resources */,
 				CD8E58052CC8F1A9007550CF /* enai-icon.svg in Resources */,
 				CD569FEC2C53A05700C16B2E /* 76AD3FA8-81D2-4C9D-A5B0-EF190D4F6D81.png in Resources */,
 				CD6DED902C24954500AA8BC4 /* NiWebViewFindPanel.xib in Resources */,
@@ -1294,6 +1312,7 @@
 				CD9B96C42C075B8A00998CE2 /* ImgDal.swift in Sources */,
 				A1F33E2E2AB7299500E2E7CD /* DefaultWindow.swift in Sources */,
 				CDB06B612AF84E1F008DB8FF /* NiSpaceDocumentView.swift in Sources */,
+				CD945F3C2CF8C65E00C67214 /* NiOnboardingWindow.swift in Sources */,
 				CDD6B9432B16A14300C6144D /* ContentTable.swift in Sources */,
 				CD6DED8F2C24954500AA8BC4 /* NiWebViewFindPanel.swift in Sources */,
 				CD72B83F2C24714800104802 /* CAUtils.swift in Sources */,
@@ -1393,6 +1412,7 @@
 				CD0287D02C9ACA8D0035AEC8 /* BilgeWater.swift in Sources */,
 				CD6D853E2CA96EDA00A735DA /* WindowBlurView.swift in Sources */,
 				CD7AE0AA2C55366A00B3984E /* NiLibrary.swift in Sources */,
+				CDB24CFF2CF8CC64002B8D79 /* NiOnboardingViewController.swift in Sources */,
 				CDABE64A2C11C54300BB4E85 /* NiMenuItemView.swift in Sources */,
 				CD59FA142C3550F500CFB8DE /* NiViewElementsUtils.swift in Sources */,
 				CDE7BAF52CABE2AA00328025 /* GroupTable.swift in Sources */,
