@@ -1731,29 +1731,13 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		var children: [NiCFTabModel] = []
 		
 		for (i, tab) in tabs.enumerated(){
-			var scrollPosition: Int? = nil
-			
-			if(tab.type == .pdf){
-				scrollPosition = (tab.pdfView?.currentPage?.pageRef?.pageNumber ?? 1) - 1
-				if(scrollPosition! < 0){
-					scrollPosition = 0
-				}
-			}
-			
 			if(tab.isEveChat()){
 				tabs[i].type = .eveChat
 			}
 			
 			if(tab.shouldPersistContent()){
 				children.append(
-					NiCFTabModel(
-						id: tab.contentId,
-						contentType: tabs[i].type,
-						contentState: tab.state.rawValue,
-						active: tab.isSelected,
-						position: i,
-						scrollPosition: scrollPosition
-					)
+					tabs[i].toNiCFTabModel(at: i)
 				)
 			}
 		}
