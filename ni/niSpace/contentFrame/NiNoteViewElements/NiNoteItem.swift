@@ -17,6 +17,7 @@ class NiNoteItem: NSViewController, CFContentItem {
 	var scrollView: NSScrollView
 	private var txtDocView: NiNoteView
 	private var backgroundColor: NSColor? = nil
+	private(set) var stickyColor: StickyColor?
 	private var textColor: NSColor? = nil
 	private var cursorColor: NSColor? = nil
 	private var scrollerKnobColor: NSColor? = nil
@@ -43,6 +44,7 @@ class NiNoteItem: NSViewController, CFContentItem {
 	
 	convenience init(frame: NSRect, initText: String?, backgroundColor: StickyColor) {
 		self.init(frame: frame, initText: initText)
+		self.stickyColor = backgroundColor
 		self.backgroundColor = backgroundColor.toNSColor()
 		self.textColor = NSColor.stickyText
 		self.cursorColor = NSColor.stickyText
