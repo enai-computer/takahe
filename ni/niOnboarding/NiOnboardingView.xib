@@ -26,13 +26,13 @@
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
                     <customView id="2dY-kT-Fzw">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="900"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" heightSizable="YES"/>
+                        <rect key="frame" x="0.0" y="0.0" width="599" height="900"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES"/>
                         <subviews>
-                            <customView ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Rif-IA-nh8">
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="Rif-IA-nh8">
                                 <rect key="frame" x="0.0" y="184" width="600" height="716"/>
                             </customView>
-                            <customView horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZRa-LC-hXe">
+                            <customView autoresizesSubviews="NO" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="ZRa-LC-hXe">
                                 <rect key="frame" x="272" y="140" width="56" height="24"/>
                                 <subviews>
                                     <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Z5T-Ou-gNQ" customClass="NiActionImage" customModule="Enai" customModuleProvider="target">
@@ -46,6 +46,10 @@
                                         <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="arrowRightFilledHighlighted" id="XcB-hM-Cyv"/>
                                     </imageView>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="56" id="JoZ-Y7-86z"/>
+                                    <constraint firstAttribute="height" constant="24" id="sSl-7j-mVg"/>
+                                </constraints>
                             </customView>
                             <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" horizontalCompressionResistancePriority="1000" ambiguous="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3vV-YQ-GZd">
                                 <rect key="frame" x="288" y="90" width="25" height="10"/>

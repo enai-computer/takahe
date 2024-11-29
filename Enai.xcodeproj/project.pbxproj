@@ -25,6 +25,7 @@
 		CD0589372BE1837B00E9A01E /* PostHog in Frameworks */ = {isa = PBXBuildFile; productRef = CD0589362BE1837B00E9A01E /* PostHog */; };
 		CD06A9BA2BF79EF500312256 /* NiScroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD06A9B92BF79EF500312256 /* NiScroller.swift */; };
 		CD0713232CECF4EA00BCD1EF /* errorLoading.html in Resources */ = {isa = PBXBuildFile; fileRef = CD0713222CECF4EA00BCD1EF /* errorLoading.html */; };
+		CD076B1B2CF8E238004DF579 /* Step1ViewLeft.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD076B1A2CF8E1AE004DF579 /* Step1ViewLeft.swift */; };
 		CD078DD22CE2168B005C0B58 /* NSPointUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD078DD12CE21682005C0B58 /* NSPointUtils.swift */; };
 		CD08982A2C9057F6007A9A9F /* .swiftlint-disable in Resources */ = {isa = PBXBuildFile; fileRef = CD0898292C9057F6007A9A9F /* .swiftlint-disable */; };
 		CD0B63582CF494D000927F54 /* aiChat.html in Resources */ = {isa = PBXBuildFile; fileRef = CD0B63572CF494D000927F54 /* aiChat.html */; };
@@ -263,6 +264,7 @@
 		CD04974D2C12FA4A00C44021 /* NiTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiTextField.swift; sourceTree = "<group>"; };
 		CD06A9B92BF79EF500312256 /* NiScroller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiScroller.swift; sourceTree = "<group>"; };
 		CD0713222CECF4EA00BCD1EF /* errorLoading.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = errorLoading.html; sourceTree = "<group>"; };
+		CD076B1A2CF8E1AE004DF579 /* Step1ViewLeft.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Step1ViewLeft.swift; sourceTree = "<group>"; };
 		CD078DD12CE21682005C0B58 /* NSPointUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSPointUtils.swift; sourceTree = "<group>"; };
 		CD0898292C9057F6007A9A9F /* .swiftlint-disable */ = {isa = PBXFileReference; lastKnownFileType = text; path = ".swiftlint-disable"; sourceTree = "<group>"; };
 		CD0B63572CF494D000927F54 /* aiChat.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = aiChat.html; sourceTree = "<group>"; };
@@ -581,6 +583,14 @@
 			path = contentFrame;
 			sourceTree = "<group>";
 		};
+		CD076B192CF8E19A004DF579 /* steps */ = {
+			isa = PBXGroup;
+			children = (
+				CD076B1A2CF8E1AE004DF579 /* Step1ViewLeft.swift */,
+			);
+			path = steps;
+			sourceTree = "<group>";
+		};
 		CD18530E2C08C1FF001FE566 /* cacheDB */ = {
 			isa = PBXGroup;
 			children = (
@@ -876,6 +886,7 @@
 		CD945F3A2CF8C5A100C67214 /* niOnboarding */ = {
 			isa = PBXGroup;
 			children = (
+				CD076B192CF8E19A004DF579 /* steps */,
 				CD945F3B2CF8C65400C67214 /* NiOnboardingWindow.swift */,
 				CDB24CFE2CF8CC58002B8D79 /* NiOnboardingViewController.swift */,
 				CDB24D002CF8CE1B002B8D79 /* NiOnboardingView.xib */,
@@ -1404,6 +1415,7 @@
 				CDE88CAE2C2415AA000390A6 /* NiSpaceMenuPopup.swift in Sources */,
 				CDA611042C89E4A500ED4033 /* ImmersiveViewController.swift in Sources */,
 				CD4E0E3B2C4164A000273109 /* CFSimpleMinimizedView.swift in Sources */,
+				CD076B1B2CF8E238004DF579 /* Step1ViewLeft.swift in Sources */,
 				CD59FA102C345CFC00CFB8DE /* NiPdfViewUtils.swift in Sources */,
 				CDF711B72C66004A00B4A6B8 /* NiPinnedWebsiteVModel.swift in Sources */,
 				CDF711B92C66085800B4A6B8 /* PinnedWebsiteItemModel.swift in Sources */,

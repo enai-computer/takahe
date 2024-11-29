@@ -6,6 +6,31 @@
 //
 
 import Cocoa
+import SwiftUI
+
+protocol OnboardingStep{
+	func leftSideInfoView() -> NSView
+	func rightSideView() -> NSView
+}
+
+class OnboardingStepViews<LeftView: View, RightView: View>: NSObject, OnboardingStep{
+	
+	private var hostingViewLeft: NSHostingView<LeftView>
+	
+	init(swiftViewLeft: LeftView) {
+		self.hostingViewLeft = NSHostingView(rootView: swiftViewLeft)
+	}
+	
+	func leftSideInfoView() -> NSView {
+		return hostingViewLeft
+	}
+	
+	func rightSideView() -> NSView {
+		return hostingViewLeft
+	}
+	
+	
+}
 
 class NiOnboardingViewController: NSViewController{
 
@@ -17,6 +42,11 @@ class NiOnboardingViewController: NSViewController{
 	@IBOutlet var rightSideBackgroundFrame: NSView!
 	
 	private let viewFrame: NSRect
+	
+	private let onboardingSteps: [OnboardingStep] = [
+		OnboardingStepViews<Step1ViewLeft, Step1ViewLeft>(swiftViewLeft: Step1ViewLeft())
+	]
+	private var currentStep: Int = 0
 	
 	init(frame: NSRect) {
 		self.viewFrame = frame
@@ -33,6 +63,10 @@ class NiOnboardingViewController: NSViewController{
 		
 		styleLeftSide()
 		styleRightSide()
+		
+		setupButtons()
+		
+		loadOnboardingView(step: 0)
 	}
 	
 	private func styleLeftSide(){
@@ -43,5 +77,30 @@ class NiOnboardingViewController: NSViewController{
 	private func styleRightSide(){
 		rightSideBackgroundFrame.wantsLayer = true
 		rightSideBackgroundFrame.layer?.backgroundColor = NSColor.sand1.cgColor
+	}
+	
+	private func setupButtons(){
+		fwdButton.isActiveFunction = {return true}
+		fwdButton.setMouseDownFunction({ _ in
+			
+		})
+		
+		backButton.isActiveFunction = {return true}
+		backButton.setMouseDownFunction({ _ in
+			
+		})
+	}
+	
+	private func loadOnboardingView(step: Int){
+		let onboardingViewLeft = onboardingSteps[step].leftSideInfoView()
+		onboardingViewLeft.translatesAutoresizingMaskIntoConstraints = false
+		leftSideInfoView.addSubview(onboardingViewLeft)
+		
+		NSLayoutConstraint.activate([
+			onboardingViewLeft.topAnchor.constraint(equalTo: leftSideInfoView.topAnchor),
+			onboardingViewLeft.trailingAnchor.constraint(equalTo: leftSideInfoView.trailingAnchor),
+			onboardingViewLeft.bottomAnchor.constraint(equalTo: leftSideInfoView.bottomAnchor),
+			onboardingViewLeft.leadingAnchor.constraint(equalTo: leftSideInfoView.leadingAnchor)
+		])
 	}
 }
