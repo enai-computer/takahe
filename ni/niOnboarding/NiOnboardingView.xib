@@ -30,7 +30,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES"/>
                         <subviews>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="Rif-IA-nh8">
-                                <rect key="frame" x="0.0" y="184" width="600" height="716"/>
+                                <rect key="frame" x="0.0" y="184" width="599" height="716"/>
                             </customView>
                             <customView autoresizesSubviews="NO" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="ZRa-LC-hXe">
                                 <rect key="frame" x="272" y="140" width="56" height="24"/>
