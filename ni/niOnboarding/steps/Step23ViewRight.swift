@@ -40,7 +40,7 @@ struct Step23ViewRight: View {
 				if(ranAnimation){
 					Line()
 						.stroke(style: StrokeStyle(lineWidth: 2.0, dash: [6]))
-						.frame(height: 4.0)
+						.frame(width: geometry.size.width * 0.2, height: 4.0)
 						.foregroundStyle(.birkin)
 						.transition(.opacity)
 				}
@@ -52,20 +52,23 @@ struct Step23ViewRight: View {
 							.foregroundStyle(.birkin)
 							.transition(.opacity)
 					}
-					Image("messyGroup2")
-						.resizable()
-						.aspectRatio(nil, contentMode: .fit)
-						.frame(width: geometry.size.width * 0.4)
+					VStack(spacing: 0) {
+						Image("messyGroup2")
+							.resizable()
+							.aspectRatio(nil, contentMode: .fit)
+							.frame(width: geometry.size.width * 0.4)
+						if(ranAnimation){
+							Line()
+								.stroke(style: StrokeStyle(lineWidth: 2.0, dash: [6]))
+//								.frame(width: geometry.size.width * 0.2, height: 4.0)
+								.foregroundStyle(.birkin)
+								.transition(.opacity)
+						}
+					}
 				}
 					
 					
-				if(ranAnimation){
-					Line()
-						.stroke(style: StrokeStyle(lineWidth: 2.0, dash: [6]))
-						.frame(height: 4.0)
-						.foregroundStyle(.birkin)
-						.transition(.opacity)
-				}
+
 				
 				GridRow{
 					if(ranAnimation){
