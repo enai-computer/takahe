@@ -153,6 +153,7 @@
 		CD94DC802CFDF682009D407D /* Step5ViewLeft.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD94DC7F2CFDF682009D407D /* Step5ViewLeft.swift */; };
 		CD94DC822CFE055F009D407D /* Step1ViewRight.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD94DC812CFE055F009D407D /* Step1ViewRight.swift */; };
 		CD94DC842CFE0CC6009D407D /* Step23ViewRight.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD94DC832CFE0CC6009D407D /* Step23ViewRight.swift */; };
+		CD94DC862CFF25CF009D407D /* Step4ViewRight.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD94DC852CFF25CF009D407D /* Step4ViewRight.swift */; };
 		CD97975C2C57AC2C00640750 /* LoadingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD97975B2C57AC2C00640750 /* LoadingView.xib */; };
 		CD97975E2C57AE1400640750 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD97975D2C57AE1400640750 /* LoadingView.swift */; };
 		CD9B96BC2C04C8EE00998CE2 /* CFContentItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9B96BB2C04C8EE00998CE2 /* CFContentItem.swift */; };
@@ -393,6 +394,7 @@
 		CD94DC7F2CFDF682009D407D /* Step5ViewLeft.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Step5ViewLeft.swift; sourceTree = "<group>"; };
 		CD94DC812CFE055F009D407D /* Step1ViewRight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Step1ViewRight.swift; sourceTree = "<group>"; };
 		CD94DC832CFE0CC6009D407D /* Step23ViewRight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Step23ViewRight.swift; sourceTree = "<group>"; };
+		CD94DC852CFF25CF009D407D /* Step4ViewRight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Step4ViewRight.swift; sourceTree = "<group>"; };
 		CD97975B2C57AC2C00640750 /* LoadingView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoadingView.xib; sourceTree = "<group>"; };
 		CD97975D2C57AE1400640750 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		CD9B96BB2C04C8EE00998CE2 /* CFContentItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CFContentItem.swift; sourceTree = "<group>"; };
@@ -601,6 +603,7 @@
 				CD94DC772CFDD84A009D407D /* Step23ViewLeft.swift */,
 				CD94DC832CFE0CC6009D407D /* Step23ViewRight.swift */,
 				CD94DC7D2CFDF621009D407D /* Step4ViewLeft.swift */,
+				CD94DC852CFF25CF009D407D /* Step4ViewRight.swift */,
 				CD94DC7F2CFDF682009D407D /* Step5ViewLeft.swift */,
 			);
 			path = steps;
@@ -1302,6 +1305,7 @@
 				CD75784C2BC065FB00293930 /* ContentFrameTabHeadTextNode.swift in Sources */,
 				A1E41BFA2ACB57EF00338417 /* ContentFrameView.swift in Sources */,
 				CD6317F12BC53A9600434D56 /* cfOverlay.swift in Sources */,
+				CD94DC862CFF25CF009D407D /* Step4ViewRight.swift in Sources */,
 				CD94DC842CFE0CC6009D407D /* Step23ViewRight.swift in Sources */,
 				A14E8F212AD20A2600409DDF /* DefaultWindowController.swift in Sources */,
 				CD5B153A2BDFBFE40030F017 /* NiActionImage.swift in Sources */,
