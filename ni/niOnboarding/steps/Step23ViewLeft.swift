@@ -7,17 +7,14 @@
 
 import SwiftUI
 
-@Observable
-final class Step23RunAnimation{
-	var runFwdAnimation: Bool = false
-}
 
-struct Step23ViewLeft: View, ViewAnimationProtocol {
+struct Step23ViewLeft: View {
 	@State private var text1Opacity: Double = 1.0
+	@State private var text2Opacity: Double = 0.0
 	@State private var showNewText: Bool = false
-	let animationState: Step23RunAnimation
+	let animationState: StepRunsAnimation
 	
-	init(_ animationState: Step23RunAnimation){
+	init(_ animationState: StepRunsAnimation){
 		self.animationState = animationState
 	}
 	
@@ -37,57 +34,40 @@ struct Step23ViewLeft: View, ViewAnimationProtocol {
 						Text("So Enai gives you space(s)")
 							.font(.custom("Sohne-Kraftig", size: 30))
 							.foregroundColor(.sand12)
+							.transition(.opacity)
 						
 						Text("To do anything you want \nwith no distractions.")
 							.font(.custom("Sohne-Buch", size: 21))
 							.foregroundColor(.sand12)
+							.transition(.opacity)
 						
 						Text("Work on something, put it away,\ncome back anytime.")
 							.font(.custom("Sohne-Buch", size: 21))
 							.foregroundColor(.sand12)
+							.transition(.opacity)
 					}
 					Spacer()
 				}
 				Spacer()
 			}
 		}.onChange(of: animationState.runFwdAnimation){
-			_ = runFwdTransition()
+			runTransition()
 		}
 	}
 	
-	func runFwdTransition() -> Bool {
-		if(self.showNewText){	//animation already ran
-			return false
-		}
+	func runTransition() {
 		withAnimation(.easeOut(duration: 1.0)) {
-			self.text1Opacity = 0.1
+			if(showNewText){
+				self.text1Opacity = 1.0
+			}else{
+				self.text1Opacity = 0.2
+			}
+			self.showNewText.toggle()
 		}
-		self.showNewText = true
-		return true
 	}
 }
 
 #Preview {
-	Step23ViewLeft(Step23RunAnimation())
+	Step23ViewLeft(StepRunsAnimation())
 		.frame(width: 600, height: 700)
 }
-
-
-/*
- Text("Computers are getting busier.")
-	 .font(.custom("Sohne-Buch", size: 21))
-	 .foregroundColor(.sand12)
-	 .opacity(0.5)
- 
- Text("So Enai gives you space(s)")
-	 .font(.custom("Sohne-Kraftig", size: 30))
-	 .foregroundColor(.sand12)
- 
- Text("To do anything you want \nwith no distractions.")
-	 .font(.custom("Sohne-Buch", size: 21))
-	 .foregroundColor(.sand12)
- 
- Text("Work on something, put it away,\ncome back anytime.")
-	 .font(.custom("Sohne-Buch", size: 21))
-	 .foregroundColor(.sand12)
- */
