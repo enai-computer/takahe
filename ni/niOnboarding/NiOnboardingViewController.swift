@@ -193,7 +193,7 @@ class NiOnboardingViewController: NSViewController{
 		return opacityAnimation
 	}
 	
-	private func nextStep(){
+	func nextStep(){
 		if(onboardingSteps[currentStep].runFwdTransition()){
 			return
 		}
@@ -203,16 +203,20 @@ class NiOnboardingViewController: NSViewController{
 		
 		for subView in leftSideInfoView.subviews{
 			subView.layer?.add(getDisappearingOpacityAnimation(for: animationDurationBetweenSlides_ms), forKey: "opacity")
-			subView.removeFromSuperview()
+			DispatchQueue.main.asyncAfter(deadline: .now().advanced(by: .milliseconds(animationDurationBetweenSlides_ms))){
+				subView.removeFromSuperview()
+			}
 		}
 		for subView in rightSideBackgroundFrame.subviews{
 			subView.layer?.add(getDisappearingOpacityAnimation(for: animationDurationBetweenSlides_ms), forKey: "opacity")
-			subView.removeFromSuperview()
+			DispatchQueue.main.asyncAfter(deadline: .now().advanced(by: .milliseconds(animationDurationBetweenSlides_ms))){
+				subView.removeFromSuperview()
+			}
 		}
 		loadOnboardingView(step: currentStep)
 	}
 	
-	private func prevStep(){
+	func prevStep(){
 		if(onboardingSteps[currentStep].runBackTransition()){
 			return
 		}
@@ -222,11 +226,15 @@ class NiOnboardingViewController: NSViewController{
 		
 		for subView in leftSideInfoView.subviews{
 			subView.layer?.add(getDisappearingOpacityAnimation(for: animationDurationBetweenSlides_ms), forKey: "opacity")
-			subView.removeFromSuperview()
+			DispatchQueue.main.asyncAfter(deadline: .now().advanced(by: .milliseconds(animationDurationBetweenSlides_ms))){
+				subView.removeFromSuperview()
+			}
 		}
 		for subView in rightSideBackgroundFrame.subviews{
 			subView.layer?.add(getDisappearingOpacityAnimation(for: animationDurationBetweenSlides_ms), forKey: "opacity")
-			subView.removeFromSuperview()
+			DispatchQueue.main.asyncAfter(deadline: .now().advanced(by: .milliseconds(animationDurationBetweenSlides_ms))){
+				subView.removeFromSuperview()
+			}
 		}
 		loadOnboardingView(step: currentStep)
 	}

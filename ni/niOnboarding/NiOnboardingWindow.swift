@@ -6,11 +6,14 @@
 //
 
 import Cocoa
+import Carbon.HIToolbox
 
 class NiOnboardingWindow: NSPanel{
 
 	override var canBecomeKey: Bool {return true}
 	override var canBecomeMain: Bool {return false}
+	
+	private var myViewController: NiOnboardingViewController?
 	
 	init(windowToAppearOn: NSWindow){
 		super.init(
@@ -31,12 +34,15 @@ class NiOnboardingWindow: NSPanel{
 		]
 		titleVisibility = .hidden
 		titlebarAppearsTransparent = true
+		let myViewController = NiOnboardingViewController(
+			frame: NSRect(origin: .zero, size: windowToAppearOn.frame.size)
+		)
 		contentViewController = NiEmptyViewController(
 			viewFrame: windowToAppearOn.frame,
-			contentController: NiOnboardingViewController(
-				frame: NSRect(origin: .zero, size: windowToAppearOn.frame.size)
-			)
+			contentController: myViewController
 		)
+		
+		self.myViewController = myViewController
 
 		hasShadow = false
 		isOpaque = false
@@ -53,5 +59,18 @@ class NiOnboardingWindow: NSPanel{
 
 		orderOut(self)
 		close()
+	}
+	
+	override func keyDown(with event: NSEvent){
+		if(event.keyCode == kVK_RightArrow){
+			myViewController?.nextStep()
+			return
+		}
+		
+		if(event.keyCode == kVK_LeftArrow){
+			myViewController?.prevStep()
+			return
+		}
+		super.keyDown(with: event)
 	}
 }
