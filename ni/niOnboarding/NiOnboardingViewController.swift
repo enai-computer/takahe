@@ -11,14 +11,34 @@ import SwiftUI
 protocol OnboardingStep{
 	func leftSideInfoView() -> NSView
 	func rightSideView() -> NSView
+	
+	/**
+	 returns true if an animation was displayed. If there are no more animations left to run it will return false.
+	 */
+	func runFwdTransition() -> Bool
+}
+
+
+protocol ViewAnimationProtocol {
+	/**
+	 returns true if an animation was displayed. If there are no more animations left to run it will return false.
+	 */
+	func runFwdTransition() -> Bool
 }
 
 class OnboardingStepViews<LeftView: View, RightView: View>: NSObject, OnboardingStep{
 	
 	private var hostingViewLeft: NSHostingView<LeftView>
+	private var hostingViewRight: NSHostingView<RightView>
+	private var leftView: LeftView
+	private var trigger: Step23RunAnimation?
 	
-	init(swiftViewLeft: LeftView) {
+	init(swiftViewLeft: LeftView, swiftViewRight: RightView, trigger: Step23RunAnimation? = nil) {
+		self.leftView = swiftViewLeft
 		self.hostingViewLeft = NSHostingView(rootView: swiftViewLeft)
+		self.hostingViewRight = NSHostingView(rootView: swiftViewRight)
+		
+		self.trigger = trigger
 	}
 	
 	func leftSideInfoView() -> NSView {
@@ -26,10 +46,27 @@ class OnboardingStepViews<LeftView: View, RightView: View>: NSObject, Onboarding
 	}
 	
 	func rightSideView() -> NSView {
-		return hostingViewLeft
+		return hostingViewRight
 	}
 	
-	
+	func runFwdTransition() -> Bool{
+		var ranAnimation = false
+//		if let leftView = hostingViewLeft.rootView as? (any View & ViewAnimationProtocol) {
+//			ranAnimation = ranAnimation || leftView.runFwdTransition()
+//		}
+//		if let leftViewAnimationRan = (self.leftView as? (any View & ViewAnimationProtocol))?.runFwdTransition() {
+//			ranAnimation = ranAnimation || leftViewAnimationRan
+//		}
+//		if let rightViewAnimationRan = (hostingViewRight.rootView as? (any View & ViewAnimationProtocol))?.runFwdTransition() {
+//			ranAnimation = ranAnimation || rightViewAnimationRan
+//		}
+		if(self.trigger?.runFwdAnimation == false){
+			self.trigger?.runFwdAnimation = true
+			return true
+		}
+		
+		return ranAnimation
+	}
 }
 
 class NiOnboardingViewController: NSViewController{
@@ -43,13 +80,21 @@ class NiOnboardingViewController: NSViewController{
 	
 	private let viewFrame: NSRect
 	
-	private let onboardingSteps: [OnboardingStep] = [
-		OnboardingStepViews<Step1ViewLeft, Step1ViewLeft>(swiftViewLeft: Step1ViewLeft())
-	]
+	private let step23Trigger = Step23RunAnimation()
+	private let onboardingSteps: [OnboardingStep] //= [
+//		OnboardingStepViews<Step1ViewLeft, Step1ViewRight>(swiftViewLeft: Step1ViewLeft(), swiftViewRight: Step1ViewRight()),
+//		OnboardingStepViews<Step23ViewLeft, Step23ViewRight>(swiftViewLeft: Step23ViewLeft(step23Trigger), swiftViewRight: Step23ViewRight())
+//	]
+
 	private var currentStep: Int = 0
 	
 	init(frame: NSRect) {
 		self.viewFrame = frame
+		
+		onboardingSteps = [
+			OnboardingStepViews<Step1ViewLeft, Step1ViewRight>(swiftViewLeft: Step1ViewLeft(), swiftViewRight: Step1ViewRight()),
+			OnboardingStepViews<Step23ViewLeft, Step23ViewRight>(swiftViewLeft: Step23ViewLeft(step23Trigger), swiftViewRight: Step23ViewRight(), trigger: step23Trigger)
+		]
 		super.init(nibName: NSNib.Name("NiOnboardingView"), bundle: Bundle.main)
 	}
 	
@@ -66,7 +111,8 @@ class NiOnboardingViewController: NSViewController{
 		
 		setupButtons()
 		
-		loadOnboardingView(step: 0)
+		currentStep = 0
+		loadOnboardingView(step: currentStep)
 	}
 	
 	private func styleLeftSide(){
@@ -82,15 +128,16 @@ class NiOnboardingViewController: NSViewController{
 	private func setupButtons(){
 		fwdButton.isActiveFunction = {return true}
 		fwdButton.setMouseDownFunction({ _ in
-			
+			self.nextStep()
 		})
 		
 		backButton.isActiveFunction = {return true}
 		backButton.setMouseDownFunction({ _ in
-			
+			self.prevStep()
 		})
 	}
 	
+	//TODO: this works only running forward for now
 	private func loadOnboardingView(step: Int){
 		let onboardingViewLeft = onboardingSteps[step].leftSideInfoView()
 		onboardingViewLeft.translatesAutoresizingMaskIntoConstraints = false
@@ -102,5 +149,47 @@ class NiOnboardingViewController: NSViewController{
 			onboardingViewLeft.bottomAnchor.constraint(equalTo: leftSideInfoView.bottomAnchor),
 			onboardingViewLeft.leadingAnchor.constraint(equalTo: leftSideInfoView.leadingAnchor)
 		])
+		
+		let onboardingViewRight: NSView = onboardingSteps[step].rightSideView()
+		onboardingViewRight.translatesAutoresizingMaskIntoConstraints = false
+		rightSideBackgroundFrame.addSubview(onboardingViewRight)
+		NSLayoutConstraint.activate([
+			onboardingViewRight.topAnchor.constraint(equalTo: rightSideBackgroundFrame.topAnchor),
+			onboardingViewRight.trailingAnchor.constraint(equalTo: rightSideBackgroundFrame.trailingAnchor),
+			onboardingViewRight.bottomAnchor.constraint(equalTo: rightSideBackgroundFrame.bottomAnchor),
+			onboardingViewRight.leadingAnchor.constraint(equalTo: rightSideBackgroundFrame.leadingAnchor)
+		])
+		
+	}
+	
+	private func nextStep(){
+		if(onboardingSteps[currentStep].runFwdTransition()){
+			return
+		}
+		
+		guard (currentStep + 1) < onboardingSteps.count else {return}
+		currentStep += 1
+		
+		for subView in leftSideInfoView.subviews{
+			subView.removeFromSuperview()
+		}
+		for subView in rightSideBackgroundFrame.subviews{
+			subView.removeFromSuperview()
+		}
+		loadOnboardingView(step: currentStep)
+	}
+	
+	private func prevStep(){
+		
+		guard 0 <= (currentStep - 1) else {return}
+		currentStep -= 1
+		
+		for subView in leftSideInfoView.subviews{
+			subView.removeFromSuperview()
+		}
+		for subView in rightSideBackgroundFrame.subviews{
+			subView.removeFromSuperview()
+		}
+		loadOnboardingView(step: currentStep)
 	}
 }

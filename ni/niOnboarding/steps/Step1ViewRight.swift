@@ -20,7 +20,7 @@ struct Step1ViewRight: View {
 						.frame(height: geometry.size.height * 0.2)
 					Image("EnaiI")
 						.resizable()
-						.aspectRatio(0.45, contentMode: .fit)
+						.aspectRatio(0.43, contentMode: .fit)
 						.opacity(0.6)
 						.position(x: geometry.size.width / 2, y: geometry.size.height / 3)
 					Spacer()

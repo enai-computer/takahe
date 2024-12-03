@@ -7,8 +7,8 @@
 
 import SwiftUI
 
-struct Step23ViewRight: View {
-	
+struct Step23ViewRight: View, ViewAnimationProtocol {
+
 	var body: some View {
 		GeometryReader { geometry in
 			ZStack(alignment: .center) {
@@ -28,6 +28,10 @@ struct Step23ViewRight: View {
 				}
 			}
 		}
+	}
+	
+	func runFwdTransition() -> Bool {
+		return true
 	}
 }
 
