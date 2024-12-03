@@ -7,22 +7,21 @@
 
 import Cocoa
 
-class CFSectionTitleViewController: NSViewController, CFProtocol{
+class CFSectionTitleViewController: CFProtocol{
 
 	private var sectionName: String? = nil
 	private var sectionId: UUID
 	
 	//view state
-	private var myView: CFSectionTitleView? {return view as? CFSectionTitleView}
+	private var sectionView: CFSectionTitleView? {return view as? CFSectionTitleView}
 	private var closeTriggered: Bool = false
-	var viewState: NiContentFrameState = .sectionTitle
-	var tabs: [TabViewModel] = []
-	
 	
 	init(sectionId: UUID = UUID(), sectionName: String?){
 		self.sectionId = sectionId
 		self.sectionName = sectionName
 		super.init(nibName: "CFSectionTitleView", bundle: Bundle.main)
+		
+		self.viewState = .sectionTitle
 	}
 	
 	required init?(coder: NSCoder) {
@@ -30,13 +29,13 @@ class CFSectionTitleViewController: NSViewController, CFProtocol{
 	}
 	
 	override func viewDidLoad() {
-		myView?.initAfterViewLoad(sectionName: sectionName)
+		sectionView?.initAfterViewLoad(sectionName: sectionName)
 	}
 	
 	/*
 	 * MARK: - store and load here
 	 */
-	func persistContent(spaceId: UUID){
+	override func persistContent(spaceId: UUID){
 		if(closeTriggered){
 			return
 		}
@@ -44,9 +43,9 @@ class CFSectionTitleViewController: NSViewController, CFProtocol{
 		//DocumentDal.persistGroup(id: groupId, name: groupName, spaceId: spaceId)
 	}
 	
-	func purgePersistetContent(){}
+	override func purgePersistetContent(){}
 	
-	func toNiContentFrameModel() -> (model: NiDocumentObjectModel?, nrOfTabs: Int, state: NiContentFrameState?){
+	override func toNiContentFrameModel() -> (model: NiDocumentObjectModel?, nrOfTabs: Int, state: NiContentFrameState?){
 		
 		let posInStack = Int(view.layer!.zPosition)
 		let model = NiDocumentObjectModel(

@@ -150,7 +150,7 @@ class CFFullscreenView: CFBaseView, CFTabHeadProtocol, CFFwdBackButtonProtocol{
 								groupController.expandedToFullscreen()
 							case .fullscreen:
 								assert(groupController === myController, "No other group should have been in fullscreen mode")
-							case .frameless, .simpleFrame, .simpleMinimised:
+							case .frameless, .simpleFrame, .simpleMinimised, .sectionTitle:
 								assertionFailure("Unexpected state change from \(groupController.viewState) to full screen")
 						}
 					}

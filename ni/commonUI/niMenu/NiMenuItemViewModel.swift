@@ -42,7 +42,7 @@ extension NiMenuItemViewModel {
 }
 
 extension NiMenuItemViewModel.Label {
-	init(fromContentFrameController controller: ContentFrameController) {
+	init(fromContentFrameController controller: CFProtocol) {
 		if let groupName = controller.groupName {
 			self = .title(groupName)
 		} else {

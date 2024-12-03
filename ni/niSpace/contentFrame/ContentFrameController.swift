@@ -44,7 +44,6 @@ class ContentFrameController: CFProtocol, WKNavigationDelegate, WKUIDelegate, NS
 		self.viewState = myView.frameType
 	}
 	
-	var myView: CFBaseView {return self.view as! CFBaseView}
 	var framelessView: CFFramelessView? {return self.view as? CFFramelessView}
 	var simpleFrame: CFSimpleFrameView? {return self.view as? CFSimpleFrameView}
 	var viewWithTabs: CFTabHeadProtocol? {return self.view as? CFTabHeadProtocol}
@@ -55,15 +54,14 @@ class ContentFrameController: CFProtocol, WKNavigationDelegate, WKUIDelegate, NS
 	//and not just right next to the current tab
 	private var nxtTabPosOpenNxtTo: Int? = nil
 	private(set) var aTabIsInEditingMode: Bool = false
-	private(set) var tabs: [TabViewModel] = []
 
 	private var viewIsDrawn = false
 	
 	private var closeCancelled = false
 	private(set) var closeTriggered = false
 	
-	private(set) var groupName: String?
-	private(set) var groupId: UUID?
+//	private(set) var groupName: String?
+//	private(set) var groupId: UUID?
 	private var prevDisplayState: NiPreviousDisplayState?
 	
 	/*
@@ -75,14 +73,17 @@ class ContentFrameController: CFProtocol, WKNavigationDelegate, WKUIDelegate, NS
 		 tabsModel: [TabViewModel]? = nil,
 		 previousDisplayState: NiPreviousDisplayState? = nil
 	){
-		self.viewState = viewState
-		self.groupName = groupName
+		
+		self.prevDisplayState = previousDisplayState
+		
+		super.init(nibName: nil, bundle: nil)
 		self.groupId = groupId
+		self.groupName = groupName
+		
+		self.viewState = viewState
 		if(tabsModel != nil){
 			self.tabs = tabsModel!
 		}
-		self.prevDisplayState = previousDisplayState
-		super.init(nibName: nil, bundle: nil)
 	}
 	
 	required init?(coder: NSCoder) {
@@ -272,7 +273,7 @@ class ContentFrameController: CFProtocol, WKNavigationDelegate, WKUIDelegate, NS
 		}
 	}
 	
-	func tryPrintContent(_ sender: Any?){
+	override func tryPrintContent(_ sender: Any?){
 		if(selectedTabModel < 0 && 0 < tabs.count){
 			tabs[0].viewItem?.printView(sender)
 			return
@@ -434,7 +435,7 @@ class ContentFrameController: CFProtocol, WKNavigationDelegate, WKUIDelegate, NS
 	 * MARK: passToView Functions
 	 */
 	
-	func reloadSelectedTab(){
+	override func reloadSelectedTab(){
 		if(viewState != .minimised){
 			if(selectedTabModel < 0 && 0 < tabs.count){
 				tabs[0].webView?.reload()
@@ -447,7 +448,7 @@ class ContentFrameController: CFProtocol, WKNavigationDelegate, WKUIDelegate, NS
 	/*
 	 * MARK: transitions between views
 	 */
-	func minimizeSelf(){
+	override func minimizeSelf(){
 		switch (viewState, prevDisplayState?.state) {
 			case (.expanded, .collapsedMinimised):
 				minimizeToCollapsed(to: prevDisplayState?.minimisedOrigin?.toNSPoint())
@@ -527,7 +528,7 @@ class ContentFrameController: CFProtocol, WKNavigationDelegate, WKUIDelegate, NS
 		cfView.frame.origin.x = superViewMaxX - cfView.frame.width
 	}
 	
-	func maximizeSelf(){
+	override func maximizeSelf(){
 		switch viewState {
 			case .minimised, .collapsedMinimised:
 				minimizedToExpanded()
@@ -544,7 +545,7 @@ class ContentFrameController: CFProtocol, WKNavigationDelegate, WKUIDelegate, NS
 		}
 	}
 
-	func minimizedToFullscreen() {
+	override func minimizedToFullscreen() {
 		assert([.minimised, .collapsedMinimised].contains(viewState))
 
 		let oldState = viewState
@@ -561,7 +562,7 @@ class ContentFrameController: CFProtocol, WKNavigationDelegate, WKUIDelegate, NS
 		)
 	}
 
-	func expandedToFullscreen(){
+	override func expandedToFullscreen(){
 		let fullscreenView = loadFullscreenView()
 		fullscreenView.setFrameOwner(myView.niParentDoc)
 		
@@ -707,7 +708,7 @@ class ContentFrameController: CFProtocol, WKNavigationDelegate, WKUIDelegate, NS
 		}
 	}
 	
-	func minimizedToExpanded(_ shallSelectTabAt: Int = -1){
+	override func minimizedToExpanded(_ shallSelectTabAt: Int = -1){
 		
 		if let minimizedView = self.view as? CFHasGroupButtonProtocol{
 			groupName = minimizedView.cfGroupButton.getName()
@@ -891,7 +892,7 @@ class ContentFrameController: CFProtocol, WKNavigationDelegate, WKUIDelegate, NS
 		return tabHeadModel.position
 	}
 	
-	func openAndEditEmptyWebTab(createInfoText: Bool = true){
+	override func openAndEditEmptyWebTab(createInfoText: Bool = true){
 		if(!viewHasTabs()){
 			return
 		}
@@ -1115,7 +1116,7 @@ class ContentFrameController: CFProtocol, WKNavigationDelegate, WKUIDelegate, NS
 	 
 	 Close tabs and select the nxt tab to the right first and then left when none to the right are left
 	 */
-	func closeSelectedTab(){
+	override func closeSelectedTab(){
 		if(0 < tabs.count && tabs[0].type == .web && viewState == .simpleFrame){
 			confirmClose()
 			return
@@ -1159,7 +1160,7 @@ class ContentFrameController: CFProtocol, WKNavigationDelegate, WKUIDelegate, NS
 		deletedTabModel?.viewItem = nil
 	}
 	
-	func selectNextTab(goFwd: Bool = true){
+	override func selectNextTab(goFwd: Bool = true){
 		var nxtTab: Int = if(goFwd){
 			self.selectedTabModel + 1
 		}else{
@@ -1252,8 +1253,8 @@ class ContentFrameController: CFProtocol, WKNavigationDelegate, WKUIDelegate, NS
 		tabs[selectedTabModel].isSelected = true
 	}
 	
-	func toggleEditSelectedTab(){
-		if(self.viewState == .minimised){
+	override func toggleEditSelectedTab(){
+		if(self.viewState.isMinimized()){
 			return
 		}
 		if(aTabIsInEditingMode){
@@ -1680,7 +1681,7 @@ class ContentFrameController: CFProtocol, WKNavigationDelegate, WKUIDelegate, NS
 	 * MARK: - store and load here
 	 */
 	
-	func purgePersistetContent(){
+	override func purgePersistetContent(){
 		var lastType: TabContentType?
 		for tab in tabs {
 			if(tab.type == .img){
@@ -1701,7 +1702,7 @@ class ContentFrameController: CFProtocol, WKNavigationDelegate, WKUIDelegate, NS
 		)
 	}
 	
-	func persistContent(spaceId: UUID){
+	override func persistContent(spaceId: UUID){
 		if(closeTriggered){
 			return
 		}
@@ -1714,7 +1715,7 @@ class ContentFrameController: CFProtocol, WKNavigationDelegate, WKUIDelegate, NS
 		}
 	}
 	
-	func toNiContentFrameModel() -> (model: NiDocumentObjectModel?, nrOfTabs: Int, state: NiContentFrameState?){
+	override func toNiContentFrameModel() -> (model: NiDocumentObjectModel?, nrOfTabs: Int, state: NiContentFrameState?){
 		
 		//do nothing, as we are in the deletion process
 		if(closeTriggered){
@@ -1791,13 +1792,13 @@ class ContentFrameController: CFProtocol, WKNavigationDelegate, WKUIDelegate, NS
 		self.groupId = UUID()
 	}
 	
-	func pauseMediaPlayback(){
+	override func pauseMediaPlayback(){
 		for t in tabs{
 			t.viewItem?.spaceClosed()
 		}
 	}
 	
-	func deinitSelf(){
+	override func deinitSelf(){
 		myView.removeFromSuperviewWithoutNeedingDisplay()
 		for t in tabs{
 			t.viewItem?.spaceRemovedFromMemory()

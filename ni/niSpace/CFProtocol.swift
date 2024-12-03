@@ -9,9 +9,26 @@ import Cocoa
 
 class CFProtocol: NSViewController{
 	
+	var groupId: UUID?
+	var groupName: String?
+	
 	var viewState: NiContentFrameState = .expanded
-	var myView: CFBaseView? {return view as? CFBaseView}
+	var myView: CFBaseView {return (view as! CFBaseView)}
 	var tabs: [TabViewModel] = []
+	
+	func selectNextTab(goFwd: Bool = true){}
+	func openAndEditEmptyWebTab(createInfoText: Bool = true){}
+	func toggleEditSelectedTab(){}
+	func maximizeSelf(){}
+	func minimizeSelf(){}
+	func minimizedToExpanded(_ shallSelectTabAt: Int = -1){}
+	func minimizedToFullscreen(){}
+	func expandedToFullscreen(){}
+	func closeSelectedTab(){}
+	func reloadSelectedTab(){}
+	func pauseMediaPlayback(){}
+	func tryPrintContent(_ sender: Any?){}
+	func deinitSelf(){}
 	
 	func toNiContentFrameModel() -> (model: NiDocumentObjectModel?, nrOfTabs: Int, state: NiContentFrameState?){
 		fatalError("function not implemented")

@@ -20,6 +20,17 @@ func openEmptyContentFrame(viewState: NiContentFrameState = .expanded, groupName
 }
 
 func reopenContentFrame(screenSize: CGSize, contentFrame: NiContentFrameModel, tabDataModel: [NiCFTabModel]) -> CFProtocol{
+	
+	//special case handling
+	guard contentFrame.state != .sectionTitle else {
+		let sectionController = CFSectionTitleViewController(
+			sectionId: contentFrame.id ?? UUID(), sectionName: contentFrame.name
+		)
+		sectionController.view.frame.size = screenSize
+		sectionController.view.frame.origin.y = contentFrame.position.y.px
+		return sectionController
+	}
+	
 	let tabViewModels = niCFTabModelToTabViewModel(tabs: tabDataModel)
 	let controller = reopenContentFrameWithOutPositioning(
 		screenWidth: screenSize.width,

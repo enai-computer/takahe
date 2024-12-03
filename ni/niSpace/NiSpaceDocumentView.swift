@@ -14,9 +14,9 @@ class NiSpaceDocumentView: NSView{
 
 	private let DEFAULT_WINDOW_HEIGHT: CGFloat = 1400.0
 	
-	private(set) var topNiFrame: ContentFrameController? = nil
+	private(set) var topNiFrame: CFProtocol? = nil
 	private var nxtTopZPosition: CGFloat = 0.0
-	private(set) var contentFrameControllers: Set<ContentFrameController> = []	//rn all niFrames are drawn. Needs to be reworked in future
+	private(set) var contentFrameControllers: Set<CFProtocol> = []	//rn all niFrames are drawn. Needs to be reworked in future
 	
 	init(with size: CGSize){
 		let frameSize = NSRect(origin: CGPoint(x: 0.0, y: 0.0), size: size)
@@ -177,7 +177,7 @@ class NiSpaceDocumentView: NSView{
 	}
 	
 	func highlightContentFrame(with id: UUID){
-		var contentFrameToHighlight: ContentFrameController?
+		var contentFrameToHighlight: CFProtocol?
 		for cFrame in contentFrameControllers{
 			if(cFrame.groupId == id){
 				highlightContentFrame(cframe: cFrame)
@@ -187,7 +187,9 @@ class NiSpaceDocumentView: NSView{
 				contentFrameToHighlight = cFrame
 			}
 			if(cFrame.viewState == .fullscreen){
-				cFrame.fullscreenToExpanded()
+				if let legacyContentFrame = cFrame as? ContentFrameController{
+					legacyContentFrame.fullscreenToExpanded()
+				}
 				//Called to make sure it's on top
 				if let cfToHighlight = contentFrameToHighlight{
 					highlightContentFrame(cframe: cfToHighlight)
@@ -202,7 +204,8 @@ class NiSpaceDocumentView: NSView{
 		//in old instances we have ghost objects, that do not exist anymore. This way we catch them and remove from result set
 		var foundContentId: Bool = false
 		
-		for cFrame in contentFrameControllers{
+		for genericFrame in contentFrameControllers{
+			guard let cFrame = genericFrame as? ContentFrameController else {continue}
 			for tab in cFrame.tabs {
 				if(tab.contentId == contentId){
 					foundContentId = true
@@ -241,7 +244,7 @@ class NiSpaceDocumentView: NSView{
 		}
 	}
 	
-	func highlightContentFrame(cframe: ContentFrameController){
+	func highlightContentFrame(cframe: CFProtocol){
 		setTopNiFrame(cframe)
 		let maxXY = NSPoint(x: cframe.view.frame.maxX, y: cframe.view.frame.maxY)
 		if(!NSPointInRect(cframe.view.frame.origin, visibleRect) || !NSPointInRect(maxXY, visibleRect)){
@@ -259,7 +262,7 @@ class NiSpaceDocumentView: NSView{
 		scroll(scrollToPoint)
 	}
 	
-	private func cfOrdered() -> (Int, [ContentFrameController]){
+	private func cfOrdered() -> (Int, [CFProtocol]){
 		let orderedCFs = orderedContentFrames()
 		let currentPos: Int = if let topNiFrame {
 			orderedCFs.firstIndex(of: topNiFrame) ?? -1
@@ -270,7 +273,7 @@ class NiSpaceDocumentView: NSView{
 	}
 
 	/// Returns ``ContentFrameController``s in `self`, ordered by the Y position from top to bottom.
-	func orderedContentFrames() -> [ContentFrameController] {
+	func orderedContentFrames() -> [CFProtocol] {
 		return contentFrameControllers
 			.sorted { $0.view.frame.origin.y <= $1.view.frame.origin.y }
 	}
