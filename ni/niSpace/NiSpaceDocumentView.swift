@@ -70,7 +70,7 @@ class NiSpaceDocumentView: NSView{
      */
     
     
-    func addNiFrame(_ subViewController: ContentFrameController){
+    func addNiFrame(_ subViewController: CFProtocol){
 		self.addSubview(subViewController.view)
 		setTopNiFrame(subViewController)
 		contentFrameControllers.insert(subViewController)
@@ -91,7 +91,7 @@ class NiSpaceDocumentView: NSView{
 	 
 		Only call this function after you updated the controllers view!
 	 */
-    func setTopNiFrame( _ newTopFrame: ContentFrameController){
+    func setTopNiFrame( _ newTopFrame: CFProtocol){
 		//wierd combinations make it possible that the new top frame is not marked as active, in this case we shall activate it, but not mess with the zPosition as otherwise we'll end up with deactivated CFs on top
 		if(newTopFrame == topNiFrame && !newTopFrame.myView.frameIsActive){
 			newTopFrame.toggleActive()

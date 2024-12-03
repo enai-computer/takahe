@@ -6,6 +6,9 @@ import PDFKit
 
 let maxWidthMargin: CGFloat = 30.0
 
+/**
+	do NOT use this if viewState is `.sectionTitle` - Do not use this for SectionTitleViewController!
+ */
 func openEmptyContentFrame(viewState: NiContentFrameState = .expanded, groupName: String? = nil, groupId: UUID?) -> ContentFrameController{
 	let frameController = ContentFrameController(
 		viewState: viewState,
@@ -16,7 +19,7 @@ func openEmptyContentFrame(viewState: NiContentFrameState = .expanded, groupName
 	return frameController
 }
 
-func reopenContentFrame(screenSize: CGSize, contentFrame: NiContentFrameModel, tabDataModel: [NiCFTabModel]) -> ContentFrameController{
+func reopenContentFrame(screenSize: CGSize, contentFrame: NiContentFrameModel, tabDataModel: [NiCFTabModel]) -> CFProtocol{
 	let tabViewModels = niCFTabModelToTabViewModel(tabs: tabDataModel)
 	let controller = reopenContentFrameWithOutPositioning(
 		screenWidth: screenSize.width,
@@ -52,7 +55,7 @@ func reopenContentFrameWithOutPositioning(
 	tabViewModels: [TabViewModel],
 	groupName: String?,
 	groupId: UUID?
-) -> ContentFrameController {
+) -> CFProtocol {
     
 	let frameController = if(contentFrameState.isMinimized()){
 		ContentFrameController(viewState: contentFrameState,

@@ -16,9 +16,9 @@ import FaviconFinder
 import PostHog
 
 //TODO: clean up tech debt and move the delegates out of here
-class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelegate, NSCollectionViewDataSource, NSCollectionViewDelegate, NSCollectionViewDelegateFlowLayout{
+class ContentFrameController: CFProtocol, WKNavigationDelegate, WKUIDelegate, NSCollectionViewDataSource, NSCollectionViewDelegate, NSCollectionViewDelegateFlowLayout {
 
-	private(set) var viewState: NiContentFrameState
+//	private(set) var viewState: NiContentFrameState
 	/**Call this function when resetting the view. **Do not use it the in init flow, to set the inital view value.***/
 	private func resetView(newView: CFBaseView){
 		if(viewState != .fullscreen){
@@ -434,12 +434,6 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	 * MARK: passToView Functions
 	 */
 	
-	/** Call this function ONLY from `setTopNiFrame` in `NiSpaceDocumentView`. Otherwise you will screw up the hierarchy on the canvas!
-	 */
-	func toggleActive(){
-		myView.toggleActive()
-	}
-	
 	func reloadSelectedTab(){
 		if(viewState != .minimised){
 			if(selectedTabModel < 0 && 0 < tabs.count){
@@ -539,7 +533,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 				minimizedToExpanded()
 			case .simpleMinimised:
 				simpleMinimizedToSimpleFrame()
-			case .expanded, .frameless, .simpleFrame, .fullscreen:
+			default:
 				assertionFailure("Unhandled view state to self-maximize")
 		}
 	}
