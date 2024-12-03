@@ -12,6 +12,7 @@
                 <outlet property="fwdButton" destination="7S7-ED-uOw" id="Yfh-Tx-ITj"/>
                 <outlet property="leftSideBackgroundFrame" destination="2dY-kT-Fzw" id="jxi-xA-0nM"/>
                 <outlet property="leftSideInfoView" destination="Rif-IA-nh8" id="6mr-K4-ExH"/>
+                <outlet property="progressDotStack" destination="3vV-YQ-GZd" id="eRF-g4-TQY"/>
                 <outlet property="rightSideBackgroundFrame" destination="idy-AN-vnT" id="oMw-ls-BNE"/>
                 <outlet property="view" destination="L0c-0Q-FDU" id="Mpq-vn-AOA"/>
             </connections>
@@ -26,11 +27,11 @@
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
                     <customView id="2dY-kT-Fzw">
-                        <rect key="frame" x="0.0" y="0.0" width="599" height="900"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="900"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES"/>
                         <subviews>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="Rif-IA-nh8">
-                                <rect key="frame" x="0.0" y="184" width="599" height="716"/>
+                                <rect key="frame" x="0.0" y="184" width="600" height="716"/>
                             </customView>
                             <customView autoresizesSubviews="NO" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="ZRa-LC-hXe">
                                 <rect key="frame" x="272" y="140" width="56" height="24"/>
@@ -51,7 +52,7 @@
                                     <constraint firstAttribute="height" constant="24" id="sSl-7j-mVg"/>
                                 </constraints>
                             </customView>
-                            <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" horizontalCompressionResistancePriority="1000" ambiguous="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3vV-YQ-GZd">
+                            <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" horizontalCompressionResistancePriority="1000" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3vV-YQ-GZd">
                                 <rect key="frame" x="288" y="90" width="25" height="10"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="25" id="MN8-WA-QTd"/>
@@ -62,6 +63,7 @@
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="ZRa-LC-hXe" secondAttribute="bottom" constant="140" id="3Fn-f3-eI3"/>
                             <constraint firstItem="Rif-IA-nh8" firstAttribute="left" secondItem="2dY-kT-Fzw" secondAttribute="left" id="Bk8-5a-Hib"/>
+                            <constraint firstItem="3vV-YQ-GZd" firstAttribute="centerX" secondItem="2dY-kT-Fzw" secondAttribute="centerX" id="Mbx-8v-jeB"/>
                             <constraint firstItem="Rif-IA-nh8" firstAttribute="top" secondItem="2dY-kT-Fzw" secondAttribute="top" id="Sla-ZB-WNm"/>
                             <constraint firstItem="ZRa-LC-hXe" firstAttribute="top" secondItem="Rif-IA-nh8" secondAttribute="bottom" constant="20" id="gqK-7a-fCO"/>
                             <constraint firstItem="3vV-YQ-GZd" firstAttribute="top" secondItem="ZRa-LC-hXe" secondAttribute="bottom" constant="40" id="jl7-r3-X2h"/>

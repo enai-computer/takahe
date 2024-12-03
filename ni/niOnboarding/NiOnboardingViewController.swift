@@ -75,6 +75,7 @@ class NiOnboardingViewController: NSViewController{
 	@IBOutlet var leftSideInfoView: NSView!
 	@IBOutlet var backButton: NiActionImage!
 	@IBOutlet var fwdButton: NiActionImage!
+	@IBOutlet var progressDotStack: NSStackView!
 	
 	@IBOutlet var rightSideBackgroundFrame: NSView!
 	
@@ -112,6 +113,8 @@ class NiOnboardingViewController: NSViewController{
 		setupButtons()
 		
 		currentStep = 0
+		
+		setupProgressDots()
 		loadOnboardingView(step: currentStep)
 	}
 	
@@ -135,6 +138,19 @@ class NiOnboardingViewController: NSViewController{
 		backButton.setMouseDownFunction({ _ in
 			self.prevStep()
 		})
+	}
+	
+	private func setupProgressDots(){
+		guard let dotImg = NSImage(named: "progressDot") else {return}
+		var dots: [NSImageView] = []
+		for _ in onboardingSteps.indices{
+			let dot = NSImageView(image: dotImg)
+			dot.frame.size = CGSize(width: 10.0, height: 10.0)
+			dots.append(dot)
+		}
+		dots[0].contentTintColor = .birkin
+		progressDotStack.setViews(dots, in: .center)
+		progressDotStack.spacing = 5.0
 	}
 	
 	private func loadOnboardingView(step: Int) -> (){
@@ -201,6 +217,8 @@ class NiOnboardingViewController: NSViewController{
 		guard (currentStep + 1) < onboardingSteps.count else {return}
 		currentStep += 1
 		
+		updateDots()
+		
 		for subView in leftSideInfoView.subviews{
 			subView.layer?.add(getDisappearingOpacityAnimation(for: animationDurationBetweenSlides_ms), forKey: "opacity")
 			DispatchQueue.main.asyncAfter(deadline: .now().advanced(by: .milliseconds(animationDurationBetweenSlides_ms))){
@@ -224,6 +242,8 @@ class NiOnboardingViewController: NSViewController{
 		guard 0 <= (currentStep - 1) else {return}
 		currentStep -= 1
 		
+		updateDots()
+		
 		for subView in leftSideInfoView.subviews{
 			subView.layer?.add(getDisappearingOpacityAnimation(for: animationDurationBetweenSlides_ms), forKey: "opacity")
 			DispatchQueue.main.asyncAfter(deadline: .now().advanced(by: .milliseconds(animationDurationBetweenSlides_ms))){
@@ -239,18 +259,16 @@ class NiOnboardingViewController: NSViewController{
 		loadOnboardingView(step: currentStep)
 	}
 		
-	override func keyDown(with event: NSEvent) {
-		if(event.keyCode == kVK_RightArrow){
-			nextStep()
-			return
+	private func updateDots(){
+		for (i, subView) in progressDotStack.arrangedSubviews.enumerated(){
+			if let imgView = subView as? NSImageView{
+				if(i == currentStep){
+					imgView.contentTintColor = .birkin
+				}else{
+					imgView.contentTintColor = .sand7
+				}
+			}
 		}
-		
-		if(event.keyCode == kVK_LeftArrow){
-			prevStep()
-			return
-		}
-		
-		super.keyDown(with: event)
 	}
 	
 }
