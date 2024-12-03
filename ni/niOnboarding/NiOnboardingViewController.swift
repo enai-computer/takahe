@@ -34,10 +34,10 @@ class OnboardingStepViews<LeftView: View, RightView: View>: NSObject, Onboarding
 	private var leftView: LeftView
 	private var trigger: StepRunsAnimation?
 	
-	init(swiftViewLeft: LeftView, swiftViewRight: RightView, trigger: StepRunsAnimation? = nil) {
-		self.leftView = swiftViewLeft
-		self.hostingViewLeft = NSHostingView(rootView: swiftViewLeft)
-		self.hostingViewRight = NSHostingView(rootView: swiftViewRight)
+	init(left: LeftView, right: RightView, trigger: StepRunsAnimation? = nil) {
+		self.leftView = left
+		self.hostingViewLeft = NSHostingView(rootView: left)
+		self.hostingViewRight = NSHostingView(rootView: right)
 		
 		self.trigger = trigger
 	}
@@ -85,12 +85,15 @@ class NiOnboardingViewController: NSViewController{
 
 	private var currentStep: Int = 0
 	
+	private let animationDurationBetweenSlides_ms: Int = 400
+	
 	init(frame: NSRect) {
 		self.viewFrame = frame
 		
 		onboardingSteps = [
-			OnboardingStepViews<Step1ViewLeft, Step1ViewRight>(swiftViewLeft: Step1ViewLeft(), swiftViewRight: Step1ViewRight()),
-			OnboardingStepViews<Step23ViewLeft, Step23ViewRight>(swiftViewLeft: Step23ViewLeft(step23Trigger), swiftViewRight: Step23ViewRight(step23Trigger), trigger: step23Trigger)
+			OnboardingStepViews<Step1ViewLeft, Step1ViewRight>(left: Step1ViewLeft(), right: Step1ViewRight()),
+			OnboardingStepViews<Step23ViewLeft, Step23ViewRight>(left: Step23ViewLeft(step23Trigger), right: Step23ViewRight(step23Trigger), trigger: step23Trigger),
+			OnboardingStepViews<Step4ViewLeft, Step4ViewRight>(left: Step4ViewLeft(), right: Step4ViewRight())
 		]
 		super.init(nibName: NSNib.Name("NiOnboardingView"), bundle: Bundle.main)
 	}
@@ -134,12 +137,14 @@ class NiOnboardingViewController: NSViewController{
 		})
 	}
 	
-	//TODO: this works only running forward for now
-	private func loadOnboardingView(step: Int){
+	private func loadOnboardingView(step: Int) -> (){
 		let onboardingViewLeft = onboardingSteps[step].leftSideInfoView()
 		onboardingViewLeft.translatesAutoresizingMaskIntoConstraints = false
-		leftSideInfoView.addSubview(onboardingViewLeft)
 		
+		onboardingViewLeft.wantsLayer = true
+		onboardingViewLeft.layer?.opacity = 0.0
+		
+		leftSideInfoView.addSubview(onboardingViewLeft)
 		NSLayoutConstraint.activate([
 			onboardingViewLeft.topAnchor.constraint(equalTo: leftSideInfoView.topAnchor),
 			onboardingViewLeft.trailingAnchor.constraint(equalTo: leftSideInfoView.trailingAnchor),
@@ -147,8 +152,13 @@ class NiOnboardingViewController: NSViewController{
 			onboardingViewLeft.leadingAnchor.constraint(equalTo: leftSideInfoView.leadingAnchor)
 		])
 		
+	
+		
 		let onboardingViewRight: NSView = onboardingSteps[step].rightSideView()
 		onboardingViewRight.translatesAutoresizingMaskIntoConstraints = false
+		onboardingViewRight.wantsLayer = true
+		onboardingViewRight.layer?.opacity = 0.0
+		
 		rightSideBackgroundFrame.addSubview(onboardingViewRight)
 		NSLayoutConstraint.activate([
 			onboardingViewRight.topAnchor.constraint(equalTo: rightSideBackgroundFrame.topAnchor),
@@ -157,6 +167,30 @@ class NiOnboardingViewController: NSViewController{
 			onboardingViewRight.leadingAnchor.constraint(equalTo: rightSideBackgroundFrame.leadingAnchor)
 		])
 		
+		DispatchQueue.main.asyncAfter(deadline: .now().advanced(by: .milliseconds(animationDurationBetweenSlides_ms))){ [self] in
+			onboardingViewRight.layer?.add(getAppearingOpacityAnimation(for: animationDurationBetweenSlides_ms), forKey: "opacity")
+			onboardingViewLeft.layer?.add(getAppearingOpacityAnimation(for: animationDurationBetweenSlides_ms), forKey: "opacity")
+		}
+	}
+	
+	private func getAppearingOpacityAnimation(for animationTime_ms: Int) -> CABasicAnimation{
+		let opacityAnimation = CABasicAnimation(keyPath: "opacity")
+		opacityAnimation.fromValue = 0.0
+		opacityAnimation.toValue = 1.0
+		opacityAnimation.duration = Double(animationTime_ms) / 1000.0
+		opacityAnimation.isRemovedOnCompletion = false
+		opacityAnimation.fillMode = .forwards
+		return opacityAnimation
+	}
+	
+	private func getDisappearingOpacityAnimation(for animationTime_ms: Int) -> CABasicAnimation{
+		let opacityAnimation = CABasicAnimation(keyPath: "opacity")
+		opacityAnimation.fromValue = 1.0
+		opacityAnimation.toValue = 0.0
+		opacityAnimation.duration = Double(animationTime_ms) / 1000.0
+		opacityAnimation.isRemovedOnCompletion = false
+		opacityAnimation.fillMode = .forwards
+		return opacityAnimation
 	}
 	
 	private func nextStep(){
@@ -168,9 +202,11 @@ class NiOnboardingViewController: NSViewController{
 		currentStep += 1
 		
 		for subView in leftSideInfoView.subviews{
+			subView.layer?.add(getDisappearingOpacityAnimation(for: animationDurationBetweenSlides_ms), forKey: "opacity")
 			subView.removeFromSuperview()
 		}
 		for subView in rightSideBackgroundFrame.subviews{
+			subView.layer?.add(getDisappearingOpacityAnimation(for: animationDurationBetweenSlides_ms), forKey: "opacity")
 			subView.removeFromSuperview()
 		}
 		loadOnboardingView(step: currentStep)
@@ -185,11 +221,28 @@ class NiOnboardingViewController: NSViewController{
 		currentStep -= 1
 		
 		for subView in leftSideInfoView.subviews{
+			subView.layer?.add(getDisappearingOpacityAnimation(for: animationDurationBetweenSlides_ms), forKey: "opacity")
 			subView.removeFromSuperview()
 		}
 		for subView in rightSideBackgroundFrame.subviews{
+			subView.layer?.add(getDisappearingOpacityAnimation(for: animationDurationBetweenSlides_ms), forKey: "opacity")
 			subView.removeFromSuperview()
 		}
 		loadOnboardingView(step: currentStep)
 	}
+		
+	override func keyDown(with event: NSEvent) {
+		if(event.keyCode == kVK_RightArrow){
+			nextStep()
+			return
+		}
+		
+		if(event.keyCode == kVK_LeftArrow){
+			prevStep()
+			return
+		}
+		
+		super.keyDown(with: event)
+	}
+	
 }
