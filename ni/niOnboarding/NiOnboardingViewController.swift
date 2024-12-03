@@ -7,6 +7,7 @@
 
 import Cocoa
 import SwiftUI
+import Carbon.HIToolbox
 
 protocol OnboardingStep{
 	func leftSideInfoView() -> NSView
@@ -16,24 +17,24 @@ protocol OnboardingStep{
 	 returns true if an animation was displayed. If there are no more animations left to run it will return false.
 	 */
 	func runFwdTransition() -> Bool
+	func runBackTransition() -> Bool
 }
 
 
-protocol ViewAnimationProtocol {
-	/**
-	 returns true if an animation was displayed. If there are no more animations left to run it will return false.
-	 */
-	func runFwdTransition() -> Bool
+@Observable
+final class StepRunsAnimation{
+	var runFwdAnimation: Bool = false
 }
+
 
 class OnboardingStepViews<LeftView: View, RightView: View>: NSObject, OnboardingStep{
 	
 	private var hostingViewLeft: NSHostingView<LeftView>
 	private var hostingViewRight: NSHostingView<RightView>
 	private var leftView: LeftView
-	private var trigger: Step23RunAnimation?
+	private var trigger: StepRunsAnimation?
 	
-	init(swiftViewLeft: LeftView, swiftViewRight: RightView, trigger: Step23RunAnimation? = nil) {
+	init(swiftViewLeft: LeftView, swiftViewRight: RightView, trigger: StepRunsAnimation? = nil) {
 		self.leftView = swiftViewLeft
 		self.hostingViewLeft = NSHostingView(rootView: swiftViewLeft)
 		self.hostingViewRight = NSHostingView(rootView: swiftViewRight)
@@ -50,22 +51,21 @@ class OnboardingStepViews<LeftView: View, RightView: View>: NSObject, Onboarding
 	}
 	
 	func runFwdTransition() -> Bool{
-		var ranAnimation = false
-//		if let leftView = hostingViewLeft.rootView as? (any View & ViewAnimationProtocol) {
-//			ranAnimation = ranAnimation || leftView.runFwdTransition()
-//		}
-//		if let leftViewAnimationRan = (self.leftView as? (any View & ViewAnimationProtocol))?.runFwdTransition() {
-//			ranAnimation = ranAnimation || leftViewAnimationRan
-//		}
-//		if let rightViewAnimationRan = (hostingViewRight.rootView as? (any View & ViewAnimationProtocol))?.runFwdTransition() {
-//			ranAnimation = ranAnimation || rightViewAnimationRan
-//		}
 		if(self.trigger?.runFwdAnimation == false){
 			self.trigger?.runFwdAnimation = true
 			return true
 		}
 		
-		return ranAnimation
+		return false
+	}
+	
+	func runBackTransition() -> Bool{
+		if(self.trigger?.runFwdAnimation == true){
+			self.trigger?.runFwdAnimation = false
+			return true
+		}
+		
+		return false
 	}
 }
 
@@ -80,11 +80,8 @@ class NiOnboardingViewController: NSViewController{
 	
 	private let viewFrame: NSRect
 	
-	private let step23Trigger = Step23RunAnimation()
-	private let onboardingSteps: [OnboardingStep] //= [
-//		OnboardingStepViews<Step1ViewLeft, Step1ViewRight>(swiftViewLeft: Step1ViewLeft(), swiftViewRight: Step1ViewRight()),
-//		OnboardingStepViews<Step23ViewLeft, Step23ViewRight>(swiftViewLeft: Step23ViewLeft(step23Trigger), swiftViewRight: Step23ViewRight())
-//	]
+	private let step23Trigger = StepRunsAnimation()
+	private let onboardingSteps: [OnboardingStep]
 
 	private var currentStep: Int = 0
 	
@@ -93,7 +90,7 @@ class NiOnboardingViewController: NSViewController{
 		
 		onboardingSteps = [
 			OnboardingStepViews<Step1ViewLeft, Step1ViewRight>(swiftViewLeft: Step1ViewLeft(), swiftViewRight: Step1ViewRight()),
-			OnboardingStepViews<Step23ViewLeft, Step23ViewRight>(swiftViewLeft: Step23ViewLeft(step23Trigger), swiftViewRight: Step23ViewRight(), trigger: step23Trigger)
+			OnboardingStepViews<Step23ViewLeft, Step23ViewRight>(swiftViewLeft: Step23ViewLeft(step23Trigger), swiftViewRight: Step23ViewRight(step23Trigger), trigger: step23Trigger)
 		]
 		super.init(nibName: NSNib.Name("NiOnboardingView"), bundle: Bundle.main)
 	}
@@ -180,6 +177,9 @@ class NiOnboardingViewController: NSViewController{
 	}
 	
 	private func prevStep(){
+		if(onboardingSteps[currentStep].runBackTransition()){
+			return
+		}
 		
 		guard 0 <= (currentStep - 1) else {return}
 		currentStep -= 1
