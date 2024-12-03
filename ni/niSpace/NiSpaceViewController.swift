@@ -272,6 +272,11 @@ class NiSpaceViewController: NSViewController, NSTextFieldDelegate{
 		return niDocument.openEmptyCF()
 	}
 	
+	func createSectionTitle(){
+		guard !header.isHidden else {return}
+		niDocument.createEmptySectionTitle()
+	}
+	
 	func pastePdf(pdf: PDFDocument, title: String?, source: String?){
 		let docSize = getIntrinsicDocSize(for: pdf)
 		let origin = niDocument.calculateContentFrameOrigin(for: NSRect(origin: CGPoint(x: 0.0, y: 0.0), size: docSize))

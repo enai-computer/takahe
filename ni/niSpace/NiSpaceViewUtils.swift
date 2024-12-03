@@ -32,5 +32,11 @@ func genToolbarStack(for controller: NiSpaceViewController) -> [NSView]{
 		controller.openEmptyCF()
 	})
 	
-	return [group, note, sticky]
+	let sectionTitle = NiActionImage(namedImage: "sectionTitle", with: NSSize(width: 24.0, height: 24.0))!
+	sectionTitle.isActiveFunction = {return true}
+	sectionTitle.setMouseDownFunction({ _ in
+		controller.createSectionTitle()
+	})
+	
+	return [sectionTitle, group, note, sticky]
 }

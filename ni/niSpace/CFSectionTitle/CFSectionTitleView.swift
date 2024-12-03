@@ -12,7 +12,7 @@ class CFSectionTitleView: CFBaseView{
 	@IBOutlet var sectionTitle: NSTextField!
 	
 	func initAfterViewLoad(sectionName: String?){
-		sectionTitle.stringValue = sectionName ?? ""
+		sectionTitle.stringValue = "TEST NAME"//sectionName ?? ""
 		
 		self.wantsLayer = true
 		self.layer?.addSublayer(bottomBorder())
@@ -26,4 +26,5 @@ class CFSectionTitleView: CFBaseView{
 		return bottomBorder
 	}
 	
+	override func toggleActive(){}
 }
