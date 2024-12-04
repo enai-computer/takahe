@@ -89,7 +89,7 @@ class NiSignupViewController: NSViewController, NSTextFieldDelegate{
 	func getWelcomeMessage() -> NSAttributedString{
 		let welcomeMessage: String = """
 		 We are Curran & Patrick, the people behind Enai.
-		 Our email is hello@enai.io.
+		 Our emails are curran@enai.io & patrick@enai.io.
 		 If you have any questions or feedback,
 		 we are available any time.
 		 Texts are also welcome:

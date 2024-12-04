@@ -68,7 +68,7 @@ struct Step23ViewRight: View {
 					if(ranAnimation){
 						Spacer()
 						Line()
-							.stroke(style: StrokeStyle(lineWidth: 2.0, dash: [6]))
+							.stroke(style: StrokeStyle(lineWidth: 1.0, dash: [6]))
 							.frame(width: geometry.size.width * 0.25, height: 4.0)
 							.foregroundStyle(.birkin)
 							.transition(.opacity)
@@ -83,7 +83,7 @@ struct Step23ViewRight: View {
 					if(ranAnimation){
 						Spacer()
 						Line()
-							.stroke(style: StrokeStyle(lineWidth: 2.0, dash: [6]))
+							.stroke(style: StrokeStyle(lineWidth: 1.0, dash: [6]))
 							.frame(width: geometry.size.width * 0.25, height: 4.0)
 							.foregroundStyle(.birkin)
 							.transition(.opacity)
@@ -132,5 +132,5 @@ struct Line: Shape {
 
 #Preview {
 	Step23ViewRight(StepRunsAnimation(), ranAnimation: true)
-		.frame(width: 900, height: 700)
+		.frame(width: 900, height: 900)
 }

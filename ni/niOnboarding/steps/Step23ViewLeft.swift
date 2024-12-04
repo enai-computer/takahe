@@ -24,35 +24,50 @@ struct Step23ViewLeft: View {
 				Spacer()
 					.frame(width: 120.0)
 				VStack(alignment: .leading, spacing: 20.0){
-					Spacer()
-						.frame(height: geometry.size.height * 0.4)
-
-					Text("Computers are getting busier.")
-						.font(.custom("Sohne-Buch", size: 21))
-						.foregroundColor(.sand12)
-						.opacity(text1Opacity)
-					if showNewText {
+					VStack{
 						Spacer()
-							.frame(height: 30.0)
-						Text("So Enai gives you context")
-							.font(.custom("Sohne-Kraftig", size: 30))
-							.foregroundColor(.sand12)
-							.transition(.opacity)
+						Text("Computers are getting busier.")
+							.font(.custom("Sohne-Buch", size: 21))
+							.opacity(text1Opacity)
+							.foregroundStyle(
+								Color.sand12.shadow(
+									.inner(color: .white, radius: 0.4, x: 0, y: 0)
+								)
+							)
 						
 						Spacer()
 							.frame(height: 30.0)
+					}.frame(height: geometry.size.height * 0.4)
+
+					if true {
+						Text("Enai puts things in context")
+							.font(.custom("Sohne-Buch", size: 30))
+							.transition(.opacity)
+							.foregroundStyle(
+								Color.sand12.shadow(
+									.inner(color: .white, radius: 0.8, x: 0, y: 0)
+								)
+							)
 						
 						Text("To do anything you want \nwith no distractions.")
 							.font(.custom("Sohne-Buch", size: 21))
-							.foregroundColor(.sand12)
 							.lineSpacing(3.5)
 							.transition(.opacity)
-						
+							.foregroundStyle(
+								Color.sand12.shadow(
+									.inner(color: .white, radius: 0.4, x: 0, y: 0)
+								)
+							)
+
 						Text("Work on something, put it away,\ncome back anytime.")
 							.font(.custom("Sohne-Buch", size: 21))
-							.foregroundColor(.sand12)
 							.lineSpacing(3.5)
 							.transition(.opacity)
+							.foregroundStyle(
+								Color.sand12.shadow(
+									.inner(color: .white, radius: 0.4, x: 0, y: 0)
+								)
+							)
 					}
 					Spacer()
 				}

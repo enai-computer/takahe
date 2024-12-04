@@ -29,5 +29,5 @@ struct Step4ViewRight: View {
 
 #Preview {
 	Step4ViewRight()
-		.frame(width: 900, height: 700)
+		.frame(width: 900, height: 900)
 }

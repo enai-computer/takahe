@@ -20,14 +20,22 @@ struct Step4ViewLeft: View {
 					
 					Text("Right click to pin things")
 						.font(.custom("Sohne-Buch", size: 30))
-						.foregroundColor(.sand12)
+						.foregroundStyle(
+							Color.sand12.shadow(
+								.inner(color: .white, radius: 0.8, x: 0, y: 0)
+							)
+						)
 					
 					Spacer()
 						.frame(height: 15.0)
 					
 					Text("Right click to add sites and apps \nto the dock for quick access")
 						.font(.custom("Sohne-Buch", size: 21))
-						.foregroundColor(.sand115)
+						.foregroundStyle(
+							Color.sand115.shadow(
+								.inner(color: .white, radius: 0.4, x: 0, y: 0)
+							)
+						)
 						.lineSpacing(3.5)
 
 					Spacer()

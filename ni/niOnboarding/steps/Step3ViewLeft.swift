@@ -19,24 +19,36 @@ struct Step3ViewLeft: View {
 					Spacer()
 						.frame(height: geometry.size.height * 0.4)
 					
-					Text("A space is a canvas")
+					Text("A canvas for every context")
 						.font(.custom("Sohne-Buch", size: 30))
-						.foregroundColor(.sand12)
+						.foregroundStyle(
+							Color.sand12.shadow(
+								.inner(color: .white, radius: 0.8, x: 0, y: 0)
+							)
+						)
 						
 					Spacer()
-						.frame(height: 40.0)
+						.frame(height: 10.0)
 					
-					Text("For all your info - websites, apps, \nnotes, documents, images...")
+					Text("Save and interact with everything. \nWebsites, apps, notes, docs, photos......")
 						.font(.custom("Sohne-Buch", size: 21))
-						.foregroundColor(.sand12)
+						.foregroundStyle(
+							Color.sand12.shadow(
+								.inner(color: .white, radius: 0.4, x: 0, y: 0)
+							)
+						)
 						.lineSpacing(3.5)
 
 					Spacer()
-						.frame(height: 15.0)
+						.frame(height: 1.0)
 					
 					Text("And an AI personal assistant")
 						.font(.custom("Sohne-Buch", size: 21))
-						.foregroundColor(.sand12)
+						.foregroundStyle(
+							Color.sand12.shadow(
+								.inner(color: .white, radius: 0.4, x: 0, y: 0)
+							)
+						)
 					Spacer()
 				}
 				Spacer()

@@ -20,14 +20,22 @@ struct Step5ViewLeft: View {
 					
 					Text("Switch context effortlessly")
 						.font(.custom("Sohne-Buch", size: 30))
-						.foregroundColor(.sand12)
+						.foregroundStyle(
+							Color.sand12.shadow(
+								.inner(color: .white, radius: 0.8, x: 0, y: 0)
+							)
+						)
 					
 					Spacer()
 						.frame(height: 15.0)
 					
 					Text("And less frequently. Keeping \neverything related to each project in \nits own space minimizes your risk of \ndistractions to support your attention.")
 						.font(.custom("Sohne-Buch", size: 21))
-						.foregroundColor(.sand115)
+						.foregroundStyle(
+							Color.sand115.shadow(
+								.inner(color: .white, radius: 0.4, x: 0, y: 0)
+							)
+						)
 						.lineSpacing(3.5)
 
 					Spacer()

@@ -19,17 +19,30 @@ struct Step1ViewLeft: View {
 						.frame(height: geometry.size.height * 0.4)
 					Text("Welcome")
 						.font(.custom("Sohne-Kraftig", size: 30))
-						.foregroundColor(.sand12)
 						.contentMargins(.bottom, 45.0)
+						.foregroundStyle(
+							Color.sand12.shadow(
+								.inner(color: .white, radius: 1.40, x: 0, y: 0)
+							)
+						)
 					
 					Text("Enai is a personal \ninternet computer.")
 						.font(.custom("Sohne-Buch", size: 21))
-						.foregroundColor(.sand12)
 						.contentMargins(.bottom, 33.0)
+						.foregroundStyle(
+							Color.sand12.shadow(
+								.inner(color: .white, radius: 0.4, x: 0, y: 0)
+							)
+						)
+
 					
 					Text("To simplify your life and \ncare for your attention.")
 						.font(.custom("Sohne-Buch", size: 21))
-						.foregroundColor(.sand12)
+						.foregroundStyle(
+							Color.sand12.shadow(
+								.inner(color: .white, radius: 0.4, x: 0, y: 0)
+							)
+						)
 					Spacer()
 				}
 				Spacer()

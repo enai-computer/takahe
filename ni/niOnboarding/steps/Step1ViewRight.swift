@@ -34,5 +34,5 @@ struct Step1ViewRight: View {
 
 #Preview {
 	Step1ViewRight()
-		.frame(width: 900, height: 700)
+		.frame(width: 900, height:900)
 }

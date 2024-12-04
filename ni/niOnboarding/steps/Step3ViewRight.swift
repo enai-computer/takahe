@@ -30,5 +30,5 @@ struct Step3ViewRight: View {
 
 #Preview {
 	Step3ViewRight()
-		.frame(width: 900, height: 700)
+		.frame(width: 900, height: 900)
 }

@@ -18,17 +18,15 @@ struct Step5ViewRight: View {
 				Spacer()
 				VStack(alignment: .center){
 					Spacer()
-//						.frame(height: geometry.size.height * 0.1)
 					Image("step5RightSideImg")
 						.resizable()
 						.aspectRatio(nil, contentMode: .fit)
-						.frame(width: geometry.size.width * 0.6)
+						.frame(width: geometry.size.width * 0.8)
 					Image("step5RightSideImgBottom")
 						.resizable()
 						.aspectRatio(nil, contentMode: .fit)
-						.frame(width: geometry.size.width * 0.4)
+						.frame(width: geometry.size.width * 0.5)
 					Spacer()
-//						.frame(height: geometry.size.height * 0.)
 				}
 				Spacer()
 			}
@@ -38,5 +36,5 @@ struct Step5ViewRight: View {
 
 #Preview {
 	Step5ViewRight()
-		.frame(width: 900, height: 1000)
+		.frame(width: 900, height: 900)
 }
