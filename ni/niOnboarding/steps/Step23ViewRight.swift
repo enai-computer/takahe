@@ -22,72 +22,89 @@ struct Step23ViewRight: View {
 	
 	var body: some View {
 		GeometryReader { geometry in
-			Grid(){
+			HStack(alignment: .center){
 				Spacer()
-				
-				GridRow{
-					if(ranAnimation){
+					.frame(width:100.0)
+				if(ranAnimation){
+					VStack(alignment: .trailing){
+						Spacer()
+							.frame(height: geometry.size.height * 0.1)
 						Text("Trip to Korea")
 							.font(.custom("Sohne-Kraftig", size: 21))
-							.foregroundStyle(.birkin)
+							.foregroundStyle(.sand12)
 							.transition(.opacity)
+						
+						Spacer()
+							.frame(height: geometry.size.height * 0.3)
+						
+						Text("Term paper")
+							.font(.custom("Sohne-Kraftig", size: 21))
+							.foregroundStyle(.sand12)
+							.transition(.opacity)
+						
+						Spacer()
+							.frame(height: geometry.size.height * 0.3)
+						
+						Text("Self-Improvement")
+						   .font(.custom("Sohne-Kraftig", size: 21))
+						   .foregroundStyle(.sand12)
+						   .transition(.opacity)
+						
+						Spacer()
+							.frame(height: geometry.size.height * 0.1)
 					}
+				}
+
+				Spacer()
+					.frame(width:60.0)
+
+				VStack{
+					Spacer()
 					Image("messyGroup1")
 						.resizable()
 						.aspectRatio(nil, contentMode: .fit)
-						.frame(width: geometry.size.width * 0.4)
-				}
-				if(ranAnimation){
-					Line()
-						.stroke(style: StrokeStyle(lineWidth: 2.0, dash: [6]))
-						.frame(width: geometry.size.width * 0.2, height: 4.0)
-						.foregroundStyle(.birkin)
-						.transition(.opacity)
-				}
-				
-				GridRow{
+						.frame(width: geometry.size.width * 0.35)
+					
 					if(ranAnimation){
-						Text("Term paper")
-							.font(.custom("Sohne-Kraftig", size: 21))
+						Spacer()
+						Line()
+							.stroke(style: StrokeStyle(lineWidth: 2.0, dash: [6]))
+							.frame(width: geometry.size.width * 0.25, height: 4.0)
 							.foregroundStyle(.birkin)
 							.transition(.opacity)
+						Spacer()
 					}
-					VStack(spacing: 0) {
-						Image("messyGroup2")
-							.resizable()
-							.aspectRatio(nil, contentMode: .fit)
-							.frame(width: geometry.size.width * 0.4)
-						if(ranAnimation){
-							Line()
-								.stroke(style: StrokeStyle(lineWidth: 2.0, dash: [6]))
-//								.frame(width: geometry.size.width * 0.2, height: 4.0)
-								.foregroundStyle(.birkin)
-								.transition(.opacity)
-						}
-					}
-				}
 					
+					Image("messyGroup2")
+						.resizable()
+						.aspectRatio(nil, contentMode: .fit)
+						.frame(width: geometry.size.width * 0.35)
 					
-
-				
-				GridRow{
 					if(ranAnimation){
-						Text("Yoga teacher training")
-						   .font(.custom("Sohne-Kraftig", size: 21))
-						   .foregroundStyle(.birkin)
-						   .transition(.opacity)
+						Spacer()
+						Line()
+							.stroke(style: StrokeStyle(lineWidth: 2.0, dash: [6]))
+							.frame(width: geometry.size.width * 0.25, height: 4.0)
+							.foregroundStyle(.birkin)
+							.transition(.opacity)
+						Spacer()
 					}
+					
 					Image("messyGroup3")
 						.resizable()
 						.aspectRatio(nil, contentMode: .fit)
-						.frame(width: geometry.size.width * 0.3)
+						.frame(width: geometry.size.width * 0.25)
 						.offset(group3Offset ?? CGSize(
 							width: -geometry.size.width * 0.07,
 							height: -geometry.size.height * 0.08
 						))
+					
+					Spacer()
 				}
-
+				
 				Spacer()
+					.frame(width: 200.0)
+				
 			}.frame(width: geometry.size.width)
 		}.onChange(of: animationState.runFwdAnimation){
 			runTransition()
@@ -98,8 +115,8 @@ struct Step23ViewRight: View {
 		rootVStackAligmnent = .leading
 		withAnimation{
 			ranAnimation.toggle()
+			group3Offset = CGSizeZero
 		}
-		group3Offset = CGSizeZero
 		return
 	}
 }
