@@ -25,7 +25,7 @@ class CFSectionTitleView: CFBaseView{
 		let bottomBorder = CALayer(layer: layer!)
 		bottomBorder.borderColor = NSColor.sand115.cgColor
 		bottomBorder.borderWidth = 2.0
-		bottomBorder.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: 2.0)
+		bottomBorder.frame = CGRect(x: 0, y: 2, width: self.frame.width, height: 2.0)
 		return bottomBorder
 	}
 	
