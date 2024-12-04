@@ -49,6 +49,9 @@ struct Step23ViewLeft: View {
 								)
 							)
 						
+						Spacer()
+							.frame(height: 10.0)
+						
 						Text("To do anything you want \nwith no distractions.")
 							.font(.custom("Sohne-Buch", size: 21))
 							.lineSpacing(3.5)
@@ -58,6 +61,9 @@ struct Step23ViewLeft: View {
 									.inner(color: .white, radius: 0.4, x: 0, y: 0)
 								)
 							)
+						
+						Spacer()
+							.frame(height: 1.0)
 
 						Text("Work on something, put it away,\ncome back anytime.")
 							.font(.custom("Sohne-Buch", size: 21))

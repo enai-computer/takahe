@@ -26,6 +26,9 @@ struct Step1ViewLeft: View {
 							)
 						)
 					
+					Spacer()
+						.frame(height: 10.0)
+					
 					Text("Enai is a personal \ninternet computer.")
 						.font(.custom("Sohne-Buch", size: 21))
 						.contentMargins(.bottom, 33.0)
@@ -35,6 +38,8 @@ struct Step1ViewLeft: View {
 							)
 						)
 
+					Spacer()
+						.frame(height: 1.0)
 					
 					Text("To simplify your life and \ncare for your attention.")
 						.font(.custom("Sohne-Buch", size: 21))
