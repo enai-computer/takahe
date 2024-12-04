@@ -149,11 +149,10 @@
 		CD8E580B2CC909F0007550CF /* EveChatTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8E580A2CC909EB007550CF /* EveChatTable.swift */; };
 		CD945F3C2CF8C65E00C67214 /* NiOnboardingWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD945F3B2CF8C65400C67214 /* NiOnboardingWindow.swift */; };
 		CD94DC782CFDD854009D407D /* Step23ViewLeft.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD94DC772CFDD84A009D407D /* Step23ViewLeft.swift */; };
-		CD94DC7E2CFDF621009D407D /* Step4ViewLeft.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD94DC7D2CFDF621009D407D /* Step4ViewLeft.swift */; };
-		CD94DC802CFDF682009D407D /* Step5ViewLeft.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD94DC7F2CFDF682009D407D /* Step5ViewLeft.swift */; };
+		CD94DC7E2CFDF621009D407D /* Step5ViewLeft.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD94DC7D2CFDF621009D407D /* Step5ViewLeft.swift */; };
 		CD94DC822CFE055F009D407D /* Step1ViewRight.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD94DC812CFE055F009D407D /* Step1ViewRight.swift */; };
 		CD94DC842CFE0CC6009D407D /* Step23ViewRight.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD94DC832CFE0CC6009D407D /* Step23ViewRight.swift */; };
-		CD94DC862CFF25CF009D407D /* Step4ViewRight.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD94DC852CFF25CF009D407D /* Step4ViewRight.swift */; };
+		CD94DC862CFF25CF009D407D /* Step5ViewRight.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD94DC852CFF25CF009D407D /* Step5ViewRight.swift */; };
 		CD97975C2C57AC2C00640750 /* LoadingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD97975B2C57AC2C00640750 /* LoadingView.xib */; };
 		CD97975E2C57AE1400640750 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD97975D2C57AE1400640750 /* LoadingView.swift */; };
 		CD9B96BC2C04C8EE00998CE2 /* CFContentItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9B96BB2C04C8EE00998CE2 /* CFContentItem.swift */; };
@@ -214,6 +213,9 @@
 		CDDBCB2B2BD7C23E00E7B187 /* NiSpaceDocumentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDDBCB2A2BD7C23E00E7B187 /* NiSpaceDocumentController.swift */; };
 		CDDBCB2E2BD8FA4C00E7B187 /* errorLoading-1.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = CDDBCB2C2BD8FA4C00E7B187 /* errorLoading-1.jpeg */; };
 		CDDFC85E2CFF60CE00E86BF9 /* Step3ViewLeft.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDDFC85D2CFF60CE00E86BF9 /* Step3ViewLeft.swift */; };
+		CDDFC86B2D0055B000E86BF9 /* Step3ViewRight.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDDFC86A2D0055B000E86BF9 /* Step3ViewRight.swift */; };
+		CDDFC86E2D0058EF00E86BF9 /* Step4ViewRight.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDDFC86D2D0058EF00E86BF9 /* Step4ViewRight.swift */; };
+		CDDFC86F2D0058EF00E86BF9 /* Step4ViewLeft.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDDFC86C2D0058EF00E86BF9 /* Step4ViewLeft.swift */; };
 		CDE76C1C2BC6989000CE9513 /* TabViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE76C1B2BC6989000CE9513 /* TabViewModel.swift */; };
 		CDE7BAF52CABE2AA00328025 /* GroupTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE7BAF42CABE25500328025 /* GroupTable.swift */; };
 		CDE7BAF72CABE2BC00328025 /* GroupIdContentIdTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE7BAF62CABE2B000328025 /* GroupIdContentIdTable.swift */; };
@@ -391,11 +393,10 @@
 		CD8E580A2CC909EB007550CF /* EveChatTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EveChatTable.swift; sourceTree = "<group>"; };
 		CD945F3B2CF8C65400C67214 /* NiOnboardingWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiOnboardingWindow.swift; sourceTree = "<group>"; };
 		CD94DC772CFDD84A009D407D /* Step23ViewLeft.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Step23ViewLeft.swift; sourceTree = "<group>"; };
-		CD94DC7D2CFDF621009D407D /* Step4ViewLeft.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Step4ViewLeft.swift; sourceTree = "<group>"; };
-		CD94DC7F2CFDF682009D407D /* Step5ViewLeft.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Step5ViewLeft.swift; sourceTree = "<group>"; };
+		CD94DC7D2CFDF621009D407D /* Step5ViewLeft.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Step5ViewLeft.swift; sourceTree = "<group>"; };
 		CD94DC812CFE055F009D407D /* Step1ViewRight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Step1ViewRight.swift; sourceTree = "<group>"; };
 		CD94DC832CFE0CC6009D407D /* Step23ViewRight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Step23ViewRight.swift; sourceTree = "<group>"; };
-		CD94DC852CFF25CF009D407D /* Step4ViewRight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Step4ViewRight.swift; sourceTree = "<group>"; };
+		CD94DC852CFF25CF009D407D /* Step5ViewRight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Step5ViewRight.swift; sourceTree = "<group>"; };
 		CD97975B2C57AC2C00640750 /* LoadingView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoadingView.xib; sourceTree = "<group>"; };
 		CD97975D2C57AE1400640750 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		CD9B96BB2C04C8EE00998CE2 /* CFContentItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CFContentItem.swift; sourceTree = "<group>"; };
@@ -456,6 +457,9 @@
 		CDDBCB2A2BD7C23E00E7B187 /* NiSpaceDocumentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiSpaceDocumentController.swift; sourceTree = "<group>"; };
 		CDDBCB2C2BD8FA4C00E7B187 /* errorLoading-1.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "errorLoading-1.jpeg"; sourceTree = "<group>"; };
 		CDDFC85D2CFF60CE00E86BF9 /* Step3ViewLeft.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Step3ViewLeft.swift; sourceTree = "<group>"; };
+		CDDFC86A2D0055B000E86BF9 /* Step3ViewRight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Step3ViewRight.swift; sourceTree = "<group>"; };
+		CDDFC86C2D0058EF00E86BF9 /* Step4ViewLeft.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Step4ViewLeft.swift; sourceTree = "<group>"; };
+		CDDFC86D2D0058EF00E86BF9 /* Step4ViewRight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Step4ViewRight.swift; sourceTree = "<group>"; };
 		CDE76C1B2BC6989000CE9513 /* TabViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewModel.swift; sourceTree = "<group>"; };
 		CDE7BAF42CABE25500328025 /* GroupTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupTable.swift; sourceTree = "<group>"; };
 		CDE7BAF62CABE2B000328025 /* GroupIdContentIdTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupIdContentIdTable.swift; sourceTree = "<group>"; };
@@ -605,9 +609,11 @@
 				CD94DC772CFDD84A009D407D /* Step23ViewLeft.swift */,
 				CD94DC832CFE0CC6009D407D /* Step23ViewRight.swift */,
 				CDDFC85D2CFF60CE00E86BF9 /* Step3ViewLeft.swift */,
-				CD94DC7D2CFDF621009D407D /* Step4ViewLeft.swift */,
-				CD94DC852CFF25CF009D407D /* Step4ViewRight.swift */,
-				CD94DC7F2CFDF682009D407D /* Step5ViewLeft.swift */,
+				CDDFC86A2D0055B000E86BF9 /* Step3ViewRight.swift */,
+				CDDFC86C2D0058EF00E86BF9 /* Step4ViewLeft.swift */,
+				CDDFC86D2D0058EF00E86BF9 /* Step4ViewRight.swift */,
+				CD94DC7D2CFDF621009D407D /* Step5ViewLeft.swift */,
+				CD94DC852CFF25CF009D407D /* Step5ViewRight.swift */,
 			);
 			path = steps;
 			sourceTree = "<group>";
@@ -1301,6 +1307,7 @@
 			files = (
 				CD2DE8802CA1ABCF000B5461 /* OutboxProcessor.swift in Sources */,
 				CDDFC85E2CFF60CE00E86BF9 /* Step3ViewLeft.swift in Sources */,
+				CDDFC86F2D0058EF00E86BF9 /* Step4ViewLeft.swift in Sources */,
 				CD1853192C09EA96001FE566 /* PasteboardUtils.swift in Sources */,
 				CDB942122CDD0517003F553E /* CFHeadActionImage.swift in Sources */,
 				CD2DE87C2CA1A8A3000B5461 /* OutboxTable.swift in Sources */,
@@ -1309,7 +1316,7 @@
 				CD75784C2BC065FB00293930 /* ContentFrameTabHeadTextNode.swift in Sources */,
 				A1E41BFA2ACB57EF00338417 /* ContentFrameView.swift in Sources */,
 				CD6317F12BC53A9600434D56 /* cfOverlay.swift in Sources */,
-				CD94DC862CFF25CF009D407D /* Step4ViewRight.swift in Sources */,
+				CD94DC862CFF25CF009D407D /* Step5ViewRight.swift in Sources */,
 				CD94DC842CFE0CC6009D407D /* Step23ViewRight.swift in Sources */,
 				A14E8F212AD20A2600409DDF /* DefaultWindowController.swift in Sources */,
 				CD5B153A2BDFBFE40030F017 /* NiActionImage.swift in Sources */,
@@ -1362,7 +1369,6 @@
 				CD04974C2C120ABE00C44021 /* CFGroupButton.swift in Sources */,
 				CDD6B9402B169F7700C6144D /* DocumentTable.swift in Sources */,
 				CDD6B9452B16A1A200C6144D /* CachedWebTable.swift in Sources */,
-				CD94DC802CFDF682009D407D /* Step5ViewLeft.swift in Sources */,
 				CD7201CD2C5A3ACF00A6A2E7 /* NiLibraryInfoBox.swift in Sources */,
 				CD23EBFB2C0F72FF00A2ACD9 /* Cook.swift in Sources */,
 				CDFA8D022C0492F400882722 /* NiNoteItem.swift in Sources */,
@@ -1371,6 +1377,7 @@
 				CDD7ED052C554E24007604D9 /* DemoLibraryImage.swift in Sources */,
 				CD2DE8832CA1ADB7000B5461 /* RestModels.swift in Sources */,
 				CD0B635C2CF4C8A500927F54 /* NiSpaceViewUtils.swift in Sources */,
+				CDDFC86B2D0055B000E86BF9 /* Step3ViewRight.swift in Sources */,
 				CD42CEC92BDA48180039814D /* NiScrollView.swift in Sources */,
 				CD618D982C2B3863006869AF /* PregenIntent.swift in Sources */,
 				CDB549D12C2020C90038FB30 /* NiSearchViewScroller.swift in Sources */,
@@ -1428,7 +1435,7 @@
 				CD33621F2BFE0DD0004DBAFB /* CFSoftDeletedView.swift in Sources */,
 				CDD7D3362C198A930038E6F9 /* NiPalette.swift in Sources */,
 				CD04974E2C12FA4A00C44021 /* NiTextField.swift in Sources */,
-				CD94DC7E2CFDF621009D407D /* Step4ViewLeft.swift in Sources */,
+				CD94DC7E2CFDF621009D407D /* Step5ViewLeft.swift in Sources */,
 				CD9C2B252C32EEBD00C6126F /* NiAlertPanelController.swift in Sources */,
 				A14E8F272AD5EAF800409DDF /* NiSpaceView.swift in Sources */,
 				CD9C2B272C32F8B800C6126F /* NiButton.swift in Sources */,
@@ -1448,6 +1455,7 @@
 				CDF711B72C66004A00B4A6B8 /* NiPinnedWebsiteVModel.swift in Sources */,
 				CDF711B92C66085800B4A6B8 /* PinnedWebsiteItemModel.swift in Sources */,
 				CD1853132C08D972001FE566 /* FaviconCacheTable.swift in Sources */,
+				CDDFC86E2D0058EF00E86BF9 /* Step4ViewRight.swift in Sources */,
 				CD1C6D552C5259020019CD09 /* NiPinnedMenuPopup.swift in Sources */,
 				CD0287D02C9ACA8D0035AEC8 /* BilgeWater.swift in Sources */,
 				CD6D853E2CA96EDA00A735DA /* WindowBlurView.swift in Sources */,
