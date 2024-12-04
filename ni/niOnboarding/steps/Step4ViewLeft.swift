@@ -11,19 +11,24 @@ struct Step4ViewLeft: View {
 	
 	var body: some View {
 		GeometryReader { geometry in
-			HStack(alignment: .center, spacing: 20.0){
+			HStack(alignment: .top, spacing: 20.0){
 				Spacer()
+					.frame(width: 120.0)
 				VStack(alignment: .leading, spacing: 20.0){
 					Spacer()
 						.frame(height: geometry.size.height * 0.4)
 					
-					Text("Switch context effortlessly")
+					Text("Right click to pin things")
 						.font(.custom("Sohne-Buch", size: 30))
 						.foregroundColor(.sand12)
 					
-					Text("And less frequently. Keeping \neverything related to each project in \nits own space minimizes your risk of distractions \nto support your attention.")
+					Spacer()
+						.frame(height: 15.0)
+					
+					Text("Right click to add sites and apps \nto the dock for quick access")
 						.font(.custom("Sohne-Buch", size: 21))
 						.foregroundColor(.sand115)
+						.lineSpacing(3.5)
 
 					Spacer()
 				}

@@ -11,8 +11,9 @@ struct Step1ViewLeft: View {
 	
 	var body: some View {
 		GeometryReader { geometry in
-			HStack(alignment: .center, spacing: 20.0){
+			HStack(alignment: .top, spacing: 20.0){
 				Spacer()
+					.frame(width: 120.0)
 				VStack(alignment: .leading, spacing: 20.0){
 					Spacer()
 						.frame(height: geometry.size.height * 0.4)
