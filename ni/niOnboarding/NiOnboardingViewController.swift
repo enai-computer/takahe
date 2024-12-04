@@ -95,6 +95,7 @@ class NiOnboardingViewController: NSViewController{
 			OnboardingStepViews<Step1ViewLeft, Step1ViewRight>(left: Step1ViewLeft(), right: Step1ViewRight()),
 			OnboardingStepViews<Step23ViewLeft, Step23ViewRight>(left: Step23ViewLeft(step23Trigger), right: Step23ViewRight(step23Trigger), trigger: step23Trigger),
 			OnboardingStepViews<Step3ViewLeft, Step3ViewRight>(left: Step3ViewLeft(), right: Step3ViewRight()),
+			OnboardingStepViews<Step4ViewLeft, Step4ViewRight>(left: Step4ViewLeft(), right: Step4ViewRight()),
 			OnboardingStepViews<Step5ViewLeft, Step5ViewRight>(left: Step5ViewLeft(), right: Step5ViewRight())
 		]
 		super.init(nibName: NSNib.Name("NiOnboardingView"), bundle: Bundle.main)
@@ -149,9 +150,10 @@ class NiOnboardingViewController: NSViewController{
 			dot.frame.size = CGSize(width: 10.0, height: 10.0)
 			dots.append(dot)
 		}
-		dots[0].contentTintColor = .birkin
+
 		progressDotStack.setViews(dots, in: .center)
 		progressDotStack.spacing = 5.0
+		updateDots()
 	}
 	
 	private func loadOnboardingView(step: Int) -> (){
