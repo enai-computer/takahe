@@ -1,17 +1,7 @@
 {
   "images" : [
     {
-      "filename" : "arrowRightFilled.svg",
-      "idiom" : "universal"
-    },
-    {
-      "appearances" : [
-        {
-          "appearance" : "luminosity",
-          "value" : "dark"
-        }
-      ],
-      "filename" : "arrowRightFilledDark.svg",
+      "filename" : "Exclude.svg",
       "idiom" : "universal"
     }
   ],
@@ -20,6 +10,6 @@
     "version" : 1
   },
   "properties" : {
-    "template-rendering-intent" : "original"
+    "template-rendering-intent" : "template"
   }
 }

@@ -34,7 +34,7 @@ struct Step23ViewLeft: View {
 					if showNewText {
 						Spacer()
 							.frame(height: 30.0)
-						Text("So Enai gives you space(s)")
+						Text("So Enai gives you context")
 							.font(.custom("Sohne-Kraftig", size: 30))
 							.foregroundColor(.sand12)
 							.transition(.opacity)
