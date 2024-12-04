@@ -14,8 +14,7 @@ class CFSectionTitleViewController: CFProtocol{
 	
 	//view state
 	private var sectionView: CFSectionTitleView? {return view as? CFSectionTitleView}
-	private var closeTriggered: Bool = false
-	
+
 	init(sectionId: UUID = UUID(), sectionName: String?){
 		self.sectionId = sectionId
 		self.sectionName = sectionName

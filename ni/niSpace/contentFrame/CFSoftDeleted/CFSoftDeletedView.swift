@@ -9,7 +9,7 @@ import Cocoa
 
 class CFSoftDeletedView: NSBox {
 
-	var myController: ContentFrameController? = nil
+	var myController: CFProtocol? = nil
 	private var deletionCompletionHandler: (()->Void)?
 	private var mouseDownFunc: (()->Void)?
 	
@@ -57,7 +57,7 @@ class CFSoftDeletedView: NSBox {
 		
 	}
 	
-	func initAfterViewLoad(_ itemName: String = "group", parentController: ContentFrameController) {
+	func initAfterViewLoad(_ itemName: String = "group", parentController: CFProtocol) {
 		self.initAfterViewLoad(message: "restore closed \(itemName)", showUndoButton: true)
 		self.myController = parentController
 		

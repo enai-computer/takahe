@@ -57,8 +57,8 @@ class ContentFrameController: CFProtocol, WKNavigationDelegate, WKUIDelegate, NS
 
 	private var viewIsDrawn = false
 	
-	private var closeCancelled = false
-	private(set) var closeTriggered = false
+//	private var closeCancelled = false
+//	private(set) var closeTriggered = false
 	
 //	private(set) var groupName: String?
 //	private(set) var groupId: UUID?
@@ -352,83 +352,6 @@ class ContentFrameController: CFProtocol, WKNavigationDelegate, WKUIDelegate, NS
 		}
 		
 		return (NSPoint(x: 0.0, y: 0.0), false)
-	}
-	
-	/*
-	 * MARK: close Window
-	 */
-	
-	/** triggers close animation and displays undo button
-	 
-	runs following steps:
-	1. fade out current view
-	2. display undo button
-	   * if clicked "undo button": cancel deletion
-	   * if "undo" ignored: clean up and remove this controller plus view from hierarchy
-	 */
-	override func triggerCloseProcess(with event: NSEvent){
-		//stops double click, as it will have unwanted side effects
-		if(closeTriggered){
-			return
-		}
-		fadeout()
-		loadAndDisplaySoftDeletedView(topRightCorner: CGPoint(x: view.frame.maxX, y: view.frame.minY))
-		closeTriggered = true
-	}
-	
-	private func loadAndDisplaySoftDeletedView(topRightCorner: CGPoint) {
-		let softDeletedView = (NSView.loadFromNib(nibName: "CFSoftDeletedView", owner: self) as! CFSoftDeletedView)
-		
-		if(1 == tabs.count){
-			softDeletedView.initAfterViewLoad(tabs[0].type.toDescriptiveName(), parentController: self)
-		}else{
-			softDeletedView.initAfterViewLoad(parentController: self)
-		}
-		
-		var undoOrigin = topRightCorner
-		undoOrigin.x = undoOrigin.x - softDeletedView.frame.width
-		softDeletedView.frame.origin = undoOrigin
-		softDeletedView.layer?.zPosition = self.view.layer!.zPosition
-		self.view.superview?.addSubview(softDeletedView)
-	}
-	
-	private func fadeout(){
-		NSAnimationContext.runAnimationGroup({ context in
-			context.duration = 0.5
-			self.view.animator().alphaValue = 0.0
-		}, completionHandler: {
-			if(self.closeCancelled || !self.closeTriggered){
-				return
-			}
-			self.view.isHidden = true
-			self.view.alphaValue = 1.0
-		})
-	}
-	
-	func cancelCloseProcess(){
-		self.closeCancelled = true
-		self.closeTriggered = false
-		fadeIn()
-	}
-	
-	private func fadeIn(){
-		self.view.isHidden = false
-		self.view.alphaValue = 1.0
-	}
-	
-	func confirmClose(){
-		if(self.closeCancelled){
-			self.closeCancelled = false
-			self.closeTriggered = false
-			return
-		}
-		myView.closedContentFrameCleanUp()
-		removeFromParent()
-		if(viewState == .fullscreen){
-			if let spaceController = (NSApplication.shared.delegate as? AppDelegate)?.getNiSpaceViewController(){
-				spaceController.showHeader()
-			}
-		}
 	}
 	
 	/*
