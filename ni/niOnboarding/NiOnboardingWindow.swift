@@ -67,15 +67,31 @@ class NiOnboardingWindow: NSPanel{
 	}
 	
 	override func keyDown(with event: NSEvent){
-		if(event.keyCode == kVK_RightArrow){
-			myViewController?.nextStep()
-			return
-		}
-		
-		if(event.keyCode == kVK_LeftArrow){
+		if(event.keyCode == kVK_LeftArrow || event.keyCode == kVK_ANSI_A || event.keyCode == kVK_ANSI_J){
 			myViewController?.prevStep()
 			return
 		}
+		
+		if(!event.modifierFlags.contains(.command)){
+			myViewController?.nextStep()
+			return
+		}
 		super.keyDown(with: event)
+	}
+	
+	override func mouseDown(with event: NSEvent){
+		if(!event.modifierFlags.contains(.command)){
+			myViewController?.nextStep()
+			return
+		}
+		super.mouseDown(with: event)
+	}
+	
+	override func rightMouseDown(with event: NSEvent){
+		if(!event.modifierFlags.contains(.command)){
+			myViewController?.prevStep()
+			return
+		}
+		super.rightMouseDown(with: event)
 	}
 }
