@@ -15,7 +15,13 @@ class NiOnboardingWindow: NSPanel{
 	
 	private var myViewController: NiOnboardingViewController?
 	
-	init(windowToAppearOn: NSWindow){
+	private weak var spaceViewController: NiSpaceViewController?
+	
+	
+	init(windowToAppearOn: NSWindow, spaceViewController: NiSpaceViewController){
+		
+		self.spaceViewController = spaceViewController
+		
 		super.init(
 			contentRect: windowToAppearOn.frame,
 			styleMask: [
@@ -52,12 +58,11 @@ class NiOnboardingWindow: NSPanel{
 	}
 	
 	func removeSelf(){
-		resignKey()
+		UserSettings.updateValue(setting: .showedOnboarding, value: true)
 		
-		//TODO: find out why hover states do not work in main window after homeview dissapeared.
-		//place to fix is here
-
+		resignKey()
 		orderOut(self)
+		spaceViewController?.showHomeView(canBeDismissed: false)
 		close()
 	}
 	

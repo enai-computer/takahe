@@ -218,7 +218,12 @@ class NiOnboardingViewController: NSViewController{
 			return
 		}
 		
-		guard (currentStep + 1) < onboardingSteps.count else {return}
+		guard (currentStep + 1) < onboardingSteps.count else {
+			if let window = view.window as? NiOnboardingWindow{
+				window.removeSelf()
+			}
+			return
+		}
 		currentStep += 1
 		
 		updateDots()
