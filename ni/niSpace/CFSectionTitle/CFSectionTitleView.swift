@@ -6,26 +6,33 @@
 //
 
 import Cocoa
+import Carbon.HIToolbox
 
 class CFSectionTitleView: CFBaseView{
 	
 	private var overlay: NSView?
 	
 	@IBOutlet var sectionTitle: NSTextField!
-
+	private var hoverEffect: NSTrackingArea? = nil
+	
+	
 	func initAfterViewLoad(sectionName: String?, myController: CFProtocol){
 		sectionTitle.stringValue = "TEST NAME"//sectionName ?? ""
 		
 		self.myController = myController
 		self.wantsLayer = true
-		self.layer?.addSublayer(bottomBorder())
 	}
 	
-	private func bottomBorder() -> CALayer{
+	func setUnderline(){
+		let bottomBorder = underlineLayer()
+		self.layer?.addSublayer(bottomBorder)
+	}
+	
+	private func underlineLayer() -> CALayer{
 		let bottomBorder = CALayer(layer: layer!)
 		bottomBorder.borderColor = NSColor.sand115.cgColor
 		bottomBorder.borderWidth = 2.0
-		bottomBorder.frame = CGRect(x: 0, y: 2, width: self.frame.width, height: 2.0)
+		bottomBorder.frame = CGRect(x: sectionTitle.frame.origin.x, y: (sectionTitle.frame.origin.y - 2.0), width: sectionTitle.frame.width, height: 2.0)
 		return bottomBorder
 	}
 	
@@ -37,7 +44,7 @@ class CFSectionTitleView: CFBaseView{
 			overlay?.removeFromSuperview()
 			overlay = nil
 			sectionTitle.isEditable = true
-			layer?.borderColor = NSColor.sand2.cgColor
+
 		}else{
 			sectionTitle.isEditable = false
 			sectionTitle.isSelectable = false
@@ -46,22 +53,22 @@ class CFSectionTitleView: CFBaseView{
 			sectionTitle.addSubview(overlay!)
 			sectionTitle.window?.makeFirstResponder(overlay)
 			
-			layer?.borderColor = NSColor.clear.cgColor
-			
 			removeBorder()
 		}
 		updateTrackingAreas()
 	}
 	
 	func setBorder(){
-		borderColor = NSColor.birkinLight
-		borderWidth = 2.0
+		borderColor = NSColor.birkin
 	}
 	
 	func removeBorder(){
-		borderWidth = 0.0
+		borderColor = .transparent
 	}
 	
+	/*
+	 * MARK: mouse events here
+	 */
 	override func mouseDown(with event: NSEvent) {
 		if !frameIsActive{
 			niParentDoc?.setTopNiFrame(myController!)
@@ -109,5 +116,44 @@ class CFSectionTitleView: CFBaseView{
 		cursorDownPoint = .zero
 		cursorOnBorder = .no
 		deactivateDocumentResize = false
+	}
+	
+	override func mouseEntered(with event: NSEvent) {
+		if(!frameIsActive){
+			borderColor = NSColor.birkinLight
+		}
+	}
+	
+	override func mouseExited(with event: NSEvent) {
+		if(!frameIsActive){
+			removeBorder()
+		}
+	}
+	
+	override func updateTrackingAreas() {
+		if let trackingArea = self.hoverEffect{
+			removeTrackingArea(trackingArea)
+		}
+		
+		if(!frameIsActive){
+			hoverEffect = NSTrackingArea(rect: bounds,
+										 options: [.activeInKeyWindow, .mouseEnteredAndExited],
+										 owner: self,
+										 userInfo: nil)
+			addTrackingArea(hoverEffect!)
+		}
+	}
+	
+	/*
+	 * MARK: key events here
+	 */
+	override func keyDown(with event: NSEvent) {
+		if(event.keyCode == kVK_Delete || event.keyCode == kVK_ForwardDelete){
+			if(frameIsActive){
+				myController?.triggerCloseProcess(with: event)
+				return
+			}
+		}
+		super.keyDown(with: event)
 	}
 }

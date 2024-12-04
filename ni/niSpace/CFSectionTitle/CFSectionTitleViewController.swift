@@ -31,6 +31,10 @@ class CFSectionTitleViewController: CFProtocol{
 		sectionView?.initAfterViewLoad(sectionName: sectionName, myController: self)
 	}
 	
+	override func viewDidAppear() {
+		sectionView?.setUnderline()
+	}
+	
 	/*
 	 * MARK: - store and load here
 	 */
