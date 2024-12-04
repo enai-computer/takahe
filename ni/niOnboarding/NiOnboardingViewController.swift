@@ -144,6 +144,7 @@ class NiOnboardingViewController: NSViewController{
 	
 	private func setupProgressDots(){
 		guard let dotImg = NSImage(named: "progressDot") else {return}
+		dotImg.size = CGSize(width: 10.0, height: 10.0)
 		var dots: [NSImageView] = []
 		for _ in onboardingSteps.indices{
 			let dot = NSImageView(image: dotImg)
