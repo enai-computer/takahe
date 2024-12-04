@@ -29,7 +29,7 @@ struct Step4ViewLeft: View {
 					Spacer()
 						.frame(height: 15.0)
 					
-					Text("Right click to add sites and apps \nto the dock for quick access")
+					Text("Right click to add sites and apps \nto the dock for quick access.")
 						.font(.custom("Sohne-Buch", size: 21))
 						.foregroundStyle(
 							Color.sand115.shadow(

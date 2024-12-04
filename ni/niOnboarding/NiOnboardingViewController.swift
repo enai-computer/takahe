@@ -127,7 +127,7 @@ class NiOnboardingViewController: NSViewController{
 	
 	private func styleRightSide(){
 		rightSideBackgroundFrame.wantsLayer = true
-		rightSideBackgroundFrame.layer?.backgroundColor = NSColor.sand1.cgColor
+		rightSideBackgroundFrame.layer?.backgroundColor = NSColor.sand2.cgColor
 	}
 	
 	private func setupButtons(){
