@@ -216,6 +216,7 @@
 		CDDFC86B2D0055B000E86BF9 /* Step3ViewRight.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDDFC86A2D0055B000E86BF9 /* Step3ViewRight.swift */; };
 		CDDFC86E2D0058EF00E86BF9 /* Step4ViewRight.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDDFC86D2D0058EF00E86BF9 /* Step4ViewRight.swift */; };
 		CDDFC86F2D0058EF00E86BF9 /* Step4ViewLeft.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDDFC86C2D0058EF00E86BF9 /* Step4ViewLeft.swift */; };
+		CDDFC8712D00692500E86BF9 /* CallToActionImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDDFC8702D00691D00E86BF9 /* CallToActionImageView.swift */; };
 		CDE76C1C2BC6989000CE9513 /* TabViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE76C1B2BC6989000CE9513 /* TabViewModel.swift */; };
 		CDE7BAF52CABE2AA00328025 /* GroupTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE7BAF42CABE25500328025 /* GroupTable.swift */; };
 		CDE7BAF72CABE2BC00328025 /* GroupIdContentIdTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE7BAF62CABE2B000328025 /* GroupIdContentIdTable.swift */; };
@@ -460,6 +461,7 @@
 		CDDFC86A2D0055B000E86BF9 /* Step3ViewRight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Step3ViewRight.swift; sourceTree = "<group>"; };
 		CDDFC86C2D0058EF00E86BF9 /* Step4ViewLeft.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Step4ViewLeft.swift; sourceTree = "<group>"; };
 		CDDFC86D2D0058EF00E86BF9 /* Step4ViewRight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Step4ViewRight.swift; sourceTree = "<group>"; };
+		CDDFC8702D00691D00E86BF9 /* CallToActionImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallToActionImageView.swift; sourceTree = "<group>"; };
 		CDE76C1B2BC6989000CE9513 /* TabViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewModel.swift; sourceTree = "<group>"; };
 		CDE7BAF42CABE25500328025 /* GroupTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupTable.swift; sourceTree = "<group>"; };
 		CDE7BAF62CABE2B000328025 /* GroupIdContentIdTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupIdContentIdTable.swift; sourceTree = "<group>"; };
@@ -1059,6 +1061,7 @@
 		CDD6B94A2B19469000C6144D /* niHome */ = {
 			isa = PBXGroup;
 			children = (
+				CDDFC8702D00691D00E86BF9 /* CallToActionImageView.swift */,
 				CD19BC952BC7E5BF002AF14E /* HomeViewUtils.swift */,
 				CDF0DD1D2C202A52006C4EF4 /* NiHomeWindow.swift */,
 				CDF0DD212C202BCD006C4EF4 /* NiHomeController.swift */,
@@ -1374,6 +1377,7 @@
 				CDFA8D022C0492F400882722 /* NiNoteItem.swift in Sources */,
 				CDD6B9392B152A8000C6144D /* Storage.swift in Sources */,
 				CDD7D3472C19986F0038E6F9 /* NiSearchResultViewItemRightIcon.swift in Sources */,
+				CDDFC8712D00692500E86BF9 /* CallToActionImageView.swift in Sources */,
 				CDD7ED052C554E24007604D9 /* DemoLibraryImage.swift in Sources */,
 				CD2DE8832CA1ADB7000B5461 /* RestModels.swift in Sources */,
 				CD0B635C2CF4C8A500927F54 /* NiSpaceViewUtils.swift in Sources */,

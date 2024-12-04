@@ -14,7 +14,7 @@ struct Step4ViewRight: View {
 			ZStack(alignment: .center) {
 				VStack(alignment: .center){
 					Spacer()
-						.frame(height: geometry.size.height * 0.2)
+						.frame(height: 80.0)
 					Image("step4RightSideImg")
 						.resizable()
 						.aspectRatio(nil, contentMode: .fit)
