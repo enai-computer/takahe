@@ -29,7 +29,7 @@ class CFSectionTitleViewController: CFProtocol{
 	}
 	
 	override func viewDidLoad() {
-		sectionView?.initAfterViewLoad(sectionName: sectionName)
+		sectionView?.initAfterViewLoad(sectionName: sectionName, myController: self)
 	}
 	
 	/*

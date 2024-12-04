@@ -207,6 +207,7 @@
 		CDDFC8632CFF741900E86BF9 /* CFSectionTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDDFC8622CFF741200E86BF9 /* CFSectionTitleView.swift */; };
 		CDDFC8652CFF778200E86BF9 /* CFSectionTitleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDDFC8642CFF777C00E86BF9 /* CFSectionTitleViewController.swift */; };
 		CDDFC8672CFFA1BE00E86BF9 /* CFProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDDFC8662CFFA1B900E86BF9 /* CFProtocol.swift */; };
+		CDDFC8692D0029D600E86BF9 /* SectionTitleOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDDFC8682D0029CC00E86BF9 /* SectionTitleOverlay.swift */; };
 		CDE76C1C2BC6989000CE9513 /* TabViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE76C1B2BC6989000CE9513 /* TabViewModel.swift */; };
 		CDE7BAF52CABE2AA00328025 /* GroupTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE7BAF42CABE25500328025 /* GroupTable.swift */; };
 		CDE7BAF72CABE2BC00328025 /* GroupIdContentIdTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE7BAF62CABE2B000328025 /* GroupIdContentIdTable.swift */; };
@@ -442,6 +443,7 @@
 		CDDFC8622CFF741200E86BF9 /* CFSectionTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CFSectionTitleView.swift; sourceTree = "<group>"; };
 		CDDFC8642CFF777C00E86BF9 /* CFSectionTitleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CFSectionTitleViewController.swift; sourceTree = "<group>"; };
 		CDDFC8662CFFA1B900E86BF9 /* CFProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CFProtocol.swift; sourceTree = "<group>"; };
+		CDDFC8682D0029CC00E86BF9 /* SectionTitleOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionTitleOverlay.swift; sourceTree = "<group>"; };
 		CDE76C1B2BC6989000CE9513 /* TabViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewModel.swift; sourceTree = "<group>"; };
 		CDE7BAF42CABE25500328025 /* GroupTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupTable.swift; sourceTree = "<group>"; };
 		CDE7BAF62CABE2B000328025 /* GroupIdContentIdTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupIdContentIdTable.swift; sourceTree = "<group>"; };
@@ -1067,6 +1069,7 @@
 		CDDFC85F2CFF73D200E86BF9 /* CFSectionTitle */ = {
 			isa = PBXGroup;
 			children = (
+				CDDFC8682D0029CC00E86BF9 /* SectionTitleOverlay.swift */,
 				CDDFC8642CFF777C00E86BF9 /* CFSectionTitleViewController.swift */,
 				CDDFC8622CFF741200E86BF9 /* CFSectionTitleView.swift */,
 				CDDFC8602CFF740800E86BF9 /* CFSectionTitleView.xib */,
@@ -1319,6 +1322,7 @@
 				CDB06B612AF84E1F008DB8FF /* NiSpaceDocumentView.swift in Sources */,
 				CDD6B9432B16A14300C6144D /* ContentTable.swift in Sources */,
 				CD6DED8F2C24954500AA8BC4 /* NiWebViewFindPanel.swift in Sources */,
+				CDDFC8692D0029D600E86BF9 /* SectionTitleOverlay.swift in Sources */,
 				CD72B83F2C24714800104802 /* CAUtils.swift in Sources */,
 				CD1C6D5D2C525C540019CD09 /* NiPinnedMenuView.swift in Sources */,
 				CD5F7DFF2C1EF06300ADC860 /* DataModelUtils.swift in Sources */,
