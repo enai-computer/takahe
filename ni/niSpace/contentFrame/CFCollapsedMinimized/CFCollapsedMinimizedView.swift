@@ -61,7 +61,7 @@ class CFCollapsedMinimizedView: CFBaseView, CFHasGroupButtonProtocol, NiMouseDow
 	}
 	
 	func expandDownwardsButtonClicked(with event: NSEvent){
-		myController?.collapsedToMinimized()
+		blanketCFC?.collapsedToMinimized()
 	}
 	
 	override func mouseDown(with event: NSEvent) {

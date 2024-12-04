@@ -76,7 +76,7 @@ class NiSpaceDocumentView: NSView{
 		contentFrameControllers.insert(subViewController)
     }
 	
-	func removeNiFrame(_ subViewController: ContentFrameController){
+	func removeNiFrame(_ subViewController: CFProtocol){
 		contentFrameControllers.remove(subViewController)
 		if(topNiFrame == subViewController){
 			if let zPos = topNiFrame?.view.layer?.zPosition{

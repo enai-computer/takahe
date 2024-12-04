@@ -366,7 +366,7 @@ class ContentFrameController: CFProtocol, WKNavigationDelegate, WKUIDelegate, NS
 	   * if clicked "undo button": cancel deletion
 	   * if "undo" ignored: clean up and remove this controller plus view from hierarchy
 	 */
-	func triggerCloseProcess(with event: NSEvent){
+	override func triggerCloseProcess(with event: NSEvent){
 		//stops double click, as it will have unwanted side effects
 		if(closeTriggered){
 			return
@@ -749,7 +749,7 @@ class ContentFrameController: CFProtocol, WKNavigationDelegate, WKUIDelegate, NS
 		sharedLoadViewSetters()
 	}
 	
-	func minimizeToCollapsed(to origin: NSPoint? = nil){
+	override func minimizeToCollapsed(to origin: NSPoint? = nil){
 		updateTabViewModel()
 		if let oldView = self.view as? CFHasGroupButtonProtocol{
 			groupName = oldView.cfGroupButton.getName()
@@ -1780,7 +1780,7 @@ class ContentFrameController: CFProtocol, WKNavigationDelegate, WKUIDelegate, NS
 		}
 	}
 	
-	func updateGroupName(_ n: String?){
+	override func updateGroupName(_ n: String?){
 		self.groupName = n
 	}
 	

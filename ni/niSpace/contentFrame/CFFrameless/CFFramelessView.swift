@@ -27,7 +27,7 @@ class CFFramelessView: CFBaseView {
 			myItem?.setActive()
 		}else{
 			if(myItem?.setInactive() == .removeSelf){
-				myController?.confirmClose()
+				blanketCFC?.confirmClose()
 			}
 			removeBorder()
 		}

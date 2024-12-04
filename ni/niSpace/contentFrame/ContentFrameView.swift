@@ -192,8 +192,8 @@ class ContentFrameView: CFBaseView, CFTabHeadProtocol, CFFwdBackButtonProtocol, 
         if cursorOnBorder != .no{
             cursorDownPoint = event.locationInWindow
 			
-			if(myController!.aTabIsInEditingMode){
-				myController?.endEditingTabUrl()
+			if(blanketCFC!.aTabIsInEditingMode){
+				blanketCFC?.endEditingTabUrl()
 			}
         }
         
@@ -445,7 +445,7 @@ class ContentFrameView: CFBaseView, CFTabHeadProtocol, CFFwdBackButtonProtocol, 
 	}
     
 	func clickedMakeFullscreen(with event: NSEvent){
-		myController?.makeFullscreenClicked(event)
+		blanketCFC?.makeFullscreenClicked(event)
 	}
 	
 	/*

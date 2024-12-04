@@ -15,7 +15,8 @@ import Cocoa
 class CFBaseView: NSBox{
 	
 	weak var niParentDoc: NiSpaceDocumentView? = nil
-	weak var myController: ContentFrameController? = nil
+	weak var myController: CFProtocol? = nil
+	var blanketCFC: ContentFrameController? {return myController as? ContentFrameController}
 	
 	var fixedFrameRatio: CGFloat? = nil
 	var frameIsActive: Bool = false
@@ -68,7 +69,7 @@ class CFBaseView: NSBox{
 		if(!(myController?.tabs.isEmpty ?? true) && (myController?.tabs[0].type == .web && myController?.viewState == .simpleFrame)){
 			return
 		}
-		myController?.showDropdown(with: event)
+		blanketCFC?.showDropdown(with: event)
 	}
 	
 	/**

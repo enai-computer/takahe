@@ -23,12 +23,18 @@ class CFProtocol: NSViewController{
 	func minimizeSelf(){}
 	func minimizedToExpanded(_ shallSelectTabAt: Int = -1){}
 	func minimizedToFullscreen(){}
+	func minimizeToCollapsed(to origin: NSPoint? = nil){}
+	func updateGroupName(_ n: String?){}
 	func expandedToFullscreen(){}
 	func closeSelectedTab(){}
 	func reloadSelectedTab(){}
 	func pauseMediaPlayback(){}
 	func tryPrintContent(_ sender: Any?){}
 	func deinitSelf(){}
+	
+	func triggerCloseProcess(with event: NSEvent){
+		assertionFailure("function not implemented")
+	}
 	
 	func toNiContentFrameModel() -> (model: NiDocumentObjectModel?, nrOfTabs: Int, state: NiContentFrameState?){
 		fatalError("function not implemented")
