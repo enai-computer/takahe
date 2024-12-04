@@ -33,35 +33,20 @@ class cfOverlay: NSView{
 		niNxtResponder?.mouseDown(with: event)
 	}
 	
-	override func mouseUp(with event: NSEvent) {
-		
-	}
+	override func mouseUp(with event: NSEvent) {}
 	
-	override func mouseDragged(with event: NSEvent) {
-	}
+	override func mouseDragged(with event: NSEvent) {}
 	
-	override func mouseEntered(with event: NSEvent) {
-		
-	}
+	override func mouseEntered(with event: NSEvent) {}
 	
-	override func mouseExited(with event: NSEvent) {
-		
-	}
+	override func mouseExited(with event: NSEvent) {}
 	
-	override func mouseMoved(with event: NSEvent) {
-		
-	}
+	override func mouseMoved(with event: NSEvent) {}
 	
-	override func rightMouseDown(with event: NSEvent) {
-		
-	}
+	override func rightMouseDown(with event: NSEvent) {}
 	
-	override func rightMouseUp(with event: NSEvent) {
-		
-	}
+	override func rightMouseUp(with event: NSEvent) {}
 	
-	override func rightMouseDragged(with event: NSEvent) {
-		
-	}
+	override func rightMouseDragged(with event: NSEvent) {}
 	
 }
