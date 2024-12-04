@@ -26,8 +26,11 @@ func reopenContentFrame(screenSize: CGSize, contentFrame: NiContentFrameModel, t
 		let sectionController = CFSectionTitleViewController(
 			sectionId: contentFrame.id ?? UUID(), sectionName: contentFrame.name
 		)
-		sectionController.view.frame.size = screenSize
-		sectionController.view.frame.origin.y = contentFrame.position.y.px
+		sectionController.view.frame = initPositionAndSize(
+			for: sectionController.myView,
+			maxWidth: (screenSize.width - maxWidthMargin),
+			contentFrame: contentFrame
+		)
 		return sectionController
 	}
 	
@@ -46,7 +49,7 @@ func reopenContentFrame(screenSize: CGSize, contentFrame: NiContentFrameModel, t
 		controller.view.frame.origin.y = contentFrame.position.y.px
 	}else{
 		controller.view.frame = initPositionAndSize(
-			for: controller.view as! CFBaseView,
+			for: controller.myView,
 			maxWidth: (screenSize.width - maxWidthMargin),
 			contentFrame: contentFrame
 		)
