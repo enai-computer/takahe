@@ -39,7 +39,7 @@ struct Step23ViewLeft: View {
 							.frame(height: 30.0)
 					}.frame(height: geometry.size.height * 0.4)
 
-					if true {
+					if showNewText {
 						Text("Enai puts things in context")
 							.font(.custom("Sohne-Buch", size: 30))
 							.transition(.opacity)

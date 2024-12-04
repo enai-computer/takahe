@@ -52,7 +52,10 @@ struct Step23ViewRight: View {
 						
 						Spacer()
 							.frame(height: geometry.size.height * 0.1)
-					}
+					}.frame(width: 270.0)
+				}else{
+					Spacer()
+						.frame(width: 270.0)
 				}
 
 				Spacer()
@@ -64,6 +67,10 @@ struct Step23ViewRight: View {
 						.resizable()
 						.aspectRatio(nil, contentMode: .fit)
 						.frame(width: geometry.size.width * 0.35)
+						.offset(group3Offset ?? CGSize(
+							width: 0,
+							height: geometry.size.height * 0.01
+						))
 					
 					if(ranAnimation){
 						Spacer()
@@ -95,7 +102,7 @@ struct Step23ViewRight: View {
 						.aspectRatio(nil, contentMode: .fit)
 						.frame(width: geometry.size.width * 0.25)
 						.offset(group3Offset ?? CGSize(
-							width: -geometry.size.width * 0.07,
+							width: 0,
 							height: -geometry.size.height * 0.08
 						))
 					
@@ -131,6 +138,6 @@ struct Line: Shape {
 }
 
 #Preview {
-	Step23ViewRight(StepRunsAnimation(), ranAnimation: true)
+	Step23ViewRight(StepRunsAnimation(), ranAnimation: false)
 		.frame(width: 900, height: 900)
 }

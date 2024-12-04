@@ -22,7 +22,7 @@ struct Step1ViewLeft: View {
 						.contentMargins(.bottom, 45.0)
 						.foregroundStyle(
 							Color.sand12.shadow(
-								.inner(color: .white, radius: 1.40, x: 0, y: 0)
+								.inner(color: .white, radius: 1.20, x: 0, y: 0)
 							)
 						)
 					
@@ -46,6 +46,7 @@ struct Step1ViewLeft: View {
 					Spacer()
 				}
 				Spacer()
+//					.frame(maxWidth: )
 			}
 		}
 	}
