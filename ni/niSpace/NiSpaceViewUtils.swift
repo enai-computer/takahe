@@ -38,5 +38,5 @@ func genToolbarStack(for controller: NiSpaceViewController) -> [NSView]{
 		controller.createSectionTitle()
 	})
 	
-	return [sectionTitle, group, note, sticky]
+	return [group, note, sticky, sectionTitle]
 }
