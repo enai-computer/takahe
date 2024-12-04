@@ -35,6 +35,8 @@ class NiTextField: NSTextField{
 	
 	required init?(coder: NSCoder) {
 		super.init(coder: coder)
+		focusRingType = .none
+		importsGraphics = false
 		setupLayer()
 	}
 	
@@ -44,10 +46,7 @@ class NiTextField: NSTextField{
 		layer?.cornerRadius = 4.0
 		layer?.cornerCurve = .continuous
 	}
-
-	let maxChars = 3
-	var numberOfChars = 0
-
+	
 	override func awakeFromNib() {
 		super.awakeFromNib()
 		let hoverEffect = NSTrackingArea(rect: self.bounds,
