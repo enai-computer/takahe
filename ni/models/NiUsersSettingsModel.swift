@@ -74,7 +74,7 @@ extension NiUsersSettingsModel{
 		userEmail = getValueOrDefault(key: .userEmail, from: dic, defaultVal: nil)
 		homeViewWeatherLocation = getStructValueOrDefault(key: .homeViewWeatherLocation, from: dic, defaultVal: defaultWeatherLocation)
 		onlineSync = getValueOrDefault(key: .onlineSync, from: dic, defaultVal: false)
-		showedOnboarding = getValueOrDefault(key: .showedOnboarding, from: dic, defaultVal: true)
+		showedOnboarding = getValueOrDefault(key: .showedOnboarding, from: dic, defaultVal: false)
 	}
 	
 	func toDic() -> [UserSettingKey: String?]{
