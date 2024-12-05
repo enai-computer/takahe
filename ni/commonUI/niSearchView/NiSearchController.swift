@@ -230,7 +230,7 @@ class NiSearchController: NSViewController, NSCollectionViewDataSource, NSCollec
 		})
 		img.frame.origin = CGPoint(x: -275, y: view.frame.height - (44.0 + 110.0))
 		view.addSubview(img)
-		DispatchQueue.main.asyncAfter(deadline: .now().advanced(by: .seconds(3))){
+		DispatchQueue.main.asyncAfter(deadline: .now().advanced(by: .seconds(1))){
 			self.view.window?.makeFirstResponder(img)
 		}
 	}
