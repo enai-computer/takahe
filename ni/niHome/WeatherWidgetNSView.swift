@@ -16,26 +16,13 @@ class WeatherNSView: NSView {
 	override init(frame frameRect: NSRect) {
 		super.init(frame: frameRect)
 		setupSwiftUIView()
-		setupTrackingArea()
 	}
 	
 	required init?(coder: NSCoder) {
 		super.init(coder: coder)
 		setupSwiftUIView()
-		setupTrackingArea()
 	}
-	
-	private func setupTrackingArea(){
-//		hoverEffect = NSTrackingArea(rect: bounds,
-//									 options: [.activeInKeyWindow, .mouseEnteredAndExited],
-//									 owner: self,
-//									 userInfo: nil)
-//		addTrackingArea(hoverEffect!)
-//		
-//		wantsLayer = true
-//		layer?.cornerRadius = 4.0
-//		layer?.cornerCurve = .continuous
-	}
+
 	
 	private func setupSwiftUIView() {
 		let local = UserSettings.shared.homeViewWeatherLocation
@@ -53,14 +40,4 @@ class WeatherNSView: NSView {
 			])
 		}
 	}
-	
-//	override func mouseEntered(with event: NSEvent){
-//		layer?.backgroundColor = NSColor.sand4.cgColor
-//		NSCursor.pointingHand.push()
-//	}
-//	
-//	override func mouseExited(with event: NSEvent){
-//		layer?.backgroundColor = NSColor.clear.cgColor
-//		NSCursor.pop()
-//	}
 }

@@ -1,0 +1,52 @@
+//
+//  Step4ViewLeft.swift
+//  Enai
+//
+//  Created by Patrick Lukas on 29/11/24.
+//
+
+import SwiftUI
+
+struct Step4ViewLeft: View {
+	
+	var body: some View {
+		GeometryReader { geometry in
+			HStack(alignment: .top, spacing: 20.0){
+				Spacer()
+					.frame(width: 120.0)
+				VStack(alignment: .leading, spacing: 20.0){
+					Spacer()
+						.frame(height: geometry.size.height * 0.4)
+					
+					Text("Right click to pin things")
+						.font(.custom("Sohne-Buch", size: 30))
+						.foregroundStyle(
+							Color.sand12.shadow(
+								.inner(color: .white, radius: 0.8, x: 0, y: 0)
+							)
+						)
+					
+					Spacer()
+						.frame(height: 15.0)
+					
+					Text("Right click to add sites and apps \nto the dock for quick access.")
+						.font(.custom("Sohne-Buch", size: 21))
+						.foregroundStyle(
+							Color.sand115.shadow(
+								.inner(color: .white, radius: 0.4, x: 0, y: 0)
+							)
+						)
+						.lineSpacing(3.5)
+
+					Spacer()
+				}
+				Spacer()
+			}
+		}
+	}
+}
+
+#Preview {
+	Step4ViewLeft()
+		.frame(width: 600, height: 700)
+}

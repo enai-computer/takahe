@@ -19,7 +19,8 @@ enum UserSettingKey: String{
 		 userFirstName,
 		 userEmail,
 		 homeViewWeatherLocation,
-		 onlineSync
+		 onlineSync,
+		 showedOnboarding
 }
 
 struct NiUsersSettingsModel: Codable{
@@ -35,6 +36,7 @@ struct NiUsersSettingsModel: Codable{
 	let userEmail: String?
 	let homeViewWeatherLocation: WeatherLocationModel
 	let onlineSync: Bool
+	let	showedOnboarding: Bool
 }
 
 let defaultWeatherLocation = WeatherLocationModel(city: "Berlin", country: "Germany", coordinates: CLLocation(latitude: 52.5200, longitude: 13.4050))
@@ -56,6 +58,7 @@ extension NiUsersSettingsModel{
 		userEmail = nil
 		homeViewWeatherLocation = defaultWeatherLocation
 		onlineSync = false
+		showedOnboarding = false
 	}
 	
 	init(from dic: [String: String]) throws{
@@ -71,6 +74,7 @@ extension NiUsersSettingsModel{
 		userEmail = getValueOrDefault(key: .userEmail, from: dic, defaultVal: nil)
 		homeViewWeatherLocation = getStructValueOrDefault(key: .homeViewWeatherLocation, from: dic, defaultVal: defaultWeatherLocation)
 		onlineSync = getValueOrDefault(key: .onlineSync, from: dic, defaultVal: false)
+		showedOnboarding = getValueOrDefault(key: .showedOnboarding, from: dic, defaultVal: true)
 	}
 	
 	func toDic() -> [UserSettingKey: String?]{
@@ -84,7 +88,8 @@ extension NiUsersSettingsModel{
 			.userFirstName: userFirstName,
 			.userEmail: userEmail,
 			.homeViewWeatherLocation: encodeToJsonString(homeViewWeatherLocation),
-			.onlineSync: String(onlineSync)
+			.onlineSync: String(onlineSync),
+			.showedOnboarding: String(showedOnboarding)
 		]
 	}
 	
