@@ -21,6 +21,8 @@ struct Step3ViewRight: View {
 						Image("step3RightSideImg")
 							.resizable()
 							.aspectRatio(nil, contentMode: .fill)
+							.shadow(color: Color(red: 0.11, green: 0.1, blue: 0.1).opacity(0.15), radius: 7.5, x: 5, y: 5)
+							.shadow(color: Color(red: 0.56, green: 0.56, blue: 0.55).opacity(0.8), radius: 1, x: 0, y: 0)
 					}
 				}
 			}

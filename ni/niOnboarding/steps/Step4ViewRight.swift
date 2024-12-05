@@ -14,18 +14,16 @@ struct Step4ViewRight: View {
 			ZStack(alignment: .center) {
 				VStack(alignment: .center){
 					Spacer()
-//						.frame(height: 80.0)
 					HStack(alignment: .center){
-						Spacer()
-							.frame(width: 80.0)
+//						Spacer()
+//							.frame(width: 0.0)
 						Image("step4RightSideImg")
 							.resizable()
 							.aspectRatio(nil, contentMode: .fit)
-	//						.position(x: geometry.size.width / 2, y: geometry.size.height / 3)
 						Spacer()
+							.frame(minWidth: 6.0, maxWidth: geometry.size.width * 0.14)
 					}
 					Spacer()
-//						.frame(height: geometry.size.height * 0.2)
 				}
 			}
 		}

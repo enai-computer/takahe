@@ -69,7 +69,7 @@ struct Step23ViewRight: View {
 						.frame(width: geometry.size.width * 0.35)
 						.offset(group3Offset ?? CGSize(
 							width: 0,
-							height: geometry.size.height * 0.01
+							height: geometry.size.height * 0.05
 						))
 					
 					if(ranAnimation){
@@ -103,7 +103,7 @@ struct Step23ViewRight: View {
 						.frame(width: geometry.size.width * 0.25)
 						.offset(group3Offset ?? CGSize(
 							width: 0,
-							height: -geometry.size.height * 0.08
+							height: -geometry.size.height * 0.1
 						))
 					
 					Spacer()
@@ -122,7 +122,11 @@ struct Step23ViewRight: View {
 		rootVStackAligmnent = .leading
 		withAnimation{
 			ranAnimation.toggle()
-			group3Offset = CGSizeZero
+			if(ranAnimation){
+				group3Offset = CGSizeZero
+			}else{
+				group3Offset = nil
+			}
 		}
 		return
 	}
