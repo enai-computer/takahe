@@ -17,7 +17,7 @@ class NiHomeController: NSViewController, NSTextFieldDelegate {
 	
 	private var weatherView: WeatherNSView?
 	
-	private var searchController: NiSearchController
+	private(set) var searchController: NiSearchController
 	private var signupViewController: NiSignupViewController?
 	private weak var rightSideContentView: NSView?
 	private let viewFrame: NSRect
@@ -93,6 +93,7 @@ class NiHomeController: NSViewController, NSTextFieldDelegate {
 		signupViewController = nil
 		displaySearchView()
 		positionRightSideContentView()
+		searchController.displayCallToAction()
 	}
 	
 	private func setWelcomeMessage(){

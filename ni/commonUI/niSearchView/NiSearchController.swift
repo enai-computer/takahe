@@ -223,6 +223,25 @@ class NiSearchController: NSViewController, NSCollectionViewDataSource, NSCollec
 		return
 	}
 	
+	func displayCallToAction(){
+		guard let img = CallToActionImageView(namedImage: "homeViewCallToAction", with: CGSize(width: 256.0, height: 44.0)) else {return}
+		img.setMouseDownFunction({ _ in
+			self.simulateEnterKey()
+		})
+		img.frame.origin = CGPoint(x: -275, y: view.frame.height - (44.0 + 110.0))
+		view.addSubview(img)
+		DispatchQueue.main.asyncAfter(deadline: .now().advanced(by: .seconds(1))){
+			self.view.window?.makeFirstResponder(img)
+		}
+	}
+	
+	func simulateEnterKey(){
+		preActionStyle()
+		DispatchQueue.main.asyncAfter(deadline: .now().advanced(by: .milliseconds(300))){
+			self.openSpace()
+		}
+	}
+	
 	private func resetSelection(){
 		if let selectedItem = searchResultsCollection.item(at: 0) as? NiSearchResultViewItem{
 			selectedItem.select()
