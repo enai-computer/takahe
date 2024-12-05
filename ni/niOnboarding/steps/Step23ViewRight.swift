@@ -31,7 +31,11 @@ struct Step23ViewRight: View {
 							.frame(height: geometry.size.height * 0.1)
 						Text("Trip to Korea")
 							.font(.custom("Sohne-Kraftig", size: 21))
-							.foregroundStyle(.sand12)
+							.foregroundStyle(
+								Color.sand12.shadow(
+									.inner(color: .white, radius: 0.4, x: 0, y: 0)
+								)
+							)
 							.transition(.opacity)
 						
 						Spacer()
@@ -39,7 +43,11 @@ struct Step23ViewRight: View {
 						
 						Text("Term paper")
 							.font(.custom("Sohne-Kraftig", size: 21))
-							.foregroundStyle(.sand12)
+							.foregroundStyle(
+								Color.sand12.shadow(
+									.inner(color: .white, radius: 0.4, x: 0, y: 0)
+								)
+							)
 							.transition(.opacity)
 						
 						Spacer()
@@ -47,15 +55,25 @@ struct Step23ViewRight: View {
 						
 						Text("Self-Improvement")
 						   .font(.custom("Sohne-Kraftig", size: 21))
-						   .foregroundStyle(.sand12)
+						   .foregroundStyle(
+							   Color.sand12.shadow(
+								   .inner(color: .white, radius: 0.4, x: 0, y: 0)
+							   )
+						   )
 						   .transition(.opacity)
 						
 						Spacer()
 							.frame(height: geometry.size.height * 0.1)
 					}.frame(width: 270.0)
 				}else{
-					Spacer()
-						.frame(width: 270.0)
+					Text("A typical desktop -")
+						.font(.custom("Sohne-Kraftig", size: 21))
+						.foregroundStyle(
+							Color.sand12.shadow(
+								.inner(color: .white, radius: 0.4, x: 0, y: 0)
+							)
+						)
+						.transition(.opacity)
 				}
 
 				Spacer()
