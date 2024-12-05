@@ -49,7 +49,7 @@ class ContentFrameController: CFProtocol, WKNavigationDelegate, WKUIDelegate, NS
 	var viewWithTabs: CFTabHeadProtocol? {return self.view as? CFTabHeadProtocol}
 	
 	private(set) var expandedCFView: ContentFrameView? = nil
-	private var selectedTabModel: Int = -1
+	private var selectedTabModel: Int = 0
 	//we need this var to have the behaviour that tabs that get open with cmd+click open in sequence next to each other
 	//and not just right next to the current tab
 	private var nxtTabPosOpenNxtTo: Int? = nil
