@@ -8,6 +8,7 @@
 import Cocoa
 import SwiftUI
 import Carbon.HIToolbox
+import PostHog
 
 protocol OnboardingStep{
 	func leftSideInfoView() -> NSView
@@ -83,10 +84,11 @@ class NiOnboardingViewController: NSViewController{
 	
 	private let step23Trigger = StepRunsAnimation()
 	private let onboardingSteps: [OnboardingStep]
-
 	private var currentStep: Int = 0
-	
 	private let animationDurationBetweenSlides_ms: Int = 400
+	
+	private var onboardingStarted: Date?
+	private var movedToSlideAt: Date?
 	
 	init(frame: NSRect) {
 		self.viewFrame = frame
@@ -118,6 +120,10 @@ class NiOnboardingViewController: NSViewController{
 		
 		setupProgressDots()
 		loadOnboardingView(step: currentStep)
+		
+		onboardingStarted = Date()
+		movedToSlideAt = Date()
+		PostHogSDK.shared.capture("onboarding_started")
 	}
 	
 	private func styleLeftSide(){
@@ -218,7 +224,15 @@ class NiOnboardingViewController: NSViewController{
 			return
 		}
 		
+		if let movedToSlideAt = movedToSlideAt{
+			let timeOnSlideS = (Date().timeIntervalSinceReferenceDate - movedToSlideAt.timeIntervalSinceReferenceDate)
+			PostHogSDK.shared.capture("viewed_onboarding_slide", properties: ["slide": currentStep, "time_spent": timeOnSlideS])
+		}
+		movedToSlideAt = Date()
+		
 		guard (currentStep + 1) < onboardingSteps.count else {
+			let timeSinceStartS = (Date().timeIntervalSinceReferenceDate - onboardingStarted!.timeIntervalSinceReferenceDate)
+			PostHogSDK.shared.capture("onboarding_completed", properties: ["total_time_spent_s": timeSinceStartS])
 			if let window = view.window as? NiOnboardingWindow{
 				window.removeSelf()
 			}
