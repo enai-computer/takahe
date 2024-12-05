@@ -65,7 +65,7 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "-niLocalStorage /Users/Patrick/Workbench/Kindergarten/curranData-24-7/"
+            argument = "-niLocalStorage /Users/Patrick/Workbench/Kindergarten/curranData-24-7-TEST/"
             isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>

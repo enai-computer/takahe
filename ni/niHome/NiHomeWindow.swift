@@ -15,10 +15,13 @@ class NiHomeWindow: NSPanel, NiSearchWindowProtocol{
 	override var canBecomeKey: Bool {return true}
 	override var canBecomeMain: Bool {return false}
 
+	private let myViewController: NiHomeController
+	
 	init(windowToAppearOn: NSWindow, canBeDismissed: Bool = false){
 
 		self.canBeDismissed = canBeDismissed
-		
+		self.myViewController = NiHomeController(frame: NSRect(origin: .zero, size: windowToAppearOn.frame.size))
+												 
 		super.init(
 			contentRect: windowToAppearOn.frame,
 			styleMask: [
@@ -39,7 +42,7 @@ class NiHomeWindow: NSPanel, NiSearchWindowProtocol{
 		titlebarAppearsTransparent = true
 		contentViewController = NiEmptyViewController(
 			viewFrame: windowToAppearOn.frame,
-			contentController: NiHomeController(frame: NSRect(origin: .zero, size: windowToAppearOn.frame.size)))
+			contentController: myViewController)
 
 		hasShadow = false
 		isOpaque = false

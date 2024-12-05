@@ -32,13 +32,23 @@ class DefaultWindowController: NSWindowController, NSWindowDelegate{
 	}
 
 	func windowDidEnterFullScreen(_ notification: Notification){
-		guard let spaceViewController else { assertionFailure(); return }
 		if(UserSettings.shared.isDefaultConfig){
 			DispatchQueue.main.asyncAfter(deadline: .now().advanced(by: .milliseconds(500))){
-				spaceViewController.showHomeView(canBeDismissed: false)
+				self.showFirstWindow()
 			}
 		}else{
+			showFirstWindow()
+		}
+	}
+	
+	private func showFirstWindow(){
+		guard let spaceViewController else { assertionFailure(); return }
+		
+		if(UserSettings.shared.showedOnboarding){
 			spaceViewController.showHomeView(canBeDismissed: false)
+		}else{
+			let onboardingWindow = NiOnboardingWindow(windowToAppearOn: window!, spaceViewController: spaceViewController)
+			onboardingWindow.makeKeyAndOrderFront(nil)
 		}
 	}
 	
