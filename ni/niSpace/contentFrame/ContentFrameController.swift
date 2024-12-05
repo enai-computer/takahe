@@ -57,11 +57,6 @@ class ContentFrameController: CFProtocol, WKNavigationDelegate, WKUIDelegate, NS
 
 	private var viewIsDrawn = false
 	
-//	private var closeCancelled = false
-//	private(set) var closeTriggered = false
-	
-//	private(set) var groupName: String?
-//	private(set) var groupId: UUID?
 	private var prevDisplayState: NiPreviousDisplayState?
 	
 	/*
@@ -1563,7 +1558,7 @@ class ContentFrameController: CFProtocol, WKNavigationDelegate, WKUIDelegate, NS
 	}
 	
 	func collectionView(_ collectionView: NSCollectionView, layout collectionViewLayout: NSCollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> NSSize {
-		
+		guard indexPath.item < tabs.count else {return ContentFrameView.DEFAULT_TAB_SIZE}
 		let viewModel = tabs[indexPath.item]
 		if(!viewModel.inEditingMode){
 			return ContentFrameView.DEFAULT_TAB_SIZE
