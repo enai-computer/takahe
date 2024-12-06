@@ -6,8 +6,9 @@
 //
 
 import Cocoa
+import Carbon.HIToolbox
 
-class CFSectionTitleViewController: CFProtocol{
+class CFSectionTitleViewController: CFProtocol, NSTextFieldDelegate{
 
 	private var sectionName: String? = nil
 	private var sectionId: UUID
@@ -29,10 +30,44 @@ class CFSectionTitleViewController: CFProtocol{
 	
 	override func viewDidLoad() {
 		sectionView?.initAfterViewLoad(sectionName: sectionName, myController: self)
+		sectionView?.sectionTitle.delegate = self
 	}
 	
 	override func viewDidAppear() {
 		sectionView?.setUnderline()
+	}
+	
+	/*
+	 * MARK: - Text Delegate functions
+	 */
+	func controlTextDidEndEditing(_ notification: Notification) {
+		//needed as this is called on CollectionItem reload. idk why :O
+		
+		guard let textField = notification.object as? NiTextField else {
+			sectionView?.niParentDoc?.unselectTopNiFrame()
+			return
+		}
+		
+		if(notification.userInfo?["NSTextMovement"] as? NSTextMovement == NSTextMovement.cancel){
+			textField.stringValue = sectionName ?? "New section"
+		}else{
+			self.sectionName = textField.stringValue
+		}
+		
+		sectionView?.niParentDoc?.unselectTopNiFrame()
+	}
+
+	/*
+	 * MARK: key events here
+	 */
+	override func keyDown(with event: NSEvent) {
+		if(event.keyCode == kVK_Delete || event.keyCode == kVK_ForwardDelete){
+			if(sectionView?.frameIsActive == true){
+				triggerCloseProcess(with: event)
+				return
+			}
+		}
+		super.keyDown(with: event)
 	}
 	
 	/*

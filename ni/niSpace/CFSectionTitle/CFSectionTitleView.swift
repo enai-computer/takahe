@@ -6,7 +6,6 @@
 //
 
 import Cocoa
-import Carbon.HIToolbox
 
 class CFSectionTitleView: CFBaseView{
 	
@@ -16,7 +15,7 @@ class CFSectionTitleView: CFBaseView{
 	private var hoverEffect: NSTrackingArea? = nil
 	
 	func initAfterViewLoad(sectionName: String?, myController: CFProtocol){
-		sectionTitle.stringValue = "TEST NAME"//sectionName ?? ""
+		sectionTitle.stringValue = sectionName ?? "New section"
 		
 		self.myController = myController
 		self.wantsLayer = true
@@ -47,7 +46,6 @@ class CFSectionTitleView: CFBaseView{
 			overlay?.removeFromSuperview()
 			overlay = nil
 			sectionTitle.isEditable = true
-
 		}else{
 			sectionTitle.isEditable = false
 			sectionTitle.isSelectable = false
@@ -82,7 +80,7 @@ class CFSectionTitleView: CFBaseView{
 		cursorOnBorder = isOnBoarder(posInFrame!)
 		cursorDownPoint = event.locationInWindow
 		
-		if(cursorOnBorder == .top){
+		if(cursorOnBorder == .top ||  cursorOnBorder == .bottom){
 			NSCursor.closedHand.push()
 		}
 	}
@@ -207,16 +205,4 @@ class CFSectionTitleView: CFBaseView{
 		return NSRect(x: (frame.size.width - borderSideActionMargin), y: 0, width: borderSideActionMargin, height: frame.size.height)
 	}
 	
-	/*
-	 * MARK: key events here
-	 */
-	override func keyDown(with event: NSEvent) {
-		if(event.keyCode == kVK_Delete || event.keyCode == kVK_ForwardDelete){
-			if(frameIsActive){
-				myController?.triggerCloseProcess(with: event)
-				return
-			}
-		}
-		super.keyDown(with: event)
-	}
 }

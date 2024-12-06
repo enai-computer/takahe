@@ -86,6 +86,14 @@ class NiSpaceDocumentView: NSView{
 		}
 	}
 
+	func unselectTopNiFrame(){
+		topNiFrame?.toggleActive()
+		if let zPos = topNiFrame?.view.layer?.zPosition{
+			nxtTopZPosition = zPos
+		}
+		topNiFrame = nil
+	}
+	
 	/**
 		Makes sure your the CFControllers view is on top
 	 

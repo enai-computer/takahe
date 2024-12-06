@@ -63,7 +63,7 @@ class NiTextField: NSTextField{
 	override func cancelOperation(_ sender: Any?) {
 		let notification = Notification(
 			name: NSTextField.textDidEndEditingNotification,
-			object: nil,
+			object: self,
 			userInfo: ["NSTextMovement": NSTextMovement.cancel])
 		delegate?.controlTextDidEndEditing?(notification)
 		return
