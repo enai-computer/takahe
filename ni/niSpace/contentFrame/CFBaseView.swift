@@ -175,7 +175,7 @@ class CFBaseView: NSBox{
 		return v
 	}
 	
-	func resizeOwnFrame(_ xDiff: Double, _ yDiff: Double, cursorLeftSide invertX: Bool = false, cursorTop invertY: Bool = false){
+	func resizeOwnFrame(_ xDiff: Double, _ yDiff: Double, cursorLeftSide invertX: Bool = false, cursorTop invertY: Bool = false, enforceMinHeight: Bool = true){
 		let frameSize = frame.size
 		var nsize = frameSize
 		
@@ -191,7 +191,7 @@ class CFBaseView: NSBox{
 		}
 		
 		//enforcing min CF size
-		if(nsize.height < minFrameHeight){
+		if(enforceMinHeight && nsize.height < minFrameHeight){
 			nsize.height = minFrameHeight
 		}
 		if(nsize.width < minFrameWidth){

@@ -15,7 +15,6 @@ class CFSectionTitleView: CFBaseView{
 	@IBOutlet var sectionTitle: NSTextField!
 	private var hoverEffect: NSTrackingArea? = nil
 	
-	
 	func initAfterViewLoad(sectionName: String?, myController: CFProtocol){
 		sectionTitle.stringValue = "TEST NAME"//sectionName ?? ""
 		
@@ -24,16 +23,20 @@ class CFSectionTitleView: CFBaseView{
 	}
 	
 	func setUnderline(){
-		let bottomBorder = underlineLayer()
-		self.layer?.addSublayer(bottomBorder)
+		let bottomBorder = NSView(frame: calcUnderlineFrame())
+		bottomBorder.wantsLayer = true
+		bottomBorder.layer?.backgroundColor = NSColor.sand115.cgColor
+		self.addSubview(bottomBorder)
+		
+		bottomBorder.translatesAutoresizingMaskIntoConstraints = false
+		NSLayoutConstraint.activate([
+			bottomBorder.leadingAnchor.constraint(equalTo: sectionTitle.leadingAnchor),
+			bottomBorder.trailingAnchor.constraint(equalTo: sectionTitle.trailingAnchor),
+		])
 	}
 	
-	private func underlineLayer() -> CALayer{
-		let bottomBorder = CALayer(layer: layer!)
-		bottomBorder.borderColor = NSColor.sand115.cgColor
-		bottomBorder.borderWidth = 2.0
-		bottomBorder.frame = CGRect(x: sectionTitle.frame.origin.x, y: (sectionTitle.frame.origin.y - 2.0), width: sectionTitle.frame.width, height: 2.0)
-		return bottomBorder
+	private func calcUnderlineFrame() -> CGRect{
+		return CGRect(x: sectionTitle.frame.origin.x, y: (sectionTitle.frame.origin.y - 2.0), width: sectionTitle.frame.width, height: 2.0)
 	}
 	
 	override func toggleActive(){
@@ -77,9 +80,7 @@ class CFSectionTitleView: CFBaseView{
 		let posInFrame = self.contentView?.convert(event.locationInWindow, from: nil)
 		
 		cursorOnBorder = isOnBoarder(posInFrame!)
-		if cursorOnBorder != .no{
-			cursorDownPoint = event.locationInWindow
-		}
+		cursorDownPoint = event.locationInWindow
 		
 		if(cursorOnBorder == .top){
 			NSCursor.closedHand.push()
@@ -91,10 +92,7 @@ class CFSectionTitleView: CFBaseView{
 			nextResponder?.mouseDragged(with: event)
 			return
 		}
-		
-		if cursorOnBorder != .top{
-			return
-		}
+
 		let currCursorPoint = event.locationInWindow
 		let horizontalDistanceDragged = currCursorPoint.x - cursorDownPoint.x
 		let verticalDistanceDragged = currCursorPoint.y - cursorDownPoint.y
@@ -102,7 +100,16 @@ class CFSectionTitleView: CFBaseView{
 		//Update here, so we don't have a frame running quicker then the cursor
 		cursorDownPoint = currCursorPoint
 		
-		repositionView(horizontalDistanceDragged, verticalDistanceDragged)
+		switch cursorOnBorder {
+			case .top:
+				repositionView(horizontalDistanceDragged, verticalDistanceDragged)
+			case .leftSide:
+				resizeOwnFrame(horizontalDistanceDragged, 0, cursorLeftSide: true, enforceMinHeight: false)
+			case .rightSide:
+				resizeOwnFrame(horizontalDistanceDragged, 0, enforceMinHeight: false)
+			default:
+				repositionView(horizontalDistanceDragged, verticalDistanceDragged)
+		}
 	}
 	
 	override func mouseUp(with event: NSEvent) {
@@ -142,6 +149,62 @@ class CFSectionTitleView: CFBaseView{
 										 userInfo: nil)
 			addTrackingArea(hoverEffect!)
 		}
+	}
+	
+	override func resizeOwnFrame(_ xDiff: Double, _ yDiff: Double, cursorLeftSide invertX: Bool = false, cursorTop invertY: Bool = false, enforceMinHeight: Bool = true){
+		super.resizeOwnFrame(xDiff, yDiff, cursorLeftSide: invertX, cursorTop: invertY, enforceMinHeight: enforceMinHeight)
+	}
+	
+	override func isOnBoarder(_ cursorLocation: CGPoint) -> OnBorder{
+		if (NSPointInRect(cursorLocation, getTopBorderActionArea())) {
+			return .top
+		}
+		if(NSPointInRect(cursorLocation, getBottomBorderActionArea())){
+			return .bottom
+		}
+		if(NSPointInRect(cursorLocation, getLeftSideBorderActionArea())){
+			return .leftSide
+		}
+		if(NSPointInRect(cursorLocation, getRightSideBorderActionArea())){
+			return .rightSide
+		}
+		return .no
+	}
+	
+	/*
+	 * MARK: cursor rects
+	 */
+	private let topBorderActionMargin: CGFloat = 8.0
+	private let bottomBorderActionMargin: CGFloat = 10.0
+	private let borderSideActionMargin: CGFloat = 12.0
+	
+	override func resetCursorRects() {
+		if(frameIsActive){
+			//otherwise hand opens while dragging
+			if(cursorDownPoint == .zero){
+				addCursorRect(getTopBorderActionArea(), cursor: NSCursor.openHand)
+				addCursorRect(getBottomBorderActionArea(), cursor: NSCursor.openHand)
+			}
+			addCursorRect(getRightSideBorderActionArea(), cursor: niLeftRightCursor)
+			addCursorRect(getLeftSideBorderActionArea(), cursor: niLeftRightCursor)
+		}
+	}
+	
+	override func getTopBorderActionArea() -> NSRect{
+		return NSRect(x: borderSideActionMargin, y: frame.size.height-topBorderActionMargin, width: (frame.size.width - borderSideActionMargin * 2.0), height: topBorderActionMargin)
+	}
+	
+	override func getBottomBorderActionArea() -> NSRect{
+		return NSRect(x: borderSideActionMargin, y: 0, width: (frame.size.width - borderSideActionMargin * 2.0), height: bottomBorderActionMargin)
+	}
+	
+	
+	override func getLeftSideBorderActionArea() -> NSRect{
+		return NSRect(x:0, y: 0, width: borderSideActionMargin, height: frame.size.height)
+	}
+	
+	override func getRightSideBorderActionArea() -> NSRect{
+		return NSRect(x: (frame.size.width - borderSideActionMargin), y: 0, width: borderSideActionMargin, height: frame.size.height)
 	}
 	
 	/*
