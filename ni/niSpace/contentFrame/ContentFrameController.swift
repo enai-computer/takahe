@@ -1279,8 +1279,6 @@ class ContentFrameController: CFProtocol, NSCollectionViewDataSource, NSCollecti
 		selectNextTab(goFwd: false)
 	}
 
-
-	
 	/*
 	 * MARK: - Tab Heads collection control functions
 	 */

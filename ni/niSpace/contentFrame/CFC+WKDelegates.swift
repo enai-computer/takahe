@@ -12,6 +12,7 @@ import Cocoa
  * MARK: - WKDelegate navigation functions
  */
 extension ContentFrameController:  WKNavigationDelegate{
+	
 	func webView(_ webView: WKWebView, didFinish: WKNavigation!){
 		if(!viewHasTabs()){
 			if(0 < tabs.count){
@@ -150,9 +151,6 @@ extension ContentFrameController:  WKNavigationDelegate{
 		}
 		decisionHandler(.download)
 	}
-	
-
-	
 
 	func webView(_ webView: WKWebView, navigationResponse: WKNavigationResponse, didBecome download: WKDownload){
 		download.delegate = NiDownloadHandler.instance
@@ -169,6 +167,30 @@ extension ContentFrameController:  WKNavigationDelegate{
 		}
 	}
 	
+	func webViewWebContentProcessDidTerminate(_ webView: WKWebView){
+		let url = webView.url ?? getCouldNotLoadWebViewURL()
+		guard let niWebView = webView as? NiWebView else {return}
+		let replacementWebView = getNewWebView(owner: self, urlReq: URLRequest(url: url), frame: webView.frame)
+		
+		if viewState.hasTabs(){
+			guard viewWithTabs?.swapView(newView: replacementWebView, at: niWebView.tabHeadPosition) == true else {return}
+			niWebView.spaceRemovedFromMemory()
+			if (niWebView.tabHeadPosition < tabs.count && 0 <= niWebView.tabHeadPosition){
+				tabs[niWebView.tabHeadPosition].repalaceViewItem(with: replacementWebView)
+			}
+		}else if(viewState == .simpleFrame){
+			guard let simpleFrameView = simpleFrame else {return}
+			simpleFrameView.swapView(oldView: niWebView, with: replacementWebView)
+			niWebView.spaceRemovedFromMemory()
+			if(0 < tabs.count){
+				tabs[0].repalaceViewItem(with: replacementWebView)
+			}
+		}else{
+			assertionFailure("Please support webViewWebContentProcessDidTerminate(_ webView: WKWebView) for type \(viewState.rawValue)")
+		}
+	}
+	
+	//MARK: Enai specific functions
 	func niWebViewTitleChanged(_ webView: NiWebView){
 		guard viewIsDrawn else {return}
 		

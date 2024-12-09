@@ -94,6 +94,13 @@ class ContentFrameView: CFBaseView, CFTabHeadProtocol, CFFwdBackButtonProtocol, 
 	    return tabViewPos
     }
     
+	func swapView(newView: NSView, at position: Int) -> Bool{
+		guard 0 <= position && position < niContentTabView.numberOfTabViewItems else {return false}
+		let tabViewItem = niContentTabView.tabViewItem(at: position)
+		tabViewItem.view = newView
+		return true
+	}
+	
 	func deleteSelectedTab(at position: Int){
 		guard 0 <= position && position < niContentTabView.tabViewItems.count else {return}
 		niContentTabView.removeTabViewItem(niContentTabView.tabViewItem(at: position))

@@ -111,6 +111,13 @@ class CFFullscreenView: CFBaseView, CFTabHeadProtocol, CFFwdBackButtonProtocol{
 		return tabViewPos
 	}
 	
+	func swapView(newView: NSView, at position: Int) -> Bool{
+		guard 0 <= position && position < niContentTabView.numberOfTabViewItems else {return false}
+		let tabViewItem = niContentTabView.tabViewItem(at: position)
+		tabViewItem.view = newView
+		return true
+	}
+	
 	func updateSpaceName(_ newVal: String){
 		if(!groupName.stringValue.isEmpty){
 			self.spaceName.stringValue = newVal + ":"

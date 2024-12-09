@@ -69,6 +69,10 @@ class CFSimpleFrameView: CFBaseView, CFFwdBackButtonProtocol, CFHeadActionImageD
 		return 0
 	}
 	
+	func swapView(oldView: NSView, with: NSView){
+		replaceSubview(oldView, with: with)
+	}
+	
 	override func layout() {
 		super.layout()
 		
