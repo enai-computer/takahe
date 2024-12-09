@@ -125,24 +125,25 @@ class NiWebView: WKWebView, CFContentItem, CFContentSearch{
 	}
 	
 	func spaceClosed(){
-		self.pauseAllMediaPlayback()
-		self.closeAllMediaPresentations { } // Avoiding `await`ing the new API.
-		self.stopMediaCapture()
-		self.stopAllMediaPlayback()
-		self.stopLoading()
+		self.niStopMediaPlayingAndLoading()
 	}
 
 	func spaceRemovedFromMemory(){
-		self.pauseAllMediaPlayback()
-		self.closeAllMediaPresentations { } // Avoiding `await`ing the new API.
-		self.stopMediaCapture()
-		self.stopAllMediaPlayback()
+		self.niStopMediaPlayingAndLoading()
 		self.navigationDelegate = nil
 		self.uiDelegate = nil
 		self.owner = nil
 		self.searchPanel = nil
 		self.overlay = nil
+	}
+	
+	func niStopMediaPlayingAndLoading(){
 		self.stopLoading()
+		
+		self.pauseAllMediaPlayback()
+		self.closeAllMediaPresentations { } // Avoiding `await`ing the new API.
+		self.stopMediaCapture()
+		self.stopAllMediaPlayback()
 	}
 	
 	func getCurrentURL() -> String? {

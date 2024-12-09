@@ -188,6 +188,7 @@
 		CDCF36EC2D06FF4B002A0459 /* WKWebViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCF36EB2D06FEFD002A0459 /* WKWebViewExtension.swift */; };
 		CDCF36F72D070FB5002A0459 /* PermissionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCF36F62D070FB5002A0459 /* PermissionType.swift */; };
 		CDCF36F92D071D97002A0459 /* SystemFilePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCF36F82D071D90002A0459 /* SystemFilePicker.swift */; };
+		CDCF36FB2D072A28002A0459 /* CFC+WKDelegates.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCF36FA2D072A18002A0459 /* CFC+WKDelegates.swift */; };
 		CDD03FE22CEC9A63000A5385 /* NiWebPopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD03FE12CEC9A58000A5385 /* NiWebPopUp.swift */; };
 		CDD03FE42CECA034000A5385 /* NiPopUpView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDD03FE32CECA034000A5385 /* NiPopUpView.xib */; };
 		CDD03FE62CECA416000A5385 /* NiPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD03FE52CECA40A000A5385 /* NiPopUpViewController.swift */; };
@@ -445,6 +446,7 @@
 		CDCF36F32D070DD6002A0459 /* Bridging.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Bridging.h; sourceTree = "<group>"; };
 		CDCF36F62D070FB5002A0459 /* PermissionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionType.swift; sourceTree = "<group>"; };
 		CDCF36F82D071D90002A0459 /* SystemFilePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemFilePicker.swift; sourceTree = "<group>"; };
+		CDCF36FA2D072A18002A0459 /* CFC+WKDelegates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CFC+WKDelegates.swift"; sourceTree = "<group>"; };
 		CDD03FE12CEC9A58000A5385 /* NiWebPopUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiWebPopUp.swift; sourceTree = "<group>"; };
 		CDD03FE32CECA034000A5385 /* NiPopUpView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NiPopUpView.xib; sourceTree = "<group>"; };
 		CDD03FE52CECA40A000A5385 /* NiPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiPopUpViewController.swift; sourceTree = "<group>"; };
@@ -612,6 +614,7 @@
 				A1E41BF52ACB533400338417 /* ContentFrameView.xib */,
 				A1E41BF92ACB57EF00338417 /* ContentFrameView.swift */,
 				CDD6B9552B1C326A00C6144D /* ContentFrameController.swift */,
+				CDCF36FA2D072A18002A0459 /* CFC+WKDelegates.swift */,
 				A1E41BFE2ACB6B1300338417 /* FrameGenerator.swift */,
 				CD6317F02BC53A9600434D56 /* cfOverlay.swift */,
 				CD5A04CE2BEA42EB004CC3AA /* cfUtils.swift */,
@@ -1542,6 +1545,7 @@
 				CD1427762C735CAC00510FE6 /* CFProtocols.swift in Sources */,
 				CDF0DD262C2045C8006C4EF4 /* NiSearchWindowProtocol.swift in Sources */,
 				CD5A04C82BEA2BBF004CC3AA /* CFMinimizedView.swift in Sources */,
+				CDCF36FB2D072A28002A0459 /* CFC+WKDelegates.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
