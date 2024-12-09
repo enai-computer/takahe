@@ -127,12 +127,16 @@ class NiWebView: WKWebView, CFContentItem, CFContentSearch{
 	func spaceClosed(){
 		self.pauseAllMediaPlayback()
 		self.closeAllMediaPresentations { } // Avoiding `await`ing the new API.
+		self.stopMediaCapture()
+		self.stopAllMediaPlayback()
 		self.stopLoading()
 	}
 
 	func spaceRemovedFromMemory(){
 		self.pauseAllMediaPlayback()
 		self.closeAllMediaPresentations { } // Avoiding `await`ing the new API.
+		self.stopMediaCapture()
+		self.stopAllMediaPlayback()
 		self.navigationDelegate = nil
 		self.uiDelegate = nil
 		self.owner = nil
