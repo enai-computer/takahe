@@ -1281,7 +1281,7 @@ class ContentFrameController: CFProtocol, WKNavigationDelegate, WKUIDelegate, NS
 	}
 	
 	/*
-	 * MARK: - WKDelegate functions
+	 * MARK: - WKDelegate navigation functions
 	 */
 	func webView(_ webView: WKWebView, didFinish: WKNavigation!){
 		if(!viewHasTabs()){
@@ -1423,48 +1423,7 @@ class ContentFrameController: CFProtocol, WKNavigationDelegate, WKUIDelegate, NS
 	}
 	
 
-	func webView(_ webView: WKWebView, 
-				 createWebViewWith configuration: WKWebViewConfiguration,
-				 for navigationAction: WKNavigationAction,
-				 windowFeatures: WKWindowFeatures
-	) -> WKWebView?{
-		
-		if(navigationAction.navigationType == .reload){
-			webView.reload()
-		}
-		
-		guard let urlStr: String = navigationAction.request.url?.absoluteString else {
-			return nil
-		}
-		if(viewState == .simpleFrame && !urlStr.isEmpty && navigationAction.targetFrame == nil){
-			simpleFrameToExpanded()
-		}
-		guard viewHasTabs() else {return nil}
-		
-		if(navigationAction.targetFrame == nil && !urlStr.isEmpty){
-			//open in new tab, example clicked file in gDrive
-			if(navigationAction.navigationType == .linkActivated){
-				self.openWebsiteInNewTab(urlStr, openNextToSelectedTab: true)
-				return nil
-			}
-			//cmd + click twitter
-			if((windowFeatures.height == nil && windowFeatures.x == nil) || navigationAction.modifierFlags.contains(.command)){
-				self.openWebsiteInNewTab(urlStr, openNextToSelectedTab: true)
-				return nil
-			}
-			//open pop-up for SSO for example
-			if(navigationAction.navigationType == .other){
-				//see example code here: https://stackoverflow.com/questions/52987509/xcode-wkwebview-code-to-allow-webview-to-process-popups
-				if let niWebView = webView as? NiWebView{
-					return niWebView.displayUpPop(
-						configuration: configuration,
-						windowFeatures: windowFeatures
-					)
-				}
-			}
-		}
-		return nil
-	}
+	
 
 	func webView(_ webView: WKWebView, navigationResponse: WKNavigationResponse, didBecome download: WKDownload){
 		download.delegate = NiDownloadHandler.instance
@@ -1549,6 +1508,54 @@ class ContentFrameController: CFProtocol, WKNavigationDelegate, WKUIDelegate, NS
 		guard viewHasTabs() else {return}
 		self.tabs[wv.tabHeadPosition].state = .error
 	}
+
+	/*
+	 * MARK: - WKUIDelegate UI functions
+	 */
+	func webView(_ webView: WKWebView,
+				 createWebViewWith configuration: WKWebViewConfiguration,
+				 for navigationAction: WKNavigationAction,
+				 windowFeatures: WKWindowFeatures
+	) -> WKWebView?{
+		
+		if(navigationAction.navigationType == .reload){
+			webView.reload()
+		}
+		
+		guard let urlStr: String = navigationAction.request.url?.absoluteString else {
+			return nil
+		}
+		if(viewState == .simpleFrame && !urlStr.isEmpty && navigationAction.targetFrame == nil){
+			simpleFrameToExpanded()
+		}
+		guard viewHasTabs() else {return nil}
+		
+		if(navigationAction.targetFrame == nil && !urlStr.isEmpty){
+			//open in new tab, example clicked file in gDrive
+			if(navigationAction.navigationType == .linkActivated){
+				self.openWebsiteInNewTab(urlStr, openNextToSelectedTab: true)
+				return nil
+			}
+			//cmd + click twitter
+			if((windowFeatures.height == nil && windowFeatures.x == nil) || navigationAction.modifierFlags.contains(.command)){
+				self.openWebsiteInNewTab(urlStr, openNextToSelectedTab: true)
+				return nil
+			}
+			//open pop-up for SSO for example
+			if(navigationAction.navigationType == .other){
+				//see example code here: https://stackoverflow.com/questions/52987509/xcode-wkwebview-code-to-allow-webview-to-process-popups
+				if let niWebView = webView as? NiWebView{
+					return niWebView.displayUpPop(
+						configuration: configuration,
+						windowFeatures: windowFeatures
+					)
+				}
+			}
+		}
+		return nil
+	}
+	
+	
 	
 	/*
 	 * MARK: - Tab Heads collection control functions
