@@ -46,6 +46,7 @@ class CFSectionTitleView: CFBaseView{
 			overlay?.removeFromSuperview()
 			overlay = nil
 			sectionTitle.isEditable = true
+			window?.makeFirstResponder(self)
 		}else{
 			sectionTitle.isEditable = false
 			sectionTitle.isSelectable = false
@@ -167,6 +168,10 @@ class CFSectionTitleView: CFBaseView{
 			return .rightSide
 		}
 		return .no
+	}
+	
+	override func keyDown(with event: NSEvent){
+		super.keyDown(with: event)
 	}
 	
 	/*

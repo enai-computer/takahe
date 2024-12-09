@@ -56,7 +56,7 @@ class CFSectionTitleViewController: CFProtocol, NSTextFieldDelegate{
 		
 		sectionView?.niParentDoc?.unselectTopNiFrame()
 	}
-
+	
 	/*
 	 * MARK: key events here
 	 */

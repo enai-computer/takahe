@@ -87,7 +87,9 @@ class NiSpaceDocumentView: NSView{
 	}
 
 	func unselectTopNiFrame(){
-		topNiFrame?.toggleActive()
+		if(topNiFrame?.myView.frameIsActive == true){
+			topNiFrame?.toggleActive()
+		}		
 		if let zPos = topNiFrame?.view.layer?.zPosition{
 			nxtTopZPosition = zPos
 		}
