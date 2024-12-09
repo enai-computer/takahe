@@ -163,6 +163,13 @@ enum NiContentFrameState: String, Codable {
 		}
 	}
 	
+	func hasTabs() -> Bool{
+		return switch self{
+			case .expanded, .fullscreen: true
+			default: false
+		}
+	}
+	
 	var canBecomeFullscreen: Bool {
 		return switch self {
 			case .collapsedMinimised, .minimised, .expanded: true
