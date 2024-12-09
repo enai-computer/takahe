@@ -274,6 +274,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 				self.getNiSpaceViewController()?.switchToNextTab()
 				return nil
 			}
+			if(event.modifierFlags.contains(.control) && event.modifierFlags.contains(.control) && event.keyCode == kVK_ANSI_F){
+				self.getNiSpaceViewController()?.toggleFullscreen()
+				return nil
+			}
 			if(event.keyCode == kVK_F8){
 				self.pumpBilgeWater()
 				return nil

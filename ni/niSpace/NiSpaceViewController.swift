@@ -775,6 +775,10 @@ class NiSpaceViewController: NSViewController, NSTextFieldDelegate{
 		return niSpaceName
 	}
 	
+	func toggleFullscreen(){
+		niDocument.myView.toggleFullscreen()
+	}
+	
 	func switchToNextTab() {
 		niDocument.myView.switchToNextTab()
 	}

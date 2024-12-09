@@ -374,6 +374,9 @@ class ContentFrameController: CFProtocol, WKNavigationDelegate, WKUIDelegate, NS
 			case (.expanded, _):
 				minimizeSelfToDefault(to: prevDisplayState?.minimisedOrigin?.toNSPoint())
 				break
+			case (.fullscreen, _):
+				fullscreenToExpanded()
+				break
 			case (.simpleFrame, _):
 				minimizeSelfToSimple(to: prevDisplayState?.minimisedOrigin?.toNSPoint())
 				break
@@ -454,6 +457,16 @@ class ContentFrameController: CFProtocol, WKNavigationDelegate, WKUIDelegate, NS
 				simpleMinimizedToSimpleFrame()
 			default:
 				assertionFailure("Unhandled view state to self-maximize")
+		}
+	}
+	
+	override func toggleFullscreen(){
+		if(viewState == .fullscreen){
+			fullscreenToPreviousState()
+		}else if([.minimised, .collapsedMinimised].contains(viewState)){
+			minimizedToFullscreen()
+		}else if(viewState == .expanded){
+			expandedToFullscreen()
 		}
 	}
 	

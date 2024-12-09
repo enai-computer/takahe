@@ -133,6 +133,10 @@ class NiSpaceDocumentView: NSView{
         }
     }
 	
+	func toggleFullscreen(){
+		topNiFrame?.toggleFullscreen()
+	}
+	
 	func switchToNextTab() {
 		topNiFrame?.selectNextTab()
 	}

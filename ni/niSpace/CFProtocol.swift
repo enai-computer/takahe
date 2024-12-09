@@ -27,6 +27,7 @@ class CFProtocol: NSViewController{
 	func minimizedToExpanded(_ shallSelectTabAt: Int = -1){}
 	func minimizedToFullscreen(){}
 	func minimizeToCollapsed(to origin: NSPoint? = nil){}
+	func toggleFullscreen(){}
 	func updateGroupName(_ n: String?){}
 	func expandedToFullscreen(){}
 	func closeSelectedTab(){}
