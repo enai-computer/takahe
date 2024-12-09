@@ -40,5 +40,7 @@
 	<true/>
 	<key>SUPublicEDKey</key>
 	<string>ru+839A0Jvk6oUm2IV5nv62G4hEn3oMJH5nzONl+E7Q=</string>
+	<key>SUScheduledCheckInterval</key>
+	<integer>3601</integer>
 </dict>
 </plist>
