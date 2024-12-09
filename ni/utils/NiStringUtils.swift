@@ -74,6 +74,17 @@ extension String {
 			return result
 		}
 	}
+	
+	func dropping(prefix: String) -> String {
+		return hasPrefix(prefix) ? String(dropFirst(prefix.count)) : self
+	}
+	
+	func escapedJavaScriptString() -> String {
+		self.replacingOccurrences(of: "\\", with: "\\\\")
+			.replacingOccurrences(of: "\"", with: "\\\"")
+			.replacingOccurrences(of: "'", with: "\\'")
+			.replacingOccurrences(of: "\n", with: "\\n")
+	}
 }
 
 func hasImgExtension(_ path: String) -> Bool {

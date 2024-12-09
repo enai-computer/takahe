@@ -185,6 +185,8 @@
 		CDC5A1142C25C8F3002F5621 /* EmptyRectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC5A1132C25C8F3002F5621 /* EmptyRectView.swift */; };
 		CDC5A1162C284AD1002F5621 /* NiDocControllerCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC5A1152C284AD1002F5621 /* NiDocControllerCache.swift */; };
 		CDCDD52A2C944B38002693AF /* BilgePump.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCDD5292C944B38002693AF /* BilgePump.swift */; };
+		CDCF36EC2D06FF4B002A0459 /* WKWebViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCF36EB2D06FEFD002A0459 /* WKWebViewExtension.swift */; };
+		CDCF36F72D070FB5002A0459 /* PermissionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCF36F62D070FB5002A0459 /* PermissionType.swift */; };
 		CDD03FE22CEC9A63000A5385 /* NiWebPopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD03FE12CEC9A58000A5385 /* NiWebPopUp.swift */; };
 		CDD03FE42CECA034000A5385 /* NiPopUpView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDD03FE32CECA034000A5385 /* NiPopUpView.xib */; };
 		CDD03FE62CECA416000A5385 /* NiPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD03FE52CECA40A000A5385 /* NiPopUpViewController.swift */; };
@@ -212,12 +214,12 @@
 		CDD87ED02BF23C650045B84B /* NiCursorUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD87ECF2BF23C650045B84B /* NiCursorUtils.swift */; };
 		CDDBCB2B2BD7C23E00E7B187 /* NiSpaceDocumentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDDBCB2A2BD7C23E00E7B187 /* NiSpaceDocumentController.swift */; };
 		CDDBCB2E2BD8FA4C00E7B187 /* errorLoading-1.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = CDDBCB2C2BD8FA4C00E7B187 /* errorLoading-1.jpeg */; };
+		CDDFC85E2CFF60CE00E86BF9 /* Step3ViewLeft.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDDFC85D2CFF60CE00E86BF9 /* Step3ViewLeft.swift */; };
 		CDDFC8612CFF740800E86BF9 /* CFSectionTitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDDFC8602CFF740800E86BF9 /* CFSectionTitleView.xib */; };
 		CDDFC8632CFF741900E86BF9 /* CFSectionTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDDFC8622CFF741200E86BF9 /* CFSectionTitleView.swift */; };
 		CDDFC8652CFF778200E86BF9 /* CFSectionTitleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDDFC8642CFF777C00E86BF9 /* CFSectionTitleViewController.swift */; };
 		CDDFC8672CFFA1BE00E86BF9 /* CFProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDDFC8662CFFA1B900E86BF9 /* CFProtocol.swift */; };
 		CDDFC8692D0029D600E86BF9 /* SectionTitleOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDDFC8682D0029CC00E86BF9 /* SectionTitleOverlay.swift */; };
-		CDDFC85E2CFF60CE00E86BF9 /* Step3ViewLeft.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDDFC85D2CFF60CE00E86BF9 /* Step3ViewLeft.swift */; };
 		CDDFC86B2D0055B000E86BF9 /* Step3ViewRight.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDDFC86A2D0055B000E86BF9 /* Step3ViewRight.swift */; };
 		CDDFC86E2D0058EF00E86BF9 /* Step4ViewRight.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDDFC86D2D0058EF00E86BF9 /* Step4ViewRight.swift */; };
 		CDDFC86F2D0058EF00E86BF9 /* Step4ViewLeft.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDDFC86C2D0058EF00E86BF9 /* Step4ViewLeft.swift */; };
@@ -436,6 +438,11 @@
 		CDC5A1132C25C8F3002F5621 /* EmptyRectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyRectView.swift; sourceTree = "<group>"; };
 		CDC5A1152C284AD1002F5621 /* NiDocControllerCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiDocControllerCache.swift; sourceTree = "<group>"; };
 		CDCDD5292C944B38002693AF /* BilgePump.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BilgePump.swift; sourceTree = "<group>"; };
+		CDCF36EB2D06FEFD002A0459 /* WKWebViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WKWebViewExtension.swift; sourceTree = "<group>"; };
+		CDCF36ED2D06FFA0002A0459 /* WKWebView+Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WKWebView+Private.h"; sourceTree = "<group>"; };
+		CDCF36F12D070A9D002A0459 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		CDCF36F32D070DD6002A0459 /* Bridging.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Bridging.h; sourceTree = "<group>"; };
+		CDCF36F62D070FB5002A0459 /* PermissionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionType.swift; sourceTree = "<group>"; };
 		CDD03FE12CEC9A58000A5385 /* NiWebPopUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiWebPopUp.swift; sourceTree = "<group>"; };
 		CDD03FE32CECA034000A5385 /* NiPopUpView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NiPopUpView.xib; sourceTree = "<group>"; };
 		CDD03FE52CECA40A000A5385 /* NiPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiPopUpViewController.swift; sourceTree = "<group>"; };
@@ -462,12 +469,12 @@
 		CDD87ECF2BF23C650045B84B /* NiCursorUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiCursorUtils.swift; sourceTree = "<group>"; };
 		CDDBCB2A2BD7C23E00E7B187 /* NiSpaceDocumentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiSpaceDocumentController.swift; sourceTree = "<group>"; };
 		CDDBCB2C2BD8FA4C00E7B187 /* errorLoading-1.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "errorLoading-1.jpeg"; sourceTree = "<group>"; };
+		CDDFC85D2CFF60CE00E86BF9 /* Step3ViewLeft.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Step3ViewLeft.swift; sourceTree = "<group>"; };
 		CDDFC8602CFF740800E86BF9 /* CFSectionTitleView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CFSectionTitleView.xib; sourceTree = "<group>"; };
 		CDDFC8622CFF741200E86BF9 /* CFSectionTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CFSectionTitleView.swift; sourceTree = "<group>"; };
 		CDDFC8642CFF777C00E86BF9 /* CFSectionTitleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CFSectionTitleViewController.swift; sourceTree = "<group>"; };
 		CDDFC8662CFFA1B900E86BF9 /* CFProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CFProtocol.swift; sourceTree = "<group>"; };
 		CDDFC8682D0029CC00E86BF9 /* SectionTitleOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionTitleOverlay.swift; sourceTree = "<group>"; };
-		CDDFC85D2CFF60CE00E86BF9 /* Step3ViewLeft.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Step3ViewLeft.swift; sourceTree = "<group>"; };
 		CDDFC86A2D0055B000E86BF9 /* Step3ViewRight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Step3ViewRight.swift; sourceTree = "<group>"; };
 		CDDFC86C2D0058EF00E86BF9 /* Step4ViewLeft.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Step4ViewLeft.swift; sourceTree = "<group>"; };
 		CDDFC86D2D0058EF00E86BF9 /* Step4ViewRight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Step4ViewRight.swift; sourceTree = "<group>"; };
@@ -576,6 +583,8 @@
 				A1F33E2D2AB7299500E2E7CD /* DefaultWindow.swift */,
 				A14E8F202AD20A2600409DDF /* DefaultWindowController.swift */,
 				CD0898292C9057F6007A9A9F /* .swiftlint-disable */,
+				CDCF36F32D070DD6002A0459 /* Bridging.h */,
+				CDCF36F42D070EE9002A0459 /* webBrowser */,
 				CD6317DF2BC3F0F300434D56 /* errors */,
 				CD66CE362B1FD24B0006BB98 /* utils */,
 			);
@@ -1032,8 +1041,35 @@
 		CDC0BD442C46CAEC00CB2DDB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CDCF36F12D070A9D002A0459 /* WebKit.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CDCF36EA2D06FE67002A0459 /* extensions */ = {
+			isa = PBXGroup;
+			children = (
+				CDCF36ED2D06FFA0002A0459 /* WKWebView+Private.h */,
+				CDCF36EB2D06FEFD002A0459 /* WKWebViewExtension.swift */,
+			);
+			path = extensions;
+			sourceTree = "<group>";
+		};
+		CDCF36F42D070EE9002A0459 /* webBrowser */ = {
+			isa = PBXGroup;
+			children = (
+				CDCF36F52D070F77002A0459 /* Permissions */,
+				CDCF36EA2D06FE67002A0459 /* extensions */,
+			);
+			path = webBrowser;
+			sourceTree = "<group>";
+		};
+		CDCF36F52D070F77002A0459 /* Permissions */ = {
+			isa = PBXGroup;
+			children = (
+				CDCF36F62D070FB5002A0459 /* PermissionType.swift */,
+			);
+			path = Permissions;
 			sourceTree = "<group>";
 		};
 		CDD6B9342B1527B700C6144D /* data */ = {
@@ -1340,6 +1376,7 @@
 				CD2DE87C2CA1A8A3000B5461 /* OutboxTable.swift in Sources */,
 				CD94DC822CFE055F009D407D /* Step1ViewRight.swift in Sources */,
 				CD6DED922C257A5000AA8BC4 /* NiActionLabel.swift in Sources */,
+				CDCF36F72D070FB5002A0459 /* PermissionType.swift in Sources */,
 				CD75784C2BC065FB00293930 /* ContentFrameTabHeadTextNode.swift in Sources */,
 				A1E41BFA2ACB57EF00338417 /* ContentFrameView.swift in Sources */,
 				CD6317F12BC53A9600434D56 /* cfOverlay.swift in Sources */,
@@ -1428,6 +1465,7 @@
 				CD59FA0E2C345CB700CFB8DE /* NiPdfView.swift in Sources */,
 				CDD6B9472B16A29100C6144D /* DocumentIdContentIdTable.swift in Sources */,
 				CDD7ED0B2C555A76007604D9 /* NiLibraryConnectionViewElement.swift in Sources */,
+				CDCF36EC2D06FF4B002A0459 /* WKWebViewExtension.swift in Sources */,
 				CD1853112C08D22A001FE566 /* FaviconProvider.swift in Sources */,
 				CD66CE382B1FD26A0006BB98 /* NiStringUtils.swift in Sources */,
 				CD8873782BCD649800007BE9 /* TimeUtils.swift in Sources */,
@@ -1673,7 +1711,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = "0.2.8 --- 2024-12-05.3";
+				CURRENT_PROJECT_VERSION = "0.2.8 --- 2024-12-09.1";
 				DEAD_CODE_STRIPPING = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -1694,6 +1732,7 @@
 				MARKETING_VERSION = 0.2.8;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/ni/Bridging.h";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -1708,7 +1747,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = "0.2.8 --- 2024-12-05.3";
+				CURRENT_PROJECT_VERSION = "0.2.8 --- 2024-12-09.1";
 				DEAD_CODE_STRIPPING = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -1729,6 +1768,7 @@
 				MARKETING_VERSION = 0.2.8;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/ni/Bridging.h";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
