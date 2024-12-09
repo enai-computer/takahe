@@ -113,6 +113,19 @@ class NiSpaceDocumentController: NSViewController{
 		return controller
 	}
 	
+	func createEmptySectionTitle( positioned relavtiveTo: CGPoint? = nil){
+		let controller = CFSectionTitleViewController(sectionName: nil)
+		let newCFView = controller.myView
+		
+		if(relavtiveTo == nil){
+			newCFView.frame.origin = calculateContentFrameOrigin(for: controller.view.frame, ignoreLeastRecentlyUsed: false)
+		}else{
+			newCFView.frame.origin = calculateOrigin(for: controller.view.frame, relativeTo: relavtiveTo!)
+		}
+		newCFView.setFrameOwner(myView)
+		myView.addNiFrame(controller)
+	}
+	
 	func closeTabOfTopCF(){
 		myView.topNiFrame?.closeSelectedTab()
 	}

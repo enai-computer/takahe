@@ -1,13 +1,13 @@
 //
-//  cfOverlay.swift
-//  ni
+//  SectionTitleOverlay.swift
+//  Enai
 //
-//  Created by Patrick Lukas on 9/4/24.
+//  Created by Patrick Lukas on 4/12/24.
 //
 
 import Cocoa
 
-class cfOverlay: NSView{
+class SectionTitleOverlay: NSView{
 	
 	//We want to skipp over a few responders here
 	private var niNxtResponder: NSResponder?
@@ -33,9 +33,13 @@ class cfOverlay: NSView{
 		niNxtResponder?.mouseDown(with: event)
 	}
 	
-	override func mouseUp(with event: NSEvent) {}
+	override func mouseUp(with event: NSEvent) {
+		niNxtResponder?.mouseDown(with: event)
+	}
 	
-	override func mouseDragged(with event: NSEvent) {}
+	override func mouseDragged(with event: NSEvent) {
+		niNxtResponder?.mouseDown(with: event)
+	}
 	
 	override func mouseEntered(with event: NSEvent) {}
 	

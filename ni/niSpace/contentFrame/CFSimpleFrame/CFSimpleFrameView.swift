@@ -334,7 +334,7 @@ class CFSimpleFrameView: CFBaseView, CFFwdBackButtonProtocol, CFHeadActionImageD
 			fillOrRetractView(with: event)
 			return
 		}
-		myController?.simpleFrameToFullscreen()
+		blanketCFC?.simpleFrameToFullscreen()
 	}
 	
 	func forwardButtonClicked(with event: NSEvent){

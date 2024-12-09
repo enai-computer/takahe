@@ -16,9 +16,9 @@ import FaviconFinder
 import PostHog
 
 //TODO: clean up tech debt and move the delegates out of here
-class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelegate, NSCollectionViewDataSource, NSCollectionViewDelegate, NSCollectionViewDelegateFlowLayout{
+class ContentFrameController: CFProtocol, WKNavigationDelegate, WKUIDelegate, NSCollectionViewDataSource, NSCollectionViewDelegate, NSCollectionViewDelegateFlowLayout {
 
-	private(set) var viewState: NiContentFrameState
+//	private(set) var viewState: NiContentFrameState
 	/**Call this function when resetting the view. **Do not use it the in init flow, to set the inital view value.***/
 	private func resetView(newView: CFBaseView){
 		if(viewState != .fullscreen){
@@ -44,26 +44,19 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		self.viewState = myView.frameType
 	}
 	
-	var myView: CFBaseView {return self.view as! CFBaseView}
 	var framelessView: CFFramelessView? {return self.view as? CFFramelessView}
 	var simpleFrame: CFSimpleFrameView? {return self.view as? CFSimpleFrameView}
 	var viewWithTabs: CFTabHeadProtocol? {return self.view as? CFTabHeadProtocol}
 	
 	private(set) var expandedCFView: ContentFrameView? = nil
-	private var selectedTabModel: Int = -1
+	private var selectedTabModel: Int = 0
 	//we need this var to have the behaviour that tabs that get open with cmd+click open in sequence next to each other
 	//and not just right next to the current tab
 	private var nxtTabPosOpenNxtTo: Int? = nil
 	private(set) var aTabIsInEditingMode: Bool = false
-	private(set) var tabs: [TabViewModel] = []
 
 	private var viewIsDrawn = false
 	
-	private var closeCancelled = false
-	private(set) var closeTriggered = false
-	
-	private(set) var groupName: String?
-	private(set) var groupId: UUID?
 	private var prevDisplayState: NiPreviousDisplayState?
 	
 	/*
@@ -75,14 +68,17 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		 tabsModel: [TabViewModel]? = nil,
 		 previousDisplayState: NiPreviousDisplayState? = nil
 	){
-		self.viewState = viewState
-		self.groupName = groupName
+		
+		self.prevDisplayState = previousDisplayState
+		
+		super.init(nibName: nil, bundle: nil)
 		self.groupId = groupId
+		self.groupName = groupName
+		
+		self.viewState = viewState
 		if(tabsModel != nil){
 			self.tabs = tabsModel!
 		}
-		self.prevDisplayState = previousDisplayState
-		super.init(nibName: nil, bundle: nil)
 	}
 	
 	required init?(coder: NSCoder) {
@@ -272,7 +268,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		}
 	}
 	
-	func tryPrintContent(_ sender: Any?){
+	override func tryPrintContent(_ sender: Any?){
 		if(selectedTabModel < 0 && 0 < tabs.count){
 			tabs[0].viewItem?.printView(sender)
 			return
@@ -354,93 +350,10 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	}
 	
 	/*
-	 * MARK: close Window
-	 */
-	
-	/** triggers close animation and displays undo button
-	 
-	runs following steps:
-	1. fade out current view
-	2. display undo button
-	   * if clicked "undo button": cancel deletion
-	   * if "undo" ignored: clean up and remove this controller plus view from hierarchy
-	 */
-	func triggerCloseProcess(with event: NSEvent){
-		//stops double click, as it will have unwanted side effects
-		if(closeTriggered){
-			return
-		}
-		fadeout()
-		loadAndDisplaySoftDeletedView(topRightCorner: CGPoint(x: view.frame.maxX, y: view.frame.minY))
-		closeTriggered = true
-	}
-	
-	private func loadAndDisplaySoftDeletedView(topRightCorner: CGPoint) {
-		let softDeletedView = (NSView.loadFromNib(nibName: "CFSoftDeletedView", owner: self) as! CFSoftDeletedView)
-		
-		if(1 == tabs.count){
-			softDeletedView.initAfterViewLoad(tabs[0].type.toDescriptiveName(), parentController: self)
-		}else{
-			softDeletedView.initAfterViewLoad(parentController: self)
-		}
-		
-		var undoOrigin = topRightCorner
-		undoOrigin.x = undoOrigin.x - softDeletedView.frame.width
-		softDeletedView.frame.origin = undoOrigin
-		softDeletedView.layer?.zPosition = self.view.layer!.zPosition
-		self.view.superview?.addSubview(softDeletedView)
-	}
-	
-	private func fadeout(){
-		NSAnimationContext.runAnimationGroup({ context in
-			context.duration = 0.5
-			self.view.animator().alphaValue = 0.0
-		}, completionHandler: {
-			if(self.closeCancelled || !self.closeTriggered){
-				return
-			}
-			self.view.isHidden = true
-			self.view.alphaValue = 1.0
-		})
-	}
-	
-	func cancelCloseProcess(){
-		self.closeCancelled = true
-		self.closeTriggered = false
-		fadeIn()
-	}
-	
-	private func fadeIn(){
-		self.view.isHidden = false
-		self.view.alphaValue = 1.0
-	}
-	
-	func confirmClose(){
-		if(self.closeCancelled){
-			self.closeCancelled = false
-			self.closeTriggered = false
-			return
-		}
-		myView.closedContentFrameCleanUp()
-		removeFromParent()
-		if(viewState == .fullscreen){
-			if let spaceController = (NSApplication.shared.delegate as? AppDelegate)?.getNiSpaceViewController(){
-				spaceController.showHeader()
-			}
-		}
-	}
-	
-	/*
 	 * MARK: passToView Functions
 	 */
 	
-	/** Call this function ONLY from `setTopNiFrame` in `NiSpaceDocumentView`. Otherwise you will screw up the hierarchy on the canvas!
-	 */
-	func toggleActive(){
-		myView.toggleActive()
-	}
-	
-	func reloadSelectedTab(){
+	override func reloadSelectedTab(){
 		if(viewState != .minimised){
 			if(selectedTabModel < 0 && 0 < tabs.count){
 				tabs[0].webView?.reload()
@@ -453,7 +366,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	/*
 	 * MARK: transitions between views
 	 */
-	func minimizeSelf(){
+	override func minimizeSelf(){
 		switch (viewState, prevDisplayState?.state) {
 			case (.expanded, .collapsedMinimised):
 				minimizeToCollapsed(to: prevDisplayState?.minimisedOrigin?.toNSPoint())
@@ -533,13 +446,13 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		cfView.frame.origin.x = superViewMaxX - cfView.frame.width
 	}
 	
-	func maximizeSelf(){
+	override func maximizeSelf(){
 		switch viewState {
 			case .minimised, .collapsedMinimised:
 				minimizedToExpanded()
 			case .simpleMinimised:
 				simpleMinimizedToSimpleFrame()
-			case .expanded, .frameless, .simpleFrame, .fullscreen:
+			default:
 				assertionFailure("Unhandled view state to self-maximize")
 		}
 	}
@@ -550,7 +463,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		}
 	}
 
-	func minimizedToFullscreen() {
+	override func minimizedToFullscreen() {
 		assert([.minimised, .collapsedMinimised].contains(viewState))
 
 		let oldState = viewState
@@ -567,7 +480,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		)
 	}
 
-	func expandedToFullscreen(){
+	override func expandedToFullscreen(){
 		let fullscreenView = loadFullscreenView()
 		fullscreenView.setFrameOwner(myView.niParentDoc)
 		
@@ -713,7 +626,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		}
 	}
 	
-	func minimizedToExpanded(_ shallSelectTabAt: Int = -1){
+	override func minimizedToExpanded(_ shallSelectTabAt: Int = -1){
 		
 		if let minimizedView = self.view as? CFHasGroupButtonProtocol{
 			groupName = minimizedView.cfGroupButton.getName()
@@ -754,7 +667,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		sharedLoadViewSetters()
 	}
 	
-	func minimizeToCollapsed(to origin: NSPoint? = nil){
+	override func minimizeToCollapsed(to origin: NSPoint? = nil){
 		updateTabViewModel()
 		if let oldView = self.view as? CFHasGroupButtonProtocol{
 			groupName = oldView.cfGroupButton.getName()
@@ -897,7 +810,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		return tabHeadModel.position
 	}
 	
-	func openAndEditEmptyWebTab(createInfoText: Bool = true){
+	override func openAndEditEmptyWebTab(createInfoText: Bool = true){
 		if(!viewHasTabs()){
 			return
 		}
@@ -1121,7 +1034,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	 
 	 Close tabs and select the nxt tab to the right first and then left when none to the right are left
 	 */
-	func closeSelectedTab(){
+	override func closeSelectedTab(){
 		if(0 < tabs.count && tabs[0].type == .web && viewState == .simpleFrame){
 			confirmClose()
 			return
@@ -1165,7 +1078,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		deletedTabModel?.viewItem = nil
 	}
 	
-	func selectNextTab(goFwd: Bool = true){
+	override func selectNextTab(goFwd: Bool = true){
 		var nxtTab: Int = if(goFwd){
 			self.selectedTabModel + 1
 		}else{
@@ -1258,8 +1171,8 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		tabs[selectedTabModel].isSelected = true
 	}
 	
-	func toggleEditSelectedTab(){
-		if(self.viewState == .minimised){
+	override func toggleEditSelectedTab(){
+		if(self.viewState.isMinimized()){
 			return
 		}
 		if(aTabIsInEditingMode){
@@ -1304,7 +1217,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		}
 	}
 	
-	func updateViewModelIcon(at: Int, icon: NSImage?){
+	func updateViewModelIcon(at: Int, icon: sending NSImage?){
 		//We need this check due to the async nature of setting tabIcons.
 		//It may be that the tab is already closed by the time we fetched the icon
 		if(at < tabs.count && 0 <= at){
@@ -1645,7 +1558,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	}
 	
 	func collectionView(_ collectionView: NSCollectionView, layout collectionViewLayout: NSCollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> NSSize {
-		
+		guard indexPath.item < tabs.count else {return ContentFrameView.DEFAULT_TAB_SIZE}
 		let viewModel = tabs[indexPath.item]
 		if(!viewModel.inEditingMode){
 			return ContentFrameView.DEFAULT_TAB_SIZE
@@ -1686,7 +1599,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 	 * MARK: - store and load here
 	 */
 	
-	func purgePersistetContent(){
+	override func purgePersistetContent(){
 		var lastType: TabContentType?
 		for tab in tabs {
 			if(tab.type == .img){
@@ -1707,7 +1620,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		)
 	}
 	
-	func persistContent(spaceId: UUID){
+	override func persistContent(spaceId: UUID){
 		if(closeTriggered){
 			return
 		}
@@ -1720,7 +1633,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		}
 	}
 	
-	func toNiContentFrameModel() -> (model: NiDocumentObjectModel?, nrOfTabs: Int, state: NiContentFrameState?){
+	override func toNiContentFrameModel() -> (model: NiDocumentObjectModel?, nrOfTabs: Int, state: NiContentFrameState?){
 		
 		//do nothing, as we are in the deletion process
 		if(closeTriggered){
@@ -1785,7 +1698,7 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		}
 	}
 	
-	func updateGroupName(_ n: String?){
+	override func updateGroupName(_ n: String?){
 		self.groupName = n
 	}
 	
@@ -1797,13 +1710,13 @@ class ContentFrameController: NSViewController, WKNavigationDelegate, WKUIDelega
 		self.groupId = UUID()
 	}
 	
-	func pauseMediaPlayback(){
+	override func pauseMediaPlayback(){
 		for t in tabs{
 			t.viewItem?.spaceClosed()
 		}
 	}
 	
-	func deinitSelf(){
+	override func deinitSelf(){
 		myView.removeFromSuperviewWithoutNeedingDisplay()
 		for t in tabs{
 			t.viewItem?.spaceRemovedFromMemory()

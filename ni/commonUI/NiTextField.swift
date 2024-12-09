@@ -35,6 +35,8 @@ class NiTextField: NSTextField{
 	
 	required init?(coder: NSCoder) {
 		super.init(coder: coder)
+		focusRingType = .none
+		importsGraphics = false
 		setupLayer()
 	}
 	
@@ -44,10 +46,7 @@ class NiTextField: NSTextField{
 		layer?.cornerRadius = 4.0
 		layer?.cornerCurve = .continuous
 	}
-
-	let maxChars = 3
-	var numberOfChars = 0
-
+	
 	override func awakeFromNib() {
 		super.awakeFromNib()
 		let hoverEffect = NSTrackingArea(rect: self.bounds,
@@ -64,7 +63,7 @@ class NiTextField: NSTextField{
 	override func cancelOperation(_ sender: Any?) {
 		let notification = Notification(
 			name: NSTextField.textDidEndEditingNotification,
-			object: nil,
+			object: self,
 			userInfo: ["NSTextMovement": NSTextMovement.cancel])
 		delegate?.controlTextDidEndEditing?(notification)
 		return
