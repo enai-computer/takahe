@@ -187,6 +187,7 @@
 		CDCDD52A2C944B38002693AF /* BilgePump.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCDD5292C944B38002693AF /* BilgePump.swift */; };
 		CDCF36EC2D06FF4B002A0459 /* WKWebViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCF36EB2D06FEFD002A0459 /* WKWebViewExtension.swift */; };
 		CDCF36F72D070FB5002A0459 /* PermissionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCF36F62D070FB5002A0459 /* PermissionType.swift */; };
+		CDCF36F92D071D97002A0459 /* SystemFilePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCF36F82D071D90002A0459 /* SystemFilePicker.swift */; };
 		CDD03FE22CEC9A63000A5385 /* NiWebPopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD03FE12CEC9A58000A5385 /* NiWebPopUp.swift */; };
 		CDD03FE42CECA034000A5385 /* NiPopUpView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDD03FE32CECA034000A5385 /* NiPopUpView.xib */; };
 		CDD03FE62CECA416000A5385 /* NiPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD03FE52CECA40A000A5385 /* NiPopUpViewController.swift */; };
@@ -443,6 +444,7 @@
 		CDCF36F12D070A9D002A0459 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		CDCF36F32D070DD6002A0459 /* Bridging.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Bridging.h; sourceTree = "<group>"; };
 		CDCF36F62D070FB5002A0459 /* PermissionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionType.swift; sourceTree = "<group>"; };
+		CDCF36F82D071D90002A0459 /* SystemFilePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemFilePicker.swift; sourceTree = "<group>"; };
 		CDD03FE12CEC9A58000A5385 /* NiWebPopUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiWebPopUp.swift; sourceTree = "<group>"; };
 		CDD03FE32CECA034000A5385 /* NiPopUpView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NiPopUpView.xib; sourceTree = "<group>"; };
 		CDD03FE52CECA40A000A5385 /* NiPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiPopUpViewController.swift; sourceTree = "<group>"; };
@@ -859,6 +861,7 @@
 		CD66CE362B1FD24B0006BB98 /* utils */ = {
 			isa = PBXGroup;
 			children = (
+				CDCF36F82D071D90002A0459 /* SystemFilePicker.swift */,
 				CD454C382CEFAA670085E151 /* NiCollectionViewUtils.swift */,
 				CD078DD12CE21682005C0B58 /* NSPointUtils.swift */,
 				CD0FBEB92CAD632300FF19C2 /* AppUtils.swift */,
@@ -1427,6 +1430,7 @@
 				CDDFC8692D0029D600E86BF9 /* SectionTitleOverlay.swift in Sources */,
 				CD72B83F2C24714800104802 /* CAUtils.swift in Sources */,
 				CD1C6D5D2C525C540019CD09 /* NiPinnedMenuView.swift in Sources */,
+				CDCF36F92D071D97002A0459 /* SystemFilePicker.swift in Sources */,
 				CD5F7DFF2C1EF06300ADC860 /* DataModelUtils.swift in Sources */,
 				CD410AE22C285C3C00EC5DF7 /* NiUsersSettingsModel.swift in Sources */,
 				CDE76C1C2BC6989000CE9513 /* TabViewModel.swift in Sources */,

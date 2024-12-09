@@ -1554,7 +1554,23 @@ class ContentFrameController: CFProtocol, WKNavigationDelegate, WKUIDelegate, NS
 		}
 		return nil
 	}
-	
+
+	func webView(
+		_ webView: WKWebView,
+		runOpenPanelWith parameters: WKOpenPanelParameters,
+		initiatedByFrame frame: WKFrameInfo,
+		completionHandler: @escaping @MainActor ([URL]?) -> Void
+	){
+		let filePicker = genSystemFilePicker()
+		filePicker.begin{ response in
+			if response == .OK {
+			   let pickedFolders = filePicker.urls
+				completionHandler(pickedFolders)
+			}else{
+				completionHandler(nil)
+			}
+		}
+	}
 	
 	
 	/*
