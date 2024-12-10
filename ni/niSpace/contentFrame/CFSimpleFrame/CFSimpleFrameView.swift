@@ -101,9 +101,9 @@ class CFSimpleFrameView: CFBaseView, CFFwdBackButtonProtocol, CFHeadActionImageD
 	
 	private func getLeftCfGroupButtonConstraint(showsTitle: Bool = false) -> NSLayoutConstraint{
 		let constant: CGFloat = if(showsTitle && cfGroupButton.groupTitle?.isEditable == false){
-			5.0
+			7.0
 		}else{
-			3.0
+			4.0
 		}
 		return NSLayoutConstraint(
 			item: self.cfGroupButton!,

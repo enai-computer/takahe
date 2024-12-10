@@ -22,7 +22,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <subviews>
                             <customView horizontalHuggingPriority="1000" horizontalCompressionResistancePriority="250" placeholderIntrinsicWidth="24" placeholderIntrinsicHeight="24" verifyAmbiguity="ignoreSizes" translatesAutoresizingMaskIntoConstraints="NO" id="Y6X-jL-a1c" customClass="CFGroupButton" customModule="Enai" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="3" width="24" height="24"/>
+                                <rect key="frame" x="7" y="3" width="24" height="24"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="24" id="11u-P6-7xk"/>
                                     <constraint firstAttribute="height" constant="24" id="cVO-89-rDJ"/>
@@ -30,7 +30,7 @@
                                 </constraints>
                             </customView>
                             <imageView horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="Bny-XT-Ma8" userLabel="back-button" customClass="CFHeadActionImage" customModule="Enai" customModuleProvider="target">
-                                <rect key="frame" x="24" y="3" width="24" height="24"/>
+                                <rect key="frame" x="31" y="3" width="24" height="24"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="24" id="3XW-GZ-nyK"/>
                                     <constraint firstAttribute="width" constant="24" id="6cd-RC-DjK"/>
@@ -46,7 +46,7 @@
                                 </connections>
                             </imageView>
                             <imageView horizontalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="PrU-ju-r61" userLabel="forward-button" customClass="CFHeadActionImage" customModule="Enai" customModuleProvider="target">
-                                <rect key="frame" x="48" y="3" width="24" height="24"/>
+                                <rect key="frame" x="55" y="3" width="24" height="24"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="24" id="6dW-m6-hsM"/>
                                     <constraint firstAttribute="height" constant="24" id="nyK-qz-8Ho"/>
@@ -110,7 +110,7 @@
                         </subviews>
                         <constraints>
                             <constraint firstAttribute="right" secondItem="z6Z-t5-FmO" secondAttribute="right" constant="8" id="2K5-JW-Vsr"/>
-                            <constraint firstItem="Y6X-jL-a1c" firstAttribute="left" secondItem="AyA-HP-F1l" secondAttribute="left" id="3dQ-nH-H6x"/>
+                            <constraint firstItem="Y6X-jL-a1c" firstAttribute="left" secondItem="AyA-HP-F1l" secondAttribute="left" constant="7" id="3dQ-nH-H6x"/>
                             <constraint firstItem="oUj-dg-mT0" firstAttribute="top" secondItem="AyA-HP-F1l" secondAttribute="top" id="6DI-fg-6rZ"/>
                             <constraint firstItem="Y6X-jL-a1c" firstAttribute="top" secondItem="AyA-HP-F1l" secondAttribute="top" id="LYn-J2-52n"/>
                             <constraint firstItem="z6Z-t5-FmO" firstAttribute="top" secondItem="AyA-HP-F1l" secondAttribute="top" id="Ulb-Fn-6fY"/>
