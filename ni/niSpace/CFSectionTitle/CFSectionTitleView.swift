@@ -13,6 +13,8 @@ class CFSectionTitleView: CFBaseView{
 	
 	@IBOutlet var sectionTitle: NSTextField!
 	private var hoverEffect: NSTrackingArea? = nil
+	private var mouseDownLocation: NSPoint? = nil
+	private var mouseDragged: Bool = false
 	
 	func initAfterViewLoad(sectionName: String?, myController: CFProtocol){
 		sectionTitle.stringValue = sectionName ?? "New section"
@@ -24,7 +26,7 @@ class CFSectionTitleView: CFBaseView{
 	func setUnderline(){
 		let bottomBorder = NSView(frame: calcUnderlineFrame())
 		bottomBorder.wantsLayer = true
-		bottomBorder.layer?.backgroundColor = NSColor.sand115.cgColor
+		bottomBorder.layer?.backgroundColor = NSColor.sand11.cgColor
 		self.addSubview(bottomBorder)
 		
 		bottomBorder.translatesAutoresizingMaskIntoConstraints = false
@@ -45,7 +47,6 @@ class CFSectionTitleView: CFBaseView{
 			setBorder()
 			overlay?.removeFromSuperview()
 			overlay = nil
-			sectionTitle.isEditable = true
 			window?.makeFirstResponder(self)
 		}else{
 			sectionTitle.isEditable = false
@@ -76,6 +77,8 @@ class CFSectionTitleView: CFBaseView{
 			niParentDoc?.setTopNiFrame(myController!)
 			return
 		}
+		mouseDragged = false
+		
 		let posInFrame = self.contentView?.convert(event.locationInWindow, from: nil)
 		
 		cursorOnBorder = isOnBoarder(posInFrame!)
@@ -91,7 +94,7 @@ class CFSectionTitleView: CFBaseView{
 			nextResponder?.mouseDragged(with: event)
 			return
 		}
-
+		mouseDragged = true
 		let currCursorPoint = event.locationInWindow
 		let horizontalDistanceDragged = currCursorPoint.x - cursorDownPoint.x
 		let verticalDistanceDragged = currCursorPoint.y - cursorDownPoint.y
@@ -119,9 +122,13 @@ class CFSectionTitleView: CFBaseView{
 		if cursorOnBorder == .top{
 			NSCursor.pop()
 		}
+		let dist = mouseDownLocation?.distanceTo(event.locationInWindow)
 		cursorDownPoint = .zero
 		cursorOnBorder = .no
 		deactivateDocumentResize = false
+		
+		if(!sectionTitle.isEditable && mouseDragged && !(dist ?? 0.0 < 2.0)){return}
+		sectionTitle.isEditable = true
 	}
 	
 	override func mouseEntered(with event: NSEvent) {
