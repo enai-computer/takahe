@@ -1767,7 +1767,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = "0.2.8 --- 2024-12-09.1";
+				CURRENT_PROJECT_VERSION = "0.2.9 --- 2024-12-10.1";
 				DEAD_CODE_STRIPPING = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -1785,7 +1785,7 @@
 					"$(PROJECT_DIR)/ni/assets/enai-chat/node_modules/@rollup/rollup-darwin-arm64",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 0.2.8;
+				MARKETING_VERSION = 0.2.9;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/ni/Bridging.h";
@@ -1803,7 +1803,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = "0.2.8 --- 2024-12-09.1";
+				CURRENT_PROJECT_VERSION = "0.2.9 --- 2024-12-10.1";
 				DEAD_CODE_STRIPPING = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -1821,7 +1821,7 @@
 					"$(PROJECT_DIR)/ni/assets/enai-chat/node_modules/@rollup/rollup-darwin-arm64",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 0.2.8;
+				MARKETING_VERSION = 0.2.9;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/ni/Bridging.h";
