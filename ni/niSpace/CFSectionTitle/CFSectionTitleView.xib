@@ -26,7 +26,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" alignment="left" drawsBackground="YES" id="qih-Cg-iVu">
                             <font key="font" size="28" name="Sohne-Buch"/>
-                            <color key="textColor" name="sand115"/>
+                            <color key="textColor" name="sand12"/>
                             <color key="backgroundColor" name="transparent"/>
                         </textFieldCell>
                         <userDefinedRuntimeAttributes>
@@ -47,8 +47,8 @@
         <namedColor name="Birkin-light">
             <color red="0.95294117647058818" green="0.4392156862745098" blue="0.12941176470588237" alpha="0.33000001311302185" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <namedColor name="sand115">
-            <color red="0.31764705882352939" green="0.31372549019607843" blue="0.29411764705882354" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <namedColor name="sand12">
+            <color red="0.10588235294117647" green="0.10588235294117647" blue="0.094117647058823528" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="transparent">
             <color red="1" green="1" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
