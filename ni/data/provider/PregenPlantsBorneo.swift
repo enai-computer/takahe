@@ -19,7 +19,6 @@ INSERT INTO "content" ("id", "title", "type", "updated_at", "local_storage_locat
 INSERT INTO "content" ("id", "title", "type", "updated_at", "local_storage_location", "ref_counter", "source_url") VALUES ('D8AEBF43-BAC6-450C-A468-00B2B9FBC80D', 'The Teak House | The Common', 'web', '1732114193.59977', NULL, '1', NULL);
 INSERT INTO "content" ("id", "title", "type", "updated_at", "local_storage_location", "ref_counter", "source_url") VALUES ('677F7F5B-FA94-4F0A-ACA3-BD31423391E8', 'The grave human cost of teak wood - and alternatives - Yachting World', 'web', '1732114193.60095', NULL, '1', NULL);
 INSERT INTO "content" ("id", "title", "type", "updated_at", "local_storage_location", "ref_counter", "source_url") VALUES ('67F4BB75-C1AC-4E4E-8D9B-5D37DC8CD518', 'Eusideroxylon is a genus of evergreen trees of the family Lauraceae. The genus is monotypic, and includes one accepted species, Eusideroxylon zwageri. It is known colloquially in English as Bornean ironwood, billian, or ulin.', 'note', '1733780053.51628', NULL, '1', NULL);
-INSERT INTO "content" ("id", "title", "type", "updated_at", "local_storage_location", "ref_counter", "source_url") VALUES ('C1AA772E-5E9E-4262-BD55-C8DA7338C066', 'Welcome to Space', 'web', '1733854675.43974', NULL, '1', NULL);
 INSERT INTO "content" ("id", "title", "type", "updated_at", "local_storage_location", "ref_counter", "source_url") VALUES ('CACDA107-0597-4D8D-8F47-8E97CCBE3F8D', 'Biodiversity of Borneo - Wikipedia', 'web', '1733830268.8698', NULL, '1', NULL);
 """
 	
@@ -35,7 +34,6 @@ INSERT INTO "doc_id_content_id" ("document_id", "content_id") VALUES ('4D0CEF6E-
 INSERT INTO "doc_id_content_id" ("document_id", "content_id") VALUES ('4D0CEF6E-9ECC-4B83-9A9B-F1CC249CAF92', 'D8AEBF43-BAC6-450C-A468-00B2B9FBC80D');
 INSERT INTO "doc_id_content_id" ("document_id", "content_id") VALUES ('4D0CEF6E-9ECC-4B83-9A9B-F1CC249CAF92', '677F7F5B-FA94-4F0A-ACA3-BD31423391E8');
 INSERT INTO "doc_id_content_id" ("document_id", "content_id") VALUES ('4D0CEF6E-9ECC-4B83-9A9B-F1CC249CAF92', '67F4BB75-C1AC-4E4E-8D9B-5D37DC8CD518');
-INSERT INTO "doc_id_content_id" ("document_id", "content_id") VALUES ('4D0CEF6E-9ECC-4B83-9A9B-F1CC249CAF92', 'C1AA772E-5E9E-4262-BD55-C8DA7338C066');
 INSERT INTO "doc_id_content_id" ("document_id", "content_id") VALUES ('4D0CEF6E-9ECC-4B83-9A9B-F1CC249CAF92', 'CACDA107-0597-4D8D-8F47-8E97CCBE3F8D');
 """
 	
@@ -62,20 +60,15 @@ Eusideroxylon are hardwood trees reaching up to 50 metres in height with trunks 
 '); 
 """
 	
-	let eve_chat = """
- INSERT INTO "eve_chat" ("content_id", "messages", "updated_at") VALUES ('C1AA772E-5E9E-4262-BD55-C8DA7338C066', '[
-   {
-	 "content" : "Borneo is home to more diverse plant species than many other tropical areas. Some plants here are found nowhere else in the world.
-			Enai can help you with this space by:
-			• Organizing your findings into groups
-			• Creating notes with facts and observations
-			• Saving websites and articles for later reading
-			• Allowing you to chat about specific information as you explore
-			• Keeping your material organized for future reference",
-	 "role" : "assistant"
-   }
- ]', '1733855208.51925');
-"""
+	func eve_chat_message() throws -> String?{
+		let eve_chat_array = [[
+			"content": "Borneo is home to more diverse plant species than many other tropical areas. Some plants here are found nowhere else in the world.\nEnai can help you with this space by:\n- Organizing your findings into groups\n- Creating notes with facts and observations\n- Saving websites and articles for later reading\n- Allowing you to chat about specific information as you explore\n- Keeping your material organized for future reference",
+			"role" : "assistant"
+		]]
+		let jsonData: Data = try JSONSerialization.data(withJSONObject: eve_chat_array, options: .prettyPrinted)
+		return String(data: jsonData, encoding: .utf8)
+	}
+	
 	
 	let doc_table = """
 INSERT INTO "document" ("id", "name", "owner", "shared", "created_at", "updated_at", "updated_by", "document") VALUES ('4D0CEF6E-9ECC-4B83-9A9B-F1CC249CAF92', 'Plants in Borneo', NULL, '0', '1733855208.51065', '1733855208.51065', NULL, '{

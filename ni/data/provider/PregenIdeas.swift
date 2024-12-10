@@ -23,7 +23,6 @@ INSERT INTO "doc_id_content_id" ("document_id", "content_id") VALUES ('8B80A304-
 INSERT INTO "doc_id_content_id" ("document_id", "content_id") VALUES ('8B80A304-9ECB-40EB-934E-DABB8D3E82A4', 'AC5EF438-4A7E-4AAF-85F4-B1A62B9D3064');
 INSERT INTO "doc_id_content_id" ("document_id", "content_id") VALUES ('8B80A304-9ECB-40EB-934E-DABB8D3E82A4', '0976D8F8-95EC-4196-8C9C-E93459690372');
 INSERT INTO "doc_id_content_id" ("document_id", "content_id") VALUES ('8B80A304-9ECB-40EB-934E-DABB8D3E82A4', '17B838F0-9EDF-42B1-812D-434F7E1078AB');
-INSERT INTO "doc_id_content_id" ("document_id", "content_id") VALUES ('8B80A304-9ECB-40EB-934E-DABB8D3E82A4', 'CA26AA21-2A6E-4C5C-90D3-6FA91264A4C3');
 """
 	
 	let cached_web_sql = """

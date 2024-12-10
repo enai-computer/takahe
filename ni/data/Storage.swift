@@ -186,7 +186,10 @@ class Storage{
 			try db.execute(plants.doc_content_sql)
 			try db.execute(plants.cached_web_sql)
 			try db.execute(plants.user_notes)
-			try db.execute(plants.eve_chat)
+			if let m: String = try plants.eve_chat_message(){
+				DocumentDal.persistEveChat(spaceId: UUID(uuidString: "4D0CEF6E-9ECC-4B83-9A9B-F1CC249CAF92")!, id: UUID(uuidString: "C1AA772E-5E9E-4262-BD55-C8DA7338C066")!, title: "Welcome to Space", messages: m, groupId: nil)
+				
+			}
 			
 			try db.execute(ideas.doc_table_sql)
 			try db.execute(ideas.contentTable_sql)

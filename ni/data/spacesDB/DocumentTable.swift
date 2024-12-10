@@ -77,21 +77,21 @@ class DocumentTable{
     
     static func fetchListofDocs(limit: Int = 50) -> [NiDocumentViewModel]{
         var res: [NiDocumentViewModel] = []
-		var containsWelcomeSpace: Bool = false
+//		var containsWelcomeSpace: Bool = false
         do{
 			for record in try Storage.instance.spacesDB.prepare(table.select(id, name, updatedAt).limit(limit).order(updatedAt.desc)){
 				res.append(NiDocumentViewModel(id: try record.get(id), name: try record.get(name), updatedAt: Date(timeIntervalSince1970: try record.get(updatedAt))))
-				if(try record.get(id) == WelcomeSpaceGenerator.WELCOME_SPACE_ID){
-					containsWelcomeSpace = true
-				}
+//				if(try record.get(id) == WelcomeSpaceGenerator.WELCOME_SPACE_ID){
+//					containsWelcomeSpace = true
+//				}
 			}
         }catch{
             print("Failed to fetch List of last used Docs or a column: \(error)")
         }
 		
-		if(!containsWelcomeSpace && res.count < limit){
-			res.append(NiDocumentViewModel(id: WelcomeSpaceGenerator.WELCOME_SPACE_ID, name: WelcomeSpaceGenerator.WELCOME_SPACE_NAME))
-		}
+//		if(!containsWelcomeSpace && res.count < limit){
+//			res.append(NiDocumentViewModel(id: WelcomeSpaceGenerator.WELCOME_SPACE_ID, name: WelcomeSpaceGenerator.WELCOME_SPACE_NAME))
+//		}
         return res
     }
 

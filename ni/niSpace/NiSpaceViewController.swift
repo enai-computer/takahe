@@ -711,11 +711,8 @@ class NiSpaceViewController: NSViewController, NSTextFieldDelegate{
 		
 		let spaceDoc: NiSpaceDocumentController
 		
-		if(spaceModel == nil && id != WelcomeSpaceGenerator.WELCOME_SPACE_ID){
+		if(spaceModel == nil){
 			spaceDoc = getEmptySpaceDocument(id: id, name: name)
-		}else if(spaceModel == nil && id == WelcomeSpaceGenerator.WELCOME_SPACE_ID){
-			spaceDoc = WelcomeSpaceGenerator.generateSpace(self.view.frame.size)
-			niDocument.view.frame = spaceDoc.view.frame
 		}else{
 			let docHeightPx = (spaceModel?.data as? NiDocumentModel)?.height.px
 			
