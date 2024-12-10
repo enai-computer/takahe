@@ -23,4 +23,6 @@ protocol CFFwdBackButtonProtocol{
 
 protocol CFHasGroupButtonProtocol{
 	var cfGroupButton: CFGroupButton! {get set}
+	func updateGroupButtonLeftConstraint() -> Void
+	func layoutHeadView() -> Void
 }

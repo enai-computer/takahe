@@ -394,6 +394,9 @@ class ContentFrameView: CFBaseView, CFTabHeadProtocol, CFFwdBackButtonProtocol, 
 		)
 	}
 	
+	func layoutHeadView(){
+		self.cfHeadView.layout()
+	}
 	/** .
 	 
 	 layout() has to be called on cfHeadView after calling this function
@@ -408,7 +411,7 @@ class ContentFrameView: CFBaseView, CFTabHeadProtocol, CFFwdBackButtonProtocol, 
 	
 	private func getLeftCfGroupButtonConstraint(showsTitle: Bool = false) -> NSLayoutConstraint{
 		let constant: CGFloat = if(showsTitle && cfGroupButton.groupTitle?.isEditable == false){
-			0.0
+			7.0
 		}else{
 			4.0
 		}

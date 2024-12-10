@@ -20,6 +20,8 @@ class CFCollapsedMinimizedView: CFBaseView, CFHasGroupButtonProtocol, NiMouseDow
 	
 	override var frameType: NiContentFrameState {return .collapsedMinimised}
 	
+	private var groupButtonLeftConstraint: NSLayoutConstraint?
+	
 	required init?(coder: NSCoder) {
 		super.init(coder: coder)
 	}
@@ -47,8 +49,41 @@ class CFCollapsedMinimizedView: CFBaseView, CFHasGroupButtonProtocol, NiMouseDow
 			displayType: .minimised
 		)
 		cfGroupButton.setView(title: groupName)
+		updateGroupButtonLeftConstraint()
 	}
 	
+	func layoutHeadView(){
+		self.cfHeadView.layout()
+	}
+	
+	func updateGroupButtonLeftConstraint(){
+		if(groupButtonLeftConstraint != nil){
+			cfHeadView.removeConstraint(groupButtonLeftConstraint!)
+		}
+		groupButtonLeftConstraint = getLeftCfGroupButtonConstraint(showsTitle: cfGroupButton.hasTitle())
+		cfHeadView.addConstraint(groupButtonLeftConstraint!)
+	}
+	
+	private func getLeftCfGroupButtonConstraint(showsTitle: Bool = false) -> NSLayoutConstraint{
+		let constant: CGFloat = if(showsTitle && cfGroupButton.groupTitle?.isEditable == false){
+			5.0
+		}else{
+			2.0
+		}
+		return NSLayoutConstraint(
+			item: self.cfGroupButton!,
+			attribute: .left,
+			relatedBy: .equal,
+			toItem: self.cfHeadView!,
+			attribute: .left,
+			multiplier: 1.0,
+			constant: constant
+		)
+	}
+	
+	/*
+	 * MARK: mouse events here downwards
+	 */
 	override func isOnBoarder(_ cursorLocation: CGPoint) -> CFBaseView.OnBorder {
 		if(NSPointInRect(cursorLocation, cfHeadView.frame)){
 			return .top

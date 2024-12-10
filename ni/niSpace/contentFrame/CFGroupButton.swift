@@ -115,7 +115,9 @@ class CFGroupButton: NSView, NSTextFieldDelegate{
 		groupTitle?.isEditable = false
 		groupTitle?.isSelectable = false
 		groupTitle?.refusesFirstResponder = true
-		groupTitle!.frame.origin = NSPoint(x: groupTitleMarginDefault, y: groupTitleOriginY)
+		if groupTitle != nil{
+			groupTitle!.frame.origin = NSPoint(x: groupTitleMarginDefault, y: groupTitleOriginY)
+		}
 		styleEndEditing()
 		triggerLayoutConstraintUpdate()
 		updateTrackingAreas()
@@ -127,12 +129,14 @@ class CFGroupButton: NSView, NSTextFieldDelegate{
 			window?.makeFirstResponder(self)
 			return
 		}
-		if(groupTitle!.stringValue.isEmpty){
+		if(groupTitle == nil || groupTitle!.stringValue.isEmpty){
 			dropTitle()
 			updateTrackingAreas()
 			return
 		}
-		titleChangedCallback?(groupTitle!.stringValue)
+		if let newTitle: String = groupTitle?.stringValue{
+			titleChangedCallback?(newTitle)
+		}
 		setWidthConstraintToTitle()
 	}
 	
@@ -225,9 +229,10 @@ class CFGroupButton: NSView, NSTextFieldDelegate{
 	}
 	
 	private func triggerLayoutConstraintUpdate(){
-		if let cfView = superview?.superview?.superview as? ContentFrameView{
+		if let cfView = superview?.superview?.superview as? CFHasGroupButtonProtocol{
 			cfView.updateGroupButtonLeftConstraint()
-			cfView.cfHeadView.layout()
+			cfView.layoutHeadView()
+			return
 		}
 	}
 	
