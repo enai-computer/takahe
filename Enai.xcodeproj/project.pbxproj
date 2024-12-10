@@ -182,6 +182,17 @@
 		CDBCBBFA2C92F91C0069EFE3 /* NiSignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBCBBF92C92F91C0069EFE3 /* NiSignupViewController.swift */; };
 		CDC0BD432C45280C00CB2DDB /* NiDownloadHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC0BD422C45280C00CB2DDB /* NiDownloadHandler.swift */; };
 		CDC0BD482C47B6B000CB2DDB /* UserSettingsTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC0BD472C47B6B000CB2DDB /* UserSettingsTable.swift */; };
+		CDC24ADD2D08BD4E005E1243 /* PregenPlantsBorneo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC24ADC2D08BD43005E1243 /* PregenPlantsBorneo.swift */; };
+		CDC24AE42D08C18A005E1243 /* 459F9CE5-13F7-4AAE-B00F-C1ABF2CB8C24.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CDC24AE12D08C18A005E1243 /* 459F9CE5-13F7-4AAE-B00F-C1ABF2CB8C24.jpg */; };
+		CDC24AE52D08C18A005E1243 /* 5CBD57A2-FDB6-41C7-B6C7-A6E69DDE9EFF.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CDC24ADE2D08C18A005E1243 /* 5CBD57A2-FDB6-41C7-B6C7-A6E69DDE9EFF.jpg */; };
+		CDC24AE62D08C18A005E1243 /* 36A7D9B2-6057-4F35-89FA-E30F89648AC7.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CDC24ADF2D08C18A005E1243 /* 36A7D9B2-6057-4F35-89FA-E30F89648AC7.jpg */; };
+		CDC24AE72D08C18A005E1243 /* A6E48A0D-D220-4614-9B8E-963795BC4386.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CDC24AE32D08C18A005E1243 /* A6E48A0D-D220-4614-9B8E-963795BC4386.jpg */; };
+		CDC24AE82D08C18A005E1243 /* 8125E0A3-62D3-4F4C-87E2-4B781329F29E.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CDC24AE22D08C18A005E1243 /* 8125E0A3-62D3-4F4C-87E2-4B781329F29E.jpg */; };
+		CDC24AE92D08C18A005E1243 /* 129B617E-3FBA-428C-BB57-91FBF2FE7613.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CDC24AE02D08C18A005E1243 /* 129B617E-3FBA-428C-BB57-91FBF2FE7613.jpg */; };
+		CDC24AEB2D08C43D005E1243 /* PregenIdeas.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC24AEA2D08C434005E1243 /* PregenIdeas.swift */; };
+		CDC24AED2D08D7D4005E1243 /* PregenLearnEnai.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC24AEC2D08D7CF005E1243 /* PregenLearnEnai.swift */; };
+		CDC24AF02D08D854005E1243 /* 736E9972-42A7-49F8-9141-BE7CA4CA9407.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CDC24AEF2D08D854005E1243 /* 736E9972-42A7-49F8-9141-BE7CA4CA9407.jpg */; };
+		CDC24AF12D08D854005E1243 /* 019A6F08-E125-4268-A23E-06E6274DF4FB.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CDC24AEE2D08D854005E1243 /* 019A6F08-E125-4268-A23E-06E6274DF4FB.jpg */; };
 		CDC5A1142C25C8F3002F5621 /* EmptyRectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC5A1132C25C8F3002F5621 /* EmptyRectView.swift */; };
 		CDC5A1162C284AD1002F5621 /* NiDocControllerCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC5A1152C284AD1002F5621 /* NiDocControllerCache.swift */; };
 		CDCDD52A2C944B38002693AF /* BilgePump.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCDD5292C944B38002693AF /* BilgePump.swift */; };
@@ -437,6 +448,17 @@
 		CDBCBBF92C92F91C0069EFE3 /* NiSignupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiSignupViewController.swift; sourceTree = "<group>"; };
 		CDC0BD422C45280C00CB2DDB /* NiDownloadHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiDownloadHandler.swift; sourceTree = "<group>"; };
 		CDC0BD472C47B6B000CB2DDB /* UserSettingsTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettingsTable.swift; sourceTree = "<group>"; };
+		CDC24ADC2D08BD43005E1243 /* PregenPlantsBorneo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PregenPlantsBorneo.swift; sourceTree = "<group>"; };
+		CDC24ADE2D08C18A005E1243 /* 5CBD57A2-FDB6-41C7-B6C7-A6E69DDE9EFF.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "5CBD57A2-FDB6-41C7-B6C7-A6E69DDE9EFF.jpg"; sourceTree = "<group>"; };
+		CDC24ADF2D08C18A005E1243 /* 36A7D9B2-6057-4F35-89FA-E30F89648AC7.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "36A7D9B2-6057-4F35-89FA-E30F89648AC7.jpg"; sourceTree = "<group>"; };
+		CDC24AE02D08C18A005E1243 /* 129B617E-3FBA-428C-BB57-91FBF2FE7613.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "129B617E-3FBA-428C-BB57-91FBF2FE7613.jpg"; sourceTree = "<group>"; };
+		CDC24AE12D08C18A005E1243 /* 459F9CE5-13F7-4AAE-B00F-C1ABF2CB8C24.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "459F9CE5-13F7-4AAE-B00F-C1ABF2CB8C24.jpg"; sourceTree = "<group>"; };
+		CDC24AE22D08C18A005E1243 /* 8125E0A3-62D3-4F4C-87E2-4B781329F29E.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "8125E0A3-62D3-4F4C-87E2-4B781329F29E.jpg"; sourceTree = "<group>"; };
+		CDC24AE32D08C18A005E1243 /* A6E48A0D-D220-4614-9B8E-963795BC4386.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "A6E48A0D-D220-4614-9B8E-963795BC4386.jpg"; sourceTree = "<group>"; };
+		CDC24AEA2D08C434005E1243 /* PregenIdeas.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PregenIdeas.swift; sourceTree = "<group>"; };
+		CDC24AEC2D08D7CF005E1243 /* PregenLearnEnai.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PregenLearnEnai.swift; sourceTree = "<group>"; };
+		CDC24AEE2D08D854005E1243 /* 019A6F08-E125-4268-A23E-06E6274DF4FB.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "019A6F08-E125-4268-A23E-06E6274DF4FB.jpg"; sourceTree = "<group>"; };
+		CDC24AEF2D08D854005E1243 /* 736E9972-42A7-49F8-9141-BE7CA4CA9407.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "736E9972-42A7-49F8-9141-BE7CA4CA9407.jpg"; sourceTree = "<group>"; };
 		CDC5A1132C25C8F3002F5621 /* EmptyRectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyRectView.swift; sourceTree = "<group>"; };
 		CDC5A1152C284AD1002F5621 /* NiDocControllerCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiDocControllerCache.swift; sourceTree = "<group>"; };
 		CDCDD5292C944B38002693AF /* BilgePump.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BilgePump.swift; sourceTree = "<group>"; };
@@ -660,7 +682,10 @@
 				CD1853102C08D22A001FE566 /* FaviconProvider.swift */,
 				CD23EBFA2C0F72FF00A2ACD9 /* Cook.swift */,
 				CD410ADF2C285AC700EC5DF7 /* UserSettings.swift */,
+				CDC24AEC2D08D7CF005E1243 /* PregenLearnEnai.swift */,
+				CDC24AEA2D08C434005E1243 /* PregenIdeas.swift */,
 				CD618D952C2B2C28006869AF /* PregenSpaceSkiing.swift */,
+				CDC24ADC2D08BD43005E1243 /* PregenPlantsBorneo.swift */,
 				CD618D972C2B3863006869AF /* PregenIntent.swift */,
 				CD618D992C2B3D7E006869AF /* PregenCookingSpace.swift */,
 			);
@@ -784,12 +809,20 @@
 		CD618D8E2C2B2B5D006869AF /* imgsForWelcomeSpaces */ = {
 			isa = PBXGroup;
 			children = (
+				CDC24AEE2D08D854005E1243 /* 019A6F08-E125-4268-A23E-06E6274DF4FB.jpg */,
+				CDC24AEF2D08D854005E1243 /* 736E9972-42A7-49F8-9141-BE7CA4CA9407.jpg */,
 				CD618D9F2C2B416E006869AF /* E9762558-E0D7-4FAA-9BEA-405FB306E3E6.jpg */,
 				CD618D9D2C2B415F006869AF /* E52F5D89-38ED-42B3-938F-4E52105C7DF7.jpg */,
 				CD618D9B2C2B4151006869AF /* 43DC5B56-124C-4368-A341-EAA9D2E33CFD.jpg */,
 				CD618D932C2B2BB0006869AF /* 3D33D959-24D6-4EB0-9669-6333ED02AC42.jpg */,
 				CD618D912C2B2B9E006869AF /* DABFED28-717B-4E91-BBCA-3F7936E1ABC9.jpg */,
 				CD618D8F2C2B2B8E006869AF /* EC9DF222-0555-41E2-A1E8-F36CD5CF2456.jpg */,
+				CDC24ADE2D08C18A005E1243 /* 5CBD57A2-FDB6-41C7-B6C7-A6E69DDE9EFF.jpg */,
+				CDC24ADF2D08C18A005E1243 /* 36A7D9B2-6057-4F35-89FA-E30F89648AC7.jpg */,
+				CDC24AE02D08C18A005E1243 /* 129B617E-3FBA-428C-BB57-91FBF2FE7613.jpg */,
+				CDC24AE12D08C18A005E1243 /* 459F9CE5-13F7-4AAE-B00F-C1ABF2CB8C24.jpg */,
+				CDC24AE22D08C18A005E1243 /* 8125E0A3-62D3-4F4C-87E2-4B781329F29E.jpg */,
+				CDC24AE32D08C18A005E1243 /* A6E48A0D-D220-4614-9B8E-963795BC4386.jpg */,
 			);
 			path = imgsForWelcomeSpaces;
 			sourceTree = "<group>";
@@ -1321,6 +1354,8 @@
 				CD7578472BC000F200293930 /* ContentFrameTabHead.xib in Resources */,
 				CDD7D33B2C198BE00038E6F9 /* NiSearchView.xib in Resources */,
 				CD5A04CB2BEA3CC7004CC3AA /* CFMinimizedStackItem.xib in Resources */,
+				CDC24AF02D08D854005E1243 /* 736E9972-42A7-49F8-9141-BE7CA4CA9407.jpg in Resources */,
+				CDC24AF12D08D854005E1243 /* 019A6F08-E125-4268-A23E-06E6274DF4FB.jpg in Resources */,
 				CD2B68F02C2F26930086756E /* NiAlertPanel.xib in Resources */,
 				CD618D942C2B2BB0006869AF /* 3D33D959-24D6-4EB0-9669-6333ED02AC42.jpg in Resources */,
 				CD569FE72C53A05700C16B2E /* 4432C460-246D-4A72-A3B8-F84A66C93E05.png in Resources */,
@@ -1344,6 +1379,12 @@
 				CD7AE0AC2C553C7300B3984E /* NiLibraryView.xib in Resources */,
 				CDA639562BF50596001941DE /* welcomeConfig.json in Resources */,
 				CD4DBD4E2CBE709600CE5179 /* signifier-regular.otf in Resources */,
+				CDC24AE42D08C18A005E1243 /* 459F9CE5-13F7-4AAE-B00F-C1ABF2CB8C24.jpg in Resources */,
+				CDC24AE52D08C18A005E1243 /* 5CBD57A2-FDB6-41C7-B6C7-A6E69DDE9EFF.jpg in Resources */,
+				CDC24AE62D08C18A005E1243 /* 36A7D9B2-6057-4F35-89FA-E30F89648AC7.jpg in Resources */,
+				CDC24AE72D08C18A005E1243 /* A6E48A0D-D220-4614-9B8E-963795BC4386.jpg in Resources */,
+				CDC24AE82D08C18A005E1243 /* 8125E0A3-62D3-4F4C-87E2-4B781329F29E.jpg in Resources */,
+				CDC24AE92D08C18A005E1243 /* 129B617E-3FBA-428C-BB57-91FBF2FE7613.jpg in Resources */,
 				CD6317ED2BC4852300434D56 /* sohne-leicht.ttf in Resources */,
 				CD618D902C2B2B8E006869AF /* EC9DF222-0555-41E2-A1E8-F36CD5CF2456.jpg in Resources */,
 				CD402C2C2C98300A004D9538 /* CFCollapsedMinimizedView.xib in Resources */,
@@ -1374,6 +1415,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CDC24ADD2D08BD4E005E1243 /* PregenPlantsBorneo.swift in Sources */,
 				CD2DE8802CA1ABCF000B5461 /* OutboxProcessor.swift in Sources */,
 				CDDFC85E2CFF60CE00E86BF9 /* Step3ViewLeft.swift in Sources */,
 				CDDFC86F2D0058EF00E86BF9 /* Step4ViewLeft.swift in Sources */,
@@ -1434,6 +1476,7 @@
 				CD72B83F2C24714800104802 /* CAUtils.swift in Sources */,
 				CD1C6D5D2C525C540019CD09 /* NiPinnedMenuView.swift in Sources */,
 				CDCF36F92D071D97002A0459 /* SystemFilePicker.swift in Sources */,
+				CDC24AEB2D08C43D005E1243 /* PregenIdeas.swift in Sources */,
 				CD5F7DFF2C1EF06300ADC860 /* DataModelUtils.swift in Sources */,
 				CD410AE22C285C3C00EC5DF7 /* NiUsersSettingsModel.swift in Sources */,
 				CDE76C1C2BC6989000CE9513 /* TabViewModel.swift in Sources */,
@@ -1493,6 +1536,7 @@
 				CDF0DD222C202BCD006C4EF4 /* NiHomeController.swift in Sources */,
 				CD8D2B082C00C7A100C44C1D /* NoteTable.swift in Sources */,
 				CDC0BD432C45280C00CB2DDB /* NiDownloadHandler.swift in Sources */,
+				CDC24AED2D08D7D4005E1243 /* PregenLearnEnai.swift in Sources */,
 				CD7578462BC000F200293930 /* ContentFrameTabHead.swift in Sources */,
 				CD6317E32BC3F18300434D56 /* NiBadTypeError.swift in Sources */,
 				CD5A04D12BEA78E4004CC3AA /* CFBaseView.swift in Sources */,
