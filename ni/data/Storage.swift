@@ -162,6 +162,7 @@ class Storage{
 		let cooking = PregenCookingSpace()
 		let plants = PregenPlantsBorneo()
 		let ideas = PregenIdeas()
+		let welcome = PregenLearnEnai()
 		
 		do{
 			try db.execute(skiing.skiing_doc_tabe)
@@ -192,6 +193,12 @@ class Storage{
 			try db.execute(ideas.doc_content_sql)
 			try db.execute(ideas.cached_web_sql)
 			try db.execute(ideas.notes_sql)
+			
+			try db.execute(welcome.doc_table)
+			try db.execute(welcome.contentTable_sql)
+			try db.execute(welcome.doc_content_sql)
+			try db.execute(welcome.cached_web_sql)
+			try db.execute(welcome.user_notes)
 		}catch{
 			print("Failed to create demo space with: \(error)")
 			return
@@ -238,6 +245,8 @@ class Storage{
 		let ideas1 = UUID(uuidString: "736E9972-42A7-49F8-9141-BE7CA4CA9407")!
 		let ideas2 = UUID(uuidString: "019A6F08-E125-4268-A23E-06E6274DF4FB")!
 		
+		let welcome1 = UUID(uuidString: "8FB53F87-D45C-431B-94D0-E89AF42694D7")!
+		
 		let imgIDs: [UUID]
 		let data: [UUID: ImgMeta]
 		
@@ -246,8 +255,9 @@ class Storage{
 			let docIdCooking = UUID(uuidString: "4D90F0F2-064D-42B8-9A16-B9A613A2A162")!
 			let docIdplants = UUID(uuidString: "4D0CEF6E-9ECC-4B83-9A9B-F1CC249CAF92")!
 			let docIdIdeas = UUID(uuidString: "8B80A304-9ECB-40EB-934E-DABB8D3E82A4")!
+			let docIdWelcome = UUID(uuidString: "00000000-0000-0000-0000-000000000001")!
 			
-			self.imgIDs = [skiImg1, skiImg2 , skiImg3, cooking1, cooking2, cooking3, plants1, plants2, plants3, plants4, plants5, plants6, ideas1, ideas2]
+			self.imgIDs = [skiImg1, skiImg2 , skiImg3, cooking1, cooking2, cooking3, plants1, plants2, plants3, plants4, plants5, plants6, ideas1, ideas2, welcome1]
 			self.data = [
 				skiImg1: ImgMeta(docID: docIdSkiing, title: "ryder_alps_1", source: "https://www.fieldmag.com/articles/david-ryder-swiss-alps-ski-photography"),
 				skiImg2: ImgMeta(docID: docIdSkiing, title: "Bildschirmfoto-2024-01-08-um-10.20.37", source: "https://www.zai.ch/stories/zai-developments-2024-about-performance-and-forms"),
@@ -262,7 +272,8 @@ class Storage{
 				plants5: ImgMeta(docID: docIdplants, title: "", source: "https://en.wikipedia.org/wiki/Dipterocarpaceae"),
 				plants6: ImgMeta(docID: docIdplants, title: "", source: "https://en.wikipedia.org/wiki/Teak#/media/File:Nilambur_Teak_Plantation_0666.jpg"),
 				ideas1: ImgMeta(docID: docIdIdeas, title: "", source: "https://enai.io/"),
-				ideas2: ImgMeta(docID: docIdIdeas, title: "", source: "https://www.dubberly.com/articles/design-in-the-age-of-biology.html")
+				ideas2: ImgMeta(docID: docIdIdeas, title: "", source: "https://www.dubberly.com/articles/design-in-the-age-of-biology.html"),
+				welcome1: ImgMeta(docID: docIdWelcome, title: "", source: "https://www.are.na/block/23834922")
 			]
 		}
 	}
