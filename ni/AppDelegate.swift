@@ -153,38 +153,65 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		return !dontStoreSpace.contains(spaceID)
 	}
 	
+	/**
+		cmd + shift + tab
+	 */
 	@IBAction func switchToNextTab(_ sender: NSMenuItem) {
 		getNiSpaceViewController()?.switchToNextTab()
 	}
 	
+	/**
+		cmd + tab
+	 */
 	@IBAction func switchToPrevTab(_ sender: NSMenuItem) {
 		getNiSpaceViewController()?.switchToPrevTab()
 	}
 	
+	/**
+		cmd + kVK_ANSI_N
+	 */
 	@IBAction func createNewTab(_ sender: NSMenuItem) {
 		getNiSpaceViewController()?.createNewTab()
 	}
 	
+	/**
+		cmd + kVK_ANSI_M
+	 */
 	@IBAction func toggleEditMode(_ sender: NSMenuItem){
 		getNiSpaceViewController()?.toggleEditMode()
 	}
 	
+	/**
+		cmd + ->
+	 */
 	@IBAction func switchToNextWindow(_ sender: NSMenuItem) {
 		getNiSpaceViewController()?.switchToNextWindow()
 	}
 	
+	/**
+		cmd + <-
+	 */
 	@IBAction func switchToPrevWindow(_ sender: NSMenuItem) {
 		getNiSpaceViewController()?.switchToPrevWindow()
 	}
 	
+	/**
+		cmd + kVK_ANSI_M
+	 */
 	@IBAction func minimizeCF(_ sender: NSMenuItem) {
 		getNiSpaceViewController()?.toggleMinimizeOnTopCF(sender)
 	}
 	
+	/**
+		cmd + kVK_ANSI_Period or cmd + /
+	 */
 	@IBAction func showPalette(_ sender: NSMenuItem) {
 		showPalette()
 	}
 	
+	/**
+		cmd + kVK_ANSI_P
+	 */
 	@IBAction func printDocument(_ sender: NSMenuItem){
 		getNiSpaceViewController()?.printDocument()
 	}
@@ -245,6 +272,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 			}
 			if(event.modifierFlags.contains(.control) && event.keyCode == kVK_Tab){
 				self.getNiSpaceViewController()?.switchToNextTab()
+				return nil
+			}
+			if(event.modifierFlags.contains(.control) && event.modifierFlags.contains(.control) && event.keyCode == kVK_ANSI_F){
+				self.getNiSpaceViewController()?.toggleFullscreen()
 				return nil
 			}
 			if(event.keyCode == kVK_F8){

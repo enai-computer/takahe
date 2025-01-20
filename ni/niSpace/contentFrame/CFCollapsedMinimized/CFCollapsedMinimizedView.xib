@@ -22,7 +22,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <subviews>
                             <customView ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bof-dU-bDQ" customClass="CFGroupButton" customModule="Enai" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="7" width="24" height="24"/>
+                                <rect key="frame" x="5" y="7" width="24" height="24"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="155" id="YjH-sc-EmQ"/>
                                 </constraints>
@@ -67,9 +67,6 @@
                                 </connections>
                             </imageView>
                         </subviews>
-                        <constraints>
-                            <constraint firstItem="bof-dU-bDQ" firstAttribute="left" secondItem="zQy-mV-OR3" secondAttribute="left" id="EMa-tr-Vn0"/>
-                        </constraints>
                     </customView>
                     <stackView autoresizesSubviews="NO" distribution="equalSpacing" orientation="horizontal" alignment="centerY" spacing="14" horizontalStackHuggingPriority="1000" verticalStackHuggingPriority="1000" fixedFrame="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rv1-r9-Wls">
                         <rect key="frame" x="0.0" y="6" width="271" height="24"/>

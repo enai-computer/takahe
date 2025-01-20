@@ -272,6 +272,11 @@ class NiSpaceViewController: NSViewController, NSTextFieldDelegate{
 		return niDocument.openEmptyCF()
 	}
 	
+	func createSectionTitle(){
+		guard !header.isHidden else {return}
+		niDocument.createEmptySectionTitle()
+	}
+	
 	func pastePdf(pdf: PDFDocument, title: String?, source: String?){
 		let docSize = getIntrinsicDocSize(for: pdf)
 		let origin = niDocument.calculateContentFrameOrigin(for: NSRect(origin: CGPoint(x: 0.0, y: 0.0), size: docSize))
@@ -706,11 +711,8 @@ class NiSpaceViewController: NSViewController, NSTextFieldDelegate{
 		
 		let spaceDoc: NiSpaceDocumentController
 		
-		if(spaceModel == nil && id != WelcomeSpaceGenerator.WELCOME_SPACE_ID){
+		if(spaceModel == nil){
 			spaceDoc = getEmptySpaceDocument(id: id, name: name)
-		}else if(spaceModel == nil && id == WelcomeSpaceGenerator.WELCOME_SPACE_ID){
-			spaceDoc = WelcomeSpaceGenerator.generateSpace(self.view.frame.size)
-			niDocument.view.frame = spaceDoc.view.frame
 		}else{
 			let docHeightPx = (spaceModel?.data as? NiDocumentModel)?.height.px
 			
@@ -768,6 +770,10 @@ class NiSpaceViewController: NSViewController, NSTextFieldDelegate{
 	
 	func getCurrentSpaceName() -> String{
 		return niSpaceName
+	}
+	
+	func toggleFullscreen(){
+		niDocument.myView.toggleFullscreen()
 	}
 	
 	func switchToNextTab() {

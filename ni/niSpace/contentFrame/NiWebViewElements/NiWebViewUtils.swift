@@ -9,7 +9,7 @@ import Foundation
 import WebKit
 
 
-func getNewWebView(owner: ContentFrameController, contentId: UUID, urlReq: URLRequest, frame: NSRect) -> NiWebView {
+func getNewWebView(owner: ContentFrameController, urlReq: URLRequest, frame: NSRect) -> NiWebView {
 	let wkView = NiWebView(owner: owner, frame: frame)
 	wkView.load(urlReq)
 	wkView.navigationDelegate = owner
@@ -57,7 +57,7 @@ func getNewWebView(owner: ContentFrameController, frame: NSRect, dirtyUrl: Strin
 
 	let urlReq = URLRequest(url: url)
 	
-	return getNewWebView(owner: owner, contentId: contentId, urlReq: urlReq, frame: frame)
+	return getNewWebView(owner: owner, urlReq: urlReq, frame: frame)
 }
 
 func getNewWebView(owner: ContentFrameController, frame: NSRect, cleanUrl: String, contentId: UUID) -> NiWebView{
@@ -69,7 +69,7 @@ func getNewWebView(owner: ContentFrameController, frame: NSRect, cleanUrl: Strin
 		return getNewWebView(owner: owner, contentId: contentId, frame: frame, fileUrl: url)
 	}
 	let urlReq = URLRequest(url: url!)
-	return Enai.getNewWebView(owner: owner, contentId: contentId, urlReq: urlReq, frame: frame)
+	return Enai.getNewWebView(owner: owner, urlReq: urlReq, frame: frame)
 }
 
 func getEmtpyWebViewURL() -> URL{

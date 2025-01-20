@@ -73,4 +73,8 @@ struct TabViewModel{
 			scrollPosition: scrollPos
 		)
 	}
+	
+	mutating func repalaceViewItem(with: CFContentItem){
+		self.viewItem = with
+	}
 }

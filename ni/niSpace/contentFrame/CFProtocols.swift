@@ -11,6 +11,8 @@ protocol CFTabHeadProtocol{
 	var cfTabHeadCollection: NSCollectionView? {get set}
 	var niContentTabView: NSTabView! {get set}
 	func updateFwdBackTint() -> Void
+	/**returns true in case of success*/
+	func swapView(newView: NSView, at position: Int) -> Bool
 	func deleteSelectedTab(at position: Int) -> Void
 }
 
@@ -21,4 +23,6 @@ protocol CFFwdBackButtonProtocol{
 
 protocol CFHasGroupButtonProtocol{
 	var cfGroupButton: CFGroupButton! {get set}
+	func updateGroupButtonLeftConstraint() -> Void
+	func layoutHeadView() -> Void
 }

@@ -151,7 +151,7 @@ class Cook{
 							  insertWelcomeSpaceGenFirst: Bool
 	) -> [NiSearchResultItem]{
 		var res: [NiSearchResultItem] = []
-		var containsWelcomeSpace: Bool = excludeWelcomeSpaceGeneration
+//		var containsWelcomeSpace: Bool = excludeWelcomeSpaceGeneration
 
 		do{
 			for record in try Storage.instance.spacesDB.prepare(
@@ -165,23 +165,23 @@ class Cook{
 						data: nil
 					)
 				)
-				if(!excludeWelcomeSpaceGeneration){
-					if(try record.get(DocumentTable.id) == WelcomeSpaceGenerator.WELCOME_SPACE_ID){
-						containsWelcomeSpace = true
-					}
-				}
+//				if(!excludeWelcomeSpaceGeneration){
+//					if(try record.get(DocumentTable.id) == WelcomeSpaceGenerator.WELCOME_SPACE_ID){
+//						containsWelcomeSpace = true
+//					}
+//				}
 			}
 		}catch{
 			print("Failed to fetch List of last used Docs or a column: \(error)")
 		}
 
-		if(!containsWelcomeSpace){
-			if(insertWelcomeSpaceGenFirst){
-				res.insert(NiSearchResultItem(type: .niSpace, id: WelcomeSpaceGenerator.WELCOME_SPACE_ID, name: WelcomeSpaceGenerator.WELCOME_SPACE_NAME, data: nil), at: 0)
-			}else{
-				res.append(NiSearchResultItem(type: .niSpace, id: WelcomeSpaceGenerator.WELCOME_SPACE_ID, name: WelcomeSpaceGenerator.WELCOME_SPACE_NAME, data: nil))
-			}
-		}
+//		if(!containsWelcomeSpace){
+//			if(insertWelcomeSpaceGenFirst){
+//				res.insert(NiSearchResultItem(type: .niSpace, id: WelcomeSpaceGenerator.WELCOME_SPACE_ID, name: WelcomeSpaceGenerator.WELCOME_SPACE_NAME, data: nil), at: 0)
+//			}else{
+//				res.append(NiSearchResultItem(type: .niSpace, id: WelcomeSpaceGenerator.WELCOME_SPACE_ID, name: WelcomeSpaceGenerator.WELCOME_SPACE_NAME, data: nil))
+//			}
+//		}
 		return res
 	}
 	

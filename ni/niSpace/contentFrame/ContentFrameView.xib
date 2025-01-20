@@ -22,7 +22,7 @@
                         <rect key="frame" x="0.0" y="595" width="1058" height="32"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <subviews>
-                            <customView horizontalHuggingPriority="1000" horizontalCompressionResistancePriority="250" ambiguous="YES" placeholderIntrinsicWidth="24" placeholderIntrinsicHeight="24" translatesAutoresizingMaskIntoConstraints="NO" id="v2T-OE-fnp" customClass="CFGroupButton" customModule="Enai" customModuleProvider="target">
+                            <customView horizontalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" ambiguous="YES" placeholderIntrinsicWidth="24" placeholderIntrinsicHeight="24" translatesAutoresizingMaskIntoConstraints="NO" id="v2T-OE-fnp" customClass="CFGroupButton" customModule="Enai" customModuleProvider="target">
                                 <rect key="frame" x="7" y="6" width="24" height="24"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="24" id="Aiv-VW-yvz"/>

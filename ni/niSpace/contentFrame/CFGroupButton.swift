@@ -15,7 +15,7 @@ class CFGroupButton: NSView, NSTextFieldDelegate{
 	var titleChangedCallback: ((String?) -> Void)?
 	
 	private var groupIcon: NiActionImage?
-	private var groupTitle: NSTextField?
+	private(set) var groupTitle: NSTextField?
 	private var preEditString: String?
 	
 	private var iconWidthConstraint: NSLayoutConstraint?
@@ -23,7 +23,8 @@ class CFGroupButton: NSView, NSTextFieldDelegate{
 	
 	private var hoverEffect: NSTrackingArea?
 	
-	private let groupTitleMargin = 7.0
+	private let groupTitleMarginEditing = 3.0
+	private let groupTitleMarginDefault = 0.0
 	private let groupTitleOriginY = 2.0
 	private var displayType: NiContentFrameState?
 	var contentType: TabContentType?
@@ -101,10 +102,11 @@ class CFGroupButton: NSView, NSTextFieldDelegate{
 		groupTitle!.isEditable = true
 		groupTitle?.isSelectable = true
 		groupTitle?.refusesFirstResponder = false
-		groupTitle!.frame.origin = NSPoint(x: groupTitleMargin, y: groupTitleOriginY)
+		groupTitle!.frame.origin = NSPoint(x: groupTitleMarginEditing, y: groupTitleOriginY)
 		styleEditing()
 		
 		preEditString = groupTitle?.stringValue ?? ""
+		triggerLayoutConstraintUpdate()
 		window?.makeFirstResponder(groupTitle)
 	}
 	
@@ -113,7 +115,11 @@ class CFGroupButton: NSView, NSTextFieldDelegate{
 		groupTitle?.isEditable = false
 		groupTitle?.isSelectable = false
 		groupTitle?.refusesFirstResponder = true
+		if groupTitle != nil{
+			groupTitle!.frame.origin = NSPoint(x: groupTitleMarginDefault, y: groupTitleOriginY)
+		}
 		styleEndEditing()
+		triggerLayoutConstraintUpdate()
 		updateTrackingAreas()
 		
 		if(obj.userInfo?["NSTextMovement"] as? NSTextMovement == NSTextMovement.cancel){
@@ -123,12 +129,14 @@ class CFGroupButton: NSView, NSTextFieldDelegate{
 			window?.makeFirstResponder(self)
 			return
 		}
-		if(groupTitle!.stringValue.isEmpty){
+		if(groupTitle == nil || groupTitle!.stringValue.isEmpty){
 			dropTitle()
 			updateTrackingAreas()
 			return
 		}
-		titleChangedCallback?(groupTitle!.stringValue)
+		if let newTitle: String = groupTitle?.stringValue{
+			titleChangedCallback?(newTitle)
+		}
 		setWidthConstraintToTitle()
 	}
 	
@@ -221,14 +229,15 @@ class CFGroupButton: NSView, NSTextFieldDelegate{
 	}
 	
 	private func triggerLayoutConstraintUpdate(){
-		if let cfView = superview?.superview?.superview as? ContentFrameView{
+		if let cfView = superview?.superview?.superview as? CFHasGroupButtonProtocol{
 			cfView.updateGroupButtonLeftConstraint()
-			cfView.cfHeadView.layout()
+			cfView.layoutHeadView()
+			return
 		}
 	}
 	
 	private func genTextField() -> NiTextField{
-		let field = NiTextField(frame: NSRect(x: groupTitleMargin, y: groupTitleOriginY, width: 150.0, height: 20.0))
+		let field = NiTextField(frame: NSRect(x: groupTitleMarginDefault, y: groupTitleOriginY, width: 150.0, height: 20.0))
 		field.font = NSFont(name: "Sohne-Kraftig", size: 14.0)
 		field.textColor = NSColor.sand12
 		field.refusesFirstResponder = true
@@ -316,7 +325,12 @@ class CFGroupButton: NSView, NSTextFieldDelegate{
 		if (groupTitle != nil){
 			groupTitle!.frame.size.width = width
 		}
-		width += groupTitleMargin
+		if(groupTitle?.isEditable == true){
+			width += groupTitleMarginEditing
+		}else{
+			width += groupTitleMarginDefault
+		}
+		
 		return NSLayoutConstraint(
 			item: self,
 			attribute: .width, relatedBy: .equal,

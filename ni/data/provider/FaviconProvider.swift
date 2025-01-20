@@ -18,6 +18,9 @@ class FaviconProvider{
 		return await fetchIcon(url)
 	}
 
+	//use sending when switching to swift 6
+	//https://forums.swift.org/t/why-cant-i-send-an-nsimage-across-actor-boundaries/76199/5
+	//func fetchIcon(_ url: URL) async -> sending NSImage? {
 	func fetchIcon(_ url: URL) async -> NSImage? {
 		do{
 			guard let host = url.host() else { return nil}

@@ -15,7 +15,8 @@ import Cocoa
 class CFBaseView: NSBox{
 	
 	weak var niParentDoc: NiSpaceDocumentView? = nil
-	weak var myController: ContentFrameController? = nil
+	weak var myController: CFProtocol? = nil
+	var blanketCFC: ContentFrameController? {return myController as? ContentFrameController}
 	
 	var fixedFrameRatio: CGFloat? = nil
 	var frameIsActive: Bool = false
@@ -68,7 +69,7 @@ class CFBaseView: NSBox{
 		if(!(myController?.tabs.isEmpty ?? true) && (myController?.tabs[0].type == .web && myController?.viewState == .simpleFrame)){
 			return
 		}
-		myController?.showDropdown(with: event)
+		blanketCFC?.showDropdown(with: event)
 	}
 	
 	/**
@@ -174,7 +175,7 @@ class CFBaseView: NSBox{
 		return v
 	}
 	
-	func resizeOwnFrame(_ xDiff: Double, _ yDiff: Double, cursorLeftSide invertX: Bool = false, cursorTop invertY: Bool = false){
+	func resizeOwnFrame(_ xDiff: Double, _ yDiff: Double, cursorLeftSide invertX: Bool = false, cursorTop invertY: Bool = false, enforceMinHeight: Bool = true){
 		let frameSize = frame.size
 		var nsize = frameSize
 		
@@ -190,7 +191,7 @@ class CFBaseView: NSBox{
 		}
 		
 		//enforcing min CF size
-		if(nsize.height < minFrameHeight){
+		if(enforceMinHeight && nsize.height < minFrameHeight){
 			nsize.height = minFrameHeight
 		}
 		if(nsize.width < minFrameWidth){

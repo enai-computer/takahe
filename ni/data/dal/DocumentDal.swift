@@ -114,7 +114,7 @@ class DocumentDal{
 		}
 	}
 
-	private static func persistEveChat(
+	static func persistEveChat(
 		spaceId: UUID,
 		id: UUID,
 		title: String,

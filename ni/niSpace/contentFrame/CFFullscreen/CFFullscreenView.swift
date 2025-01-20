@@ -72,7 +72,7 @@ class CFFullscreenView: CFBaseView, CFTabHeadProtocol, CFFwdBackButtonProtocol{
 		return .no
 	}
 	
-	override func resizeOwnFrame(_ xDiff: Double, _ yDiff: Double, cursorLeftSide invertX: Bool = false, cursorTop invertY: Bool = false) {
+	override func resizeOwnFrame(_ xDiff: Double, _ yDiff: Double, cursorLeftSide invertX: Bool = false, cursorTop invertY: Bool = false, enforceMinHeight: Bool = true){
 		return
 	}
 	
@@ -111,6 +111,13 @@ class CFFullscreenView: CFBaseView, CFTabHeadProtocol, CFFwdBackButtonProtocol{
 		return tabViewPos
 	}
 	
+	func swapView(newView: NSView, at position: Int) -> Bool{
+		guard 0 <= position && position < niContentTabView.numberOfTabViewItems else {return false}
+		let tabViewItem = niContentTabView.tabViewItem(at: position)
+		tabViewItem.view = newView
+		return true
+	}
+	
 	func updateSpaceName(_ newVal: String){
 		if(!groupName.stringValue.isEmpty){
 			self.spaceName.stringValue = newVal + ":"
@@ -140,17 +147,17 @@ class CFFullscreenView: CFBaseView, CFTabHeadProtocol, CFFwdBackButtonProtocol{
 				NiMenuItemViewModel(
 					label: .init(fromContentFrameController: groupController),
 					isEnabled: true,
-					mouseDownFunction: { [myController] _ in
+					mouseDownFunction: { [blanketCFC] _ in
 						// Exit fullscreen first, otherwise the space's header will not be hidden correctly as shrinking to expanded would re-display it.
-						myController?.fullscreenToPreviousState()
+						blanketCFC?.fullscreenToPreviousState()
 						switch groupController.viewState {
 							case .collapsedMinimised, .minimised:
 								groupController.minimizedToFullscreen()
 							case .expanded:
 								groupController.expandedToFullscreen()
 							case .fullscreen:
-								assert(groupController === myController, "No other group should have been in fullscreen mode")
-							case .frameless, .simpleFrame, .simpleMinimised:
+								assert(groupController === blanketCFC, "No other group should have been in fullscreen mode")
+							case .frameless, .simpleFrame, .simpleMinimised, .sectionTitle:
 								assertionFailure("Unexpected state change from \(groupController.viewState) to full screen")
 						}
 					}
@@ -160,8 +167,8 @@ class CFFullscreenView: CFBaseView, CFTabHeadProtocol, CFFwdBackButtonProtocol{
 		items.append(NiMenuItemViewModel(
 			title: "Open a new group",
 			isEnabled: true,
-			mouseDownFunction: { [myController] _ in
-				myController?.fullscreenToPreviousState()
+			mouseDownFunction: { [blanketCFC] _ in
+				blanketCFC?.fullscreenToPreviousState()
 				guard let appDel = NSApplication.shared.delegate as? AppDelegate else{return}
 				
 				let newGroup = appDel.getNiSpaceViewController()?.openEmptyCF()
@@ -205,7 +212,7 @@ class CFFullscreenView: CFBaseView, CFTabHeadProtocol, CFFwdBackButtonProtocol{
 	
 	// MARK: - fwd/back button
 	func minimizedButtonClicked(with event: NSEvent){
-		myController?.fullscreenToExpanded()
+		blanketCFC?.fullscreenToExpanded()
 	}
 	
 	func forwardButtonClicked(with event: NSEvent){

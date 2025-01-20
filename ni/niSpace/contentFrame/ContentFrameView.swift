@@ -94,6 +94,13 @@ class ContentFrameView: CFBaseView, CFTabHeadProtocol, CFFwdBackButtonProtocol, 
 	    return tabViewPos
     }
     
+	func swapView(newView: NSView, at position: Int) -> Bool{
+		guard 0 <= position && position < niContentTabView.numberOfTabViewItems else {return false}
+		let tabViewItem = niContentTabView.tabViewItem(at: position)
+		tabViewItem.view = newView
+		return true
+	}
+	
 	func deleteSelectedTab(at position: Int){
 		guard 0 <= position && position < niContentTabView.tabViewItems.count else {return}
 		niContentTabView.removeTabViewItem(niContentTabView.tabViewItem(at: position))
@@ -192,8 +199,8 @@ class ContentFrameView: CFBaseView, CFTabHeadProtocol, CFFwdBackButtonProtocol, 
         if cursorOnBorder != .no{
             cursorDownPoint = event.locationInWindow
 			
-			if(myController!.aTabIsInEditingMode){
-				myController?.endEditingTabUrl()
+			if(blanketCFC!.aTabIsInEditingMode){
+				blanketCFC?.endEditingTabUrl()
 			}
         }
         
@@ -387,6 +394,9 @@ class ContentFrameView: CFBaseView, CFTabHeadProtocol, CFFwdBackButtonProtocol, 
 		)
 	}
 	
+	func layoutHeadView(){
+		self.cfHeadView.layout()
+	}
 	/** .
 	 
 	 layout() has to be called on cfHeadView after calling this function
@@ -400,10 +410,10 @@ class ContentFrameView: CFBaseView, CFTabHeadProtocol, CFFwdBackButtonProtocol, 
 	}
 	
 	private func getLeftCfGroupButtonConstraint(showsTitle: Bool = false) -> NSLayoutConstraint{
-		let constant: CGFloat = if(showsTitle){
-			0.0
-		}else{
+		let constant: CGFloat = if(showsTitle && cfGroupButton.groupTitle?.isEditable == false){
 			7.0
+		}else{
+			4.0
 		}
 		return NSLayoutConstraint(
 			item: self.cfGroupButton!,
@@ -434,7 +444,7 @@ class ContentFrameView: CFBaseView, CFTabHeadProtocol, CFFwdBackButtonProtocol, 
 	/*
 	 * MARK: resize here
 	 */
-	override func resizeOwnFrame(_ xDiff: Double, _ yDiff: Double, cursorLeftSide invertX: Bool = false, cursorTop invertY: Bool = false){
+	override func resizeOwnFrame(_ xDiff: Double, _ yDiff: Double, cursorLeftSide invertX: Bool = false, cursorTop invertY: Bool = false, enforceMinHeight: Bool = true){
 		super.resizeOwnFrame(xDiff, yDiff, cursorLeftSide: invertX, cursorTop: invertY)
 		recalcDragArea()
     }
@@ -445,7 +455,7 @@ class ContentFrameView: CFBaseView, CFTabHeadProtocol, CFFwdBackButtonProtocol, 
 	}
     
 	func clickedMakeFullscreen(with event: NSEvent){
-		myController?.makeFullscreenClicked(event)
+		blanketCFC?.makeFullscreenClicked(event)
 	}
 	
 	/*

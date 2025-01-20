@@ -48,8 +48,8 @@ class StickyColorPickerWindow: NSPanel {
 		var frameRect = NSPanel.rectForScreen(NSRect(origin: adjustedOrigin, size: size), screen: currentScreen)
 		
 		frameRect.origin.x = (currentScreen.frame.maxX - (size.width + 18.0))
-		
-		super.init(
+
+    super.init(
 			contentRect: frameRect,
 			styleMask: NSWindow.StyleMask.borderless,
 			backing: .buffered,

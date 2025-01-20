@@ -6,6 +6,9 @@ import PDFKit
 
 let maxWidthMargin: CGFloat = 30.0
 
+/**
+	do NOT use this if viewState is `.sectionTitle` - Do not use this for SectionTitleViewController!
+ */
 func openEmptyContentFrame(viewState: NiContentFrameState = .expanded, groupName: String? = nil, groupId: UUID?) -> ContentFrameController{
 	let frameController = ContentFrameController(
 		viewState: viewState,
@@ -16,7 +19,21 @@ func openEmptyContentFrame(viewState: NiContentFrameState = .expanded, groupName
 	return frameController
 }
 
-func reopenContentFrame(screenSize: CGSize, contentFrame: NiContentFrameModel, tabDataModel: [NiCFTabModel]) -> ContentFrameController{
+func reopenContentFrame(screenSize: CGSize, contentFrame: NiContentFrameModel, tabDataModel: [NiCFTabModel]) -> CFProtocol{
+	
+	//special case handling
+	guard contentFrame.state != .sectionTitle else {
+		let sectionController = CFSectionTitleViewController(
+			sectionId: contentFrame.id ?? UUID(), sectionName: contentFrame.name
+		)
+		sectionController.view.frame = initPositionAndSize(
+			for: sectionController.myView,
+			maxWidth: (screenSize.width - maxWidthMargin),
+			contentFrame: contentFrame
+		)
+		return sectionController
+	}
+	
 	let tabViewModels = niCFTabModelToTabViewModel(tabs: tabDataModel)
 	let controller = reopenContentFrameWithOutPositioning(
 		screenWidth: screenSize.width,
@@ -32,7 +49,7 @@ func reopenContentFrame(screenSize: CGSize, contentFrame: NiContentFrameModel, t
 		controller.view.frame.origin.y = contentFrame.position.y.px
 	}else{
 		controller.view.frame = initPositionAndSize(
-			for: controller.view as! CFBaseView,
+			for: controller.myView,
 			maxWidth: (screenSize.width - maxWidthMargin),
 			contentFrame: contentFrame
 		)
@@ -52,7 +69,7 @@ func reopenContentFrameWithOutPositioning(
 	tabViewModels: [TabViewModel],
 	groupName: String?,
 	groupId: UUID?
-) -> ContentFrameController {
+) -> CFProtocol {
     
 	let frameController = if(contentFrameState.isMinimized()){
 		ContentFrameController(viewState: contentFrameState,
