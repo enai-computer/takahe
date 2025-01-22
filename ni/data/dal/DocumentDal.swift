@@ -88,6 +88,7 @@ class DocumentDal{
 			ContentTable.upsert(id: id, type: ContentTableRecordType.web, title: title)
 			updatedRecord = true
 		}
+		
 		if(storedRec?.url != url){
 			CachedWebTable.upsert(documentId: spaceId, id: id, title: title, url: url)
 			updatedRecord = true
@@ -112,6 +113,15 @@ class DocumentDal{
 		if let gId = groupId{
 			GroupIdContentIdTable.insert(groupId: gId, contentId: id)
 		}
+	}
+	
+	static func upsertExtractedContent(
+		conentId: UUID,
+		type: ContentTableRecordType,
+		title: String,
+		content: String
+	){
+		ContentTable.upsert(id: conentId, type: ContentTableRecordType.web, title: title, extractedContent: content)
 	}
 
 	static func persistEveChat(

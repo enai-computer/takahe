@@ -1458,6 +1458,51 @@ class ContentFrameController: CFProtocol, NSCollectionViewDataSource, NSCollecti
 		}
 	}
 	
+	func provideContext(maxContextSize: Int, startingPos: Int? = nil) -> [String]{
+		var remainingContextSize: Int = maxContextSize
+		var groupContext: [String] = []
+
+		
+		let (remContext, gRes) = provideContext(remainingTokens: remainingContextSize, startingPos: startingPos)
+		remainingContextSize = remContext
+		groupContext.append(contentsOf: gRes)
+		
+		guard let allGroupsInSpace = myView.niParentDoc?.orderedContentFrames(closestTo: self) else{
+			return groupContext
+		}
+		
+		for group in allGroupsInSpace{
+			if(group != self && group.tabs.first?.type == .web){
+				if let cfcGroup = group as? ContentFrameController{
+					let (rContext, groupRes) = cfcGroup.provideContext(remainingTokens: remainingContextSize)
+					remainingContextSize = rContext
+					groupContext.append(contentsOf: groupRes)
+				}
+			}
+		}
+		return groupContext
+	}
+	
+	private func provideContext(remainingTokens: Int, startingPos: Int? = nil) -> (Int, [String]){
+		var remainingContextSize = remainingTokens
+		var groupContext: [String] = []
+		
+
+		for t in tabs{
+			if let extractedContent = ContentTable.fetchExtractedContent(for: t.contentId){
+				let nrOfTokens = extractedContent.count / 4
+				if(0 < (remainingContextSize - nrOfTokens)){
+					groupContext.append(extractedContent)
+					remainingContextSize = remainingContextSize - nrOfTokens
+				}else{
+					return (remainingContextSize, groupContext)
+				}
+			}
+		}
+		
+		return (remainingContextSize, groupContext)
+	}
+	
 	override func deinitSelf(){
 		myView.removeFromSuperviewWithoutNeedingDisplay()
 		for t in tabs{

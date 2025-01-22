@@ -291,6 +291,17 @@ class NiSpaceDocumentView: NSView{
 		return contentFrameControllers
 			.sorted { $0.view.frame.origin.y <= $1.view.frame.origin.y }
 	}
+	
+	func orderedContentFrames(closestTo: CFProtocol) -> [CFProtocol]{
+		let center = CGPoint(x: closestTo.view.frame.midX, y: closestTo.view.frame.midY)
+		return contentFrameControllers.sorted { a, b in
+			let aCenter = CGPoint(x: a.view.frame.midX, y: a.view.frame.midY)
+			let bCenter = CGPoint(x: b.view.frame.midX, y: b.view.frame.midY)
+			let aDistance = pow(aCenter.x - center.x, 2) + pow(aCenter.y - center.y, 2)
+			let bDistance = pow(bCenter.x - center.x, 2) + pow(bCenter.y - center.y, 2)
+			return aDistance < bDistance
+		}
+	}
 
 	func deinitSelf(){
 		for conFrame in contentFrameControllers{

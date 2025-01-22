@@ -54,6 +54,17 @@ extension ContentFrameController:  WKNavigationDelegate{
 				}
 			}
 		}
+		
+		if(self.tabs[wv.tabHeadPosition].state == .loaded){
+			let webTab: TabViewModel = self.tabs[wv.tabHeadPosition]
+			
+			Task{
+				try await Task.sleep(for: .seconds(5))
+				if let content: String = await wv.fetchWebcontent(){
+					DocumentDal.upsertExtractedContent(conentId: webTab.contentId, type: .web, title: webTab.title, content: content)
+				}
+			}
+		}
 	}
 
 	func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: any Error){

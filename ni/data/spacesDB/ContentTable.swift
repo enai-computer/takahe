@@ -22,6 +22,7 @@ class ContentTable{
 	static let localStorageLocation = SQLite.Expression<String?>("local_storage_location")
 	static let sourceUrl = SQLite.Expression<String?>("source_url")
 	static let refCounter = SQLite.Expression<Int>("ref_counter")
+	static let extractedContent = SQLite.Expression<String?>("extracted_content")
     
     static func create(db: Connection) throws {
         try db.run(table.create(ifNotExists: true){ t in
@@ -78,6 +79,18 @@ class ContentTable{
 		return nil
 	}
 	
+	static func fetchExtractedContent(for id: UUID) -> String?{
+		do{
+			let q = table.where(self.id == id)
+			for r in try Storage.instance.spacesDB.prepare(q){
+				return try r.get(self.extractedContent)
+			}
+		}catch{
+			print("Failed to run select on ContentTable")
+		}
+		return nil
+	}
+	
 	/** do not use this function for rows that require a local storage location as that will be overwrite them with null!!!
 	 
 	 */
@@ -96,6 +109,23 @@ class ContentTable{
             print("Failed to insert into ContentTable")
         }
     }
+	
+	static func upsert(id: UUID, type: ContentTableRecordType, title: String?, extractedContent: String){
+		do{
+			try Storage.instance.spacesDB.run(
+				table.upsert(
+					self.id <- id,
+					self.title <- title,
+					self.type <- type.rawValue,
+					self.updatedAt <- Date().timeIntervalSince1970,
+					self.extractedContent <- extractedContent,
+					onConflictOf: self.id
+				)
+			)
+		}catch{
+			print("Failed to insert into ContentTable")
+		}
+	}
 	
 	static func upsert(id: UUID, type: ContentTableRecordType, title: String?, fileUrl: String, source: String?){
 		do{
