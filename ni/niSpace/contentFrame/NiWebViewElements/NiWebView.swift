@@ -169,12 +169,6 @@ class NiWebView: WKWebView, CFContentItem, CFContentSearch{
 	/*
 	 returns false if str conversation to URLRequest failed
 	 */
-	func load(_ urlStr: String) -> Bool{
-		guard let url = URL(string: urlStr) else {return false}
-		super.load(URLRequest(url: url))
-		return true
-	}
-	
 	func load(dirtyStr: String) -> Bool{
 		let url = URL(string: dirtyStr)
 		if(url == nil){

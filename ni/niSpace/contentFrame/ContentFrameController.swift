@@ -778,8 +778,10 @@ class ContentFrameController: CFProtocol, NSCollectionViewDataSource, NSCollecti
 				//loads only the selected site for improved performance
 				if(tabs[i].isSelected){
 					wview = getNewWebView(owner: self, frame: expandedCFView!.frame, cleanUrl: tabs[i].content, contentId: tabs[i].contentId)
+					tabs[i].state = .loading
 				}else{
 					wview = getNewWebView(owner: self, frame: expandedCFView!.frame, cleanUrl: tabs[i].content, contentId: tabs[i].contentId, loadSite: false)
+					tabs[i].state = .notLoaded
 				}
 				tabs[i].viewItem = wview
 			}else{
@@ -822,6 +824,7 @@ class ContentFrameController: CFProtocol, NSCollectionViewDataSource, NSCollecti
 		var tabHeadModel = TabViewModel(contentId: contentId, type: .web)
 		tabHeadModel.position = myView.createNewTab(tabView: niWebView)
 		tabHeadModel.viewItem = niWebView
+		tabHeadModel.state = .loading
 		tabHeadModel.webView!.tabHeadPosition = tabHeadModel.position
 		self.tabs.append(tabHeadModel)
 		
@@ -935,7 +938,7 @@ class ContentFrameController: CFProtocol, NSCollectionViewDataSource, NSCollecti
 		urlStr: String,
 		contentId: UUID,
 		tabName: String,
-		webContentState: TabViewModelState = .notLoaded,
+		webContentState: TabViewModelState? = nil,
 		openNextTo: Int = -1,
 		as type: TabContentType = .web,
 		loadWebsite: Bool = true
@@ -956,7 +959,13 @@ class ContentFrameController: CFProtocol, NSCollectionViewDataSource, NSCollecti
 		tabHeadModel.viewItem = niWebView
 		tabHeadModel.webView!.tabHeadPosition = tabHeadModel.position
 		tabHeadModel.content = urlStr
-		tabHeadModel.state = webContentState
+		tabHeadModel.state = if(webContentState != nil){
+			webContentState!
+		}else if(loadWebsite || type == .eveChat){
+			.loading
+		}else{
+			.notLoaded
+		}
 		
 		if(0 <= openNextTo){
 			self.tabs.insert(tabHeadModel, at: viewPosition)

@@ -243,7 +243,7 @@ extension ContentFrameController:  WKNavigationDelegate{
 			return
 		}
 		if let retryUrl = error._userInfo?["NSErrorFailingURLStringKey"] as? String{
-			if (wv.retries < 2 && wv.load(retryUrl)){
+			if (wv.retries < 2 && wv.load(dirtyStr: retryUrl)){
 				wv.retries += 1
 				return
 			}
@@ -276,7 +276,8 @@ extension ContentFrameController:  WKNavigationDelegate{
 	 */
 	func loadSiteIfNotLoadedYet(at: Int){
 		guard let tab = safeGetTab(at: at) else {return}
-		if(tab.state == .loaded || tab.state == .loading){return}
+		if(tab.state == .loaded || tab.state == .loading || tab.type == .eveChat){return}
+		tabs[at].state = .loading
 		_ = tab.webView?.load(dirtyStr: tab.content)
 	}
 }
