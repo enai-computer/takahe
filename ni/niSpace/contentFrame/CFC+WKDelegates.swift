@@ -270,6 +270,15 @@ extension ContentFrameController:  WKNavigationDelegate{
 		guard viewHasTabs() else {return}
 		self.tabs[wv.tabHeadPosition].state = .error
 	}
+	
+	/**
+	 use for loading after user switched into this space. As only visible pages get loaded on space switch
+	 */
+	func loadSiteIfNotLoadedYet(at: Int){
+		guard let tab = safeGetTab(at: at) else {return}
+		if(tab.state == .loaded || tab.state == .loading){return}
+		_ = tab.webView?.load(dirtyStr: tab.content)
+	}
 }
 
 /*

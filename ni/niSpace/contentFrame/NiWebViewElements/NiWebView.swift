@@ -50,12 +50,13 @@ class NiWebView: WKWebView, CFContentItem, CFContentSearch{
 		self.allowsBackForwardNavigationGestures = true
 		self.allowsLinkPreview = true
 		
-		titleChangeObserver = self.observe(
-			\.title,
-			 options: [.new]
-		){niWebView, val in
-			niWebView.titleChanged()
-		}
+		//TODO: set only once we loaded a website for the first time. Otherwise leave the default title here
+//		titleChangeObserver = self.observe(
+//			\.title,
+//			 options: [.new]
+//		){niWebView, val in
+//			niWebView.titleChanged()
+//		}
 		
 		canGobackObserver = self.observe(
 			\.canGoBack,
@@ -172,6 +173,35 @@ class NiWebView: WKWebView, CFContentItem, CFContentSearch{
 	func load(_ urlStr: String) -> Bool{
 		guard let url = URL(string: urlStr) else {return false}
 		super.load(URLRequest(url: url))
+		return true
+	}
+	
+	func load(dirtyStr: String) -> Bool{
+		let url = URL(string: dirtyStr)
+		if(url == nil){
+			let url2: URL
+			do{
+				url2 = try createWebUrl(from: dirtyStr)
+			}catch{
+				url2 = getCouldNotLoadWebViewURL()
+				return false
+			}
+			
+			let urlReq = URLRequest(url: url2)
+			load(urlReq)
+			return true
+		}
+		if(url!.scheme!.hasPrefix("file")){
+			let localHTMLurl = if(url == nil) {
+				getEmtpyWebViewURL()
+			}else{
+				url!
+			}
+			loadFileURL(localHTMLurl, allowingReadAccessTo: localHTMLurl)
+			return true
+		}
+		let urlReq = URLRequest(url: url!)
+		load(urlReq)
 		return true
 	}
 	

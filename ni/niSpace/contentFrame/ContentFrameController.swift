@@ -670,9 +670,12 @@ class ContentFrameController: CFProtocol, NSCollectionViewDataSource, NSCollecti
 		
 		if(0 <= shallSelectTabAt){
 			forceSelectTab(at: shallSelectTabAt)
+			loadSiteIfNotLoadedYet(at: shallSelectTabAt)
 		}else{
 			forceSelectTab(at: tabSelectedInModel)
+			loadSiteIfNotLoadedYet(at: tabSelectedInModel)
 		}
+		
 		
 		self.expandedCFView!.niParentDoc?.setTopNiFrame(self)
 		
@@ -772,7 +775,12 @@ class ContentFrameController: CFProtocol, NSCollectionViewDataSource, NSCollecti
 		for i in tabs.indices{
 			let wview: NiWebView
 			if tabs[i].webView == nil{
-				wview = getNewWebView(owner: self, frame: expandedCFView!.frame ,cleanUrl: tabs[i].content, contentId: tabs[i].contentId)
+				//loads only the selected site for improved performance
+				if(tabs[i].isSelected){
+					wview = getNewWebView(owner: self, frame: expandedCFView!.frame, cleanUrl: tabs[i].content, contentId: tabs[i].contentId)
+				}else{
+					wview = getNewWebView(owner: self, frame: expandedCFView!.frame, cleanUrl: tabs[i].content, contentId: tabs[i].contentId, loadSite: false)
+				}
 				tabs[i].viewItem = wview
 			}else{
 				wview = tabs[i].webView!
@@ -927,14 +935,15 @@ class ContentFrameController: CFProtocol, NSCollectionViewDataSource, NSCollecti
 		urlStr: String,
 		contentId: UUID,
 		tabName: String,
-		webContentState: TabViewModelState = .loading,
+		webContentState: TabViewModelState = .notLoaded,
 		openNextTo: Int = -1,
-		as type: TabContentType = .web
+		as type: TabContentType = .web,
+		loadWebsite: Bool = true
 	) -> Int{
 		let niWebView = if(type == .eveChat){
 			Enai.getNewWebView(owner: self, contentId: contentId, frame: view.frame, fileUrl: nil)
 		}else{
-			getNewWebView(owner: self, frame: view.frame, dirtyUrl: urlStr, contentId: contentId)
+			getNewWebView(owner: self, frame: view.frame, dirtyUrl: urlStr, contentId: contentId, loadSite: loadWebsite)
 		}
 		let viewPosition = myView.createNewTab(tabView: niWebView, openNextTo: openNextTo)
 		
@@ -1088,6 +1097,9 @@ class ContentFrameController: CFProtocol, NSCollectionViewDataSource, NSCollecti
 		}
 
 		deletedTabModel?.viewItem = nil
+		
+		//TODO: load website of selected website if not loaded
+		loadSiteIfNotLoadedYet(at: selectedTabModel)
 	}
 	
 	override func selectNextTab(goFwd: Bool = true){
@@ -1106,6 +1118,7 @@ class ContentFrameController: CFProtocol, NSCollectionViewDataSource, NSCollecti
 			nxtTab = 0
 		}
 		selectTab(at: nxtTab)
+		loadSiteIfNotLoadedYet(at: nxtTab)
 	}
 	
 	/**

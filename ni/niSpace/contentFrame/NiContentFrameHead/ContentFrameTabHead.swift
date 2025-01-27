@@ -218,6 +218,7 @@ class ContentFrameTabHead: NSCollectionViewItem, NSTextFieldDelegate {
 	
 	func selectSelf(mouseDownEvent: NSEvent? = nil){
 		parentController?.selectTab(at: tabPosition, mouseDownEvent: mouseDownEvent)
+		parentController?.loadSiteIfNotLoadedYet(at: tabPosition)
 	}
 	
 	func startEditMode(){

@@ -232,6 +232,7 @@ class NiSpaceDocumentView: NSView{
 					highlightContentFrame(cframe: cFrame)
 					DispatchQueue.main.async{
 						cFrame.selectTab(at: tab.position)
+						cFrame.loadSiteIfNotLoadedYet(at: tab.position)
 					}
 					
 					contentFrameToHighlight = cFrame

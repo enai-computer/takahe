@@ -116,7 +116,7 @@ func openCFTabs(for controller: ContentFrameController, with tabViewModels: [Tab
 			}else if(tab.type == .web){
 				_ = controller.openWebsiteInNewTab(urlStr: tab.content, contentId: tab.contentId, tabName: tab.title, webContentState: tab.state)
 			}else if(tab.type == .eveChat){
-				let eveChatController = controller.openWebsiteInNewTab(
+				_ = controller.openWebsiteInNewTab(
 					urlStr: tab.content,
 					contentId: tab.contentId,
 					tabName: tab.title,
@@ -136,7 +136,7 @@ func openCFTabs(for controller: ContentFrameController, with tabViewModels: [Tab
 			//if we reload tabheads here, they will not be loaded after all tab head were added --> not all tab heads would be shown
 			_ = controller.openEmptyWebTab(tab.contentId, reloadTabHeads: false)
 		}else if(tab.type == .web){
-			_ = controller.openWebsiteInNewTab(urlStr: tab.content, contentId: tab.contentId, tabName: tab.title, webContentState: tab.state)
+			_ = controller.openWebsiteInNewTab(urlStr: tab.content, contentId: tab.contentId, tabName: tab.title, webContentState: .notLoaded, loadWebsite: tab.isSelected)
 		}else if(tab.type == .eveChat){
 			_ = controller.openWebsiteInNewTab(
 				urlStr: tab.content,
@@ -232,7 +232,7 @@ func getTabViewModel(for id: UUID, ofType type: TabContentType, positioned at: I
 			type: type,
 			title: record?.title ?? "Blank Page",
 			content: record?.url ?? "https://enai.io",
-			state: TabViewModelState(rawValue: state ?? "notLoaded") ?? .notLoaded,
+			state: .notLoaded,
 			position: at
 		)
 	}else if(type == .eveChat){
