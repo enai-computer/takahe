@@ -50,13 +50,12 @@ class NiWebView: WKWebView, CFContentItem, CFContentSearch{
 		self.allowsBackForwardNavigationGestures = true
 		self.allowsLinkPreview = true
 		
-		//TODO: set only once we loaded a website for the first time. Otherwise leave the default title here
-//		titleChangeObserver = self.observe(
-//			\.title,
-//			 options: [.new]
-//		){niWebView, val in
-//			niWebView.titleChanged()
-//		}
+		titleChangeObserver = self.observe(
+			\.title,
+			 options: [.new]
+		){niWebView, val in
+			niWebView.titleChanged()
+		}
 		
 		canGobackObserver = self.observe(
 			\.canGoBack,

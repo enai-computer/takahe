@@ -189,6 +189,14 @@ class ContentFrameTabHead: NSCollectionViewItem, NSTextFieldDelegate {
 				await self.parentController?.updateViewModelIcon(at: self.tabPosition, icon: img)
 				await self.setIcon(img: img)
 			}
+		}else if let webViewURL: URL = URL(string: viewModel.content) {
+			Task.detached { [weak self] in
+				let img = await FaviconProvider.instance.fetchIcon(webViewURL)
+					?? NSImage(named: NSImage.Name("enaiIcon"))
+				guard let self else { return }
+				await self.parentController?.updateViewModelIcon(at: self.tabPosition, icon: img)
+				await self.setIcon(img: img)
+			}
 		}
 	}
 	

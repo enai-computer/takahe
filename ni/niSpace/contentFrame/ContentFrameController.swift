@@ -951,7 +951,7 @@ class ContentFrameController: CFProtocol, NSCollectionViewDataSource, NSCollecti
 			updateWVTabHeadPos(from: viewPosition, moveLeft: false)
 		}
 		
-		var tabHeadModel = TabViewModel(contentId: contentId, type: type)
+		var tabHeadModel = TabViewModel(contentId: contentId, type: type, title: tabName)
 		tabHeadModel.position = viewPosition
 		tabHeadModel.viewItem = niWebView
 		tabHeadModel.webView!.tabHeadPosition = tabHeadModel.position
