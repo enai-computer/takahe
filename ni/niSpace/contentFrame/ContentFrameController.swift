@@ -777,10 +777,10 @@ class ContentFrameController: CFProtocol, NSCollectionViewDataSource, NSCollecti
 			if tabs[i].webView == nil{
 				//loads only the selected site for improved performance
 				if(tabs[i].isSelected){
-					wview = getNewWebView(owner: self, frame: expandedCFView!.frame, cleanUrl: tabs[i].content, contentId: tabs[i].contentId)
+					wview = getNewWebView(owner: self, frame: expandedCFView!.frame, dirtyUrl: tabs[i].content, contentId: tabs[i].contentId)
 					tabs[i].state = .loading
 				}else{
-					wview = getNewWebView(owner: self, frame: expandedCFView!.frame, cleanUrl: tabs[i].content, contentId: tabs[i].contentId, loadSite: false)
+					wview = getNewWebView(owner: self, frame: expandedCFView!.frame, dirtyUrl: tabs[i].content, contentId: tabs[i].contentId, loadSite: false)
 					tabs[i].state = .notLoaded
 				}
 				tabs[i].viewItem = wview

@@ -51,10 +51,13 @@ func getNewWebView(owner: ContentFrameController, contentId: UUID, frame: NSRect
 	return niWebView
 }
 
-func getNewWebView(owner: ContentFrameController, frame: NSRect, dirtyUrl: String, contentId: UUID, loadSite: Bool = true) -> NiWebView{
+/**
+ helper function for the below call
+ */
+func getNewWebView(owner: ContentFrameController, frame: NSRect, webUrl: String, contentId: UUID, loadSite: Bool = true) -> NiWebView{
 	let url: URL
 	do{
-		url = try createWebUrl(from: dirtyUrl)
+		url = try createWebUrl(from: webUrl)
 	}catch{
 		url = getCouldNotLoadWebViewURL()
 	}
@@ -65,12 +68,12 @@ func getNewWebView(owner: ContentFrameController, frame: NSRect, dirtyUrl: Strin
 }
 
 /**
- notes n the 24.1.25 - currently beeing called by only in one place - the content frame controller when transforming from minimized to expanded
+default function to create a new Webview
  */
-func getNewWebView(owner: ContentFrameController, frame: NSRect, cleanUrl: String, contentId: UUID, loadSite: Bool = true) -> NiWebView{
-	let url = URL(string: cleanUrl)
+func getNewWebView(owner: ContentFrameController, frame: NSRect, dirtyUrl: String, contentId: UUID, loadSite: Bool = true) -> NiWebView{
+	let url = URL(string: dirtyUrl)
 	if(url == nil){
-		return getNewWebView(owner: owner, frame: frame, dirtyUrl: cleanUrl, contentId: contentId, loadSite: loadSite)
+		return getNewWebView(owner: owner, frame: frame, webUrl: dirtyUrl, contentId: contentId, loadSite: loadSite)
 	}
 	if(url!.scheme!.hasPrefix("file")){
 		return getNewWebView(owner: owner, contentId: contentId, frame: frame, fileUrl: url)
