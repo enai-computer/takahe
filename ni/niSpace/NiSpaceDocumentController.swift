@@ -68,7 +68,7 @@ class NiSpaceDocumentController: NSViewController{
 					 content: String? = nil,
 					 groupName: String? = nil,
 					 groupId: UUID? = nil,
-					 positionAlwaysCenter: Bool = false,
+					 positionAlwaysCenter: Bool = true,
 					 createInfoText: Bool = true,
 					 backgroundColor: StickyColor? = nil
 	) -> ContentFrameController {
