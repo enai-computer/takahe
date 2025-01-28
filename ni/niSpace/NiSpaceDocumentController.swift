@@ -12,7 +12,7 @@ class NiSpaceDocumentController: NSViewController{
 	
 	var myView: NiSpaceDocumentView {return self.view as! NiSpaceDocumentView}
 	
-	private let defaultCFSize: CGSize = CGSize(width: 1200, height: 900)
+	static let defaultCFSize: CGSize = CGSize(width: 1200, height: 900)
 	private let defaultNoteSize: CGSize = CGSize(width: 300, height: 200)
 	private let bufferToTop: CGFloat = 45.0
 	private let bufferToSides: CGFloat = 30.0
@@ -175,16 +175,8 @@ class NiSpaceDocumentController: NSViewController{
 	}
 	
 	private func calcDefaultCFSize() -> CGSize{
-		guard let screenSize: CGSize = view.window?.screen?.visibleFrame.size else {return defaultCFSize}
-		let resizeFactor = 0.9
-		let propedHeight = screenSize.width * (3/4) * resizeFactor
-		let propedWidth = screenSize.height * (4/3) * resizeFactor
-		
-		if((screenSize.height * resizeFactor) < propedHeight){
-			return CGSize(width: propedWidth, height: screenSize.height * resizeFactor)
-		}
-		
-		return CGSize(width: screenSize.width * resizeFactor, height: propedHeight)
+		guard let screenSize: CGSize = view.window?.screen?.visibleFrame.size else {return NiSpaceDocumentController.defaultCFSize}
+		return Enai.calcDefaultCFSize(for: screenSize)
 	}
 	
 	/*

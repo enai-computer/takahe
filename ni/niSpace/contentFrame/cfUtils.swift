@@ -58,6 +58,18 @@ func genCollapsedMinimzedStackItems(
 	}
 }
 
+func calcDefaultCFSize(for screenSize: CGSize) -> CGSize{
+	let resizeFactor = 0.9
+	let propedHeight = screenSize.width * (3/4) * resizeFactor
+	let propedWidth = screenSize.height * (4/3) * resizeFactor
+	
+	if((screenSize.height * resizeFactor) < propedHeight){
+		return CGSize(width: propedWidth, height: screenSize.height * resizeFactor)
+	}
+	
+	return CGSize(width: screenSize.width * resizeFactor, height: propedHeight)
+}
+
 extension RangeReplaceableCollection {
 	@inlinable func appending(_ newElement: Element) -> Self {
 		var result = self

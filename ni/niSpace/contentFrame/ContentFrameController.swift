@@ -654,6 +654,7 @@ class ContentFrameController: CFProtocol, NSCollectionViewDataSource, NSCollecti
 		
 		if(expandedCFView == nil){
 			tabSelectedInModel = recreateExpandedCFView()
+			expandedCFView?.frame.size = calcDefaultCFSize()
 			expandedCFView?.setFrameOwner(self.myView.niParentDoc)
 		}else{
 			tabSelectedInModel = selectedTabModel
@@ -680,6 +681,11 @@ class ContentFrameController: CFProtocol, NSCollectionViewDataSource, NSCollecti
 		self.expandedCFView!.niParentDoc?.setTopNiFrame(self)
 		
 		sharedLoadViewSetters()
+	}
+	
+	private func calcDefaultCFSize() -> CGSize{
+		guard let screenSize: CGSize = view.window?.screen?.visibleFrame.size else {return NiSpaceDocumentController.defaultCFSize}
+		return Enai.calcDefaultCFSize(for: screenSize)
 	}
 	
 	override func minimizeToCollapsed(to origin: NSPoint? = nil){
