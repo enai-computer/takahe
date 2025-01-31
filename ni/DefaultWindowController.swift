@@ -8,7 +8,8 @@ class DefaultWindowController: NSWindowController, NSWindowDelegate{
 	private var prevScreenSize: CGSize? = nil
 	private var spaceSaved = false
 	private var spaceViewController: NiSpaceViewController? { contentViewController as? NiSpaceViewController }
-
+	private var observer: NSObjectProtocol?
+	
     override func windowDidLoad() {
         super.windowDidLoad()
 		window?.toggleFullScreen(nil)
@@ -32,6 +33,15 @@ class DefaultWindowController: NSWindowController, NSWindowDelegate{
 	}
 
 	func windowDidEnterFullScreen(_ notification: Notification){
+		observer = NotificationCenter.default.addObserver(forName: NSWindow.didChangeOcclusionStateNotification, object: nil, queue: OperationQueue.main) { (notification) in
+			if let window = notification.object as? NSWindow{
+				if window.occlusionState == NSWindow.OcclusionState.init(rawValue: 8194){
+					window.titlebarAppearsTransparent = true
+					window.toolbar?.isVisible = false
+				} else {}
+			}
+		}
+		
 		if(UserSettings.shared.isDefaultConfig){
 			DispatchQueue.main.asyncAfter(deadline: .now().advanced(by: .milliseconds(500))){
 				self.showFirstWindow()
@@ -40,7 +50,7 @@ class DefaultWindowController: NSWindowController, NSWindowDelegate{
 			showFirstWindow()
 		}
 	}
-	
+
 	private func showFirstWindow(){
 		guard let spaceViewController else { assertionFailure(); return }
 		

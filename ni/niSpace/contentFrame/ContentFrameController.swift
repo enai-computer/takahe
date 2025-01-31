@@ -654,6 +654,7 @@ class ContentFrameController: CFProtocol, NSCollectionViewDataSource, NSCollecti
 		
 		if(expandedCFView == nil){
 			tabSelectedInModel = recreateExpandedCFView()
+			expandedCFView?.frame.size = calcDefaultCFSize()
 			expandedCFView?.setFrameOwner(self.myView.niParentDoc)
 		}else{
 			tabSelectedInModel = selectedTabModel
@@ -670,13 +671,21 @@ class ContentFrameController: CFProtocol, NSCollectionViewDataSource, NSCollecti
 		
 		if(0 <= shallSelectTabAt){
 			forceSelectTab(at: shallSelectTabAt)
+			loadSiteIfNotLoadedYet(at: shallSelectTabAt)
 		}else{
 			forceSelectTab(at: tabSelectedInModel)
+			loadSiteIfNotLoadedYet(at: tabSelectedInModel)
 		}
+		
 		
 		self.expandedCFView!.niParentDoc?.setTopNiFrame(self)
 		
 		sharedLoadViewSetters()
+	}
+	
+	private func calcDefaultCFSize() -> CGSize{
+		guard let screenSize: CGSize = view.window?.screen?.visibleFrame.size else {return NiSpaceDocumentController.defaultCFSize}
+		return Enai.calcDefaultCFSize(for: screenSize)
 	}
 	
 	override func minimizeToCollapsed(to origin: NSPoint? = nil){
@@ -772,7 +781,14 @@ class ContentFrameController: CFProtocol, NSCollectionViewDataSource, NSCollecti
 		for i in tabs.indices{
 			let wview: NiWebView
 			if tabs[i].webView == nil{
-				wview = getNewWebView(owner: self, frame: expandedCFView!.frame ,cleanUrl: tabs[i].content, contentId: tabs[i].contentId)
+				//loads only the selected site for improved performance
+				if(tabs[i].isSelected){
+					wview = getNewWebView(owner: self, frame: expandedCFView!.frame, dirtyUrl: tabs[i].content, contentId: tabs[i].contentId)
+					tabs[i].state = .loading
+				}else{
+					wview = getNewWebView(owner: self, frame: expandedCFView!.frame, dirtyUrl: tabs[i].content, contentId: tabs[i].contentId, loadSite: false)
+					tabs[i].state = .notLoaded
+				}
 				tabs[i].viewItem = wview
 			}else{
 				wview = tabs[i].webView!
@@ -814,6 +830,7 @@ class ContentFrameController: CFProtocol, NSCollectionViewDataSource, NSCollecti
 		var tabHeadModel = TabViewModel(contentId: contentId, type: .web)
 		tabHeadModel.position = myView.createNewTab(tabView: niWebView)
 		tabHeadModel.viewItem = niWebView
+		tabHeadModel.state = .loading
 		tabHeadModel.webView!.tabHeadPosition = tabHeadModel.position
 		self.tabs.append(tabHeadModel)
 		
@@ -927,14 +944,15 @@ class ContentFrameController: CFProtocol, NSCollectionViewDataSource, NSCollecti
 		urlStr: String,
 		contentId: UUID,
 		tabName: String,
-		webContentState: TabViewModelState = .loading,
+		webContentState: TabViewModelState? = nil,
 		openNextTo: Int = -1,
-		as type: TabContentType = .web
+		as type: TabContentType = .web,
+		loadWebsite: Bool = true
 	) -> Int{
 		let niWebView = if(type == .eveChat){
 			Enai.getNewWebView(owner: self, contentId: contentId, frame: view.frame, fileUrl: nil)
 		}else{
-			getNewWebView(owner: self, frame: view.frame, dirtyUrl: urlStr, contentId: contentId)
+			getNewWebView(owner: self, frame: view.frame, dirtyUrl: urlStr, contentId: contentId, loadSite: loadWebsite)
 		}
 		let viewPosition = myView.createNewTab(tabView: niWebView, openNextTo: openNextTo)
 		
@@ -942,12 +960,18 @@ class ContentFrameController: CFProtocol, NSCollectionViewDataSource, NSCollecti
 			updateWVTabHeadPos(from: viewPosition, moveLeft: false)
 		}
 		
-		var tabHeadModel = TabViewModel(contentId: contentId, type: type)
+		var tabHeadModel = TabViewModel(contentId: contentId, type: type, title: tabName)
 		tabHeadModel.position = viewPosition
 		tabHeadModel.viewItem = niWebView
 		tabHeadModel.webView!.tabHeadPosition = tabHeadModel.position
 		tabHeadModel.content = urlStr
-		tabHeadModel.state = webContentState
+		tabHeadModel.state = if(webContentState != nil){
+			webContentState!
+		}else if(loadWebsite || type == .eveChat){
+			.loading
+		}else{
+			.notLoaded
+		}
 		
 		if(0 <= openNextTo){
 			self.tabs.insert(tabHeadModel, at: viewPosition)
@@ -1088,6 +1112,9 @@ class ContentFrameController: CFProtocol, NSCollectionViewDataSource, NSCollecti
 		}
 
 		deletedTabModel?.viewItem = nil
+		
+		//TODO: load website of selected website if not loaded
+		loadSiteIfNotLoadedYet(at: selectedTabModel)
 	}
 	
 	override func selectNextTab(goFwd: Bool = true){
@@ -1106,6 +1133,7 @@ class ContentFrameController: CFProtocol, NSCollectionViewDataSource, NSCollecti
 			nxtTab = 0
 		}
 		selectTab(at: nxtTab)
+		loadSiteIfNotLoadedYet(at: nxtTab)
 	}
 	
 	/**
@@ -1456,6 +1484,51 @@ class ContentFrameController: CFProtocol, NSCollectionViewDataSource, NSCollecti
 		for t in tabs{
 			t.viewItem?.spaceClosed()
 		}
+	}
+	
+	func provideContext(maxContextSize: Int, startingPos: Int? = nil) -> [String]{
+		var remainingContextSize: Int = maxContextSize
+		var groupContext: [String] = []
+
+		
+		let (remContext, gRes) = provideContext(remainingTokens: remainingContextSize, startingPos: startingPos)
+		remainingContextSize = remContext
+		groupContext.append(contentsOf: gRes)
+		
+		guard let allGroupsInSpace = myView.niParentDoc?.orderedContentFrames(closestTo: self) else{
+			return groupContext
+		}
+		
+		for group in allGroupsInSpace{
+			if(group != self && group.tabs.first?.type == .web){
+				if let cfcGroup = group as? ContentFrameController{
+					let (rContext, groupRes) = cfcGroup.provideContext(remainingTokens: remainingContextSize)
+					remainingContextSize = rContext
+					groupContext.append(contentsOf: groupRes)
+				}
+			}
+		}
+		return groupContext
+	}
+	
+	private func provideContext(remainingTokens: Int, startingPos: Int? = nil) -> (Int, [String]){
+		var remainingContextSize = remainingTokens
+		var groupContext: [String] = []
+		
+
+		for t in tabs{
+			if let extractedContent = ContentTable.fetchExtractedContent(for: t.contentId){
+				let nrOfTokens = extractedContent.count / 4
+				if(0 < (remainingContextSize - nrOfTokens)){
+					groupContext.append(extractedContent)
+					remainingContextSize = remainingContextSize - nrOfTokens
+				}else{
+					return (remainingContextSize, groupContext)
+				}
+			}
+		}
+		
+		return (remainingContextSize, groupContext)
 	}
 	
 	override func deinitSelf(){

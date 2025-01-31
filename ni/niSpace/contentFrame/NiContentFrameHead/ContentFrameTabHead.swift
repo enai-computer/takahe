@@ -189,13 +189,21 @@ class ContentFrameTabHead: NSCollectionViewItem, NSTextFieldDelegate {
 				await self.parentController?.updateViewModelIcon(at: self.tabPosition, icon: img)
 				await self.setIcon(img: img)
 			}
+		}else if let webViewURL: URL = URL(string: viewModel.content) {
+			Task.detached { [weak self] in
+				let img = await FaviconProvider.instance.fetchIcon(webViewURL)
+					?? NSImage(named: NSImage.Name("enaiIcon"))
+				guard let self else { return }
+				await self.parentController?.updateViewModelIcon(at: self.tabPosition, icon: img)
+				await self.setIcon(img: img)
+			}
 		}
 	}
 	
 	private func setText(_ viewModel: TabViewModel){
 		if(viewModel.inEditingMode){
 			self.inEditingMode = true
-			if(viewModel.state == .empty || viewModel.state == .error){
+			if(viewModel.state == .empty || viewModel.state == .error || viewModel.isEveChat() || viewModel.webView?.isEveChatURL() == true){
 				self.tabHeadTitle.enableEditing(urlStr: "")
 			}else{
 				self.tabHeadTitle.enableEditing(urlStr: viewModel.webView?.url?.absoluteString ?? viewModel.content)
@@ -218,6 +226,7 @@ class ContentFrameTabHead: NSCollectionViewItem, NSTextFieldDelegate {
 	
 	func selectSelf(mouseDownEvent: NSEvent? = nil){
 		parentController?.selectTab(at: tabPosition, mouseDownEvent: mouseDownEvent)
+		parentController?.loadSiteIfNotLoadedYet(at: tabPosition)
 	}
 	
 	func startEditMode(){

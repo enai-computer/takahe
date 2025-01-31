@@ -106,6 +106,10 @@ class Storage{
 			try db.run(ContentTable.table.addColumn(ContentTable.sourceUrl))
 			db.userVersion = 1
 		}
+		if(db.userVersion! < 2){
+			try db.run(ContentTable.table.addColumn(ContentTable.extractedContent))
+			db.userVersion = 2
+		}
 	}
 	
 	private static func createCacheDBIfNotExist(db: Connection) throws {

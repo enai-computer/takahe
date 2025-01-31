@@ -169,9 +169,32 @@ class NiWebView: WKWebView, CFContentItem, CFContentSearch{
 	/*
 	 returns false if str conversation to URLRequest failed
 	 */
-	func load(_ urlStr: String) -> Bool{
-		guard let url = URL(string: urlStr) else {return false}
-		super.load(URLRequest(url: url))
+	func load(dirtyStr: String) -> Bool{
+		let url = URL(string: dirtyStr)
+		if(url == nil){
+			let url2: URL
+			do{
+				url2 = try createWebUrl(from: dirtyStr)
+			}catch{
+				url2 = getCouldNotLoadWebViewURL()
+				return false
+			}
+			
+			let urlReq = URLRequest(url: url2)
+			load(urlReq)
+			return true
+		}
+		if(url!.scheme!.hasPrefix("file")){
+			let localHTMLurl = if(url == nil) {
+				getEmtpyWebViewURL()
+			}else{
+				url!
+			}
+			loadFileURL(localHTMLurl, allowingReadAccessTo: localHTMLurl)
+			return true
+		}
+		let urlReq = URLRequest(url: url!)
+		load(urlReq)
 		return true
 	}
 	
@@ -420,6 +443,27 @@ class NiWebView: WKWebView, CFContentItem, CFContentSearch{
 		Eve.instance.maraeClient.verifyDevice(callback: self.passEnaiAPIAuthOnMain)
 	}
 	
+	func passContext(_ tokenLimit: Int){
+		guard isEveChatURL() else {return}
+		let startTime = CFAbsoluteTimeGetCurrent()
+		let context: [String] = owner?.provideContext(maxContextSize: tokenLimit, startingPos: tabHeadPosition) ?? []
+		let timeElapsed = CFAbsoluteTimeGetCurrent() - startTime
+//		print("fetch context execution time: \(timeElapsed) seconds")
+		Task{
+			do{
+				let startTime = CFAbsoluteTimeGetCurrent()
+				_ = try await self.callAsyncJavaScript("setContext(data);",
+												   arguments: ["data": context],
+												   contentWorld: WKContentWorld.page
+				)
+				let timeElapsed = CFAbsoluteTimeGetCurrent() - startTime
+//				print("pass Context into Webframe execution time: \(timeElapsed) seconds")
+			}catch{
+				print(error)
+			}
+		}
+	}
+	
 	func setWelcomeMessage(_ message: String){
 		guard isEveChatURL() else {return}
 		let messDic: [[String:String]] = [["role": "assistant", "content": message]]
@@ -454,7 +498,7 @@ class NiWebView: WKWebView, CFContentItem, CFContentSearch{
 		Task{
 			do{
 				if let storedChatTitle: String = ContentTable.fetchURLTitleSource(for: contentId)?.1 {
-					try await self.callAsyncJavaScript("document.title = data;",
+					_ = try await self.callAsyncJavaScript("document.title = data;",
 													   arguments: ["data": storedChatTitle],
 													   contentWorld: WKContentWorld.page
 					)
@@ -464,7 +508,7 @@ class NiWebView: WKWebView, CFContentItem, CFContentSearch{
 					}
 				}
 				let messDic = try JSONSerialization.jsonObject(with: messageData)
-				try await self.callAsyncJavaScript("setMessages(data);",
+				_ = try await self.callAsyncJavaScript("setMessages(data);",
 					 arguments: ["data": messDic],
 					 contentWorld: WKContentWorld.page
 				)
@@ -472,6 +516,18 @@ class NiWebView: WKWebView, CFContentItem, CFContentSearch{
 				print(error)
 			}
 		}
+	}
+	
+	@MainActor
+	func fetchWebcontent() async -> String?{
+		do{
+			if let result = try await self.evaluateJavaScript("EnaiGetPageContent();") as? String{
+				return result
+			}
+		}catch{
+			print(error)
+		}
+		return nil
 	}
 	
 	func isEveChatURL() -> Bool{
@@ -538,8 +594,16 @@ class GlobalScriptMessageHandler: NSObject, WKScriptMessageHandler {
         }
         """
     
+	static private var contentExtrationScript: String = ""
+	
     private override init() {
         super.init()
+		// Load JavaScript file from bundle
+		if let scriptPath = Bundle.main.path(forResource: "Readability", ofType: "js"){
+			if let scriptContent = try? String(contentsOfFile: scriptPath, encoding: .utf8){
+				GlobalScriptMessageHandler.contentExtrationScript = scriptContent
+			}
+		}
     }
     
     public func ensureHandles(configuration: WKWebViewConfiguration) {
@@ -557,6 +621,9 @@ class GlobalScriptMessageHandler: NSObject, WKScriptMessageHandler {
             
             let userScript = WKUserScript(source: GlobalScriptMessageHandler.WHOLE_PAGE_SCRIPT, injectionTime: .atDocumentStart, forMainFrameOnly: false)
             userContentController.addUserScript(userScript)
+			
+			let contentExtractorScript = WKUserScript(source: GlobalScriptMessageHandler.contentExtrationScript, injectionTime: .atDocumentStart, forMainFrameOnly: false)
+			userContentController.addUserScript(contentExtractorScript)
         }
     }
     
@@ -597,10 +664,11 @@ class EveChatHandler: NSObject, WKScriptMessageHandlerWithReply {
 				niWebView?.setEveMessageHistory()
 			}else if(type == "token-request"){
 				niWebView?.passRefreshedEnaiAPIAuth()
+			}else if(type == "request-context"){
+				guard let tokenLimit = body["token_limit"] as? Int else{return (nil, nil)}
+				niWebView?.passContext(tokenLimit)
 			}
 		}
 		return (nil, nil)
 	}
-	
-	
 }

@@ -47,7 +47,7 @@ struct TabViewModel{
 		if(self.type == .eveChat){
 			return true
 		}
-		return self.type == .web && self.state == .empty
+		return self.type == .web && self.webView?.isEveChatURL() == true
 	}
 	
 	func toNiCFTabModel(at position: Int) -> NiCFTabModel{

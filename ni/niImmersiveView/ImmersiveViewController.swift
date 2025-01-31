@@ -5,6 +5,7 @@
 //  Created by Patrick Lukas on 5/9/24.
 //
 
+//currently dead code. Needed for: https://linear.app/n-i/issue/NI-215/full-screen-mode-for-apps
 import Cocoa
 import WebKit
 
