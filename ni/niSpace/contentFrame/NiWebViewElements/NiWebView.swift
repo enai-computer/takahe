@@ -443,15 +443,21 @@ class NiWebView: WKWebView, CFContentItem, CFContentSearch{
 		Eve.instance.maraeClient.verifyDevice(callback: self.passEnaiAPIAuthOnMain)
 	}
 	
-	func passContext(){
+	func passContext(_ tokenLimit: Int){
 		guard isEveChatURL() else {return}
-		let context: [String] = owner?.provideContext(maxContextSize: 28000, startingPos: tabHeadPosition) ?? []
+		let startTime = CFAbsoluteTimeGetCurrent()
+		let context: [String] = owner?.provideContext(maxContextSize: tokenLimit, startingPos: tabHeadPosition) ?? []
+		let timeElapsed = CFAbsoluteTimeGetCurrent() - startTime
+//		print("fetch context execution time: \(timeElapsed) seconds")
 		Task{
 			do{
+				let startTime = CFAbsoluteTimeGetCurrent()
 				_ = try await self.callAsyncJavaScript("setContext(data);",
 												   arguments: ["data": context],
 												   contentWorld: WKContentWorld.page
 				)
+				let timeElapsed = CFAbsoluteTimeGetCurrent() - startTime
+//				print("pass Context into Webframe execution time: \(timeElapsed) seconds")
 			}catch{
 				print(error)
 			}
@@ -659,7 +665,8 @@ class EveChatHandler: NSObject, WKScriptMessageHandlerWithReply {
 			}else if(type == "token-request"){
 				niWebView?.passRefreshedEnaiAPIAuth()
 			}else if(type == "request-context"){
-				niWebView?.passContext()
+				guard let tokenLimit = body["token_limit"] as? Int else{return (nil, nil)}
+				niWebView?.passContext(tokenLimit)
 			}
 		}
 		return (nil, nil)
