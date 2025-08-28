@@ -26,7 +26,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationDidFinishLaunching(_ aNotification: Notification) {
 		_ = Storage.instance
 		UserSettings.reload()
-		
+
+		// PostHog project API keys are intended to be used in public facing code
 		let POSTHOG_API_KEY = "phc_qwTCTecFkqQyd3OYFoiWniEjMLBmJ3KL8P5rNRqJYN1"
 		let POSTHOG_HOST = "https://eu.i.posthog.com"
 		let postHogConfig = PostHogConfig(apiKey: POSTHOG_API_KEY, host: POSTHOG_HOST)
